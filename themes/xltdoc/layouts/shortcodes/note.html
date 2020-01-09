@@ -1,0 +1,9 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+
+<div class="alert alert-info" role="alert">
+    {{ with .Get "title" | default "Note" }}
+        <h4 class="alert-heading">{{ . | safeHTML }}</h4>
+    {{ end }}
+    
+    {{ .Inner | markdownify }}
+</div>

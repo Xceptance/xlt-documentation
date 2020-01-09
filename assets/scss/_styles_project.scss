@@ -1,0 +1,10 @@
+/*
+    Overwritten to make the inner section of the doc wider for better
+    code block visibility
+*/
+.td-max-width-on-larger-screens {
+    @include media-breakpoint-up(lg) {
+        max-width: 95%;
+    }
+
+}
