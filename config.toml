@@ -6,6 +6,8 @@ enableRobotsTXT = true
 # Hugo allows theme composition (and inheritance). The precedence is from left to right.
 theme = ["xltdoc", "docsy"]
 
+rss_sections = ["release-notes", "load-test", "test-automation", "xlt-in-a-nutshell"]
+
 # Will give values to .Lastmod etc.
 enableGitInfo = true
 
@@ -37,7 +39,7 @@ blog = "/:section/:year/:month/:day/:slug/"
 ## Configuration for BlackFriday markdown parser: https://github.com/russross/blackfriday
 [blackfriday]
 plainIDAnchors = true
-hrefTargetBlank = true
+hrefTargetBlank = false
 angledQuotes = false
 latexDashes = true
 
