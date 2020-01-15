@@ -15,24 +15,36 @@ description: >
 A Note
 {{% /note %}}
 
-{{% note title="Custom Title" %}}
-A Note with a custom title
+{{% note title="Custom <em>Title</em>" %}}
+A Note with a custom title including html
+{{% /note %}}
+
+{{% note title=" " %}}
+A Note without title but with `markdown` in it
 {{% /note %}}
 
 {{% warning %}}
 A Warning
 {{% /warning %}}
 
-{{% warning title="Custom Warning" %}}
-A Warning with a custom title
+{{% warning title="Custom <em>Warning</em>" %}}
+A Warning with a custom title including html
+{{% /warning %}}
+
+{{% warning title=" " %}}
+A Warning without title but with `markdown` in it
 {{% /warning %}}
 
 {{% danger %}}
 A Note
 {{% /danger %}}
 
-{{% danger title="Custom Title" %}}
-A Danger section with a custom title
+{{% danger title="Custom <em>Title</em>" %}}
+A Danger section with a custom title including html
+{{% /danger %}}
+
+{{% danger title=" " %}}
+A Danger section without title but with `markdown` in it
 {{% /danger %}}
 
 ---
@@ -61,6 +73,9 @@ Go to [Load Testing]({{< relref "/load-testing" >}}).
 
 ### From here
 [About XLT is a link from here and not higher up](../10-history).
+
+## Images
+
 
 
 
