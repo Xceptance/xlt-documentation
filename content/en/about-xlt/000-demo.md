@@ -4,6 +4,10 @@ title: "DEMO DOC!!"
 weight: 1
 type: docs
 
+# There is no need to specify the - instead of a space, 
+# HUGO does that for you.
+slug: "this is just an overwritten url"
+
 description: >
   Just a demo for what doc can do and how the code looks like.
 ---
@@ -12,40 +16,32 @@ description: >
 
 ## Info Boxes
 {{% note %}}
-A Note
+A Note with a standard header/title
 {{% /note %}}
 
-{{% note title="Custom <em>Title</em>" %}}
-A Note with a custom title including html
+{{% note title="Custom Title" %}}
+A Note with a custom header/title and `markdown`
 {{% /note %}}
 
-{{% note title=" " %}}
-A Note without title but with `markdown` in it
-{{% /note %}}
 
 {{% warning %}}
 A Warning
 {{% /warning %}}
 
-{{% warning title="Custom <em>Warning</em>" %}}
-A Warning with a custom title including html
+{{% warning title="Custom Warning" %}}
+A Warning with a custom title
 {{% /warning %}}
 
-{{% warning title=" " %}}
-A Warning without title but with `markdown` in it
-{{% /warning %}}
 
 {{% danger %}}
 A Note
 {{% /danger %}}
 
-{{% danger title="Custom <em>Title</em>" %}}
-A Danger section with a custom title including html
+{{% danger title="Custom Title" %}}
+A Danger section with a custom title and `markdown`
 {{% /danger %}}
 
-{{% danger title=" " %}}
-A Danger section without title but with `markdown` in it
-{{% /danger %}}
+If we want a no title or header version, we might have to extend the shortcodes and add notitle as parameter.
 
 ---
 ## Code
