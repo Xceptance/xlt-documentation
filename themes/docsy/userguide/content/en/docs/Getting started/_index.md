@@ -59,14 +59,7 @@ sudo npm install -D --save autoprefixer
 sudo npm install -D --save postcss-cli
 ```
 
-You can also install these tools globally on your computer:
-
-```bash
-sudo npm install -g postcss-cli
-sudo npm install -g autoprefixer
-```
-
-You can find out more about the pros and cons of local and global package installation in [npm Global or Local Packages](https://flaviocopes.com/npm-packages-local-global/).
+Note that versions of `PostCSS` later than 5.0.1 will not load `autoprefixer` if installed [globally](https://flaviocopes.com/npm-packages-local-global/), you must use a local install.
 
 ## Using the theme
 
@@ -189,7 +182,6 @@ git submodule update --init --recursive
 ```
 
 To add the Docsy theme to an existing site, run the following commands from your project's root directory:
-you run the following commands from your project's root directory:
 
 ```
 git submodule add https://github.com/google/docsy.git themes/docsy
@@ -232,7 +224,7 @@ The Docsy example site comes with some defaults you may want to remove or custom
 
 ### Internationalization
 
-The Docsy example site supports content in English and Norwegian. You can find out more about how Docsy supports multi-language content in [Multi-language support](/docs/language/_index.md).
+The Docsy example site supports content in English and Norwegian. You can find out more about how Docsy supports multi-language content in [Multi-language support](/docs/language/).
 
 If you don't intend to translate your site to Norwegian, you can remove the language switcher by removing the following lines from `config.toml`:
 

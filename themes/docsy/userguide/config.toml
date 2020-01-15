@@ -34,6 +34,10 @@ pygmentsStyle = "tango"
 [permalinks]
 blog = "/:section/:year/:month/:day/:slug/"
 
+[outputs]
+	home = [ "HTML", "JSON" ]
+	page = [ "HTML" ]
+
 ## Configuration for BlackFriday markdown parser: https://github.com/russross/blackfriday
 [blackfriday]
 plainIDAnchors = true
@@ -73,10 +77,15 @@ languageName ="English"
 # Weight used for sorting.
 weight = 1
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 # Everything below this are Site Params
 
 [params]
-copyright = "Global Inc"
+copyright = "The Docsy Authors"
 privacy_policy = "https://policies.google.com/privacy"
 
 # Menu title if your navbar has a versions selector to access old versions of your site.
@@ -99,12 +108,20 @@ rss_sections = ["blog"]
 # Google Custom Search Engine ID. Remove or comment out to disable search.
 gcs_engine_id = "011217106833237091527:la2vtv2emlw"
 
+# Enable Algolia DocSearch
+algolia_docsearch = false
+
+#Enable offline search with Lunr.js
+offlineSearch = false
+
 # User interface configuration
 [params.ui]
 # Enable to show the side bar menu in its compact state.
 sidebar_menu_compact = false
 #  Set to true to disable breadcrumb navigation.
 breadcrumb_disable = false
+#  Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
+sidebar_search_disable = false
 #  Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top nav bar
 navbar_logo = true
 
@@ -120,11 +137,11 @@ no = 'Sorry to hear that. Please <a href="https://github.com/USERNAME/REPOSITORY
 
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
-# [[params.links.user]]
-	# name = "User mailing list"
-	# url = "https://example.org/mail"
-	# icon = "fa fa-envelope"
-        # desc = "Discussion and help from your fellow users"
+ [[params.links.user]]
+	name = "User mailing list"
+	url = "https://groups.google.com/forum/#!forum/docsy-users"
+	icon = "fa fa-envelope"
+        desc = "Discussion and help from your fellow users"
 [[params.links.user]]
 	name ="Twitter"
 	url = "https://twitter.com/docsydocs"
