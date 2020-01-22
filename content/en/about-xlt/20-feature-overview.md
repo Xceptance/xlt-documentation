@@ -1,6 +1,5 @@
 ---
-title: "Features"
-linkTitle: "Features"
+title: "Feature Overview"
 
 type: docs
 
