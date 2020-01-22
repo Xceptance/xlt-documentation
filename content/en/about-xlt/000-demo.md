@@ -43,6 +43,8 @@ A Danger section with a custom title and `markdown`
 
 If we want a no title or header version, we might have to extend the shortcodes and add notitle as parameter.
 
+> Just a blockquote. You can still use them. They are kinda boring.
+
 ---
 ## Code
 
