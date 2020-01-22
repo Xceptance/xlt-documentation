@@ -23,7 +23,6 @@ A Note with a standard header/title
 A Note with a custom header/title and `markdown`
 {{% /note %}}
 
-
 {{% warning %}}
 A Warning
 {{% /warning %}}
@@ -34,7 +33,7 @@ A Warning with a custom title
 
 
 {{% danger %}}
-A Note
+A Danger section
 {{% /danger %}}
 
 {{% danger title="Custom Title" %}}
@@ -44,6 +43,9 @@ A Danger section with a custom title and `markdown`
 If we want a no title or header version, we might have to extend the shortcodes and add notitle as parameter.
 
 > Just a blockquote. You can still use them. They are kinda boring.
+
+## Keyboard
+You can reference keyboard keys in text, using the {{< kbd >}}kbd{{< /kbd >}} shortcode.
 
 ---
 ## Code
