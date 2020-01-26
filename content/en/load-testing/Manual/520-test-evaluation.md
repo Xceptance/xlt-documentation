@@ -1,10 +1,11 @@
 ---
 title: "Test Suites"
 
-weight: 20
+weight: 520
+type: docs
 
 description: >
-  All about the XLT reports.
+  How to execute tests, collect results, and evaluate intermediate results.
 ---
 
 {{% pageinfo %}}

@@ -1,7 +1,7 @@
 ---
 title: "CI/CD"
 
-weight: 1
+weight: 700
 
 description: >
   How to integrate XLT into CI/CD pipelines and evaluate the results.

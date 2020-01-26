@@ -1,10 +1,11 @@
 ---
-title: "Setup a Load Test"
+title: "Test Suites"
 
-weight: 20
+weight: 450
+type: docs
 
 description: >
-  How to setup the test suite to run as performance test and what load profiles are supported.
+  XLT uses the concept of a test suite to control code and .
 ---
 
 {{% pageinfo %}}

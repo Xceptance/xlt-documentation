@@ -2,9 +2,10 @@
 title: "Local Execution"
 
 type: docs
-
 weight: 50
 
+description: >
+    XLT supports the local development and execution of test scenarios for faster development and debugging.
 ---
 
 Execute tests locally to develop and verify

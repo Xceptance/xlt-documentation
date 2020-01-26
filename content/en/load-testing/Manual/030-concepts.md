@@ -1,9 +1,11 @@
 ---
-title: "Development"
+title: "Concepts"
 
-weight: 20
+weight: 30
+type: docs
 
 description: >
+    The base concept of XLT explained including but not limited to the action model
   
 ---
 

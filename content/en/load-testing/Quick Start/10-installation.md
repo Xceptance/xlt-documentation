@@ -1,10 +1,10 @@
 ---
-title: "CI/CD"
+title: "Installation"
 
-weight: 1
+weight: 10
 
 description: >
-  How to integrate XLT into CI/CD pipelines and evaluate the results.
+  How to install XLT.
 ---
 
 ## CICD

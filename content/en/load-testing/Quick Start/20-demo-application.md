@@ -1,10 +1,10 @@
 ---
-title: "CI/CD"
+title: "The Demo App"
 
-weight: 1
+weight: 20
 
 description: >
-  How to integrate XLT into CI/CD pipelines and evaluate the results.
+  How to get and run Posters, the demo application.
 ---
 
 ## CICD

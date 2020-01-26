@@ -1,10 +1,11 @@
 ---
-title: "Test Suites"
+title: "Workflow"
 
-weight: 20
+weight: 100
+type: docs
 
 description: >
-    How to customize the reports.
+  How to install XLT and setup agents.
 ---
 
 {{% pageinfo %}}

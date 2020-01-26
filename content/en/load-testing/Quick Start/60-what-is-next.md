@@ -1,9 +1,9 @@
 ---
 title: "What is next?"
 
-weight: 1
+weight: 60
 
 description: >
-  What comes after the first quick start?
+  Suggestion how to continue your XLT experience
 ---
 

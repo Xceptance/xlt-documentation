@@ -1,10 +1,10 @@
 ---
-title: "CI/CD"
+title: "Demo Test Suite"
 
-weight: 1
+weight: 30
 
 description: >
-  How to integrate XLT into CI/CD pipelines and evaluate the results.
+  What is the demo test suite and how you can install and run it.
 ---
 
 ## CICD

@@ -1,10 +1,10 @@
 ---
-title: "CI/CD"
+title: "Run a Test"
 
-weight: 1
+weight: 30
 
 description: >
-  How to integrate XLT into CI/CD pipelines and evaluate the results.
+  How to run your first load test.
 ---
 
 ## CICD

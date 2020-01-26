@@ -1,10 +1,11 @@
 ---
 title: "Test Suites"
 
-weight: 20
+weight: 535
+type: docs
 
 description: >
-  XLT uses the concept of a test suite to control code and .
+  All about the XLT reports.
 ---
 
 {{% pageinfo %}}

@@ -1,10 +1,11 @@
 ---
 title: "Test Suites"
 
-weight: 20
+weight: 550
+type: docs
 
 description: >
-  How to execute tests, collect results, and evaluate intermediate results.
+    How to customize the reports.
 ---
 
 {{% pageinfo %}}

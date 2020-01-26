@@ -1,10 +1,11 @@
 ---
-title: "Installation"
+title: "Test Suites"
 
-weight: 1
+weight: 540
+types: docs
 
 description: >
-  How to install XLT and setup agents.
+    How to customize the reports.
 ---
 
 {{% pageinfo %}}

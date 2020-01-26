@@ -1,10 +1,11 @@
 ---
-title: "Setup a Load Test"
+title: "Test Suites"
 
-weight: 20
+weight: 510
+type: docs
 
 description: >
-  How to setup the test suite to run as performance test and what load profiles are supported.
+  How to execute tests, collect results, and evaluate intermediate results.
 ---
 
 {{% pageinfo %}}

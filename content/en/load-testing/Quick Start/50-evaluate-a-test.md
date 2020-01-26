@@ -1,7 +1,7 @@
 ---
 title: "Evaluate a Test"
 
-weight: 1
+weight: 40
 
 description: >
   How to evaluate a load test result

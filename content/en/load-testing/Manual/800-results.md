@@ -1,7 +1,7 @@
 ---
-title: "Test Suites"
+title: "Results"
 
-weight: 20
+weight: 800
 
 description: >
   All about the results you get during the test as well as after. Documents
