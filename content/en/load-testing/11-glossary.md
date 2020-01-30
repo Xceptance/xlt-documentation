@@ -48,7 +48,7 @@ other metrics like minimum value, maximum value, standard deviation
 
 ## Arrival Rate
 
-see “Constant Arrival Rate”.
+see [Constant Arrival Rate](#constant-arrival-rate).
 
 ## Bottleneck
 
@@ -245,7 +245,7 @@ Microsoft with one of the earlier versions of Internet Explorer.
 
 ## Flash Cookie
 
-See “Local Shared Object”.
+See [Local Shared Object](#local-shared-object).
 
 ## Flow (XLT)
 
@@ -297,7 +297,7 @@ defined by CSS rules. In XLT the image loading can be configured with
 the property  
 `com.xceptance.xlt.css.download.images`. Sometimes the term “image
 loading” is also used for other static contents like CSS or JavaScript.
-See also “Static Content Loading”
+See also [Static Content Loading](#static-content-loading).
 
 ## Initial Delay (XLT)
 
@@ -411,7 +411,7 @@ per second, the mean response time in seconds or the CPU usage in %.
 
 ## Page Impression
 
-See “Page View”.
+See [Page View](#page-view).
 
 ## Page View
 
@@ -484,7 +484,7 @@ all previously executed test cases can be repeated.
 ## Request
 
 A Request is an inquiry from a client to a server mostly using the HTTP
-or HTTPS protocol. Also see “Hit”.
+or HTTPS protocol. Also see [Hit](#hit).
 
 ## Response
 
@@ -551,11 +551,11 @@ Furthermore the scalability test checks whether and how far this limit
 can be pushed up by adding additional hardware and software resources.
 As long as the maximum processable workload is approximately increasing
 linearly with the available components we talk about a system “scaling
-over the hardware and software”.
+over the hardware and software.
 
 ## Scenario
 
-See “Test scenario”.
+See [Test scenario](#test-scenario).
 
 ## Server
 
@@ -623,7 +623,7 @@ shutdown period has timed out will be stopped abruptly.
 
 ## Simulated User
 
-See “Virtual User”.
+See [Virtual User](#virtual-user).
 
 ## Sizing-Test
 
@@ -704,7 +704,7 @@ load or to find performance flaws (bottlenecks).
 
 ## Super Cookie
 
-See “Local Shared Object”.
+See [Local Shared Object](#local-shared-object).
 
 ## System Under Test (SUT)
 
@@ -757,7 +757,7 @@ Execution of a certain test case that models a test scenario.
 
 ## User Scenario
 
-See “Test Scenario”.
+See [Test Scenario](#test-scenario).
 
 ## Virtual User
 

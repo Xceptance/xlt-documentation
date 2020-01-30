@@ -12,11 +12,13 @@ While a load test is running, the master controller only shows basic information
 
 Wouldn’t it be great if you could watch the results in real time and see how the performance varies over time while the test is still running? To this end, we have added the support of Graphite, a well-known data collection and graphing tool. During a load test, XLT could push selected metrics to Graphite. Using Graphite’s graphing capabilities or another graphing/dashboard tool on top of Graphite, you can watch the most important performance data instantly:
 
-![Load Testing Dashboard](/images/how-to/graphite/realtime-reporting.png "Load Testing Dashboard")
+{{< image src="how-to/graphite/realtime-reporting.png" large="how-to/graphite/realtime-reporting.png" >}}
+Load Testing Dashboard
+{{< /image >}}
 
 See below for the XLT settings needed to enable and configure real-time reporting:
 
-```
+```bash
 ## Whether real-time reporting is enabled (default: false).
 xlt.reporting.enabled = true
 
@@ -47,4 +49,6 @@ If enabled, XLT reports the following metrics to Graphite:
 
 Since not all performance details are sent to Graphite, you will only get a first impression of the application’s behavior. For a detailed analysis, the load test report is still the tool of choice.
 
-> [Graphite](http://graphite.readthedocs.org/en/latest/install.html) is not bundled with XLT. You need to install, configure, and run it yourself.
+{{% note notitle %}}
+[Graphite](http://graphite.readthedocs.org/en/latest/install.html) is not bundled with XLT. You need to install, configure, and run it yourself.
+{{% /note %}}
