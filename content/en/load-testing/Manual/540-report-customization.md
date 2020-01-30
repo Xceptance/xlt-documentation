@@ -2,7 +2,7 @@
 title: "Report Options"
 
 weight: 540
-types: docs
+type: docs
 
 description: >
     How to customize the reports.

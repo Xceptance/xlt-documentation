@@ -2,6 +2,7 @@
 title: "Test Suites"
 
 weight: 40
+type: docs
 
 description: >
   All about our different test suites from simple to advanced.

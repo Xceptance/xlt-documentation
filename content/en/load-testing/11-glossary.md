@@ -4,6 +4,7 @@ title: "Glossary"
 linkTitle: "Glossary"
 
 weight: 200
+type: docs
 ---
 
 ## Action (XLT)
