@@ -23,6 +23,10 @@ A Note with a standard header/title
 A Note with a custom header/title and `markdown`
 {{% /note %}}
 
+{{% note notitle %}}
+A Note without a title
+{{% /note %}}
+
 {{% warning %}}
 A Warning
 {{% /warning %}}
@@ -31,6 +35,9 @@ A Warning
 A Warning with a custom title
 {{% /warning %}}
 
+{{% warning notitle %}}
+A Warning without a title
+{{% /warning %}}
 
 {{% danger %}}
 A Danger section
@@ -40,7 +47,9 @@ A Danger section
 A Danger section with a custom title and `markdown`
 {{% /danger %}}
 
-If we want a no title or header version, we might have to extend the shortcodes and add notitle as parameter.
+{{% danger notitle %}}
+A Danger section without a title
+{{% /danger %}}
 
 > Just a blockquote. You can still use them. They are kinda boring.
 
