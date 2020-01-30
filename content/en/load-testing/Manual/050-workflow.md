@@ -1,11 +1,11 @@
 ---
-title: "Test Suites"
+title: "Workflow"
 
-weight: 510
+weight: 50
 type: docs
 
 description: >
-  How to execute tests, collect results, and evaluate intermediate results.
+  How to install XLT and setup agents.
 ---
 
 {{% pageinfo %}}

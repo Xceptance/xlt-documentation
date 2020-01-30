@@ -1,11 +1,11 @@
 ---
-title: "Test Suites"
+title: "Maven"
 
-weight: 520
+weight: 200
 type: docs
 
 description: >
-  How to execute tests, collect results, and evaluate intermediate results.
+    How to build and run using Maven.
 ---
 
 {{% pageinfo %}}

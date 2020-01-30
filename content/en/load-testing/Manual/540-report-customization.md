@@ -1,5 +1,5 @@
 ---
-title: "Test Suites"
+title: "Report Options"
 
 weight: 540
 types: docs
@@ -8,9 +8,7 @@ description: >
     How to customize the reports.
 ---
 
-{{% pageinfo %}}
-This is a placeholder page that shows you how to use this template site.
-{{% /pageinfo %}}
+command line options to change the report
+options to change content or charts
 
-Nice little intro text
 

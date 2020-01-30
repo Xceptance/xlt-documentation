@@ -1,11 +1,11 @@
 ---
-title: "Base Manual"
+title: "Test Evaluation"
 
-weight: 20
+weight: 320
 type: docs
 
 description: >
-  All about performance testing with XLT.
+  How to execute tests, collect results, and evaluate intermediate results.
 ---
 
 {{% pageinfo %}}
@@ -13,5 +13,4 @@ This is a placeholder page that shows you how to use this template site.
 {{% /pageinfo %}}
 
 Nice little intro text
-
 

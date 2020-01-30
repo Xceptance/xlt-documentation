@@ -1,11 +1,11 @@
 ---
-title: "Test Suites"
+title: "Test Execution"
 
-weight: 550
+weight: 310
 type: docs
 
 description: >
-    How to customize the reports.
+  How to execute tests, collect results, and evaluate intermediate results.
 ---
 
 {{% pageinfo %}}

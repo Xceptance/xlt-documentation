@@ -1,11 +1,11 @@
 ---
-title: "Setup a Load Test"
+title: "Advanced"
 
-weight: 500
+weight: 25
 type: docs
 
 description: >
-  How to setup the test suite to run as performance test and what load profiles are supported.
+  About advanced topics such as debugging, DNS, CI/CD and more.
 ---
 
 {{% pageinfo %}}
@@ -13,4 +13,5 @@ This is a placeholder page that shows you how to use this template site.
 {{% /pageinfo %}}
 
 Nice little intro text
+
 

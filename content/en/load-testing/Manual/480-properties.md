@@ -1,7 +1,7 @@
 ---
 title: "Properties"
 
-weight: 400
+weight: 480
 type: docs
 
 description: >

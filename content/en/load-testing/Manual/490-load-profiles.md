@@ -1,11 +1,11 @@
 ---
-title: "Base Manual"
+title: "Load Profiles"
 
-weight: 20
+weight: 490
 type: docs
 
 description: >
-  All about performance testing with XLT.
+  How to setup the test suite to run as performance test and what load profiles are supported.
 ---
 
 {{% pageinfo %}}
@@ -13,5 +13,4 @@ This is a placeholder page that shows you how to use this template site.
 {{% /pageinfo %}}
 
 Nice little intro text
-
 

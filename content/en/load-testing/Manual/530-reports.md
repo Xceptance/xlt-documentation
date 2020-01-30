@@ -1,5 +1,5 @@
 ---
-title: "Test Suites"
+title: "Reports"
 
 weight: 530
 type: docs
@@ -9,9 +9,8 @@ description: >
   All about the XLT reports.
 ---
 
-{{% pageinfo %}}
-This is a placeholder page that shows you how to use this template site.
-{{% /pageinfo %}}
+## Load Test Report
 
-Nice little intro text
+## Difference Report
 
+## Trend Report

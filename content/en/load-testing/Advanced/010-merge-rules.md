@@ -1,11 +1,11 @@
 ---
-title: "Workflow"
+title: "Merge Rules"
 
-weight: 100
+weight: 10
 type: docs
 
 description: >
-  How to install XLT and setup agents.
+    How to customize the reports further by splitting and renaming requests.
 ---
 
 {{% pageinfo %}}

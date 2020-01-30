@@ -1,11 +1,11 @@
 ---
-title: "Test Suites"
+title: "Test Setup"
 
-weight: 535
+weight: 300
 type: docs
 
 description: >
-  All about the XLT reports.
+  How to setup the test suite to run as performance test and what load profiles are supported.
 ---
 
 {{% pageinfo %}}

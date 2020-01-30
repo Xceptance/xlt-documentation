@@ -1,5 +1,5 @@
 ---
-title: "Browser Testing"
+title: "Client Performance"
 
 weight: 600
 type: docs

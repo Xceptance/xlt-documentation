@@ -3,7 +3,7 @@ title: "Real Time Monitoring"
 
 type: docs
 
-weight: 570
+weight: 100
 
 description: >
     XLT is able to provide data in real time.
