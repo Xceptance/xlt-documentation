@@ -8,6 +8,3 @@ description: >
   How to run your first load test.
 ---
 
-## CICD
-
-## Success Criteria Evaluation

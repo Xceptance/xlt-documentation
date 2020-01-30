@@ -8,7 +8,7 @@ description: >
     How to customize the reports.
 ---
 
-command line options to change the report
-options to change content or charts
+- command line options to change the report
+- options to change content or charts
 
 

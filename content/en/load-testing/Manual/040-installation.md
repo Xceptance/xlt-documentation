@@ -13,13 +13,13 @@ hard and software requirements
 
 ## Installation
 
+The XLT archive can either be obtained from the [Xceptance website](https://www.xceptance.com/en/xlt/download.html) or from Xceptance's custom Maven-compatible repository (see [below](#maven)) which allows users of Maven and Ivy to conveniently integrate XLT and all of its dependencies into their build processes.
+
 Unzip the XLT archive to a file system location of your choice. The root directory is part of the archive, so you don’t need to create it separately. XLT supports spaces in the path; however, it's easier to code tests when the path is free of them.
 
 Copy the license file to the directory `<XLT>/config`. Make sure the executable directory of your Java installation is listed in your PATH environment variable so that the XLT start scripts can find the JVM runtime.
 
 ### Maven
-
-The XLT archive can either be obtained from the Xceptance website or from Xceptance's custom Maven-compatible repository which allows users of Maven and Ivy to conveniently integrate XLT and all of its dependencies into their build processes.
 
 ```xml
 <repositories>
@@ -56,7 +56,7 @@ Copy your backed-up files and directories to the corresponding place in the new 
 
 New test suite settings are provided in the `default.properties` file of the test suite *testsuite-template*. Copy it from `<LatestXLTversion>/samples/testsuite-template/config` to the config directory of your test suites `<YourTestSuite>/config`.
 
-{{% note %}}
+{{% note notitle %}}
 Note that when you configure your test project to use a newer version of XLT, do not forget to update XLT on your load machines as well. The version you have used to develop your test scripts must match the executing version of your load test environment.
 {{% /note %}}
 
