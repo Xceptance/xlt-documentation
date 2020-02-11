@@ -96,6 +96,11 @@ Another image that is not linked to anything.
 Yet another image. Note how neatly you can navigate between the large versions of all images of this page.
 {{< /image >}}
 
+## //TODO
+{{< TODO >}}
+To remind us that something needs to be done, it is colored very annoyingly. Like, get those images resized by Docsy instead of providing two image files.
+{{< /TODO >}}
+
 
 
 
