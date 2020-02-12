@@ -28,7 +28,9 @@ To check whether the load setup was correct, control these points on the overvie
 - Was the **thinktime** like you expected?
 (The arrival rate setting does not guarantee, hence you cannot check anything here.)
 
-{{< TODO >}}EXAMPLE IMAGE{{< /TODO >}}
+{{< image src="quickstart/load-profile.png" >}}
+Load Profile
+{{< /image >}}
 
 ### Concurrent User Chart
 Also on your test report overview, in *General Information*, you will find the Concurrent User Chart right at the top. 
@@ -36,7 +38,9 @@ Also on your test report overview, in *General Information*, you will find the C
 - Max users = Max number of concurrently used session = Max possible concurrent requests {{< TODO >}}this should be a sensible sentence{{< /TODO >}}
 - Are there any spikes up or down? How nervous is the user chart (arrival rate)? 
 
-{{< TODO >}}EXAMPLE IMAGE{{< /TODO >}}
+{{< image src="quickstart/concurrent-users.png" >}}
+Concurrent Users Chart
+{{< /image >}}
 
 ### Requests
 Right below the Concurrent User Chart you'll find the Requests Per Second and Request Runtime Charts. 
@@ -44,7 +48,13 @@ Right below the Concurrent User Chart you'll find the Requests Per Second and Re
 - Are the requests in the ballpark? 
 - Are there runtime patterns, spikes or waves?
 
-{{< TODO >}}EXAMPLE IMAGES{{< /TODO >}}
+{{< image src="quickstart/RequestsPerSecond-2.png" >}}
+Requests Per Second Chart
+{{< /image >}}
+
+{{< image src="quickstart/RequestRuntime.png" >}}
+Request Runtime Chart
+{{< /image >}}
 
 ### Errors
 Further below is the Transaction Errors Chart.
@@ -52,7 +62,9 @@ Further below is the Transaction Errors Chart.
 - Do we have a pattern?
 - Did we expect errors?
 
-{{< TODO >}}EXAMPLE IMAGES{{< /TODO >}}
+{{< image src="quickstart/TransactionErrors.png" >}}
+Transaction Errors Chart
+{{< /image >}}
 
 ### Misc
 - Was the right timezone used for testing?
