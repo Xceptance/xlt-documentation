@@ -1,6 +1,9 @@
-{{ if .Get "large"}}<a href="/images/{{ .Get `large` }}" data-lightbox="{{ .Page.Title }}" {{ with .Inner }}data-title="{{ . | markdownify}}"{{ end }}>{{ end }}
+{{ if .Get "large"}}<a href="/images/{{ .Get `large` }}" data-lightbox="{{ .Page.Title }}" {{ with .Inner }}data-title="{{ . | markdownify}}"{{ end }}>
+{{ else }}
+<a href="/images/{{ .Get `src` }}" data-lightbox="{{ .Page.Title }}" {{ with .Inner }}data-title="{{ . | markdownify}}"{{ end }}>
+{{ end }}
 	<img style="box-shadow: 1px 4px 12px 1px #ccc" src="/images/{{ .Get `src` }}" alt="">
-{{ if .Get "large"}}</a>{{ end }}
+</a>
 
 {{ with .Inner }}
 <p style="color:#999; padding-top: 5px">{{ . | markdownify }}</p>

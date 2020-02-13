@@ -21,6 +21,8 @@ You might have to ask first:
 - What do I have to do next?
 - Was it my fault?
 
+## Overview
+
 ### Load Setup
 To check whether the load setup was correct, control these points on the overview of your test report:
 - **Transactions**: were the right scenarios executed?
@@ -74,8 +76,33 @@ Transaction Errors Chart
 - Do the links to the results work?
 - Was there any external data configured?
 
-For more details on how to read and interpret your test reports, see the [Manual]({{< relref "/load-testing/manual/320-test-evaluation" >}}).
+## Agents
+In the top menu of the report you'll find the point *agents*. This contains all data for your machines and some more charts. Look for the following (and check all the agents that were used):
+- Was the overall CPU usage per box <40%?
+- Also check the agent CPU usage.
+- Was the memory curve nice and steady, not hitting the max value?
+- GC information {{< TODO >}}what's this supposed to mean?{{< /TODO >}}
 
+{{< image src="quickstart/agent-CpuUsage.png" >}}
+Agents
+{{< /image >}}
+
+## Transactions
+{{< TODO >}}WRITE{{< /TODO >}}
+
+## Actions
+{{< TODO >}}WRITE{{< /TODO >}}
+
+## Requests
+{{< TODO >}}WRITE{{< /TODO >}}
+
+## Network
+{{< TODO >}}WRITE{{< /TODO >}}
+
+## Errors
+{{< TODO >}}WRITE{{< /TODO >}}
+
+For more details on how to read and interpret your test reports, see the [Manual]({{< relref "/load-testing/manual/320-test-evaluation" >}}).
 
 
 
