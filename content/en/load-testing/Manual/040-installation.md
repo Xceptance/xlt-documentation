@@ -9,7 +9,25 @@ description: >
 ---
 
 ## Hardware and Software Requirements
-hard and software requirements
+
+### Hardware
+
+-   CPU at 1.5GHz or higher
+-   1.0 GB RAM
+-   1.0 GB available in the hard disk (default installation requires
+    about 150 MB but test results might need additional capacity)
+
+### Software
+
+-   Operating System: Microsoft Windows, Linux, Oracle Solaris, HP-UX,
+    or Mac OS X, that is any operating system for which a JVM 7 (or
+    higher) is available.
+-   JVM: It’s recommended to use Oracle’s JVM. XLT also runs on OpenJDK.
+    JVMs provided by vendors such as OpenJDK BEA, HP, or IBM have not
+    been tested extensivly and may or may not work.
+-   Browser: Firefox, Chrome, Internet Explorer 10, or Safari 6 for the
+    HTML load reports. Note that JavaScript has to be enabled to utilize
+    all functionality.
 
 ## Installation
 

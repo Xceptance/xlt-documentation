@@ -8,7 +8,7 @@ description: >
   How to evaluate a load test result
 ---
 
-You will get results and even reports out of your load test fairly quickly, but evaluating a load test and drawing the correct conclusions from the data needs some practice. 
+You will get results and even reports out of your load test fairly quickly, but evaluating a load test and drawing the correct conclusions from the data needs some practice. You'll find a rough introduction to evaluating test reports here, for more information please see the [Manual](../../manual/320-test-evaluation).
 
 ## Questions to Ask
 

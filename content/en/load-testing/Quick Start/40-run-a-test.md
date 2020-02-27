@@ -16,7 +16,7 @@ To run a test, first tell your setup (`<testsuite>\config\project.properties`) w
 com.xceptance.xlt.testPropertiesFile = my-test.properties
 ```
 
-Then you can configure the basic properties of the test suite and the load profile (in (`<testsuite>\config\my-test.properties`)). Our demo test suite comes with basic test.properties which you can use as a starting point for whatever you are planning.
+Then you can configure the basic properties of the test suite and the load profile (in `<testsuite>\config\my-test.properties`). Our demo test suite comes with basic test.properties which you can use as a starting point for whatever you are planning.
 
 ```bash
 host = http://localhost:8000
@@ -31,7 +31,7 @@ com.xceptance.xlt.loadtests.TURL.users = 10
 com.xceptance.xlt.loadtests.TURL.arrivalRate = 100
 ```
 
-In this case we run a test for 1 hour with a 5 minute ramp-up period, and a 1 minute shutdown phase. The shutdown phase will not turn up in our measurements, but ramp-up does. You can exclude it later if desired. Total runtime is 1h 1min.
+In this case we run a test for 1 hour with a 5 minute ramp-up period, and a 1 minute shutdown phase. The shutdown phase will not turn up in our measurements, but ramp-up does. You can exclude it later if desired. Total runtime is 1h 1min (measurement period + shutdown period).
 
 ## Run the Test Execution
 
