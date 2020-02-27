@@ -29,7 +29,6 @@ An XLT test project has a simple directory structure. The following directories 
 - There can be an optional `<project>/config/data` directory where you can place any data file you need for the test, such as address data, logins, and so on. All files are uploaded to the agent before a load test takes place. The programming API provides easy access to this data.
 - You can place all your required libraries in `<project>/lib`. The content is uploaded to the runtime agent and included in the class path. For your local development within an IDE, you have to manually add the libraries to the class path of your project.
 - The `<project>/src` directory holds the Java-based test cases of your project. This code is compiled into classes by your IDE or build environment. It's organized in main packages, typically one package for test cases, one for actions, and one for utility classes. Make sure the compiled classes end up in `project/classes` because this is the directory XLT configures as class path for your test.
-- The `<project>/scripts` directory contains test scenarios as script test cases. Again, the code is organized in main packages, one package for test cases, a.k.a. scenarios, and one for reusable modules.
 
 ### Understanding the Test Scenarios
 
@@ -37,14 +36,9 @@ Since _Posters_ is a shop software, our test scenarios cover the typical use of 
 - *Visitor*: A visitor arrives on the homepage, and that's it.
 - *Browse*: The visitor arrives on the homepage, then starts browsing some main- and sub-categories and views a random product detail page.
 - *Search*: The visitor arrives on the homepage and enters one or more search phrases, then opens the product detail page for one of the search result items.
-- *Register*: A visitor creates an account.
-- *Add To Cart*: *Browse* extended by adding the shown product to the cart and viewing the cart.
-- *Guest Checkout*: *Add To Cart* with a subsequent checkout process but without submitting the order.
-- *Checkout*: *Add To Cart* with a subsequent checkout process as registered user and, again, without submitting the order.
-- *Guest Order*: *Guest Checkout* with a completed checkout including submission of the order.
-- *Order*: *Checkout* including submission of the order.
+- *Order*: A user creates an account. Then the visitor will *Browse*, add the the shown product to the cart, then enter the checkout process and finally submit the order.
 
-Note that the scenarios share some common steps, thus allowing a clear demonstration of how to reuse code across test cases.
+Note that the scenarios (especially the complex *Order* scenario) share some common steps, thus demonstrating how to reuse code across test cases.
 
 ## Running Java Test Cases in Headless Mode
 
