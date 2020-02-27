@@ -10,20 +10,14 @@ description: >
 
 You will get results and even reports out of your load test fairly quickly, but evaluating a load test and drawing the correct conclusions from the data needs some practice. You'll find a rough introduction to evaluating test reports here, for more information please see the [Manual](../../manual/320-test-evaluation).
 
-## Questions to Ask
-
-You might have to ask first:
-- Was the setup correct?
-- Is the result expected?
-- Does it prove my point?
-- Is there anything known or unknown in the result?
-- What can I learn from the test?
-- What do I have to do next?
-- Was it my fault?
+The Load and Performance Test Report gives you all the information needed for a detailed analysis of a load test run. It provides several sections, each consisting of at least one table and one or more charts visualizing the graphic development of relevant measurements over time. Let's have a look at the top menu sections of each load test report:
 
 ## Overview
 
+This section shows some general information about the load test (e.g. start and end time, duration), the load profile and the test comment (if any was given). It also displays a performance summary and network statistic for HTTP/HTML-based load tests.
+
 ### Load Setup
+
 To check whether the load setup was correct, control these points on the overview of your test report:
 - **Transactions**: were the right scenarios executed?
 - Does the **measurement period** match your configuration?
@@ -35,9 +29,9 @@ Load Profile
 {{< /image >}}
 
 ### Concurrent User Chart
+
 Also on your test report overview, in *General Information*, you will find the Concurrent User Chart right at the top. 
 - Is the ramp up visible?
-- Max users = Max number of concurrently used session = Max possible concurrent requests {{< TODO >}}this should be a sensible sentence{{< /TODO >}}
 - Are there any spikes up or down? How nervous is the user chart (arrival rate)? 
 
 {{< image src="quickstart/concurrent-users.png" >}}
@@ -45,6 +39,7 @@ Concurrent Users Chart
 {{< /image >}}
 
 ### Requests
+
 Right below the Concurrent User Chart you'll find the Requests Per Second and Request Runtime Charts. 
 - In the Requests Per Second, are there any spikes? Is the ramp up visible?
 - Are the requests in the ballpark? 
@@ -59,6 +54,7 @@ Request Runtime Chart
 {{< /image >}}
 
 ### Errors
+
 Further below is the Transaction Errors Chart.
 - Do we have any errors?
 - Do we have a pattern?
@@ -69,6 +65,7 @@ Transaction Errors Chart
 {{< /image >}}
 
 ### Misc
+
 - Was the right timezone used for testing?
 - Was PXX set correctly?
 - Was SLA set correctly?
@@ -76,31 +73,54 @@ Transaction Errors Chart
 - Do the links to the results work?
 - Was there any external data configured?
 
+## Transactions
+
+Also in the top menu you'll find the point *Transactions*. A transaction is a completed test case. The test case consists of one or more actions. The displayed transaction runtime includes the runtime of all actions within the test case, think times, and the processing time of the test code itself. If the test path of the test case is heavily randomized, the runtime of transactions might vary significantly. The average runtime shows the development of tests over time and especially helps to evaluate the outcome of long-running tests.
+
+## Actions
+
+An action is part of a test case and consists of prevalidation, execution, and postvalidation. The data shown here indicates the time spent in the execution routine of an action. Therefore, its runtime includes the runtime of a request, e.g. an HTTP operation, and the time necessary to prepare, send, wait, and receive the data.
+
+## Requests
+
+The request section is the most important statistics section when testing web applications. It directly reflects the loading time of pages or page components. Each row holds the data of one specific request. Its name is defined within the test case as timer name. The Count section of the table shows the total number of executions (Total), the calculated executions per seconds (1/s), minute (1/min), as well as projections or calculations of the executions per hour (1/h) and day (1/d). The Error section displays the total amount (Total) of errors that occurred throughout page or page component loading. The error count doesn’t include errors detected during the post-validation of the data received. Typical error situations are HTTP response codes such as 404 and 505, timeouts, or connection resets. The runtime section of the table shows the arithmetic mean, the minimum and maximum runtime encountered as well as the standard deviation of all data within that series. The runtime segmentation sections depicts several runtime segments and the number of requests within the segment’s definition. If the runtime of the test case is shorter than the displayed time period, e.g. test runtime was 30 min and the time period is hour, the numbers will be a linear projection. That means they will show a possible outcome of a longer test run if load and application behavior remained the same.
+
+## Network
+
+The network section covers the areas of incoming and outgoing traffic during the load test. Sent Bytes is an estimated number based on the data given to the network layer. Cookies, for instance, are not included. Received Bytes is an accurate number because it’s based on the data received and includes HTTP header information. Depending on the test runtime, the numbers per hour and per day might be estimations based on a linear projection of the available data. If the test run included web activities or other activities returning an HTTP response code, it can be found here as well. Furthermore, all hosts that participated in the test run are listed in a separate table along with the appropriate number of requests that hit this host. Last but not least, this section contains a table that breaks down the received content to their announced type.
+
+## Custom Timers & Values
+
+The custom timers includes all timers that have been placed individually within the test code. The chart and data description is identical to the request section. In case custom samplers have been run during the test, the collected data is shown in the *Custom Values* section.
+
+## External Data
+
+All external data gathered by other tools during the test run is shown here according to the configuration. Please see External Data for details on how to include external data in the report.
+
+## Errors
+
+This section consists of a table that contains all errors and their stack traces thrown by the test cases along with an overview of all error types. 
+
+## Events
+
+Events are used to indicate that the test has encountered a special situation that is not an error but too important to ignore or to write to the log only. This section consists of a single table that lists all events that occurred during the test run including their name, amount, detail message and the name of the test case that produced this event.
+
 ## Agents
-In the top menu of the report you'll find the point *agents*. This contains all data for your machines and some more charts. Look for the following (and check all the agents that were used):
+
+This section reports the resource utilization of each user agent in terms of CPU and memory usage. It helps to identify potential resource bottlenecks that might have influenced the load test. Note that all data is local to the JVM of the agent and therefore only covers a process view.
+
+Look for the following (and check all the agents that were used):
 - Was the overall CPU usage per box <40%?
 - Also check the agent CPU usage.
 - Was the memory curve nice and steady, not hitting the max value?
-- GC information {{< TODO >}}what's this supposed to mean?{{< /TODO >}}
 
 {{< image src="quickstart/agent-CpuUsage.png" >}}
 Agents
 {{< /image >}}
 
-## Transactions
-{{< TODO >}}WRITE{{< /TODO >}}
+## Configuration
 
-## Actions
-{{< TODO >}}WRITE{{< /TODO >}}
-
-## Requests
-{{< TODO >}}WRITE{{< /TODO >}}
-
-## Network
-{{< TODO >}}WRITE{{< /TODO >}}
-
-## Errors
-{{< TODO >}}WRITE{{< /TODO >}}
+The configuration section lists the test configuration as well as the load profile used to run the test. It facilitates test reproduction and preserves the test settings for later test evaluation.
 
 For more details on how to read and interpret your test reports, see the [Manual]({{< relref "/load-testing/manual/320-test-evaluation" >}}).
 
