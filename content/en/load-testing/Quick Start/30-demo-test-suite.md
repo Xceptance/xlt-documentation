@@ -9,8 +9,6 @@ description: >
 ---
 
 {{< TODO >}}
-Shrink the demo test suite to basic minimum, then explain that.
-<br />
 When this is finished, copy to load-testing/test-suites/Base Web Test Suite
 {{< /TODO >}}
 
@@ -28,7 +26,7 @@ An XLT test project has a simple directory structure. The following directories 
 - `<project>/config` contains all the properties files used to configure the project.
 - There can be an optional `<project>/config/data` directory where you can place any data file you need for the test, such as address data, logins, and so on. All files are uploaded to the agent before a load test takes place. The programming API provides easy access to this data.
 - You can place all your required libraries in `<project>/lib`. The content is uploaded to the runtime agent and included in the class path. For your local development within an IDE, you have to manually add the libraries to the class path of your project.
-- The `<project>/src` directory holds the Java-based test cases of your project. This code is compiled into classes by your IDE or build environment. It's organized in main packages, typically one package for test cases, one for actions, and one for utility classes. Make sure the compiled classes end up in `project/classes` because this is the directory XLT configures as class path for your test.
+- The `<project>/src` directory holds the Java-based test cases of your project. This code is compiled into classes by your IDE or build environment. It's organized in main packages, typically one package for [test cases](../../11-glossary/#test-case-xlt), one for [flows](../../11-glossary/#flow-xlt), one for [actions](../../11-glossary/#action-xlt), and one for utility classes. Make sure the compiled classes end up in `project/classes` because this is the directory XLT configures as class path for your test.
 
 ### Understanding the Test Scenarios
 
