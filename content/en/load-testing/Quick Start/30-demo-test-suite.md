@@ -8,10 +8,6 @@ description: >
   What is the demo test suite and how you can install and run it.
 ---
 
-{{< TODO >}}
-When this is finished, copy to load-testing/test-suites/Base Web Test Suite
-{{< /TODO >}}
-
 All official XLT releases ship with a real-world [demo web application](../20-demo-application) (*Posters*) as the system under test and a test suite to test this application. Both can be found in the directory `<XLT>/samples`.
 
 ## The Posters Test Suite
@@ -38,26 +34,19 @@ Since _Posters_ is a shop software, our test scenarios cover the typical use of 
 
 Note that the scenarios (especially the complex *Order* scenario) share some common steps, thus demonstrating how to reuse code across test cases.
 
-## Running Java Test Cases in Headless Mode
+## Running Java Test Cases
 
-Java-based test cases are executed in headless mode, that is in a simulated browser that doesn't perform page rendering. Before you can do so, you need to import the sample test suite into your Java IDE.
+Before you can run your Java-based test cases, you need to import the sample test suite into your Java IDE.
 
 ### Importing the _Posters_ Test Suite into Eclipse
 
 After starting Eclipse and creating a workspace, do the following:
-- Open the import dialog (_File_ > _Import_ > _General_ > _Existing Project Into Workspace_).
+- Open the import dialog (_File_ > _Import_ > _General_ > _Existing Maven Projects_).
 - Select the root directory to search in and point to `<XLT>/samples`.
-- Select the test suite project `testsuite-posters` from the list.
+- Select the test suite project `testsuite-posters/pom.xml` from the list.
 - Click _Finish_.
 
-Since the imported project has dependencies on the libraries of XLT, you have to adjust these dependencies.
-- Right-click on your project and select _Properties_.
-- Click _Java Build Path_.
-- Select the _Libraries_ tab, then click _Add External JARs_.
-- Go to `<XLT>/lib` and select all JARs. Then click _OK_.
-- A list of all these JARs is displayed. Close the dialog with _Apply and Close_.
-
-Eclipse will rebuild the project and shouldn't report any build problems if configured properly.
+The imported project has dependencies on the libraries of XLT. These should be added with the first automatic build, but if you still see build errors, right-clicking on the project and selecting `Maven > Update Project` might help. Eclipse shouldn't report any build problems if configured properly.
 
 {{% note notitle %}}
 Users of other IDEs have to carry out similar steps.
@@ -65,7 +54,7 @@ Users of other IDEs have to carry out similar steps.
 
 ### Executing Java Test Cases in Eclipse
 
-Any Java test case can be directly run in Eclipse in headless browser mode. Go to package `com.xceptance.xlt.samples.tests`, select the test case class (e.g. `TSearch`), and run it as JUnit test via the Eclipse class file context menu.
+Any Java test case can be directly run in Eclipse in headless browser mode. Go to package `com.xceptance.xlt.samples.tests`, select the test case class (e.g. `TSearch`), and run it as JUnit test via the Eclipse class file context menu. Per default, the test cases will run against the [demo application](../20-demo-application) you started already (if you modified the ports there, you might have to change them in `<project>/config/project.properties` accordingly, just look for the property `store-url`). 
 
 ## More Test Suites
 
