@@ -8,7 +8,7 @@ description: >
   What is the demo test suite and how you can install and run it.
 ---
 
-All official XLT releases ship with a real-world [demo web application](../20-demo-application) (*Posters*) as the system under test and a test suite to test this application. Both can be found in the directory `<XLT>/samples`.
+All former official XLT releases shipped with ahttps://github.com/Xceptance?q=loadtest-suite&type=&language=) real-world [demo web application](../20-demo-application) (*Posters*) as the system under test and a test suite to test this application. Both could be found in the directory `<XLT>/samples`. Starting with XLT 5.0 we moved everything to open source, so you can now find all free demo test suites on [Github](https://github.com/Xceptance?q=loadtest-suite&type=&language=). We recommend to start with this [very simple test suite](https://github.com/Xceptance/posters-simple-loadtest-suite) to get used to the concepts. This is just a minimal test suite that helps you understand how things are supposed to work. We provide even more sample test suites for more special needs, containing more complex examples - check out the [Test Suites](../../test-suites) overview to learn more about them.
 
 ## The Posters Test Suite
 
@@ -56,6 +56,3 @@ Users of other IDEs have to carry out similar steps.
 
 Any Java test case can be directly run in Eclipse in headless browser mode. Go to package `com.xceptance.xlt.samples.tests`, select the test case class (e.g. `TSearch`), and run it as JUnit test via the Eclipse class file context menu. Per default, the test cases will run against the [demo application](../20-demo-application) you started already (if you modified the ports there, you might have to change them in `<project>/config/project.properties` accordingly, just look for the property `store-url`). 
 
-## More Test Suites
-
-This is just a minimal test suite that helps you understand how things are supposed to work. We provide even more sample test suites for more special needs, containing more complex examples - check out the [Test Suites](../../test-suites) overview to learn more about them.

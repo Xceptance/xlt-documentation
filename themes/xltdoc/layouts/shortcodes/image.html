@@ -1,4 +1,5 @@
-{{ if .Get "large"}}<a href="/images/{{ .Get `large` }}" data-lightbox="{{ .Page.Title }}" {{ with .Inner }}data-title="{{ . | markdownify}}"{{ end }}>
+{{ if .Get "large"}}
+<a href="/images/{{ .Get `large` }}" data-lightbox="{{ .Page.Title }}" {{ with .Inner }}data-title="{{ . | markdownify}}"{{ end }}>
 {{ else }}
 <a href="/images/{{ .Get `src` }}" data-lightbox="{{ .Page.Title }}" {{ with .Inner }}data-title="{{ . | markdownify}}"{{ end }}>
 {{ end }}
