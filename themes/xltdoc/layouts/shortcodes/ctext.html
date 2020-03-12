@@ -1,0 +1,5 @@
+{{ if .Get "color"}}
+<span style="color:{{ .Get `color` }};">{{ .Inner }}</span>
+{{ else }}
+<span style="color:#888;">{{ .Inner }}</span>
+{{ end }}
