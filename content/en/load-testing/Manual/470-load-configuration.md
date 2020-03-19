@@ -1,0 +1,154 @@
+---
+title: "Load Configuration"
+
+weight: 470
+type: docs
+
+description: >
+  How to setup the test suite to run as performance test and what load profiles are supported.
+---
+
+{{< TODO >}}Intro{{< /TODO >}}
+
+## Load Models
+
+A load model defines the attributes you may influence to reach a specific load and performance behavior. XLT supports two load models:
+
+* a user count model and
+* an arrival rate model.
+
+Both have different characteristics and use cases as illustrated below.
+
+### User Count Model
+
+The _user count model_ is a static and non-feedback-based load model.
+
+When you use it, the load is determined by the number of concurrent users. When you configure a load of 10 users, for instance, XLT runs 10 threads repeatedly executing this scenario. At any given time during the test, the target system has to handle 10 concurrent users, no more, no less. The number of executions (transactions) that can be achieved during a certain period of time depends on the time the target system needs to respond.
+
+This model is suited best for:
+
+* a simple base line test (single-user test) to assess the base performance of the system under almost no load,
+* a real load or performance test to assess the performance under a high but _predictable_ load,
+* a test that should be easily repeatable and whose load is not influenced by the system under test.
+
+### Arrival Rate Model
+
+The _arrival rate model_ is a feedback-based load model.
+
+When you use it, the target number of transactions per hour determines the load generation. For an arrival rate of 1,000 transactions per hour, XLT runs the respective scenario 1,000 times, equally distributed across a period of one hour. XLT uses as many concurrent users as necessary to fulfill the given arrival rate but no more than specified. Thus, if the time needed for a transaction is very short, only one user might suffice; if a transaction takes longer, the number of concurrent users will rise.
+
+The number of concurrent users is not static and influenced by the response time. If the response time temporarily increases, for example due to a server-side background job, the user count may increase as well. As soon as the response times improve, the number of concurrent users will automatically decrease. This way, the generated load is somewhat unpredictable, at least in terms of concurrency.
+
+The relationship between response times and concurrent users can lead to situations where more users cause more load and thus longer response times. Even more users are now required to run, which eventually causes the server to be overloaded. Even though this behavior appears pretty aggressive, it's more realistic. Compare it to a real-world situation where a lot of people are waiting at the check-out counter at the end of a store, but customers are still coming in because they don't know that people are waiting already. Or transferred to the online world: when you visit an online presence, you won't know the system behaves poorly until you start acting.
+
+{{< note notitle >}}Even though the number of concurrent users is rather a result than an input value for this load model, XLT requires you to specify a user count. This number is used to impose an upper limit to the number of concurrent users, which may help you to restrict the total load on the system if you want to avoid a total overload resulting from the feedback loop.{{< /note >}}
+
+The arrival rate load model is suited best if the load test is meant to prove that a system is in fact able to handle a certain number of transactions per hour. Since this is the primary purpose of load and performance testing, this model is the best choice for most of your test tasks.
+
+## Load Factor
+
+Quite often it is necessary to run tests not only at 100% of target load, but also at lower levels (for dry runs or first tests) or higher levels (for peak load tests). Since recalculating and adjusting the respective load profiles is inconvenient and error-prone, XLT supports a load factor. When taking advantage of it, you only need to configure the target numbers (100% of load) once and can then easily scale the load up or down as you like:
+
+```bash
+## scale the load up to 150% for TAuthor and down to 10% for all other scenarios
+com.xceptance.xlt.loadtests.TAuthor.loadFactor = 1.5
+com.xceptance.xlt.loadtests.default.loadFactor = 0.1
+```
+
+Note that the load factor is applied to both the configured number of users and the arrival rate (if specified).
+
+XLT also supports a variable load factor, a load factor that changes over time. Simply specify a function instead of a simple value:
+
+```bash
+## scale the load up to 150% after one hour and down to 50% after two hours
+com.xceptance.xlt.loadtests.default.loadFactor = 0/1.0, 1h/1.0, 1h/1.5, 2h/1.5, 2h/0.5
+```
+
+Note that a variable load factor cannot be used together with variable users (or arrival rate). Only one of them can be variable.
+
+## Load Profiles
+
+While the load model defines what you can modify to achieve a certain load, the load profiles define how you apply these values over a period of time. XLT supports three different load profiles:
+
+- static,
+- ramp-up, and
+- variable load.
+
+See below for their detailed explanation.
+
+### Static Load Profile
+
+The load parameter remains unchanged during the test. This is the simplest profile. Note that the target systems must be able to handle the full load right from the beginning.
+
+### Ramp-up Load Profile
+
+The load parameter is steadily increased. This allows the target system to warm up before the full load hits the system, for example to compile and optimize code or to fill caches.
+
+The ramp-up behavior of the load parameter can be controlled by the following settings:
+
+- initial value: the load parameter value to start with,
+- target value: the final load parameter as soon as the ramp-up period has finished,
+- step size: the increment added to the load parameter after each ramp-up step,
+- ramp-up period: the length of the ramp-up phase,
+- steady period: the period to keep the current parameter value until the next ramp-up step
+
+{{< note notitle>}}The steady period and the ramp-up period settings are mutually exclusive.{{< /note >}}
+
+Use the steady period if you want to keep the load at a certain level for a defined time, no matter how long the total ramp-up phase will be. Use the ramp-up period if you want to finish the ramp-up process after a certain amount of time, no matter how long the resulting steady phases will be.
+
+If an arrival rate is defined, the ramp-up parameters will be applied to the arrival rate. In case there's no such definition, they will be applied to the user count.
+
+### Variable Load Profile
+
+The variable load profile allows full control and lets you vary the load parameter freely during the test. Thus, the load may not only be constantly increased (compare ramp-up), but it can also be increased and decreased at any time.
+
+The variable profile comes in handy when you want to combine different load levels within one test run, for example a test where phases with regular load alternate with peaks of much higher load. You can also imagine a test that models the load profile of a typical 24 hour day, maybe squeezed into a shorter period of time for a faster test turn-around.
+
+To define how the load parameter should vary over time, you need to specify a load function. You do so by defining a sequence of time/value pairs, each denoting a point in time when the slope of the load function changes. When you connect the dots by a straight line, the final shape of the load function evolves.
+
+Multiple time/value pairs can be specified by separating them using one or more spaces, commas, semi-colons, or tab characters. The time part can be given in all formats supported for "time periods":#time_period.
+
+{{< note notitle >}}Please do not use white-space characters (space or tab) to separate both the sub-parts of the time part and the various time/value parts, as this leads to ambiguities and misunderstandings. In order to avoid such situations, we strongly recommend to use either commas or semi-colons to separate the time/value parts.{{< /note >}}
+
+Imagine the following load function:
+
+```bash
+0/10, 60m/10, 60m/20, 70m/5
+```
+
+This sequence of time/value pairs defines a function that keeps the load parameter constant at 10 for an hour, doubles it to 20 in an instant, then immediately starts decreasing it to 5 throughout the next ten minutes, and eventually keeps it at 5 for the remaining test.
+
+```bash
+Load /\
+     |
+  20 +                         *
+     |                         **
+     |                         * *
+     |                         *  *
+  10 +**************************   *
+     |                              *
+   5 +                               **************************
+     |
+     +-------------------------+-----+--------------------------->
+     0                        60    70                       Time
+```
+
+Note that the time/value pairs must be sorted by their time in ascending order. You can also specify two pairs for a certain time span, which is useful when you want the load parameter to change immediately. If no pair is given for time 0, a pair "0/1" will be inserted automatically (implicitly causing a ramp-up behavior). Finally, if the load test runs longer than the last pair, the last known load parameter value will be kept stable.
+
+## Load Test Phases
+
+The execution of a test scenario during a load test can be divided into different phases: the initial delay, the warm-up period, the measurement period, and the shutdown period.
+
+The **initial delay** is required only if you don't want the test scenario to run right from the beginning of the load test, which is useful if this scenario depends on the results created by another test scenario. The initial delay is optional.
+
+To minimize discrepancies that could be caused by applications and other systems starting up and not yet operating at an optimal level, you can define a **warm-up period** as the time given before any measurements are taken. The warm-up period is optional. Keep in mind that it creates a period of time during which you don't have any insights into your test. It is recommended to omit a warm-up period and modify the report later by specifying a time filter instead. This ensures that you don't miss any important information.
+
+The test is measured during the **measurement period**. As suggested by its name, this is the only time period where measurements are taken. The measurement period is a required setting.
+
+To ensure that a test scenario runs to completion even if the measurement period is over, you can set a **shutdown period** throughout which the users continue to run (without taking measurements though) and try to orderly finish their current iteration. This comes in handy when things need to be cleaned up at the end of the test scenario. As soon as the last iteration is finished, the users automatically stop. If, however, it's still not finished at the end of the shutdown period, the users will be forcibly terminated. The shutdown period is optional, but note that if no shutdown period is defined, the users are terminated right after the measurement period.
+
+The **ramp-up period** (as defined above as part of the load profile) is commonly put into the warm-up period to ensure the system under test is working at an optimal level before any measurements are taken. That's up to you though - it might as well be interesting to measure the system performance during the ramp-up phase. In that case, a warm-up period mustn't be defined.
+
+The following figure displays the phases in relation to the total test time:
+
+{{< image src="user-manual/load-testprofile-configuration-small.jpg" large="user-manual/load-testprofile-configuration.png" >}}Load Test Profile Configuration{{< /image >}}
