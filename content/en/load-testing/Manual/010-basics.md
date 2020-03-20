@@ -37,7 +37,7 @@ High Level Overview
 {{< TODO >}}find/make better image{{< /TODO >}}
 
 ### Test Suite
-A test suite contains your test code, data and configuration. Developed on your own machine, can live in your favorite version control tool and be shared easily. 
+A test suite contains your test code, data and configuration. Developed on your own machine, it can live in your favorite version control tool and be shared easily. 
 
 ### MC/Master Controller
 The MC can be seen as the “brain” of the load test environment. It deploys the test suite to all load machines, evenly distributes the load, starts/stops the load test and can be used to get agent information and create test reports. A test cluster may only have one master controller. It is loosely coupled, you can (re-)attach to running tests to interact or continue.
@@ -70,6 +70,6 @@ To run XLT, you will need the following:
 How to install XLT is described in more detail [here](../040-installation).
 
 ### How to proceed
-The [Quick Start](../../quick-start) section offers some guidance on how to start using XLT, from installation to your first local load test. For further info you might want to return to this [User Manual](..), where you can learn all the details about configuring your tests, setting up remote machines to generate the load and everything in between. Happy testing!
+The [Quick Start](../../quick-start) section offers some guidance on how to start using XLT, from installation to your first local load test. For further info you might want to return to this [User Manual](..), where you can learn all the details about developing and configuring your tests, setting up remote machines to generate the load and everything in between. Happy testing!
 
 

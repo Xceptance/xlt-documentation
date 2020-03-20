@@ -8,7 +8,7 @@ description: >
   How to setup the test suite to run as performance test and what load profiles are supported.
 ---
 
-{{< TODO >}}Intro{{< /TODO >}}
+Before running your test suite as a performance test, you will need to configure the load to be applied to your app under test. The settings required to configure a particular load test profile are collected in a property file inside the load test suite. Several files with different load test profile configurations may exist. This way, many configurations can be defined and prepared in advance and used as needed. You switch between these files by changing the property `com.xceptance.xlt.testPropertiesFile` in the `project.properties` file. For more information about the properties and syntax, also see [Load Test Profile Configuration](../480-test-suite-configuration#load-test-profile-configuration). Here we will have a look at the basic concepts of [load models](#load-models), [load factor](#load-factor) and [load profiles](#load-profiles) and how you may define your target load in different ways with XLT.
 
 ## Load Models
 

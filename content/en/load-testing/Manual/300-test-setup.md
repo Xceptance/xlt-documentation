@@ -5,10 +5,10 @@ weight: 300
 type: docs
 
 description: >
-  How to setup the test suite to run as performance test and what load profiles are supported.
+  How to setup the test suite to run as performance test and how to configure the load.
 ---
 
 {{< TODO >}}
-wo liegt der lasttest, loadprofil aufsetzen, properties->, Einstelungen
+How to setup the test suite to run as performance test (kinda intro?) more infos in LOAD CONFIGURATION
 {{< /TODO >}}
 

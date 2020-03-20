@@ -1,7 +1,7 @@
 ---
 title: "Test Suite Configuration"
 
-weight: 460
+weight: 480
 type: docs
 
 description: >
@@ -146,7 +146,7 @@ com.xceptance.xlt.samples.tests.webdriver.TAuthor.write-count = 2
 
 ## Load Test Profile Configuration
 
-The settings required to configure a particular load test profile are collected in a separate file. See [Test Setup](../300-test-setup#) or the properties file itself for details of available load test settings. 
+The settings required to configure a particular load test profile are collected in a separate file. See [Load Configuration](../470-load-configuration) or the properties file itself for details of the available load test settings, what they mean and how to define values for them. 
 
 The default name of this file is `test.properties`. However, it’s variable and several files with different load test profile configurations may exist such as `test-target-load.properties` and `test-2x-target-load.properties`. This way, many configurations can be defined and prepared in advance and used as needed. You switch between these files by changing the property `com.xceptance.xlt.testPropertiesFile` in the `project.properties` file.
 

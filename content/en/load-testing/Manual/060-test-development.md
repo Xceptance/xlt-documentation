@@ -17,4 +17,3 @@ Execute tests locally to develop and verify
 - Regular debugging works just fine
 - Reuse via Java concepts
 
-{{< TODO >}}Legacy Doc: https://lab.xceptance.de/releases/xlt/latest/getting-started/02-performance-testing.html#toc-the-big-picture Big Picture = cluster of remote machines, but for now we work with local machine only{{< /TODO >}}
