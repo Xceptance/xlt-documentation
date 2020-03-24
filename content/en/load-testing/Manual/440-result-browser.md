@@ -5,7 +5,7 @@ type: docs
 weight: 440
 
 description: >
-    The XLT result browser provides valuable inside during development as well as during load test execution and evaluation.
+    The XLT result browser provides valuable insights during development as well as during load test execution and evaluation.
 ---
 
 - Shows actions and requests of a transaction
@@ -16,7 +16,9 @@ description: >
 - Helps to find errors
 - Great for test documentation
 
-When running test cases, you can save the page output to disk. The relevant property is `com.xceptance.xlt.output2disk`. By default, it is set to `never`. If you want to enable page output to disk, copy the following lines to `dev.properties` or `test.properties`:
+## Result Browser Properties
+
+When running test cases, you can save the page output to disk. The relevant property is `com.xceptance.xlt.output2disk`. By default, it is set to `never` (`always` in development mode). If you want to enable page output to disk, copy the following lines to `dev.properties` or `test.properties` or set the already existing property accordingly:
 
 ```bash
 ## Enables page output to disk. Possible values are:
@@ -25,6 +27,37 @@ When running test cases, you can save the page output to disk. The relevant prop
 ## - always .... pages are logged always
 com.xceptance.xlt.output2disk = always
 ```
+
+By enabling page output to disk, a lot of data will be aggregated. To minimize this in load test mode, the property may be set to `onError`. Also, the number of actions in record can be set (to keep the latest n actions in record, which is set to 3 by default and to `all` in development mode):
+
+```bash
+#com.xceptance.xlt.output2disk.size = all
+com.xceptance.xlt.output2disk.size = 3
+```
+
+Also, the dump mode (whether modified or only final pages are saved) may be defined: 
+
+```bash
+#com.xceptance.xlt.output2disk.onError.dumpMode = modifiedAndFinalPages
+com.xceptance.xlt.output2disk.onError.dumpMode = finalPagesOnly
+```
+
+So if an error occurs during a transaction in a load test, `output2disk` is set to `onError` and the size is set to `3`, a result browser with the last 3 pages is written to disk. If the error condition is permanent (or present for a longer period of time), we might end up with thousands of (rather similar) result browsers. This tremendously increases the volume of data to be downloaded after the test, but does not provide any new information. That’s why you can limit the number of result browsers per type of error and agent.
+
+For each type of error, which is identified by its message and stacktrace, XLT tracks the current number of stored result browsers and stops writing down any new result browser once the configured maximum number is reached. However, you may also configure a time period to periodically clear the counter. Use this setting to limit the maximum number of result browsers for a given time period instead of the whole test runtime.
+
+```bash
+# maximum number of different error types per agent  
+com.xceptance.xlt.output2disk.onError.limiter.maxDifferentErrors = 1000
+
+# number of result browsers per agent and type of error  
+com.xceptance.xlt.output2disk.onError.limiter.maxDumps = 10
+
+# period after which the result dump counter is reset to 0  
+com.xceptance.xlt.output2disk.onError.limiter.resetInterval = 1h 30m
+```
+
+## Using the Result Browser
 
 All saved results can be found in the `<testsuite>/results` directory. See the lines below for details of the results subdirectory structure:
 

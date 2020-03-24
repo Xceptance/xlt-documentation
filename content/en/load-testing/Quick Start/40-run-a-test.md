@@ -47,6 +47,8 @@ Then navigate to `<xlt>\bin` and start the mastercontroller (MC) in auto-mode wi
 $> ./mastercontroller -auto -embedded -comment "My first test run"
 ```
 
+## Generate a Test Report
+
 After that, render a report based on the gathered data and open it in the browser of your choice:
 
 ```bash
