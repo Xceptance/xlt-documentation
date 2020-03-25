@@ -57,7 +57,15 @@ com.xceptance.xlt.output2disk.onError.limiter.maxDumps = 10
 com.xceptance.xlt.output2disk.onError.limiter.resetInterval = 1h 30m
 ```
 
+If you have saved the page output to disk and want links from the error entries in the load test report to the corresponding result browsers in the results directory in your [report](../320-test-evaluation), make sure the property is set accordingly in `reportgenerator.properties`:
+
+```bash
+com.xceptance.xlt.reportgenerator.linkToResultBrowsers = true
+```
+
 ## Using the Result Browser
+
+The result browser contains the record of a test user session. It lists actions, request, and response details and supports error diagnosis.
 
 All saved results can be found in the `<testsuite>/results` directory. See the lines below for details of the results subdirectory structure:
 
@@ -78,11 +86,17 @@ In the folders for each test run (`results/[testcase]/[virtual-user]/output/[tra
 
 The result browser navigation will only permit access to the pages of a transaction if they are directly related to actions. Therefore, defining actions correctly is very important to make the most effective use of the result browser. For details on how to structure test cases and create actions, also see [Basic Concepts](../030-concepts) and [Code Structuring Recommendations](../450-test-suites/#). {{< TODO >}}add anchor to test suite code structuring{{< /TODO >}}
 
-{{< image src="user-manual/result-browser_1-small.png" large="user-manual/result-browser_1.png">}}
+{{< image src="user-manual/result-browser.png">}}
 XLT Result Browser - Page Output
 {{< /image >}}
 
-If you click on one of the action names in the navigation, the result browser will show the respective page. When you double-click an action name, the navigation will expand to list all related requests. The listed requests are color-coded with black, {{< ctext color="grey" >}}grey{{< /ctext >}}, {{< ctext color="red" >}}red{{< /ctext >}}, {{< ctext color="blue" >}}blue{{< /ctext >}}, {{< ctext color="#7D28C0" >}}lilac{{< /ctext >}} and {{< ctext color="green" >}}green{{< /ctext >}} based on the following algorithm:
+### Navigation, Color Coding and Filtering
+
+The result browser contains two panels: the area on the left-hand side can be used to navigate the ‘steps’ - actions and requests - of your test case. The right side presents the output of your object under test (the site you are testing) or more detailed request information.
+
+If you click on one of the action names in the navigation, the result browser will show the respective page. Please note: the output on the right-hand side will more or less closely resemble your webpage. Typically, in this view Javascript is disabled and only embedded CSS is applied, so the shown page will differ slightly from the original.
+
+When you double-click an action name (or click the little arrow left of it), the navigation will expand to list all related requests. The listed requests are color-coded with black, {{< ctext color="grey" >}}grey{{< /ctext >}}, {{< ctext color="red" >}}red{{< /ctext >}}, {{< ctext color="blue" >}}blue{{< /ctext >}}, {{< ctext color="#7D28C0" >}}lilac{{< /ctext >}} and {{< ctext color="green" >}}green{{< /ctext >}} based on the following algorithm:
 
 * If the request's status code is 301 or 302 then set its color to {{< ctext color="grey" >}}grey{{< /ctext >}} since it is a Redirect.
 * If the request's status code is 0 or greater than equal to 400 then set its color to {{< ctext color="red" >}}red{{< /ctext >}} because it is an Error.
@@ -95,6 +109,20 @@ If you click on one of the action names in the navigation, the result browser wi
 Please note that the content type is determined by the appropriate HTTP response header value. Thus, if an JavaScript file is delivered as content type `text/plain` then this request will be color-coded with black.
 {{% /warning %}}
 
+{{< image src="user-manual/result-browser_colorCoding.png">}}
+XLT Result Browser - Request Color Coding
+{{< /image >}}
+
+A small menu at the top will give you the possibility to filter your output for content type (you can look up the color coding there, too), request method and employed protocol. To enable or disable a certain filter, simply toggle its checkbox.
+
+{{< image src="user-manual/result-browser_filter.png">}}
+XLT Result Browser - Request Filters
+{{< /image >}}
+
+Click directly on a request item to see all details for this request. 
+
+### Request and Response Information
+
 When you select one of the requests from the navigation, the page content will be replaced by detailed information about the request and the related response that you can access via the four tabs on top of the page. The following information is available:
 
 * *Request/Response Information*
@@ -106,8 +134,44 @@ When you select one of the requests from the navigation, the page content will b
 * *Request Body (Raw)*
 * *Response Content*
 
-{{< image src="user-manual/result-browser_2-small.png" large="user-manual/result-browser_2.png">}}
+{{< image src="user-manual/result-browser_requestDetails.png">}}
 XLT Result Browser - Request Details
+{{< /image >}}
+
+### Response Content Tools
+
+Use the tabs at the top of the right-hand side output area to see the (raw) request body and response content. 
+
+{{< TODO >}} "Failed to load '[filename]'" error in browsers - should workaround be documented? {{< /TODO >}}
+
+{{< image src="user-manual/result-browser_response1_small.png" large="user-manual/result-browser_response1.png">}}
+XLT Result Browser - Response Content
+{{< /image >}}
+
+This can be a lot of data that might not be structured at all, but the result browser provides two handy tools to enhance readability: 
+
+* by clicking _Beautify_ the indentations are corrected (or added, if there were none),
+
+{{< image src="user-manual/result-browser_response2_small.png" large="user-manual/result-browser_response2.png">}}
+XLT Result Browser - Response Content, beautified
+{{< /image >}}
+
+* and by clicking _Highlight_, syntax highlighting will be added to the code.
+
+{{< image src="user-manual/result-browser_response3_small.png" large="user-manual/result-browser_response3.png">}}
+XLT Result Browser - Response Content, highlighted
+{{< /image >}}
+
+Furthermore, there is a _Select All_ button, which enables you to easily copy and paste the response content.
+
+### Element Inspection
+
+Since the right-hand side output of an action represents the associated state of a page, you can use the output to inspect the page elements and their state. Simply use the inspection tool of your browser (e.g. Chrome Developer Tools) or plugin to analyze the page and its elements.
+
+As described earlier, the output of an action shows the state of the page after a user interaction (with all the associated requests) was executed. The page output of an action does not include `<script>` commands. These have been removed by XLT to avoid script execution while you are reviewing the output in your browser.
+
+{{< image src="user-manual/result-browser_inspect.png">}}
+XLT Result Browser - Inspect Element
 {{< /image >}}
 
 ## Request timeline
