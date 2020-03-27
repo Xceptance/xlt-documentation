@@ -5,10 +5,33 @@ weight: 450
 type: docs
 
 description: >
-  XLT uses the concept of a test suite to control code and .
+  XLT uses the concept of a test suite to make test projects more easily manageable.
 ---
 
 {{< TODO >}}see https://lab.xceptance.de/releases/xlt/latest/how-to/how-to-structure-test-suites.html{{< /TODO >}}
+
+## Concept
+
+XLT uses the concept of a test suite to make test projects more easily manageable. A test suite builds as its own project; it holds all code, data and config necessary for testing and is therefore perfect for sharing and perfect for version control. You can use a test suite as a standalone project and run the tests locally for regression testing, or the test suite can be referenced by an XLT execution engine to run a load test - tests and test environment are separated. 
+
+## Basic Directory Structure
+The directory of any [sample test suite](../../test-suites/), and also of your own test suite, should look similar to this:
+
+```txt
+    test-suite
+    ├── config
+    │   └── data
+    ├── lib
+    ├── src
+    ├── classes
+    └── results
+```
+* **config** contains all [test settings](../480-test-suite-configuration) files. The only file that is mandatory is `log4j.properties`, but usually there will be several property files containing test settings. XLT will look for all properties in this directory by default, but the location may be overridden by the system property `com.xceptance.xlt.configDir` and, alternatively, the environment variable `XLT_CONFIG_DIR`, which both allow to specify the configuration directory to use (system property takes precedence; the directory location is required to be within the test suite in any case). 
+	* test data lives in **data** - this is the default location for data files that are used by the DataProvider classes, but it can be overridden by the property `com.xceptance.xlt.data.directory`.
+* **lib** contains custom jars if needed. Make sure that everything you need is part of your suite - what is not in your suite is not uploaded, and neither the MC nor the AC run any dependency checks. If a Maven setup is used, make sure all libs are pulled into this folder of your suite during the build process. (XLT will also find libraries in `<test-suite>/target/dependency`.)
+* **src** contains the Java source code aka the JUnit tests cases. The location of these files inside your testsuite is basically up to you and might depend on the used build tool. Read on below to learn more about recommended code structure.
+* **classes** contains compiled Java classes. The name and location might be dependent on the used build tool - XLT supports several locations: `./classes`, `./bin`, `./target/classes` or `./target/test-classes`.
+* **results** is a container for XLT to write all results data (logs, measurements, result browsers) into. The default location is `./results`, but this may be overridden by the property `com.xceptance.xlt.result-dir` (location is required to be within the test suite). 
 
 ## Code Structuring Recommendations
 
@@ -30,7 +53,7 @@ If you plan to use more than one of the approaches provided by XLT, it's recomme
 * `<testsuite>/src/.../tests/scripting`
 * `<testsuite>/src/.../tests/webdriver`
 
-{{< TODO >}}learn about scripting/webdriver - still relevant? learn about framework conditions{{< /TODO >}}
+{{< TODO >}}learn about framework conditions{{< /TODO >}}
 
 Besides these options, each approach also introduces XLT-specific framework conditions structuring your test suite and test cases. In particular, each test case is necessarily implemented as a Java class extending an XLT test case class, which is approach-specific and contains one method annotated with `@Test`. See the following sections for such specific framework conditions and further ways of structuring.
 
