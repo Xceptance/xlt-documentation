@@ -9,6 +9,7 @@ description: >
 ---
 
 {{< TODO >}}
-How to setup the test suite to run as performance test (kinda intro?) more infos in LOAD CONFIGURATION
+How to setup the test suite to run as performance test (kinda intro?) 
+all things that can be configured, more infos in LOAD CONFIGURATION, TEST SUITE CONF., ENVIRONMENT CONF. (link)
 {{< /TODO >}}
 

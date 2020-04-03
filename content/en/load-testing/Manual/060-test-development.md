@@ -17,3 +17,9 @@ Execute tests locally to develop and verify
 - Regular debugging works just fine
 - Reuse via Java concepts
 
+* Testcase entwickeln 
+	* Szenario ausdenken
+	* ggf. in Einzelschritte zerlegen
+	* Einzelschritte zur Wiederverwendung in Actions/Flows --> verlinken auf Concepts
+* repeated execution, consolidation, random dings, data?
+
