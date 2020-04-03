@@ -53,7 +53,7 @@ The easiest way for you to structure your test suite is to name the test cases a
 
 ## Test Suite Concepts
 
-You might have read about the [concepts](../030-concepts) underlying XLT test cases. In short, a test scenario is modeled as a JUnit [test case](#test-case). A single execution of this test case is a transaction. For example, _Search_ and _ViewProductDetails_ are [actions](#action) in this [example](../030-concepts#example) to go from one page to the next. The actions may be collected in a [flow](#flow) for easier reusability in other test cases. [Validations](#validation) after each page transition ensure you arrived on the right page with the right content. 
+You might have read about the [concepts](../030-concepts) underlying XLT test cases. In short, a test scenario is modeled as a JUnit [test case](#test-case). A single execution of this test case is a transaction. For example, _Search_ and _ViewProductDetails_ are [actions](#action) in [this example](../030-concepts#example) to go from one page to the next. Consecutive actions that form a procedural entity may be collected in a [flow](#flow) for easier reusability in other test cases. [Validations](#validation) after each page transition ensure you arrived on the right page with the right content. 
 
 ### Test Case
 
@@ -110,7 +110,7 @@ Some common validation routines are already covered by default validators, such 
 
 ### Example
 
-Let's imagine a poster search test case again to illustrate the XLT Action API. The most important action would be to "search", that is to fill in the search phrase and then click "Go", "Search", or something similar that loads a list of results. The preconditions are the existence of a search input field and of an appropriate button labeled *Search* or *Go*. The `execute()` method should fill in the search phrase and click the button.
+Let's imagine a poster search test case to illustrate the XLT Action API. The most important action would be to "search", that is to fill in the search phrase and then click "Go", "Search", or something similar that loads a list of results. The preconditions are the existence of a search input field and of an appropriate button labeled *Search* or *Go*. The `execute()` method should fill in the search phrase and click the button.
 
 After the new page has been loaded, the result should be validated. This validation consists of general validation, performed by validators, and action-specific validation.
 
@@ -133,7 +133,7 @@ public class Search extends AbstractHtmlPageAction
     private HtmlForm searchForm;
 
     /**
-     * Search option ({`link SearchOption#HITS} or {`link SearchOption#NO_HITS} ).
+     * Search option ({@link SearchOption#HITS} or {@link SearchOption#NO_HITS} ).
      */
     private final SearchOption searchOption;
 
