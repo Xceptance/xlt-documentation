@@ -33,10 +33,14 @@ For load testing, you usually want some randomness in your scenarios - with XLT,
 
 ### Define your Test Setup
 
-When you have finished your test suite, to get ready for load testing you will have to [setup](../300-test-setup) your load test. XLT is highly configurable. You will define what load will be applied (either in terms of user count or arrival rate), what test scenarios should be run and how tests are supposed to work, then configure the environment used for testing (master controller and agent controllers).
+When you have finished your test suite, to get ready for load testing you will have to [setup](../300-test-setup) your load test. XLT is highly configurable. You will define what load will be applied (either in terms of user count or arrival rate, per test case if needed or globally for the test suite), what test scenarios should be run and how tests are supposed to work (in terms of thinktimes, timeouts, proxies, error rate limits), then configure the environment used for testing (master controller and agent controllers). Maybe you need different setups for several test runs - you can prepare them all upfront, then reference the needed properties for the current test run. And since everything can be varied and overwritten and you can also use includes for your properties, you don't need to write more than necessary here.
 
 ### Run a Load Test
 
-Finally, [run your load test](../310-test-execution)! This can happen on your local machine as long as you only want low load, but for high load you will want to use a cluster of test machines as your distributed load generation environment. 
+Finally, [run your load test](../310-test-execution)! This can happen on your local machine as long as you only want low load, but for high load you will want to use a cluster of test machines as your distributed load generation environment. In any case you will need the master controller to reference your test suite, distribute the load across the used agent controllers, control the test run and let you get the results when it is finished.
+
+### Evaluate the Results
+
+An XLT load test writes result data all the time that it is running, so you are able to check intermediate test results while the test is still in progress as well as generate a [final report](../320-test-evaluation) when testing is finished. The report contains detailed data about the test run in HTML format, which is easy to read and share, but there is also a machine readable XML version. Also, the format for result data is plain text (csv), which is perfect for searching all things outside the ordinary. If you want to compare two or more test runs, you will also find [report options](../530-reports) for that. 
 
 

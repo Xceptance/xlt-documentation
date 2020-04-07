@@ -10,7 +10,7 @@ description: >
 
 ## Generating a Test Report
 
-when your load test has finished, you might want to render a report based on the gathered data and open it in the browser of your choice:
+When your load test has finished, you might want to render a report based on the gathered data and open it in the browser of your choice:
 
 ```bash
 $> ./create_report.sh ../results/20200202-123400
@@ -142,3 +142,7 @@ Agents
 ### Configuration
 
 The configuration section lists the test configuration as well as the load profile used to run the test. It facilitates test reproduction and preserves the test settings for later test evaluation.
+
+## Intermediate Results 
+
+{{< TODO >}}TODO{{< /TODO >}}

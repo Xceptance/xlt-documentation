@@ -43,7 +43,7 @@ A test suite contains your test code, data and configuration. Developed on your 
 The MC can be seen as the “brain” of the load test environment. It deploys the test suite to all load machines, evenly distributes the load, starts/stops the load test and can be used to get agent information and create test reports. A test cluster may only have one master controller. It is loosely coupled, you can (re-)attach to running tests to interact or continue.
 
 ### AC/Agent Controller 
-The MC communicates with the AC. The AC waits, receives and distributes the workload. There is usually one AC per hardware box (but more are possible), which listens typically on port 8500. The AC spawns the test agents All agents are started and stopped by the AC. It does not know anything about other ACs.
+The MC communicates with the AC. The AC waits, receives and distributes the workload. There is usually one AC per hardware box (but more are possible), which listens typically on port 8500. The AC spawns the test agents. All agents are started and stopped by the AC. It does not know anything about other ACs.
 
 ### Agents
 The agents are the workhorses of the load test, as they actually execute the test suite against the system under test. Basically, an agent is a JVM that runs the users, and each user is a thread with subthreads (inactive threads are possible). The MC is responsible for calculating the user distribution across the agents, but still the agents are a component to watch, as memory tuning and sizing (total and in relation to the box) is important for good and consistent test results. Still, a stalling agent does not block other agents.
@@ -70,6 +70,6 @@ To run XLT, you will need the following:
 How to install XLT is described in more detail [here](../040-installation).
 
 ### How to proceed
-The [Quick Start](../../quick-start) section offers some guidance on how to start using XLT, from installation to your first local load test. For further info you might want to return to this [User Manual](..), where you can learn all the details about developing and configuring your tests, setting up remote machines to generate the load and everything in between. Happy testing!
+The [Quick Start](../../quick-start) section offers some guidance on how to start using XLT, from installation to your first local load test. For further info you might want to return to this [User Manual](../050-workflow), where you can learn all the details about developing and configuring your tests, setting up remote machines to generate the load and everything in between. Happy testing!
 
 
