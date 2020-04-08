@@ -145,4 +145,26 @@ The configuration section lists the test configuration as well as the load profi
 
 ## Intermediate Results 
 
-{{< TODO >}}TODO{{< /TODO >}}
+When you started the master controller in [interactive mode](../310-test-execution/#interactive-mode), it allows to get intermediate results, so you can download them and generate a report to see how the test is going. In automated environments, however, you would have to wait until the test run is finished before you can actually do so.
+
+The master controller's command line menu in interactive mode looks like this:
+
+```dos
+Xceptance LoadTest 4.2.0
+Copyright (c) 2005-2012 Xceptance Software Technologies GmbH. All rights reserved.
+Basic License (5 virtual users). This license does not expire.
+
+
+(u) Upload test suite
+(s) Start agents
+(a) Abort agents
+(r) Show agent status
+(d) Download test results
+(c) Create load test report
+(q) Quit
+=>
+```
+
+So to get an intermediate results and report, use the options **(d)** and **(c)** while the test is running. Per default, the report will be created from the latest downloaded results and the target name will be named *\<timestamp\>-intermediate*. This can be useful to check the reasons for test failures while the test is still running. 
+
+{{< TODO >}}TODO other usecases & insights?{{< /TODO >}}

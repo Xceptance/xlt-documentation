@@ -164,6 +164,8 @@ XLT Result Browser - Response Content, highlighted
 
 Furthermore, there is a _Select All_ button, which enables you to easily copy and paste the response content.
 
+If the response is in JSON format, the result browser also features a tab where JSON responses are displayed in a tree-like view with expandable/collapsible sections that can also be searched and filtered.
+
 ### Element Inspection
 
 Since the right-hand side output of an action represents the associated state of a page, you can use the output to inspect the page elements and their state. Simply use the inspection tool of your browser (e.g. Chrome Developer Tools) or plugin to analyze the page and its elements.

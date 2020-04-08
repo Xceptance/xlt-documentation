@@ -78,5 +78,7 @@ Besides limiting the time frame you can also filter which test scenarios to incl
 
 Finally, the `-noCharts` option might help you speed up your report generation, as it omits all charts.
 
+By default, the load test report contains several charts for each and every agent. If you use many agent machines with multiple agents each, the number of charts can grow significantly. If you don’t need these charts, you can turn them off using the `-noAgentCharts` option. This, too, will speed up report generation and noticeably reduce the overall size of the report, in case you have to distribute or archive it.
+
 There are more options available for very special needs (`./create_report.sh --help` will print all available options), and even more are planned for future releases.
 

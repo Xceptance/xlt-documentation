@@ -66,6 +66,8 @@ com.xceptance.xlt.loadtests.default.loadFactor = 0/1.0, 1h/1.0, 1h/1.5, 2h/1.5, 
 
 Note that a variable load factor cannot be used together with variable users (or arrival rate). Only one of them can be variable.
 
+The application of a load factor always involves some kind of rounding. Computed values will always be *rounded up* to the smallest integer number that is greater than or equal to the computed value (because arithmetic rounding would mean that test cases with a computed value of less than 0.5 are not run at all for the entire period of time this load factor is effective). Hence, users have to explicitly configure a load factor of 0.0 for a certain test case when they want it not to be run.
+
 ## Load Profiles
 
 While the load model defines what you can modify to achieve a certain load, the load profiles define how you apply these values over a period of time. XLT supports three different load profiles:
@@ -82,21 +84,59 @@ The load parameter remains unchanged during the test. This is the simplest profi
 
 ### Ramp-up Load Profile
 
-The load parameter is steadily increased. This allows the target system to warm up before the full load hits the system, for example to compile and optimize code or to fill caches.
+The load parameter is steadily increased. This allows the target system to warm up before the full load hits the system, for example to compile and optimize code or to fill caches. But the ramp-up feature cannot only be used to let the system under test “get used” to the load, it can also be used to monitor the system behavior at different user counts (e.g. 50, 100, … users) with a single load test.
 
 The ramp-up behavior of the load parameter can be controlled by the following settings:
 
-- initial value: the load parameter value to start with,
-- target value: the final load parameter as soon as the ramp-up period has finished,
-- step size: the increment added to the load parameter after each ramp-up step,
-- ramp-up period: the length of the ramp-up phase,
-- steady period: the period to keep the current parameter value until the next ramp-up step
+- **initial value**: the load parameter value to start with,
+- **target value**: the final load parameter as soon as the ramp-up period has finished,
+- **step size**: the increment added to the load parameter after each ramp-up step,
+- **ramp-up period**: the length of the ramp-up phase, i.e. the time to keep a certain
+load level,
+- **steady period**: the period to keep the current parameter value until the next ramp-up step
 
 {{< note notitle>}}The steady period and the ramp-up period settings are mutually exclusive.{{< /note >}}
 
 Use the steady period if you want to keep the load at a certain level for a defined time, no matter how long the total ramp-up phase will be. Use the ramp-up period if you want to finish the ramp-up process after a certain amount of time, no matter how long the resulting steady phases will be.
 
 If an arrival rate is defined, the ramp-up parameters will be applied to the arrival rate. In case there's no such definition, they will be applied to the user count.
+
+For example, given a ramp-up step size of 100 users and a total of 500
+users as well as a steady period of 10 minutes, the framework would
+calculate the necessary over-all ramp-up period of 40 minutes. The
+corresponding configuration looks like so:
+
+```bash
+com.xceptance.xlt.loadtests.TAuthor.users = 500
+#com.xceptance.xlt.loadtests.TAuthor.rampUpPeriod = 40m  
+com.xceptance.xlt.loadtests.TAuthor.rampUpSteadyPeriod = 10m  
+com.xceptance.xlt.loadtests.TAuthor.rampUpStepSize = 100  
+com.xceptance.xlt.loadtests.TAuthor.rampUpInitialUsers = 100  
+com.xceptance.xlt.loadtests.TAuthor.measurementPeriod = 1h
+```
+
+The resulting load profile looks like this:
+
+
+```bash
+                                                 +---500u---------------------
+                                                 |
+                                     +---400u----+
+                                     |
+                         +---300u----+
+                         |
+             +---200u----+
+             |
+ +---100u----+
+ |
+-+--<10min>--+--<10min>--+--<10min>--+--<10min>--+----------------------------+
+```
+
+But to just configure a simple ramp-up phase for the system to warm up, this setting is sufficient:
+
+```bash
+com.xceptance.xlt.loadtests.TAuthor.rampUpPeriod = 40m  
+```
 
 ### Variable Load Profile
 

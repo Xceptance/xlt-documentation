@@ -96,6 +96,16 @@ This sets the action think times between 50 and 150ms and no transaction think t
 Note that the deviation has to be smaller than the specified base think time.
 {{% /note %}}
 
+### Automatic request retry
+If a request has failed, XLT may automatically retry that request, provided that the error indicates a
+temporary issue (e.g. for a `SocketException`, which is probably just a temporary network issue). This feature can be enabled or disabled altogether, it may only be effective for idempotent requests (i.e. *GET*, *PUT* and *DELETE*) or also for non-idempotent requests (i.e. *POST* and *PATCH*), and you may also tune the retry count:
+
+```bash
+com.xceptance.xlt.http.retry.enabled = true
+com.xceptance.xlt.http.retry.nonIdempotentRequests = true  
+com.xceptance.xlt.http.retry.count = 3
+```
+
 ## Test Project Configuration
 
 To configure your test project, edit the file `project.properties`. The first and most important property is the reference to test.properties that should be applied. Changing the value for this property, you can easily switch between different load test profiles configurations.
@@ -111,6 +121,20 @@ XLT permits to prepare and use multiple `test.properties` files for easy mainten
 ```bash
 com.xceptance.xlt.testPropertiesFile = <filename>.properties
 ```
+
+### Test Project Name
+
+If you are busy with different load testing projects at the same time, you might also have different test reports open in the browser. Since they all look alike, it happens too easily that you look at the wrong report by mistake. That’s why you should name your projects, like this:
+
+```bash
+com.xceptance.xlt.projectName = Posters
+```
+
+If a project name is set, this name will be rendered prominently into the header of each report page (and also the page title).
+
+{{< image src="releasenotes/4.10.3/report_project_name.png" >}}
+Project name in the page header
+{{< /image >}}
 
 ### Test Class Mapping
 
@@ -277,6 +301,21 @@ The file `dev.properties` contains development mode settings. Use this file to m
 It’s read in development mode only, but not during load testing. For development mode, the values in this file have highest priority. Any setting defined here will overwrite the corresponding setting from the other properties files: `default.properties`, `project.properties`, and the test run-specific properties file, e.g. `test.properties`.
 
 If the default values suffice as development settings for your test suite, `dev.properties` can also be empty.
+
+### Specific Settings for Development Purposes
+
+**Random initial value:** While stabilizing tests, you may encounter an error that to be analyzed needs the test to re-run exactly as before. This means, also randomized steps of your test (e.g. which category is clicked, which product is viewed) should be the same. To this end, you may set the random init value manually, to the value that is displayed in the result browser if you click the title of the test scenario:
+
+{{< image src="user-manual/result-browser_randomInitValue.png" >}}
+Result browser overview page
+{{< /image >}}
+
+`com.xceptance.xlt.random.initValue = 1586357501446`
+
+**Opening Result Browser Automatically:** When running a test case from within your IDE, XLT prints the path to the corresponding result browser to the console for easy copy&paste into a Web browser. XLT may even open the result browser directly in your default Web browser. To this end, set the following property in your `dev.properties` file:
+
+`com.xceptance.xlt.results.openResultBrowser = true`
+
 
 ## Including Additional Property Files
 
