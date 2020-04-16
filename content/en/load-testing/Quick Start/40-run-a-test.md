@@ -56,5 +56,5 @@ $> ./create_report.sh ../results/20200202-123400
 $> firefox ../reports/20200202-123400/index.html
 ```
 
-{{% note notitle %}}For more infos on how to customize your reports, see the [Manual]({{< relref "load-testing/manual/540-report-customization" >}}).{{% /note %}}
+{{% note notitle %}}For more infos on how to customize your reports, see the [Manual]({{< relref "load-testing/manual/540-report-options" >}}).{{% /note %}}
 

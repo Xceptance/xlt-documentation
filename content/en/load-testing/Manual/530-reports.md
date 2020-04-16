@@ -1,19 +1,19 @@
 ---
-title: "Reports"
+title: "Report Types"
 
 weight: 530
 type: docs
 
 
 description: >
-  All about the XLT reports.
+  All about the different kinds of reports XLT can create.
 ---
 
 As the most important tool for analyzing the results of a load test run, XLT offers three types of load test reports, which are thoroughly illustrated in the sections below: load test reports, comparison reports and trend reports. 
 
 ## Load Test Report
 
-A report for a single test run or a manually combined set of runs. The Load and Performance Test Report gives you all the information needed for a detailed analysis of a load test run. This is what you will probably need most often, so you'll find the basic info on how to [create](../../quick-start/40-run-a-test/#generate-a-test-report) and [evaluate](../../quick-start/50-evaluate-a-test/) a load test report in the Quick View section, and more details about [report options](../540-report-customization) in the Manual. 
+A report for a single test run or a manually combined set of runs. The Load and Performance Test Report gives you all the information needed for a detailed analysis of a load test run. This is what you will probably need most often, so you'll find the basic info on how to [create](../../quick-start/40-run-a-test/#generate-a-test-report) and [evaluate](../../quick-start/50-evaluate-a-test/) a load test report in the Quick View section, and more details about [report options](../540-report-options) in the Manual. 
 
 ## Comparison Report
 

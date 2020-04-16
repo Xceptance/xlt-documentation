@@ -74,6 +74,24 @@ As you saw in the last two cases, it also works to only specify either start or 
 
 Besides limiting the time frame you can also filter which test scenarios to include or exclude or even combine both selections. Use the `-i` (include) or `-e` (exclude) parameters to specify which test cases you want to be contained in the report (when `-i` is given, `-e` will be ignored). The test cases specified may be named (e.g. “TBrowse”, “TOrder”), or you can even use regex to find them (e.g. “T.\*Order”, “TOrder[1-5]”). If you need more than one test case, just put them in a comma-separated list like “TBrowse, TCheckout, TOrder” (whitespaces are ignored). 
 
+## Report for a subset of agents
+
+Sometimes you might need to create reports for certain agent machines only, for instance, if you want to compare response times for agents in different regions of the world or skip an agent that had issues during the load test. The report generator provides new switches to specify the agents to be included in (or excluded from) the report.
+
+To include certain agents only, use this command line:
+
+```bash
+./create_report.sh —include-agents “ac01_00,ac05_01” ../results/20170410-110432
+```
+
+Likewise, to exclude all agents with ‘us-east-1’ in their name, use this command line:
+
+```bash
+./create_report.sh —exclude-agents “.*us-east-1.*” ../results/20170410-110432
+```
+
+As you can see, you may not only specify a list of plain agent names (comma-separated) but also a (comma-separated) list of regular expressions.
+
 ## Speeding It Up
 
 Finally, the `-noCharts` option might help you speed up your report generation, as it omits all charts.

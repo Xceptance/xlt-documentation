@@ -57,6 +57,12 @@ com.xceptance.xlt.output2disk.onError.limiter.maxDumps = 10
 com.xceptance.xlt.output2disk.onError.limiter.resetInterval = 1h 30m
 ```
 
+When saving request data to disk for the result browser, the request body of POST requests is currently limited to 8K by default and will be cropped when exceeding this value. If this is still too low for your most complex requests, for instance Web service requests with large JSON bodies, you can also tailor this limit to your needs:
+
+```bash
+com.xceptance.xlt.output2disk.maxRequestBodySize = 12345
+```
+
 If you have saved the page output to disk and want links from the error entries in the load test report to the corresponding result browsers in the results directory in your [report](../320-test-evaluation), make sure the property is set accordingly in `reportgenerator.properties`:
 
 ```bash

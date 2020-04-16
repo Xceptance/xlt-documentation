@@ -324,7 +324,7 @@ When dealing with different test environments, different load profiles, and/or d
 * predefine the configuration of certain aspects with certain values in separate files, and
 * reuse and combine the predefined settings as needed with a single statement.
 
-To this end, the files `default.properties`, `project.properties`, `test.properties` (no matter if it's been renamed), and `dev.properties` can include further property files. Each of these additional property files has to be placed either directly in the `config` folder or in one of its sub-directories. Furthermore, the name of all these files must end with `.properties`. Any included file may also define includes itself.
+To this end, the files `default.properties`, `project.properties`, `test.properties` (no matter if it's been renamed), and `dev.properties` can include further property files. Each of these additional property files has to be placed within your test suite and the name of all these files must end with `.properties`. Any included file may also define includes itself.
 
 ### How to Include Other Properties Files
 
@@ -441,5 +441,29 @@ userName = john # plain property name
 
 This lets you parameterize different transactions differently, even if they are mapped to the same class and therefore share the same code. The look-up will take place in this order, from a very narrow scope (the transaction) to a wide scope (a general property).
 
+### Scenario-specific overrides of framework properties
+
+The XLT framework provides a lot of settings to influence the behavior of your test cases. Usually, you will configure these globally, so the behavior was changed the same way for all test scenarios at once. 
+
+While this makes sense most of the time, there are use cases where scenario-specific settings are advantageous. For example, if you mix different types of test cases in a load test (Web interface tests and API tests), you may only want the Web tests to simulate a “user think time” between actions. Such a scenario-specific configuration is
+possible now for many framework settings. See the table here for more information.
+
+For a scenario-specific configuration, XLT requires you to *prefix* a framework property name with the scenario name or class in the settings of your test suite. Let’s use the think time between actions as an example:
+
+```bash
+com.xceptance.xlt.thinktime.action = 5000  
+TOrder_DE.com.xceptance.xlt.thinktime.action = 10000  
+posters.loadtest.tests.TRestApi.com.xceptance.xlt.thinktime.action = 0
+```
+
+In this case, the general think time is 5,000ms, but will be 10,000ms for *TOrder_DE* and 0ms for *TRestApi*.
+
+When looking up a property value for a scenario, XLT tries the following alternatives in this order:
+
+1.  *\<scenario-name\>.\<property-name\>* - the property name prefixed     with the transaction name (or the simple test class name if no transaction name mapping is present)
+2.  *\<test-class-name\>.\<property-name\>* - the property name prefixed with the fully qualified test class name
+3.  *\<property-name>* - the bare property name, without any prefix
+
+Please check the full [list of currently supported framework properties](../../../release-notes/4.8.x/#scenario-specific-overrides-of-framework-properties) and their default value in the release notes.
 
 

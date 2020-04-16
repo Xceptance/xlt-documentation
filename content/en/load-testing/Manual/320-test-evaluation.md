@@ -17,7 +17,7 @@ $> ./create_report.sh ../results/20200202-123400
 $> firefox ../reports/20200202-123400/index.html
 ```
 
-{{% note notitle %}}For more infos on how to customize your reports, please have a look at the [Report Options](../540-report-customization).{{% /note %}}
+{{% note notitle %}}The different types of reports XLT can create for you are explained [here](../530-reports). For more infos on how to customize your reports, please have a look at the [Report Options](../540-report-options).{{% /note %}}
 
 ## Reading a Test Report
 
@@ -142,6 +142,19 @@ Agents
 ### Configuration
 
 The configuration section lists the test configuration as well as the load profile used to run the test. It facilitates test reproduction and preserves the test settings for later test evaluation.
+
+## Filtering Data Tables and Charts
+
+The request table can get rather long, and the list of charts below the table as well. So finding the information you
+are looking for may involve a lot of scrolling. But don’t despair - simply type a filter expression and the table
+will show only those rows whose names match the filter. Same for the charts. This works not only for **requests**, but also for **transactions**, **actions**, **custom timers**, and **agents**.
+
+For advanced filter expressions, you can specify more than one filter substring in the filter input field, separated by space. A table row (and its corresponding chart) remains visible only if the name matches all specified substrings (AND). Note that case *does* matter. When prefixing a substring with the ‘-’ character, the name must not contain
+the substring to remain visible. The filter syntax allows OR-ed filter expressions as well. Just use the ‘\|’ character to start a new alternative.
+
+{{< image src="releasenotes/4.6.0/report_filters.png" >}}
+Text Filters
+{{< /image >}}
 
 ## Intermediate Results 
 
