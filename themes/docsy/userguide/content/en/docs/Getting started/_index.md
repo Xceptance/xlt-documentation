@@ -96,7 +96,7 @@ You can now edit your local versions of the site's source files. To preview your
 
 Note that the following approach [forks](https://help.github.com/en/articles/fork-a-repo) our repo and so creates a connection in GitHub between your project repo and the Docsy example site project repo - our project will be the "upstream" version of your site project:
 
-1.  In the [the Docsy example site's GitHub repo](https://github.com/google/docsy-example), click **Fork** and follow the prompts.
+1.  In the [Docsy example site's GitHub repo](https://github.com/google/docsy-example), click **Fork** and follow the prompts.
 1.  Rename your new fork:
     1.  Click **Settings**, and type a new name in the **Repository name** field.
     1.  Click **Rename** to save your changes.
@@ -201,6 +201,12 @@ To clone Docsy into your project's `theme` folder, run the following commands fr
 ```
 cd themes
 git clone https://github.com/google/docsy
+```
+
+If you want to build and/or serve your site [locally](/docs/deployment/#serving-your-site-locally), you also need to get local copies of the theme’s own submodules:
+
+```
+git submodule update --init --recursive
 ```
 
 For more information, see [Install and Use Themes](https://gohugo.io/themes/installing-and-using-themes/#install-a-single-theme) on the [Hugo](https://gohugo.io) site.

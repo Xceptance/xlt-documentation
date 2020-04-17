@@ -35,33 +35,11 @@ If you want to add a link to an external site to this menu, add it in `config.to
 
 ### Adding a version drop-down
 
-Depending on your project's releases and versioning, you may want to let your users access "old" versions of your site (how you deploy your archived sites is up to you) to read about previous versions of your project.
+If you add some `[params.versions]` in `config.toml`, the Docsy theme adds a
+version selector drop down to the top-level menu.
 
-If you add some `[params.versions]` in `config.toml`, the Docsy theme adds a version selector drop down to the top-level menu. You specify a URL and a name for each version you would like to add to the menu, as in the following example:
-
-```
-# Add your release versions here
-[[params.versions]]
-  version = "master"
-  url = "https://master.kubeflow.org"
-
-[[params.versions]]
-  version = "v0.2"
-  url = "https://v0-2.kubeflow.org"
-
-[[params.versions]]
-  version = "v0.3"
-  url = "https://v0-3.kubeflow.org"
-```
-
-(don't forget to add your current version so users can navigate back!)
-
-The default version drop-down menu title is `Releases`. To change this, change the `version_menu` parameter in `config.toml`:
-
-```
-version_menu = "Releases"
-```
-
+You can find out more in the guide to 
+[versioning your docs](/docs/adding-content/versioning/).
 
 ### Adding a language drop-down
 
@@ -208,3 +186,29 @@ Once you've completed these steps, local search is enabled for your site and res
 {{% alert title="Tip" %}}
 If you're [testing this locally](/docs/deployment/#serving-your-site-locally) using Hugo’s local server functionality, you need to build your `offline-search-index.xxx.json` file first by running `hugo`. If you have the Hugo server running while you build `offline-search-index.xxx.json`, you may need to stop the server and restart it in order to see your search results.
 {{% /alert %}}
+
+### Changing the width of the local search results popover
+
+The width of the search results popover will automatically widen according to the content.
+
+If you want to limit the width, add the following scss into `assets/scss/_variables_project.scss`.
+
+```scss
+body {
+    .popover.offline-search-result {
+        max-width: 460px;
+    }
+}
+```
+
+### Excluding pages from local search results
+
+To exclude pages from local search results, add `exclude_search: true` to the the frontmatter of each page:
+
+```yaml
+---
+title: "Index"
+weight: 10
+exclude_search: true
+---
+```
