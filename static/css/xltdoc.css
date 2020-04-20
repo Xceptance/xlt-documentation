@@ -23,3 +23,8 @@
 .alert > p {
   margin-bottom: 5px;
 }
+
+.collapse:not(.show) {
+    display: block;
+  }
+}
