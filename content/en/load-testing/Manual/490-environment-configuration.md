@@ -47,6 +47,16 @@ log4j.appender.console.layout.ConversionPattern = [%d{HH:mm:ss,SSS}] %-5p [%t] -
 
 Also see [Apache Log4j API Docs](http://logging.apache.org/log4j/1.2/apidocs/index.html) for more information on log4j settings.
 
+### Configuration via Command Line
+
+The agent controller is also fully configurable via command line parameters. Any setting contained in `<xlt>/config/agentcontroller.properties` can also be specified on the agent controller’s command line using the `-Dkey=value` syntax:
+
+```bash
+> agentcontroller.sh -Dcom.xceptance.xlt.agentcontroller.port=8501
+```
+
+This also works when running the master controller with an embedded agent controller. Simply pass the agent controller properties on to the master controller’s command line. Note that parameters passed on at the command line will override the respective settings in the agent controller’s properties file.
+
 ## Master Controller Configuration
 
 Inside the master controller configuration file, you can define these properties:
