@@ -15,9 +15,21 @@ As the most important tool for analyzing the results of a load test run, XLT off
 
 A report for a single test run or a manually combined set of runs. The Load and Performance Test Report gives you all the information needed for a detailed analysis of a load test run. This is what you will probably need most often, so you'll find the basic info on how to [create](../../quick-start/40-run-a-test/#generate-a-test-report) and [evaluate](../../quick-start/50-evaluate-a-test/) a load test report in the Quick View section, and more details about [report options](../540-report-options) in the Manual. 
 
+### Creating a Load Test Report from the Master Controller Menu
+
+When running the master controller in interactive mode, a load test report can be created for the last downloaded results right from inside the master controller. Simply choose “c” from the menu, and the report will be created as if the `create_report` script had been invoked manually. This is especially useful when downloading results in the middle of a load test to see how things are going.
+
 ## Comparison Report
 
-(Also known as: difference report) The Performance Comparison Report gives you a quick overview on performance improvements (green color tones) and performance declines (red color tones) between two test runs. The initial test run is labeled _baseline_. The test run being compared to the baseline is labeled _measurement run_.
+(Also known as: difference report) The Comparison Report gives you a quick overview on performance improvements (green color tones) and performance declines (red color tones) between two test runs. The initial test run is labeled _baseline_. The test run being compared to the baseline is labeled _measurement run_. 
+
+The XLT comparison report feature helps you identify differences between test runs and derive the right actions from it. It visualizes differences on all measurement levels (transactions, actions, requests, and custom timers). A color code helps you to find the biggest difference quickly. Therefore you can easily combine it with the setup of your test and derive the next actions from it.
+
+For instance, you increased the memory limits of your server’s Java virtual machine and you ran the same test again. By comparing the results before and after the server configuration change, you can easily determine how much improvement you got. Of course, the results might have an error margin of 5-10%, in this case, you should question your test and asked yourself, if you measure the right things over the right time period.
+
+Interpreting a comparison report is simple, because its colors indicate the performance development and make it easy to see any development. Green cells indicate an improvement, red cells a performance degradation. The intensity of the color corresponds to the percentage value of the difference. The more the darker. Color values in the range of –10% to +10% are close to neutral white, because changes in that range are often measurement errors or normal fluctuations.
+
+All data is relative and differences are reported in percentages. Hover the cursor over cells to see the measurement values of both reports. These details allow you evaluate the performance difference further by seeing the real values and hence the real difference. This means, a 100% difference can be OK, when the measurement values are small enough in the first place, such as 10 msec for instance. The second measurement reported 20 msec and therefore the performance dropped significantly in percent but not in milliseconds. A difference of 10 msec can be caused by a small network latency and might be normal white noise during testing.
 
 Every section of the comparison report displays a table with performance changes and is divided into three parts:
 
@@ -72,7 +84,9 @@ For example:
 
 ## Trend Report
 
-This report offers a comparison of multiple test runs (and is not used very often). A trend report depicts the development of the performance over time. Multiple measurements are taken into account and evaluated against each other. It shows how your system performs over time, how your tuning effort pays out, and how your live environment acts under a changing load situation if used as monitoring.
+Comparison reports are good to see the performance difference between two test runs in the greatest detail possible. However, quite often a _series_ of test runs has to be compared to see how the application under test has changed over time in terms of performance. This is especially important for applications which are under active development. For this, XLT provides trend reports.
+
+A trend report offers a comparison of multiple test runs. It depicts the development of the performance over time. Multiple measurements are taken into account and evaluated against each other. It shows how your system performs over time, how your tuning effort pays out, and how your live environment acts under a changing load situation if used as monitoring.
 
 Two trend report types are available:
 - Difference to First Run and
@@ -113,4 +127,41 @@ For example:
         ../reports/20190503-160520 \
         ../reports/20190503-161030 \
         ../reports/20190503-171030
-        ```
+```
+
+The input reports can be specified either explicitly by listing them all one by one or by using wildcard characters such as “\*”. In order to guarantee a deterministic order in which the individual reports are processed, the trend report generator sorts the input reports based on the test start date/time as stored in the report. 
+
+Sometimes this default order may not be appropriate. You can disable the default sorting by specifying the command line switch `-nosorting`, in which case the order of reports in the trend report will be exactly as given on the command line. Note that when using wildcard characters together with `-nosorting`, the order of reports may be non-deterministic.
+
+#### How to Interpret It
+
+For trend reports, it is typically sufficient to have only the most important performance numbers at hand - the run time statistics. These values are primarily shown as graphs, which makes it easy to recognize the application behavior over time.
+
+{{< image src="releasenotes/xlt33/trend-report-chart-small.png" large="releasenotes/xlt33/trend-report-chart-large.png" >}}
+A trend chart
+{{< /image >}}
+
+Additionally, the run time difference values (in percent) are displayed
+in two tables with color-coded cells, as seen in the comparison
+reports. The first table gives information how each test run behaved
+compared to the *first test run* in the series. Red table cells indicate
+that the last test run took longer than the first run. Green cells
+indicate an improvement.
+
+{{< image src="releasenotes/xlt33/trend-report-requests-small.png" large="releasenotes/xlt33/trend-report-requests-large.png" >}}
+The run time differences relative to the first test run
+{{< /image >}}
+
+The second table visualizes the difference between the current test run
+and the *previous test run*, again using color-coded cells. This table
+gives you a more *local* view on all performance changes.
+
+{{% note notitle %}}
+The table cells will not show percentage values if the number of
+values included in the trend report is too high. This avoids excessive
+scrolling when viewing the report. However, the cell background color
+will still give you an indication whether the current test run
+performed better or worse. Note that the numeric values are always
+available in the cell’s tool tip text, so just move the mouse over the
+cell to see the details.
+{{% /note %}}

@@ -54,6 +54,19 @@ Specifies the directory location where you want to store load test results. Norm
 com.xceptance.xlt.result-dir = <directory path>
 ```
 
+### Proxy Configuration
+
+XLT is able to route traffic through an HTTP proxy. Specify the host and port of the proxy server and whether it should be used at all. If the proxy requires user authentication, make sure to provide the credentials needed. You may also configure a list of hosts that can be used directly, thus bypassing the proxy. Note that the host definitions are interpreted as regular expressions so ensure proper use of escape characters.
+
+```bash
+com.xceptance.xlt.proxy = true
+com.xceptance.xlt.proxy.host = 127.0.0.1
+com.xceptance.xlt.proxy.port = 8888
+com.xceptance.xlt.proxy.userName = myUserName
+com.xceptance.xlt.proxy.password = myPassword
+#com.xceptance.xlt.proxy.bypassForHosts = localhost 127\\.0\\.0\\.1
+```
+
 ### Error Behavior
 
 Specifies the framework behavior in case of an error, that is whether or not the framework should abort a transaction if any of the following occurs:
@@ -96,14 +109,24 @@ This sets the action think times between 50 and 150ms and no transaction think t
 Note that the deviation has to be smaller than the specified base think time.
 {{% /note %}}
 
-### Automatic request retry
-If a request has failed, XLT may automatically retry that request, provided that the error indicates a
-temporary issue (e.g. for a `SocketException`, which is probably just a temporary network issue). This feature can be enabled or disabled altogether, it may only be effective for idempotent requests (i.e. *GET*, *PUT* and *DELETE*) or also for non-idempotent requests (i.e. *POST* and *PATCH*), and you may also tune the retry count:
+### Automatic Request Retry
+If a request has failed, XLT may automatically retry that request, provided that the error indicates a temporary issue (e.g. for a `SocketException`, which is probably just a temporary network issue). This feature can be enabled or disabled altogether, it may only be effective for idempotent requests (i.e. *GET*, *PUT* and *DELETE*) or also for non-idempotent requests (i.e. *POST* and *PATCH*), and you may also tune the retry count:
 
 ```bash
 com.xceptance.xlt.http.retry.enabled = true
 com.xceptance.xlt.http.retry.nonIdempotentRequests = true  
 com.xceptance.xlt.http.retry.count = 3
+```
+
+### Automatic Transaction Run Time Limit
+
+If your test case is somewhat random (for example, it browses through a shop’s catalog until it finds a product in stock), it might be beneficial for tests to have an automatic run time limit per transaction, aka transaction timeout. This will prevent infinite loops in case of a certain error condition that was not covered yet in the test case code. Enable the transaction timeout in the XLT configuration:
+
+```bash
+## Whether the framework should abort a transaction (defaults to false)
+## if it exceeds a certain maximum run time [ms] (defaults to 15 min).  
+com.xceptance.xlt.abortLongRunningTransactions = true  
+com.xceptance.xlt.maximumTransactionRunTime = 900000
 ```
 
 ## Test Project Configuration
@@ -120,6 +143,12 @@ XLT permits to prepare and use multiple `test.properties` files for easy mainten
 
 ```bash
 com.xceptance.xlt.testPropertiesFile = <filename>.properties
+```
+
+As an alternative to configuration editing, it is also possible to pass the name of the test-specific configuration file on the mastercontroller’s command line:
+
+```bash
+mastercontroller.sh -auto -testPropertiesFile <filename>.properties
 ```
 
 ### Test Project Name

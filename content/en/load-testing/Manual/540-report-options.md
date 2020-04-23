@@ -5,7 +5,7 @@ weight: 540
 type: docs
 
 description: >
-    How to customize the reports.
+    How to customize the reports via command line options.
 ---
 
 ## Creating a report

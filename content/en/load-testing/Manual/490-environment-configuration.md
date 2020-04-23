@@ -34,6 +34,27 @@ com.xceptance.xlt.agentcontroller.keystore.password = <password>
 com.xceptance.xlt.agentcontroller.keystore.key.password = <password>
 ```
 
+### Allow Agent Controller to be Bound to a Specific Host
+
+Sometimes it might be necessary to force the agent controller to listen
+on a specific network interface instead of all available interfaces. To
+accomplish this, it is possible to configure the agent controller’s
+host (either by name or by IP):
+
+```bash
+com.xceptance.xlt.agentcontroller.host = myhost.domain.com
+```
+
+### Relocating the Agent Directory
+
+The agents’ root directory, which is `<xlt>/agent` by default, can be relocated to another directory by setting the corresponding property:
+
+```bash
+## The directory where the separate agent directories are located.
+## Defaults to: <XLT_HOME>/agent  
+com.xceptance.xlt.agentcontroller.agentsdir = /my_agents_dir
+```
+
 ### Agent Controller Logging
 
 The properties below serve to configure the agent controller logging facility. They only affect the agent controller output and don't alter the logging of your test code. Most of the time, a modification is not required here.
@@ -115,6 +136,51 @@ com.xceptance.xlt.mastercontroller.agentcontrollers.ac2.url = https://localhost:
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac2.weight = 3
 ```
 
+### Parallel Communication with Remote Agent Controllers
+
+Any communication between the master controller and all its remote agent controllers is done in parallel to speed up managing larger clusters of load machines. This also includes uploading the test suite and downloading the test results. Since uploading/downloading stresses the network connection a lot more than simple control commands, the degree of concurrency can be configured. There are two properties
+available for this:
+
+```bash
+com.xceptance.xlt.mastercontroller.maxParallelUploads = 4
+com.xceptance.xlt.mastercontroller.maxParallelDownloads = 8
+```
+
+In the given example, the master controller will run at most 4 uploads and 8 downloads concurrently. Configuring different values for upload and download is useful only for network connections with an asymmetric inbound/outbound bandwidth. By default, no limits are applied.
+
+### Ignoring Unreachable Agent Controllers
+
+By default, if the master controller is not able to establish a connection to *all* configured agent controllers when starting a load test, the load test is aborted by default. This can be annoying (especially for automated/unattended load tests), as in this case there is no load test result at all, although, for example, only one agent controller was temporarily down and the remaining agent controllers could easily have
+handled the load.
+
+How the master controller should behave in such a situation can be configured in the `mastercontroller.properties` file, making it start the load test anyway:
+
+```bash
+com.xceptance.xlt.mastercontroller.ignoreUnreachableAgentControllers = true
+```
+
+This setting can also be specified on the master controller’s command
+line:
+
+```bash
+./mastercontroller.sh -auto \
+-Dcom.xceptance.xlt.mastercontroller.ignoreUnreachableAgentControllers=true
+```
+
+Note that this setting is effective only when running the master
+controller in *non-interactive* mode (i.e. when started with `-auto`).
+
+### Proxy Configuration
+
+If the master controller is required to use an HTTPS proxy to communicate with its agent controllers, this proxy can be configured by simply providing the respective settings in the `mastercontroller.properties` file:
+
+```bash
+com.xceptance.xlt.mastercontroller.https.proxy.enabled = true
+com.xceptance.xlt.mastercontroller.https.proxy.host = proxy.mydomain.com  
+com.xceptance.xlt.mastercontroller.https.proxy.port = 8888  
+com.xceptance.xlt.mastercontroller.https.proxy.bypassForHosts =
+```
+
 ### Master Controller Logging
 
 You can set a different logging behavior for the master controller, which helps to solve problems and provides information in case of support inquiries:
@@ -124,4 +190,18 @@ log4j.rootLogger = debug, file
 log4j.appender.console = org.apache.log4j.ConsoleAppender
 log4j.appender.console.layout = org.apache.log4j.PatternLayout
 log4j.appender.console.layout.ConversionPattern = [%d{HH:mm:ss,SSS}] %-5p [%t] - %m%n
+```
+
+### Configuring the Transfer Directory 
+
+When uploading a test suite to the agent controllers or downloading test results to the master controller, XLT uses the system-default temporary directory to store a compressed version of the transferred data. Sometimes the available space for the temporary directory is limited, so it might not be able to hold all the data, especially test results. In this case, XLT’s transfer directory can be reconfigured. For the agent controllers, specify the new directory in `config/agentcontroller.properties`:
+
+```bash
+com.xceptance.xlt.agentcontroller.tempdir = /var/tmp/xlt
+```
+
+The master controller provides a similar setting in `config/mastercontroller.properties`:
+
+```bash
+com.xceptance.xlt.mastercontroller.tempdir = /var/tmp/xlt
 ```

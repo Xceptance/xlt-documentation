@@ -96,6 +96,39 @@ An action is part of a test case and consists of prevalidation, execution, and p
 
 The request section is the most important statistics section when testing web applications. It directly reflects the loading time of pages or page components. Each row holds the data of one specific request. Its name is defined within the test case as timer name. The Count section of the table shows the total number of executions (Total), the calculated executions per seconds (1/s), minute (1/min), as well as projections or calculations of the executions per hour (1/h) and day (1/d). The Error section displays the total amount (Total) of errors that occurred throughout page or page component loading. The error count doesn’t include errors detected during the post-validation of the data received. Typical error situations are HTTP response codes such as 404 and 505, timeouts, or connection resets. The runtime section of the table shows the arithmetic mean, the minimum and maximum runtime encountered as well as the standard deviation of all data within that series. The runtime segmentation sections depicts several runtime segments and the number of requests within the segment’s definition. If the runtime of the test case is shorter than the displayed time period, e.g. test runtime was 30 min and the time period is hour, the numbers will be a linear projection. That means they will show a possible outcome of a longer test run if load and application behavior remained the same.
 
+#### Requests' Network Statistics
+
+The load test report features extensive network statistics on the *Requests* page displaying data for bandwidth utilization and socket timing information.
+
+{{< image src="releasenotes/xlt333/network-statistics-small.jpg" large="releasenotes/xlt333/network-statistics-large.png" >}}
+The network statistics section
+{{< /image >}}
+
+The **Bandwidth** tab displays information about the use incoming and outgoing bandwidth per request. XLT measures on socket level and therefore the real transfered data out and in of the application is measured. XLT does not analyze or modify that data when taking the measurements. Bytes Sent comprises all data that is sent out of the application including overhead such as http(s) headers and SSL protocol data. Bytes Received includes all received data and the connected overhead. There is no measurement difference between sent and received data.
+
+**Network Timing** reports all low level network timing data that have been measured on socket level. Each measurement point contains information about minimum and maximum times occurred as well as the mean of all gathered data.
+
+-   **Connect Time:** Time needed to establish a connection to the other
+    system. Please note when using keep-alive semantics during testing,
+    the connect time will mainly be 0 except for the first request of a
+    transaction.
+-   **Send Time:** Time required to send the request to the other system.
+    Depending on the payload and the network speed, this data is often
+    zero or very small.
+-   **Server Busy Time:** This indicated the time waiting after sending the
+    last bytes till the first bytes are received.
+-   **Receive Time:** The time spent receiving data. Measured from the first
+    bytes received till the last bytes received.
+-   **Time to First Bytes:** Total time from the connection start till the
+    first bytes are received. Includes Connect, Send, Server Busy, and
+    Receive Time.
+-   **Time to Last Bytes:** Total time from the connection start till the
+    last bytes are received. This is the time needed to connect, send,
+    and receive data. Often this time is called network runtime. The
+    request runtime in comparison contains the network runtime and the
+    application time needed to process header and protocol information
+    and transfer the data from socket level to the application level.
+
 ### Network
 
 The network section covers the areas of incoming and outgoing traffic during the load test. Sent Bytes is an estimated number based on the data given to the network layer. Cookies, for instance, are not included. Received Bytes is an accurate number because it’s based on the data received and includes HTTP header information. Depending on the test runtime, the numbers per hour and per day might be estimations based on a linear projection of the available data. If the test run included web activities or other activities returning an HTTP response code, it can be found here as well. Furthermore, all hosts that participated in the test run are listed in a separate table along with the appropriate number of requests that hit this host. Last but not least, this section contains a table that breaks down the received content to their announced type.
