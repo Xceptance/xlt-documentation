@@ -90,7 +90,7 @@ All saved results can be found in the `<testsuite>/results` directory. See the l
 
 In the folders for each test run (`results/[testcase]/[virtual-user]/output/[transaction-ID]`), you find an `index.html` containing the _XLT Result Browser_. The result browser offers an integrated navigation to browse the complete page output of the transaction and to look at every single request in detail. The file `last.html` in the output folder `results/[testcase]/[virtual-user]/output` references the result browser for the last executed transaction of this virtual user.
 
-The result browser navigation will only permit access to the pages of a transaction if they are directly related to actions. Therefore, defining actions correctly is very important to make the most effective use of the result browser. For details on how to structure test cases and create actions, also see [Basic Concepts](../030-concepts) and [Code Structuring Recommendations](../450-test-suites/#). {{< TODO >}}add anchor to test suite code structuring{{< /TODO >}}
+The result browser navigation will only permit access to the pages of a transaction if they are directly related to actions. Therefore, defining actions correctly is very important to make the most effective use of the result browser. For details on how to structure test cases and create actions, also see [Basic Concepts](../030-concepts) and [Code Structuring Recommendations](../450-test-suites/#code-structuring-recommendations).
 
 {{< image src="user-manual/result-browser.png">}}
 XLT Result Browser - Page Output

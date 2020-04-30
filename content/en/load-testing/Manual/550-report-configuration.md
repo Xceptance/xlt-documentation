@@ -246,8 +246,8 @@ If you don’t want to highlight requests that exceed/fall below the target valu
 
 ## Merge Rules
 
-{{< TODO >}}merge rules{{< /TODO >}}
-See [Merge Rules](../../advanced/010-merge-rules).
+In order to reduce the list of requests in the report, the values of different
+requests can be merged together. This is done by defining merge rules for your project. Merge rules are one of the most unique XLT features, you can also think of them as bucketing rules for your requests. Setting them up requires some careful thinking, as they can do quite some harm to your reports, but well crafted merge rules will help you make sense of your reports. You can read more on this topic in the [Advanced section](../../advanced/010-merge-rules).
 
 ## Masking Passwords in the Test Report
 
