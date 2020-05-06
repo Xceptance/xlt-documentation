@@ -10,3 +10,5 @@ description: >
 ---
 
 About custom data, timers, and external data
+
+https://training.xceptance.com/xlt/40-custom-data.html#/
