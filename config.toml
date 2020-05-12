@@ -95,10 +95,10 @@ github_project_repo = "https://github.com/google/docsy"
 
 # Enable Algolia DocSearch
 # (if this is enabled, sidebar_search_disable needs to be true as well, Algolia does not support sidebar search)
-#algolia_docsearch = true
+algolia_docsearch = true
 
 # Enable local search
-offlineSearch = true
+# offlineSearch = true
 
 [sitemap]
   changefreq = "weekly"
@@ -112,7 +112,7 @@ sidebar_menu_compact = false
 #  Set to true to disable breadcrumb navigation.
 breadcrumb_disable = false
 #  Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
-sidebar_search_disable = false
+sidebar_search_disable = true
 #  Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top nav bar
 navbar_logo = true
 
