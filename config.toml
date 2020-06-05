@@ -85,7 +85,7 @@ privacy_policy = "https://policies.google.com/privacy"
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/Xceptance/xlt-documentation"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
-# github_project_repo = "https://github.com/google/docsy"
+github_project_repo = "https://github.com/Xceptance/XLT"
 
 # Specify a value here if your content directory is not in your repo's root directory
 # github_subdir = ""
@@ -98,7 +98,7 @@ github_repo = "https://github.com/Xceptance/xlt-documentation"
 algolia_docsearch = true
 
 # Enable local search
-#offlineSearch = true
+# offlineSearch = true
 
 [sitemap]
   changefreq = "weekly"
