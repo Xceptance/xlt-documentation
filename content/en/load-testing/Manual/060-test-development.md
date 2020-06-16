@@ -8,27 +8,79 @@ description: >
     XLT supports the local development and execution of test scenarios for faster development and debugging.
 ---
 
-Test development happens locally, in your IDE of choice. You will add test cases for all needed scenarios, or adjust those of a sample test suite to your needs. If you need to do some functional testing, test data may be added.
+## Test Development Essentials
 
-You can run those tests as a JUnit test from your IDE, and you should do so repeatedly for consolidating the tests you wrote, because you really want stable and predictable tests for your load test.
+### The Environment: your Favorite IDE
 
-For load testing, you usually want some randomness in your scenarios - with XLT, you can easily add that as well as re-run single test cases with the exact same “random” input as before for consolidating and debugging purposes.
+XLT test cases are usually developed in Java, as JUnit test cases. This means you can work locally, in your IDE of choice. You will probably start out with one of our [sample test suites](../../test-suites), which come as Maven projects ready to import to your IDE of choice, build and run, and adjust those test cases to your needs, probably also adding new test cases. If you need to do some functional testing, test data may be added.
 
+### Developing a Test Case
 
-- JUnit test concept
-- Integrates normally into IDE and CI
-- Performance test case is also a regression test case
-- Result browser delivers insides
-- Regular debugging works just fine
-- Reuse via Java concepts
+To develop a test case, you start by identifying common usage scenarios for your application. (In our sample test suites, these are things like a visit to the homepage, some browsing, adding a product to the cart, searching, up to the whole ordering process). 
 
-* Testcase entwickeln 
-	* Szenario ausdenken
-	* ggf. in Einzelschritte zerlegen
-	* Einzelschritte zur Wiederverwendung in Actions/Flows --> verlinken auf Concepts
-* repeated execution, consolidation, random dings, data?
+The scenarios often share some steps, so the next step is to identify these to create [flows](../../11-glossary/#flow-xlt) or [actions](../../11-glossary/#action-xlt) to make those common steps easily reusable in all test cases that need them (and also to make maintenance less complicated). Using a real-world example from our sample test suites, this is what we did:
 
-## Basic rules for Test Development
+```txt
+				Homepage
+--------------------------------------------
+				GoToSignIn
+--------------------------------------------
+				Register
+--------------------------------------------
+				Login
+--------------------------------------------
+BrowsingFlow:	SelectTopCategory
+				SelectCategory	
+				Paging
+				ProductDetailView
+--------------------------------------------
+				Search
+--------------------------------------------
+				AddToCart
+--------------------------------------------
+CheckoutFlow:	StartCheckout
+				EnterShippingAddress
+				EnterBillingAddress
+				EnterPaymentMethod
+--------------------------------------------
+				PlaceOrder
+--------------------------------------------
+				Logout
+```
+
+This is just an example and a different breakdown of flows and actions might make sense for your application, just keep in mind that an action always represents a single test step (similar to a click on a website, although this may trigger more than one request), whereas flows can combine several of these actions to one logical unit that may be used by several test cases. For example, with the flows and actions above, you can define several common scenarios, like the following:
+
+* Homepage 
+* Homepage → GoToSignin → Register → (Login) → Logout
+* Homepage → BrowsingFlow
+* Homepage → Search
+* Homepage → BrowsingFlow → AddToCart → CheckoutFlow _(abandoned cart)_
+* Homepage → BrowsingFlow → AddToCart → CheckoutFlow → PlaceOrder _(guest order)_
+* Homepage → Login → BrowsingFlow → AddToCart → CheckoutFlow → PlaceOrder → Logout _(registered order)_
+
+### Local Testing and Test Consolidation
+
+XLT tests are basically JUnit tests, so they can be run (and debugged) from the IDE, and you should do so repeatedly for consolidating the tests you wrote, because you really want stable and predictable tests for your load test. 
+
+For load testing, you usually want some **randomness** in your scenarios (for example, instead of always clicking the same category, it better mimicks real-world behavior to randomly pick categories from the pool of all available categories) - with XLT, you can easily add that as well as re-run single test cases with the exact same “random” input as before for consolidating and debugging purposes: `XltRandom.nextInt()` generates your random input, and by setting the property `com.xceptance.xlt.random.initValue` you can recreate the exact same test run for debugging purposes (make sure to put this in `dev.properties`, as this value is needed for debugging purposes only and will make your loadtest very non-random if you forget to remove it from the other property files later) - the value to be used can be found in the console after testing and also on the "Home Page" of your test report:
+
+{{< image src="user-manual/localTest_console.png" >}}
+Console output for local test run
+{{< /image >}}
+
+{{< image src="user-manual/result-browser_randomInitValue.png" >}}
+Result browser overview page
+{{< /image >}}
+
+Especially when you are using randomness in your tests (which you should), we encourage you to run your tests several times for consolidation, as different random test behavior might yield different results. You can also overwrite test properties [for development only](../480-test-suite-configuration/#development-environment-configuration), for example to define probabilities for test behaviors in order to make sure every option is working.
+
+For **test error analysis**, the console output offers many insights, but it is probably easiest to have a look at the result browser generated for the test (the link is also found at the end of the console output, see above). While your main focus is probably the last executed action and the reason why it failed, don't forget to also check what happened before: as you want to model real-world usage of your application in your tests, the actions (and the requests they trigger, and the data sent and received by those requests) should be as close to manual usage as possible.  
+
+### CI Integration
+
+A performance test case is also a regression test case - and if you want to [integrate XLT into your CI/CD pipeline](../../advanced/080-ci-cd/) for either regression testing or, even better, continuous load testing to already spot performance issues in early development stages, we provide tools for this: there is a Jenkins plugin that brings load testing and continuous integration together, enabling you to set up your load test project as just another Jenkins build project and to define success criteria according to your needs. Learn more in the [Advanced section](../../advanced/080-ci-cd/).
+
+## Basic Rules for Test Development
 
 {{% note notitle %}}**tl;dr:** Keep it short, keep it simple, reduce dependencies, stress re-usability and clean up when you're finished.{{% /note %}}
 
