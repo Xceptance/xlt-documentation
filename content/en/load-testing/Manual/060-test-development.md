@@ -74,7 +74,7 @@ Result browser overview page
 
 Especially when you are using randomness in your tests (which you should), we encourage you to run your tests several times for consolidation, as different random test behavior might yield different results. You can also overwrite test properties [for development only](../480-test-suite-configuration/#development-environment-configuration), for example to define probabilities for test behaviors in order to make sure every option is working.
 
-For **test error analysis**, the console output offers many insights, but it is probably easiest to have a look at the result browser generated for the test (the link is also found at the end of the console output, see above). While your main focus is probably the last executed action and the reason why it failed, don't forget to also check what happened before: as you want to model real-world usage of your application in your tests, the actions (and the requests they trigger, and the data sent and received by those requests) should be as close to manual usage as possible.  
+For **test error analysis**, the console output offers many insights, but it is probably easiest to have a look at the result browser generated for the test (the link is also found at the end of the console output, see above). While your main focus is probably the last executed action and the reason why it failed, don't forget to also check what happened before: as you want to model real-world usage of your application in your tests, the actions (and the requests they trigger, and the data sent and received by those requests) should be as close to what happens during manual application usage as possible.  
 
 ### CI Integration
 
