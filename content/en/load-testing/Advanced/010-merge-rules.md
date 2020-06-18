@@ -75,45 +75,88 @@ Plain requests table
 
 Everything is named similarly, we have no idea what happened here, and whether it's good or bad. So let's have a closer look at these requests (just hover over the name in the table to see the unique URL(s) that were measured here). This is what we have:
 
-**COLogin.1:** 
 ```txt
+COLogin.1
 https://host.net/s/Foo/cart?dwcont=C1250297253
-```
-**COLogin.2:** 
-```txt
+
+COLogin.2
 https://host.net/on/d.store/Sites-Foo-Site/en_US/COCustomer-Start
-```
-**COLogin.3:** 
-```txt
+
+COLogin.3
 https://host.net/on/d.store/Sites-Foo-Site/en_US/
-	COAddress-UpdateShippingMethodList
-	 ?address1=&address2=&countryCode=&stateCode=&postalCode=
-	  &city=&firstName=Armin&lastName=Warnes&format=ajax
-```
-**COLogin.4:** 
-```txt
+ COAddress-UpdateShippingMethodList
+  ?address1=&address2=&countryCode=&stateCode=&postalCode=
+   &city=&firstName=Armin&lastName=Warnes&format=ajax
+
+COLogin.4
 https://host.net/on/d.store/Sites-Foo-Site/en_US/
-	COAddress-UpdateShippingMethodList
-	 ?address1=&address2=&countryCode=&stateCode=&postalCode=
-	  &city=&firstName=Armin&lastName=Warnes
-```
-**COLogin.5:** 
-```txt
+ COAddress-UpdateShippingMethodList
+  ?address1=&address2=&countryCode=&stateCode=&postalCode=
+   &city=&firstName=Armin&lastName=Warnes
+
+COLogin.5
 https://host.net/on/d.store/Sites-Foo-Site/en_US/COBilling-UpdateSummary
-```
-**COLogin.6:** 
-```txt
+
+COLogin.6
 https://host.net/on/d.store/Sites-Foo-Site/en_US/__Analytics-Tracking
-	?url=https%3A%2F%2host.net%2Fon%2Fd.store%2FSites-Foo-Site%2Fen_US%2FCOCustomer-Start
-	 &res=1600x1200&cookie=1&cmpn=&java=0&gears=0&fla=0&ag=0&dir=0&pct=0
-	 &pdf=0&qt=0&realp=0&tz=US%2FEastern&wma=1&dwac=0.7869769714444649
-	 &pcat=new-arrivals&title=Cole+Haan+Checkout&fake=13581407137497
+ ?url=https%3A%2F%2host.net%2Fon%2Fd.store%2FSites-Foo-Site%2Fen_US%2FCOCustomer-Start
+  &res=1600x1200&cookie=1&cmpn=&java=0&gears=0&fla=0&ag=0&dir=0&pct=0
+  &pdf=0&qt=0&realp=0&tz=US%2FEastern&wma=1&dwac=0.7869769714444649
+  &pcat=new-arrivals&title=Cole+Haan+Checkout&fake=13581407137497
 ```
 
-So, we would actually like our table to look like this:
+### Step 1: Split off _\_\_Analytics-Tracking_
+
+First, let's split off the _\_\_Analytics-Tracking_ requests we have seen in COLogin.6. These probably show up in other parts of your load test as well, and as they have no real connection to your login process, let's just sum them all up in one big _Analytics_ bucket. For this, we need a rule that matches urls with _\_\_Analytics-Tracking_ before _'?'_. We then take the name out of the URL pattern match, and stop processing:
+
+```bash
+## Summarize Analytics Tracking
+...requestMergeRules.10.newName = {u:1}
+...requestMergeRules.10.urlPattern = /(__Analytics-Tracking)\\?
+...requestMergeRules.10.stopOnMatch = true
+```
+
+### Step 2: Get rid of the dot
+
+We do not need the sub-request naming pattern at the moment, so let's get rid of the dot and just summarize our requests in "COLogin". We will want to apply other merge rules on the result, so we do not stop processing here:
+
+```bash
+## First, we eliminate the sub-request naming pattern, because we do not need
+## that at the moment. This turns all "name.1" or "name.1.1"
+## and so on into just "name".
+...requestMergeRules.20.newName = {n:1}
+...requestMergeRules.20.namePattern = ^([^\\.]*)(\\.[0-9]+)+$
+...requestMergeRules.20.stopOnMatch = false
+```
+
+### Step 3: Get the redirect codes into the name
+
+Usually, we expect 200 response codes for requests, so everything else is of special interest. With another merge rule we'll match every response code 300 to 309 and add those codes to the original name:
+
+```bash
+## Get us the redirect codes into the name
+...requestMergeRules.60.newName = {n:0} [{s:0}]
+...requestMergeRules.60.namePattern = .*
+...requestMergeRules.60.statusCodePattern = (30[0-9])
+...requestMergeRules.60.stopOnMatch = false
+``` 
+Please note that when the call fails with something else than 30[0-9], we get another row and so we might not see all errors or spikes correctly as part of the main row.
+
+### Step 4: Add pipeline name
+
+What remains are requests that follow the pattern _'-Site/locale/Pipeline'_, so we'll check for that pipeline name and split requests by it, appending the name of the pipeline to the bucket name (making sure we do not capture the url parameters starting at the _'?'_):
+
+```bash
+# Do a split by pipeline name
+...requestMergeRules.80.newName = {n:0} ({u:1})
+...requestMergeRules.80.namePattern = [^.]+
+...requestMergeRules.80.urlPattern = -Site/[^/]+/([^/\\?]+).*
+...requestMergeRules.80.stopOnMatch = false
+```
+So with this, we reorganised our COLogin request to show up in the requests table like this (plus, there will be another table row for all _\_\_Analytics-Start_ requests):
 
 {{< image src="user-manual/cologin-in-buckets.png" >}}
 Requests table, organised with merge rules
 {{< /image >}}
 
-{{< TODO >}}merge rules example continued{{< /TODO >}}
+As you see, this is no rocket science, but requires some careful thinking, and regex knowledge [helps a lot](https://xkcd.com/208/).
