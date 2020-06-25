@@ -8,7 +8,7 @@ description: >
   This test suite gives you testing via YAML definitions with barely any code needed.
 ---
 
-{{< TODO >}}RN 4.4.x - anything to add?{{< /TODO >}}
+## Introduction
 
 One is often faced with the requirement to just fire a couple of simple URLs, to verify the performance or functionality of a single feature, to create load in order to stress environments and monitor certain things, or simply to create load in addition to another load test.
 
@@ -16,7 +16,7 @@ TestSuite-NoCoding  is a test suite for XLT and delivers an easy way to define a
 
 The test suite relies on the library [xlt-nocoding](https://github.com/Xceptance/xlt-nocoding) in order to interpret and execute the no-coding test definitions. Since the source of that library is open and licensed under the Apache License V2.0, feel free to extend and customize it.
 
-## Features
+### Features
 
 * Reads test definitions from files. Supported file types:
     * YAML

@@ -10,9 +10,7 @@ description: >
 
 All official XLT releases ship with a real-world demo web application (*Posters*) as the system under test and a [test suite](../30-demo-test-suite) to test this application. Both can be found in the directory `<XLT>/samples`.
 
-{{< TODO >}}
-Change when posters will be shipped individually/move to its own Github repo/hint to official instance when we have one, but this is not intended to be loadtested!
-{{< /TODO >}}
+There is also a [Posters demo store](https://35.184.136.113:8443/posters/) available. Please note: **this setup is for testing purposes only and does not handle a lot of load**. Please setup your own copy of the Posters demo store if you want to experiment with executions of higher load factors and more complex test configurations. The posters store source code is also available on [Github](https://github.com/Xceptance/posters-demo-store).
 
 *Posters* is a shop software written in Java. Being small and easy to deploy, it is well suited to demonstrate testing with XLT.
 

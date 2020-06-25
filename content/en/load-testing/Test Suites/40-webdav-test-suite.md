@@ -8,6 +8,8 @@ description: >
   WebDav can be tested with this test suite. It depends on a WebDav XLT-library.
 ---
 
+## Introduction
+
 It is possible to load test WebDAV servers with XLT. Therefore we have created a small
 library that sits on top of XLT and provides the usual WebDAV commands
 as predefined action classes. Simply compose your test scenarios from
@@ -19,6 +21,8 @@ We also provide a demo **WebDAV test suite**. It does not only show how to
 include the library in a test suite project, but also comes with a
 simple scenario that demonstrates the usage of all available WebDAV
 actions.
+
+## Getting Started
 
 The source code for both the
 [library](https://github.com/Xceptance/xlt-webdav) and the [demo test
@@ -35,7 +39,7 @@ WebDAV server application is available at <http://localhost:8080/webdav/>
 and <https://localhost:8443/webdav/>, respectively. In the latter case,
 make sure to configure your WebDAV client to accept self-signed
 certificates. In order to get access, you need to provide valid user
-credentials (use *webdav* for both, username and password). The root
+credentials (use *webdav* for both username and password). The root
 directory used by the WebDAV server to serve all the files is located at
 `<xlt>/samples/app-server/data/webdav`. If this directory is not
 present, it will be created automatically.
