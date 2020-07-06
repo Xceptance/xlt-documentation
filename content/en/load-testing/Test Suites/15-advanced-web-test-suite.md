@@ -10,7 +10,7 @@ description: >
 
 ## Introduction
 
-This repository is an example of an advanced test suite for load testing a website with XLT. In comparison to our simple posters loadtest suite which demonstrates basic XLT test suite design, this test suite goes the extra mile and implements universal concepts for easier handling of data, configuration, and test composition. It shows what is possible thanks to Java as scripting language on top of the XLT base feature set. The advanced posters test suite demostrates the following features and functionalities:
+Because there are many things that could be easier to handle, we built a more comprehensive version of a web test suite which combines many concepts to provide easier data and state management as well as improved set up capabilities. Like the basic web test suite, it is built for load testing a website with XLT. In comparison to our simple posters loadtest suite which demonstrates basic XLT test suite design, this test suite goes the extra mile and implements universal concepts for easier handling of data, configuration, and test composition. It shows what is possible thanks to Java as scripting language on top of the XLT base feature set. The advanced posters test suite demostrates the following features and functionalities:
 
 ### Base XLT Features
 
@@ -31,10 +31,10 @@ This repository is an example of an advanced test suite for load testing a websi
 * Component based modelling of the site under test
 * Replayable randomness among test scenario executions
 
-The test suite is ready to be executed against the Posters demo store [Posters](https://35.184.136.113:8443/posters/). Please note, this setup is for testing purposes only and does not handle a lot of load. Please setup your [own copy of the Posters demo store](../../quick-start/20-demo-application/) if you want to experiment with executions of higher load factors and more complex test configurations.
+The test suite is ready to be executed against the Posters demo store [Posters](https://35.184.136.113:8443/posters/). Please note that this setup is for testing purposes only and does not handle a lot of load. Please setup your [own copy of the Posters demo store](../../quick-start/20-demo-application/) if you want to experiment with executions of higher load factors and more complex test configurations.
 
 ## Getting Started
 
-The NoCoding test suite is available on [Github](https://github.com/Xceptance/posters-advanced-loadtest-suite).
+The Advanced Web Test Suite is available on [Github](https://github.com/Xceptance/posters-advanced-loadtest-suite).
 
 The **README** contains many useful infos on XLT and how to work with this test suite, running your own load tests. 
