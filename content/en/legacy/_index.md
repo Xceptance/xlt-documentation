@@ -10,6 +10,4 @@ menu:
     weight: 200
 ---
 
-{{% pageinfo %}}
-This is a placeholder page that shows you how to use this template site.
-{{% /pageinfo %}}
+If you need information about older or deprecated XLT versions or functionalities, please have a look at the [legacy documentation](https://lab.xceptance.de/releases/xlt/latest/index.html).
