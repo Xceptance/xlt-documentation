@@ -20,6 +20,9 @@ enableMissingTranslationPlaceholders = true
 
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
+[markup.goldmark.renderer]
+unsafe= true
+
 # Highlighting config
 pygmentsCodeFences = true
 pygmentsUseClasses = false
@@ -75,7 +78,7 @@ weight = 1
 # Everything below this are Site Params
 
 [params]
-copyright = "Xceptance Software Technologies GmbH"
+copyright = "Xceptance GmbH"
 privacy_policy = "https://policies.google.com/privacy"
 
 # Menu title if your navbar has a versions selector to access old versions of your site.
@@ -150,13 +153,13 @@ enable = false
 	icon = "fab fa-github"
         desc = "Development takes place here!"
 [[params.links.developer]]
-	name = "Slack"
-	url = "https://xceptance.slack.com"
-	icon = "fab fa-slack"
-        desc = "Chat with other project developers"
+	name = "Twitter"
+	url = "https://twitter.com/Xceptance"
+	icon = "fab fa-twitter"
+        desc = "Follow Xceptance on Twitter for more updates"
 [[params.links.developer]]
-	name = "Developer mailing list"
-	url = "https://example.org/mail"
-	icon = "fa fa-envelope"
-        desc = "Discuss development issues around the project"
+	name = "Blog"
+	url = "https://blog.xceptance.com/"
+	icon = "fa fa-newspaper"
+        desc = "The Xceptance Blog"
 
