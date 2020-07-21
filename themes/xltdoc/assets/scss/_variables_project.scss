@@ -9,5 +9,6 @@ $font-family-monospace: "Roboto Mono", monospace;
 @import url("https://fonts.googleapis.com/css?family=Roboto+Mono:300");
 
 $link-color: $primary;
+$link-light-color: desaturate($link-color, 70%) !default;
 
 $info: #337ab7 !default;

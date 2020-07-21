@@ -15,3 +15,13 @@
         text-shadow: 1px 1px 2px $dark;
     }
 }
+
+.td-toc {
+    /* Dim the edit links on the TOC bar */
+    .td-page-meta {
+        a {
+            color: $link-light-color;
+            font-size: 90%;
+        }
+    }
+}
