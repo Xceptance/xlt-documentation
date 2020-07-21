@@ -1,7 +1,7 @@
 ---
-title: "DEMO DOC!!"
+title: "Doc Helpers ✍️"
 
-weight: 1
+weight: 10000
 type: docs
 
 # There is no need to specify the - instead of a space, 
@@ -9,11 +9,9 @@ type: docs
 slug: "this is just an overwritten url"
 
 description: >
-  Just a demo for what doc can do and how the code looks like.
+  This page demos several important pieces for the documentation and is meant to support
+  anyone who wants to update or extend the documentation.
 ---
-
-
-
 ## Info Boxes
 {{% note %}}
 A Note with a standard header/title
