@@ -9,6 +9,16 @@
 
 }
 
+.td-content {
+    /* give the content less of a hard contrast */
+    color: #333;
+    
+    h1, h2, h3, h4, h5, h6 {
+        font-family: $font-family-headlines;
+        font-weight: 700;
+    }
+}
+
 .td-cover-block {
     /* Give the text on the start page more contrast */
     h1 {
@@ -22,9 +32,23 @@
     }
 }
 
+.td-navbar {
+    /* avoid that the text wraps */
+    white-space: nowrap;
+}
+
+.td-sidebar-nav {
+    font-family: $font-family-headlines;
+    font-size: 120%;
+}
+
 .td-toc {
+    font-family: $font-family-headlines;
+    font-size: 120%;
+
     /* Dim the edit links on the TOC bar */
     .td-page-meta {
+        
         a {
             color: $link-light-color;
             font-size: 90%;

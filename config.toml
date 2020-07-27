@@ -25,7 +25,17 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
     [markup.goldmark.renderer]
       unsafe = true
   [markup.highlight]
-    style = "tango"
+      codeFences = true
+      guessSyntax = false
+      hl_Lines = ""
+      lineNoStart = 1
+      lineNos = true
+      lineNumbersInTable = true
+      noClasses = false
+      style = "tango"
+      tabWidth = 4
+
+
 
  # First one is picked as the Twitter card image if not set on page.
  #images = ["images/project-illustration.png"]
