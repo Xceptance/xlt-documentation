@@ -40,10 +40,10 @@ Before you can run your Java-based test cases, you need to import the sample tes
 
 ### Importing the _Posters_ Test Suite into Eclipse
 
-After starting Eclipse and creating a workspace, do the following:
+Clone the demo test suite from [Github](https://github.com/Xceptance/posters-simple-loadtest-suite) to a local directory, e.g. `<posters-simple-loadtest-suite>`. After starting Eclipse and creating a workspace, do the following:
 - Open the import dialog (_File_ > _Import_ > _General_ > _Existing Maven Projects_).
-- Select the root directory to search in and point to `<XLT>/samples`.
-- Select the test suite project `testsuite-posters/pom.xml` from the list.
+- Select the root directory to search in and point to `<posters-simple-loadtest-suite>`.
+- Select the test suite project's `pom.xml`.
 - Click _Finish_.
 
 The imported project has dependencies on the libraries of XLT. These should be added with the first automatic build, but if you still see build errors, right-clicking on the project and selecting `Maven > Update Project` might help. Eclipse shouldn't report any build problems if configured properly.
