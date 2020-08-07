@@ -1,0 +1,12 @@
+{{ $src := .Get "src" }}
+{{ $original := .Page.Resources.GetMatch (printf "**%s*" ($src)) }}
+{{ .Scratch.Set "image" ($original.Resize "600x") }}
+{{ $image := .Scratch.Get "image" }}
+
+<a href="{{ .Get `src` }}" data-lightbox="{{ .Page.Title }}" {{ with .Inner }}data-title="{{ . | markdownify}}"{{ end }}>
+	<img  style="box-shadow: 1px 4px 12px 1px #ccc" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="" />
+</a>
+
+{{ with .Inner }}
+<p style="color:#999; padding-top: 5px">{{ . | markdownify }}</p>
+{{ end }}

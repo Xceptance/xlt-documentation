@@ -86,13 +86,17 @@ Go to [Load Testing]({{< relref "/load-testing" >}}).
 An `image` that gets its source from *src* and is linked to *large* if this is given. Paths are relative to **static/images/**. The *.Inner* part is the caption.
 {{< /image >}}
 
-{{< image src="releasenotes/events-on-console-small.jpg" >}}
-Another image that is not linked to anything.
+{{< image src="releasenotes/agent-cpu-usage-chart-large.png" >}}
+Another image that is not linked to anything. If it is too wide for the window, it will be scaled by CSS (`.img-fluid, .td-content img {max-width: 100%}`). 
 {{< /image >}}
 
 {{< image src="releasenotes/agents-gc-and-cpu-information-small.jpg" large="releasenotes/agents-gc-and-cpu-information-large.png" >}}
 Yet another image. Note how neatly you can navigate between the large versions of all images of this page.
 {{< /image >}}
+
+{{< imageres src="test.png" >}}
+Another image using the `imageres` shortcode, which will resize images to a smaller preview using hugo's image processing. For this, the source image must be part of the page resources (pages are in a folder as index.md, images in same folder). The *.Inner* part is the caption.
+{{< /imageres >}}
 
 ## Colored Text
 Should you need colored text, use {{< ctext color="green" >}}ctext in green{{< /ctext >}} or any other html compatible color code. If none is given, this defaults to {{< ctext >}}grey{{< /ctext >}}.
