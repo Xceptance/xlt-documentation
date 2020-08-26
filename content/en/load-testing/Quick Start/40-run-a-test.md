@@ -44,7 +44,7 @@ com.xceptance.xlt.mastercontroller.testSuitePath = /home/user/testsuite-nocoding
 Then navigate to `<xlt>\bin` and start the mastercontroller (MC) in auto-mode with an embedded agentcontroller (so the load generators come up on your local machine without any extra configuration work). 
 
 ```bash
-$> ./mastercontroller -auto -embedded -comment "My first test run"
+$> ./mastercontroller.sh -auto -embedded -comment "My first test run"
 ```
 
 ## Generate a Test Report
