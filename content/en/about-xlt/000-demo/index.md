@@ -103,7 +103,9 @@ Should you need colored text, use {{< ctext color="green" >}}ctext in green{{< /
 
 ## //TODO
 {{< TODO >}}
-To remind us that something needs to be done, it is colored very annoyingly. Like, get those images resized by Docsy instead of providing two image files.
+To remind us that something needs to be done, it is colored very annoyingly. Like, get those images resized by Docsy instead of providing two image files. 
+
+Update: TODOs are not displayed any more (content is not rendered by Docsy), but are still in markdown code to mark the places where something needs to be done. Tasks should also be added to Github once this shortcode is used.
 {{< /TODO >}}
 
 

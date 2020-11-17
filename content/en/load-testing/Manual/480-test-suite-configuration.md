@@ -27,7 +27,7 @@ The properties in `default.properties` represent the general XLT framework setti
 
 If you need to change one of these properties, copy it to the `project.properties` or `test.properties` and change the value there to overwrite the value in `default.properties`. Each of the properties in `default.properties` can be overridden since they have the lowest priority.
 
-When updating XLT to a newer version, it is recommended you update the `default.properties` file as well because newly available properties can be found there, along with their default value and description. {{< TODO >}}But this file is part of the test suite and not XLT itself, so what about that?{{< /TODO >}}
+When updating XLT to a newer version, it is recommended you update the `default.properties` file in your test projects as well because newly available properties can be found there, along with their default value and description.
 
 {{< note notitle >}}
 Even though this file isn’t read-only, it should be treated as such. You can use it as documentation of available XLT framework properties that also defines the default values for these properties.

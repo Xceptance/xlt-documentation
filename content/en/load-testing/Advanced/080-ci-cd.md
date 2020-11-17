@@ -33,8 +33,7 @@ The plug-in enriches the standard Jenkins project and build pages. On a build's 
 
 First, check the version of Jenkins you are using. The XLT plug-in requires v1.642.3 or later.
 
-{{< TODO >}}Change when ready: 
-The Jenkins plugin is free to clone or download on [Github](https://github.com/Xceptance/XLT-jenkins-plugin). If you do not want to build it yourself, the latest prebuilt artifacts can be downloaded from [Maven Central](https://search.maven.org/artifact/com.xceptance/xlt-jenkins-plugin).{{< /TODO >}}
+The Jenkins plugin is free to clone or download on [Github](https://github.com/Xceptance/XLT-jenkins-plugin). If you do not want to build it yourself, the latest prebuilt artifacts can be downloaded from [Maven Central](https://search.maven.org/artifact/com.xceptance/xlt-jenkins-plugin).
 
 To install the XLT plug-in into Jenkins, simply copy the plug-in file `<xlt>/tools/xlt-jenkins-plugin-X.X.X/xlt-jenkins-plugin.hpi` to the `plugins`sub-directory of your Jenkins installation. Restart Jenkins for the plug-in to be picked up.
 

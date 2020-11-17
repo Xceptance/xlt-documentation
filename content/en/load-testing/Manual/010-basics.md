@@ -65,7 +65,7 @@ To run XLT, you will need the following:
 * latest JDK 8 (or 11)
 * Java IDE of choice
 * Latest [Apache Ant](https://ant.apache.org/)
-* [Maven](https://maven.apache.org/) {{< TODO >}}[version?]{{< /TODO >}}
+* [Maven](https://maven.apache.org/)
 
 How to install XLT is described in more detail [here](../040-installation).
 
