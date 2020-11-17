@@ -6,12 +6,10 @@ XLT Documentation is based on Docsy. Docsy is a [Hugo](https://gohugo.io/) theme
 
 The following are basic prerequisites:
 
-- Install a recent release of the Hugo "extended" version (we recommend version 0.53 or later). If you install from the 
-  [release page](https://github.com/gohugoio/hugo/releases), make sure you download the `_extended` version 
-  which supports SCSS.
+- Install a recent release of the Hugo "extended" version (we recommend version 0.74 or later). 
+If you install from the [release page](https://github.com/gohugoio/hugo/releases), make sure you download the `_extended` version which supports SCSS.
 
-- Install `PostCSS` so that the site build can create the final CSS assets. You can install it locally by running 
-  the following commands from the root directory of your project:
+- Install `PostCSS` so that the site build can create the final CSS assets. You can install it locally by running the following commands from the root directory of your project:
 
   ```
   sudo npm install -D --save autoprefixer
@@ -26,7 +24,7 @@ Build and webserver:
 hugo server --watch --disableFastRender
 ```
 
-Just a buld
+Just build:
 ```
 hugo
 ```
