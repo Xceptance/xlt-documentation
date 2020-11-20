@@ -10,7 +10,7 @@ description: >
 
 ## Generating a Test Report
 
-when your load test has finished, you might want to render a report based on the gathered data and open it in the browser of your choice:
+When your load test has finished, you might want to render a report based on the gathered data and open it in the browser of your choice:
 
 ```bash
 $> ./create_report.sh ../results/20200202-123400

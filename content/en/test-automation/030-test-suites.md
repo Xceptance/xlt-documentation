@@ -1,7 +1,7 @@
 ---
-title: "Basics"
+title: "Test Suites"
 
-weight: 10
+weight: 30
 type: docs
 
 description: >

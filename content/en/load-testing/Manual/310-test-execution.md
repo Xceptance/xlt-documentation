@@ -46,6 +46,7 @@ You can start the master controller in one of the following modes:
 
 * **Interactive mode**: typical sequence of steps to be executed to run a load test
 * **Auto mode**: load test is started automatically, without user interaction
+* **Non-interactive mode with scripted set of commands**: load test is started automatically and executes the set of commands given as start parameter
 * **Embedded mode**: running a load test where master controller and agent controller run inside the same JVM
 
 ### Interactive Mode
@@ -190,6 +191,17 @@ To abort the test prematurely, press {{< kbd >}}Ctrl{{< /kbd >}}+{{< kbd >}}C{{<
 {{% note notitle %}}
 For long-running load tests, it is recommended to run the test without the `-auto` option because this allows a disconnect from the test and inhibits accidental test termination.
 {{% /note %}}
+
+### Non-interactive mode with scripted set of commands
+
+In order to better fit into highly-automated environments, XLT 5.2.0 improved the master controller in order to ease scripting. With the command line option `-c <commandList>` (or `--commands <commandList>`) you can specify which commands the master controller should execute on your behalf in a non-interactive fashion. This way, typical use cases can be scripted quite easily:
+
+* upload the test suite and start the load test (`mastercontroller.sh -c upload,start`)
+* download the results of a running load test and generate a report from them (`mastercontroller.sh -c download,report`)
+* abort a running load test (`mastercontroller.sh -c abort`)
+* abort a running load test, download the final results, and generate a report from them (`mastercontroller.sh -c abort,download,report`)
+
+Please note that the master controller executes the commands exactly as specified on the command line which means in the same order and quantity.
 
 ### Embedded Mode
 

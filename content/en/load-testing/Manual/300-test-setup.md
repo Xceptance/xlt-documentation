@@ -37,7 +37,7 @@ The most basic version of those settings and a good overview what can be done is
 
 To adjust any of these settings just for the development mode (that is when you create and debug test cases from within your IDE), you may use `dev.properties`. It’s read in development mode only, but not during load testing. For development mode, the values in this file have highest priority. Read more about [Development Settings](../480-test-suite-configuration/#development-environment-configuration).
 
-## ...and even more
+## Report Configuration
 
 After your load test finished you will probably generate a report, which can also be customized in a number of ways. Read more about [Report Options](../540-report-options/) and [Report Configuration](../550-report-configuration/).
 

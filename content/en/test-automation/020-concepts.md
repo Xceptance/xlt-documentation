@@ -1,7 +1,7 @@
 ---
-title: "Basics"
+title: "Concepts"
 
-weight: 10
+weight: 20
 type: docs
 
 description: >
