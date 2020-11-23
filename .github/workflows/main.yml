@@ -2,8 +2,7 @@ name: CI-TEST
 
 on:
   push:
-    branches:
-      - githubActions # Set a branch to deploy
+    branches: [ githubAction ] # Set a branch to deploy
 
 jobs:
   deploy:
