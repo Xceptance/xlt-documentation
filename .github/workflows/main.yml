@@ -1,4 +1,4 @@
-name: github deploy
+name: CI-TEST
 
 on:
   push:
