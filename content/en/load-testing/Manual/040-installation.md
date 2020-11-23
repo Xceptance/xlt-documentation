@@ -20,7 +20,7 @@ description: >
 ### Software
 
 -   Operating System: Microsoft Windows, Linux, Oracle Solaris, HP-UX,
-    or Mac OS X, that is any operating system for which a JVM 8 (or
+    or macOS, that is any operating system for which a JVM 8 (or
     higher) is available.
 -   JVM: It’s recommended to use Oracle’s JVM, but XLT also runs on OpenJDK.
     JVMs provided by vendors such as OpenJDK BEA, HP, or IBM have not
@@ -57,7 +57,7 @@ Copy the license file to the directory `<XLT>/config`. Make sure the executable 
 </dependencies>
 ```
 {{% warning title="Version" %}}
-The version above might not be the latest version. Please adjust the version information accordingly. 
+The version above might not be the latest version. Please adjust the version information accordingly.
 {{% /warning %}}
 
 ## Updating
