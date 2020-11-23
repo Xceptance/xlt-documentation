@@ -31,8 +31,8 @@ statusCodePattern [s] .... reg-ex defining a matching status code
 urlPattern [u] ........... reg-ex defining a matching request URL
 runTimeRanges [r] ........ list of run time segment boundaries
 
-stopOnMatch .............. whether or not to process the next rule even if
-                           the current rule applied (defaults to true)
+stopOnMatch .............. whether or not to process the next rule even if the current rule applied (defaults to true)
+dropOnMatch .............. whether or not to discard a matching request instead of renaming it (defaults to false). If the rule applies, the request processing will stop.
 ```
 
 At least one of namePattern, transactionPattern, agentPattern, contentTypePattern, statusCodePattern, urlPattern or runTimeRanges must be specified. If more than one pattern is given, all given patterns must match.
@@ -105,20 +105,21 @@ https://host.net/on/d.store/Sites-Foo-Site/en_US/__Analytics-Tracking
   &pcat=new-arrivals&title=Cole+Haan+Checkout&fake=13581407137497
 ```
 
-### Step 1: Split off _\_\_Analytics-Tracking_
+### Step 1: Split Off _\_\_Analytics-Tracking_
 
-First, let's split off the _\_\_Analytics-Tracking_ requests we have seen in COLogin.6. These probably show up in other parts of your load test as well, and as they have no real connection to your login process, let's just sum them all up in one big _Analytics_ bucket. For this, we need a rule that matches urls with _\_\_Analytics-Tracking_ before _'?'_. We then take the name out of the URL pattern match, and stop processing:
+First, let's split off the _\_\_Analytics-Tracking_ requests we have seen in COLogin.6. These probably show up in other parts of your load test as well, and as they have no real connection to your login process, let's just sum them all up in one big _Analytics_ bucket. For this, we need a rule that matches urls with _\_\_Analytics-Tracking_ before _'?'_. We then take the name out of the URL pattern match, and stop processing.
 
 ```bash
 ## Summarize Analytics Tracking
-...requestMergeRules.10.newName = {u:1}
-...requestMergeRules.10.urlPattern = /(__Analytics-Tracking)\\?
+...requestMergeRules.10.newName = __Analytics-Tracking
+...requestMergeRules.10.urlPattern = /__Analytics-Tracking\\?
 ...requestMergeRules.10.stopOnMatch = true
 ```
+Please pay attention to the double backslash before the question mark (`\\?`). The first \ quotes the ? from the regular expression point of view to treat it as a normal character and the second \ quotes the \ characters because this is a property file format and a \ is a protected characters (see [Java Properties](https://docs.oracle.com/javase/8/docs/api/java/util/Properties.html#load-java.io.Reader-).
 
-### Step 2: Get rid of the dot
+### Step 2: Get Rid Of the Dot
 
-We do not need the sub-request naming pattern at the moment, so let's get rid of the dot and just summarize our requests in "COLogin". We will want to apply other merge rules on the result, so we do not stop processing here:
+We don't need the sub-request naming pattern at the moment, so let's get rid of the dot and just summarize our requests as "COLogin". We want to apply other merge rules later, so we do not stop the processing .
 
 ```bash
 ## First, we eliminate the sub-request naming pattern, because we do not need
@@ -128,8 +129,23 @@ We do not need the sub-request naming pattern at the moment, so let's get rid of
 ...requestMergeRules.20.namePattern = ^([^\\.]*)(\\.[0-9]+)+$
 ...requestMergeRules.20.stopOnMatch = false
 ```
+You can access the captured data of the regular expression by specifying its index when accessing the data via `{n:1}` to build the new name. If you state `{n:0}` or `{n}`, it will use all data available. In that case, no rule has to be specified because this data is made available automatically. See the next examples as well.
 
-### Step 3: Get the redirect codes into the name
+Starting with XLT 4.10, there is an automatic option available to deal with the index. The automatic handling is faster than the explicit handling and it is recommended to use it.
+
+```bash
+## Whether to automatically remove any indexes from request names
+## (i.e. "HomePage.1.27" -> "HomePage"), so no special request processing rule
+## is required for that.
+com.xceptance.xlt.reportgenerator.requests.removeIndexes = true
+```
+
+{{% warning %}}
+The automatic index handling might fail if the request name contains an index like structure that is part of the name, such as "4.10 Initial Step". In that case, the explicit handling of the index is recommended.
+{{% /warning %}}
+
+
+### Step 3: Get the Redirect Code into the Name
 
 Usually, we expect 200 response codes for requests, so everything else is of special interest. With another merge rule we'll match every response code 300 to 309 and add those codes to the original name:
 
@@ -142,9 +158,22 @@ Usually, we expect 200 response codes for requests, so everything else is of spe
 ``` 
 Please note that when the call fails with something else than 30[0-9], we get another row and so we might not see all errors or spikes correctly as part of the main row.
 
-### Step 4: Add pipeline name
+{{% note title="Speed Up Processing" %}}
+To speed up data processing, XLT provides the full data per request topic automatically and you don't have to use a regular expression and capture rule such as `.+` to fill the context for `{n:0}`.
+{{% /note %}}
 
-What remains are requests that follow the pattern _'-Site/locale/Pipeline'_, so we'll check for that pipeline name and split requests by it, appending the name of the pipeline to the bucket name (making sure we do not capture the url parameters starting at the _'?'_):
+The streamlined rule would like that:
+
+```bash
+## Get us the redirect codes into the name when they are 300 to 309.
+...requestMergeRules.60.newName = {n} [{s}]
+...requestMergeRules.60.statusCodePattern = 30[0-9]
+...requestMergeRules.60.stopOnMatch = false
+``` 
+
+### Step 4: Add a Part of the Url
+
+What remains are requests that follow the pattern _'-Site/locale/Pipeline'_, so we'll check for that part of the name and split requests by it, appending the name to the bucket name (making sure we do not capture the url parameters starting at the _'?'_):
 
 ```bash
 # Do a split by pipeline name
