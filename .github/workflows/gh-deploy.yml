@@ -3,7 +3,7 @@ name: github deploy
 on:
   push:
     branches:
-      - '#4-github-actions' # Set a branch to deploy
+      - githubActions # Set a branch to deploy
 
 jobs:
   deploy:
