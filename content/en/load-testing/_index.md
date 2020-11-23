@@ -1,5 +1,6 @@
 ---
-title: "Load Testing"
+title: "Load and Performance Testing"
+linkTitle: "Load Testing"
 
 type: docs
 
@@ -10,9 +11,9 @@ menu:
     weight: 10
     
 description: >
-    This section of the documentation tells you all about the load and performance testing component of XLT.
+    Learn all about the load and performance testing with XLT.
 ---
-Please make sure you read the [general XLT first]({{< relref "about-xlt" >}}).
+Please make sure you read the section [About XLT]({{< relref "about-xlt" >}}) first. It will give you valuable architectural and conceptual insides.
 
 
 
