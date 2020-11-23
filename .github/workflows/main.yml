@@ -19,5 +19,12 @@ jobs:
           hugo-version: '0.74.3'
           extended: true
 
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - run: npm ci
+
       - name: Build
         run: hugo
