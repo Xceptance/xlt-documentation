@@ -40,24 +40,19 @@ Copy the license file to the directory `<XLT>/config`. Make sure the executable 
 ### Maven
 
 ```xml
-<repositories>
-    <repository>
-        <id>xc-nexus</id>
-        <url>https://lab.xceptance.de/nexus/content/groups/public</url>
-    </repository>
-</repositories>
-
 <dependencies>
     <dependency>
         <groupId>com.xceptance</groupId>
         <artifactId>xlt</artifactId>
-        <version>4.13.2</version>
+        <version>5.0.1</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
 ```
 {{% warning title="Version" %}}
-The version above might not be the latest version. Please adjust the version information accordingly. 
+The version above might not be the latest version. Please adjust the version information accordingly.
+
+For versions below XLT 5.0.x you need to [configure the Xceptance repository](../../advanced/200-maven-builds/).
 {{% /warning %}}
 
 ## Updating
