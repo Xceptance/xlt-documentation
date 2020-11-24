@@ -44,5 +44,5 @@ jobs:
       
       - run: ls
 
-      - name: Upload to FTP 
+      #- name: Upload to FTP 
         #run: ncftpput -V -R -u ${{ secrets.FTP_USERNAME }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }} . public/.*
