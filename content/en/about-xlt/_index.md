@@ -35,4 +35,4 @@ In contrast, the manual might refer back to this nutshell section to explain hig
 ## Client Performance Testing
 
 ## License
-XLT has been open source under [Apache License 2.0](https://opensource.org/licenses/Apache-2.0) since 01 February 2020. 
+XLT is open source under [Apache License 2.0](https://opensource.org/licenses/Apache-2.0). 
