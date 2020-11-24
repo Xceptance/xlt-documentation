@@ -1,0 +1,23 @@
+{
+  "name": "xlt-documentation",
+  "version": "0.0.1",
+  "description": "Documentation for the XLT framework.",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xceptance/xlt-documentation.git"
+  },
+  "author": "Julia Schneider <j.schneider@xceptance.net> (https://www.xceptance.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xceptance/xlt-documentation/issues"
+  },
+  "homepage": "https://github.com/Xceptance/xlt-documentation#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.0.2",
+    "postcss-cli": "^8.3.0"
+  }
+}
