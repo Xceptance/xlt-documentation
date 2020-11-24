@@ -33,9 +33,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - run: npm ci
-      - run: hugo
-      
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build the documentation
+        run: hugo
+
       - name: Install 
         run: sudo apt-get install ncftp
 
