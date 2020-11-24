@@ -37,7 +37,7 @@ jobs:
       - run: hugo
       
       - name: Install 
-        run: sudo apt-get install ncftp
+        run: sudo apt-get install ncftpput
 
       - name: Upload to FTP 
         run: ncftpput -V -R -u <user> -p <pass> www.xceptance.de docuDir ./static
