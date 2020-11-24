@@ -35,3 +35,8 @@ jobs:
 
       - run: npm ci
       - run: hugo
+      
+      - name: Install 
+        run: sudo apt-get install ncftp
+
+      - ncftpput -V -R -u <user> -p <pass> www.xceptance.de docuDir ./static
