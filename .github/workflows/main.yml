@@ -39,5 +39,9 @@ jobs:
       - name: Install 
         run: sudo apt-get install ncftpput
 
+      - name: Cleanup the FTP 
+        run: ncftp -u ${{ secrets.FTP_USERNAME }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }}
+      - run: ls
+
       - name: Upload to FTP 
-        run: ncftpput -V -R -u <user> -p <pass> www.xceptance.de docuDir ./static
+        #run: ncftpput -V -R -u ${{ secrets.FTP_USERNAME }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }} . public/.*
