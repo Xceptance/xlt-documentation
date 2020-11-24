@@ -40,7 +40,7 @@ jobs:
         run: sudo apt-get install ncftp
 
       - name: Cleanup the FTP 
-      - run: ncftp -u ${{ secrets.FTP_USERNAME }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }}
+        run: ncftp -u ${{ secrets.FTP_USERNAME }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }}
       - run: ls
 
       #- name: Upload to FTP 
