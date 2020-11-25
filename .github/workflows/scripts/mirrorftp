@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+USER=$1
+PASSWORD=$2
+HOST=$3
+
+lftp -u $USER,$PASSWORD $HOST << "EOF"
+cd ghTest
+mirror -e -R --parallel=2 public/ .
+exit
+EOF

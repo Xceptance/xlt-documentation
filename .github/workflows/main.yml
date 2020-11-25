@@ -40,11 +40,7 @@ jobs:
         run: hugo
 
       - name: Install 
-        run: sudo apt-get install ncftp
+        run: sudo apt-get install lftp
 
       - name: Cleanup the FTP 
-        run: ncftp -u ${{ secrets.FTP_USERNAME }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }}
-      - run: ls
-
-      #- name: Upload to FTP 
-        #run: ncftpput -V -R -u ${{ secrets.FTP_USERNAME }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }} . public/.*
+        run: .github/workflows/scripts/mirrorftp ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }}
