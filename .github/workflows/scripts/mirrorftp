@@ -4,7 +4,9 @@ USER=$1
 PASSWORD=$2
 HOST=$3
 
-lftp -u $USER,$PASSWORD $HOST << "EOF"
+lftp << EOF
+set ftp:ssl-force true
+connect -u $USER,$PASSWORD $HOST
 mirror -e -R --parallel=4 public/ .
 exit
 EOF
