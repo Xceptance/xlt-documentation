@@ -2,7 +2,7 @@ name: Deploy documentation
 
 on:
   push:
-    branches: [ githubAction ] # Set a branch to deploy
+    branches: [ master ] # Set a branch to deploy
 
 jobs:
   deploy:
