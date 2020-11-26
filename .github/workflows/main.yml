@@ -1,4 +1,4 @@
-name: CI-TEST
+name: Deploy documentation
 
 on:
   push:
@@ -42,5 +42,5 @@ jobs:
       - name: Install 
         run: sudo apt-get install lftp
 
-      - name: Cleanup the FTP 
+      - name: Mirror the documentation on the FTP 
         run: .github/workflows/scripts/mirrorftp ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }}

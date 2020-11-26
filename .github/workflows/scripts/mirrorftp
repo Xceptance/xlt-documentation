@@ -6,6 +6,6 @@ HOST=$3
 
 lftp -u $USER,$PASSWORD $HOST << "EOF"
 cd ghTest
-mirror -e -R --parallel=2 public/ .
+mirror -e -R --parallel=4 public/ .
 exit
 EOF

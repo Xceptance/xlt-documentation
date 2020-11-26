@@ -18,7 +18,11 @@
   "homepage": "https://github.com/Xceptance/xlt-documentation#readme",
   "devDependencies": {
     "autoprefixer": "^10.0.2",
+    "kind-of": ">=6.0.3",
+    "mem": ">=4.0.0",
+    "minimist": ">=1.2.3",
     "postcss": "^8.1.10",
-    "postcss-cli": "^8.3.0"
+    "postcss-cli": "^8.3.0",
+    "yargs-parser": ">=13.1.2"
   }
 }
