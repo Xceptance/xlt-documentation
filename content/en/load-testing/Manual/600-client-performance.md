@@ -94,7 +94,7 @@ To enable client performance measurements in XLT, test cases must extend `Abstra
 
 In the latter case (for `AbstractWebDriverScriptTestCase`) the costructor may be given a Web Driver. If that passed driver is non-null, that is the driver was created by you (you can use the properties for creating this driver, but you do not need to), you are also responsible to quit the driver after the test. However, if the passed driver is null, a default driver will be created and managed internally.
 
-{{< TODO >}}What about `AbstractWebDriverTestCase`? How does this even work?{{< /TODO >}}
+{{< TODO comment="What about `AbstractWebDriverTestCase`? How does this even work?" / >}}
 
 ### Running the CPT
 To run your XLT client performance test, just make sure you use the right web driver settings and enabled the client performance test cases you wrote, then you can just run a load test [as usual](../310-test-execution/) (keep in mind a much shorter testing window might be sufficient in this case).
@@ -108,7 +108,7 @@ Page Load Timings table in XLT report
 
 Of course it takes some experience to evaluate these values, and the measurements can never give you all the insights a live user test could.
 
-## Common Reasons for Perceived Bad Performance (and How to Avoid Them)
+## Common Reasons for Bad Perceived Performance (and How to Avoid Them)
 
 To finish up, you might be satisfied about your performance measurements or you might have spotted a potential problem - but up to now we just have numbers, and now you have to find out the causes of your issues. 
 
@@ -120,6 +120,6 @@ Perceived bad performance depends on a number of factors. Reasons for bad perfor
 
 * Too many XHRs: JavaScript and XmlHttpRequests (XHR) are the basis for AJAX (asynchronous JavaScript and XML), which is often used for paging and other common functions of web applications that interactively change the DOM tree. But often there are too many calls, requesting too much information. If possible, batch calls should be used to get the necessary info with a minimum number of calls.
 
-{{< TODO >}}continue/finish{{< /TODO >}}
+{{< TODO comment="continue/finish https://training.xceptance.com/xlt/90-cpt.html#/10" / >}}
 
-https://training.xceptance.com/xlt/90-cpt.html#/10
+

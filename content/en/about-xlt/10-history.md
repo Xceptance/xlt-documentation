@@ -1,6 +1,8 @@
 ---
 title: "History"
 linkTitle: "History"
+aliases: 
+    - history
 
 type: docs
 

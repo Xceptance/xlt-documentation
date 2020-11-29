@@ -1,1 +1,1 @@
-<!--<span style="color:magenta; font-weight:bold; background-color: yellow">{{ .Inner }}</span>-->
+{{ if .Inner }}<span class="todo" {{ with .Get "comment"}} title="{{.}}"{{ end }}>{{ .Inner }}</span>{{ else }}<span class="todo" {{ with .Get "comment"}} title="{{.}}"{{ end }}></span>{{ end }}

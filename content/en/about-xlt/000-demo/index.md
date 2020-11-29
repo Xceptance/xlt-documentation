@@ -1,5 +1,8 @@
 ---
 title: "Doc Helpers ✍️"
+aliases:
+    - another name to redirect from
+    - documentation help
 
 weight: 10000
 type: docs
@@ -75,7 +78,7 @@ foo@picard $./start.sh
 
 ## Links
 ### Any link that is up or down the hierarchy
-Go to [Load Testing]({{< relref "/load-testing" >}}).
+Go to [Load Testing]({{< relref "load-testing" >}}).
 
 
 ### From here
@@ -101,13 +104,24 @@ Another image using the `imageres` shortcode, which will resize images to a smal
 ## Colored Text
 Should you need colored text, use {{< ctext color="green" >}}ctext in green{{< /ctext >}} or any other html compatible color code. If none is given, this defaults to {{< ctext >}}grey{{< /ctext >}}.
 
-## //TODO
-{{< TODO >}}
-To remind us that something needs to be done, it is colored very annoyingly. Like, get those images resized by Docsy instead of providing two image files. 
+## TODO
+### To-Do Marker
+{{< TODO / >}}To remind us that something needs to be done, it introduces a marked TODO at the position of the shortcode `{{</* TODO / */>}}`. TODO markers right now assume to be in the beginning because they make a little room on the right side - "{{< TODO / >}}".
 
-Update: TODOs are not displayed any more (content is not rendered by Docsy), but are still in markdown code to mark the places where something needs to be done. Tasks should also be added to Github once this shortcode is used.
-{{< /TODO >}}
+{{< TODO comment="I am more useful!" / >}}Optionally you can pass the parameter comment and provide some more information such as `{{</* TODO comment="More information in the title" / */>}}`.
 
+### Marked Text
+```
+{{</* TODO */>}}To mark some text use this.{{</* /TODO */>}}
+```
+{{< TODO >}}To mark some text use this.{{< /TODO >}}
+
+
+### Markdown in a To-Do
+```
+{{%/* TODO */%}}To use **markdown** in the to-do, use this.{{%/* /TODO */%}}
+```
+{{% TODO %}}To use **markdown** in the to-do, use this.{{% /TODO %}}
 
 
 
