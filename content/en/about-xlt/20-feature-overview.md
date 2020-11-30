@@ -1,5 +1,5 @@
 ---
-title: "Feature Overview"
+title: "Features"
 
 type: docs
 

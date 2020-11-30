@@ -26,12 +26,9 @@ This level is equivalent to the HTTP request level used in web browsers or in an
 ## Validation
 As you’re testing the functionality of applications or pieces of software, you have to check the correctness of all responses. It is strongly recommended that you handle all potential situations and use validations as often as possible. It’s better to have too many checks than too few! They can’t do any harm and will increase your confidence that your application works correctly. Thus, make sure you include as much validation as necessary to detect any abnormal behavior in the software being tested.
 
-{{< TODO >}}
 {{% note title="Response Codes" %}}
-A Note with a standard header/title
+{{< TODO comment="What ABOUT the response codes?" />}}More about response codes
 {{% /note %}}
-What ABOUT the response codes?
-{{< /TODO >}}
 
 
 ### Pre-Validation

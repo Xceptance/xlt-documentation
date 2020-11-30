@@ -11,19 +11,6 @@ description: >
 ## What is XLT?
 XLT, the Xceptance Load Test tool, is a regression and performance testing tool. The first prototype was released in 2005 and it has been improving ever since. The tool is used on a daily basis at [Xceptance](https://xceptance.com), so our developers know what our load testers need.
 
-**XLT is the right tool for you if...**
-* you are a Software Engineer or a Software Engineer in Test
-* you love detailed data and the ability to postprocess it
-* you need strong validation
-* you want to combine automation with truly understanding the application
-* you are looking for a solution you can use in your preferred IDE
-* your tests need to be flexible but predictable
-
-**XLT isn't the tool for you if...**
-* you need Capture & Replay
-* property files, source code, and version control scare you
-* the command line isn't your cup of tea
-
 XLT is platform independent (you can develop and run your tests on any platform with a JDK), and is open source, available under Apache License 2.0 starting February 2020. It is simple to deploy and highly scalable, provides ready to use reports (for single or multiple test runs, so you can also compare runs or see trends) and realtime test monitoring. Nothing about XLT is proprietary, no custom IDE is needed, you can just use your tool chain and existing knowledge.
 
 ## How does it work?
@@ -34,7 +21,7 @@ This is a rough overview of the components:
 {{< image src="user-manual/suite-controller-agents.png" >}}
 High Level Overview
 {{< /image >}}
-{{< TODO >}}find/make better image{{< /TODO >}}
+{{< TODO comment="Better and more stylish image" / >}}
 
 ### Test Suite
 A test suite contains your test code, data and configuration. Developed on your own machine, it can live in your favorite version control tool and be shared easily.

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+USER=$1
+PASSWORD=$2
+HOST=$3
+
+lftp << EOF
+set ftp:ssl-force true
+connect -u $USER,$PASSWORD $HOST
+mirror -e -R --parallel=4 public/ .
+exit
+EOF

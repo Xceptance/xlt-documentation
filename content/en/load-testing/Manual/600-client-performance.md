@@ -144,7 +144,7 @@ To enable client performance measurements in XLT, test cases must use the action
 
 In the latter case (for `AbstractWebDriverScriptTestCase`) the costructor may be given a Web Driver. If that passed driver is non-null, that is the driver was created by you (you can use the properties for creating this driver, but you do not need to), you are also responsible to quit the driver after the test. However, if the passed driver is null, a default driver will be created and managed internally.
 
-{{< TODO >}}What about `AbstractWebDriverTestCase`? How does this even work?{{< /TODO >}}
+{{< TODO comment="What about `AbstractWebDriverTestCase`? How does this even work?" / >}}
 
 ### Running the CPT
 To run your XLT client performance test, just make sure you use the right web driver settings and enabled the client performance test cases you wrote, then you can just run a small performance test [as usual](../310-test-execution/) to measure and sample enough data (keep in mind a much shorter testing window might be sufficient in this case).
@@ -166,5 +166,4 @@ Make sure you pay attention to these points:
 * Collect enough data to avoid outliers
 
 Your collected data might still not tell the real story in terms of visual impression - of course it takes some experience to evaluate these values, and the measurements can never give you all the insights a live user test could. 
-
 
