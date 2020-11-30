@@ -146,9 +146,7 @@ XLT Result Browser - Request Details
 
 ### Response Content Tools
 
-Use the tabs at the top of the right-hand side output area to see the (raw) request body and response content. 
-
-{{< TODO >}} "Failed to load '[filename]'" error in browsers - should workaround be documented? {{< /TODO >}}
+Use the tabs at the top of the right-hand side output area to see the (raw) request body and response content. If you opened the report as a file from a local disk, most browser will warn you that the content can not be displayed. This is caused by a security measure in place to prevent exposing local data. Please use a local webserver instead to open the report from a local disk. Recommended applications are [Node.JS - serve](https://www.npmjs.com/package/serve), [Python SimpleHTTPServer](https://2ality.com/2014/06/simple-http-server.html), or the [PHP Built-In Web Server](http://php.kambing.ui.ac.id/manual/en/features.commandline.webserver.php).
 
 {{< image src="user-manual/result-browser_response1_small.png" large="user-manual/result-browser_response1.png">}}
 XLT Result Browser - Response Content

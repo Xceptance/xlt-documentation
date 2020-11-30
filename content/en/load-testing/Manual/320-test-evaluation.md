@@ -13,11 +13,11 @@ description: >
 When your load test has finished, you might want to render a report based on the gathered data and open it in the browser of your choice:
 
 ```bash
-$> ./create_report.sh ../results/20200202-123400
-$> firefox ../reports/20200202-123400/index.html
+$ ./create_report.sh ../results/20200202-123400
+$ firefox ../reports/20200202-123400/index.html
 ```
 
-{{% note notitle %}}The different types of reports XLT can create for you are explained [here](../530-reports). For more infos on how to customize your reports, please have a look at the [Report Options](../540-report-options).{{% /note %}}
+{{% note notitle %}}To learn more about the different report types XLT can create, follow up [here](../530-reports). For more infos on how to customize your reports, please have a look at the [Report Options](../540-report-options).{{% /note %}}
 
 ## Reading a Test Report
 
@@ -96,12 +96,12 @@ An action is part of a test case and consists of prevalidation, execution, and p
 
 The request section is the most important statistics section when testing web applications. It directly reflects the loading time of pages or page components. Each row holds the data of one specific request. Its name is defined within the test case as timer name. The Count section of the table shows the total number of executions (Total), the calculated executions per seconds (1/s), minute (1/min), as well as projections or calculations of the executions per hour (1/h) and day (1/d). The Error section displays the total amount (Total) of errors that occurred throughout page or page component loading. The error count doesn’t include errors detected during the post-validation of the data received. Typical error situations are HTTP response codes such as 404 and 505, timeouts, or connection resets. The runtime section of the table shows the arithmetic mean, the minimum and maximum runtime encountered as well as the standard deviation of all data within that series. The runtime segmentation sections depicts several runtime segments and the number of requests within the segment’s definition. If the runtime of the test case is shorter than the displayed time period, e.g. test runtime was 30 min and the time period is hour, the numbers will be a linear projection. That means they will show a possible outcome of a longer test run if load and application behavior remained the same.
 
-#### Requests' Network Statistics
+#### Network Statistics
 
 The load test report features extensive network statistics on the *Requests* page displaying data for bandwidth utilization and socket timing information.
 
 {{< image src="releasenotes/xlt333/network-statistics-small.jpg" large="releasenotes/xlt333/network-statistics-large.png" >}}
-The network statistics section
+{{< TODO comment="Replace with a new image form 5.2 or higher" />}}The network statistics section
 {{< /image >}}
 
 The **Bandwidth** tab displays information about the use incoming and outgoing bandwidth per request. XLT measures on socket level and therefore the real transfered data out and in of the application is measured. XLT does not analyze or modify that data when taking the measurements. Bytes Sent comprises all data that is sent out of the application including overhead such as http(s) headers and SSL protocol data. Bytes Received includes all received data and the connected overhead. There is no measurement difference between sent and received data.
@@ -195,11 +195,10 @@ When you started the master controller in [interactive mode](../310-test-executi
 
 The master controller's command line menu in interactive mode looks like this:
 
-```dos
-Xceptance LoadTest 4.2.0
-Copyright (c) 2005-2012 Xceptance Software Technologies GmbH. All rights reserved.
-Basic License (5 virtual users). This license does not expire.
-
+```bash
+Xceptance LoadTest 5.2.0
+Copyright (c) 2005-2020 Xceptance Software Technologies GmbH. All rights reserved.
+XLT is Open Source and available under the Apache License 2.0.
 
 (u) Upload test suite
 (s) Start agents
@@ -213,4 +212,4 @@ Basic License (5 virtual users). This license does not expire.
 
 So to get an intermediate results and report, use the options **(d)** and **(c)** while the test is running. Per default, the report will be created from the latest downloaded results and the target name will be named *\<timestamp\>-intermediate*. This can be useful to check the reasons for test failures while the test is still running. 
 
-{{< TODO >}}TODO other usecases & insights?{{< /TODO >}}
+{{< TODO comment="other usecases & insights?" >}}

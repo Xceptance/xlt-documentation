@@ -5,6 +5,9 @@ linkTitle: "Glossary"
 
 weight: 200
 type: docs
+
+description: >
+    Most important terms and abbreviations explained.
 ---
 
 ## Action (XLT)
