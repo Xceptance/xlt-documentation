@@ -62,7 +62,7 @@ This is just an example and a different breakdown of flows and actions might mak
 
 XLT tests are basically JUnit tests, so they can be run (and debugged) from the IDE, and you should do so repeatedly for consolidating the tests you wrote, because you really want stable and predictable tests for your load test. 
 
-For load testing, you usually want some **randomness** in your scenarios (for example, instead of always clicking the same category, it better mimicks real-world behavior to randomly pick categories from the pool of all available categories) - with XLT, you can easily add that as well as re-run single test cases with the exact same “random” input as before for consolidating and debugging purposes: `XltRandom.nextInt()` generates your random input, and by setting the property `com.xceptance.xlt.random.initValue` you can replay a test case exactly as executed previously for debugging purposes (make sure to put this in `dev.properties`, as this value is needed for debugging purposes only and will make your loadtest very non-random if you forget to remove it from the other property files later) - the value to be used can be found at the end of test case's console output and also in the result browser (when clicking the test case title):
+For load testing, you usually want some **randomness** in your scenarios (for example, instead of always clicking the same category, it better mimicks real-world behavior to randomly pick categories from the pool of all available categories) - with XLT, you can easily add that as well as re-run single test cases with the exact same “random” input as before for consolidating and debugging purposes: `XltRandom.nextInt()` generates your random input, and by setting the property `com.xceptance.xlt.random.initValue` you can replay a test case exactly as executed previously for debugging purposes (make sure to put this in `dev.properties`, as this value is needed for debugging purposes only and will make your loadtest very non-random if you forget to remove it from the other property files later) - the value to be used can be found at the end of test case's console output and also in the [result browser](../440-result-browser/#using-the-result-browser) (when clicking the test case title):
 
 {{< image src="user-manual/localTest_console.png" >}}
 Console output for local test run
@@ -72,9 +72,21 @@ Console output for local test run
 Result browser overview page
 {{< /image >}}
 
-Especially when you are using randomness in your tests (which you should), we encourage you to run your tests several times for consolidation, as different random test behavior might yield different results. You can also overwrite test properties [for development only](../480-test-suite-configuration/#development-environment-configuration), for example to define probabilities for test behaviors in order to make sure every option is working.
+Especially when you are using randomness in your tests (which you should), we encourage you to run your tests several times for consolidation, as different random test behavior might yield different results. You can also overwrite test properties [for development only](../480-test-suite-configuration/#development-environment-configuration), for example to define probabilities for test behaviors in order to make sure every option is working (for example: in a "real" test setup, you'd want your tests to open the quickview instead of the product detail page in about 50% of all tests, but during development you might want to temporarily set the quickview probability to 100% while you are working on the quickview behavior).
 
-For **test error analysis**, the console output offers many insights, but it is probably easiest to have a look at the result browser generated for the test (the link is also found at the end of the console output, see above). While your main focus is probably the last executed action and the reason why it failed, don't forget to also check what happened before: as you want to model real-world usage of your application in your tests, the actions (and the requests they trigger, and the data sent and received by those requests) should be as close to what happens during manual application usage as possible.  
+For **test error analysis**, the console output offers many insights, but it is probably easiest to have a look at the [**result browser**](../440-result-browser/) generated for the test (the link is also found at the end of the console output, see above). While your main focus is probably the last executed action and the reason why it failed, don't forget to also check what happened before: as you want to model real-world usage of your application in your tests, the actions (and the requests they trigger, and the data sent and received by those requests) should be as close to what happens during manual application usage as possible.  
+
+{{% note title="Latest Result Browser" %}}
+XLT offers a shortcut for always getting the latest result browser of any given test case: for instance instead of opening 
+
+`file:/Projects/loadtest-project/results/TVisit/0/output/1592316571344/index.html`
+
+just cut it down to 
+
+`file:/Projects/loadtest-project/results/TVisit.html` -
+
+that way you will always see the latest test run, just by refreshing the result browser.
+{{% /note %}}
 
 ### CI Integration
 

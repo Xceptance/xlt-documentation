@@ -73,7 +73,13 @@ com.xceptance.xlt.reportgenerator.linkToResultBrowsers = true
 
 The result browser contains the record of a test user session. It lists actions, request, and response details and supports error diagnosis.
 
-All saved results can be found in the `<testsuite>/results` directory. See the lines below for details of the results subdirectory structure:
+The easiest way to open the result browser is by opening the link at the bottom of the console output after you ran a single test from your IDE:
+
+{{< image src="user-manual/localTest_console.png" >}}
+Console output for local test run
+{{< /image >}}
+
+This is what you will use during test development, but also in load test setups there are results (result browsers) available (depending on your test settings, see above). In that case, all saved results can be found in the `<testsuite>/results` directory. See the lines below for details of the results subdirectory structure:
 
 ```txt
 ---+ results
