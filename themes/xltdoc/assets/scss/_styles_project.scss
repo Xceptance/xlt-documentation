@@ -11,12 +11,27 @@
 
 .td-content {
     /* give the content less of a hard contrast */
-    color: #333;
+    color: $main-text-color !important;
     
     h1, h2, h3, h4, h5, h6 {
         font-family: $font-family-headlines;
+    }
+    h1, h2 {
         font-weight: 700;
     }
+    h3, h4, h5, h6 {
+        font-weight: 400;
+    }
+    
+    h2 {
+        border-bottom: 1px solid $gray-400;
+        padding-bottom: 0.25em;
+    }
+}
+
+.breadcrumb {
+    font-family: $font-family-sidebar;
+    font-size: 120%;
 }
 
 .td-cover-block {
@@ -38,17 +53,69 @@
 }
 
 .td-sidebar-nav {
-    font-family: $font-family-headlines;
+    font-family: $font-family-sidebar;
     font-size: 120%;
+    
+    ul {
+        line-height: 1; /* ensure that when we wrap, the text does not look like a next logical line */
+        
+        .td-sidebar-link {
+            padding-bottom: 0.7rem; /* give the links space in between to make wraped lines easier distinguishable from new lines*/
+            padding-left: 0.4em;
+            
+            &:hover {
+                color: $link-hover-color; /* this is hardcoded to blue in docsy */
+            }
+            
+            &.active {
+                font-weight: 600;
+            }
+        }
+    }
+    
+    .td-sidebar-nav__section-title {
+        font-weight: 400;
+    }
+    
+    & > .td-sidebar-nav__section {
+        padding-top: 1.5rem;
+        padding-left: 0.7rem;
+    }
 }
 
 .td-toc {
-    font-family: $font-family-headlines;
+    font-family: $font-family-sidebar;
     font-size: 120%;
+    
+    padding-top: 1.5rem;
+    padding-left: 0.7rem;
+    
+    #TableOfContents {
+        a {
+            color: $text-color-light;
+            
+            &:hover {
+                color: $link-hover-color;
+            }
+        }
+        ul {
+            line-height: 1; /* wrap should be different than a new line aka bullet point*/
+            
+            li {
+                padding-bottom: 0.4rem;
+                
+                li {
+                    padding-left: 0.3rem;
+                }
+            }
+            ul {
+                padding-top: 0.4rem;
+            }
+        }
+    }
 
     /* Dim the edit links on the TOC bar */
     .td-page-meta {
-        
         a {
             color: $link-light-color;
             font-size: 90%;
@@ -62,6 +129,6 @@
  
     &:before {
         content: "TODO";
-        margin-right: 0.5em;
+        margin-right: 0.5rem;
     }
 }
