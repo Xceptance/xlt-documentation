@@ -5,7 +5,7 @@ weight: 100
 type: docs
 
 description: >
-  Explain basic problems and how to solve them. It basically combines areas of the combination to address one specific challenge.
+  How-Tos guide you through specific topics or explain concepts of XLT more in detail. Feel free to suggest and contribute.
 ---
 
 

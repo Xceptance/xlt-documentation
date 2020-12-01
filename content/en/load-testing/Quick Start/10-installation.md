@@ -35,7 +35,7 @@ The XLT archive can either be obtained from the [Xceptance website](https://www.
 
 Unzip the XLT archive to a file system location of your choice. The root directory is part of the archive, so you don’t need to create it separately. XLT supports spaces in the path; however, it's easier to code tests when the path is free of them.
 
-Copy the license file to the directory `<XLT>/config`. Make sure the executable directory of your Java installation is listed in your PATH environment variable so that the XLT start scripts can find the JVM runtime.
+Make sure the executable directory of your Java installation is listed in your PATH environment variable so that the XLT start scripts can find the JVM runtime.
 
 ### Maven
 

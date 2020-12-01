@@ -33,7 +33,7 @@ For load testing, you usually want some randomness in your scenarios - with XLT,
 
 ### Define your Test Setup
 
-Once you have a reliable set of tests in your test suite, your ready to start [setting up](../300-test-setup) the load test. XLT is highly configurable. You will have to define:
+Once you have a reliable set of tests in your test suite, you're ready to start [setting up](../300-test-setup) the load test. XLT is highly configurable. You will have to define:
 
 * the load that is to be applied (either in terms of user count or arrival rate, per test case if needed or globally for the test suite),
 * the test scenarios that should be run, and
