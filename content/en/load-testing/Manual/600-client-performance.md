@@ -12,7 +12,9 @@ description: >
 
 Performance is a tricky topic. Automated performance tests usually run on server side only, that means there is no real browser involved that would render the requested content to output the actual application page the user would see and interact with. While these server side tests are easier on test resources, enable large scale testing and are way easier to automate than a complex UI with JavaScript based logic handling, sometimes you will still need to go one step further:
 
-Automated server side tests can measure how fast your site really is, but then there is **perceived performance**, which is a measure of how fast a visitor _thinks_ your site is. This is roughly related to server-side performance, but not necessarily equal: for example, if the user can already use the site, s/he will think it is fast and responsive, even if, from a technical point of view, the page might still in fact be loading.
+_Server-side performance tests_ measure the base response time for most essential components of your site but this does not give you an idea what the user perceives. When measuring this you measure _client-side performance_.
+
+Slow response times for the server are resulting in slow client performance obviously but the other way around is not true. The client has to load additional resources including local resources such as JavaScript, CSS, and fonts. In addition the final page has to be rendered. Rendering is also a multi-step approach due to late changes to the HTML and CSS.
 
 On the user's side, the important thing is to be able to interact with the application and reach the goal quickly, which means the loading must be fast enough for the user to stay focused and to be able to execute tasks quickly. 
 
