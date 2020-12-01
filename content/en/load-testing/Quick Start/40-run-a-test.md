@@ -10,7 +10,7 @@ description: >
 
 ## Setup a Test Execution
 
-Ok, so now you have the [demo shop running on your machine](../20-demo-application/) and you have [set up the demo testsuite](../30-demo-test-suite/). To run a test, first tell your setup (`<posters-simple-loadtest-suite>\config\project.properties`) which test configuration to use and where to find your posters demo shop instance:
+Ok, so now you have the [demo shop running on your machine](../20-demo-application/) and you have [set up the demo testsuite](../30-demo-test-suite/). To run a test, first tell your setup (`<posters-simple-loadtest-suite>/config/project.properties`) which test configuration to use and where to find your posters demo shop instance:
 
 ```bash
 com.xceptance.xlt.testPropertiesFile = my-test.properties
@@ -18,7 +18,7 @@ com.xceptance.xlt.testPropertiesFile = my-test.properties
 store-url = https://localhost:8443/posters/
 ```
 
-Then you can configure the basic properties of the test suite and the load profile (in `<posters-simple-loadtest-suite>\config\my-test.properties`). Our demo test suite comes with basic test.properties which you can use as a starting point for whatever you are planning.
+Then you can configure the basic properties of the test suite and the load profile (in `<posters-simple-loadtest-suite>/config/my-test.properties`). Our demo test suite comes with basic test.properties which you can use as a starting point for whatever you are planning.
 
 ```bash
 com.xceptance.xlt.loadtests = TVisit
@@ -41,7 +41,7 @@ To run the test execution, tell the mastercontroller where the test suite is (in
 com.xceptance.xlt.mastercontroller.testSuitePath = <posters-simple-loadtest-suite>
 ```
 
-Then navigate to `<xlt>\bin` and start the mastercontroller (MC) in auto mode with an embedded agentcontroller (so the load generators come up on your local machine without any extra configuration work). 
+Then navigate to `<xlt>/bin` and start the mastercontroller (MC) in auto mode with an embedded agentcontroller (so the load generators come up on your local machine without any extra configuration work). 
 
 ```bash
 $ ./mastercontroller.sh -auto -embedded -comment "My first test run"

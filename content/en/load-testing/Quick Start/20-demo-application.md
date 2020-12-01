@@ -8,7 +8,7 @@ description: >
   How to get and run Posters, the demo application.
 ---
 
-All official XLT releases ship with a real-world demo web application (*Posters*) as the system under test. It can be found in the directory `<XLT>/samples`.
+All XLT releases are shipped with the "Posters" demo application. Posters is a small e-commerce store and is used to learn and demo XLT. It can be found in the directory `<XLT>/samples`.
 
 There is also a [Posters demo store](https://35.184.136.113:8443/posters/) available. Please note: **this setup is for testing purposes only and does not handle a lot of load**. Please setup your own copy of the Posters demo store if you want to experiment with executions of higher load factors and more complex test configurations. The posters store source code is also available on [Github](https://github.com/Xceptance/posters-demo-store).
 
