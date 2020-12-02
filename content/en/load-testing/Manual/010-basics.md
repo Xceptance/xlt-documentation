@@ -36,7 +36,7 @@ The MC communicates with the AC. The AC waits, receives and distributes the work
 The agents are the workhorses of the load test since they actually execute the test suite against the system under test. Basically, an agent is a JVM that runs the users, and each user is a thread with subthreads (inactive threads are possible). The MC is responsible for calculating the user distribution across the agents, but still the agents are a component to watch, as memory tuning and sizing (total and in relation to the box) is important for good and consistent test results. Still, a stalled agent does not block other agents.
 
 ### Grafana
-Grpahite/Grafana may be used to provide realtime test information. It shows response times, errors, machine utilization, transaction and action runtimes and can also be paired with infrastructure monitoring. For more details, see [Real-Time Reporting with Graphite](../../how-tos/graphite/).
+Graphite/Grafana can be used to display realtime test information. It shows response times, errors, machine utilization, transaction and action runtimes and can also be paired with infrastructure monitoring. For more details, see [Real-Time Reporting with Graphite](../../advanced/100-real-time-monitoring/).
 
 ## How to start using XLT
 

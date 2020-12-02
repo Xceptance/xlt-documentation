@@ -8,11 +8,11 @@ description: >
   What is the demo test suite and how you can install and run it.
 ---
 
-All former official XLT releases shipped with a real-world [demo web application](../20-demo-application) (*Posters*) as the system under test and a test suite to test this application. Both could be found in the directory `<XLT>/samples`. Starting with XLT 5.0 we moved everything to open source, so you can now find all free demo test suites on [Github](https://github.com/Xceptance?q=loadtest-suite&type=&language=). We recommend to start with this [very simple test suite](https://github.com/Xceptance/posters-simple-loadtest-suite) to get used to the concepts. This is just a minimal test suite that helps you understand how things are supposed to work. We provide even more sample test suites for more special needs, containing more complex examples - check out the [Test Suites](../../test-suites) overview to learn more about them.
+To get you started with XLT we offer a real-world [demo web application](../20-demo-application) (*Posters*) as the system under test as well as a number of free sample test suites to test this application. All test suites can be found on [Github](https://github.com/Xceptance?q=loadtest-suite&type=&language=). We recommend to start with this [very simple test suite](https://github.com/Xceptance/posters-simple-loadtest-suite) to get used to the concepts. This is just a minimal test suite that helps you understand how things are supposed to work. We provide even more sample test suites for more special needs, containing more complex examples - check out the [Test Suites](../../test-suites) overview to learn more about them.
 
 ## The Posters Test Suite
 
-The *Posters* test suite is a very basic test suite with a limited number of test scenarios. The test cases can be written and modified directly in Java with you favorite IDE, and this sample project is here to demonstrate the essential concepts of XLT tests as well as what APIs are available to implement them.
+The *Posters* test suite is a very basic test suite with a limited number of test scenarios. The test cases can be written and modified directly in Java with your favorite IDE, and this sample project is here to demonstrate the essential concepts of XLT tests as well as what APIs are available to implement them.
 
 ### Directory Structure
 

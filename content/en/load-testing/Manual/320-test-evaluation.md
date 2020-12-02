@@ -5,7 +5,7 @@ weight: 320
 type: docs
 
 description: >
-  How to execute tests, collect results, and evaluate intermediate results.
+  How to collect test results and evaluate intermediate results.
 ---
 
 ## Generating a Test Report
@@ -104,7 +104,7 @@ The load test report features extensive network statistics on the *Requests* pag
 {{< TODO comment="Replace with a new image form 5.2 or higher" />}}The network statistics section
 {{< /image >}}
 
-The **Bandwidth** tab displays information about the use incoming and outgoing bandwidth per request. XLT measures on socket level and therefore the real transfered data out and in of the application is measured. XLT does not analyze or modify that data when taking the measurements. Bytes Sent comprises all data that is sent out of the application including overhead such as http(s) headers and SSL protocol data. Bytes Received includes all received data and the connected overhead. There is no measurement difference between sent and received data.
+The **Bandwidth** tab displays information about the used incoming and outgoing bandwidth per request. XLT measures on socket level and therefore the real transfered data out and in of the application is measured. XLT does not analyze or modify that data when taking the measurements. Bytes Sent comprises all data that is sent out of the application including overhead such as http(s) headers and SSL protocol data. Bytes Received includes all received data and the connected overhead. There is no measurement difference between sent and received data.
 
 **Network Timing** reports all low level network timing data that have been measured on socket level. Each measurement point contains information about minimum and maximum times occurred as well as the mean of all gathered data.
 
@@ -145,7 +145,7 @@ The custom timers includes all timers that have been placed individually within 
 
 ### External Data
 
-All external data gathered by other tools during the test run is shown here according to the configuration. Please see [External Data](../../advanced/050-custom-data/) for details on how to include external data in the report.
+All external data gathered by other tools during the test run is shown here according to the configuration. See [Custom Data](../../advanced/050-custom-data/) for details on how to include external data in the report.
 
 ### Errors
 
@@ -195,7 +195,7 @@ When you started the master controller in [interactive mode](../310-test-executi
 
 The master controller's command line menu in interactive mode looks like this:
 
-```bash
+```dos
 Xceptance LoadTest 5.2.0
 Copyright (c) 2005-2020 Xceptance Software Technologies GmbH. All rights reserved.
 XLT is Open Source and available under the Apache License 2.0.

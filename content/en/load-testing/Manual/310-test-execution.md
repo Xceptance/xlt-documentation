@@ -5,7 +5,7 @@ weight: 310
 type: docs
 
 description: >
-  How to execute tests, collect results, and evaluate intermediate results.
+  How to execute tests.
 ---
 
 Running load tests consists of two steps:
@@ -65,10 +65,9 @@ Windows users have to use the appropriate `.cmd` file located in the same direct
 A screen appears that displays the command line menu as below:
 
 ```dos
-Xceptance LoadTest 4.2.0
-Copyright (c) 2005-2012 Xceptance Software Technologies GmbH. All rights reserved.
-Basic License (5 virtual users). This license does not expire.
-
+Xceptance LoadTest 5.2.0
+Copyright (c) 2005-2020 Xceptance Software Technologies GmbH. All rights reserved.
+XLT is Open Source and available under the Apache License 2.0.
 
 (u) Upload test suite
 (s) Start agents

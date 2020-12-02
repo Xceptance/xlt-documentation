@@ -87,10 +87,9 @@ Main problems with pure recored test scripts are:
     structured test suite. Missing reusability and difficult maintenance
 -   Often insufficient validation of results
 
-The XLT Script Developer is an advanced Capture & Replay Tool that
-features a broad range of additional functionality and is integrated
-into the large XLT testing framework and therefore is able to overcome
-the disadvantages named above.
+The XLT Script Developer was such an advanced Capture & Replay Tool, 
+featuring a broad range of additional functionality, but it was [discontinued](../../about-xlt/10-history/#2017---script-developer-discontinued) when Mozilla 
+removed the XUL-application API from Firefox.
 
 ## Client
 
@@ -718,8 +717,9 @@ certain computer.
 ## Test Case (XLT)
 
 Using XLT, a test case is a piece of code that implements a user
-transaction and that can be run with the XLT script developer (xml test
-scripts) or with any JUnit test runner (Java test case classes).
+transaction and that can be run with any JUnit test runner (Java test case classes) 
+and [formerly](../../about-xlt/10-history/#2017---script-developer-discontinued) 
+also with the XLT script developer (xml test scripts).
 
 ## Test Scenario
 
