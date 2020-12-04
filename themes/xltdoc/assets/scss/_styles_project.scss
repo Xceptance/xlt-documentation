@@ -54,7 +54,7 @@
 
 .td-sidebar-nav {
     font-family: $font-family-sidebar;
-    font-size: 120%;
+    font-size: 100%;
     
     ul {
         line-height: 1; /* ensure that when we wrap, the text does not look like a next logical line */
@@ -74,23 +74,28 @@
     }
     
     .td-sidebar-nav__section-title {
+        padding-top: 1.2rem;
         font-weight: 400;
     }
     
     & > .td-sidebar-nav__section {
         padding-top: 1.5rem;
-        padding-left: 0.7rem;
+        padding-left: 1.5rem;
     }
 }
 
 .td-toc {
     font-family: $font-family-sidebar;
-    font-size: 120%;
+    font-size: 100%;
     
     padding-top: 1.5rem;
     padding-left: 0.7rem;
+
+    border-left:0px;
     
     #TableOfContents {
+        padding: 1rem;
+        border: 1px solid $gray-400;
         a {
             color: $text-color-light;
             
@@ -104,8 +109,9 @@
             li {
                 padding-bottom: 0.4rem;
                 
+                
                 li {
-                    padding-left: 0.3rem;
+                    padding-left: 0.6rem;
                 }
             }
             ul {
