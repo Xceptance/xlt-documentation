@@ -717,9 +717,7 @@ certain computer.
 ## Test Case (XLT)
 
 Using XLT, a test case is a piece of code that implements a user
-transaction and that can be run with any JUnit test runner (Java test case classes) 
-and [formerly](../../about-xlt/10-history/#2017---script-developer-discontinued) 
-also with the XLT script developer (xml test scripts).
+transaction and that can be run with any JUnit test runner (Java test case classes).
 
 ## Test Scenario
 
