@@ -17,8 +17,4 @@ XLT (Xceptance Load Test) is a multi-purpose load and performance test tool with
 
 XLT is powered by Java and hence it runs almost everywhere. Java also enables you to program your scripts rather than just configuring them. That gives you the power of a full programming language at your disposal and of course, you can use almost any Java library as part of XLT.
 
-Make sure you read about the [history](history) of XLT. {{< TODO comment="Short summary or at least why should anyone want to read about the history... seems like a topic you only read about if you have too much time" / >}}
-
-The documentation section "About XLT - In a Nutshell" gives you a big picture introduction. It talks about features and functionalities as well as points you to the how-tos and manual entries that deal with them in detail.
-
-In contrast, the manuals for [load testing]({{< relref "load-testing" >}}) and [test automation]({{< relref "test-automation" >}}) might refer back to this nutshell section to explain higher level concepts and terminology.
+This section of the documentation will give you a big picture introduction. It talks about features and functionalities as well as points you to how-tos and section in the manual for further details.
