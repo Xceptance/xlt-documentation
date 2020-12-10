@@ -50,6 +50,8 @@
 .td-navbar {
     /* avoid that the text wraps */
     white-space: nowrap;
+    /* use narrow font */
+    font-family: $font-family-sidebar;
 }
 
 .td-sidebar-nav {
@@ -96,6 +98,8 @@
     #TableOfContents {
         padding: 1rem;
         border: 1px solid $gray-400;
+        border-radius: 4px;
+        //background-color: $gray-200;
         a {
             color: $text-color-light;
             
@@ -137,4 +141,9 @@
         content: "TODO";
         margin-right: 0.5rem;
     }
+}
+
+.alert {
+    //border: 1px solid;
+    border-radius: 4px;
 }
