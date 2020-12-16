@@ -8,24 +8,25 @@ type: docs
 
 weight: 10
 
-
+description: >
+    All about the history of XLT. 
 ---
 
 ## Why Have We Built Another Tool?
 
-Needed a platform independent tool
-Other tools with bad license schemes
-Tools mostly request level testing
-Cumbersome UIs
-No easy scaling
-Limited reporting capabilities
-Wrong OS
-Proprietary languages
-Data difficult to postprocess
-Simple deployment requirements
-Extensibility
-No easy sharing with the customer
-Needed more trust in the results!
+* Needed a platform independent tool
+* Other tools with bad license schemes
+* Tools mostly request level testing
+* Cumbersome UIs
+* No easy scaling
+* Limited reporting capabilities
+* Wrong OS
+* Proprietary languages
+* Data difficult to postprocess
+* Simple deployment requirements
+* Extensibility
+* No easy sharing with the customer
+* Needed more trust in the results!
 
 ## 2005 - Early Prototype
 
