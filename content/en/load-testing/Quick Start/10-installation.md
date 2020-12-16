@@ -44,7 +44,7 @@ Make sure the executable directory of your Java installation is listed in your P
     <dependency>
         <groupId>com.xceptance</groupId>
         <artifactId>xlt</artifactId>
-        <version>5.0.1</version>
+        <version>5.2.1</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
@@ -69,8 +69,8 @@ Copy your backed-up files and directories to the corresponding place in the new 
 
 New test suite settings are provided in the `default.properties` file of the test suite *testsuite-template*. Copy it from `<LatestXLTversion>/samples/testsuite-template/config` to the config directory of your test suites `<YourTestSuite>/config`.
 
-{{% note notitle %}}
-Note that when you configure your test project to use a newer version of XLT, do not forget to update XLT on your load machines as well. The version you have used to develop your test scripts must match the executing version of your load test environment.
+{{% note title="Note" %}}
+When you configure your test project to use a newer version of XLT, do not forget to update XLT on your load machines as well. The version you have used to develop your test scripts must match the executing version of your load test environment.
 {{% /note %}}
 
 ## Uninstallation
