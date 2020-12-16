@@ -5,9 +5,9 @@ type: docs
 
 weight: 160
 
+description: >
+    About the basic data concepts of XLT, also mention archiving of reports and results
 ---
-
-About the basic data concepts of XLT, also mention archiving of reports and results
 
 ## FILTER AND JOIN RESULTS
 Results can be further worked on.
