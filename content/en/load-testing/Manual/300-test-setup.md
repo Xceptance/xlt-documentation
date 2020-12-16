@@ -17,7 +17,7 @@ In case you want to switch the load between test runs for a quick check, the eas
 
 The load configuration usually lives in your `test.properties`. This file also contains the information which test cases are to be included in the load test run. Several of these test profile configuration files may be prepared in advance for different load test runs, then the needed properties are referenced for the current test run.
 
-Read more about [Load Configuration](../470-load-configuration) and load test profile configuration file [here](../480-test-suite-configuration/#load-test-profile-configuration).
+Read more about [Load Configuration](../470-load-configuration) and the load test profile configuration file [here](../480-test-suite-configuration/#load-test-profile-configuration).
 
 ## Environment Configuration
 Your load test environment consists of one master controller and one or more agent controllers (typically one per hardware box) that control the agents. These are configured in the files `mastercontroller.properties` and `agentcontroller.properties`, which you find in the `<XLT>/config` directory. While the default agent controller configuration might work just fine, there are a few things that you need to setup for the master controller:

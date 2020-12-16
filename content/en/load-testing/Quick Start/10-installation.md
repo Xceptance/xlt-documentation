@@ -69,8 +69,8 @@ Copy your backed-up files and directories to the corresponding place in the new 
 
 New test suite settings are provided in the `default.properties` file of the test suite *testsuite-template*. Copy it from `<LatestXLTversion>/samples/testsuite-template/config` to the config directory of your test suites `<YourTestSuite>/config`.
 
-{{% note title="Note" %}}
-When you configure your test project to use a newer version of XLT, do not forget to update XLT on your load machines as well. The version you have used to develop your test scripts must match the executing version of your load test environment.
+{{% note notitle %}}
+Note that when you configure your test project to use a newer version of XLT, do not forget to update XLT on your load machines as well. The version you have used to develop your test scripts must match the executing version of your load test environment.
 {{% /note %}}
 
 ## Uninstallation
