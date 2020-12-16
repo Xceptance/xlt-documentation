@@ -6,13 +6,15 @@ type: docs
 
 weight: 40
 
+description: >
+    All about the XLT test approaches. 
 ---
 
-Full DOM mode
-JavaScript
-DOM mode
-No JavaScript
-Request Level
-Automatic or manual static content handling
+* Full DOM mode
+* JavaScript
+* DOM mode
+* No JavaScript
+* Request Level
+* Automatic or manual static content handling
 
 ## Test suites for that

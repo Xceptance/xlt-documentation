@@ -9,7 +9,10 @@ description: >
   All about the different kinds of reports XLT can create.
 ---
 
-As the most important tool for analyzing the results of a load test run, XLT offers three types of load test reports, which are thoroughly illustrated in the sections below: load test reports, comparison reports and trend reports. 
+As the most important tool for analyzing the results of a load test run, XLT offers three types of load test reports, which are thoroughly illustrated in the sections below
+* load test reports, 
+* comparison reports and 
+* trend reports. 
 
 ## Load Test Report
 
@@ -17,7 +20,7 @@ A report for a single test run or a manually combined set of runs. The Load and 
 
 ### Creating a Load Test Report from the Master Controller Menu
 
-When running the master controller in interactive mode, a load test report can be created for the last downloaded results right from inside the master controller. Simply choose “c” from the menu, and the report will be created as if the `create_report` script had been invoked manually. This is especially useful when downloading results in the middle of a load test to see how things are going.
+When running the master controller in interactive mode, a load test report can be created for the last downloaded results right from inside the master controller. Simply choose `c`from the menu, and the report will be created as if the `create_report` script had been invoked manually. This is especially useful when downloading results in the middle of a load test to see how things are going.
 
 ## Comparison Report
 

@@ -27,7 +27,7 @@ The properties in `default.properties` represent the general XLT framework setti
 
 If you need to change one of these properties, copy it to the `project.properties` or `test.properties` and change the value there to overwrite the value in `default.properties`. Each of the properties in `default.properties` can be overridden since they have the lowest priority.
 
-When updating XLT to a newer version, it is recommended you update the `default.properties` file in your test projects as well because newly available properties can be found there, along with their default value and description.
+When updating XLT to a newer version, it is recommended that you update the `default.properties` file in your test projects as well because newly available properties can be found there, along with their default value and description.
 
 {{< note notitle >}}
 Even though this file isn’t read-only, it should be treated as such. You can use it as documentation of available XLT framework properties that also defines the default values for these properties.
@@ -120,7 +120,7 @@ com.xceptance.xlt.http.retry.count = 3
 
 ### Automatic Transaction Run Time Limit
 
-If your test case is somewhat random (for example, it browses through a shop’s catalog until it finds a product in stock), it might be beneficial for tests to have an automatic run time limit per transaction, aka transaction timeout. This will prevent infinite loops in case of a certain error condition that was not covered yet in the test case code. Enable the transaction timeout in the XLT configuration:
+If your test case is somewhat random (for example, it browses through a shop’s catalog until it finds a product in stock), it might be beneficial for tests to have an automatic run time limit per transaction, the so called transaction timeout. This will prevent infinite loops in case of a certain error condition that was not covered yet in the test case code. Enable the transaction timeout in the XLT configuration:
 
 ```bash
 ## Whether the framework should abort a transaction (defaults to false)
@@ -131,7 +131,7 @@ com.xceptance.xlt.maximumTransactionRunTime = 900000
 
 ## Test Project Configuration
 
-To configure your test project, edit the file `project.properties`. The first and most important property is the reference to test.properties that should be applied. Changing the value for this property, you can easily switch between different load test profiles configurations.
+To configure your test project, edit the file `project.properties`. The first and most important property is the reference to `test.properties` that should be applied. Changing the value for this property, you can easily switch between different load test profiles configurations.
 
 By default, the file stores the test case mapping that maps the test case class onto a load test name. The load test name will be referenced later in the load test configuration.
 
@@ -209,7 +209,7 @@ Load test profile configurations are done inside your test property file, which 
 com.xceptance.xlt.loadtests.<testID>.<setting> = <value>
 ```
 
-For `<testID>`, use any appropriate name. The following table lists all supported values for `<setting>`; required settings are displayed in bold face:
+For `<testID>`, use any appropriate name. The following table lists all supported values for `<setting>` - required settings are displayed in bold face:
 
 | Setting  | Description |
 | ------- | ------ |
@@ -239,11 +239,11 @@ com.xceptance.xlt.loadtests.TAuthor.warmUpPeriod = 30s
 com.xceptance.xlt.loadtests.TAuthor.measurementPeriod = 10m 0s
 ```
 
-All time period values can be specified in one of the following formats (without quotes):
+All time period values can be specified in one of the following formats:
 
-- total number of seconds: '1234s' or '1234'
-- natural style: '0h 12m 0s', '0h 12m', '12m 0s', or '12m'
-- digit style: '1:23', '01:23', '0:1:23', or '0:01:23'
+- total number of seconds: 1234s or 1234
+- natural style: 0h 12m 0s, 0h 12m, 12m 0s, or 12m
+- digit style: 1:23, 01:23, 0:1:23, or 0:01:23
 
 If you want to run several test cases simultaneously, specify the test case names as value for the property `com.xceptance.xlt.loadtests` in form of a space-separated list:
 
@@ -264,6 +264,7 @@ com.xceptance.xlt.loadtests.TAuthor.users = 5
 
 Runs exactly 5 users right from the beginning.
 
+
 _User Count Model With Ramp-Up Load Profile_
 
 ```bash
@@ -274,6 +275,7 @@ com.xceptance.xlt.loadtests.TAuthor.rampUpPeriod = 5m
 
 Runs exactly 50 users, but ramps up the user count from 10 to 50 over a period of 5 minutes.
 
+
 _User Count Model With Variable Load Profile_
 
 ```bash
@@ -281,6 +283,7 @@ com.xceptance.xlt.loadtests.TAuthor.users = 0/5, 1h/50, 2h/50, 2h/100, 3h/20
 ```
 
 Runs the TAuthor scenario with a variable number of concurrent users (5&nbsp;&rarr;&nbsp;50&nbsp;&rarr;&nbsp;100&nbsp;&rarr;&nbsp;20).
+
 
 _Arrival Rate Model With Constant Load Profile_
 
@@ -290,6 +293,7 @@ com.xceptance.xlt.loadtests.TAuthor.arrivalRate = 100
 ```
 
 Runs the TAuthor scenario exactly 100 times per hour with at most 5 concurrent users.
+
 
 _Arrival Rate Model With Ramp-Up Load Profile_
 
@@ -303,6 +307,7 @@ com.xceptance.xlt.loadtests.TAuthor.rampUpStepSize = 10
 
 Runs the TAuthor scenario exactly 100 times per hour with at most 5 concurrent users, but starts with an arrival rate of 50 per hour and increases it by 10 every minute until the target level of 100 is reached.
 
+
 _Arrival Rate Model With Variable Load Profile_
 
 ```bash
@@ -311,6 +316,7 @@ com.xceptance.xlt.loadtests.TAuthor.arrivalRate = 0/50, 1h/100, 2h/200, 3h/150
 ```
 
 Runs the TAuthor scenario with a variable arrival rate (50&nbsp;&rarr;&nbsp;100&nbsp;&rarr;&nbsp;200&nbsp;&rarr;&nbsp;150) and with at most 5 concurrent users.
+
 
 _Arrival Rate Model With Ramp-Up Load Profile and Load Factor_
 

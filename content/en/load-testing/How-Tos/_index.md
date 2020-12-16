@@ -1,5 +1,5 @@
 ---
-title: "How Tos"
+title: "How-Tos"
 
 weight: 100
 type: docs

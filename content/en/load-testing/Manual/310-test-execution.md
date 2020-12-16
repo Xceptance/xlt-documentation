@@ -193,7 +193,7 @@ For long-running load tests, it is recommended to run the test without the `-aut
 
 ### Non-interactive mode with scripted set of commands
 
-In order to better fit into highly-automated environments, XLT 5.2.0 improved the master controller in order to ease scripting. With the command line option `-c <commandList>` (or `--commands <commandList>`) you can specify which commands the master controller should execute on your behalf in a non-interactive fashion. This way, typical use cases can be scripted quite easily:
+In order to better fit into highly-automated environments, XLT 5.2.1 improved the master controller in order to ease scripting. With the command line option `-c <commandList>` (or `--commands <commandList>`) you can specify which commands the master controller should execute on your behalf in a non-interactive fashion. This way, typical use cases can be scripted quite easily:
 
 * upload the test suite and start the load test (`mastercontroller.sh -c upload,start`)
 * download the results of a running load test and generate a report from them (`mastercontroller.sh -c download,report`)

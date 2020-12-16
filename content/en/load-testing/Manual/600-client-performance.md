@@ -148,10 +148,10 @@ In the latter case (for `AbstractWebDriverScriptTestCase`) the costructor may be
 
 {{< TODO comment="What about `AbstractWebDriverTestCase`? How does this even work?" / >}}
 
-### Running the CPT
+### Running the Client Performance Test
 To run your XLT client performance test, just make sure you use the right web driver settings and enabled the client performance test cases you wrote, then you can just run a small performance test [as usual](../310-test-execution/) to measure and sample enough data (keep in mind a much shorter testing window might be sufficient in this case).
 
-### Evaluating the CPT
+### Evaluating the Client Performance Test
 After you executed and finished your client performance load test, you can now [create the test report](../320-test-evaluation/) which will contain additional information in the **Page Load Timings** section. The result will look something like this (example for action named "Homepage"):
 
 {{< image src="user-manual/pageLoadTimings.png" >}}

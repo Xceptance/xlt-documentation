@@ -44,7 +44,7 @@ Make sure the executable directory of your Java installation is listed in your P
     <dependency>
         <groupId>com.xceptance</groupId>
         <artifactId>xlt</artifactId>
-        <version>5.0.1</version>
+        <version>5.2.1</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
