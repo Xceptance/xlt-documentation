@@ -5,7 +5,7 @@ weight: 15
 type: docs
 
 description: >
-  A comprehensive test suite that directly works on the XLT API, demonstrating most common use cases and possibilities. The grownup sibling of the Basic Demo Test Suite.
+  A comprehensive test suite that directly works on the XLT API, demonstrating most common use cases and possibilities. The grown-up sibling of the Basic Demo Test Suite.
 ---
 
 ## Introduction
@@ -31,10 +31,10 @@ Because there are many things that could be easier to handle, we built a more co
 * Component based modelling of the site under test
 * Replayable randomness among test scenario executions
 
-The test suite is ready to be executed against the Posters demo store [Posters](https://35.184.136.113:8443/posters/). Please note that this setup is for testing purposes only and does not handle a lot of load. Please setup your [own copy of the Posters demo store](../../quick-start/20-demo-application/) if you want to experiment with executions of higher load factors and more complex test configurations.
+The test suite is ready to be executed against the [Posters](https://35.184.136.113:8443/posters/) demo store. Please note that this setup is for testing purposes only and does not handle a lot of load. Please setup your [own copy of the Posters demo store](../../quick-start/20-demo-application/) if you want to experiment with executions of higher load factors and more complex test configurations.
 
 ## Getting Started
 
 The Advanced Web Test Suite is available on [Github](https://github.com/Xceptance/posters-advanced-loadtest-suite).
 
-The **README** contains many useful infos on XLT and how to work with this test suite, running your own load tests. 
+The **README** contains many useful information on XLT and how to work with this test suite, running your own load tests. 
