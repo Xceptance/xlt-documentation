@@ -6,5 +6,5 @@ type: docs
 
 
 description: >
-  How to provide data exclusively to a user.
+  How-to provide data exclusively to a user.
 ---
