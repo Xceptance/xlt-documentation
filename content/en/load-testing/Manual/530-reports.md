@@ -9,7 +9,10 @@ description: >
   All about the different kinds of reports XLT can create.
 ---
 
-As the most important tool for analyzing the results of a load test run, XLT offers three types of load test reports, which are thoroughly illustrated in the sections below: load test reports, comparison reports and trend reports. 
+As the most important tool for analyzing the results of a load test run, XLT offers three types of load test reports, which are thoroughly illustrated in the sections below
+* load test reports, 
+* comparison reports and 
+* trend reports. 
 
 ## Load Test Report
 
@@ -17,13 +20,13 @@ A report for a single test run or a manually combined set of runs. The Load and 
 
 ### Creating a Load Test Report from the Master Controller Menu
 
-When running the master controller in interactive mode, a load test report can be created for the last downloaded results right from inside the master controller. Simply choose “c” from the menu, and the report will be created as if the `create_report` script had been invoked manually. This is especially useful when downloading results in the middle of a load test to see how things are going.
+When running the master controller in interactive mode, a load test report can be created for the last downloaded results right from inside the master controller. Simply choose `c`from the menu, and the report will be created as if the `create_report` script had been invoked manually. This is especially useful when downloading results in the middle of a load test to see how things are going.
 
 ## Comparison Report
 
 (Also known as: difference report) The Comparison Report gives you a quick overview on performance improvements (green color tones) and performance declines (red color tones) between two test runs. The initial test run is labeled _baseline_. The test run being compared to the baseline is labeled _measurement run_. 
 
-The XLT comparison report feature helps you identify differences between test runs and derive the right actions from it. It visualizes differences on all measurement levels (transactions, actions, requests, and custom timers). A color code helps you to find the biggest difference quickly. Therefore you can easily combine it with the setup of your test and derive the next actions from it.
+The XLT comparison report feature helps you to identify differences between test runs and derive the right actions from it. It visualizes differences on all measurement levels (transactions, actions, requests, and custom timers). A color code helps you to find the biggest difference quickly. Therefore you can easily combine it with the setup of your test and derive the next actions from it.
 
 For instance, you increased the memory limits of your server’s Java virtual machine and you ran the same test again. By comparing the results before and after the server configuration change, you can easily determine how much improvement you got. Of course, the results might have an error margin of 5-10%, in this case, you should question your test and asked yourself, if you measure the right things over the right time period.
 
