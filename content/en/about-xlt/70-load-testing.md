@@ -12,5 +12,5 @@ description: >
 * Command line
 * From local machine or also on any remote machine
 * Results stored where the MC runs
-* *nyone with the right password and IPs can attach to remote agents
+* Anyone with the right password and IPs can attach to remote agents
 * Interactive or auto mode
