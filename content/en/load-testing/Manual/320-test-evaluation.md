@@ -100,8 +100,8 @@ The request section is the most important statistics section when testing web ap
 
 The load test report features extensive network statistics on the *Requests* page displaying data for bandwidth utilization and socket timing information.
 
-{{< image src="releasenotes/xlt333/network-statistics-small.jpg" large="releasenotes/xlt333/network-statistics-large.png" >}}
-{{< TODO comment="Replace with a new image form 5.2 or higher" />}}The network statistics section
+{{< image src="user-manual/network_statistics_small.png" large="user-manual/network_statistics.png" >}}
+The network statistics section
 {{< /image >}}
 
 The **Bandwidth** tab displays information about the used incoming and outgoing bandwidth per request. XLT measures on socket level and therefore the real transfered data out and in of the application is measured. XLT does not analyze or modify that data when taking the measurements. Bytes Sent comprises all data that is sent out of the application including overhead such as http(s) headers and SSL protocol data. Bytes Received includes all received data and the connected overhead. There is no measurement difference between sent and received data.
