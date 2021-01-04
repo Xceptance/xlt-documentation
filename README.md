@@ -9,16 +9,13 @@ The following are basic prerequisites:
 - Install a recent release of the Hugo "extended" version (we recommend version 0.74 or later). 
 If you install from the [release page](https://github.com/gohugoio/hugo/releases), make sure you download the `_extended` version which supports SCSS.
 
-- Install `PostCSS` so that the site build can create the final CSS assets. You can install it locally by running the following commands from the root directory of your project:
+- Install the current Node environment (version > 14.x)
 
-  ```
-  sudo npm install -D --save autoprefixer
-  sudo npm install -D --save postcss-cli
-  ```
+- Install all further dependencies by executing `npm ci` on the console within the documentations root folder
 
 ## Build
 
-Build and webserver:
+Build and deploy to a local webserver:
 
 ```
 hugo server --watch --disableFastRender
