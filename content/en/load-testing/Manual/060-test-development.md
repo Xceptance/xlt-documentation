@@ -12,11 +12,11 @@ description: >
 
 ### The Environment: your Favorite IDE
 
-XLT test cases are usually developed in Java, as JUnit test cases. This means you can work locally, in your IDE of choice. You will probably start out with one of our [sample test suites](../../test-suites), which come as Maven projects ready to import to your IDE of choice, build and run, and adjust those test cases to your needs, probably also adding new test cases. If you need to do some functional testing, test data may be added.
+XLT test cases are usually developed in Java, as JUnit test cases. This means you can work locally, in your IDE of choice. You will probably start out with one of our [sample test suites](../../test-suites), which come pre-configured as Maven projects ready to imported, built and run in your IDE of choice. You'll then want to adjust some test cases to your needs, and probably also add new ones. If you need to do some functional testing, test data may be added.
 
 ### Developing a Test Case
 
-To develop a test case, you start by identifying common usage scenarios for your application. (In our sample test suites, these are things like a visit to the homepage, some browsing, adding a product to the cart, searching, up to the whole ordering process). 
+To develop a test case, start by identifying common usage scenarios for your application. (In our sample test suites, these are things like a visit to the homepage, some browsing, adding a product to the cart, searching, up to the whole ordering process).
 
 The scenarios often share some steps, so the next step is to identify these to create [flows](../../11-glossary/#flow-xlt) or [actions](../../11-glossary/#action-xlt) to make those common steps easily reusable in all test cases that need them (and also to make maintenance less complicated). Using a real-world example from our sample test suites, this is what we did:
 
@@ -30,7 +30,7 @@ The scenarios often share some steps, so the next step is to identify these to c
 				Login
 --------------------------------------------
 BrowsingFlow:	SelectTopCategory
-				SelectCategory	
+				SelectCategory
 				Paging
 				ProductDetailView
 --------------------------------------------
@@ -48,9 +48,9 @@ CheckoutFlow:	StartCheckout
 				Logout
 ```
 
-This is just an example and a different breakdown of flows and actions might make sense for your application, just keep in mind that an action always represents a single test step (similar to a click on a website, although this may trigger more than one request), whereas flows can combine several of these actions to one logical unit that may be used by several test cases. For example, with the flows and actions above, you can define several common scenarios, like the following:
+This is of course just an example and a different breakdown of flows and actions might make sense for your application. Just keep in mind that an action always represents a single test step (similar to a click on a website, although this may trigger more than one request), whereas flows can combine several of these actions to make one logical unit that may be used by several test cases. For example, with the flows and actions above, you can define several common scenarios, like the following:
 
-* Homepage 
+* Homepage
 * Homepage → GoToSignin → Register → (Login) → Logout
 * Homepage → BrowsingFlow
 * Homepage → Search
@@ -60,9 +60,9 @@ This is just an example and a different breakdown of flows and actions might mak
 
 ### Local Testing and Test Consolidation
 
-XLT tests are basically JUnit tests, so they can be run (and debugged) from the IDE, and you should do so repeatedly for consolidating the tests you wrote, because you really want stable and predictable tests for your load test. 
+XLT tests are basically JUnit tests; they can be run (and debugged) from the IDE. This should be done repeatedly while consolidation the various tests you have writen until a high level of stability is reached. Load testing necessitates stable and predictable test runs. Otherwise you will keep running into funtional test error and this can ultimately give you a false picture of your systems load capabilities.
 
-For load testing, you usually want some **randomness** in your scenarios (for example, instead of always clicking the same category, it better mimicks real-world behavior to randomly pick categories from the pool of all available categories) - with XLT, you can easily add that as well as re-run single test cases with the exact same “random” input as before for consolidating and debugging purposes: `XltRandom.nextInt()` generates your random input, and by setting the property `com.xceptance.xlt.random.initValue` you can replay a test case exactly as executed previously for debugging purposes (make sure to put this in `dev.properties`, as this value is needed for debugging purposes only and will make your loadtest very non-random if you forget to remove it from the other property files later) - the value to be used can be found at the end of test case's console output and also in the [result browser](../440-result-browser/#using-the-result-browser) (when clicking the test case title):
+For load testing, you usually want some **randomness** in your scenarios. For example, instead of always clicking the same category, it better mimicks real-world behavior to randomly pick categories from the pool of all available categories. With XLT, you can easily achieve this by using `XltRandom.nextInt()`. Furthermore, when using this method, you can re-run single test cases with the exact same “random” input as before! This can be very helpful during the consolidation and debugging of your test suite. By setting the property `com.xceptance.xlt.random.initValue` you can replay a test case exactly as it was executed previously (make sure to put this in `dev.properties`, as this value should be used for debugging purposes only and will make your loadtest not very random at all if you forget to remove it from the other property files later). The value to be used can be found at the end of test case's console output and also in the [result browser](../440-result-browser/#using-the-result-browser) (when clicking the test case title):
 
 {{< image src="user-manual/localTest_console.png" >}}
 Console output for local test run
@@ -74,14 +74,14 @@ Result browser overview page
 
 Especially when you are using randomness in your tests (which you should), we encourage you to run your tests several times for consolidation, as different random test behavior might yield different results. You can also overwrite test properties [for development only](../480-test-suite-configuration/#development-environment-configuration), for example to define probabilities for test behaviors in order to make sure every option is working (for example: in a "real" test setup, you'd want your tests to open the quickview instead of the product detail page in about 50% of all tests, but during development you might want to temporarily set the quickview probability to 100% while you are working on the quickview behavior).
 
-For **test error analysis**, the console output offers many insights, but it is probably easiest to have a look at the [**result browser**](../440-result-browser/) generated for the test (the link is also found at the end of the console output, see above). While your main focus is probably the last executed action and the reason why it failed, don't forget to also check what happened before: as you want to model real-world usage of your application in your tests, the actions (and the requests they trigger, and the data sent and received by those requests) should be as close to what happens during manual application usage as possible.  
+For **test error analysis**, the console output offers many insights, but it is probably easiest to have a look at the [**result browser**](../440-result-browser/) generated for the test (the link is also found at the end of the console output, see above). While your main focus is probably the last executed action and the reason why it failed, don't forget to also check what happened before: as you want to model real-world usage of your application in your tests, the actions (and the requests they trigger, and the data sent and received by those requests) should be as close to what happens during manual application usage as possible.
 
 {{% note title="Latest Result Browser" %}}
-XLT offers a shortcut for always getting the latest result browser of any given test case: for instance instead of opening 
+XLT offers a shortcut for always getting the latest result browser of any given test case: for instance instead of opening
 
 `file:/Projects/loadtest-project/results/TVisit/0/output/1592316571344/index.html`
 
-just cut it down to 
+just cut it down to
 
 `file:/Projects/loadtest-project/results/TVisit.html` -
 
@@ -105,4 +105,3 @@ A performance test case is also a regression test case - and if you want to [int
 * **Be prepared if the previous test run did not clean up and add some randomization where needed.** Test cases may fail because they try to add something that is already existing. The test case might add something during a failed test run that has not been finished (and therefore the clean up at the end of the test case has not been performed). Try to access objects or list entries randomly, so even in case the clean up did not work properly, the next execution has at least a chance to pass.
 * **Use robust xpath expressions.** Xpaths or generated IDs are likely to change. To avoid test case maintenance after a new build of the tested application you should use target element locators that are as unspecific as possible while still being unambiguous, so there is a good chance it will hold even if some part of the application changes. For example for a cart link, instead of `html/body/div[3]/div[2]/div/ul/li[5]/div/div[3]/div[1]/div/a`
 you should better use something like `//div[@id='cart']/div[1]`. Finding elements by ID is easiest, of course, and can be used whenever possible.
-
