@@ -220,19 +220,19 @@ Table cells are colored based on a certain target value and a lower and upper bo
 The target value and upper and lower boundaries are configurable per request, but, same as for the Apdex, you can also group requests by name (via regular expressions) for less configuration effort and there is also a default rule for all other requests. See below for a sample configuration:
 
 ```bash
-## Use specific colorization rules for the homepage request and overwrite the default group.  
+## Use specific colorization rules for COLogin/COBilling/COShipping requests  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.Checkout.matching = CO(Login|Billing|Shipping).*  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.Checkout.mean = 250 500 1000  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.Checkout.percentile.p95.id = 95  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.Checkout.percentile.p95 = 375 750 1500
 
-## Use specific colorization rules for the homepage request and overwrite the default group.  
+## Use specific colorization rules for COPlaceOrder requests  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.PlaceOrder.matching = COPlaceOrder.*  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.PlaceOrder.mean = 1000 2000 4000  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.PlaceOrder.percentile.p95.id = 95  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.PlaceOrder.percentile.p95 = 1500 3000 6000
 
-## Use specific colorization rules for the homepage request and overwrite the default group.  
+## Overwrite colorization rules for the default group.  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.default.mean = 125 250 500  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.default.percentile.p95.id = 95  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.default.percentile.p95 = 250 500 1000

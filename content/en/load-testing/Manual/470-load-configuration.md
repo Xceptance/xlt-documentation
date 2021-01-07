@@ -153,12 +153,12 @@ Multiple time/value pairs can be specified by separating them using one or more 
 Imagine the following load function:
 
 ```bash
-0/10, 60m/10, 60m/20, 70m/5
+com.xceptance.xlt.loadtests.default.loadFactor = 0/10, 60m/10, 60m/20, 70m/5
 ```
 
 This sequence of time/value pairs defines a function that keeps the load parameter constant at 10 for an hour, doubles it to 20 in an instant, then immediately starts decreasing it to 5 throughout the next ten minutes, and eventually keeps it at 5 for the remaining test.
 
-```bash
+```dos
 Load /\
      |
   20 +                         *

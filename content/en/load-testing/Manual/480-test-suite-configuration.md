@@ -117,6 +117,7 @@ com.xceptance.xlt.http.retry.enabled = true
 com.xceptance.xlt.http.retry.nonIdempotentRequests = true  
 com.xceptance.xlt.http.retry.count = 3
 ```
+Please note that failed requests will not appear in the report's _Errors_ section if a retry was successful.
 
 ### Automatic Transaction Run Time Limit
 
@@ -176,8 +177,8 @@ com.xceptance.xlt.loadtests.<name>.class = <fully qualified class name>
 A test class mapping might look like this:
 
 ```bash
-com.xceptance.xlt.loadtests.TVisitor.class = com.xceptance.xlt.samples.tests.TVisitor
-com.xceptance.xlt.loadtests.TJSVisitor.class = com.xceptance.xlt.samples.tests.TJSVisitor
+com.xceptance.xlt.loadtests.TVisitor.class = com.xceptance.xlt.samples.tests.TVisitor_US
+com.xceptance.xlt.loadtests.TJSVisitor.class = com.xceptance.xlt.samples.tests.TJSVisitor_US
 ```
 
 ### Test Class-Specific Settings
@@ -347,7 +348,7 @@ Result browser overview page
 
 `com.xceptance.xlt.random.initValue = 1586357501446`
 
-**Opening Result Browser Automatically:** When running a test case from within your IDE, XLT prints the path to the corresponding result browser to the console for easy copy&paste into a Web browser. XLT may even open the result browser directly in your default Web browser. To this end, set the following property in your `dev.properties` file:
+**Opening Result Browser Automatically:** When running a test case from within your IDE, XLT prints the path to the corresponding result browser to the console for easy copy&paste into a Web browser. XLT may even open the result browser directly in your default Web browser - just set the following property in your `dev.properties` file:
 
 `com.xceptance.xlt.results.openResultBrowser = true`
 

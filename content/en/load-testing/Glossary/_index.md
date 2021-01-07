@@ -27,8 +27,8 @@ test cases against the system under test.
 
 On every load generating system there is at least one agent controller
 running which receives command from the master controller and sends back
-test results. The agent controllers control local agent processes
-generating the load.
+test results. The agent controllers (we often use the abbreviation "AC"/"ACs") 
+control local agent processes generating the load.
 
 ## API
 
@@ -72,7 +72,7 @@ additional tool in a broad testing tool or it can be extended by further
 editor functionality. Recorded test cases often have to be extended
 manually to get robust and reusable test cases.
 
-Main problems with pure recored test scripts are:
+Main problems with pure recorded test scripts are:
 
 -   Lack of dynamic - e.g. in an online shop the same product pages a
     accessed again and again instead of selecting from a list randomly
@@ -95,13 +95,13 @@ removed the XUL-application API from Firefox.
 
 A client is a process in the client-server-model that sends requests to
 another process (server) to make demand on provided services. Clients of
-a web server are browser, search engine bots or when running a XLT load
-test the virtual users with the headless browsers.
+a web server are browsers, search engine bots or, when running an XLT load
+test, the virtual users with the headless browsers.
 
 ## Concurrent Users
 
-Concurrent Users are several real user or simulated users, during a load
-test using the system at the same time. The terms “Parallel Sessions” or
+Concurrent Users are several real or simulated users, which are using the 
+system at the same time during a load test. The terms “Parallel Sessions” or
 “Parallel visits” are also used.
 
 For web applications the number of concurrent users calculates as
@@ -110,7 +110,7 @@ waits for a certain time (think time) until he sends the next request.
 Nevertheless the user counts as a concurrent user during this time. The
 parallelism encloses all users that started a visit on the web site
 (first request) and did not finished it yet, thus will send more
-requests. Thereby it is not relevant whether a users request is still
+requests. Thereby it is not relevant whether a user's request is still
 being processed or the last response has already arrived and no new
 request has been sent yet.
 
@@ -118,7 +118,7 @@ If the real user scenarios contain a long think time between the
 requests then possibly a simulation with less virtual users but shorter
 think time is sufficient. The aim in this case is to simulate the same
 count of parallel requests. Such a scenario is not a full equivalent to
-a higher number of user with longer think time but depending on the aim
+a higher number of users with longer think time but depending on the aim
 of the test it can be sufficient in most cases.
 
 ## Constant Arrival Rate
@@ -137,7 +137,7 @@ finished visits per time is the same then the number of requests for new
 visits arriving at the server.
 
 If the tested system can not process the arriving requests fast enough
-the number of parallel user increases automatically. This type of
+the number of parallel users increases automatically. This type of
 simulated load is close to real systems behavior because the number of
 new arriving visitors is also not depending on the actual state or speed
 of the server in real life.
@@ -168,7 +168,7 @@ A Cookie can be transient or persistent. Transient cookies are stored in
 the main memory of the browser process so that they are only existing
 during the runtime of the web browser. In contrast persistent cookies
 are stored to the file system by the web browser. The web server that
-creates the cookie can set a desired lifetime for he cookie. So the
+creates the cookie can set a desired lifetime for the cookie. So the
 cookie is still available even after restarting the browser or the
 client computer.
 
@@ -176,7 +176,7 @@ client computer.
 
 XLT test cases not run by a master controller but by any JUnit test
 runner directly as a JUnit test automatically run in development mode.
-E.g. when running XLT test cases in eclipse or as ANT task. When using
+E.g. when running XLT test cases in Eclipse or as ANT task. When using
 the development mode additional property files are read. So it is
 possible to redefine settings for local test runs during development
 without changing the settings of the load test mode.
@@ -534,7 +534,7 @@ Necessary prerequisite for linear scalability is that all resources can
 work to a high capacity at the same time.
 
 In real life synchronization, communication and administration overhead
-leads to fact that added resources can not be used by the application
+leads to the fact that added resources can not be used by the application
 completely. This results in “sub-linear scalability” where doubling the
 resources increases the processable workload by less than 100%.
 
@@ -584,7 +584,7 @@ only be recognized with the help of additional methods.
 
 Therefore, the server generates a unique session ID for every single
 user when the first request from that user arrives at the server. From
-this point the session ID will transferred together with all requests
+this point the session ID will be transferred together with all requests
 and responses between client and server. Depending on the application
 the server saves internal status together with the session ID, e.g. the
 basket of a online shop, login information or the selected language for
@@ -604,7 +604,7 @@ A session ID is a unique identifier for visitors on a web site. It is
 used to identify several requests related to one user. A session ID will
 be generated when the the first request of the user is is being
 processed by the server and then it will be send back to client together
-with the response. From this point the session ID will transferred
+with the response. From this point the session ID will be transferred
 together with all requests and responses between client and server. The
 session ID can be transferred by a cookie in the HTTP header, in the URL
 or as a hidden form parameter in the POST-data.
@@ -663,7 +663,7 @@ times are in the range of 1s..9s.
 Static Content Loading is the automatic loading of images, CSS,
 JavaScript and other static content by a web browser. A HTML file has
 references to such files which will be loaded by the web browser with
-the help additional requests and then can be display or interpreted.
+the help additional requests and then can be displayed or interpreted.
 
 A test run without loading static content is used to test just the
 application logic and the generation of dynamic web pages, instead of
@@ -675,7 +675,7 @@ components can be stressed with a higher load.
 
 XLT provides several properties to control loading static content (see
 `com.xceptance.xlt.loadStaticContent`). Note: If the property
-`com.xceptance.xlt.javaScriptEnabled` is set to `true` all virtual user
+`com.xceptance.xlt.javaScriptEnabled` is set to `true` all virtual users
 will execute JavaScript code even if
 `com.xceptance.xlt.loadStaticContent` is set to false.
 
@@ -737,10 +737,10 @@ once.
 ## Think Time
 
 Think time is the time span between arrival of a response sent from
-server to client and the next request sent to the server. From a server
-point off view, the think time is an interrupt of the users action. A
+server to client and the next request sent to the server. From a server's
+point of view, the think time is an interrupt of the user's action. A
 real user for example needs time to read text on the requested web page,
-to click a link or to fill a form. When using XLT separate values for
+to click a link or to fill a form. When using XLT, separate values for
 think time between actions and think time between transactions can be
 configured. Furthermore the think times can vary randomly using XLT.
 
@@ -788,7 +788,7 @@ and eventually buys these products.
 All requests send to the server during one visit have to be assigned to
 that certain visit by the server. Therefore the server generates a
 unique session ID for every single user when the first request from that
-user arrives at the server. From this point the session ID will
+user arrives at the server. From this point the session ID will be
 transferred together with all requests and responses between client and
 server. Depending on the application the server saves internal status
 together with the session ID, e.g. the basket of a online shop, login
