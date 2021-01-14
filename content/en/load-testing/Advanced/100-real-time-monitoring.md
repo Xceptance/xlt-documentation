@@ -53,3 +53,21 @@ Since not all performance details are sent to Graphite, you will only get a firs
 {{% note notitle %}}
 [Graphite](http://graphite.readthedocs.org/en/latest/install.html) is not bundled with XLT. You need to install, configure, and run it yourself.
 {{% /note %}}
+
+### Page load timings in Graphite
+
+In older versions of XLT, page load timings were reported as custom timers to Graphite. Since XLT 4.12.0, page load timing data is promoted from custom timers to a dedicated data type (a bug caused the data not to be sent to Graphite at all before this was fixed in v5.1.2). 
+
+This data is stored to the "pageLoadTimings" subtrees. The bucket name structure for both specific page load timing records and summary records is similar to that of actions and custom timers. See below for an example how page load timing data is reported to Graphite:
+
+```txt
+xlt.Posters.ac001.pageLoadTimings.Homepage__FirstContentfulPaint_.errors 0 1592575693
+xlt.Posters.ac001.pageLoadTimings.Homepage__FirstContentfulPaint_.runtime.max 543 1592575693
+xlt.Posters.ac001.pageLoadTimings.Homepage__FirstContentfulPaint_.runtime.mean 543.00 1592575693
+xlt.Posters.ac001.pageLoadTimings.Homepage__FirstContentfulPaint_.runtime.min 543 1592575693
+...
+xlt.Posters.ac001.summary.pageLoadTimings.count 18 1592575693
+xlt.Posters.ac001.summary.pageLoadTimings.errors 0 1592575693
+xlt.Posters.ac001.summary.pageLoadTimings.runtime.max 543 1592575693
+xlt.Posters.ac001.summary.pageLoadTimings.runtime.mean 270.17 1592575693
+xlt.Posters.ac001.summary.pageLoadTimings.runtime.min 20 1592575693
