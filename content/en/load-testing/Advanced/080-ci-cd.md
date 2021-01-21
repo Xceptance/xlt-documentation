@@ -33,7 +33,7 @@ The plug-in enriches the standard Jenkins project and build pages. On a build's 
 
 First, check the version of Jenkins you are using. The XLT plug-in requires v1.642.3 or later.
 
-The Jenkins plugin is free to clone or download on [Github](https://github.com/Xceptance/XLT-jenkins-plugin). If you do not want to build it yourself, the latest prebuilt artifacts can be downloaded from [Maven Central](https://search.maven.org/artifact/com.xceptance/xlt-jenkins-plugin).
+The Jenkins plugin is free to clone or download on <a href="https://github.com/Xceptance/XLT-jenkins-plugin" target="_blank">Github</a>. If you do not want to build it yourself, the latest prebuilt artifacts can be downloaded from <a href="https://search.maven.org/artifact/com.xceptance/xlt-jenkins-plugin" target="_blank">Maven Central</a>.
 
 To install the XLT plug-in into Jenkins, simply copy the plug-in file `<xlt>/tools/xlt-jenkins-plugin-X.X.X/xlt-jenkins-plugin.hpi` to the `plugins`sub-directory of your Jenkins installation. Restart Jenkins for the plug-in to be picked up.
 
@@ -71,7 +71,7 @@ Now add the XLT plug-in as a new build step to your project and configure it as 
 
 {{% note notitle %}}Please note that with the default configuration the load test will be driven from the Jenkins machine, so the configured load profile should not be too demanding. See below for an overview of what else can be configured.{{% /note %}}
 
-To generate higher load it might be not enough to run one XLT agent controller from the Jenkins machine. Dedicated load generating machines are recommended. When configuring the XLT plug-in the agent controller section offers several options one of them being "Start agent machines in Amazon's EC2". This allows to automatically start Amazon machine images (AMI) in Amazon's Elastic Compute Cloud (EC2) that can be used to generate the load. Typically, you will use one of the machine images with XLT already installed. For the current list of AMI IDs, see the [Xceptance Homepage](https://www.xceptance.com/en/xlt/download.html).
+To generate higher load it might be not enough to run one XLT agent controller from the Jenkins machine. Dedicated load generating machines are recommended. When configuring the XLT plug-in the agent controller section offers several options one of them being "Start agent machines in Amazon's EC2". This allows to automatically start Amazon machine images (AMI) in Amazon's Elastic Compute Cloud (EC2) that can be used to generate the load. Typically, you will use one of the machine images with XLT already installed. For the current list of AMI IDs, see the <a href="https://www.xceptance.com/en/xlt/download.html" target="_blank">Xceptance Homepage</a>.
 
 {{% note notitle %}}When using the option "Start agent machines in Amazon's EC2" the XLT master controller has to wait for the remote agent controller EC2 machines to come up. This can take several minutes. This is why you should adjust the XLT property `com.xceptance.xlt.mastercontroller.initialResponseTimeout` to a value that is useful for the described scenario.{{% /note %}}
 

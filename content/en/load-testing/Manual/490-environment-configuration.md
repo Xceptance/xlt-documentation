@@ -66,7 +66,7 @@ log4j.appender.console.layout = org.apache.log4j.PatternLayout
 log4j.appender.console.layout.ConversionPattern = [%d{HH:mm:ss,SSS}] %-5p [%t] - %m%n
 ```
 
-Also see [Apache Log4j API Docs](http://logging.apache.org/log4j/1.2/apidocs/index.html) for more information on log4j settings.
+Also see <a href="http://logging.apache.org/log4j/1.2/apidocs/index.html" target="_blank">Apache Log4j API Docs</a> for more information on log4j settings.
 
 ### Configuration via Command Line
 

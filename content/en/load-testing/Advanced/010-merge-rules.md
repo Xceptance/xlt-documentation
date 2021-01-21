@@ -115,7 +115,7 @@ First, let's split off the _\_\_Analytics-Tracking_ requests we have seen in COL
 ...requestMergeRules.10.urlPattern = /__Analytics-Tracking\\?
 ...requestMergeRules.10.stopOnMatch = true
 ```
-Please pay attention to the double backslash before the question mark (`\\?`). The first \ quotes the ? from the regular expression point of view to treat it as a normal character and the second \ quotes the \ characters because this is a property file format and a \ is a protected characters (see [Java Properties](https://docs.oracle.com/javase/8/docs/api/java/util/Properties.html#load-java.io.Reader-).
+Please pay attention to the double backslash before the question mark (`\\?`). The first \ quotes the ? from the regular expression point of view to treat it as a normal character and the second \ quotes the \ characters because this is a property file format and a \ is a protected characters (see <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Properties.html#load-java.io.Reader-" target="_blank">Java Properties</a>.
 
 ### Step 2: Get Rid Of the Dot
 
@@ -188,4 +188,4 @@ So with this, we reorganised our COLogin request to show up in the requests tabl
 Requests table, organised with merge rules
 {{< /image >}}
 
-As you see, this is no rocket science, but requires some careful thinking, and regex knowledge [helps a lot](https://xkcd.com/208/).
+As you see, this is no rocket science, but requires some careful thinking, and regex knowledge <a href="https://xkcd.com/208/" target="_blank">helps a lot</a>.

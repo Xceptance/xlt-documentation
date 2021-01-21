@@ -57,8 +57,8 @@ While you develop your test cases, the app you want to test should be in a stabl
 To run XLT, you will need the following:
 * latest JDK 8 (or 11)
 * Java IDE of choice
-* Latest [Apache Ant](https://ant.apache.org/)
-* [Maven](https://maven.apache.org/)
+* Latest <a href="https://ant.apache.org/" target="_blank">Apache Ant</a>
+* <a href="https://maven.apache.org/" target="_blank">Maven</a>
 
 Installing XLT is described in more detail [here](../040-installation).
 

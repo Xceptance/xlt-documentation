@@ -39,23 +39,23 @@ description: >
 ## 2017 - Script Developer Discontinued
 With the release of Firefox 57, Mozilla decided to completely remove the support for legacy extensions for security reasons. As a result, Script Developer cannot be installed and used anymore. 
 
-We at Xceptance had been aware of this development, but after a user survey and an evaluation of several alternative options, we came to the conclusion that the feature set and comfort that had been offered by XLT Script Developer and its way of writing web automation cannot be recreated using the alternative Firefox APIs. Therefore, XLT Script Developer was discontinued. Read more in this [blog post](https://blog.xceptance.com/2017/10/27/firefox-57-changes-and-xlt/). 
+We at Xceptance had been aware of this development, but after a user survey and an evaluation of several alternative options, we came to the conclusion that the feature set and comfort that had been offered by XLT Script Developer and its way of writing web automation cannot be recreated using the alternative Firefox APIs. Therefore, XLT Script Developer was discontinued. Read more in this <a href="https://blog.xceptance.com/2017/10/27/firefox-57-changes-and-xlt/" target="_blank">blog post</a>. 
 
 ## 2018 - XLT at no Charge
 Over the years we have seen many people working with other performance test tools and found that often they chose one primarily because of the price or simply because it was already a familiar tool in the company. This is not necessarily bad but it is certainly not always optimal. 
 
-People run into seat limits, operating system limitations, debugging limits, extensibility limits, have to use poor reporting, or cannot adjust features or functionalities. We wanted to give the testing world a tool that will be chosen because it fits and not because the license is cheaper or has already been purchased. That's why, starting in January 2018, XLT has been free of charge for load and performance testing. Read more in this [blog post](https://blog.xceptance.com/2017/12/21/xlt-now-available-free-of-charge/).
+People run into seat limits, operating system limitations, debugging limits, extensibility limits, have to use poor reporting, or cannot adjust features or functionalities. We wanted to give the testing world a tool that will be chosen because it fits and not because the license is cheaper or has already been purchased. That's why, starting in January 2018, XLT has been free of charge for load and performance testing. Read more in this <a href="https://blog.xceptance.com/2017/12/21/xlt-now-available-free-of-charge/">blog post</a>.
 
 ## 2018 - More CI/CD Support
 
 ## 2019 - v4.13
 
 ## 2020 - XLT goes Open Source
-In February 2020 XLT went completely open source, being published on Github under [Apache License 2.0](https://opensource.org/licenses/Apache-2.0). A license file is no longer needed.
+In February 2020 XLT went completely open source, being published on Github under <a href="https://opensource.org/licenses/Apache-2.0" target="_blank">Apache License 2.0</a>. A license file is no longer needed.
 
 Xceptance will continue to maintain and extend XLT as before. Releases will be built and published by Xceptance on a regular schedule. Libraries will be published to Maven Central as part of the open-sourcing process. The latest releases will be available from the XLT GitHub repository as well.
 
-We still keep the [legacy documentation](https://lab.xceptance.de/releases/xlt/latest/index.html) around, just in case you need information about older or deprecated XLT versions or functionalities. For everything else, this is the new documentation, also published on Github and still growing.
+We still keep the <a href="https://lab.xceptance.de/releases/xlt/latest/index.html" target="_blank">legacy documentation</a> around, just in case you need information about older or deprecated XLT versions or functionalities. For everything else, this is the new documentation, also published on Github and still growing.
 
 If you are interested in training, projects, or support for XLT and load testing in general, we of course also offer those services, and will expand this offering further in upcoming months.
 

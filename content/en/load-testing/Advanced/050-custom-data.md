@@ -9,4 +9,4 @@ description: >
     XLT supports additional data points beyond the typical automatic timers such as custom timers, counters, and external data retrieval. In addition, data from external source can be added during report generation.
 ---
 
-More about [custom data, timers, and external data](https://training.xceptance.com/xlt/40-custom-data.html#/)
+More about <a href="https://training.xceptance.com/xlt/40-custom-data.html#/" target="_blank">custom data, timers, and external data</a>
