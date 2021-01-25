@@ -36,7 +36,7 @@ The agent controller starts up and listens on the specified port. The output loo
 - Started SslSocketConnector@0.0.0.0:8500
 ```
 
-Please note that this example demonstrate a local execution. When you want to run larger workloads at scale, you will likely use remote machines with agent controllers already installed and started.
+Please note that this example demonstrates a local execution. When you want to run larger workloads at scale, you will likely use remote machines with agent controllers already installed and started.
 
 ## Running the Master Controller
 
@@ -48,7 +48,7 @@ You can start the master controller in one of the following modes:
 
 * **Interactive mode**: an interactive menu permits to perform all steps manually
 * **Auto mode**: a load test is started automatically and the needed steps are automatically performed
-* **Scripted commands**: a set of given commands is execute that permits to control the automate execution better
+* **Scripted commands**: a set of given commands is executed that permits to control the automated execution better
 * **Embedded mode**: this is not a full mode on its own, rather way of skipping the manual startup of an agent controller for quicker local testing
 
 ### Interactive Mode
