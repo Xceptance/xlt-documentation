@@ -5,16 +5,16 @@ weight: 310
 type: docs
 
 description: >
-  How to execute tests.
+  The different options to execute a test using the MasterController.
 ---
 
-Running load tests consists of two steps:
+Running a load test consists of two steps:
 
-1. running the agent controllers and
-1. running the master controller.
+1. Starting the agent controllers
+1. Using the master controller
 
 
-## Running the Agent Controllers
+## Starting the Agent Controllers
 
 To start the agent controllers, open a command line window/console and type the following command sequence:
 
@@ -36,6 +36,8 @@ The agent controller starts up and listens on the specified port. The output loo
 - Started SslSocketConnector@0.0.0.0:8500
 ```
 
+Please note that this example demonstrates a local execution. When you want to run larger workloads at scale, you will likely use remote machines with agent controllers already installed and started.
+
 ## Running the Master Controller
 
 {{% note notitle %}}
@@ -44,10 +46,10 @@ Before starting the master controller, make sure all agent controllers are runni
 
 You can start the master controller in one of the following modes:
 
-* **Interactive mode**: typical sequence of steps to be executed to run a load test
-* **Auto mode**: load test is started automatically, without user interaction
-* **Non-interactive mode with scripted set of commands**: load test is started automatically and executes the set of commands given as start parameter
-* **Embedded mode**: running a load test where master controller and agent controller run inside the same JVM
+* **Interactive mode**: an interactive menu permits to perform all steps manually
+* **Auto mode**: a load test is started automatically and the needed steps are automatically performed
+* **Scripted commands**: a set of given commands is executed that permits to control the automated execution better
+* **Embedded mode**: this is not a full mode on its own, rather way of skipping the manual startup of an agent controller for quicker local testing
 
 ### Interactive Mode
 
@@ -136,16 +138,16 @@ If the test suite files were uploaded and the load agents started successfully, 
 If the command is followed by the option `-report`, a load test and performance report will be automatically generated after the test has finished and the results have been downloaded.
 
 ```bash
-cd <XLT>\bin
-mastercontroller.cmd -auto -report
+cd <XLT>/bin
+./mastercontroller.sh -auto -report
 ```
 
 See below for what the screen displays in _auto_ mode:
 
 ```cmd
-Xceptance LoadTest 4.2.0
-Copyright (c) 2005-2012 Xceptance Software Technologies GmbH. All rights reserved.
-Basic License (5 virtual users). This license does not expire.
+Xceptance LoadTest 5.2.0
+Copyright (c) 2005-2020 Xceptance Software Technologies GmbH. All rights reserved.
+XLT is Open Source and available under the Apache License 2.0.
 
 Uploading test suite ...
     0% ... 10% ... 20% ... 30% ... 40% ... 50% ... 60% ... 70% ... 80% ... 100% - OK
@@ -155,29 +157,23 @@ Starting agents ...
 
 Test Case       State         Running Users   Iterations   Last Time   Avg. Time   Total Time      Events   Errors   Progress
 -------------   --------   ----------------   ----------   ---------   ---------   ----------   ---------   ------   --------
-TAddToCart_lw   Running        10 of     10            0      0,00 s      0,00 s      0:00:00           0        0         0%
 TAddToCart      Running        10 of     10            0      0,00 s      0,00 s      0:00:00           0        0         0%
 TCreateUser     Running        10 of     10            1      0,72 s      0,72 s      0:00:01           0        0         0%
 
 Test Case       State         Running Users   Iterations   Last Time   Avg. Time   Total Time      Events   Errors   Progress
 -------------   --------   ----------------   ----------   ---------   ---------   ----------   ---------   ------   --------
-TAddToCart_lw   Running        10 of     10           72      0,67 s      0,77 s      0:00:06           0        2         5%
 TAddToCart      Running        10 of     10           55      0,70 s      1,03 s      0:00:06           0        0         5%
 TCreateUser     Running        10 of     10           83      0,95 s      0,67 s      0:00:06           0       17         5%
-
 .
 .
 .
-
 Test Case       State         Running Users   Iterations   Last Time   Avg. Time   Total Time      Events   Errors   Progress
 -------------   --------   ----------------   ----------   ---------   ---------   ----------   ---------   ------   --------
-TAddToCart_lw   Running        10 of     10        1.472      0,69 s      0,66 s      0:01:37          17       65        96%
 TAddToCart      Running        10 of     10        1.412      0,66 s      0,68 s      0:01:37           0        0        96%
 TCreateUser     Running        10 of     10        1.525      0,91 s      0,63 s      0:01:37           0      316        96%
 
 Test Case       State         Running Users   Iterations   Last Time   Avg. Time   Total Time      Events   Errors   Progress
 -------------   --------   ----------------   ----------   ---------   ---------   ----------   ---------   ------   --------
-TAddToCart_lw   Finished        0 of     10        1.533      1,16 s      0,65 s      0:01:41          17       65       100%
 TAddToCart      Finished        0 of     10        1.476      1,17 s      0,68 s      0:01:40           0        0       100%
 TCreateUser     Finished        0 of     10        1.590      0,79 s      0,63 s      0:01:41           0      325       100%
 
@@ -191,7 +187,7 @@ To abort the test prematurely, press {{< kbd >}}Ctrl{{< /kbd >}}+{{< kbd >}}C{{<
 For long-running load tests, it is recommended to run the test without the `-auto` option because this allows a disconnect from the test and inhibits accidental test termination.
 {{% /note %}}
 
-### Non-interactive mode with scripted set of commands
+### Scripted Commands
 
 In order to better fit into highly-automated environments, XLT 5.2.1 improved the master controller in order to ease scripting. With the command line option `-c <commandList>` (or `--commands <commandList>`) you can specify which commands the master controller should execute on your behalf in a non-interactive fashion. This way, typical use cases can be scripted quite easily:
 
