@@ -35,7 +35,7 @@
 
 .breadcrumb {
     font-family: $font-family-sidebar;
-    font-size: 120%;
+    font-size: 100%;
 }
 
 .td-cover-block {
@@ -77,17 +77,11 @@
                 font-weight: 600;
             }
         }
-    }
-    
-    .td-sidebar-nav__section-title {
-        padding-top: 1.2rem;
-        font-weight: 400;
-    }
-    
-    & > .td-sidebar-nav__section {
-        padding-top: 1.5rem;
-        padding-left: 1.5rem;
-    }
+    }    
+}
+
+.td-sidebar-nav > .td-sidebar-nav__section {
+    padding-top: 1.75rem;
 }
 
 .td-toc {
