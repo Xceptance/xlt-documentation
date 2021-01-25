@@ -67,7 +67,7 @@
         
         .td-sidebar-link {
             padding-bottom: 0.7rem; /* give the links space in between to make wraped lines easier distinguishable from new lines*/
-            padding-left: 0.4em;
+            padding-left: 0rem;
             
             &:hover {
                 color: $link-hover-color; /* this is hardcoded to blue in docsy */
@@ -82,6 +82,11 @@
 
 .td-sidebar-nav > .td-sidebar-nav__section {
     padding-top: 1.75rem;
+    padding-left: 1rem;
+}
+
+.pr-md-3 {
+    padding-right:0rem !important;
 }
 
 .td-toc {
