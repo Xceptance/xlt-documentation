@@ -80,6 +80,7 @@ foo@picard $./start.sh
 ### Any link that is up or down the hierarchy
 Go to [Load Testing]({{< relref "load-testing" >}}).
 
+(Actually you can build links to wherever in the hierarchy without a shortcode, [just like this](../../load-testing).)
 
 ### From here
 [About XLT is a link from here and not higher up](../10-history).
