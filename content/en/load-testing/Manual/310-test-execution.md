@@ -46,7 +46,7 @@ Before starting the master controller, make sure all agent controllers are runni
 
 You can start the master controller in one of the following modes:
 
-* **Interactive mode**: an interactive menu allows all steps to be performed manually
+* **Interactive mode**: an interactive menu that allows all steps to be performed manually
 * **Auto mode**: a load test is started automatically and the appropriate steps are automatically performed
 * **Scripted commands**: a set of given commands is executed that allows better control of the automated execution
 * **Embedded mode**: this is not a full mode on its own, but rather a way of skipping the manual startup of an agent controller for quicker local testing
