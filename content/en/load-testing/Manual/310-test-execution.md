@@ -184,7 +184,7 @@ Downloading test results ... (Please be patient, this might take a while)
 To abort the test prematurely, press {{< kbd >}}Ctrl{{< /kbd >}}+{{< kbd >}}C{{< /kbd >}} to terminate the master controller. This terminates all running agents as well and triggers the download of all test results generated so far. Note that it's therefore impossible to disconnect the master controller from the test cluster while keeping the load test running.
 
 {{% note notitle %}}
-For long-running load tests, it is recommended to run the test without the `-auto` option. This makes it possible to disconnect from the test cluster without terminating test and inhibits accidental test termination.
+For long-running load tests, it is recommended to run the test without the `-auto` option. This makes it possible to disconnect from the test cluster without terminating the test and inhibits accidental test termination.
 {{% /note %}}
 
 ### Scripted Commands
