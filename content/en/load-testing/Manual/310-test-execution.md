@@ -46,10 +46,10 @@ Before starting the master controller, make sure all agent controllers are runni
 
 You can start the master controller in one of the following modes:
 
-* **Interactive mode**: an interactive menu permits to perform all steps manually
-* **Auto mode**: a load test is started automatically and the needed steps are automatically performed
-* **Scripted commands**: a set of given commands is executed that permits to control the automated execution better
-* **Embedded mode**: this is not a full mode on its own, rather way of skipping the manual startup of an agent controller for quicker local testing
+* **Interactive mode**: an interactive menu that allows all steps to be performed manually
+* **Auto mode**: a load test is started automatically and the appropriate steps are automatically performed
+* **Scripted commands**: a set of given commands is executed that allows better control of the automated execution
+* **Embedded mode**: this is not a full mode on its own, but rather a way of skipping the manual startup of an agent controller for quicker local testing
 
 ### Interactive Mode
 
@@ -64,7 +64,7 @@ cd <XLT>/bin
 Windows users have to use the appropriate `.cmd` file located in the same directory.
 {{% /note %}}
 
-A screen appears that displays the command line menu as below:
+A screen appears that displays the command line menu as shown below:
 
 ```dos
 Xceptance LoadTest 5.2.0
@@ -90,14 +90,14 @@ The following options are offered:
 * **Abort agents (a)**: Choose this option to immediately terminate any running load agent.
 
 * **Show agent report (r)**: The current status of the load agents can be monitored by choosing this option. Depending on the configuration, either a short summary (per test case) or a detailed list (per test user) is shown. In either case you get information about:
-	* test case name on which you are running the load test,
+	* the name of test cases being executed during the load test,
 	* how many users are running,
 	* how often a test case has been executed so far,
 	* how long it took on average to execute the test case,
 	* how many events and errors occurred, and
 	* the overall progress.
 
-* **Download test results (d)**: Each load agent writes log files and runtime data files. Choose this option to download this data from all configured agent controllers. After entering the _d_ command, a menu appears where you can choose the amount of data to download. Press 1, 2 or 3 here. The files are saved to a newly created directory at the location specified in `default.properties`. By default, the result directory is set to `<XLT>/results`. The name of the new directory is given by the current date and time, for example: `20190501-161718`.
+* **Download test results (d)**: Each load agent writes log files and runtime data files. Choose this option to download this data from all configured agent controllers. After entering the _d_ command, a menu will appear where you can choose the amount of data to download. Press 1, 2 or 3 here. The files are saved to a newly created directory at the location specified in `default.properties`. By default, the result directory is set to `<XLT>/results`. The name of the new directory is given by the current date and time, for example: `20190501-161718`.
 
 * **Create report (c)**: Generates a load test report of the last downloaded test results.
 
@@ -184,7 +184,7 @@ Downloading test results ... (Please be patient, this might take a while)
 To abort the test prematurely, press {{< kbd >}}Ctrl{{< /kbd >}}+{{< kbd >}}C{{< /kbd >}} to terminate the master controller. This terminates all running agents as well and triggers the download of all test results generated so far. Note that it's therefore impossible to disconnect the master controller from the test cluster while keeping the load test running.
 
 {{% note notitle %}}
-For long-running load tests, it is recommended to run the test without the `-auto` option because this allows a disconnect from the test and inhibits accidental test termination.
+For long-running load tests, it is recommended to run the test without the `-auto` option. This makes it possible to disconnect from the test cluster without terminating the test and inhibits accidental test termination.
 {{% /note %}}
 
 ### Scripted Commands
@@ -200,12 +200,10 @@ Please note that the master controller executes the commands exactly as specifie
 
 ### Embedded Mode
 
-Both interactive mode and auto mode can be combined with the command line option `-embedded`. It starts the master controller together with an internal agent controller.
+Both interactive mode and auto mode can be combined with the command line option `-embedded`. It starts the master controller as well as an internal agent controller.
 
-This is useful if you want to run load tests without a distributed load test environment, but run just one agent controller together with the master controller on the same machine. There's no need to manually start an agent controller before you run the load test, which facilitates the handling of automated load tests started from within a build process. This option is also recommended when playing around with the [posters demo](../../quick-start/30-demo-test-suite) for training purposes because it simplifies the process of running a load test.
+This is useful if you want to run load tests without a distributed load test environment. It will start a single agent controller as well as the master controller on the same machine. There's no need to manually start an agent controller before you run the load test, which facilitates the handling of automated load tests started from within a build process. This option is also recommended when playing around with the [posters demo](../../quick-start/30-demo-test-suite) for training purposes because it simplifies the process of running a load test.
 
 {{% note notitle %}}
 When you use the `-embedded` option, the local agent controller settings will override the set of agent controllers configured in `mastercontroller.properies`.
 {{% /note %}}
-
-
