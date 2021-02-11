@@ -10,7 +10,7 @@ description: >
 
 ## Introduction
 
-Because there are many things that could be easier to handle, we built a more comprehensive version of a web test suite which combines many concepts to provide easier data and state management as well as improved set up capabilities. Like the basic web test suite, it is built for load testing a website with XLT. In comparison to our simple posters loadtest suite which demonstrates basic XLT test suite design, this test suite goes the extra mile and implements universal concepts for easier handling of data, configuration, and test composition. It shows what is possible thanks to Java as scripting language on top of the XLT base feature set. The advanced posters test suite demostrates the following features and functionalities:
+Because there are many things that could be easier to handle, we built a more comprehensive version of a web test suite which combines many concepts to provide easier data and state management as well as improved set up capabilities. Like the basic web test suite, it is built for load testing a website with XLT. In comparison to our simple Posters loadtest suite which demonstrates basic XLT test suite design, this test suite goes the extra mile and implements universal concepts for easier handling of data, configuration, and test composition. It shows what is possible thanks to Java as scripting language on top of the XLT base feature set. The advanced Posters test suite demostrates the following features and functionalities:
 
 ### Base XLT Features
 
