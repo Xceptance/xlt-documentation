@@ -202,7 +202,7 @@ Please note that the master controller executes the commands exactly as specifie
 
 Both interactive mode and auto mode can be combined with the command line option `-embedded`. It starts the master controller as well as an internal agent controller.
 
-This is useful if you want to run load tests without a distributed load test environment. It will start a single agent controller as well as the master controller on the same machine. There's no need to manually start an agent controller before you run the load test, which facilitates the handling of automated load tests started from within a build process. This option is also recommended when playing around with the [posters demo](../../quick-start/30-demo-test-suite) for training purposes because it simplifies the process of running a load test.
+This is useful if you want to run load tests without a distributed load test environment. It will start a single agent controller as well as the master controller on the same machine. There's no need to manually start an agent controller before you run the load test, which facilitates the handling of automated load tests started from within a build process. This option is also recommended when playing around with the [Posters demo](../../quick-start/30-demo-test-suite) for training purposes because it simplifies the process of running a load test.
 
 {{% note notitle %}}
 When you use the `-embedded` option, the local agent controller settings will override the set of agent controllers configured in `mastercontroller.properies`.
