@@ -21,8 +21,8 @@ description: >
 * *Scaling*: Scaling tests was not easy and the deployment behind it was difficult
 * *Reporting*: Reports weren't ready to use and as detailed as we wanted, just reporting some average and smoothing out charts is not the way to go
 * *Languages*: Either tools were configuration driven or used proprietary languages and their very own IDEs
-* *Postprocessing of data*: Data was stored in databases or not at all, hence making later analysis of the run post-mortem difficult
-x* *Debugging*: When you don't know the stack and you don't see the code, it is often hard to debug a problem
+* *Postprocessing of data*: Data was stored in databases or not at all, hence making later analysis of the run post-mortem difficult 
+* *Debugging*: When you don't know the stack and you don't see the code, it is often hard to debug a problem
 * *Features*: Commercial tools had too many features we would pay for but never need and we could not drive the direction of development
 * *Trust*: Load testing and result communication is about trust, because when pointing at a problem, you have to be certain that your tool is not the cause of that very problem
 
