@@ -91,8 +91,11 @@ When using the new EC2 management UI for XLT, please be aware of the fact, that 
 When starting new AWS machine instances via `ec2_admin`, you have to choose the machine image (AMI) to use from the list of available AMIs. In this list, `ec2_admin` will display the AMI’s name tag (or, if no name tag is present, fall back to its description).
 
 
-The `ec2_admin` automatically specifies a *sub-net* when starting machine instances, because VPN instances require such a sub-net. It will choose the default sub-net, or the first sub-net found if no default is defined (which is the case for “older” AWS regions).
+The `ec2_admin` needs to specify a *sub-net* when starting machine instances, because VPN instances require such a sub-net. In older versions it chose the default sub-net, or the first sub-net found if no default is defined (which was the case for “older” AWS regions). In more complex environments with multiple VPCs, each having a default and multiple non-default subnets per availability zone, this approach may easily lead to unexpected results. That's why `ec2_admin` checks if there are multiple VPCs/subnets in the target region/availability zone and, if so, prompts the user to select the desired one.
 
+{{% note notitle %}}Note that choosing VPC and subnet is currently supported in interactive mode only. There is no command line option for this purpose yet.{{% /note %}}
+
+{{< TODO comment="subnet behavior default? is this correct?" >}}TBD{{< /TODO >}}
 
 
 `ec2_admin` then summarizes the chosen options for you to verify them before actually starting the instances:
