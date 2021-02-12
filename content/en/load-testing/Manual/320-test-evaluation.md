@@ -17,7 +17,7 @@ $ ./create_report.sh ../results/20200202-123400
 $ firefox ../reports/20200202-123400/index.html
 ```
 
-{{% note notitle %}}To learn more about the different report types XLT can create, follow up [here](../530-reports). For more infos on how to customize your reports, please have a look at the [Report Options](../540-report-options).{{% /note %}}
+{{% note notitle %}}To learn more about the different report types XLT can create, follow up [here](../530-reports). For more info on how to customize your reports, please have a look at the [Report Options](../540-report-options).{{% /note %}}
 
 ## Reading a Test Report
 
@@ -29,21 +29,22 @@ This section shows some general information about the load test (e.g. start and 
 
 #### Load Setup
 
-To check whether the load setup was correct, control these points on the overview of your test report:
+To check whether the load setup was correct, you can review these points on the overview of your test report:
 - **Transactions**: were the right scenarios executed?
 - Does the **measurement period** match your configuration?
-- Was the **thinktime** like you expected?
-(The arrival rate setting does not guarantee, hence you cannot check anything here.)
+- Was the **thinktime** duration as long as you expected?
 
 {{< image src="quickstart/load-profile.png" >}}
 Load Profile
 {{< /image >}}
 
+{{% note notitle %}}The arrival rate setting does not actually guarantee an exact user arrival rate, and so it should not be used to verify whether or not the load test ran as expected.{{% /note %}}
+
 #### Concurrent User Chart
 
-Also on your test report overview, in *General Information*, you will find the Concurrent User Chart right at the top. 
+Also on your test report overview, in *General Information*, you will find the Concurrent Users chart right at the top.
 - Is the ramp up visible?
-- Are there any spikes up or down? How nervous is the user chart (arrival rate)? 
+- Are there any spikes up or down? How scattered are the data points(meaning does the arrival rate seem stable)?
 
 {{< image src="quickstart/concurrent-users.png" >}}
 Concurrent Users Chart
@@ -51,9 +52,9 @@ Concurrent Users Chart
 
 #### Requests
 
-Right below the Concurrent User Chart you'll find the Requests Per Second and Request Runtime Charts. 
+Right below the Concurrent Users chart you'll find the Requests Per Second and Request Runtime charts.
 - In the Requests Per Second, are there any spikes? Is the ramp up visible?
-- Are the requests in the ballpark? 
+- Are the runtimes of the requests and their rate over time in the ballpark?
 - Are there runtime patterns, spikes or waves?
 
 {{< image src="quickstart/RequestsPerSecond-2.png" >}}
@@ -86,7 +87,7 @@ Transaction Errors Chart
 
 ### Transactions
 
-Also in the top menu you'll find the point *Transactions*. A transaction is a completed test case. The test case consists of one or more actions. The displayed transaction runtime includes the runtime of all actions within the test case, think times, and the processing time of the test code itself. If the test path of the test case is heavily randomized, the runtime of transactions might vary significantly. The average runtime shows the development of tests over time and especially helps to evaluate the outcome of long-running tests.
+Also in the top menu you'll find the item *Transactions*. A transaction is a completed test case. The test case consists of one or more actions. The displayed transaction runtime includes the runtime of all actions within the test case, think times, and the processing time of the test code itself. If the test path of the test case is heavily randomized, the transaction runtimes might vary significantly. The average runtime shows the development of tests over time and especially helps to evaluate the outcome of long-running tests.
 
 ### Actions
 
@@ -149,7 +150,7 @@ All external data gathered by other tools during the test run is shown here acco
 
 ### Errors
 
-This section consists of a table that contains all errors and their stack traces thrown by the test cases along with an overview of all error types. 
+This section consists of a table that contains all errors and their stack traces thrown by the test cases along with an overview of all error types.
 
 The Overview section lists the error message and the count. It ignores the stack trace to sum up common problems without relating them to the test case. The Details section beneath lists the full stack trace next to the test case and the directory in which you can find the data dump for further analysis.
 
@@ -189,7 +190,7 @@ the substring to remain visible. The filter syntax allows OR-ed filter expressio
 Text Filters
 {{< /image >}}
 
-## Intermediate Results 
+## Intermediate Results
 
 When you started the master controller in [interactive mode](../310-test-execution/#interactive-mode), it allows to get intermediate results, so you can download them and generate a report to see how the test is going. In automated environments, however, you would have to wait until the test run is finished before you can actually do so.
 
@@ -210,6 +211,6 @@ XLT is Open Source and available under the Apache License 2.0.
 =>
 ```
 
-So to get an intermediate results and report, use the options **(d)** and **(c)** while the test is running. Per default, the report will be created from the latest downloaded results and the target name will be named *\<timestamp\>-intermediate*. This can be useful to check the reasons for test failures while the test is still running. 
+So to get an intermediate results and report, use the options **(d)** and **(c)** while the test is running. Per default, the report will be created from the latest downloaded results and the target name will be named *\<timestamp\>-intermediate*. This can be useful to check the reasons for test failures while the test is still running.
 
 {{< TODO comment="other usecases & insights?" >}}
