@@ -12,12 +12,20 @@ description: >
 
 When your load test has finished, you might want to render a report based on the gathered data and open it in the browser of your choice:
 
+### Command Line
+
 ```bash
 $ ./create_report.sh ../results/20200202-123400
 $ firefox ../reports/20200202-123400/index.html
 ```
 
-{{% note notitle %}}To learn more about the different report types XLT can create, follow up [here](../530-reports). For more infos on how to customize your reports, please have a look at the [Report Options](../540-report-options).{{% /note %}}
+### Master Controller
+
+When running the master controller in interactive mode, a load test report can be created for the last downloaded results right from inside the master controller. Simply choose `c`from the menu, and the report will be created as if the `create_report` script had been invoked manually. This is especially useful when downloading results in the middle of a load test to see how things are going.
+
+{{% note notitle %}}To learn more about the different report types XLT can create, follow up [here](../530-reports). For more information on how to customize your reports, please have check out the the [Report Options](../540-report-options) section.
+{{% /note %}}
+
 
 ## Reading a Test Report
 
