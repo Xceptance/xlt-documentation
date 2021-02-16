@@ -87,15 +87,15 @@ Transaction Errors Chart
 
 ### Transactions
 
-Also in the top menu you'll find the item *Transactions*. A transaction is a completed test case. The test case consists of one or more actions. The displayed transaction runtime includes the runtime of all actions within the test case, think times, and the processing time of the test code itself. If the test path of the test case is heavily randomized, the transaction runtimes might vary significantly. The average runtime shows the development of tests over time and especially helps to evaluate the outcome of long-running tests.
+Also in the top menu you'll find the item *Transactions*. A transaction is a completed test case. The test case consists of one or more actions. The displayed transaction runtime includes the runtime of all actions within the test case, think times, and the processing time of the test code itself. If the test path of the test case is heavily randomized, the transaction runtimes might vary significantly. The average runtime shows the progress of the tests over time and is especially helpful for evaluating the outcome of long-running tests.
 
 ### Actions
 
-An action is part of a test case and consists of prevalidation, execution, and postvalidation. The data shown here indicates the time spent in the execution routine of an action. Therefore, its runtime includes the runtime of a request, e.g. an HTTP operation, and the time necessary to prepare, send, wait, and receive the data.
+Test cases are made up of one or more actions. An single action consists of tree steps: prevalidation, execution, and postvalidation. The data shown here indicates the time spent in the execution routine of an action. Therefore, its runtime includes the runtime of a request (e.g. an HTTP operation), and the time necessary to prepare, send, wait, and receive the data.
 
 ### Requests
 
-The request section is the most important statistics section when testing web applications. It directly reflects the loading time of pages or page components. Each row holds the data of one specific request. Its name is defined within the test case as timer name. The Count section of the table shows the total number of executions (Total), the calculated executions per seconds (1/s), minute (1/min), as well as projections or calculations of the executions per hour (1/h) and day (1/d). The Error section displays the total amount (Total) of errors that occurred throughout page or page component loading. The error count doesn’t include errors detected during the post-validation of the data received. Typical error situations are HTTP response codes such as 404 and 505, timeouts, or connection resets. The runtime section of the table shows the arithmetic mean, the minimum and maximum runtime encountered as well as the standard deviation of all data within that series. The runtime segmentation sections depicts several runtime segments and the number of requests within the segment’s definition. If the runtime of the test case is shorter than the displayed time period, e.g. test runtime was 30 min and the time period is hour, the numbers will be a linear projection. That means they will show a possible outcome of a longer test run if load and application behavior remained the same.
+The request section is the most important statistics section when testing web applications. It directly reflects the loading time of pages or page components. Each row holds the data of one specific request. Its name is defined within the test case as timer name. The Count section of the table shows the total number of executions (Total), the calculated executions per seconds (1/s), minute (1/min), as well as projections or calculations of the executions per hour (1/h) and day (1/d). The Error section displays the total amount (Total) of errors that occurred throughout page or page component loading. The error count doesn’t include errors detected during the post-validation of the data received. Typical error situations are HTTP response codes such as 404 and 505, timeouts, or connection resets. The runtime section of the table shows the arithmetic mean, the minimum and maximum runtimes encountered as well as the standard deviation of all data within that series. The runtime segmentation sections depicts several runtime segments and the number of requests within the segment’s definition. If the runtime of the test case is shorter than the displayed time period, e.g. test runtime was 30 min and the time period is hour, the numbers will be a linear projection. That means they will show a possible outcome of a longer test run if load and application behavior remained the same.
 
 #### Network Statistics
 
@@ -105,7 +105,7 @@ The load test report features extensive network statistics on the *Requests* pag
 The network statistics section
 {{< /image >}}
 
-The **Bandwidth** tab displays information about the used incoming and outgoing bandwidth per request. XLT measures on socket level and therefore the real transfered data out and in of the application is measured. XLT does not analyze or modify that data when taking the measurements. Bytes Sent comprises all data that is sent out of the application including overhead such as http(s) headers and SSL protocol data. Bytes Received includes all received data and the connected overhead. There is no measurement difference between sent and received data.
+The **Bandwidth** tab displays information about the used incoming and outgoing bandwidth per request. XLT measures on the socket level and therefore the real transfered data out and in of the application is measured. XLT does not analyze or modify that data when taking the measurements. Bytes Sent comprises all data that is sent out of the application including overhead such as http(s) headers and SSL protocol data. Bytes Received includes all received data and the connected overhead. There is no measurement difference between sent and received data.
 
 **Network Timing** reports all low level network timing data that have been measured on socket level. Each measurement point contains information about minimum and maximum times occurred as well as the mean of all gathered data.
 
@@ -116,13 +116,12 @@ The **Bandwidth** tab displays information about the used incoming and outgoing 
 -   **Send Time:** Time required to send the request to the other system.
     Depending on the payload and the network speed, this data is often
     zero or very small.
--   **Server Busy Time:** This indicated the time waiting after sending the
-    last bytes till the first bytes are received.
+-   **Server Busy Time:** This indicates the waiting time between sending the
+    last bytes and receiving the first bytes.
 -   **Receive Time:** The time spent receiving data. Measured from the first
     bytes received till the last bytes received.
 -   **Time to First Bytes:** Total time from the connection start till the
-    first bytes are received. Includes Connect, Send, Server Busy, and
-    Receive Time.
+    first bytes are received. Includes Connect, Send, and Server Busy Time.
 -   **Time to Last Bytes:** Total time from the connection start till the
     last bytes are received. This is the time needed to connect, send,
     and receive data. Often this time is called network runtime. The
@@ -136,7 +135,7 @@ The network section covers the areas of incoming and outgoing traffic during the
 
 ### Page Load Timings
 
-The Page Load Timings section offers a deeper insight into the page loading performance of real browsers. During a page load, a browser typically goes through different phases and reaches different states. This section outlines what time it took to reach a certain state. The timings listed here include primarily page load timings, but since the _perceived_ page loading performance is often influenced by how fast something is displayed on the page, paint timings are listed here as well.
+The Page Load Timings section offers deeper insight into the page loading performance of real browsers. During a page load, a browser typically goes through different phases and reaches different states. This section outlines the time it took to reach a certain state. The timings listed here include primarily page load timings, but since the _perceived_ page loading performance is often influenced by how fast something is displayed on the page, paint timings are listed here as well.
 
 {{% note notitle %}}These timings will be recorded only when using `XltChromeDriver` or `XltFirefoxDriver` to run the browser. These are special WebDriver implementations that install an extension into the browser which is able to gather all the timings and report them to XLT.{{% /note %}}
 
@@ -150,21 +149,21 @@ All external data gathered by other tools during the test run is shown here acco
 
 ### Errors
 
-This section consists of a table that contains all errors and their stack traces thrown by the test cases along with an overview of all error types.
+This section consists of a table that contains all errors thrown by the test cases along with an overview of all error types.
 
 The Overview section lists the error message and the count. It ignores the stack trace to sum up common problems without relating them to the test case. The Details section beneath lists the full stack trace next to the test case and the directory in which you can find the data dump for further analysis.
 
 ### Events
 
-Events are used to indicate that the test has encountered a special situation that is not an error but too important to ignore or to write to the log only. This section consists of a single table that lists all events that occurred during the test run including their name, amount, detail message and the name of the test case that produced this event.
+Events are used to indicate that the test has encountered a special situation that is not an error but too important to ignore or simply to write to the log. This section consists of a single table that lists all events that occurred during the test run including their name, amount, detail message and the name of the test case that produced this event.
 
-You can use the XLT API and create your own events to learn about certain conditions, such as an unavailable product that doesn't cause the test to stop but that needs your attention. A few out-of-stock products may be okay while too many of them could affect the test behavior.
+You can use the XLT API and create your own events to learn about certain conditions, such as an unavailable product that doesn't cause the test to stop but that needs your attention. While a few out-of-stock products may be okay, too many of them could affect the test behavior.
 
 ### Agents
 
 This section reports the resource utilization of each user agent in terms of CPU and memory usage. It helps to identify potential resource bottlenecks that might have influenced the load test. Note that all data is local to the JVM of the agent and therefore only covers a process view.
 
-Look for the following (and check all the agents that were used):
+Look for the following (and check every agent that was used):
 - Was the overall CPU usage per box <40%?
 - Also check the agent CPU usage.
 - Was the memory curve nice and steady, not hitting the max value?
@@ -183,7 +182,7 @@ The request table can get rather long, and the list of charts below the table as
 are looking for may involve a lot of scrolling. But don’t despair - simply type a filter expression and the table
 will show only those rows whose names match the filter. Same for the charts. This works not only for **requests**, but also for **transactions**, **actions**, **custom timers**, and **agents**.
 
-For advanced filter expressions, you can specify more than one filter substring in the filter input field, separated by space. A table row (and its corresponding chart) remains visible only if the name matches all specified substrings (AND). Note that case *does* matter. When prefixing a substring with the ‘-’ character, the name must not contain
+For advanced filter expressions, you can specify more than one filter substring in the filter input field, separated by a space. A table row (and its corresponding chart) remains visible only if the name matches all specified substrings (AND operation). Note that case *does* matter. When prefixing a substring with the ‘-’ character, the name must not contain
 the substring to remain visible. The filter syntax allows OR-ed filter expressions as well. Just use the ‘\|’ character to start a new alternative.
 
 {{< image src="releasenotes/4.6.0/report_filters.png" >}}
@@ -192,7 +191,7 @@ Text Filters
 
 ## Intermediate Results
 
-When you started the master controller in [interactive mode](../310-test-execution/#interactive-mode), it allows to get intermediate results, so you can download them and generate a report to see how the test is going. In automated environments, however, you would have to wait until the test run is finished before you can actually do so.
+If you started the master controller in [interactive mode](../310-test-execution/#interactive-mode), you can download intermediate results during the test run and generate a report to see how the test is going. In automated environments, however, you would have to wait until the test run is finished before you can actually do so.
 
 The master controller's command line menu in interactive mode looks like this:
 
@@ -211,6 +210,6 @@ XLT is Open Source and available under the Apache License 2.0.
 =>
 ```
 
-So to get an intermediate results and report, use the options **(d)** and **(c)** while the test is running. Per default, the report will be created from the latest downloaded results and the target name will be named *\<timestamp\>-intermediate*. This can be useful to check the reasons for test failures while the test is still running.
+So to get an intermediate results and report, use the options **(d)** and **(c)** while the test is running. By default, the report will be created from the latest downloaded results and be named *\<timestamp\>-intermediate*. This can be useful to check the reasons for test failures while the test is still running.
 
 {{< TODO comment="other usecases & insights?" >}}
