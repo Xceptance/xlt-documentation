@@ -21,7 +21,7 @@ $ firefox ../reports/20200202-123400/index.html
 
 ## Reading a Test Report
 
-The Load and Performance Test Report gives you all the information needed for a detailed analysis of a load test run. It provides several sections, each consisting of at least one table and one or more charts visualizing the graphic development of relevant measurements over time. Let's have a look at the top menu sections of each load test report:
+The Load and Performance Test Report gives you all the information needed for a detailed analysis of a load test run. It provides several sections, each consisting of at least one table and one or more charts that help to visualize the progress of measurements over time graphically. Let's have a look at the top menu sections of each load test report:
 
 ### Overview
 
@@ -29,7 +29,7 @@ This section shows some general information about the load test (e.g. start and 
 
 #### Load Setup
 
-To check whether the load setup was correct, you can review these points on the overview of your test report:
+To check whether the load setup was correct, you can review these points on the overview section of your test report:
 - **Transactions**: were the right scenarios executed?
 - Does the **measurement period** match your configuration?
 - Was the **thinktime** duration as long as you expected?
@@ -87,7 +87,7 @@ Transaction Errors Chart
 
 ### Transactions
 
-Also in the top menu you'll find the item *Transactions*. A transaction is a completed test case. The test case consists of one or more actions. The displayed transaction runtime includes the runtime of all actions within the test case, think times, and the processing time of the test code itself. If the test path of the test case is heavily randomized, the transaction runtimes might vary significantly. The average runtime shows the progress of the tests over time and is especially helpful for evaluating the outcome of long-running tests.
+Also in the top menu you'll find the item *Transactions*. A transaction is a completed test case. A test case consists of one or more actions. The displayed transaction runtime includes the runtime of all actions within the test case, think times, and the processing time of the test code itself. If the test path of the test case is heavily randomized, the transaction runtimes might vary significantly. The average runtime shows the progress of the tests over time and is especially helpful for evaluating the outcome of long-running tests.
 
 ### Actions
 
@@ -105,7 +105,7 @@ The load test report features extensive network statistics on the *Requests* pag
 The network statistics section
 {{< /image >}}
 
-The **Bandwidth** tab displays information about the used incoming and outgoing bandwidth per request. XLT measures on the socket level and therefore the real transfered data out and in of the application is measured. XLT does not analyze or modify that data when taking the measurements. Bytes Sent comprises all data that is sent out of the application including overhead such as http(s) headers and SSL protocol data. Bytes Received includes all received data and the connected overhead. There is no measurement difference between sent and received data.
+The **Bandwidth** tab displays information about the used incoming and outgoing bandwidth per request. XLT makes its measurements on the socket level and therefore the real transferred data out and in of the application is measured. XLT does not analyze or modify that data when taking the measurements. Bytes Sent comprises of all data that is sent out of the application including overhead such as http(s) headers and SSL protocol data. Bytes Received includes all received data and the connected overhead. There is no measurement difference between sent and received data.
 
 **Network Timing** reports all low level network timing data that have been measured on socket level. Each measurement point contains information about minimum and maximum times occurred as well as the mean of all gathered data.
 
