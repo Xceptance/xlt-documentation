@@ -23,7 +23,7 @@ $ firefox ../reports/20200202-123400/index.html
 
 When running the master controller in interactive mode, a load test report can be created for the last downloaded results right from inside the master controller. Simply choose `c`from the menu, and the report will be created as if the `create_report` script had been invoked manually. This is especially useful when downloading results in the middle of a load test to see how things are going.
 
-{{% note notitle %}}To learn more about the different report types XLT can create, follow up [here](../530-reports). For more info on how to customize your reports, please have a look at the [Report Options](../540-report-options).{{% /note %}}
+{{% note notitle %}}To learn more about the different report types XLT can create, follow up [here](../530-reports). For more information on how to customize your reports, please have a look at the [Report Options](../540-report-options).{{% /note %}}
 
 ## Reading a Test Report
 
@@ -97,7 +97,7 @@ Also in the top menu you'll find the item *Transactions*. A transaction is a com
 
 ### Actions
 
-Test cases are made up of one or more actions. An single action consists of tree steps: prevalidation, execution, and postvalidation. The data shown here indicates the time spent in the execution routine of an action. Therefore, its runtime includes the runtime of a request (e.g. an HTTP operation), and the time necessary to prepare, send, wait, and receive the data.
+Test cases are made up of one or more actions. A single action consists of three steps: prevalidation, execution, and postvalidation. The data shown here indicates the time spent in the execution routine of an action. Therefore, its runtime includes the runtime of a request (e.g. an HTTP operation), and the time necessary to prepare, send, wait, and receive the data.
 
 ### Requests
 
