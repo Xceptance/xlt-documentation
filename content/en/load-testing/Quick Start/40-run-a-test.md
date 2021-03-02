@@ -10,7 +10,7 @@ description: >
 
 ## Setup a Test Execution
 
-Ok, so now you have the [demo shop running on your machine](../20-demo-application/) and you have [set up the demo testsuite](../30-demo-test-suite/). To run a test, first tell your setup (`<posters-simple-loadtest-suite>/config/project.properties`) which test configuration to use and where to find your posters demo shop instance:
+Ok, so now you have the [demo shop running on your machine](../20-demo-application/) and you have [set up the demo testsuite](../30-demo-test-suite/). To run a test, first tell your setup (`<posters-simple-loadtest-suite>/config/project.properties`) which test configuration to use and where to find your Posters demo shop instance:
 
 ```bash
 com.xceptance.xlt.testPropertiesFile = my-test.properties

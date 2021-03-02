@@ -16,11 +16,11 @@ As the most important tool for analyzing the results of a load test run, XLT off
 
 ## Load Test Report
 
-A report for a single test run or a manually combined set of runs. The Load and Performance Test Report gives you all the information needed for a detailed analysis of a load test run. This is what you will probably need most often, so you'll find the basic info on how to [create](../../quick-start/40-run-a-test/#generate-a-test-report) and [evaluate](../../quick-start/50-evaluate-a-test/) a load test report in the Quick View section, and more details about [report options](../540-report-options) in the Manual. 
+A load test report is a report for a single test run or a manually combined set of runs. This report gives you all the information needed for a detailed analysis of a test run. This is what you need most often.
 
-### Creating a Load Test Report from the Master Controller Menu
-
-When running the master controller in interactive mode, a load test report can be created for the last downloaded results right from inside the master controller. Simply choose `c`from the menu, and the report will be created as if the `create_report` script had been invoked manually. This is especially useful when downloading results in the middle of a load test to see how things are going.
+{{% note title="Creating and Evaluating Reports" %}}
+You can find more about creating and evaluating load test reports in the section [Test Evaluation](/load-testing/manual/320-test-evaluation/). More information about reporting options can be found in the [Report Options](../540-report-options) section of the manual. 
+{{% /note %}}
 
 ## Comparison Report
 

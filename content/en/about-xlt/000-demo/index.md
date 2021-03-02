@@ -13,8 +13,10 @@ slug: "this is just an overwritten url"
 
 description: >
   This page demos several important pieces for the documentation and is meant to support
-  anyone who wants to update or extend the documentation.
+  anyone who wants to update or extend the documentation. This is not material for XLT.
 ---
+The following chapters show important pieces how to use this Hugo template for writing the XLT documentation. Please refer always back to the source code and check how each component is written. 
+
 ## Info Boxes
 {{% note %}}
 A Note with a standard header/title
