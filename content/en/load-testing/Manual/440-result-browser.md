@@ -14,7 +14,7 @@ description: >
 - Displays approximated rendering
 - Displays test settings
 - Helps to find errors
-- Great for test documentation
+- Is great for test documentation
 
 ## Result Browser Properties
 
@@ -28,14 +28,14 @@ When running test cases, you can save the page output to disk. The relevant prop
 com.xceptance.xlt.output2disk = always
 ```
 
-By enabling page output to disk, a lot of data will be aggregated. To minimize this in load test mode, the property may be set to `onError`. Also, the number of actions in record can be set (to keep the latest n actions in record, which is set to 3 by default and to `all` in development mode):
+By enabling page output to disk, a lot of data will be aggregated. To minimize this in load test mode, the property may be set to `onError` so that only the page output that resulted in an error is saved to disk. Since this single page on it's own is not always enough to determine what generated the error, we can also set the number of actions previous to the error that should be kept as part of the record (this is set to 3 by default and to `all` in development mode):
 
 ```bash
 #com.xceptance.xlt.output2disk.size = all
 com.xceptance.xlt.output2disk.size = 3
 ```
 
-Also, the dump mode (whether modified or only final pages are saved) may be defined: 
+Also, the dump mode (whether modified or only final pages are saved) may be defined:
 
 ```bash
 #com.xceptance.xlt.output2disk.onError.dumpMode = modifiedAndFinalPages
@@ -47,13 +47,13 @@ So if an error occurs during a transaction in a load test, `output2disk` is set 
 For each type of error, which is identified by its message and stacktrace, XLT tracks the current number of stored result browsers and stops writing down any new result browser once the configured maximum number is reached. However, you may also configure a time period to periodically clear the counter. Use this setting to limit the maximum number of result browsers for a given time period instead of the whole test runtime.
 
 ```bash
-# maximum number of different error types per agent  
+# maximum number of different error types per agent
 com.xceptance.xlt.output2disk.onError.limiter.maxDifferentErrors = 1000
 
-# number of result browsers per agent and type of error  
+# number of result browsers per agent and type of error
 com.xceptance.xlt.output2disk.onError.limiter.maxDumps = 10
 
-# period after which the result dump counter is reset to 0  
+# period after which the result dump counter is reset to 0
 com.xceptance.xlt.output2disk.onError.limiter.resetInterval = 1h 30m
 ```
 
@@ -131,7 +131,7 @@ A small menu at the top will give you the possibility to filter your output for 
 XLT Result Browser - Request Filters
 {{< /image >}}
 
-Click directly on a request item to see all details for this request. 
+Click directly on a request item to see all details for this request.
 
 ### Request and Response Information
 
@@ -158,7 +158,7 @@ Use the tabs at the top of the right-hand side output area to see the (raw) requ
 XLT Result Browser - Response Content
 {{< /image >}}
 
-This can be a lot of data that might not be structured at all, but the result browser provides two handy tools to enhance readability: 
+This can be a lot of data that might not be structured at all, but the result browser provides two handy tools to enhance readability:
 
 * by clicking _Beautify_ the indentations are corrected (or added, if there were none),
 
