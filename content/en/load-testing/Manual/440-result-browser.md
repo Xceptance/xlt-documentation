@@ -28,7 +28,7 @@ When running test cases, you can save the page output to disk. The relevant prop
 com.xceptance.xlt.output2disk = always
 ```
 
-By enabling page output to disk, a lot of data will be aggregated. To minimize this in load test mode, the property may be set to `onError` so that only the page output that resulted in an error is saved to disk. Since this single page on it's own is not always enough to determine what generated the error, we can also set the number of actions previous to the error that should be kept as part of the record (this is set to 3 by default and to `all` in development mode):
+By enabling page output to disk, a lot of data will be aggregated. To minimize this in load test mode, the property may be set to `onError` so that only the page output that resulted in an error is saved to disk. Since this single page on its own is not always enough to determine what generated the error, we can also set the number of actions previous to the error that should be kept as part of the record (this is set to 3 by default and to `all` in development mode):
 
 ```bash
 #com.xceptance.xlt.output2disk.size = all
@@ -57,7 +57,7 @@ com.xceptance.xlt.output2disk.onError.limiter.maxDumps = 10
 com.xceptance.xlt.output2disk.onError.limiter.resetInterval = 1h 30m
 ```
 
-When saving request data to disk for the result browser, the request body of POST requests is currently limited to 8K by default and will be cropped when exceeding this value. If this is still too low for your most complex requests, for instance Web service requests with large JSON bodies, you can also tailor this limit to your needs:
+When saving request data to disk for the result browser, the request body of POST requests is currently limited to 8K by default and will be cropped when exceeding this value. If this is still too low for your most complex requests, for instance Web service requests with large JSON bodies, you can also tailor this limit to your needs (in bytes):
 
 ```bash
 com.xceptance.xlt.output2disk.maxRequestBodySize = 12345
@@ -79,7 +79,7 @@ The easiest way to open the result browser is by opening the link at the bottom 
 Console output for local test run
 {{< /image >}}
 
-This is what you will use during test development, but also in load test setups there are results (result browsers) available (depending on your test settings, see above). In that case, all saved results can be found in the `<testsuite>/results` directory. See the lines below for details of the results subdirectory structure:
+This is handy during test development, but these results (result browsers) will also be available (depending on your test settings, see above) in your load test setups. All saved results can be found in the `<testsuite>/results` directory. The subdirectory structure is as follows:
 
 ```txt
 ---+ results
@@ -94,7 +94,7 @@ This is what you will use during test development, but also in load test setups 
                    `---- responses
 ```
 
-In the folders for each test run (`results/[testcase]/[virtual-user]/output/[transaction-ID]`), you find an `index.html` containing the _XLT Result Browser_. The result browser offers an integrated navigation to browse the complete page output of the transaction and to look at every single request in detail. The file `last.html` in the output folder `results/[testcase]/[virtual-user]/output` references the result browser for the last executed transaction of this virtual user.
+The saved page output is held in a folder that represents a specific execution of a test (`results/[testcase]/[virtual-user]/output/[transaction-ID]`). There you will find an `index.html` containing the _XLT Result Browser_. The result browser comes with an integrated navigation side bar to facilitate browsing the complete page output of the transaction and looking at every single request in detail. The file `last.html` in the output folder `results/[testcase]/[virtual-user]/output` references the result browser for the last executed transaction of this virtual user.
 
 The result browser navigation will only permit access to the pages of a transaction if they are directly related to actions. Therefore, defining actions correctly is very important to make the most effective use of the result browser. For details on how to structure test cases and create actions, also see [Basic Concepts](../030-concepts) and [Code Structuring Recommendations](../450-test-suites/#code-structuring-recommendations).
 
