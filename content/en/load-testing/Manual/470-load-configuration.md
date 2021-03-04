@@ -118,19 +118,8 @@ com.xceptance.xlt.loadtests.TAuthor.measurementPeriod = 1h
 The resulting load profile looks like this:
 
 
-```bash
-                                                 +---500u---------------------
-                                                 |
-                                     +---400u----+
-                                     |
-                         +---300u----+
-                         |
-             +---200u----+
-             |
- +---100u----+
- |
--+--<10min>--+--<10min>--+--<10min>--+--<10min>--+----------------------------+
-```
+{{< image src="user-manual/chart_users.svg" >}}
+{{< /image >}}
 
 But to just configure a simple ramp-up phase for the system to warm up, this setting is sufficient:
 
@@ -146,7 +135,7 @@ The variable profile comes in handy when you want to combine different load leve
 
 To define how the load parameter should vary over time, you need to specify a load function. You do so by defining a sequence of time/value pairs, each denoting a point in time when the slope of the load function changes. When you connect the dots by a straight line, the final shape of the load function evolves.
 
-Multiple time/value pairs can be specified by separating them using one or more spaces, commas, semi-colons, or tab characters. The time part can be given in all formats supported for "time periods":#time_period.
+Multiple time/value pairs can be specified by separating them using one or more spaces, commas, semi-colons, or tab characters. The time part can be given in all formats supported for [time periods](../480-test-suite-configuration/#time_period_values).
 
 {{< note notitle >}}Please do not use white-space characters (space or tab) to separate both the sub-parts of the time part and the various time/value parts, as this leads to ambiguities and misunderstandings. In order to avoid such situations, we strongly recommend to use either commas or semi-colons to separate the time/value parts.{{< /note >}}
 
