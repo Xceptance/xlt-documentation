@@ -15,11 +15,11 @@
    stroke-linejoin="round"
    xml:space="preserve"
    id="svg224"
-   sodipodi:docname="chart_users1.svg"
+   sodipodi:docname="chart_rampup.svg"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"><metadata
    id="metadata230"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
    id="defs228"><marker
      inkscape:stockid="Arrow1Sstart"
      orient="auto"
@@ -125,6 +125,30 @@
        id="path1048-5"
        d="M 0,0 5,-5 -12.5,0 5,5 Z"
        style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+       transform="matrix(-0.4,0,0,-0.4,-4,0)" /></marker><marker
+     inkscape:stockid="Arrow1Mstart"
+     orient="auto"
+     refY="0"
+     refX="0"
+     id="Arrow1Mstart-7-7"
+     style="overflow:visible"
+     inkscape:isstock="true"><path
+       inkscape:connector-curvature="0"
+       id="path1045-8-6"
+       d="M 0,0 5,-5 -12.5,0 5,5 Z"
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+       transform="matrix(0.4,0,0,0.4,4,0)" /></marker><marker
+     inkscape:stockid="Arrow1Mend"
+     orient="auto"
+     refY="0"
+     refX="0"
+     id="Arrow1Mend-5-3"
+     style="overflow:visible"
+     inkscape:isstock="true"><path
+       inkscape:connector-curvature="0"
+       id="path1048-7-1"
+       d="M 0,0 5,-5 -12.5,0 5,5 Z"
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
        transform="matrix(-0.4,0,0,-0.4,-4,0)" /></marker></defs><sodipodi:namedview
    pagecolor="#ffffff"
    bordercolor="#666666"
@@ -139,7 +163,7 @@
    id="namedview226"
    showgrid="false"
    inkscape:zoom="0.8114971"
-   inkscape:cx="130.57867"
+   inkscape:cx="209.90745"
    inkscape:cy="206.94769"
    inkscape:window-x="56"
    inkscape:window-y="27"
@@ -462,6 +486,7 @@
 
 
 
+
  <text
    class="TextShape"
    id="text110"
@@ -481,6 +506,7 @@
          stroke="none"
          id="tspan104"
          style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;">10</tspan></tspan></tspan></text>
+
 
 
 
@@ -506,6 +532,7 @@
 
 
 
+
  <text
    class="TextShape"
    id="text126"
@@ -525,6 +552,7 @@
          stroke="none"
          id="tspan120"
          style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;">30</tspan></tspan></tspan></text>
+
 
 
 
@@ -550,6 +578,7 @@
 
 
 
+
  <text
    class="TextShape"
    id="text142"
@@ -569,6 +598,7 @@
          stroke="none"
          id="tspan136"
          style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;">50</tspan></tspan></tspan></text>
+
 
 
 
@@ -594,157 +624,32 @@
 
 
 
- <text
-   class="TextShape"
-   id="text158"
-   style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-     class="TextParagraph"
-     font-family="Liberation Sans, sans-serif"
-     font-size="353px"
-     font-weight="400"
-     id="tspan156"
-     style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-       class="TextPosition"
-       x="1703"
-       y="7311"
-       id="tspan154"
-       style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-         fill="rgb(0,0,0)"
-         stroke="none"
-         id="tspan152"
-         style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;">0</tspan></tspan></tspan></text>
+
+ 
 
 
 
- <text
-   class="TextShape"
-   id="text166"
-   style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-     class="TextParagraph"
-     font-family="Liberation Sans, sans-serif"
-     font-size="353px"
-     font-weight="400"
-     id="tspan164"
-     style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-       class="TextPosition"
-       x="1332"
-       y="6175"
-       id="tspan162"
-       style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-         fill="rgb(0,0,0)"
-         stroke="none"
-         id="tspan160"
-         style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;">100</tspan></tspan></tspan></text>
+ 
 
 
 
- <text
-   class="TextShape"
-   id="text174"
-   style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-     class="TextParagraph"
-     font-family="Liberation Sans, sans-serif"
-     font-size="353px"
-     font-weight="400"
-     id="tspan172"
-     style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-       class="TextPosition"
-       x="1332"
-       y="5040"
-       id="tspan170"
-       style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-         fill="rgb(0,0,0)"
-         stroke="none"
-         id="tspan168"
-         style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;">200</tspan></tspan></tspan></text>
+ 
 
 
 
- <text
-   class="TextShape"
-   id="text182"
-   style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-     class="TextParagraph"
-     font-family="Liberation Sans, sans-serif"
-     font-size="353px"
-     font-weight="400"
-     id="tspan180"
-     style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-       class="TextPosition"
-       x="1332"
-       y="3904"
-       id="tspan178"
-       style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-         fill="rgb(0,0,0)"
-         stroke="none"
-         id="tspan176"
-         style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;">300</tspan></tspan></tspan></text>
+ 
 
 
 
- <text
-   class="TextShape"
-   id="text190"
-   style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-     class="TextParagraph"
-     font-family="Liberation Sans, sans-serif"
-     font-size="353px"
-     font-weight="400"
-     id="tspan188"
-     style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-       class="TextPosition"
-       x="1332"
-       y="2768"
-       id="tspan186"
-       style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-         fill="rgb(0,0,0)"
-         stroke="none"
-         id="tspan184"
-         style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;">400</tspan></tspan></tspan></text>
+ 
 
 
 
- <text
-   class="TextShape"
-   id="text198"
-   style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-     class="TextParagraph"
-     font-family="Liberation Sans, sans-serif"
-     font-size="353px"
-     font-weight="400"
-     id="tspan196"
-     style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-       class="TextPosition"
-       x="1332"
-       y="1633"
-       id="tspan194"
-       style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-         fill="rgb(0,0,0)"
-         stroke="none"
-         id="tspan192"
-         style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;">500</tspan></tspan></tspan></text>
+ 
 
 
 
- <text
-   class="TextShape"
-   id="text206"
-   style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-     class="TextParagraph"
-     font-family="Liberation Sans, sans-serif"
-     font-size="353px"
-     font-weight="400"
-     id="tspan204"
-     style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-       class="TextPosition"
-       x="1332"
-       y="498"
-       id="tspan202"
-       style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;"><tspan
-         fill="rgb(0,0,0)"
-         stroke="none"
-         id="tspan200"
-         style="-inkscape-font-specification:'Roboto Light';font-family:Roboto;font-weight:300;font-style:normal;font-stretch:normal;font-variant:normal;">600</tspan></tspan></tspan></text>
+ 
 
 
 
@@ -765,21 +670,8 @@
 
 
 
- <text
-   class="TextShape"
-   transform="rotate(-90 837 4405)"
-   id="text222"><tspan
-     class="TextParagraph"
-     font-family="Liberation Sans, sans-serif"
-     font-size="318px"
-     font-weight="400"
-     id="tspan220"
-     style="-inkscape-font-specification:Roboto;font-family:Roboto;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal"><tspan
-       class="TextPosition"
-       x="837"
-       y="4405"
-       id="tspan218"
-       style="-inkscape-font-specification:Roboto;font-family:Roboto;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal">users</tspan></tspan></text>
+
+ 
 
 
 
@@ -800,21 +692,8 @@
      style="font-size:211.66667175px;stroke-width:746.70709229;-inkscape-font-specification:Roboto;font-family:Roboto;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">10 min</tspan></text>
 
 
-<path
-   style="fill:none;stroke:#000000;stroke-width:0.98906356;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart-7);marker-end:url(#Arrow1Mend-5)"
-   d="M 1.9491291,10.177657 H 83.780075"
-   id="path1037-4"
-   inkscape:connector-curvature="0" /><text
-   xml:space="preserve"
-   style="font-style:normal;font-weight:normal;font-size:13.33333492px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:28.22200394"
-   x="27.950842"
-   y="6.078126"
-   id="text2834-1"><tspan
-     sodipodi:role="line"
-     id="tspan2832-8"
-     x="27.950842"
-     y="6.078126"
-     style="font-size:8.00000095px;stroke-width:28.22200394">10 min</tspan></text>
+
+
 
 
 <path
@@ -834,4 +713,163 @@
      style="font-size:211.66668701px;stroke-width:746.70721436;-inkscape-font-specification:Roboto;font-family:Roboto;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;">10 min</tspan></text>
 
 
+
+<text
+   y="8.1228345e-06"
+   x="1.0716093e-07"
+   class="TextShape"
+   id="text158"
+   style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.00000191px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"><tspan
+     class="TextParagraph"
+     font-size="353px"
+     font-weight="400"
+     id="tspan156"
+     style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:353.00003052px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"><tspan
+       class="TextPosition"
+       x="1703.0002"
+       y="7311.001"
+       id="tspan154"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"><tspan
+         id="tspan152"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';fill:#000000;stroke:none;stroke-width:1.00000012">0</tspan></tspan></tspan></text>
+<text
+   y="8.1228345e-06"
+   class="TextShape"
+   id="text166"
+   style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.00000191px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"
+   x="85.221695"><tspan
+     class="TextParagraph"
+     font-size="353px"
+     font-weight="400"
+     id="tspan164"
+     style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:353.00003052px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"><tspan
+       class="TextPosition"
+       x="1417.2218"
+       y="6175.0005"
+       id="tspan162"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"><tspan
+         id="tspan160"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';fill:#000000;stroke:none;stroke-width:1.00000012">0.2</tspan></tspan></tspan></text>
+<text
+   y="8.1228345e-06"
+   class="TextShape"
+   id="text174"
+   style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.00000191px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"
+   x="76.603523"><tspan
+     class="TextParagraph"
+     font-size="353px"
+     font-weight="400"
+     id="tspan172"
+     style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:353.00003052px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"><tspan
+       class="TextPosition"
+       x="1408.6036"
+       y="5040.0005"
+       id="tspan170"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"><tspan
+         id="tspan168"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';fill:#000000;stroke:none;stroke-width:1.00000012">0.4</tspan></tspan></tspan></text>
+<text
+   y="8.1228345e-06"
+   class="TextShape"
+   id="text182"
+   style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.00000191px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"
+   x="88.151871"><tspan
+     class="TextParagraph"
+     font-size="353px"
+     font-weight="400"
+     id="tspan180"
+     style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:353.00003052px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"><tspan
+       class="TextPosition"
+       x="1420.152"
+       y="3904.0007"
+       id="tspan178"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"><tspan
+         id="tspan176"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';fill:#000000;stroke:none;stroke-width:1.00000012">0.6</tspan></tspan></tspan></text>
+<text
+   y="8.1228345e-06"
+   class="TextShape"
+   id="text190"
+   style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.00000191px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"
+   x="87.979507"><tspan
+     class="TextParagraph"
+     font-size="353px"
+     font-weight="400"
+     id="tspan188"
+     style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:353.00003052px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"><tspan
+       class="TextPosition"
+       x="1419.9796"
+       y="2768.0002"
+       id="tspan186"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"><tspan
+         id="tspan184"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';fill:#000000;stroke:none;stroke-width:1.00000012">0.8</tspan></tspan></tspan></text>
+<text
+   y="8.1228345e-06"
+   class="TextShape"
+   id="text198"
+   style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.00000191px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"
+   x="91.082039"><tspan
+     class="TextParagraph"
+     font-size="353px"
+     font-weight="400"
+     id="tspan196"
+     style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:353.00003052px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"><tspan
+       class="TextPosition"
+       x="1423.0823"
+       y="1633.0002"
+       id="tspan194"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"><tspan
+         id="tspan192"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';fill:#000000;stroke:none;stroke-width:1.00000012">1.0</tspan></tspan></tspan></text>
+<text
+   y="8.1228345e-06"
+   class="TextShape"
+   id="text206"
+   style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.00000191px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"
+   x="85.221695"><tspan
+     class="TextParagraph"
+     font-size="353px"
+     font-weight="400"
+     id="tspan204"
+     style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:353.00003052px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"><tspan
+       class="TextPosition"
+       x="1417.2218"
+       y="498.00006"
+       id="tspan202"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:1.00000012"><tspan
+         id="tspan200"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';fill:#000000;stroke:none;stroke-width:1.00000012">1.2</tspan></tspan></tspan></text>
+<text
+   style="font-size:12.00000191px;stroke-width:1.00000012"
+   class="TextShape"
+   transform="rotate(-90)"
+   id="text222"
+   x="-5400.8613"
+   y="-3568.0005"><tspan
+     class="TextParagraph"
+     font-size="318px"
+     font-weight="400"
+     id="tspan220"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:318.00003052px;font-family:Roboto;-inkscape-font-specification:Roboto;stroke-width:1.00000012"><tspan
+       class="TextPosition"
+       x="-4563.8613"
+       y="837.00012"
+       id="tspan218"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:Roboto;stroke-width:1.00000012">load factor</tspan></tspan></text>
+<path
+   style="fill:none;stroke:#000000;stroke-width:0.9890638;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart-7-7);marker-end:url(#Arrow1Mend-5-3)"
+   d="M 1.9491294,10.177666 H 83.780085"
+   id="path1037-4"
+   inkscape:connector-curvature="0" /><text
+   xml:space="preserve"
+   style="font-style:normal;font-weight:normal;font-size:13.33333683px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:28.22200584"
+   x="27.950848"
+   y="6.078135"
+   id="text2834-1"><tspan
+     sodipodi:role="line"
+     id="tspan2832-8"
+     x="27.950848"
+     y="6.078135"
+     style="font-size:8.00000191px;stroke-width:28.22200584">10 min</tspan></text>
 </svg>

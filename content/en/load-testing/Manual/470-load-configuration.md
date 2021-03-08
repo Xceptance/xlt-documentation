@@ -50,8 +50,8 @@ The arrival rate load model is suited best if the load test is meant to prove th
 Quite often it is necessary to run tests not only at 100% of target load, but also at lower levels (for dry runs or first tests) or higher levels (for peak load tests). Since recalculating and adjusting the respective load profiles is inconvenient and error-prone, XLT supports a load factor. When taking advantage of it, you only need to configure the target numbers (100% of load) once and can then easily scale the load up or down as you like:
 
 ```bash
-## scale the load up to 150% for TAuthor and down to 10% for all other scenarios
-com.xceptance.xlt.loadtests.TAuthor.loadFactor = 1.5
+## scale the load up to 150% for TVisit and down to 10% for all other scenarios
+com.xceptance.xlt.loadtests.TVisit.loadFactor = 1.5
 com.xceptance.xlt.loadtests.default.loadFactor = 0.1
 ```
 
@@ -80,7 +80,12 @@ See below for their detailed explanation.
 
 ### Static Load Profile
 
-The load parameter remains unchanged during the test. This is the simplest profile. Note that the target systems must be able to handle the full load right from the beginning.
+The load parameter remains unchanged during the test. This is the simplest profile. Note that the target systems must be able to handle the full load right from the beginning. You only need to define the number of test users and the measurement period: 
+
+```bash
+com.xceptance.xlt.loadtests.TVisit.users = 500
+com.xceptance.xlt.loadtests.default.measurementPeriod = 1h
+```
 
 ### Ramp-up Load Profile
 
@@ -88,44 +93,47 @@ The load parameter is steadily increased. This allows the target system to warm 
 
 The ramp-up behavior of the load parameter can be controlled by the following settings:
 
-- **initial value**: the load parameter value to start with,
-- **target value**: the final load parameter as soon as the ramp-up period has finished,
-- **step size**: the increment added to the load parameter after each ramp-up step,
-- **ramp-up period**: the length of the ramp-up phase, i.e. the time to keep a certain
-load level,
-- **steady period**: the period to keep the current parameter value until the next ramp-up step
+- `rampUpPeriod`: the length of the ramp-up phase before the target load is reached,
+- `rampUpInitialValue`: the load parameter value to start with,
+- `loadFactor`: the final load parameter as soon as the ramp-up period has finished,
+- `rampUpSteadyPeriod`: the period to keep the current parameter value until the next ramp-up step, i.e. the time to keep a certain load level,
+- `rampUpStepSize`: the increment added to the load parameter after each ramp-up step.
 
-{{< note notitle>}}The steady period and the ramp-up period settings are mutually exclusive.{{< /note >}}
+{{% note notitle%}}The **rampUpPeriod** and the **rampUpSteadyPeriod** are mutually exclusive.{{% /note %}}
+{{< TODO >}}If both are set, which one takes precedence?{{< /TODO >}}
 
-Use the steady period if you want to keep the load at a certain level for a defined time, no matter how long the total ramp-up phase will be. Use the ramp-up period if you want to finish the ramp-up process after a certain amount of time, no matter how long the resulting steady phases will be.
+Use the steady period if you want to keep the load at a certain level for a defined time, no matter how long the total ramp-up phase will be. Use the ramp-up period if you want a steady ramp-up process that finishes after a defined amount of time.
 
 If an arrival rate is defined, the ramp-up parameters will be applied to the arrival rate. In case there's no such definition, they will be applied to the user count.
 
-For example, given a ramp-up step size of 100 users and a total of 500
-users as well as a steady period of 10 minutes, the framework would
-calculate the necessary over-all ramp-up period of 40 minutes. The
-corresponding configuration looks like so:
+For example, given a ramp-up step size of 0.2 as well as a steady period of 10 minutes and an initial value of 0.2, a target value of 500 users (at load factor 1.0) would result in an initial number of 100 users, which are increased in steps of 100, for which the framework would calculate a necessary over-all ramp-up period of 40 minutes. The corresponding configuration looks like so:
 
 ```bash
-com.xceptance.xlt.loadtests.TAuthor.users = 500
-#com.xceptance.xlt.loadtests.TAuthor.rampUpPeriod = 40m  
-com.xceptance.xlt.loadtests.TAuthor.rampUpSteadyPeriod = 10m  
-com.xceptance.xlt.loadtests.TAuthor.rampUpStepSize = 100  
-com.xceptance.xlt.loadtests.TAuthor.rampUpInitialUsers = 100  
-com.xceptance.xlt.loadtests.TAuthor.measurementPeriod = 1h
+com.xceptance.xlt.loadtests.TVisit.users = 500
+#com.xceptance.xlt.loadtests.TVisit.rampUpPeriod = 40m  
+com.xceptance.xlt.loadtests.TVisit.rampUpSteadyPeriod = 10m  
+com.xceptance.xlt.loadtests.TVisit.rampUpStepSize = 0.2  
+com.xceptance.xlt.loadtests.TVisit.rampUpInitialValue = 0.2  
+com.xceptance.xlt.loadtests.TVisit.measurementPeriod = 1h
 ```
 
 The resulting load profile looks like this:
 
-
-{{< image src="user-manual/chart_users.svg" >}}
+{{< image src="user-manual/chart_rampup.svg" >}}
 {{< /image >}}
 
 But to just configure a simple ramp-up phase for the system to warm up, this setting is sufficient:
 
 ```bash
-com.xceptance.xlt.loadtests.TAuthor.rampUpPeriod = 40m  
+com.xceptance.xlt.loadtests.TVisit.users = 500
+com.xceptance.xlt.loadtests.TVisit.rampUpPeriod = 40m  
+com.xceptance.xlt.loadtests.TVisit.measurementPeriod = 1h
 ```
+
+The resulting load profile then looks like this:
+
+{{< image src="user-manual/chart_rampup2.svg" >}}
+{{< /image >}}
 
 ### Variable Load Profile
 
@@ -156,16 +164,17 @@ Note that the time/value pairs must be sorted by their time in ascending order. 
 
 The execution of a test scenario during a load test can be divided into different phases: the initial delay, the warm-up period, the measurement period, and the shutdown period.
 
-The **initial delay** is required only if you don't want the test scenario to run right from the beginning of the load test, which is useful if this scenario depends on the results created by another test scenario. The initial delay is optional.
+The **initial delay** (`initialDelay`) is required only if you don't want the test scenario to run right from the beginning of the load test, which is useful if this scenario depends on the results created by another test scenario. The initial delay is _optional_.
 
-To minimize discrepancies that could be caused by applications and other systems starting up and not yet operating at an optimal level, you can define a **warm-up period** as the time given before any measurements are taken. The warm-up period is optional. Keep in mind that it creates a period of time during which you don't have any insights into your test. It is recommended to omit a warm-up period and modify the report later by specifying a time filter instead. This ensures that you don't miss any important information.
+To minimize discrepancies that could be caused by applications and other systems starting up and not yet operating at an optimal level, you can define a **warm-up period** (`warmUpPeriod`) as the time given before any measurements are taken. The warm-up period is _optional_. Keep in mind that it creates a period of time during which you don't have any insights into your test. It is recommended to omit a warm-up period and modify the report later by specifying a time filter instead. This ensures that you don't miss any important information.
 
-The test is measured during the **measurement period**. As suggested by its name, this is the only time period where measurements are taken. The measurement period is a required setting.
+The test is measured during the **measurement period** (`measurementPeriod`). As suggested by its name, this is the only time period where measurements are taken. The measurement period is a required setting.
 
-To ensure that a test scenario runs to completion even if the measurement period is over, you can set a **shutdown period** throughout which the users continue to run (without taking measurements though) and try to orderly finish their current iteration. This comes in handy when things need to be cleaned up at the end of the test scenario. As soon as the last iteration is finished, the users automatically stop. If, however, it's still not finished at the end of the shutdown period, the users will be forcibly terminated. The shutdown period is optional, but note that if no shutdown period is defined, the users are terminated right after the measurement period.
+To ensure that a test scenario runs to completion even if the measurement period is over, you can set a **shutdown period** (`shutdownPeriod`) throughout which the users continue to run (without taking measurements though) and try to orderly finish their current iteration. This comes in handy when things need to be cleaned up at the end of the test scenario. As soon as the last iteration is finished, the users automatically stop. If, however, it's still not finished at the end of the shutdown period, the users will be forcibly terminated. The shutdown period is optional, but note that if no shutdown period is defined, the users are terminated right after the measurement period.
 
-The **ramp-up period** (as defined above as part of the load profile) is commonly put into the warm-up period to ensure the system under test is working at an optimal level before any measurements are taken. That's up to you though - it might as well be interesting to measure the system performance during the ramp-up phase. In that case, a warm-up period mustn't be defined.
+The **ramp-up period** (`rampUpPeriod`, as defined above as part of the load profile) is commonly put into the warm-up period to ensure the system under test is working at an optimal level before any measurements are taken. That's up to you though - it might as well be interesting to measure the system performance during the ramp-up phase. In that case, a warm-up period mustn't be defined.
 
 The following figure displays the phases in relation to the total test time:
 
-{{< image src="user-manual/load-testprofile-configuration-small.jpg" large="user-manual/load-testprofile-configuration.png" >}}Load Test Profile Configuration{{< /image >}}
+{{< image src="user-manual/chart_testprofile.svg" >}}Load Test Profile Configuration
+{{< /image >}}
