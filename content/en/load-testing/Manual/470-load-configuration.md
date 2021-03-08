@@ -50,8 +50,8 @@ The arrival rate load model is suited best if the load test is meant to prove th
 Quite often it is necessary to run tests not only at 100% of target load, but also at lower levels (for dry runs or first tests) or higher levels (for peak load tests). Since recalculating and adjusting the respective load profiles is inconvenient and error-prone, XLT supports a load factor. When taking advantage of it, you only need to configure the target numbers (100% of load) once and can then easily scale the load up or down as you like:
 
 ```bash
-## scale the load up to 150% for TVisit and down to 10% for all other scenarios
-com.xceptance.xlt.loadtests.TVisit.loadFactor = 1.5
+## scale the load up to 150% for TAuthor and down to 10% for all other scenarios
+com.xceptance.xlt.loadtests.TAuthor.loadFactor = 1.5
 com.xceptance.xlt.loadtests.default.loadFactor = 0.1
 ```
 
@@ -106,14 +106,14 @@ Use the steady period if you want to keep the load at a certain level for a defi
 
 If an arrival rate is defined, the ramp-up parameters will be applied to the arrival rate. In case there's no such definition, they will be applied to the user count.
 
-For example, given a ramp-up step size of 0.2 as well as a steady period of 10 minutes and an initial value of 0.2, a target value of 500 users (at load factor 1.0) would result in an initial number of 100 users, which are increased in steps of 100, for which the framework would calculate a necessary over-all ramp-up period of 40 minutes. The corresponding configuration looks like so:
+For example, given a ramp-up step size of 100 users and a total of 500 users as well as a steady period of 10 minutes, the framework would calculate the necessary over-all ramp-up period of 40 minutes. The corresponding configuration looks like so:
 
 ```bash
 com.xceptance.xlt.loadtests.TVisit.users = 500
 #com.xceptance.xlt.loadtests.TVisit.rampUpPeriod = 40m  
 com.xceptance.xlt.loadtests.TVisit.rampUpSteadyPeriod = 10m  
-com.xceptance.xlt.loadtests.TVisit.rampUpStepSize = 0.2  
-com.xceptance.xlt.loadtests.TVisit.rampUpInitialValue = 0.2  
+com.xceptance.xlt.loadtests.TVisit.rampUpStepSize = 100  
+com.xceptance.xlt.loadtests.TVisit.rampUpInitialValue = 100  
 com.xceptance.xlt.loadtests.TVisit.measurementPeriod = 1h
 ```
 
