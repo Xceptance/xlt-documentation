@@ -50,8 +50,8 @@ The arrival rate load model is suited best if the load test is meant to prove th
 Quite often it is necessary to run tests not only at 100% of target load, but also at lower levels (for dry runs or first tests) or higher levels (for peak load tests). Since recalculating and adjusting the respective load profiles is inconvenient and error-prone, XLT supports a load factor. When taking advantage of it, you only need to configure the target numbers (100% of load) once and can then easily scale the load up or down as you like:
 
 ```bash
-## scale the load up to 150% for TAuthor and down to 10% for all other scenarios
-com.xceptance.xlt.loadtests.TAuthor.loadFactor = 1.5
+## scale the load up to 150% for TVisit and down to 10% for all other scenarios
+com.xceptance.xlt.loadtests.TVisit.loadFactor = 1.5
 com.xceptance.xlt.loadtests.default.loadFactor = 0.1
 ```
 
@@ -99,8 +99,7 @@ The ramp-up behavior of the load parameter can be controlled by the following se
 - `rampUpSteadyPeriod`: the period to keep the current parameter value until the next ramp-up step, i.e. the time to keep a certain load level,
 - `rampUpStepSize`: the increment added to the load parameter after each ramp-up step.
 
-{{% note notitle%}}The **rampUpPeriod** and the **rampUpSteadyPeriod** are mutually exclusive.{{% /note %}}
-{{< TODO >}}If both are set, which one takes precedence?{{< /TODO >}}
+{{% note notitle%}}The **rampUpPeriod** and the **rampUpSteadyPeriod** are mutually exclusive, i.e. they can't both be defined in the same load configuration.{{% /note %}}
 
 Use the steady period if you want to keep the load at a certain level for a defined time, no matter how long the total ramp-up phase will be. Use the ramp-up period if you want a steady ramp-up process that finishes after a defined amount of time.
 
