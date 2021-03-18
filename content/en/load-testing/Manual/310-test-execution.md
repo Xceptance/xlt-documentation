@@ -5,16 +5,16 @@ weight: 310
 type: docs
 
 description: >
-  How to execute tests.
+  The different modes available while executing a test using the MasterController.
 ---
 
-Running load tests consists of two steps:
+Running a load test consists of two steps:
 
-1. running the agent controllers and
-1. running the master controller.
+1. Starting the agent controllers
+1. Using the master controller
 
 
-## Running the Agent Controllers
+## Starting the Agent Controllers
 
 To start the agent controllers, open a command line window/console and type the following command sequence:
 
@@ -36,6 +36,8 @@ The agent controller starts up and listens on the specified port. The output loo
 - Started SslSocketConnector@0.0.0.0:8500
 ```
 
+Please note that this example demonstrates a local execution. When you want to run larger workloads at scale, you will likely use remote machines with agent controllers already installed and started.
+
 ## Running the Master Controller
 
 {{% note notitle %}}
@@ -44,10 +46,10 @@ Before starting the master controller, make sure all agent controllers are runni
 
 You can start the master controller in one of the following modes:
 
-* **Interactive mode**: typical sequence of steps to be executed to run a load test
-* **Auto mode**: load test is started automatically, without user interaction
-* **Non-interactive mode with scripted set of commands**: load test is started automatically and executes the set of commands given as start parameter
-* **Embedded mode**: running a load test where master controller and agent controller run inside the same JVM
+* **Interactive mode**: an interactive menu that allows all steps to be performed manually
+* **Auto mode**: a load test is started automatically and the appropriate steps are automatically performed
+* **Scripted commands**: a set of given commands is executed that allows better control of the automated execution
+* **Embedded mode**: this is not a full mode on its own, but rather a way of skipping the manual startup of an agent controller for quicker local testing
 
 ### Interactive Mode
 
@@ -62,7 +64,7 @@ cd <XLT>/bin
 Windows users have to use the appropriate `.cmd` file located in the same directory.
 {{% /note %}}
 
-A screen appears that displays the command line menu as below:
+A screen appears that displays the command line menu as shown below:
 
 ```dos
 Xceptance LoadTest 5.2.0
@@ -88,14 +90,14 @@ The following options are offered:
 * **Abort agents (a)**: Choose this option to immediately terminate any running load agent.
 
 * **Show agent report (r)**: The current status of the load agents can be monitored by choosing this option. Depending on the configuration, either a short summary (per test case) or a detailed list (per test user) is shown. In either case you get information about:
-	* test case name on which you are running the load test,
+	* the name of test cases being executed during the load test,
 	* how many users are running,
 	* how often a test case has been executed so far,
 	* how long it took on average to execute the test case,
 	* how many events and errors occurred, and
 	* the overall progress.
 
-* **Download test results (d)**: Each load agent writes log files and runtime data files. Choose this option to download this data from all configured agent controllers. After entering the _d_ command, a menu appears where you can choose the amount of data to download. Press 1, 2 or 3 here. The files are saved to a newly created directory at the location specified in `default.properties`. By default, the result directory is set to `<XLT>/results`. The name of the new directory is given by the current date and time, for example: `20190501-161718`.
+* **Download test results (d)**: Each load agent writes log files and runtime data files. Choose this option to download this data from all configured agent controllers. After entering the _d_ command, a menu will appear where you can choose the amount of data to download. Press 1, 2 or 3 here. The files are saved to a newly created directory at the location specified in `default.properties`. By default, the result directory is set to `<XLT>/results`. The name of the new directory is given by the current date and time, for example: `20190501-161718`.
 
 * **Create report (c)**: Generates a load test report of the last downloaded test results.
 
@@ -136,16 +138,16 @@ If the test suite files were uploaded and the load agents started successfully, 
 If the command is followed by the option `-report`, a load test and performance report will be automatically generated after the test has finished and the results have been downloaded.
 
 ```bash
-cd <XLT>\bin
-mastercontroller.cmd -auto -report
+cd <XLT>/bin
+./mastercontroller.sh -auto -report
 ```
 
 See below for what the screen displays in _auto_ mode:
 
 ```cmd
-Xceptance LoadTest 4.2.0
-Copyright (c) 2005-2012 Xceptance Software Technologies GmbH. All rights reserved.
-Basic License (5 virtual users). This license does not expire.
+Xceptance LoadTest 5.2.0
+Copyright (c) 2005-2020 Xceptance Software Technologies GmbH. All rights reserved.
+XLT is Open Source and available under the Apache License 2.0.
 
 Uploading test suite ...
     0% ... 10% ... 20% ... 30% ... 40% ... 50% ... 60% ... 70% ... 80% ... 100% - OK
@@ -155,29 +157,23 @@ Starting agents ...
 
 Test Case       State         Running Users   Iterations   Last Time   Avg. Time   Total Time      Events   Errors   Progress
 -------------   --------   ----------------   ----------   ---------   ---------   ----------   ---------   ------   --------
-TAddToCart_lw   Running        10 of     10            0      0,00 s      0,00 s      0:00:00           0        0         0%
 TAddToCart      Running        10 of     10            0      0,00 s      0,00 s      0:00:00           0        0         0%
 TCreateUser     Running        10 of     10            1      0,72 s      0,72 s      0:00:01           0        0         0%
 
 Test Case       State         Running Users   Iterations   Last Time   Avg. Time   Total Time      Events   Errors   Progress
 -------------   --------   ----------------   ----------   ---------   ---------   ----------   ---------   ------   --------
-TAddToCart_lw   Running        10 of     10           72      0,67 s      0,77 s      0:00:06           0        2         5%
 TAddToCart      Running        10 of     10           55      0,70 s      1,03 s      0:00:06           0        0         5%
 TCreateUser     Running        10 of     10           83      0,95 s      0,67 s      0:00:06           0       17         5%
-
 .
 .
 .
-
 Test Case       State         Running Users   Iterations   Last Time   Avg. Time   Total Time      Events   Errors   Progress
 -------------   --------   ----------------   ----------   ---------   ---------   ----------   ---------   ------   --------
-TAddToCart_lw   Running        10 of     10        1.472      0,69 s      0,66 s      0:01:37          17       65        96%
 TAddToCart      Running        10 of     10        1.412      0,66 s      0,68 s      0:01:37           0        0        96%
 TCreateUser     Running        10 of     10        1.525      0,91 s      0,63 s      0:01:37           0      316        96%
 
 Test Case       State         Running Users   Iterations   Last Time   Avg. Time   Total Time      Events   Errors   Progress
 -------------   --------   ----------------   ----------   ---------   ---------   ----------   ---------   ------   --------
-TAddToCart_lw   Finished        0 of     10        1.533      1,16 s      0,65 s      0:01:41          17       65       100%
 TAddToCart      Finished        0 of     10        1.476      1,17 s      0,68 s      0:01:40           0        0       100%
 TCreateUser     Finished        0 of     10        1.590      0,79 s      0,63 s      0:01:41           0      325       100%
 
@@ -188,10 +184,10 @@ Downloading test results ... (Please be patient, this might take a while)
 To abort the test prematurely, press {{< kbd >}}Ctrl{{< /kbd >}}+{{< kbd >}}C{{< /kbd >}} to terminate the master controller. This terminates all running agents as well and triggers the download of all test results generated so far. Note that it's therefore impossible to disconnect the master controller from the test cluster while keeping the load test running.
 
 {{% note notitle %}}
-For long-running load tests, it is recommended to run the test without the `-auto` option because this allows a disconnect from the test and inhibits accidental test termination.
+For long-running load tests, it is recommended to run the test without the `-auto` option. This makes it possible to disconnect from the test cluster without terminating the test and inhibits accidental test termination.
 {{% /note %}}
 
-### Non-interactive mode with scripted set of commands
+### Scripted Commands
 
 In order to better fit into highly-automated environments, XLT 5.2.1 improved the master controller in order to ease scripting. With the command line option `-c <commandList>` (or `--commands <commandList>`) you can specify which commands the master controller should execute on your behalf in a non-interactive fashion. This way, typical use cases can be scripted quite easily:
 
@@ -204,12 +200,10 @@ Please note that the master controller executes the commands exactly as specifie
 
 ### Embedded Mode
 
-Both interactive mode and auto mode can be combined with the command line option `-embedded`. It starts the master controller together with an internal agent controller.
+Both interactive mode and auto mode can be combined with the command line option `-embedded`. It starts the master controller as well as an internal agent controller.
 
-This is useful if you want to run load tests without a distributed load test environment, but run just one agent controller together with the master controller on the same machine. There's no need to manually start an agent controller before you run the load test, which facilitates the handling of automated load tests started from within a build process. This option is also recommended when playing around with the [posters demo](../../quick-start/30-demo-test-suite) for training purposes because it simplifies the process of running a load test.
+This is useful if you want to run load tests without a distributed load test environment. It will start a single agent controller as well as the master controller on the same machine. There's no need to manually start an agent controller before you run the load test, which facilitates the handling of automated load tests started from within a build process. This option is also recommended when playing around with the [Posters demo](../../quick-start/30-demo-test-suite) for training purposes because it simplifies the process of running a load test.
 
 {{% note notitle %}}
 When you use the `-embedded` option, the local agent controller settings will override the set of agent controllers configured in `mastercontroller.properies`.
 {{% /note %}}
-
-

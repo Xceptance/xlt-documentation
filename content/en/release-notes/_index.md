@@ -10,7 +10,4 @@ menu:
     weight: 50
 ---
 
-{{% pageinfo %}}
-Select a version to read the release information and get informed about new features, improvements, and fixes.
-{{% /pageinfo %}}
-
+Find the most important fixes, improvements, and features listed in the release notes. For additional information as well as a full list of changes, please refer to each individual release.

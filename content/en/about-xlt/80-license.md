@@ -6,7 +6,8 @@ type: docs
 weight: 80
 
 description: >
-    Information about XLT license and usage
+    XLT is licensed under Apache License 2.0. 
+
 ---
 
 Xceptance Load Test (XLT) is licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License Version 2.0</a>.

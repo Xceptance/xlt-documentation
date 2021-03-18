@@ -15,23 +15,35 @@
     
     h1, h2, h3, h4, h5, h6 {
         font-family: $font-family-headlines;
+        margin-bottom: 0.5rem;
     }
     h1, h2 {
         font-weight: 700;
+        margin-top: 2rem;
     }
-    h3, h4, h5, h6 {
+    h3 {
+        font-weight: 700;
+        margin-top: 2rem;
+        font-size:1.8rem;
+    }
+    h4, h5, h6 {
         font-weight: 400;
     }
     
     h2 {
         border-bottom: 1px solid $gray-400;
-        padding-bottom: 0.25em;
+        padding-bottom: 0.25rem;
+        font-size: 2.3rem;
+    }
+
+    h4 {
+        font-size:1.35rem;
     }
 }
 
 .breadcrumb {
     font-family: $font-family-sidebar;
-    font-size: 120%;
+    font-size: 100%;
 }
 
 .td-cover-block {
@@ -50,18 +62,20 @@
 .td-navbar {
     /* avoid that the text wraps */
     white-space: nowrap;
+    /* use narrow font */
+    font-family: $font-family-sidebar;
 }
 
 .td-sidebar-nav {
     font-family: $font-family-sidebar;
-    font-size: 120%;
+    font-size: 100%;
     
     ul {
         line-height: 1; /* ensure that when we wrap, the text does not look like a next logical line */
         
         .td-sidebar-link {
             padding-bottom: 0.7rem; /* give the links space in between to make wraped lines easier distinguishable from new lines*/
-            padding-left: 0.4em;
+            padding-left: 0rem;
             
             &:hover {
                 color: $link-hover-color; /* this is hardcoded to blue in docsy */
@@ -71,26 +85,32 @@
                 font-weight: 600;
             }
         }
-    }
-    
-    .td-sidebar-nav__section-title {
-        font-weight: 400;
-    }
-    
-    & > .td-sidebar-nav__section {
-        padding-top: 1.5rem;
-        padding-left: 0.7rem;
-    }
+    }    
+}
+
+.td-sidebar-nav > .td-sidebar-nav__section {
+    padding-top: 1.75rem;
+    padding-left: 1rem;
+}
+
+.pr-md-3 {
+    padding-right:0rem !important;
 }
 
 .td-toc {
     font-family: $font-family-sidebar;
-    font-size: 120%;
+    font-size: 100%;
     
     padding-top: 1.5rem;
     padding-left: 0.7rem;
+
+    border-left:0px;
     
     #TableOfContents {
+        //padding: 1rem;
+        //border: 1px solid $gray-400;
+        //border-radius: 4px;
+        //background-color: $gray-200;
         a {
             color: $text-color-light;
             
@@ -104,8 +124,9 @@
             li {
                 padding-bottom: 0.4rem;
                 
+                
                 li {
-                    padding-left: 0.3rem;
+                    padding-left: 0.6rem;
                 }
             }
             ul {
@@ -131,4 +152,15 @@
         content: "TODO";
         margin-right: 0.5rem;
     }
+}
+
+.alert {
+    //border: 1px solid;
+    border-radius: 4px;
+}
+
+.lead > code {
+    color: $primary;
+    font-size: 100%;
+    padding: 0px 2px;
 }
