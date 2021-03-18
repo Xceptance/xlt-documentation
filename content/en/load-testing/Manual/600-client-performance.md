@@ -18,7 +18,7 @@ Slow response times for the server are resulting in slow client performance obvi
 
 On the user's side, the important thing is to be able to interact with the application and reach the goal quickly, which means the loading must be fast enough for the user to stay focused and to be able to execute tasks quickly. 
 
-[Jakob Nielsen](https://www.nngroup.com/articles/response-times-3-important-limits/) offers some advice on perceived performance:
+<a href="https://www.nngroup.com/articles/response-times-3-important-limits/" target="_blank">Jakob Nielsen</a> offers some advice on perceived performance:
 
 * **0.1 second** is about the limit for having a visitor feel as though the system is reacting instantaneously.
 * **1.0 second** is about the limit for a visitor’s flow of thought to stay uninterrupted, even though the visitor will notice the delay.
@@ -102,7 +102,7 @@ XLT can be used to measure your application's client performance in terms of the
 To enable performance testing, you need to set up XLT's web driver (the default setting can be found in `default.properties` - we recommend you to create a dedicated client performance settings file like `test-cp.properties`, overwrite the settings there and then [use it as the test properties file](../480-test-suite-configuration/#test-properties-file)).
 
 {{% note title="Install ChromeDriver" %}}
-You might first need to install a suitable web driver, for example the ChromeDriver, which can be found [here](https://chromedriver.chromium.org/downloads) (pick your preferred version).
+You might first need to install a suitable web driver, for example the ChromeDriver, which can be found <a href="https://chromedriver.chromium.org/downloads" target="_blank">here</a> (pick your preferred version).
 {{% /note %}}
 
 ### Web Driver Settings for XLT

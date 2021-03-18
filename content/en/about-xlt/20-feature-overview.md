@@ -35,4 +35,4 @@ You might recall the Script Developer. An IDE integrated in Firefox to record, e
 
 If you still need the Script Developer, you can find it in older XLT version (4.13.X and older). XLT can still execute the exported XML test case definition files, but we strongly suggest to go the pure programming route.
 
-To replace the test automation concept in XLT, another project has been started: [Neodymium](https://github.com/Xceptance/neodymium-library), an open source test automation project that includes popular libraries for test automation and glues them nicely together. 
+To replace the test automation concept in XLT, another project has been started: <a href="https://github.com/Xceptance/neodymium-library" target="_blank">Neodymium</a>, an open source test automation project that includes popular libraries for test automation and glues them nicely together. 

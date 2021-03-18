@@ -10,7 +10,7 @@ description: >
 
 ## Integrating XLT into a Maven project
 
-Starting with XLT 5.0.x, XLT is published to [Maven Central](https://search.maven.org/artifact/com.xceptance/xlt). This facilitates updating the XLT version used in test projects. To integrate XLT into your Maven project, copy and paste the following into your `pom.xml` file:
+Starting with XLT 5.0.x, XLT is published to <a href="https://search.maven.org/artifact/com.xceptance/xlt" target="_blank">Maven Central</a>. This facilitates updating the XLT version used in test projects. To integrate XLT into your Maven project, copy and paste the following into your `pom.xml` file:
 
 ```xml
 <dependencies>

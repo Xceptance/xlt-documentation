@@ -46,6 +46,6 @@ This example test suite is targeting some example hosts, like the _Wikipedia API
 
 ## Getting Started
 
-The REST based Performance Test Suite is available on [Github](https://github.com/Xceptance/rest-load-test-suite).
+The REST based Performance Test Suite is available on <a href="https://github.com/Xceptance/rest-load-test-suite" target="_blank">Github</a>.
 
 The **README** contains many useful infos on XLT and how to work with this test suite, running your own load tests. 

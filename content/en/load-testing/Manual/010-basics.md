@@ -9,19 +9,25 @@ description: >
 ---
 
 ## What is XLT?
-XLT, the Xceptance Load Test tool, is a regression and performance testing tool. The first prototype was released in 2005 and it has been improving ever since. The tool is used on a daily basis at [Xceptance](https://xceptance.com), so our developers know what our load testers need.
+XLT, the Xceptance Load Test tool, is a regression and performance testing tool. The first prototype was released in 2005 and it has been improving ever since. The tool is used on a daily basis at <a href="https://xceptance.com" target="_blank">Xceptance</a>, so our developers know what our load testers need.
 
 XLT is platform independent (you can develop and run your tests on any platform with a JDK), and is open source, available under Apache License 2.0 starting February 2020. It is simple to deploy and highly scalable, provides ready to use reports (for single or multiple test runs, so you can also compare runs or see trends) and realtime test monitoring. Nothing about XLT is proprietary, no custom IDE is needed, you can just use your tool chain and existing knowledge.
 
 ## How does it work?
-With XLT, you can develop test cases and check them on your own machine, in your preferred IDE (see [Workflow](../050-workflow) for details how one usually does this). To generate enough load, usually a distributed load generation environment made up of a cluster of test machines is required.
+To use XLT, you will model the user actions you expect on your application as a set of JUnit tests, which you can develop and check on your own machine, in your preferred IDE (see [Workflow](../050-workflow) for details how one usually does this), using XLT libraries or even starting out with one of our [sample test suites](../../test-suites/). To consolidate your test cases, XLT builds a [result browser](../440-result-browser/) for every test run (no matter whether it was run from your IDE or in a load test environment) which gives you further insights into what happened, on top of all the info that is put to the console or logs. 
+
+Load testing means firing the tests from your test suite at your application, with many virtual users executing many tests at the same time (XLT allows you to [easily configure](../470-load-configuration) the exact load). So to run a load test, usually a distributed load generation environment made up of a cluster of test machines is required to generate enough load (XLT ships with tools to set up your cluster using [Google Cloud](../../advanced/060-cloud-setup/#google-cloud-gc) or [Amazon Web Services](../../advanced/060-cloud-setup/#amazon-web-services-aws)).
+
+The result of your load test is neatly summed up in a [test report](../530-reports), which may also contain links to the result browsers of single tests within this load test run (e.g. when something went wrong, so you can check the cause for any error). 
+
+## Load Test Components
 
 This is a rough overview of the components:
 
 {{< image src="user-manual/suite-controller-agents.png" >}}
 High Level Overview
 {{< /image >}}
-{{< TODO comment="Better and more stylish image" / >}}
+{{< TODO comment="Better and more stylish image... work in progress?" / >}}
 
 ### Test Suite
 A test suite contains your test code, data and configuration. Developed on your own machine, it can live in your favorite version control tool and be shared easily.
@@ -51,8 +57,8 @@ While you develop your test cases, the app you want to test should be in a stabl
 To run XLT, you will need the following:
 * latest JDK 8 (or 11)
 * Java IDE of choice
-* Latest [Apache Ant](https://ant.apache.org/)
-* [Maven](https://maven.apache.org/)
+* Latest <a href="https://ant.apache.org/" target="_blank">Apache Ant</a>
+* <a href="https://maven.apache.org/" target="_blank">Maven</a>
 
 Installing XLT is described in more detail [here](../040-installation).
 

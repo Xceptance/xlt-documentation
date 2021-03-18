@@ -178,10 +178,9 @@ The load test report lists the *Apdex* for each action.
 > about user satisfaction, by specifying a uniform way to analyze and
 > report on the degree to which measured performance meets user
 > expectations.*
-> \- [Wikipedia](https://en.wikipedia.org/wiki/Apdex)
+> \- <a href="https://en.wikipedia.org/wiki/Apdex" target="_blank">Wikipedia</a>
 
-In short, the Apdex calculation for an action is based on a single threshold value that denotes the boundary between satisfying and (more or less) unsatisfying action runtimes. From the number of actions that are either satisfying or unsatisfying, a metric is derived that expresses the achieved user satisfaction as a normalized value in the range \[0.0, 1.0\]. The Apdex specification also defines a rating of the achieved value, ranging from ‘Excellent’ to ‘Unacceptable’. Since Apdex values are normalized, they can be compared and sorted easily even if their underlying threshold is different. For more information see the [Apdex
-specification](http://www.apdex.org/index.php/alliance/specifications).
+In short, the Apdex calculation for an action is based on a single threshold value that denotes the boundary between satisfying and (more or less) unsatisfying action runtimes. From the number of actions that are either satisfying or unsatisfying, a metric is derived that expresses the achieved user satisfaction as a normalized value in the range \[0.0, 1.0\]. The Apdex specification also defines a rating of the achieved value, ranging from ‘Excellent’ to ‘Unacceptable’. Since Apdex values are normalized, they can be compared and sorted easily even if their underlying threshold is different. For more information see the <a href="http://www.apdex.org/index.php/alliance/specifications" target="_blank">Apdex specification</a>.
 
 
 See below for an example that shows the achieved Apdex for different actions for which thresholds of 1.0, 2.0, or 3.0 seconds were defined. When sorting by the Apdex (or just looking at the colored table cells), problematic actions can be identified easily:
