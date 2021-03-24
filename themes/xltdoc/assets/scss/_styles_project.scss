@@ -164,3 +164,8 @@
     font-size: 100%;
     padding: 0px 2px;
 }
+
+.highlight, .td-content > pre {
+    border: $card-border-width solid $card-border-color;
+    border-radius: $card-border-radius;
+}
