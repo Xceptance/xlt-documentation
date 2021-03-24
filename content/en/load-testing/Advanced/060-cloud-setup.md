@@ -8,6 +8,8 @@ description: >
   How to set up a cluster of test machines for load generation.
 ---
 
+XLT enables you to develop and run test scenarios for your application on your own machine, however a load test requires a lot of virtual users executing these test scenarios at the same time, which is a task best solved with the help of a distributed load generation environment, i.e. a cluster of test machines that generate the load that you defined. XLT ships with tools to help you set up your cluster using Google Cloud or Amazon Web Services - and this page contains an overview of how to use them.
+
 ## Google Cloud (GC)
 
 ### Setting up gcloud
@@ -26,7 +28,7 @@ Pick cloud project to use:
  Please enter your numeric choice:
 ```
 
-If you only have one project, gcloud init selects it for you.
+If you only have one project, `gcloud init` selects it for you.
 
 In order to create application default credentials for use by **gce_admin**, run:
 ```dos
@@ -34,15 +36,111 @@ gcloud auth application-default login
 ```
 In the browser, log in and accept the requested permissions.
 
-### Using XLT's gce_admin tool
+### Setting up XLT's gce_admin tool
 
-Before its first usage, the gce_admin tool needs to be configured. You can do this by editing `<XLT>/config/gce_admin.properties`. The most important property you need to set here is the project id, which should be the same project you set earlier in **gcloud**:
+Before its first usage, the gce_admin tool needs to be configured. You can do this by editing `<XLT>/config/gce_admin.properties`. The most important property you need to set here is the **project id**, which should be the same project you set earlier in gcloud:
 
 ```bash
 xlt.gce.projectId = my-project-1
 ```
 
-{{< TODO >}}available google instances with XLT?{{< /TODO >}}
+Right now there are no public gcloud images set up for using XLT, however you can build your own images using our public <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">XLT-Packer project</a>. It contains a nice readme on how to use it to create XLT images for the cloud vendor of your choice.
+
+To use the **gce_amin** tool to create, list and stop Google Cloud instances (which will run your [agent controllers](../../manual/010-basics/#acagent-controller) and [agents](../../manual/010-basics/#agents)), navigate to `<XLT>/bin/` and run:
+```dos
+./gce_admin.sh
+```
+(Windows users have to use the appropriate `.cmd` file located in the same directory.)
+
+You will see a prompt like this:
+```dos
+What do you want to do?
+ (l) List running instances
+ (c) Create managed instance groups
+ (d) Delete managed instance groups
+ (q) Quit
+=> 
+```
+
+### Creating GC instances
+
+When starting GC instances ({{< kbd >}}c{{</ kbd >}}), you first have to choose one or more regions to run the machines from. To select several regions, just seperate them by space, comma or semicolon: 
+
+```dos
+Select one or more regions:
+  (0) <all>
+  (1) Asia Pacific  - Taiwan         (asia-east1)
+  (2) Asia Pacific  - Hong Kong      (asia-east2)
+  (3) Asia Pacific  - Tokyo          (asia-northeast1)
+  (4) Asia Pacific  - Osaka          (asia-northeast2)
+  (5) Asia Pacific  - Seoul          (asia-northeast3)
+  (6) Asia Pacific  - Mumbai         (asia-south1)
+  (7) Asia Pacific  - Singapore      (asia-southeast1)
+  (8) Asia Pacific  - Jakarta        (asia-southeast2)
+  (9) Asia Pacific  - Sydney         (australia-southeast1)
+ (10) <unknown>     - <unknown>      (europe-central2)
+ (11) Europe        - Finland        (europe-north1)
+ (12) Europe        - Belgium        (europe-west1)
+ (13) Europe        - London         (europe-west2)
+ (14) Europe        - Frankfurt      (europe-west3)
+ (15) Europe        - Netherlands    (europe-west4)
+ (16) Europe        - Zurich         (europe-west6)
+ (17) Canada        - Montréal       (northamerica-northeast1)
+ (18) South America - Sao Paulo      (southamerica-east1)
+ (19) US            - Iowa           (us-central1)
+ (20) US            - South Carolina (us-east1)
+ (21) US            - North Virginia (us-east4)
+ (22) US            - Oregon         (us-west1)
+ (23) US            - California     (us-west2)
+ (24) US            - Utah           (us-west3)
+ (25) US            - Nevada         (us-west4)
+=> 19 20
+```
+
+After you specified the region(s), choose the template machine image to use from the list of available GC image templates (see above for how to set up images) by entering its id. You will then be prompted to enter the name of the instance group, which can contain lowercase letters and dashes. 
+
+```dos
+Enter the name of the instance group => my-test
+```
+
+Finally, you will be prompted to enter the number of instances to start. The entered number will be distributed as evenly as possible between the regions you selected, e.g. if you want to create 8 instances for 2 different regions, there will be 4 instances in each region. 
+
+**gce_admin** will summarize the chosen options for you to verify them before actually starting the instances:
+
+```dos
+  Regions             : us-central1, us-east1
+  Instance group name : my-test
+  Instance count      : 8
+  Instance template     
+     - Name           : xlt-5-3-0--xl
+     - Image          : projects/my-project1/global/images/xlt-5-3-0-v20210221
+     - Machine type   : custom-16-30720
+
+Do you want to create a managed instance group with the above configuration? [y/n] => 
+```
+
+### Listing Running GC instances
+
+To list running GC instances ({{< kbd >}}l{{</ kbd >}}), you first have to choose one or more regions from which to list machines. To select several regions, just seperate them by space, comma or semicolon. You will then be prompted to select a filter:
+
+```dos
+Filter instances by:
+ (0) (No filter)
+ (l) Name label
+ (g) Instance group
+=> 
+```
+
+Pick {{< kbd >}}g{{</ kbd >}}, then **gce_admin** will query all instance groups and show you the results:
+
+{{< TODO />}}
+
+### Deleting GC instances
+
+To terminate GC instances ({{< kbd >}}d{{</ kbd >}}), you also first have to choose one or more regions from which to delete machines. **gce_admin** will then search for managed instance groups in these regions and prompt you which instance group you want to delete. It will summarize the chosen options for you to verify them before actually deleting any instances:
+
+{{< TODO />}}
+
 
 ## Amazon Web Services (AWS)
 
@@ -112,7 +210,7 @@ Configuration:
   Key-pair          : xc-eu-central-1  
   User data         : <none>
 
-Do you want to run the instance(s) with the above configuration? [y/n] =\>
+Do you want to run the instance(s) with the above configuration? [y/n] =>
 ```
 
 #### Assigning a Key Pair 
