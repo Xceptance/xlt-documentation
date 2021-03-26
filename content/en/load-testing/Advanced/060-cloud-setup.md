@@ -8,7 +8,27 @@ description: >
   How to set up a cluster of test machines for load generation.
 ---
 
+## Introduction
+
 XLT enables you to develop and run test scenarios for your application on your own machine, however a load test requires a lot of virtual users executing these test scenarios at the same time, which is a task best solved with the help of a distributed load generation environment, i.e. a cluster of test machines that generate the load that you defined. XLT ships with tools to help you set up your cluster using Google Cloud or Amazon Web Services - and this page contains an overview of how to use them.
+
+### How to run load tests using a distributed environment
+
+The basic setup which you would use to run a load test using a distributed load generation environment looks like this:
+
+{{% TODO %}}image{{% /TODO %}}
+
+You have one machine running your [master controller](../../manual/010-basics/#mcmaster-controller), which manages several machines that are running the [agent controllers](../../manual/010-basics/#acagent-controller) and [agents](../../manual/010-basics/#agents). 
+
+Xceptance offers public image templates for AWS machines, or a <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">helpful tool</a> to build your own image templates both for GC and AWS machines. 
+
+Also, XLT ships with two little scripts that simplify the process of setting up and managing load test instances, as you might need quite a lot of them to generate your target load: **[gce_admin](#google-cloud-gc)** (for Google Cloud) and **[ec2_admin](#amazon-web-services-aws)** (for Amazon Web Services). They will help you to set up a cluster of test machines quickly, which you then just have to put into the master controller configuration: navigate to `<XLT>/config/mastercontroller.properties` on your MC machine, then enter the AC data the tools give you when you list the created instances. Now you are ready for load testing!
+
+{{% note title="How many machines do I need?" %}}
+The number and size of load testing machines you'll need for your setup is largely a matter of experience. A good rule of thumb to start with is: 1 AC machine per 5k target pageviews/hour. Check the agents' CPU usage after your load test in the [test report](../../manual/320-test-evaluation/#agents) so you know whether any adjustments are necessary.
+{{% /note %}}
+
+After your test has finished and the MC machine has downloaded all the data necessary for generating a test report, gce_admin/ec2_admin can also help you to easily shut down and delete all of your test machines.
 
 ## Google Cloud (GC)
 
@@ -36,6 +56,10 @@ gcloud auth application-default login
 ```
 In the browser, log in and accept the requested permissions.
 
+### Image Templates for Google Cloud 
+
+Right now there are no public gcloud images set up for using XLT, however you can build your own images using our public <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">XLT-Packer project</a>. It contains a nice readme on how to use it to create images set up for running XLT for the cloud vendor of your choice.
+
 ### Setting up XLT's gce_admin tool
 
 Before its first usage, the gce_admin tool needs to be configured. You can do this by editing `<XLT>/config/gce_admin.properties`. The most important property you need to set here is the **project id**, which should be the same project you set earlier in gcloud:
@@ -43,8 +67,6 @@ Before its first usage, the gce_admin tool needs to be configured. You can do th
 ```bash
 xlt.gce.projectId = my-project-1
 ```
-
-Right now there are no public gcloud images set up for using XLT, however you can build your own images using our public <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">XLT-Packer project</a>. It contains a nice readme on how to use it to create XLT images for the cloud vendor of your choice.
 
 To use the **gce_amin** tool to create, list and stop Google Cloud instances (which will run your [agent controllers](../../manual/010-basics/#acagent-controller) and [agents](../../manual/010-basics/#agents)), navigate to `<XLT>/bin/` and run:
 ```dos
@@ -131,16 +153,52 @@ Filter instances by:
 => 
 ```
 
-Pick {{< kbd >}}g{{</ kbd >}}, then **gce_admin** will query all instance groups and show you the results:
+Pick {{< kbd >}}g{{</ kbd >}}, then **gce_admin** will query all instance groups. If any instance group was found, you will be prompted again to pick one, several or all instance groups to list. **gce_admin** will then show you the results:
 
-{{< TODO />}}
+```dos
+--- Master controller configuration ---
+com.xceptance.xlt.mastercontroller.agentcontrollers.ac001_us-central1-b.url = https://35.255.200.18:8500
+com.xceptance.xlt.mastercontroller.agentcontrollers.ac002_us-central1-a.url = https://35.255.200.16:8500
+com.xceptance.xlt.mastercontroller.agentcontrollers.ac003_us-central1-c.url = https://35.255.200.11:8500
+com.xceptance.xlt.mastercontroller.agentcontrollers.ac004_us-central1-d.url = https://35.255.200.14:8500
+com.xceptance.xlt.mastercontroller.agentcontrollers.ac005_us-east1-b.url = https://35.255.200.17:8500
+com.xceptance.xlt.mastercontroller.agentcontrollers.ac006_us-east1-d.url = https://35.255.200.15:8500
+com.xceptance.xlt.mastercontroller.agentcontrollers.ac007_us-east1-c.url = https://35.255.200.12:8500
+com.xceptance.xlt.mastercontroller.agentcontrollers.ac008_us-east1-a.url = https://35.255.200.13:8500
+```
+
+You can just copy and paste the tool's output to your `mastercontroller.properties` to configure your environment, then you're ready for load testing.
 
 ### Deleting GC instances
 
-To terminate GC instances ({{< kbd >}}d{{</ kbd >}}), you also first have to choose one or more regions from which to delete machines. **gce_admin** will then search for managed instance groups in these regions and prompt you which instance group you want to delete. It will summarize the chosen options for you to verify them before actually deleting any instances:
+To terminate GC instances ({{< kbd >}}d{{</ kbd >}}), you also first have to choose one or more regions from which to delete machines. **gce_admin** will then search for managed instance groups in these regions and prompt you which instance group you want to delete (you can also choose several or all). It will summarize the chosen options for you to verify them before actually deleting any instances:
 
-{{< TODO />}}
+```dos
+Retrieving all managed instance groups in region 'us-central1' ... OK
 
+Select one or more instance groups:
+ (0) <all>
+ (1) my-project-ac-us-central1
+=> 1
+
+
+You selected to terminate *all* managed instances of group 'my-project-ac-us-central1'
+
+  in region: us-central1 ... OK
+
+    4 running and 0 pending instance(s) found.
+    --------------------------------------------------------------------------------------------------------------
+               Name                |      Host     |      Type       |  State  | Launch Time (UTC) | Uptime (h:mm)
+    --------------------------------------------------------------------------------------------------------------
+    my-project-ac-us-central1-6ncn | 35.255.200.18 | custom-16-30720 | RUNNING |  2021-01-01 01:01 |         02:51
+    my-project-ac-us-central1-78rr | 35.255.200.16 | custom-16-30720 | RUNNING |  2021-01-01 01:01 |         02:51
+    my-project-ac-us-central1-7ph9 | 35.255.200.11 | custom-16-30720 | RUNNING |  2021-01-01 01:01 |         02:51
+    my-project-ac-us-central1-8sf2 | 35.255.200.14 | custom-16-30720 | RUNNING |  2021-01-01 01:01 |         02:51
+    --------------------------------------------------------------------------------------------------------------
+
+
+Are you sure? [y/n] =>
+```
 
 ## Amazon Web Services (AWS)
 
@@ -151,6 +209,14 @@ The Amazon Elastic Compute Cloud service is another perfect fit for on-demand lo
 -   list running instances (and print a corresponding agent controller configuration ready to be pasted into `mastercontroller.properties`)
 
 Note that this tool is not intended to replace the <a href="http://aws.amazon.com/" target="_blank">AWS console</a> or similar tools.
+
+### Image Templates for AWS 
+
+Xceptance provides AMIs (Amazon Machine Images) for use with Amazon EC2. These AMIs are pre-packaged systems, which are optimized for load testing and have XLT already installed. Using one of these AMIs may save you the work to create and maintain your own AMIs, but may also impose additional costs. Amazon will charge you for the infrastructure usage. Make sure that your security group permits communication on port 8500. This is the XLT agent port on these machines. A list of current images can be found next to the release information on <a href="https://github.com/Xceptance/XLT/releases" target="_blank">GitHub</a>.
+
+In addition to that, you can also build your own images using our public <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">XLT-Packer project</a>. It contains a nice readme on how to use it to create images set up for running XLT for the cloud vendor of your choice.
+
+### Setting up XLT's ec2_admin tool
 
 Before you can use the tool, you have to configure it appropriately. There is a configuration file for this: `<xlt>/config/ec2_admin.properties`. The most important settings are your AWS credentials. These are needed to authorize any AWS operation, which is executed on your behalf.
 
