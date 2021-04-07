@@ -73,6 +73,6 @@ As you can see, the lines can have a different number of columns as they represe
 [^fn3]: This value is only present if the property `xlt.dns.recordAddresses` is set to true, otherwise it is blank.
 
 {{% note notitle %}}
-Note that the file format might be changed or extended in future XLT releases.
+Note that the file format might change or be extended in future XLT releases. We strive to keep the format compatible with older versions by only adding information.
 {{% /note %}}
 
