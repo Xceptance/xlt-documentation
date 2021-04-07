@@ -11,7 +11,7 @@ description: >
 
 ## Collected Values
 
-When running a load test, the XLT framework automatically collects a lot of information about the transactions, actions, and requests being executed and certain events. Additional custom timers and events can be added programmatically using the XLT API. Last but not least, each agent process monitors its resource usage and logs these values as well. All this data will later be the source for the XLT load test report.
+When running a load test, the XLT framework automatically collects a lot of information about the transactions, actions, and requests being executed as well as event information. Additional custom timers and events can be added programmatically using the XLT API. Last but not least, each agent process monitors its resource usage and logs these values.
 
 These values are stored -- separately for each test case and each virtual user -- in a file named `results/<TestCaseName>/<UserNo>/timers.csv`. Agent resource usage data will be written to `results/Agent-JVM-Monitor/0/timers.csv`. As the name already suggests, the file format is CSV. See the following snippet for an example:
 
@@ -38,7 +38,7 @@ A,Homepage,1537368092381,2380,false
 T,TVisit,1537368091385,3456,false,,
 ```
 
-As you can see, the lines can have a different number of columns as they represent different types of information. The following table explains the meaning of each column depending on the data record type:
+As you can see, the lines can have a different number of columns as they represent different types of information. The following table describes the meaning of every column depending on the data record type:
 
 | Column | Transaction | Action | Request | Page Load Timing | Custom Timer | Event | Agent Resource Usage | Custom Value |
 | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
