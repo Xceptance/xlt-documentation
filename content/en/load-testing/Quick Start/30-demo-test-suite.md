@@ -30,7 +30,7 @@ Since _Posters_ is a shop software, our test scenarios cover the typical use of 
 - *Visitor*: A visitor arrives on the homepage, and that's it.
 - *Browse*: The visitor arrives on the homepage, then starts browsing some main- and sub-categories and views a random product detail page.
 - *Search*: The visitor arrives on the homepage and enters one or more search phrases, then opens the product detail page for one of the search result items.
-- *Order*: A user creates an account. Then the visitor will *Browse*, add the the shown product to the cart, then enter the checkout process and finally submit the order.
+- *Order*: A user creates an account. Then the visitor will *Browse*, add the shown product to the cart, then enter the checkout process and finally submit the order.
 
 Note that the scenarios (especially the complex *Order* scenario) share some common steps, thus demonstrating how to reuse code across test cases.
 
