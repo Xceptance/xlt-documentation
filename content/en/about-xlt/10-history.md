@@ -13,6 +13,7 @@ description: >
 ---
 
 ## Why Have We Built Another Tool?
+There were many factors that motivated us to start another load test tool project and some of them are still valid.
 
 * *Platform independence*: We needed a tool that runs on any stack especially on Linux, because the cloud was becoming a thing
 * *Licensing*: Popular commercial tools at that time had poor licensing schemas which prohibited the use for consulting, but no customer wants to buy a tool for a one time testing gig
