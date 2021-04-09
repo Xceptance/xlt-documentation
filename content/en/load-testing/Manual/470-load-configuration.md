@@ -113,7 +113,7 @@ com.xceptance.xlt.loadtests.TVisit.users = 500
 com.xceptance.xlt.loadtests.TVisit.rampUpSteadyPeriod = 10m  
 com.xceptance.xlt.loadtests.TVisit.rampUpStepSize = 100  
 com.xceptance.xlt.loadtests.TVisit.rampUpInitialValue = 100  
-com.xceptance.xlt.loadtests.TVisit.measurementPeriod = 1h
+com.xceptance.xlt.loadtests.TVisit.measurementPeriod = 60m
 ```
 
 The resulting load profile looks like this:
@@ -126,7 +126,7 @@ But to just configure a simple ramp-up phase for the system to warm up, this set
 ```bash
 com.xceptance.xlt.loadtests.TVisit.users = 500
 com.xceptance.xlt.loadtests.TVisit.rampUpPeriod = 40m  
-com.xceptance.xlt.loadtests.TVisit.measurementPeriod = 1h
+com.xceptance.xlt.loadtests.TVisit.measurementPeriod = 60m
 ```
 
 The resulting load profile then looks like this:
