@@ -121,6 +121,10 @@ The resulting load profile looks like this:
 {{< image src="user-manual/chart_rampup.svg" max-width="80%" >}}
 {{< /image >}}
 
+{{% note notitle %}}
+Please keep in mind that times in the configuration can be specified in different ways. So instead of `60m` you can also write `1h` or `3600s`. `90m` can also be expressed as `1h 30m`. 
+{{% /note %}}
+
 But to just configure a simple ramp-up phase for the system to warm up, this setting is sufficient:
 
 ```bash
@@ -144,7 +148,9 @@ To define how the load parameter should vary over time, you need to specify a lo
 
 Multiple time/value pairs can be specified by separating them using one or more spaces, commas, semi-colons, or tab characters. The time part can be given in all formats supported for [time periods](../480-test-suite-configuration/#time_period_values).
 
-{{< note notitle >}}Please do not use white-space characters (space or tab) to separate both the sub-parts of the time part and the various time/value parts, as this leads to ambiguities and misunderstandings. In order to avoid such situations, we strongly recommend to use either commas or semi-colons to separate the time/value parts.{{< /note >}}
+{{% note notitle %}}
+Please do not use white-space characters (space or tab) to separate both the sub-parts of the time part and the various time/value parts, as this leads to ambiguities and misunderstandings. In order to avoid such situations, we strongly recommend to use either commas or semi-colons to separate the time/value parts.
+{{% /note %}}
 
 Imagine the following load function:
 
