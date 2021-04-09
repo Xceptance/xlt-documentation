@@ -118,7 +118,7 @@ com.xceptance.xlt.loadtests.TVisit.measurementPeriod = 60m
 
 The resulting load profile looks like this:
 
-{{< image src="user-manual/chart_rampup.svg" max-width="60%" >}}
+{{< image src="user-manual/chart_rampup.svg" max-width="80%" >}}
 {{< /image >}}
 
 But to just configure a simple ramp-up phase for the system to warm up, this setting is sufficient:
@@ -131,7 +131,7 @@ com.xceptance.xlt.loadtests.TVisit.measurementPeriod = 60m
 
 The resulting load profile then looks like this:
 
-{{< image src="user-manual/chart_rampup2.svg" max-width="60%" >}}
+{{< image src="user-manual/chart_rampup2.svg" max-width="80%" >}}
 {{< /image >}}
 
 ### Variable Load Profile
@@ -175,5 +175,5 @@ The **ramp-up period** (`rampUpPeriod`, as defined above as part of the load pro
 
 The following figure displays the phases in relation to the total test time:
 
-{{< image src="user-manual/chart_testprofile.svg" max-width="60%" >}}Load Test Profile Configuration
+{{< image src="user-manual/chart_testprofile.svg" max-width="80%" >}}Load Test Profile Configuration
 {{< /image >}}
