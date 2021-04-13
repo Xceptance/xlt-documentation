@@ -447,6 +447,26 @@ components will be gathered and assessed.
 Sometimes the term is used interchangeably to the generic term load
 test.
 
+## Percentiles
+A percentile defines how many numbers (measurements) fall below or above a certain percentage of the data and the maximum number of this data is taken as resulting value. For instance a P90 defines that out of 90% of all measurements (sorted ascending), the highest value for the first 90% of values is used as the result.
+
+For instance, when we have the measurements:
+
+```
+50, 60, 65, 100, 500, 15, 60, 10, 1000, 100
+```
+
+we sort them first:
+
+```
+10, 15, 50, 60, 60, 65, 100, 100, 500, 1000
+```
+
+and read the value at 90%, in this case the 9th value. If we have 100 values, it would be the 90th value, just to make it simpler. In this case, our P90 is 500. Our P50 would be 60 and so forth. The mean (average) is 196.
+
+As you can see, the P90 value more precisely shows that there is a problem with 10% of the measurements or requests or sessions, whatever value you are looking at.
+
+
 ## Property Files
 
 Property files are text files in a defined format which are used to save
