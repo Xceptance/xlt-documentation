@@ -10,7 +10,7 @@ description: >
 
 ## Test Development Essentials
 
-### The Environment: your Favorite IDE
+### Your IDE
 
 XLT test cases are usually developed in Java, as JUnit test cases. This means you can work locally, in your IDE of choice. You will probably start out with one of our [sample test suites](../../test-suites), which come pre-configured as Maven projects ready to be imported, built and run in your IDE of choice. You'll then want to adjust some test cases to your needs, and probably also add new ones. If you need to do some functional testing, test data may be added.
 
