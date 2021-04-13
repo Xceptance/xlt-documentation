@@ -5,7 +5,7 @@ type: docs
 weight: 60
 
 description: >
-    XLT supports the local development and execution of test scenarios for faster development and debugging.
+    XLT supports local development and execution of test scenarios for faster development and debugging
 ---
 
 ## Test Development Essentials
