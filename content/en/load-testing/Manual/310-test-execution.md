@@ -71,35 +71,57 @@ Xceptance LoadTest 5.2.0
 Copyright (c) 2005-2020 Xceptance Software Technologies GmbH. All rights reserved.
 XLT is Open Source and available under the Apache License 2.0.
 
-(u) Upload test suite
-(s) Start agents
-(a) Abort agents
-(r) Show agent status
-(d) Download test results
-(c) Create load test report
-(q) Quit
-=>
+
+Checking for agent controller reachability and XLT version conflicts ... OK
+
+
+-----------------------------------------------
+ What do you want to do?
+-----------------------------------------------
+ (u) Upload test suite
+ (s) Start test
+ (r) Report test status
+ (d) Download test results
+ (c) Create test report
+ (a) Abort test
+ (p) Ping agent controllers
+ (i) Show agent controller information
+ (q) Quit
+=> 
+
 ```
 
 The following options are offered:
 
-* **Upload agent files (u)**: Choose this option to upload your test suite (code, data, and configuration) to all configured agent controllers. This is required at the very beginning and each time you've modified your test suite. XLT will only upload files that have been changed to speed up testing.
+* **Upload test suite (u)**: Choose this option to upload your test suite (code, data, and configuration) to all configured agent controllers. This is required at the very beginning and each time you've modified your test suite. XLT will only upload files that have been changed to speed up testing.
 
-* **Start agents (s)**: All agent controllers will receive a start command to spin off an agent executing its configured tests. This effectively starts the load test.
-
-* **Abort agents (a)**: Choose this option to immediately terminate any running load agent.
+* **Start test (s)**: All agent controllers will receive a start command to spin off an agent executing its configured tests. This effectively starts the load test.
 
 * **Show agent report (r)**: The current status of the load agents can be monitored by choosing this option. Depending on the configuration, either a short summary (per test case) or a detailed list (per test user) is shown. In either case you get information about:
-	* the name of test cases being executed during the load test,
-	* how many users are running,
-	* how often a test case has been executed so far,
-	* how long it took on average to execute the test case,
-	* how many events and errors occurred, and
-	* the overall progress.
+    * the names of test cases being executed during the load test,
+    * how many users are running,
+    * how often a test case has been executed so far,
+    * how long it took on average to execute the test case,
+    * how many events and errors occurred, and
+    * the overall progress.
 
 * **Download test results (d)**: Each load agent writes log files and runtime data files. Choose this option to download this data from all configured agent controllers. After entering the _d_ command, a menu will appear where you can choose the amount of data to download. Press 1, 2 or 3 here. The files are saved to a newly created directory at the location specified in `default.properties`. By default, the result directory is set to `<XLT>/results`. The name of the new directory is given by the current date and time, for example: `20190501-161718`.
 
 * **Create report (c)**: Generates a load test report of the last downloaded test results.
+
+* **Abort test (a)**: Choose this option to immediately terminate any running load agent.
+
+* **Ping agent controllers (p)**: Pings all agent controllers once to check reachability.
+
+* **Show agent controller information (i)**: Displays basic information about the configured agent controllers (such as XLT/Java/System version, status). If a test suite has already been uploaded, this also displays an overview of the configured load profile, e.g.:
+```
+-------------------------------------------------------------------------------
+Test Case | Arrival Rate [eff] | Users [eff] | Load Factor | Measurement Period
+-------------------------------------------------------------------------------
+TVisit    |                n/a |       1..20 |         n/a |            0:10:00
+-------------------------------------------------------------------------------
+                             0 |          20 |         n/a |            0:10:00
+```
 
 * **Quit (q)**: Shuts down the master controller and closes its connections to the agent controllers. Note that this will _not_ stop any running load test. The load agents continue to execute the load test until they have finished. To regain control, reconnect to the test cluster by restarting the master controller.
 
@@ -108,6 +130,7 @@ As soon as you've chosen an option (by pressing the associated key followed by {
 A typical usage scenario for a load test is reflected by the order of the master controller menu items and might look like this:
 
 1. Upload the test suite (using (u) shortcut)
+1. Check the agent controller/test setup (using (i) shortcut)
 1. Start the agents (using (s) shortcut)
 1. Check the agent status regularly (using (r) shortcut)
 1. Download the test results as soon as the test has finished (using (d) shortcut)
