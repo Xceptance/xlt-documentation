@@ -160,7 +160,7 @@ com.xceptance.xlt.loadtests.default.loadFactor = 0/10, 60m/10, 60m/20, 70m/5
 
 This sequence of time/value pairs defines a function that keeps the load parameter constant at 10 for an hour, doubles it to 20 in an instant, then immediately starts decreasing it to 5 throughout the next ten minutes, and eventually keeps it at 5 for the remaining test.
 
-{{< image src="user-manual/chart_variable_load_factor.svg" max-width="60%" >}}
+{{< image src="user-manual/chart_variable_load_factor.svg" max-width="80%" >}}
 {{< /image >}}
 
 Note that the time/value pairs must be sorted by their time in ascending order. You can also specify two pairs for a certain time span, which is useful when you want the load parameter to change immediately. If no pair is given for time 0, a pair "0/1" will be inserted automatically (implicitly causing a ramp-up behavior). Finally, if the load test runs longer than the last pair, the last known load parameter value will be kept stable.
