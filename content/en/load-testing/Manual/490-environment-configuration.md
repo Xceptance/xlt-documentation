@@ -123,11 +123,13 @@ This property lists the locations of the agent controllers you want the master c
 ```bash
 com.xceptance.xlt.mastercontroller.agentcontrollers.<id>.url = <url>
 com.xceptance.xlt.mastercontroller.agentcontrollers.<id>.weight = <weight>
+com.xceptance.xlt.mastercontroller.agentcontrollers.<id>.agents = <count>
+com.xceptance.xlt.mastercontroller.agentcontrollers.<id>.clientPerformance = <true|false>
 ```
 
-You can use any name for the `<id>` part of the property. It is recommended to resort to name and number combinations, such as ac1 for the first agent controller or blade01-02 for the second agent controller on the first blade. Make sure the agent controller IDs differ from each other because otherwise a later entry in the file will overwrite the previous one.
+You can use any name for the `<id>` part of the property. It is recommended to resort to name and number combinations, such as _ac1_ for the first agent controller or _blade01-02_ for the second agent controller on the first blade. Make sure the agent controller IDs differ from each other because otherwise a later entry in the file will overwrite the previous one.
 
-To simultaneously use load machines of different power in a load cluster, you may specify a "weight" for each agent controller (defaults to 1 if not set). This value influences the automatic distribution of virtual users across the load machines. A machine with a weight of 3 gets 3 times the load of a machine with a weight of 1.
+To simultaneously use load machines of different power in a load cluster, you may specify a `weight` for each agent controller (defaults to 1 if not set). This value influences the automatic distribution of virtual users across the load machines. A machine with a weight of 3 gets 3 times the load of a machine with a weight of 1.
 
 ```bash
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac1.url = https://localhost:8500
@@ -135,6 +137,36 @@ com.xceptance.xlt.mastercontroller.agentcontrollers.ac1.weight = 1
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac2.url = https://localhost:8501
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac2.weight = 3
 ```
+
+By default, an agent controller starts one agent process to generate the load. If the work should be done by more than one agent process, specify the desired agent count with the `agents` property.
+
+In case the configured agent controller is capable to run client-performance tests, you might set the property `clientPerformance` to `true`. Otherwise, leave it out completely or set its value to `false`.
+
+The default values for both the `weight` and `agents` properties can be redefined with the following properties:
+
+```bash
+com.xceptance.xlt.mastercontroller.agentcontrollers.default.weight = 2
+com.xceptance.xlt.mastercontroller.agentcontrollers.default.agents = 4
+```
+
+### Ignoring Unreachable Agent Controllers
+
+By default, if the master controller is not able to establish a connection to *all* configured agent controllers when starting a load test, the load test is aborted by default. This can be annoying (especially for automated/unattended load tests), as in this case there is no load test result at all, although, for example, only one agent controller was temporarily down and the remaining agent controllers could easily have handled the load.
+
+How the master controller should behave in such a situation can be configured in the `mastercontroller.properties` file, making it start the load test anyway:
+
+```bash
+com.xceptance.xlt.mastercontroller.ignoreUnreachableAgentControllers = true
+```
+ 
+This setting can also be specified on the master controller’s command line:
+
+```bash
+./mastercontroller.sh -auto \
+-Dcom.xceptance.xlt.mastercontroller.ignoreUnreachableAgentControllers=true
+```
+
+Note that this setting is effective only when running the master controller in [non-interactive mode](../310-test-execution/#auto-mode) (i.e. when started with `-auto`).
 
 ### Parallel Communication with Remote Agent Controllers
 
@@ -147,28 +179,6 @@ com.xceptance.xlt.mastercontroller.maxParallelDownloads = 8
 ```
 
 In the given example, the master controller will run at most 4 uploads and 8 downloads concurrently. Configuring different values for upload and download is useful only for network connections with an asymmetric inbound/outbound bandwidth. By default, no limits are applied.
-
-### Ignoring Unreachable Agent Controllers
-
-By default, if the master controller is not able to establish a connection to *all* configured agent controllers when starting a load test, the load test is aborted by default. This can be annoying (especially for automated/unattended load tests), as in this case there is no load test result at all, although, for example, only one agent controller was temporarily down and the remaining agent controllers could easily have
-handled the load.
-
-How the master controller should behave in such a situation can be configured in the `mastercontroller.properties` file, making it start the load test anyway:
-
-```bash
-com.xceptance.xlt.mastercontroller.ignoreUnreachableAgentControllers = true
-```
-
-This setting can also be specified on the master controller’s command
-line:
-
-```bash
-./mastercontroller.sh -auto \
--Dcom.xceptance.xlt.mastercontroller.ignoreUnreachableAgentControllers=true
-```
-
-Note that this setting is effective only when running the master
-controller in *non-interactive* mode (i.e. when started with `-auto`).
 
 ### Proxy Configuration
 

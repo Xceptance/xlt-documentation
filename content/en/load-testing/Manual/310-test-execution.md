@@ -38,10 +38,22 @@ The agent controller starts up and listens on the specified port. The output loo
 
 Please note that this example demonstrates a local execution. When you want to run larger workloads at scale, you will likely use remote machines with agent controllers already installed and started.
 
+## Configuring the Agent Controllers
+
+The master controller must be configured to control the agent controllers that you have started (exception: in [embedded mode](#embedded-mode) the master controller will start its own agent controller). For that you need to add all agent controllers' URLs to `<XLT>/config/mastercontroller.properties`, like this:
+
+```
+com.xceptance.xlt.mastercontroller.agentcontrollers.<id>.url = <url>
+```
+
+For `<id>` use any proper name. Typically, the URLs look like this: `https://<host>:8500`
+
+For more information on configuration options for agent controllers, see [Environment Configuration](../490-environment-configuration/#agent-controllers).
+
 ## Running the Master Controller
 
 {{% note notitle %}}
-Before starting the master controller, make sure all agent controllers are running on all respective load test machines. The master controller cannot be started if the agent controllers aren't running. Also check that the test suite has been compiled successfully to avoid errors when uploading it.
+Before starting the master controller, make sure all agent controllers are running on all respective load test machines. The master controller cannot be started if the configured agent controllers aren't running. Also check that the test suite has been compiled successfully to avoid errors when uploading it.
 {{% /note %}}
 
 You can start the master controller in one of the following modes:
@@ -88,7 +100,6 @@ Checking for agent controller reachability and XLT version conflicts ... OK
  (i) Show agent controller information
  (q) Quit
 => 
-
 ```
 
 The following options are offered:
