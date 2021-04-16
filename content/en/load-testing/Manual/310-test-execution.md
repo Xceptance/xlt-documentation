@@ -38,7 +38,7 @@ The agent controller starts up and listens on the specified port. The output loo
 
 Please note that this example demonstrates a local execution. When you want to run larger workloads at scale, you will likely use remote machines with agent controllers already installed and started.
 
-## Configuring the Agent Controllers
+## Configuring the Master Controller
 
 The master controller must be configured to control the agent controllers that you have started (exception: in [embedded mode](#embedded-mode) the master controller will start its own agent controller). For that you need to add all agent controllers' URLs to `<XLT>/config/mastercontroller.properties`, like this:
 
@@ -53,7 +53,7 @@ For more information on configuration options for agent controllers, see [Enviro
 ## Running the Master Controller
 
 {{% note notitle %}}
-Before starting the master controller, make sure all agent controllers are running on all respective load test machines. The master controller cannot be started if the configured agent controllers aren't running. Also check that the test suite has been compiled successfully to avoid errors when uploading it.
+Before starting the master controller, make sure all agent controllers are running on all respective load test machines. The master controller cannot be started if the configured agent controllers aren't running. Also check that the test suite has been compiled successfully to avoid errors when starting the test.
 {{% /note %}}
 
 You can start the master controller in one of the following modes:
@@ -106,7 +106,7 @@ The following options are offered:
 
 * **Upload test suite (u)**: Choose this option to upload your test suite (code, data, and configuration) to all configured agent controllers. This is required at the very beginning and each time you've modified your test suite. XLT will only upload files that have been changed to speed up testing.
 
-* **Start test (s)**: All agent controllers will receive a start command to spin off an agent executing its configured tests. This effectively starts the load test.
+* **Start test (s)**: All agent controllers will receive a start command to spin off one or more agents (depending on configuration) executing the configured tests. This effectively starts the load test.
 
 * **Show agent report (r)**: The current status of the load agents can be monitored by choosing this option. Depending on the configuration, either a short summary (per test case) or a detailed list (per test user) is shown. In either case you get information about:
     * the names of test cases being executed during the load test,
