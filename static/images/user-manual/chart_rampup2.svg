@@ -13,7 +13,7 @@
    version="1.1"
    xml:space="preserve"
    id="svg224"
-   sodipodi:docname="chart_rampup2.svg"
+   sodipodi:docname="chart_rampup2_new.svg"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    style="stroke-width:28.22200012;stroke-linejoin:round"><metadata
    id="metadata230"><rdf:RDF><cc:Work
@@ -141,7 +141,7 @@
    id="namedview226"
    showgrid="false"
    inkscape:zoom="0.5738151"
-   inkscape:cx="181.71134"
+   inkscape:cx="630.48913"
    inkscape:cy="308.70418"
    inkscape:window-x="56"
    inkscape:window-y="27"
@@ -156,7 +156,13 @@
    id="path2"
    inkscape:connector-curvature="0"
    style="fill:#ffffff;stroke:none;stroke-width:58.08367157" />
- <path
+ <rect
+   style="opacity:1;vector-effect:none;fill:#c5000b;fill-opacity:0.13809524;stroke:none;stroke-width:26.45833206;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+   id="rect951"
+   width="18321.197"
+   height="14019.771"
+   x="4400.2158"
+   y="777.96173" /><path
    d="M 18142.143,14799.791 H 4400.2158 V 780.01981 H 31884.07 V 14799.791 Z"
    id="path4"
    inkscape:connector-curvature="0"
@@ -410,6 +416,7 @@
 
 
 
+
  <text
    class="TextShape"
    id="text110"
@@ -427,6 +434,7 @@
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:58.08367157"><tspan
          id="tspan104"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';fill:#000000;stroke:none;stroke-width:58.08367157">10</tspan></tspan></tspan></text>
+
 
 
 
@@ -456,6 +464,7 @@
 
 
 
+
  <text
    class="TextShape"
    id="text126"
@@ -473,6 +482,7 @@
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:58.08367157"><tspan
          id="tspan120"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';fill:#000000;stroke:none;stroke-width:58.08367157">30</tspan></tspan></tspan></text>
+
 
 
 
@@ -502,6 +512,7 @@
 
 
 
+
  <text
    class="TextShape"
    id="text142"
@@ -525,6 +536,7 @@
 
 
 
+
  <text
    class="TextShape"
    id="text150"
@@ -542,6 +554,7 @@
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:58.08367157"><tspan
          id="tspan144"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';fill:#000000;stroke:none;stroke-width:58.08367157">60</tspan></tspan></tspan></text>
+
 
 
 
@@ -604,6 +617,7 @@
 
 
 
+
  
 
 
@@ -618,19 +632,20 @@
 
 <path
    style="fill:none;stroke:#000000;stroke-width:54.65485382;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart-5);marker-end:url(#Arrow1Mend-7)"
-   d="M 4434.621,10154.949 H 22646.879"
+   d="M 4434.621,2482.0278 H 22646.879"
    id="path1037-3"
    inkscape:connector-curvature="0" /><text
    xml:space="preserve"
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:726.05169678px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1536.79736328"
-   x="12867.415"
-   y="9920.2705"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:726.05169678px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1536.79736328"
+   x="13528.2"
+   y="2194.4365"
    id="text2834-8"><tspan
      sodipodi:role="line"
      id="tspan2832-83"
-     x="12867.415"
-     y="9920.2705"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:435.63101196px;font-family:Roboto;-inkscape-font-specification:Roboto;stroke-width:1536.79736328">40 min</tspan></text>
+     x="13528.2"
+     y="2194.4365"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:435.63101196px;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:center;text-anchor:middle;stroke-width:1536.79736328">rampUpPeriod</tspan></text>
+
 
 
 
@@ -655,6 +670,7 @@
          id="tspan152"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';fill:#000000;stroke:none;stroke-width:2.05809927">0</tspan></tspan></tspan></text>
 
+
 <text
    y="0.00059846044"
    class="TextShape"
@@ -673,6 +689,7 @@
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:2.05809927"><tspan
          id="tspan160"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';fill:#000000;stroke:none;stroke-width:2.05809927">100</tspan></tspan></tspan></text>
+
 
 <text
    y="0.00059846044"
@@ -693,6 +710,7 @@
          id="tspan168"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';fill:#000000;stroke:none;stroke-width:2.05809927">200</tspan></tspan></tspan></text>
 
+
 <text
    y="0.00059846044"
    class="TextShape"
@@ -711,6 +729,7 @@
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:2.05809927"><tspan
          id="tspan176"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';fill:#000000;stroke:none;stroke-width:2.05809927">300</tspan></tspan></tspan></text>
+
 
 <text
    y="0.00059846044"
@@ -731,6 +750,7 @@
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';fill:#000000;stroke:none;stroke-width:2.05809927"
          id="tspan2316">400</tspan></tspan></tspan></text>
 
+
 <text
    y="0.00059846044"
    class="TextShape"
@@ -749,6 +769,7 @@
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';stroke-width:2.05809927"><tspan
          id="tspan192"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';fill:#000000;stroke:none;stroke-width:2.05809927">500</tspan></tspan></tspan></text>
+
 
 <text
    y="0.00059846044"
@@ -769,6 +790,7 @@
          id="tspan200"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:'Roboto Light';fill:#000000;stroke:none;stroke-width:2.05809927">600</tspan></tspan></tspan></text>
 
+
 <text
    style="font-size:24.69719505px;stroke-width:2.05809927"
    class="TextShape"
@@ -787,6 +809,7 @@
        id="tspan218"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:Roboto;stroke-width:2.05809927">users</tspan></tspan></text>
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:27.44132996px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:58.08369064"
@@ -798,5 +821,6 @@
      x="57.525612"
      y="12.509388"
      style="font-size:16.46479797px;stroke-width:58.08369064">10 min</tspan></text>
+
 
 </svg>
