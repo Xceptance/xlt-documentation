@@ -41,7 +41,9 @@ The number of concurrent users is not static and influenced by the response time
 
 The relationship between response times and concurrent users can lead to situations where more users cause more load and thus longer response times. Even more users are now required to run, which eventually causes the server to be overloaded. Even though this behavior appears pretty aggressive, it's more realistic. Compare it to a real-world situation where a lot of people are waiting at the check-out counter at the end of a store, but customers are still coming in because they don't know that people are waiting already. Or transferred to the online world: when you visit an online presence, you won't know the system behaves poorly until you start acting.
 
-{{< note notitle >}}Even though the number of concurrent users is rather a result than an input value for this load model, XLT requires you to specify a user count. This number is used to impose an upper limit to the number of concurrent users, which may help you to restrict the total load on the system if you want to avoid a total overload resulting from the feedback loop.{{< /note >}}
+{{% note notitle %}}
+Even though the number of concurrent users is rather a result than an input value for this load model, XLT requires you to specify a user count. This number is used to impose an upper limit to the number of concurrent users, which may help you to restrict the total load on the system if you want to avoid a total overload resulting from the feedback loop.
+{{% /note %}}
 
 The arrival rate load model is suited best if the load test is meant to prove that a system is in fact able to handle a certain number of transactions per hour. Since this is the primary purpose of load and performance testing, this model is the best choice for most of your test tasks.
 
