@@ -27,13 +27,20 @@ cd <XLT>/bin
 Windows users have to use the appropriate `.cmd` file located in the same directory.
 {{% /note %}}
 
-The agent controller starts up and listens on the specified port. The output looks like this:
+The agent controller starts up and listens on the specified port. In default logging mode (WARN) there will be no output at agentcontroller startup as long as everything works fine. With [info logging enabled](../490-environment-configuration/#agent-controller-logging), the output looks like this:
 
 ```dos
-- Using "C:\Users\AppData\Local\Temp\vfs_cache" as temporary files store.
-- Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
-- jetty-6.1.19
-- Started SslSocketConnector@0.0.0.0:8500
+- start servlet
+- Logging initialized @639ms to org.eclipse.jetty.util.log.Slf4jLog
+ jetty-9.4.31.v20200723; built: 2020-07-23T17:57:36.812Z; git: 450ba27947e13e66baa8cd1ce7e85a4461cacc1d; jvm 11.0.10+9-Ubuntu-0ubuntu1.20.04
+- DefaultSessionIdManager workerName=node0
+- No SessionScavenger set, using defaults
+- node0 Scavenging every 600000ms
+- Started o.e.j.s.ServletContextHandler@6440112d{/,null,AVAILABLE}
+- x509=X509@f68f0dc(xlt,h=[],w=[]) for SslContextFactory@d2de489[provider=null,keyStore=file:///home/julia/Projects/xlt/xlt-5.2.0/config/keystore,trustStore=null]
+- Started ServerConnector@4116aac9{SSL, (ssl, http/1.1)}{0.0.0.0:8500}
+- Started @1029ms
+
 ```
 
 Please note that this example demonstrates a local execution. When you want to run larger workloads at scale, you will likely use remote machines with agent controllers already installed and started.
