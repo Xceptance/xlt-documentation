@@ -23,8 +23,8 @@ cd <XLT>/bin
 ./agentcontroller.sh
 ```
 
-{{% note notitle %}}
-Windows users have to use the appropriate `.cmd` file located in the same directory.
+{{% note title="Microsoft Windows" %}}
+Windows users have to use the respective `.cmd` files. The documentation will not highlight this difference all the time and mostly use UNIX path and file name references.
 {{% /note %}}
 
 The agent controller starts up and listens on the specified port. In default logging mode (WARN) there will be no output at agentcontroller startup as long as everything works fine. With [info logging enabled](../490-environment-configuration/#agent-controller-logging), the output looks like this:
