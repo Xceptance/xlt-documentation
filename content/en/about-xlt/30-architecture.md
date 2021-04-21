@@ -17,11 +17,11 @@ All about mastercontroller, agents, suites, and monitoring if relevant.
 * Test Suite Code and configuration
 * Mastercontroller (MC)
 * Agents -The test executors
+* Deployments
 * Grafana for realtime test information
  
 * MC is loosely coupled
 * Use another one to interact or continue
-
 
 
 * No reason to stay connected
