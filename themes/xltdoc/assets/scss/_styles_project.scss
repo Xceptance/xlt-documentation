@@ -164,3 +164,13 @@
     font-size: 100%;
     padding: 0px 2px;
 }
+
+.td-content li > a > code {
+    color: inherit;
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    word-break: normal;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 0.25rem;
+}

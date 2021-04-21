@@ -40,10 +40,10 @@ As your XLT test suites live in your favorite Java IDE, you will have the same o
 The `<testsuite>/src` directory contains subdirectories with the structure of your Java packages in the standard manner. Your source code should be organized in main packages. Typically, one individual package should be created for test cases, for actions, for flows, for validators, and for utility classes. The resulting directory structure might look like this:
 
 * [`<testsuite>/src/.../actions`](#action)
-* `<testsuite>/src/.../flow`
+* [`<testsuite>/src/.../flow`](#flow)
 * `<testsuite>/src/.../util`
-* `<testsuite>/src/.../validators`
-* `<testsuite>/src/.../tests`
+* [`<testsuite>/src/.../validators`](#validation)
+* [`<testsuite>/src/.../tests`](#test-case)
 
 Additionally, there are XLT-specific framework conditions for structuring your test suite and test cases. In particular, each test case is necessarily implemented as a Java class extending an XLT test case class, which is approach-specific and contains one method annotated with `@Test`. See the following sections for such specific framework conditions and further ways of structuring.
 

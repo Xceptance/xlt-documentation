@@ -240,7 +240,7 @@ com.xceptance.xlt.loadtests.TAuthor.warmUpPeriod = 30s
 com.xceptance.xlt.loadtests.TAuthor.measurementPeriod = 10m 0s
 ```
 
-All time period values can be specified in one of the following formats:
+All <a name="time_period_values">time period values</a> can be specified in one of the following formats:
 
 - total number of seconds: 1234s or 1234
 - natural style: 0h 12m 0s, 0h 12m, 12m 0s, or 12m

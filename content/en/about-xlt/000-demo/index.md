@@ -99,6 +99,10 @@ An `image` that gets its source from *src* and is linked to *large* if this is g
 Another image that is not linked to anything. If it is too wide for the window, it will be scaled by CSS (`.img-fluid, .td-content img {max-width: 100%}`). 
 {{< /image >}}
 
+{{< image src="user-manual/chart_variable_load_factor.svg" max-width="60%">}}
+To just use CSS scaling like above for your large image, but think it looks nicer in the text at less than 100% width, you can just pass a max-width parameter to the shortcode that will be included in the image CSS.
+{{< /image >}}
+
 {{< image src="releasenotes/agents-gc-and-cpu-information-small.jpg" large="releasenotes/agents-gc-and-cpu-information-large.png" >}}
 Yet another image. Note how neatly you can navigate between the large versions of all images of this page.
 {{< /image >}}
