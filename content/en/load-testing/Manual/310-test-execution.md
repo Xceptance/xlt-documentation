@@ -5,7 +5,7 @@ weight: 310
 type: docs
 
 description: >
-  The different modes available while executing a test using the MasterController.
+  How to configure and execute tests using the MasterController.
 ---
 
 Running a load test consists of two steps:
