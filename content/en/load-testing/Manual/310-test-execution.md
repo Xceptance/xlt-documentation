@@ -7,11 +7,34 @@ type: docs
 description: >
   How to configure and execute tests using the MasterController.
 ---
+## Motivation
 
-Running a load test consists of two steps:
+This chapter explains the setup of a base test environment and how to configure the components of XLT correctly. Please ensure you have read the [Architecture]({{< relref "30-architecture" >}}) guide first. You should also have created a test suite by now (see [Test Development](../060-test-development)) and likely configured a first test (see [Test Setup](../300-test-setup)).
 
-1. Starting the agent controllers
-1. Using the master controller
+The setup of the environment and execution of a test consists of the following steps:
+
+1. Starting the agent controllers,
+1. Configuring the master controller,
+1. Running the test.
+
+### Environments
+
+As a quick reminder, XLT can be deployed in different ways. 
+
+#### Local and Embedded
+When the mastercontroller brings up an agentcontroller as part of the test automatically, we call that embedded mode. This is mostly suitable for development and very small tests, such as dry-runs or single user validations.
+
+It is not a must that this runs on a local machine, but it is rather typical.
+
+#### Local
+You can start one or more agentcontrollers locally and connect your mastercontroller to them. This is similar to the embedded mode but the agentcontroller startup was manual. This can be used for small tests or verification of the XLT installation or setup in general.
+
+You can also start agentcontrollers manually on remote machines, if you like.
+
+#### Remote and Distributed
+This is the most typical XLT deployment. There are many agentcontrollers avaialble and already started and configured, you only have to tell your mastercontroller which of these should take part in the next load test run.
+
+The remote machines can be in the cloud, in your own datacenter, machines under your table, or all together.
 
 
 ## Starting the Agent Controllers
