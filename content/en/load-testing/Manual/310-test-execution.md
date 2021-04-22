@@ -32,7 +32,7 @@ You can start one or more agentcontrollers locally and connect your mastercontro
 You can also start agentcontrollers manually on remote machines, if you like.
 
 #### Remote and Distributed
-This is the most typical XLT deployment. There are many agentcontrollers avaialble and already started and configured, you only have to tell your mastercontroller which of these should take part in the next load test run.
+This is the most typical XLT deployment. There are many agentcontrollers available and already started and configured, you only have to tell your mastercontroller which of these should take part in the next load test run.
 
 The remote machines can be in the cloud, in your own datacenter, machines under your table, or all together.
 
@@ -41,7 +41,7 @@ The remote machines can be in the cloud, in your own datacenter, machines under 
 
 For local execution at small scale or dry-runs, you can run the agentcontroller and hence the agents locally. To start the agent controllers manually, open a command line window/console and type the following commands:
 
-```bash
+```dos
 cd <XLT>/bin
 ./agentcontroller.sh
 ```
@@ -52,7 +52,7 @@ Windows users have to use the respective `.cmd` files. The documentation will no
 
 The agent controller starts and listens on the specified port. With default logging enabled (WARN), no messages are printed during the agentcontroller startup. When [info logging is enabled](../490-environment-configuration/#agent-controller-logging), the output might look like this:
 
-```bash
+```dos
 [15:00:51,452] INFO  [main] - start servlet
 [15:00:51,509] INFO  [main] - Logging initialized @946ms to org.eclipse.jetty.util.log.Slf4jLog
 [15:00:51,665] INFO  [main] - jetty-9.4.35.v20201120; built: 2020-11-20T21:17:03.964Z; git: bdc54f03a5e0a7e280fab27f55c3c75ee8da89fb; jvm 11.0.8+10
@@ -100,7 +100,7 @@ You can use the mastercontroller in three different ways, depending on how you w
 Each of the modes can be either executed with a set of configured agentcontrollers or using the embedded and automatically started agentcontroller (embedded mode).
 
 {{% note notitle %}}
-Before starting the mastercontroller, make sure all agentcontrollers are running on all  load test machines. The mastercontroller cannot be started if the configured agentcontrollers aren't running or reachable. 
+Before starting the mastercontroller, make sure all agentcontrollers are running on all load test machines. The mastercontroller cannot be started if the configured agentcontrollers aren't running or reachable. 
 
 Also check that the test suite has been compiled successfully to avoid errors when starting the test.
 {{% /note %}}

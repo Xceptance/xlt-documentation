@@ -48,7 +48,7 @@ com.xceptance.xlt.agentcontroller.host = myhost.domain.com
 
 ### Relocating the Agent Directory
 
-The agent root directory, which is `<xlt>/agent` by default, can be changed by setting the corresponding property. It might be unlikely that you have to use this option.
+The agent root directory, which is `<xlt>/agent` by default, can be changed by setting the corresponding property. It is unlikely that you have to use this option.
 
 ```bash
 ## The directory where the separate agent directories are located.
@@ -71,7 +71,7 @@ Also see <a href="http://logging.apache.org/log4j/1.2/apidocs/index.html" target
 
 ### Configuration via Command Line
 
-The agentcontroller is also fully configurable via command line parameters. Any setting contained in `<xlt>/config/agentcontroller.properties` can also be specified on the agentcontroller’s command line using the `-Dkey=value` syntax. Which matches the Java system property argument.
+The agentcontroller is also fully configurable via command line parameters. Any setting contained in `<xlt>/config/agentcontroller.properties` can also be specified on the agentcontroller’s command line using the `-Dkey=value` syntax, which matches the Java system property argument:
 
 ```bash
 ./agentcontroller.sh -Dcom.xceptance.xlt.agentcontroller.port=8501
@@ -219,7 +219,7 @@ For the agentcontrollers, specify the new directory in `config/agentcontroller.p
 com.xceptance.xlt.agentcontroller.tempdir = /var/tmp/xlt
 ```
 
-The mastercontroller change the setting in `config/mastercontroller.properties`:
+For the mastercontroller, change the setting in `config/mastercontroller.properties`:
 
 ```bash
 com.xceptance.xlt.mastercontroller.tempdir = /var/tmp/xlt
