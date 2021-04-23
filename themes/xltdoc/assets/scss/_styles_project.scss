@@ -174,3 +174,9 @@
     background-color: rgba(0, 0, 0, 0.05);
     border-radius: 0.25rem;
 }
+
+.td-content > pre {
+    
+    border: $card-border-width solid $card-border-color;
+    @include border-radius($card-border-radius);
+}
