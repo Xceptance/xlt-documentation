@@ -1,19 +1,19 @@
 ---
-title: "Results"
+title: "Result Data"
 
 weight: 150
 type: docs
 
 description: >
-  All about the results you get during the test as well as after. Documents
-  the result formats and gives more insights into possible additional data.
+  All about the XLT result data which is captured during a performance test and stored in CSV files
+  for further processing.
 ---
 
 ## Collected Values
 
-When running a load test, the XLT framework automatically collects a lot of information about the transactions, actions, and requests being executed as well as event information. Additional custom timers and events can be added programmatically using the XLT API. Last but not least, each agent process monitors its resource usage and logs these values.
+During a load test, the XLT framework automatically collects a lot of information about transactions, actions, and requests being executed as well as event information. Additional custom timers can be added programmatically using the XLT API. Last but not least, each agent process monitors its resource usage and logs these values.
 
-These values are stored -- separately for each test case and each virtual user -- in a file named `results/<TestCaseName>/<UserNo>/timers.csv`. Agent resource usage data will be written to `results/Agent-JVM-Monitor/0/timers.csv`. As the name already suggests, the file format is CSV. See the following snippet for an example:
+These values are stored separately for each test case and each virtual user in files named `results/<TestCaseName>/<UserNo>/timers.csv`. Agent resource usage data is written to `results/Agent-JVM-Monitor/0/timers.csv`. As the name already suggests, the file format is CSV. See the following example:
 
 ```csv
 R,Homepage.1,1537368092399,1506,false,767,6248,200,https://localhost:8443/posters/,text/html,0,145,0,670,215,885,,,,,4,,
@@ -38,11 +38,11 @@ A,Homepage,1537368092381,2380,false
 T,TVisit,1537368091385,3456,false,,
 ```
 
-As you can see, the lines can have a different number of columns as they represent different types of information. The following table describes the meaning of every column depending on the data record type:
+The lines have a different number of columns as they represent different types of information. The following table describes the meaning of every column depending on the data record type:
 
 | Column | Transaction | Action | Request | Page Load Timing | Custom Timer | Event | Agent Resource Usage | Custom Value |
 | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
-|**1**|type code (T)|type code (A)|type code (R)|type code (P)|type code (C)|type code (E)|type code (J)|type code (V)|
+|**1**|T|A|R|P|C|E|J|V|
 |**2**|name|name|name|name|name|name|agent name|name|
 |**3**|start time|start time|start time|start time|start time|time|time|time|
 |**4**|run time [ms]|run time [ms]|run time [ms]|run time [ms]|run time [ms]|transaction name|current CPU usage (agent only) [%]|value|
@@ -73,6 +73,6 @@ As you can see, the lines can have a different number of columns as they represe
 [^fn3]: This value is only present if the property `xlt.dns.recordAddresses` is set to true, otherwise it is blank.
 
 {{% note notitle %}}
-Note that the file format might change or be extended in future XLT releases. We strive to keep the format compatible with older versions by only adding information.
+Note that the file format might change or be extended in future XLT releases. We strive to keep the format compatible with older versions by only adding information, but cannot guarantee it.
 {{% /note %}}
 
