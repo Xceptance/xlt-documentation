@@ -6,7 +6,7 @@ type: docs
 weight: 100
 
 description: >
-    How to Watch Perfomance Data Instantly in Your Graphite Instance
+    How to Watch Performance Data Instantly in Your Graphite Instance
 ---
 
 While a load test is running, the master controller only shows basic information about the load test status. In interactive mode, you could at least download [intermediate results](../../manual/320-test-evaluation#intermediate-results) and generate a report to see how the test is going. In automated environments, however, you would have to wait until the test run is finished before you can actually do so.
