@@ -4,6 +4,7 @@ title: "Open Data"
 type: docs
 
 weight: 160
+draft: true
 
 description: >
     About the basic data concepts of XLT, also mention archiving of reports and results
