@@ -448,7 +448,7 @@ Sometimes the term is used interchangeably to the generic term load
 test.
 
 ## Percentiles
-A percentile defines how many numbers (measurements) fall below or above a certain percentage of the data and the maximum number of this data is taken as resulting value. For instance a P90 defines that out of 90% of all measurements (sorted ascending), the highest value for the first 90% of values is used as the result.
+A percentile defines how many numbers (measurements) fall below or above a certain percentage of the data and the maximum number of this data is taken as the resulting value. For instance a P90 defines that out of 90% of all measurements (sorted ascending), the highest value for the first 90% of values is used as the result.
 
 For instance, when we have the measurements:
 
