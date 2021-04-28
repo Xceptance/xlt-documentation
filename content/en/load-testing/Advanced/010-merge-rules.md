@@ -27,14 +27,14 @@ R,AddToCart.3,...,200,https://host.info/Product-Popup,text/html,...
 A,AddToCart,1566427027660,373,false
 ```
 
-So this quick example shows you, that we will likely see three different urls. Activities later are displayed under one single name in the report: `AddToCart`. The index number might also show up, depending on the initial merge rules your test suite contains. If the index is also used, you will see three lines but because the index might or might not be stable, the data might not be consistent.
+So this quick example shows you that we will likely see three different urls. Activities later are displayed under one single name in the report: `AddToCart`. The index number might also show up, depending on the initial merge rules your test suite contains. If the index is also used, you will see three lines, but because the index might or might not be stable, the data might not be consistent.
 
 Rules are defined to match and capture data for a new name. Merge rules are numbered (positive numbers, gaps are permitted) and are executed in the order defined by these numbers. They apply only to requests and can evaluate several data points per request, such as the url, the name, agent details, the content type, the status code, and more. The rules use regular expressions for maximum versatility.
 
 So before crunching data, know what the request does. Decide what details you need, then carefully craft the regex. Avoid separating good from bad (e.g. splitting requests with errors from the ones that ran fine but did basically the same). Better use merge rules to split up redirects or sum up identical requests. Don't destroy the context (action) except when not needed. And keep in mind that the smaller the bucket gets, the fewer data it contains, the less meaningful the measured data becomes.
 
 {{% note notitle %}}
-More about the collected data and the CSV format can be found in the chapter [Results](../150-results).
+More about the collected data and the CSV format can be found in the chapter [Result Data](../150-results).
 {{% /note %}}
 
 ## Parameters
@@ -101,7 +101,7 @@ To give you an understanding how merge rules work, let's have a look at a more s
 Request Table w/o Merge Rules
 {{< /image >}}
 
-Everything is named similarly, we have no idea what happened here, and whether it's good or bad. So let's have a closer look at these requests that were measured. It is always an url and a name. The name is determined as explained above (based on the action naming and index).
+Everything is named similarly, we have no idea what happened here, and whether it's good or bad. So let's have a closer look at these requests that were measured. It is always a url and a name. The name is determined as explained above (based on the action naming and index).
 
 ```txt
 # COLogin.1
@@ -125,7 +125,7 @@ https://host.net/Sites-Foo-Site/en_US/COBilling-UpdateSummary
 https://host.net/Sites-Foo-Site/en_US/__Analytics-Start?res=1600x1200
 ```
 
-### Step 1: Split Off `___Analytics-Start`
+### Step 1: Split Off _\_\_Analytics-Start_
 
 First, let's split off the _\_\_Analytics-Start_ requests we have seen in COLogin.6. These probably show up in other parts of your load test as well, and as they have no real connection to your login process, let's just sum them all up in one big _Analytics_ bucket. For this, we need a rule that matches urls with _\_\_Analytics-Start_ before _'?'_.
 
@@ -209,7 +209,7 @@ We sorted our COLogin requests to show up in the requests table plus, there will
 Requests table, organised with merge rules
 {{< /image >}}
 
-This sorted table gives is more precise data and helps to pinpoint higher runtimes.
+This sorted table gives us more precise data and helps to pinpoint higher runtimes.
 
 As you see, this is not rocket science, but requires careful thinking and some regular expression knowledge (see <a href="https://xkcd.com/208/" target="_blank">regular expression skills</a>).
 
@@ -250,7 +250,7 @@ Only when you need parts of the data, you have to use a capture group and access
 
 ```txt
 # Capture only what is needed
-...requestMergeRules.60.newName = <{n:2}>
+...requestMergeRules.60.newName = <{n:1}>
 ...requestMergeRules.60.namePattern = ^Homepage (.*)$
 ``` 
 
@@ -274,7 +274,7 @@ If you define rules that will never match, because your data does not contain su
 
 #### Expensive Regular Expressions
 
-Regular expression can be very expensive, especially when they only slowly can see if data matches. For more information, see this example <a href="https://www.loggly.com/blog/regexes-the-bad-better-best/" target="_blank">Regexes: The Bad, the Better, and the Best</a>.
+Regular expressions can be very expensive, especially when they only slowly can see if data matches. For more information, see this example: <a href="https://www.loggly.com/blog/regexes-the-bad-better-best/" target="_blank">Regexes: The Bad, the Better, and the Best</a>.
 
 #### Terminating Early
 
