@@ -265,15 +265,13 @@ When using the new EC2 management UI for XLT, please be aware of the fact that X
 
 When starting new AWS machine instances via `ec2_admin` ({{< kbd >}}r{{</ kbd >}}), you first have to choose a _region_ to run the machines from, and an _availability zone_ for this region (optional). 
 
-The `ec2_admin` needs to specify a _VPC/sub-net_ when starting machine instances, because VPN instances require such a sub-net. `ec2_admin` checks if there are multiple VPCs/subnets in the target region/availability zone and, if so, prompts the user to select the desired one. Otherwise it will chose the default sub-net. 
+The `ec2_admin` checks if there are multiple _VPCs/subnets_ in the target region/availability zone and, if so, prompts the user to select the desired one. Otherwise it will chose the default sub-net. (Depending on your AWS configuration, you might not need to choose a VPC/subnet at all.)
 
 {{% note notitle %}}Note that choosing VPC and subnet is currently supported in interactive mode only. There is no command line option for this purpose yet.{{% /note %}}
 
-{{< TODO >}}subnet behavior default? is this correct? and when does the prompt show up?{{< /TODO >}}
-
 After that, you have to choose the _machine image (AMI)_ to use from the list of available AMIs. In this list, `ec2_admin` will display the AMI’s name tag (or, if no name tag is present, fall back to its description).
 
-You will then be prompted to pick an instance type. The list contains all necessary info, including available memory and expected costs:
+You will then be prompted to pick an _instance type_. The list contains all necessary info, including available memory and expected costs:
 
 ```dos
 Select the instance type to use for the new EC2 instances:
@@ -305,7 +303,7 @@ Select the instance type to use for the new EC2 instances:
 
 <a name="aws-name-tag"></a>
 
-`ec2_admin` will ask you _how many instances_ you want to start, and lets you set an _instance name_. All instances set up in this action will be tagged with this name, so you can easily filter them later when [listing](#listing-running-aws-instances) or [terminating](#terminating-aws-instances) instances. {{< TODO >}}What about naming conventions?{{< /TODO >}} 
+`ec2_admin` will ask you _how many instances_ you want to start, and lets you set an _instance name_. All instances set up in this action will be tagged with this name, so you can easily filter them later when [listing](#listing-running-aws-instances) or [terminating](#terminating-aws-instances) instances. Keep in mind that <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#tag-restrictions" target="_blank">AWS tag value restrictions</a> apply.
 
 ```dos
 Enter the number of instances to start: => 2
@@ -314,10 +312,13 @@ Enter the instance name: => myTestInstance-us-east-1
 ```
 
 Communication between master controller and agent controllers will be encrypted in any case, but for additional security you can set your own _agent controller password_ in the next step. If you leave this empty, an XLT standard password will be used.
-{{< TODO >}}Default behavior correct? Also, what about user data and host data?{{< /TODO >}}
+
+In the next step, you can also enter _host data_ (optional). All data entered here is appended to the `/etc/hosts` file on the load generator machines to route certain host names correctly. This is not necessary for most sites.
 
 ```dos
 Enter agent controller password => 
+
+Enter host data (mark line break with '\n') => 
 ```
 
 In order to be able to log on an EC2 machine per SSH, a key pair must have been assigned to the machine during startup. `ec2_admin` provides this feature when starting machines. The key pair to use for a certain AWS region can be [configured in the properties], but can also be specified on the command line (`-k, --key <key-pair name>`. If none is set yet by one of these options, `ec2_admin` will prompt you to pick one.
@@ -334,30 +335,30 @@ Select the key-pair to use for the new EC2 instances:
 
 ```dos
 Configuration:  
-  AMI               : ami-93b1afff - Xceptance XLT 4.6.0 - BETA - 2016/01/14, Java 8, Ubuntu 14.04, 64bit, IPv6, CP  
-  Region            : eu-central-1  
+  AMI               : ami-01f30091020d1934a - XLT 5.4.0
+  Region            : us-east-1  
   Availability zone : <unspecified>  
-  VPC               : 
-  Subnet            : 
-  Type              : c3.2xlarge  
+  VPC               : vpc-91079bf4
+  Subnet            : subnet-118eea2b (us-east-1a) [172.30.0.0/24]
+  Type              : c4.2xlarge 
   Count             : 2  
-  Name              : LPT  
-  Key-pair          : xc-eu-central-1  
+  Name              : myTestInstance-us-east-1
+  Key-pair          : my-key-us-east-1  
   Password          : <none>
   Host data         : 
 
 Do you want to run the instance(s) with the above configuration? [y/n] =>
 ```
 
-{{< TODO comment="empty fields are copied from current config/XLT5.2.0" >}}valid config with all fields{{< /TODO >}}
+#### Ways to Pass User Data When Starting Instances
 
-#### Passing User Data When Starting Instances
+In case your AWS EC2 instances need some custom configuration data (*user data*, in Amazon speak), e.g. for setting a custom agent controller password or adding content to `/etc/hosts`, you can also specify this data during `ec2_admin` startup. There are three supported alternatives to pass the user data:
 
-In case your AWS EC2 instances need some custom configuration data (*user data*, in Amazon speak), you can also specify this data during startup. There are three supported alternatives to pass the user data:
+1.  Store the data to a file and pass its name as a command line argument (`-hf <file>` or `--hostDataFile <file>` for host data, `-pf <file>` or `--passwordFile <file>` for the agent controller password).
+2.  Pass the data as a command line argument (`-h "..."` or `--hostData "..."` for host data, `-p "..."` or `--password "..."` for the agent controller password)). 
+3.  When prompted by `ec2_admin`, enter the data. 
 
-1.  Store the user data to a file and pass its name as a command line argument (`-uf <file>`).
-2.  Pass the data as a command line argument (`-u "..."`). 
-3.  When prompted by `ec2_admin`, enter the user data. {{< TODO >}}Is this still valid? what about host data?{{< /TODO >}}
+{{< TODO >}}Is "user data" parameter still valid?{{< /TODO >}}
 
 Choose the approach that suits you best; however, the first approach will be the one to use in most cases.
 
