@@ -224,12 +224,22 @@ In addition to that, you can also build your own images using our public <a href
 
 ### Setting up XLT's ec2_admin tool
 
-Before you can use the tool, you have to configure it appropriately. There is a configuration file for this: `<xlt>/config/ec2_admin.properties`. The most important settings are your AWS credentials. These are needed to authorize any AWS operation, which is executed on your behalf.
+Before you can use the tool, you have to **configure** it appropriately. There is a configuration file for this: `<xlt>/config/ec2_admin.properties`. 
+
+The most important settings are your _AWS credentials_. These are needed to authorize any AWS operation, which is executed on your behalf.
+
+In addition to this, it is possible to configure the names of the _AWS key pair_ used for each region in the properties, but if there is none defined, the tool will also prompt you for a key pair to use during instance setup.
+
+You may also configure a _proxy_ if one is required to be used in your environment.
 
 ```bash
 ## Your AWS credentials.  
 aws.accessKey = <enter your access key>  
 aws.secretKey = <enter your secret key>
+
+## The AWS key pair names (as listed in AWS console / EC2 / KeyPairs)
+#aws.keypair.eu-central-1 = 
+aws.keypair.us-east-1 = key-us-east-1
 
 ## The protocol to use (defaults to https).  
 #aws.protocol = https
@@ -241,9 +251,7 @@ aws.secretKey = <enter your secret key>
 #aws.proxy.password =
 ```
 
-You may also configure a proxy if one is required to be used in your environment.
-
-To run the tool, call one of the two scripts `<xlt>/bin/ec2_admin.sh` or `<xlt>\bin\ec2_admin.cmd` depending on your OS choice. The tool will guide you through the available operations via a menu-based UI. Keep in mind that you can easily run XLT in a heterogeneous environment and control Linux based agents from a Microsoft Windows environment. 
+To **run the tool**, call one of the two scripts `<xlt>/bin/ec2_admin.sh` or `<xlt>\bin\ec2_admin.cmd` depending on your OS choice. The tool will guide you through the available operations via a menu-based UI. Keep in mind that you can easily run XLT in a heterogeneous environment and control Linux based agents from a Microsoft Windows environment. 
 
 {{% note notitle %}}
 Note that when creating AWS instances from AMIs you will see your own AMIs to choose from, but you may also see public AMIs provided by Xceptance. These AMIs are pre-packaged systems, which are optimized for load testing and have XLT already installed. Using one of these AMIs may save you the work to create and maintain your own AMIs, but may also impose additional costs. See the AMI’s description for more details.
@@ -255,17 +263,17 @@ When using the new EC2 management UI for XLT, please be aware of the fact that X
 
 ### Running AWS Instances
 
-When starting new AWS machine instances via `ec2_admin` ({{< kbd >}}r{{</ kbd >}}), you first have to choose a region to run the machines from, and an availability zone for this region (optional). {{< TODO >}}what for? What is it? What does it do?{{< /TODO >}}
+When starting new AWS machine instances via `ec2_admin` ({{< kbd >}}r{{</ kbd >}}), you first have to choose a _region_ to run the machines from, and an _availability zone_ for this region (optional). 
 
-The `ec2_admin` needs to specify a *sub-net* when starting machine instances, because VPN instances require such a sub-net. `ec2_admin` checks if there are multiple VPCs/subnets in the target region/availability zone and, if so, prompts the user to select the desired one. Otherwise it will chose the default sub-net. 
+The `ec2_admin` needs to specify a _VPC/sub-net_ when starting machine instances, because VPN instances require such a sub-net. `ec2_admin` checks if there are multiple VPCs/subnets in the target region/availability zone and, if so, prompts the user to select the desired one. Otherwise it will chose the default sub-net. 
 
 {{% note notitle %}}Note that choosing VPC and subnet is currently supported in interactive mode only. There is no command line option for this purpose yet.{{% /note %}}
 
 {{< TODO >}}subnet behavior default? is this correct? and when does the prompt show up?{{< /TODO >}}
 
-After that, you have to choose the machine image (AMI) to use from the list of available AMIs. In this list, `ec2_admin` will display the AMI’s name tag (or, if no name tag is present, fall back to its description).
+After that, you have to choose the _machine image (AMI)_ to use from the list of available AMIs. In this list, `ec2_admin` will display the AMI’s name tag (or, if no name tag is present, fall back to its description).
 
-You will then be prompted to pick an instance type. The list contains all necessary info, including available memory and costs:
+You will then be prompted to pick an instance type. The list contains all necessary info, including available memory and expected costs:
 
 ```dos
 Select the instance type to use for the new EC2 instances:
@@ -295,13 +303,32 @@ Select the instance type to use for the new EC2 instances:
 =>
 ```
 
-`ec2_admin` will ask you how many instances you want to start, and lets you set an instance name. {{< TODO >}}Is this a template? Or how is one name used for several instances? What about naming conventions? None?{{< /TODO >}} You can pick an agent controller password and enter host data. {{< TODO >}}What for?{{< /TODO >}}
+<a name="aws-name-tag"></a>
 
-In order to be able to log on an EC2 machine, a key pair must have been assigned to the machine during startup. `ec2_admin` provides this feature when starting machines. The key pair to use for a
-certain AWS region can be configured in the properties, but can also be specified on the
-command line. Otherwise `ec2_admin` will prompt you to pick one.
+`ec2_admin` will ask you _how many instances_ you want to start, and lets you set an _instance name_. All instances set up in this action will be tagged with this name, so you can easily filter them later when [listing](#listing-running-aws-instances) or [terminating](#terminating-aws-instances) instances. {{< TODO >}}What about naming conventions?{{< /TODO >}} 
 
-{{< TODO comment="example code" >}}How? And is this correct? Where is the list of available key-pairs in the prompt coming from?{{< /TODO >}}
+```dos
+Enter the number of instances to start: => 2
+
+Enter the instance name: => myTestInstance-us-east-1
+```
+
+Communication between master controller and agent controllers will be encrypted in any case, but for additional security you can set your own _agent controller password_ in the next step. If you leave this empty, an XLT standard password will be used.
+{{< TODO >}}Default behavior correct? Also, what about user data and host data?{{< /TODO >}}
+
+```dos
+Enter agent controller password => 
+```
+
+In order to be able to log on an EC2 machine per SSH, a key pair must have been assigned to the machine during startup. `ec2_admin` provides this feature when starting machines. The key pair to use for a certain AWS region can be [configured in the properties], but can also be specified on the command line (`-k, --key <key-pair name>`. If none is set yet by one of these options, `ec2_admin` will prompt you to pick one.
+
+```dos
+Select the key-pair to use for the new EC2 instances:
+ (1) <none>
+ (2) my-key-eu-central-1
+ (3) my-key-us-east-1
+=> 
+```
 
 `ec2_admin` then summarizes the chosen options for you to verify them before actually starting the instances:
 
@@ -313,7 +340,7 @@ Configuration:
   VPC               : 
   Subnet            : 
   Type              : c3.2xlarge  
-  Count             : 5  
+  Count             : 2  
   Name              : LPT  
   Key-pair          : xc-eu-central-1  
   Password          : <none>
@@ -330,11 +357,9 @@ In case your AWS EC2 instances need some custom configuration data (*user data*,
 
 1.  Store the user data to a file and pass its name as a command line argument (`-uf <file>`).
 2.  Pass the data as a command line argument (`-u "..."`). 
-3.  When prompted by `ec2_admin`, enter the user data.
+3.  When prompted by `ec2_admin`, enter the user data. {{< TODO >}}Is this still valid? what about host data?{{< /TODO >}}
 
 Choose the approach that suits you best; however, the first approach will be the one to use in most cases.
-
-{{< TODO >}}Is this still valid? = host data?{{< /TODO >}}
 
 ### Listing Running AWS Instances
 
@@ -342,7 +367,7 @@ Choose the approach that suits you best; however, the first approach will be the
 
 You will be prompted to select a region. 
 
-#### Selecting EC2 Instances by Tag
+#### Selecting EC2 Instances by Name Tag
 
 After that, you may filter instances by one or more _tags_: AWS (Amazon Web Services) offers the possibility to tag EC2 resources to simplify the administration of your cloud infrastructure. As a form of meta data, tags can be used to create user-friendly names and improve coordination between multiple users.
 
@@ -358,7 +383,7 @@ Filter instances by one or more tags:
 => 2 4
 ```
 
-When starting Amazon EC2 machine instances, you can also specify a name tag that will be assigned to each instance that has been started. This name tag can be used later on to filter the running instances, for example when listing or terminating them. {{< TODO >}}Can I do this by ec2_admin? Is this the instance name?{{< /TODO >}}
+When starting Amazon EC2 machine instances, you can also [specify a name tag](#aws-name-tag) that will be assigned to each instance that has been started. This name tag can be used later on to filter the running instances, for example when listing or terminating them. 
 
 The tool will then output a master controller configuration for the chosen set of AWS machines:
 
@@ -441,12 +466,8 @@ mastercontroller.sh -auto -report -pf agents.properties
 ec2_admin.sh terminate eu-central-1 Posters
 ```
 
-Note how `ec2_admin` writes the agent machine configuration to the file `agents.properties` which in turn is passed on to the master controller as input. Be aware, though, that it may take a while until the agent controllers are up and running on the freshly started machines. To stop the master controller from complaining too early about unreachable agent controllers, you should configure an appropriate waiting time in `mastercontroller.properties`, one minute, for example:
+Note how `ec2_admin` writes the agent machine configuration to the file `agents.properties` which in turn is passed on to the master controller as input. Be aware though that it may take a while until the agent controllers are up and running on the freshly started machines. To stop the master controller from complaining too early about unreachable agent controllers, you should configure an appropriate waiting time in `mastercontroller.properties`, one minute, for example:
 
 ```bash
 com.xceptance.xlt.mastercontroller.initialResponseTimeout = 60000
 ```
-
-
-
-{{< TODO comment="non-interactive mode" >}}TBD{{< /TODO >}}
