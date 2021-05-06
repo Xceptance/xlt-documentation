@@ -16,7 +16,9 @@ XLT enables you to develop and run test scenarios for your application on your o
 
 The basic setup which you would use to run a load test using a distributed load generation environment looks like this:
 
-{{% TODO %}}image{{% /TODO %}}
+{{< image src="user-manual/cloud_setup.svg" >}}
+Distributed Load Generation Environment
+{{< /image >}}
 
 You have one machine running your [master controller](../../manual/010-basics/#mcmaster-controller), which manages several machines that are running the [agent controllers](../../manual/010-basics/#acagent-controller) and [agents](../../manual/010-basics/#agents). 
 
