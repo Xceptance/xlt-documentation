@@ -23,12 +23,16 @@ list the results. An action can trigger one or more requests.
 An agent simulates a number of virtual users repeatedly running certain
 test cases against the system under test.
 
-## Agent Controller (XLT)
+## Agent Controller / Agentcontroller (XLT)
 
-On every load generating system there is at least one agent controller
+On every load generating system there is at least one `agentcontroller`
 running which receives command from the master controller and sends back
-test results. The agent controllers (we often use the abbreviation "AC"/"ACs") 
+test results. The agentcontrollers (we often use the abbreviation "AC"/"ACs") 
 control local agent processes generating the load.
+
+{{% note title="Spelling" %}}
+To be better highlight that an `agentcontroller` is a shipped XLT component, we prefer the spelling agentcontroller over agent controller but you might see both spellings used.
+{{% /note %}}
 
 ## API
 
@@ -174,7 +178,7 @@ client computer.
 
 ## Development-Mode (XLT)
 
-XLT test cases not run by a master controller but by any JUnit test
+XLT test cases not run by a mastercontroller but by any JUnit test
 runner directly as a JUnit test automatically run in development mode.
 E.g. when running XLT test cases in Eclipse or as ANT task. When using
 the development mode additional property files are read. So it is
@@ -370,12 +374,17 @@ lot more data and they do not have a expiration date. Saving local
 shared objects can be prevented by most of the web browsers at the
 moment.
 
-## Master Controller (XLT)
+## Master Controller / Mastercontroller (XLT)
 
-The master controller controls the whole load test. It distributes the
-test suite to all agent controllers, provides a even load and starts and
-ends the load generation. Finally the master controller is gathering the
-test results and saves them to a central location on the file system.
+The mastercontroller controls the entire load test. It deploys the
+test suite to all agentcontrollers, calculates the load distribution, and starts and
+ends the test. At the end, the mastercontroller is gathering the
+test results and stores them on the file system.
+
+{{% note title="Spelling" %}}
+To be better highlight that a `mastercontroller` is a shipped XLT component, we prefer the spelling mastercontroller over master controller but you might see both spellings used.
+{{% /note %}}
+
 
 ## Measurement Period (XLT)
 
@@ -446,6 +455,26 @@ components will be gathered and assessed.
 
 Sometimes the term is used interchangeably to the generic term load
 test.
+
+## Percentiles
+A percentile defines how many numbers (measurements) fall below or above a certain percentage of the data and the maximum number of this data is taken as the resulting value. For instance a P90 defines that out of 90% of all measurements (sorted ascending), the highest value for the first 90% of values is used as the result.
+
+For instance, when we have the measurements:
+
+```
+50, 60, 65, 100, 500, 15, 60, 10, 1000, 100
+```
+
+we sort them first:
+
+```
+10, 15, 50, 60, 60, 65, 100, 100, 500, 1000
+```
+
+and read the value at 90%, in this case the 9th value. If we have 100 values, it would be the 90th value, just to make it simpler. In this case, our P90 is 500. Our P50 would be 60 and so forth. The mean (average) is 196.
+
+As you can see, the P90 value more precisely shows that there is a problem with 10% of the measurements or requests or sessions, whatever value you are looking at.
+
 
 ## Property Files
 

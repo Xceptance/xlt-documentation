@@ -3,6 +3,8 @@ title: "Test Automation"
 
 type: docs
 
+draft: true
+
 weight: 20
 
 menu:

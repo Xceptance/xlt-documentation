@@ -87,6 +87,9 @@ Go to [Load Testing]({{< relref "load-testing" >}}).
 ### From here
 [About XLT is a link from here and not higher up](../10-history).
 
+### External links
+You can build external links by using the [link markdown with complete URLs](https://github.com/Xceptance), however it is recommended to just use <a href="https://github.com/Xceptance" target="_blank">html links</a> opening in a new tab or window.
+
 ## Images
 {{< image src="releasenotes/agent-cpu-usage-chart-small.jpg" large="releasenotes/agent-cpu-usage-chart-large.png" >}}
 An `image` that gets its source from *src* and is linked to *large* if this is given. Paths are relative to **static/images/**. The *.Inner* part is the caption.
@@ -94,6 +97,10 @@ An `image` that gets its source from *src* and is linked to *large* if this is g
 
 {{< image src="releasenotes/agent-cpu-usage-chart-large.png" >}}
 Another image that is not linked to anything. If it is too wide for the window, it will be scaled by CSS (`.img-fluid, .td-content img {max-width: 100%}`). 
+{{< /image >}}
+
+{{< image src="user-manual/chart_variable_load_factor.svg" max-width="60%">}}
+To just use CSS scaling like above for your large image, but think it looks nicer in the text at less than 100% width, you can just pass a max-width parameter to the shortcode that will be included in the image CSS.
 {{< /image >}}
 
 {{< image src="releasenotes/agents-gc-and-cpu-information-small.jpg" large="releasenotes/agents-gc-and-cpu-information-large.png" >}}

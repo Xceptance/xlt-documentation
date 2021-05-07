@@ -5,12 +5,12 @@ type: docs
 weight: 60
 
 description: >
-    XLT supports the local development and execution of test scenarios for faster development and debugging.
+    XLT supports local development and execution of test scenarios for faster development and debugging
 ---
 
 ## Test Development Essentials
 
-### The Environment: your Favorite IDE
+### Your IDE
 
 XLT test cases are usually developed in Java, as JUnit test cases. This means you can work locally, in your IDE of choice. You will probably start out with one of our [sample test suites](../../test-suites), which come pre-configured as Maven projects ready to be imported, built and run in your IDE of choice. You'll then want to adjust some test cases to your needs, and probably also add new ones. If you need to do some functional testing, test data may be added.
 
@@ -21,31 +21,31 @@ To develop a test case, start by identifying common usage scenarios for your app
 The scenarios often share some steps, so the next step is to identify these to create [flows](../../11-glossary/#flow-xlt) or [actions](../../11-glossary/#action-xlt) to make those common steps easily reusable in all test cases that need them (and also to make maintenance less complicated). Using a real-world example from our sample test suites, this is what we did:
 
 ```txt
-				Homepage
+                Homepage
 --------------------------------------------
-				GoToSignIn
+                GoToSignIn
 --------------------------------------------
-				Register
+                Register
 --------------------------------------------
-				Login
+                Login
 --------------------------------------------
-BrowsingFlow:	SelectTopCategory
-				SelectCategory
-				Paging
-				ProductDetailView
+BrowsingFlow:   SelectTopCategory
+                SelectCategory
+                Paging
+                ProductDetailView
 --------------------------------------------
-				Search
+                Search
 --------------------------------------------
-				AddToCart
+                AddToCart
 --------------------------------------------
-CheckoutFlow:	StartCheckout
-				EnterShippingAddress
-				EnterBillingAddress
-				EnterPaymentMethod
+CheckoutFlow:   StartCheckout
+                EnterShippingAddress
+                EnterBillingAddress
+                EnterPaymentMethod
 --------------------------------------------
-				PlaceOrder
+                PlaceOrder
 --------------------------------------------
-				Logout
+                Logout
 ```
 
 This is of course just an example and a different breakdown of flows and actions might make sense for your application. Just keep in mind that an action always represents a single test step (similar to a click on a website, although this may trigger more than one request), whereas flows can combine several of these actions to make one logical unit that may be used by several test cases. For example, with the flows and actions above, you can define several common scenarios, like the following:
@@ -74,7 +74,7 @@ Result browser overview page
 
 Especially when you are using randomness in your tests (which you should), we encourage you to run your tests several times for consolidation, as different random test behavior might yield different results. You can also overwrite test properties [for development only](../480-test-suite-configuration/#development-environment-configuration), for example to define probabilities for test behaviors in order to make sure every option is working (for example: in a "real" test setup, you'd want your tests to open the quickview instead of the product detail page in about 50% of all tests, but during development you might want to temporarily set the quickview probability to 100% while you are working on the quickview behavior).
 
-For **test error analysis**, the console output offers many insights, but it is probably easiest to have a look at the [**result browser**](../440-result-browser/) generated for the test (the link is also found at the end of the console output, see above). While your main focus is probably the last executed action and the reason why it failed, don't forget to also check what happened before: as you want to model real-world usage of your application in your tests, the actions (and the requests they trigger, and the data sent and received by those requests) should be as close to what happens during manual application usage as possible.
+For **test error analysis**, the console output offers many insights, but it is probably easiest to have a look at the [result browser](../440-result-browser/) generated for the test (the link is also found at the end of the console output, see above). While your main focus is probably the last executed action and the reason why it failed, don't forget to also check what happened before: as you want to model real-world usage of your application in your tests, the actions (and the requests they trigger, and the data sent and received by those requests) should be as close to what happens during manual application usage as possible.
 
 {{% note title="Latest Result Browser" %}}
 XLT offers a shortcut for always getting the latest result browser of any given test case: for instance instead of opening
