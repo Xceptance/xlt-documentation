@@ -44,7 +44,7 @@ Check the agents' CPU usage after your load test in the [test report](../../manu
 
 After your test has finished and the MC machine has downloaded all the data necessary for generating a test report, gce_admin/ec2_admin can also help you to easily shut down and delete all of your test machines.
 
-## Google Cloud (GC)
+## Google Cloud (GCP)
 
 ### Setting up gcloud
 
@@ -54,7 +54,7 @@ Add the Cloud SDK command-line tools to your PATH and enable command completion 
 
 At the command prompt, select a Google Cloud project from the list of those where you have _Owner_, _Editor_ or _Viewer_ permissions:
 
-```dos
+```text
 Pick cloud project to use:
  [1] [my-project-1]
  [2] [my-project-2]
@@ -65,31 +65,34 @@ Pick cloud project to use:
 If you only have one project, `gcloud init` selects it for you.
 
 In order to create application default credentials for use by **gce_admin**, run:
-```dos
-gcloud auth application-default login
+
+```bash
+$ gcloud auth application-default login
 ```
 In the browser, log in and accept the requested permissions.
 
 ### Image Templates for Google Cloud 
 
-Right now there are no public gcloud images set up for using XLT, however you can build your own images using our public <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">XLT-Packer project</a>. It contains a nice readme on how to use it to create images set up for running XLT for the cloud vendor of your choice.
+Right now there are no public gcloud images set up for using XLT, however you can build your own images using our public <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">XLT-Packer project</a>. It contains a README on how to use it to create images for the cloud vendor of your choice.
 
-### Setting up XLT's gce_admin tool
+### Setting up gce_admin
 
 Before its first usage, the gce_admin tool needs to be configured. You can do this by editing `<XLT>/config/gce_admin.properties`. The most important property you need to set here is the **project id**, which should be the same project you set earlier in gcloud:
 
-```bash
+```text
 xlt.gce.projectId = my-project-1
 ```
 
-To use the **gce_amin** tool to create, list and stop Google Cloud instances (which will run your [agent controllers](../../manual/010-basics/#acagent-controller) and [agents](../../manual/010-basics/#agents)), navigate to `<XLT>/bin/` and run:
-```dos
-./gce_admin.sh
+To use the **gce_admin** tool to create, list and stop Google Cloud instances (which will run your [agent controllers](../../manual/010-basics/#acagent-controller) and [agents](../../manual/010-basics/#agents)), navigate to `<XLT>/bin/` and run:
+
+```bash
+$ ./gce_admin.sh
 ```
-(Windows users have to use the appropriate `.cmd` file located in the same directory.)
+Windows users have to use the appropriate `.cmd` file located in the same directory.
 
 You will see a prompt like this:
-```dos
+
+```text
 What do you want to do?
  (l) List running instances
  (c) Create managed instance groups
@@ -98,11 +101,11 @@ What do you want to do?
 => 
 ```
 
-### Creating GC instances
+### Creating GCP Instances
 
-When starting GC instances ({{< kbd >}}c{{</ kbd >}}), you first have to choose one or more regions to run the machines from. To select several regions, just seperate them by space, comma or semicolon: 
+When starting GCP instances ({{< kbd >}}c{{</ kbd >}}), you first have to select one or more regions to run the machines from. To select multiple regions at once, just separate your input by space, comma or semicolon: 
 
-```dos
+```text
 Select one or more regions:
   (0) <all>
   (1) Asia Pacific  - Taiwan         (asia-east1)
@@ -135,7 +138,7 @@ Select one or more regions:
 
 After you specified the region(s), choose the template machine image to use from the list of available GC image templates (see above for how to set up images) by entering its id. You will then be prompted to enter the name of the instance group, which can contain lowercase letters and dashes. 
 
-```dos
+```text
 Enter the name of the instance group => my-test
 ```
 
@@ -143,14 +146,14 @@ Finally, you will be prompted to enter the number of instances to start. The ent
 
 **gce_admin** will summarize the chosen options for you to verify them before actually starting the instances:
 
-```dos
-  Regions             : us-central1, us-east1
-  Instance group name : my-test
-  Instance count      : 8
-  Instance template     
-     - Name           : xlt-5-3-0--xl
-     - Image          : projects/my-project1/global/images/xlt-5-3-0-v20210221
-     - Machine type   : custom-16-30720
+```text
+Regions             : us-central1, us-east1
+Instance group name : my-test
+Instance count      : 8
+Instance template     
+    - Name           : xlt-5-3-0--xl
+    - Image          : projects/my-project1/global/images/xlt-5-3-0-v20210221
+    - Machine type   : custom-16-30720
 
 Do you want to create a managed instance group with the above configuration? [y/n] => 
 ```
@@ -159,7 +162,7 @@ Do you want to create a managed instance group with the above configuration? [y/
 
 To list running GC instances ({{< kbd >}}l{{</ kbd >}}), you first have to choose one or more regions from which to list machines. To select several regions, just seperate them by space, comma or semicolon. You will then be prompted to select a filter:
 
-```dos
+```text
 Filter instances by:
  (0) (No filter)
  (l) Name label
@@ -167,9 +170,9 @@ Filter instances by:
 => 
 ```
 
-Pick {{< kbd >}}g{{</ kbd >}}, then **gce_admin** will query all instance groups. If any instance group was found, you will be prompted again to pick one, several or all instance groups to list. **gce_admin** will then show you the results:
+Pick {{< kbd >}}g{{</ kbd >}}, then **gce_admin** will query all instance groups. If any instance group was found, you will be prompted again to pick one, multiple, or all instance groups. **gce_admin** will then show you the results:
 
-```dos
+```text
 --- Master controller configuration ---
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac001_us-central1-b.url = https://35.255.200.18:8500
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac002_us-central1-a.url = https://35.255.200.16:8500
@@ -183,11 +186,11 @@ com.xceptance.xlt.mastercontroller.agentcontrollers.ac008_us-east1-a.url = https
 
 You can just copy and paste the tool's output to your `mastercontroller.properties` to configure your environment, then you're ready for load testing.
 
-### Deleting GC instances
+### Terminating GCP Instances
 
-To terminate GC instances ({{< kbd >}}d{{</ kbd >}}), you also first have to choose one or more regions from which to delete machines. **gce_admin** will then search for managed instance groups in these regions and prompt you which instance group you want to delete (you can also choose several or all). It will summarize the chosen options for you to verify them before actually deleting any instances:
+To terminate GCP instances ({{< kbd >}}d{{</ kbd >}}), you also first have to choose one or more regions from which to delete machines. **gce_admin** will then search for managed instance groups in these regions and prompt you which instance group you want to delete (you can also choose several or all). It will summarize the chosen options for you to verify them before actually deleting any instances:
 
-```dos
+```text
 Retrieving all managed instance groups in region 'us-central1' ... OK
 
 Select one or more instance groups:
@@ -195,21 +198,18 @@ Select one or more instance groups:
  (1) my-project-ac-us-central1
 => 1
 
-
 You selected to terminate *all* managed instances of group 'my-project-ac-us-central1'
+in region: us-central1 ... 
 
-  in region: us-central1 ... OK
-
-    4 running and 0 pending instance(s) found.
-    --------------------------------------------------------------------------------------------------------------
-               Name                |      Host     |      Type       |  State  | Launch Time (UTC) | Uptime (h:mm)
-    --------------------------------------------------------------------------------------------------------------
-    my-project-ac-us-central1-6ncn | 35.255.200.18 | custom-16-30720 | RUNNING |  2021-01-01 01:01 |         02:51
-    my-project-ac-us-central1-78rr | 35.255.200.16 | custom-16-30720 | RUNNING |  2021-01-01 01:01 |         02:51
-    my-project-ac-us-central1-7ph9 | 35.255.200.11 | custom-16-30720 | RUNNING |  2021-01-01 01:01 |         02:51
-    my-project-ac-us-central1-8sf2 | 35.255.200.14 | custom-16-30720 | RUNNING |  2021-01-01 01:01 |         02:51
-    --------------------------------------------------------------------------------------------------------------
-
+4 running and 0 pending instance(s) found.
+--------------------------------------------------------------------------------------------------------------
+           Name                |      Host     |      Type       |  State  | Launch Time (UTC) | Uptime (h:mm)
+--------------------------------------------------------------------------------------------------------------
+my-project-ac-us-central1-6ncn | 35.255.200.18 | custom-16-30720 | RUNNING |  2021-01-01 01:01 |         02:51
+my-project-ac-us-central1-78rr | 35.255.200.16 | custom-16-30720 | RUNNING |  2021-01-01 01:01 |         02:51
+my-project-ac-us-central1-7ph9 | 35.255.200.11 | custom-16-30720 | RUNNING |  2021-01-01 01:01 |         02:51
+my-project-ac-us-central1-8sf2 | 35.255.200.14 | custom-16-30720 | RUNNING |  2021-01-01 01:01 |         02:51
+--------------------------------------------------------------------------------------------------------------
 
 Are you sure? [y/n] =>
 ```
@@ -224,13 +224,13 @@ The Amazon Elastic Compute Cloud service is another perfect fit for on-demand lo
 
 Note that this tool is not intended to replace the <a href="http://aws.amazon.com/" target="_blank">AWS console</a> or similar tools.
 
-### Image Templates for AWS 
+### AMIs for AWS 
 
 Xceptance provides AMIs (Amazon Machine Images) for use with Amazon EC2. These AMIs are pre-packaged systems, which are optimized for load testing and have XLT already installed. Using one of these AMIs may save you the work to create and maintain your own AMIs, but may also impose additional costs. Amazon will charge you for the infrastructure usage. Make sure that your security group permits communication on port 8500. This is the XLT agent port on these machines. A list of current AWS AMI ids can be found next to the release information on <a href="https://github.com/Xceptance/XLT/releases" target="_blank">GitHub</a>.
 
-In addition to that, you can also build your own images using our public <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">XLT-Packer project</a>. It contains a nice readme on how to use it to create images set up for running XLT for the cloud vendor of your choice.
+In addition to that, you can also build your own images using our public <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">XLT-Packer project</a>. It contains a README on how to use it to create images set up for running XLT for the cloud vendor of your choice.
 
-### Setting up XLT's ec2_admin tool
+### Setting up ec2_admin
 
 Before you can use the tool, you have to **configure** it appropriately. There is a configuration file for this: `<xlt>/config/ec2_admin.properties`. 
 
@@ -240,7 +240,7 @@ In addition to this, it is possible to configure the names of the _AWS key pair_
 
 You may also configure a _proxy_ if one is required to be used in your environment.
 
-```bash
+```text
 ## Your AWS credentials.  
 aws.accessKey = <enter your access key>  
 aws.secretKey = <enter your secret key>
@@ -281,7 +281,7 @@ After that, you have to choose the _machine image (AMI)_ to use from the list of
 
 You will then be prompted to pick an _instance type_. The list contains all necessary info, including available memory and expected costs:
 
-```dos
+```text
 Select the instance type to use for the new EC2 instances:
   (1) m5.large    -   2 core(s),        10 compute units,     8 GB RAM,       EBS Only, $0.096/h
   (2) m5.xlarge   -   4 core(s),        15 compute units,    16 GB RAM,       EBS Only, $0.192/h
@@ -313,7 +313,7 @@ Select the instance type to use for the new EC2 instances:
 
 `ec2_admin` will ask you _how many instances_ you want to start, and lets you set an _instance name_. All instances set up in this action will be tagged with this name, so you can easily filter them later when [listing](#listing-running-aws-instances) or [terminating](#terminating-aws-instances) instances. Keep in mind that <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#tag-restrictions" target="_blank">AWS tag value restrictions</a> apply.
 
-```dos
+```text
 Enter the number of instances to start: => 2
 
 Enter the instance name: => myTestInstance-us-east-1
@@ -323,7 +323,7 @@ Communication between master controller and agent controllers will be encrypted 
 
 In the next step, you can also enter _host data_ (optional). All data entered here is appended to the `/etc/hosts` file on the load generator machines to route certain host names correctly. This is not necessary for most sites.
 
-```dos
+```text
 Enter agent controller password => 
 
 Enter host data (mark line break with '\n') => 
@@ -331,7 +331,7 @@ Enter host data (mark line break with '\n') =>
 
 In order to be able to log on an EC2 machine per SSH, a key pair must have been assigned to the machine during startup. `ec2_admin` provides this feature when starting machines. The key pair to use for a certain AWS region can be [configured in the properties], but can also be specified on the command line (`-k, --key <key-pair name>`. If none is set yet by one of these options, `ec2_admin` will prompt you to pick one.
 
-```dos
+```text
 Select the key-pair to use for the new EC2 instances:
  (1) <none>
  (2) my-key-eu-central-1
@@ -341,7 +341,7 @@ Select the key-pair to use for the new EC2 instances:
 
 `ec2_admin` then summarizes the chosen options for you to verify them before actually starting the instances:
 
-```dos
+```text
 Configuration:  
   AMI               : ami-01f30091020d1934a - XLT 5.4.0
   Region            : us-east-1  
@@ -382,7 +382,7 @@ After that, you may filter instances by one or more _tags_: AWS (Amazon Web Serv
 
 `ec2_admin` lets you select your EC2 resources based on the tag name. For example, when listing running instances, you can use filtering to reduce the set of instances shown:
 
-```dos
+```text
 Filter instances by one or more tags:  
 (0) <none>  
 (1) Name=CustomerA  
@@ -396,7 +396,7 @@ When starting Amazon EC2 machine instances, you can also [specify a name tag](#a
 
 The tool will then output a master controller configuration for the chosen set of AWS machines:
 
-```dos
+```text
 Querying all instances in region 'ap-southeast-2' ... OK.
 Querying all instances in region 'us-east-1' ... OK.
 
@@ -413,15 +413,15 @@ The generated agent controller names will also contain the region in which the r
 
 If you choose menu option {{< kbd >}}d{{</ kbd >}} instead of {{< kbd >}}l{{</ kbd >}}, `ec2_admin` will give you the same filtering options as above, but as a result prints more details about running or pending machine instances, like this:
 
-```dos
+```text
 Querying *all* instances in region: eu-west-2 ... OK
 
-    1 running, 0 pending and 0 stopped instance(s) found.
-    ------------------------------------------------------------------------------------------------------------------------
-    Name  |     Host      |   Type   | Key-Pair Name | Security Groups | Image |  State  | Launch Time (UTC) | Uptime (h:mm)
-    ------------------------------------------------------------------------------------------------------------------------
-    Test1 | 35.177.98.135 | t2.micro | xc-eu-west-2  | default         | Proxy | running |  2020-01-01 13:11 |    111d 02:13
-    ------------------------------------------------------------------------------------------------------------------------
+1 running, 0 pending and 0 stopped instance(s) found.
+------------------------------------------------------------------------------------------------------------------------
+Name  |     Host      |   Type   | Key-Pair Name | Security Groups | Image |  State  | Launch Time (UTC) | Uptime (h:mm)
+------------------------------------------------------------------------------------------------------------------------
+Test1 | 35.177.98.135 | t2.micro | xc-eu-west-2  | default         | Proxy | running |  2020-01-01 13:11 |    111d 02:13
+------------------------------------------------------------------------------------------------------------------------
 
 ```
 
@@ -433,7 +433,7 @@ This way, running machine instances with the same name tag assigned can be termi
 
 When terminating machine instances, all instances matching your choice will be listed for review before they are actually terminated. This helps to avoid terminating the wrong instances by accident.
 
-```bash
+```text
 Filter instances by one or more tags:
  (0) Do not filter (select all)
  (1) Name=LoadTest_1
@@ -469,14 +469,14 @@ controller can read the agent configuration directly from this file later on.
 
 For a fully automated load testing process with Amazon machines, use a sequence of commands (in a script) similar to the following one:
 
-```bash
-ec2_admin.sh run eu-central-1 c3.2xlarge ami-de5dcdb6 5 Posters -o agents.properties  
-mastercontroller.sh -auto -report -pf agents.properties  
-ec2_admin.sh terminate eu-central-1 Posters
+```text {linenos=true}
+$ ec2_admin.sh run eu-central-1 c3.2xlarge ami-de5dcdb6 5 Posters -o agents.properties  
+$ mastercontroller.sh -auto -report -pf agents.properties  
+$ ec2_admin.sh terminate eu-central-1 Posters
 ```
 
 Note how `ec2_admin` writes the agent machine configuration to the file `agents.properties` which in turn is passed on to the master controller as input. Be aware though that it may take a while until the agent controllers are up and running on the freshly started machines. To stop the master controller from complaining too early about unreachable agent controllers, you should configure an appropriate waiting time in `mastercontroller.properties`, one minute, for example:
 
-```bash
+```text
 com.xceptance.xlt.mastercontroller.initialResponseTimeout = 60000
 ```
