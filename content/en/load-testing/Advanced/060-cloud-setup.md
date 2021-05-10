@@ -30,7 +30,7 @@ XLT ships with two small scripts that simplify the process of setting up and man
 
 #### Add Machines to the MC Configuration
 
-The scripts will set up a cluster of test machines quickly. After the setup, you just have to add the machines to the master controller configuration: navigate to `<XLT>/config/mastercontroller.properties` on your MC machine, then enter the AC data the tools give you when you list the created instances. Now you are ready for load testing!
+The scripts will set up a cluster of test machines quickly. After the setup, you just have to add the machines to the master controller configuration: navigate to `<XLT>/config/mastercontroller.properties` on your MC machine, then enter the AC data the tools give you when you list the created instances. Now you are ready for load testing.
 
 {{% note title="How many machines do I need?" %}}
 The number and size of load testing machines you'll need for your setup is largely a matter of experience. 
@@ -42,15 +42,15 @@ As for RAM, we usually reserve 512 MB for the system, plus about 512 MB for the 
 Check the agents' CPU usage after your load test in the [test report](../../manual/320-test-evaluation/#agents) so you know whether any adjustments are necessary.
 {{% /note %}}
 
-After your test has finished and the MC machine has downloaded all the data necessary for generating a test report, gce_admin/ec2_admin can also help you to easily shut down and delete all of your test machines.
+After your test finished and the mastercontroller has downloaded all the data required for report generation, gce_admin/ec2_admin can also help you to easily terminate all of your test machines.
 
 ## Google Cloud (GCP)
 
-### Setting up gcloud
+### Setting up Google Cloud Access
 
-To start using XLT's **gce_admin** tool for setting up and managing load test instances, you first need to set up your machine to use Google's **gcloud command line tool**. In order to do this, download and install the Cloud SDK for your platform, following the directions <a href="https://cloud.google.com/sdk/docs/downloads-interactive" target="_blank">from Google</a>. 
+To start the XLT **gce_admin** tool to manage load test machines, you need to set up GCP access first using Google's **gcloud command line tool**. In order to do this, download and install the Google Cloud SDK for your platform. Follow the directions to <a href="https://cloud.google.com/sdk/docs/downloads-interactive" target="_blank">setup the SDK</a>. 
 
-Add the Cloud SDK command-line tools to your PATH and enable command completion if you want to. In any case, restart your shell after the installation and run `gcloud init` to initialize the gcloud environment. This will prompt you to log in using your Google user account - log in (in your browser) and click _Allow_ to grant permission to access Google Cloud resources.
+Add the Cloud SDK command line tools to your PATH and enable command completion if you want to. In any case, restart your shell after the installation and run `gcloud init` to initialize the gcloud environment. This will prompt you to log in using your Google user account - log in (in your browser) and click _Allow_ to grant permission to access Google Cloud resources.
 
 At the command prompt, select a Google Cloud project from the list of those where you have _Owner_, _Editor_ or _Viewer_ permissions:
 
@@ -62,7 +62,7 @@ Pick cloud project to use:
  Please enter your numeric choice:
 ```
 
-If you only have one project, `gcloud init` selects it for you.
+If you only have one project, `gcloud init` selects it for you. If you cannot see your project, make sure you have the appropriate permissions.
 
 In order to create application default credentials for use by **gce_admin**, run:
 
@@ -73,7 +73,7 @@ In the browser, log in and accept the requested permissions.
 
 ### Image Templates for Google Cloud 
 
-Right now there are no public gcloud images set up for using XLT, however you can build your own images using our public <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">XLT-Packer project</a>. It contains a README on how to use it to create images for the cloud vendor of your choice.
+Right now there are no public XLT gcloud images provided, however you can build your own images using our public <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">XLT-Packer project</a>. It contains a README on how to use it to create images for the cloud vendor of your choice.
 
 ### Setting up gce_admin
 
@@ -83,13 +83,11 @@ Before its first usage, the gce_admin tool needs to be configured. You can do th
 xlt.gce.projectId = my-project-1
 ```
 
-To use the **gce_admin** tool to create, list and stop Google Cloud instances (which will run your [agent controllers](../../manual/010-basics/#acagent-controller) and [agents](../../manual/010-basics/#agents)), navigate to `<XLT>/bin/` and run:
+To use the **gce_admin** tool to create, list, and stop Google Cloud instances (which will run your [agent controllers](../../manual/010-basics/#acagent-controller) and [agents](../../manual/010-basics/#agents)), navigate to `<XLT>/bin/` and run:
 
 ```bash
 $ ./gce_admin.sh
 ```
-Windows users have to use the appropriate `.cmd` file located in the same directory.
-
 You will see a prompt like this:
 
 ```text
@@ -103,7 +101,7 @@ What do you want to do?
 
 ### Creating GCP Instances
 
-When starting GCP instances ({{< kbd >}}c{{</ kbd >}}), you first have to select one or more regions to run the machines from. To select multiple regions at once, just separate your input by space, comma or semicolon: 
+When starting GCP instances ({{< kbd >}}c{{</ kbd >}}), you first have to select one or more regions to run the machines in. To select multiple regions at once, just separate your input by space, comma, or semicolon: 
 
 ```text
 Select one or more regions:
@@ -136,15 +134,19 @@ Select one or more regions:
 => 19 20
 ```
 
-After you specified the region(s), choose the template machine image to use from the list of available GC image templates (see above for how to set up images) by entering its id. You will then be prompted to enter the name of the instance group, which can contain lowercase letters and dashes. 
+{{%note title="Unknown Locations"%}}
+When you see **unknown** as location, XLT has not yet learned this newly added region. Make sure you check for an XLT update. You can most likely use this location already. Check the zone name (such as `europe-central2`) and look it up in the offical GCP documentation to learn more about it.
+{{%/note%}}
+
+After you specified the region(s), choose the template to use from the list of available GCP image templates (see above for how to set up images) by entering its id. You will be prompted to enter the name of the instance group, which must only contain lowercase letters and dashes. 
 
 ```text
 Enter the name of the instance group => my-test
 ```
 
-Finally, you will be prompted to enter the number of instances to start. The entered number will be distributed as evenly as possible between the regions you selected, e.g. if you want to create 8 instances for 2 different regions, there will be 4 instances in each region. 
+Finally, you will be prompted to enter the number of instances to start. The number of instances will be distributed as evenly as possible across the regions you selected before, e.g. if you selected two regions and entered 8 as instance count, gce_admin will create four instances per region.
 
-**gce_admin** will summarize the chosen options for you to verify them before actually starting the instances:
+**gce_admin** will summarize the selected options and parameters for verification before starting the instances:
 
 ```text
 Regions             : us-central1, us-east1
@@ -158,9 +160,9 @@ Instance template
 Do you want to create a managed instance group with the above configuration? [y/n] => 
 ```
 
-### Listing Running GC instances
+### Listing Running GCP instances
 
-To list running GC instances ({{< kbd >}}l{{</ kbd >}}), you first have to choose one or more regions from which to list machines. To select several regions, just seperate them by space, comma or semicolon. You will then be prompted to select a filter:
+To get a list of running GCP instances ({{< kbd >}}l{{</ kbd >}}), you have to select one or more regions first. To select multiple regions, just separate them by space, comma, or semicolon. You will then be prompted to select a filter to further refine the selection of machines to be displayed.
 
 ```text
 Filter instances by:
@@ -170,7 +172,7 @@ Filter instances by:
 => 
 ```
 
-Pick {{< kbd >}}g{{</ kbd >}}, then **gce_admin** will query all instance groups. If any instance group was found, you will be prompted again to pick one, multiple, or all instance groups. **gce_admin** will then show you the results:
+Select {{< kbd >}}g{{</ kbd >}} and **gce_admin** will search for instance groups. If instance groups were found, you will be prompted to pick one, multiple, or all instance groups. **gce_admin** will then show you the machine list in a ready to use property format.
 
 ```text
 --- Master controller configuration ---
@@ -184,11 +186,11 @@ com.xceptance.xlt.mastercontroller.agentcontrollers.ac007_us-east1-c.url = https
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac008_us-east1-a.url = https://35.255.200.13:8500
 ```
 
-You can just copy and paste the tool's output to your `mastercontroller.properties` to configure your environment, then you're ready for load testing.
+You can just copy and paste the output and add it to your `mastercontroller.properties` file to configure the machines to use for load testing. Make sure that you remove or overwrite machines from previous tests. If you want to add more machines to an existing list, make sure that the property names differ. 
 
 ### Terminating GCP Instances
 
-To terminate GCP instances ({{< kbd >}}d{{</ kbd >}}), you also first have to choose one or more regions from which to delete machines. **gce_admin** will then search for managed instance groups in these regions and prompt you which instance group you want to delete (you can also choose several or all). It will summarize the chosen options for you to verify them before actually deleting any instances:
+To terminate GCP instances ({{< kbd >}}d{{</ kbd >}}), you have to choose one or more regions for which to delete machines. **gce_admin** will then search for managed instance groups in these regions and prompt you for a selection. It will summarize the selected options before actually deleting any instances:
 
 ```text
 Retrieving all managed instance groups in region 'us-central1' ... OK
@@ -216,7 +218,7 @@ Are you sure? [y/n] =>
 
 ## Amazon Web Services (AWS)
 
-The Amazon Elastic Compute Cloud service is another perfect fit for on-demand load testing. XLT agents can easily be run from EC2 instances. But without a helpful tool, configuring the master controller to use the new agents can be a tedious job, especially if many agent machines are involved, as it includes to manually get the current IP address of each machine and create a corresponding line in the mastercontroller’s configuration. XLT ships with a simple command-line tool that simplifies the handling of Amazon EC2 instances in general: the **ec2_admin**. It provides the following functionality:
+The Amazon Elastic Compute Cloud service is another perfect fit for on-demand load testing. XLT agents can easily be run from EC2 instances. But without a helpful tool, configuring the master controller to use the new agents can be a tedious job, especially if many agent machines are involved, as it includes to manually get the current IP address of each machine and create a corresponding line in the mastercontroller’s configuration. XLT ships with a simple command line tool that simplifies the handling of Amazon EC2 instances in general: the **ec2_admin**. It provides the following functionality:
 
 -   start new instances (with only a few options)
 -   stop running instances
