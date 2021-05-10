@@ -10,7 +10,9 @@ description: >
 
 ## Introduction
 
-XLT enables you to develop and run test scenarios for your application on your own machine, however a load test requires a lot of virtual users executing these test scenarios at the same time, which is a task best solved with the help of a distributed load generation environment, i.e. a cluster of test machines that generate the load that you defined. XLT ships with tools to help you set up your cluster using Google Cloud or Amazon Web Services - and this page contains an overview of how to use them.
+XLT enables you to develop and run test scenarios from your own machine. However, load testing often requires a lot of virtual users executing the test scenarios at the same time. This requires more hardware and more bandwidth than a single machine can deliver such as a cluster of test machines. XLT comes with tools to set up your own cluster using Google Cloud or Amazon Web Services. 
+
+This page contains an overview of how to use them, which caveats you might face, and enhances the general understanding of testing from the cloud.
 
 ### How to run load tests using a distributed environment
 
