@@ -218,9 +218,9 @@ Are you sure? [y/n] =>
 
 ## Amazon Web Services (AWS)
 
-The Amazon Elastic Compute Cloud service is another perfect fit for on-demand load testing. XLT agents can easily be run from EC2 instances. But without a helpful tool, configuring the master controller to use the new agents can be a tedious job, especially if many agent machines are involved, as it includes to manually get the current IP address of each machine and create a corresponding line in the mastercontroller’s configuration. XLT ships with a simple command line tool that simplifies the handling of Amazon EC2 instances in general: the **ec2_admin**. It provides the following functionality:
+The Amazon Elastic Compute Cloud service is another perfect fit for on-demand load testing. XLT tests can easily be run from EC2 instances. But without a helpful tool, starting and stopping multiple machines as well configuring the mastercontroller properties is a lot of work. XLT comes with a simple command line tool that simplifies the handling of Amazon EC2 instances: the **ec2_admin**. It provides the following functionality:
 
--   start new instances (with only a few options)
+-   start new instances
 -   stop running instances
 -   list running instances (and print a corresponding agent controller configuration ready to be pasted into `mastercontroller.properties`)
 
@@ -228,15 +228,19 @@ Note that this tool is not intended to replace the <a href="http://aws.amazon.co
 
 ### AMIs for AWS 
 
-Xceptance provides AMIs (Amazon Machine Images) for use with Amazon EC2. These AMIs are pre-packaged systems, which are optimized for load testing and have XLT already installed. Using one of these AMIs may save you the work to create and maintain your own AMIs, but may also impose additional costs. Amazon will charge you for the infrastructure usage. Make sure that your security group permits communication on port 8500. This is the XLT agent port on these machines. A list of current AWS AMI ids can be found next to the release information on <a href="https://github.com/Xceptance/XLT/releases" target="_blank">GitHub</a>.
+Xceptance provides ready to go AMIs (Amazon Machine Images) with XLT. These AMIs are pre-packaged systems, which are optimized for load testing and have XLT already installed. Using one of these AMIs may save you the work to create and maintain your own AMIs, but may also impose additional costs. Amazon will charge you for the infrastructure usage. Make sure that your security group permits communication on port 8500. This is the XLT agent port on these machines. A list of current AWS AMI ids can be found next to the release information on <a href="https://github.com/Xceptance/XLT/releases" target="_blank">GitHub</a>.
 
 In addition to that, you can also build your own images using our public <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">XLT-Packer project</a>. It contains a README on how to use it to create images set up for running XLT for the cloud vendor of your choice.
+
+{{%warning title="Older AMIs"%}}
+Usually the last major and minor versions of XLT AMIs are provided by Xceptance. There is no guarantee that older version will be kept available. Make sure you either have your own AMIs setup or upgrade to a more current one frequently.
+{{%/warning%}}
 
 ### Setting up ec2_admin
 
 Before you can use the tool, you have to **configure** it appropriately. There is a configuration file for this: `<xlt>/config/ec2_admin.properties`. 
 
-The most important settings are your _AWS credentials_. These are needed to authorize any AWS operation, which is executed on your behalf.
+The most important settings are your _AWS credentials_. These are needed to authorize AWS operation, which are executed on your behalf. 
 
 In addition to this, it is possible to configure the names of the _AWS key pair_ used for each region in the properties, but if there is none defined, the tool will also prompt you for a key pair to use during instance setup.
 
@@ -264,24 +268,26 @@ aws.keypair.us-east-1 = key-us-east-1
 To **run the tool**, call one of the two scripts `<xlt>/bin/ec2_admin.sh` or `<xlt>\bin\ec2_admin.cmd` depending on your OS choice. The tool will guide you through the available operations via a menu-based UI. Keep in mind that you can easily run XLT in a heterogeneous environment and control Linux based agents from a Microsoft Windows environment. 
 
 {{% note notitle %}}
-Note that when creating AWS instances from AMIs you will see your own AMIs to choose from, but you may also see public AMIs provided by Xceptance. These AMIs are pre-packaged systems, which are optimized for load testing and have XLT already installed. Using one of these AMIs may save you the work to create and maintain your own AMIs, but may also impose additional costs. See the AMI’s description for more details.
+Note that when creating AWS instances from AMIs you will see your own AMIs to choose from, but you may also see public AMIs provided by Xceptance. These AMIs are pre-packaged systems, which are optimized for load testing and have XLT already installed. Using one of these AMIs may save you the work to create and maintain your own AMIs. They might not satisfy security requirements set by your organization such as OS or JDK versions. See the AMI’s description for more details.
 {{% /note %}}
 
 {{% warning notitle %}}
-When using the new EC2 management UI for XLT, please be aware of the fact that XLT, when using the stop command, does not distinguish between instances it started and instances you have started manually. For fine-grained control, we recommend the <a href="http://aws.amazon.com/" target="_blank">AWS Management Console</a>.
+When using the **ec2_admin** to stop instances, it does not distinguish between instances it started and instances you might have started manually using other tools. For more fine-grained control, we recommend the <a href="http://aws.amazon.com/" target="_blank">AWS Management Console</a>.
 {{% /warning %}}
 
 ### Running AWS Instances
 
-When starting new AWS machine instances via `ec2_admin` ({{< kbd >}}r{{</ kbd >}}), you first have to choose a _region_ to run the machines from, and an _availability zone_ for this region (optional). 
+When starting new AWS machine instances via `ec2_admin` ({{< kbd >}}r{{</ kbd >}}), you first have to choose a _region_  and an _availability zone_ for this region (optional). 
 
-The `ec2_admin` checks if there are multiple _VPCs/subnets_ in the target region/availability zone and, if so, prompts the user to select the desired one. Otherwise it will chose the default sub-net. (Depending on your AWS configuration, you might not need to choose a VPC/subnet at all.)
+The `ec2_admin` checks if there are multiple _VPCs/subnets_ in the target region/availability zone and, if so, prompts the user to select the desired one. Otherwise it will select the default sub-net. Depending on your AWS configuration, you might not need to choose a VPC/subnet at all.
 
-{{% note notitle %}}Note that choosing VPC and subnet is currently supported in interactive mode only. There is no command line option for this purpose yet.{{% /note %}}
+{{% note notitle %}}
+Note that choosing VPC and subnet is currently supported in interactive mode only. There is no command line option for this purpose yet.
+{{% /note %}}
 
-After that, you have to choose the _machine image (AMI)_ to use from the list of available AMIs. In this list, `ec2_admin` will display the AMI’s name tag (or, if no name tag is present, fall back to its description).
+After that, you have to choose the _machine image (AMI)_ to use from the list of available AMIs. In this list, `ec2_admin` will display the AMI's name tag (or, if no name tag is present, falls back to its description).
 
-You will then be prompted to pick an _instance type_. The list contains all necessary info, including available memory and expected costs:
+You will then be prompted to pick an _instance type_. The list contains all necessary information, including available memory and expected costs:
 
 ```text
 Select the instance type to use for the new EC2 instances:
@@ -311,6 +317,12 @@ Select the instance type to use for the new EC2 instances:
 =>
 ```
 
+{{%danger title="Cost"%}}
+The cost displayed is based on the cost at the time when XLT was released. This is not a dynamic list! It does not take the region into account and also does not consider individual AWS discounts. Additional costs for storage and bandwidth might apply.
+
+This is just for information purposes to make machines better comparable because larger machines might be more cost effective.
+{{%/danger%}}
+
 <a name="aws-name-tag"></a>
 
 `ec2_admin` will ask you _how many instances_ you want to start, and lets you set an _instance name_. All instances set up in this action will be tagged with this name, so you can easily filter them later when [listing](#listing-running-aws-instances) or [terminating](#terminating-aws-instances) instances. Keep in mind that <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#tag-restrictions" target="_blank">AWS tag value restrictions</a> apply.
@@ -321,9 +333,9 @@ Enter the number of instances to start: => 2
 Enter the instance name: => myTestInstance-us-east-1
 ```
 
-Communication between master controller and agent controllers will be encrypted in any case, but for additional security you can set your own _agent controller password_ in the next step. If you leave this empty, an XLT standard password will be used.
+Communication between master controller and agent controllers will be encrypted in any case, but for additional security you can set your own _agent controller password_ in the next step. Make sure you update the password in the mastercontroller properties when later using these started machines. If you leave the value empty, an XLT standard password is used. 
 
-In the next step, you can also enter _host data_ (optional). All data entered here is appended to the `/etc/hosts` file on the load generator machines to route certain host names correctly. This is not necessary for most sites.
+In the next step, you can also enter _host data_ (optional). All data entered here is appended to the `/etc/hosts` file on the load generator machines to allow custom DNS setups. This is not required for most test setups.
 
 ```text
 Enter agent controller password => 
@@ -331,7 +343,7 @@ Enter agent controller password =>
 Enter host data (mark line break with '\n') => 
 ```
 
-In order to be able to log on an EC2 machine per SSH, a key pair must have been assigned to the machine during startup. `ec2_admin` provides this feature when starting machines. The key pair to use for a certain AWS region can be [configured in the properties], but can also be specified on the command line (`-k, --key <key-pair name>`. If none is set yet by one of these options, `ec2_admin` will prompt you to pick one.
+In order to be able to log on to an EC2 machine using SSH, a key pair must have been assigned to the machine during startup. `ec2_admin` provides this feature when starting machines. The key pair to use for a certain AWS region can be configured in the properties, but can also be specified on the command line (`-k, --key <key-pair name>`. If none is set yet, `ec2_admin` will prompt you to pick one.
 
 ```text
 Select the key-pair to use for the new EC2 instances:
@@ -341,7 +353,7 @@ Select the key-pair to use for the new EC2 instances:
 => 
 ```
 
-`ec2_admin` then summarizes the chosen options for you to verify them before actually starting the instances:
+`ec2_admin` then summarizes the chosen options for verification before actually starting the instances:
 
 ```text
 Configuration:  
@@ -360,17 +372,15 @@ Configuration:
 Do you want to run the instance(s) with the above configuration? [y/n] =>
 ```
 
-#### Ways to Pass User Data When Starting Instances
+#### Pass User Data When Starting Instances
 
-In case your AWS EC2 instances need some custom configuration data (*user data*, in Amazon speak), e.g. for setting a custom agent controller password or adding content to `/etc/hosts`, you can also specify this data during `ec2_admin` startup. There are three supported alternatives to pass the user data:
+In case your AWS EC2 instances need some custom configuration data (*user data*, in Amazon speak), e.g. for setting a custom agent controller password or adding content to `/etc/hosts`, you can also specify this data during `ec2_admin` startup. There are three supported ways to pass the user data:
 
 1.  Store the data to a file and pass its name as a command line argument (`-hf <file>` or `--hostDataFile <file>` for host data, `-pf <file>` or `--passwordFile <file>` for the agent controller password).
 2.  Pass the data as a command line argument (`-h "..."` or `--hostData "..."` for host data, `-p "..."` or `--password "..."` for the agent controller password)). 
 3.  When prompted by `ec2_admin`, enter the data. 
 
 {{< TODO >}}Is "user data" parameter still valid?{{< /TODO >}}
-
-Choose the approach that suits you best; however, the first approach will be the one to use in most cases.
 
 ### Listing Running AWS Instances
 
@@ -396,7 +406,7 @@ Filter instances by one or more tags:
 
 When starting Amazon EC2 machine instances, you can also [specify a name tag](#aws-name-tag) that will be assigned to each instance that has been started. This name tag can be used later on to filter the running instances, for example when listing or terminating them. 
 
-The tool will then output a master controller configuration for the chosen set of AWS machines:
+The tool will then output a mastercontroller configuration for the chosen set of AWS machines:
 
 ```text
 Querying all instances in region 'ap-southeast-2' ... OK.
@@ -409,7 +419,7 @@ com.xceptance.xlt.mastercontroller.agentcontrollers.ac001_ap-southeast-2.url = h
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac002_us-east-1.url = https://54.82.197.127:8500
 ```
 
-The generated agent controller names will also contain the region in which the respective machine is running. If your load test is driven from multiple locations in the world, this way it is much easier to tell which agent controller runs in which AWS region.
+The generated agent controller names will also contain the region in which the respective machine is running. If your load test is driven from multiple locations in the world, this way it is much easier to tell which agent controller runs in which AWS region. It also allows later filtering using merge rules for enhanced reports.
 
 #### More Details about Running Instances
 
@@ -433,7 +443,7 @@ To terminate AWS instances by `ec2_admin` ({{< kbd >}}t{{</ kbd >}}), you will b
 
 This way, running machine instances with the same name tag assigned can be terminated all at once, even across regions. This saves you going through each region separately. Simply specify multiple regions separated by comma when prompted.
 
-When terminating machine instances, all instances matching your choice will be listed for review before they are actually terminated. This helps to avoid terminating the wrong instances by accident.
+When terminating machine instances, all instances matching your selection will be listed for review before they are actually terminated. This helps to avoid terminating the wrong instances.
 
 ```text
 Filter instances by one or more tags:
@@ -460,16 +470,15 @@ Are you sure? [y/n] =>
 
 ### Non-Interactive Mode
 
-The `ec2_admin` tool can also be used in scripted processes, making it possible to fully automate the starting and stopping of Amazon machines. It offers a non-interactive mode where all required parameters have to be passed on to the tool’s command line. This allows you to automate the management of Amazon machines.
+The `ec2_admin` tool can also be used in scripted processes. It offers a non-interactive mode where all required parameters have to be passed on to command line. This makes it possible to fully automate the starting and stopping of Amazon machines. 
 
--   To start machines:
+- Starting machines:
     `ec2_admin.sh   run   <region>   <instance-type>   <ami-id>   <instance-count>   <tag>`
--   To stop machines: `ec2_admin.sh   terminate   <region>   <tag>`
+- Stopping machines: `ec2_admin.sh   terminate   <region>   <tag>`
 
-But starting and stopping machines is only half the story. The master controller also needs to know about the freshly started agent machines so it can use them for a load test. To this end, `ec2_admin` emits the corresponding agent machine configuration right after the machines were started. By default, it prints this configuration to the console. Alternatively, the configuration can also be written to a certain file via the `-o` option. We recommend the latter approach since the master
-controller can read the agent configuration directly from this file later on.
+But starting and stopping machines is only half of the story. The mastercontroller also needs to know about the freshly started agent machines so it can use them for a load test. `ec2_admin` lists the corresponding agent machine configuration right after the machines were started. By default, it prints this configuration to the console. Alternatively, the configuration can also be written to a  file via the `-o` option. We recommend the latter approach since the mastercontroller can read the agent configuration directly from this file later on.
 
-For a fully automated load testing process with Amazon machines, use a sequence of commands (in a script) similar to the following one:
+For a fully automated load test process using AWS machines, use a sequence of commands similar to this example:
 
 ```text {linenos=true}
 $ ec2_admin.sh run eu-central-1 c3.2xlarge ami-de5dcdb6 5 Posters -o agents.properties  
@@ -477,7 +486,7 @@ $ mastercontroller.sh -auto -report -pf agents.properties
 $ ec2_admin.sh terminate eu-central-1 Posters
 ```
 
-Note how `ec2_admin` writes the agent machine configuration to the file `agents.properties` which in turn is passed on to the master controller as input. Be aware though that it may take a while until the agent controllers are up and running on the freshly started machines. To stop the master controller from complaining too early about unreachable agent controllers, you should configure an appropriate waiting time in `mastercontroller.properties`, one minute, for example:
+Note how `ec2_admin` writes the agent machine configuration to the file `agents.properties` which in turn is passed to the mastercontroller as input. Be aware though that it may take a while until the agent controllers are up and running. To stop the master controller from complaining too early about unreachable agent controllers, you should configure an appropriate waiting time in `mastercontroller.properties`, one minute, for example:
 
 ```text
 com.xceptance.xlt.mastercontroller.initialResponseTimeout = 60000
