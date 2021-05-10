@@ -5,7 +5,7 @@ weight: 60
 type: docs
 
 description: >
-  How to set up a cluster of test machines for load generation.
+  How to set up a cluster of test machines in the cloud for load generation.
 ---
 
 ## Introduction
