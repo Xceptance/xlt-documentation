@@ -14,19 +14,23 @@ XLT enables you to develop and run test scenarios from your own machine. However
 
 This page contains an overview of how to use them, which caveats you might face, and enhances the general understanding of testing from the cloud.
 
-### How to run load tests using a distributed environment
+### Running Load Tests Using a Distributed Environment
 
-The basic setup which you would use to run a load test using a distributed load generation environment looks like this:
+A possible setup which you could use to run a load test using a distributed load generation environment looks like this:
 
 {{< image src="user-manual/cloud_setup.svg" >}}
 Distributed Load Generation Environment
 {{< /image >}}
 
-You have one machine running your [master controller](../../manual/010-basics/#mcmaster-controller), which manages several machines that are running the [agent controllers](../../manual/010-basics/#acagent-controller) and [agents](../../manual/010-basics/#agents). 
+One machine runs your [master controller](../../manual/010-basics/#mcmaster-controller), which controls several machines that run the [agent controllers](../../manual/010-basics/#acagent-controller) and [agents](../../manual/010-basics/#agents). 
 
-Xceptance offers public image templates for AWS machines, or a <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">helpful tool</a> to build your own image templates both for GC and AWS machines. 
+Xceptance offers public images for AWS machines (AMIs). You can also use <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">Packer</a> to build your own images for GCP and AWS. 
 
-Also, XLT ships with two little scripts that simplify the process of setting up and managing load test instances, as you might need quite a lot of them to generate your target load: **[gce_admin](#google-cloud-gc)** (for Google Cloud) and **[ec2_admin](#amazon-web-services-aws)** (for Amazon Web Services). They will help you to set up a cluster of test machines quickly, which you then just have to put into the master controller configuration: navigate to `<XLT>/config/mastercontroller.properties` on your MC machine, then enter the AC data the tools give you when you list the created instances. Now you are ready for load testing!
+XLT ships with two small scripts that simplify the process of setting up and managing load test instances: **[gce_admin](#google-cloud-gc)** (for Google Cloud) and **[ec2_admin](#amazon-web-services-aws)** (for Amazon Web Services).
+
+#### Add Machines to the MC Configuration
+
+The scripts will set up a cluster of test machines quickly. After the setup, you just have to add the machines to the master controller configuration: navigate to `<XLT>/config/mastercontroller.properties` on your MC machine, then enter the AC data the tools give you when you list the created instances. Now you are ready for load testing!
 
 {{% note title="How many machines do I need?" %}}
 The number and size of load testing machines you'll need for your setup is largely a matter of experience. 
