@@ -6,8 +6,6 @@ enableRobotsTXT = true
 # Hugo allows theme composition (and inheritance). The precedence is from left to right.
 theme = ["xltdoc", "docsy"]
 
-rss_sections = ["release-notes", "load-test", "test-automation", "xlt-in-a-nutshell"]
-
 # Will give values to .Lastmod etc.
 enableGitInfo = true
 
@@ -85,6 +83,8 @@ weight = 1
 [params]
 copyright = "Xceptance GmbH"
 privacy_policy = "https://policies.google.com/privacy"
+
+rss_sections = ["docs"]
 
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
