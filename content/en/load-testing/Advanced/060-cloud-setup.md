@@ -33,13 +33,7 @@ XLT ships with two small scripts that simplify the process of setting up and man
 The scripts will set up a cluster of test machines quickly. After the setup, you just have to add the machines to the master controller configuration: navigate to `<XLT>/config/mastercontroller.properties` on your MC machine, then enter the AC data the tools give you when you list the created instances. Now you are ready for load testing.
 
 {{% note title="How many machines do I need?" %}}
-The number and size of load testing machines you'll need for your setup is largely a matter of experience. 
-
-As for the number of machines, a good rule of thumb to start with is: 1 AC machine per 5k target pageviews/hour. 
-
-As for RAM, we usually reserve 512 MB for the system, plus about 512 MB for the JVM plus the configured maximum heap size per agent process. So, for 4 agents per machine with each 0.5 GB heap size, we would roughly need 0.5 GB + 4 * (0.5 GB + 0.5 GB) = 4.5 GB of RAM.
-
-Check the agents' CPU usage after your load test in the [test report](../../manual/320-test-evaluation/#agents) so you know whether any adjustments are necessary.
+It can be hard to determine the number and size of load testing machines you'll need for your setup. Here's [a small guide about test sizing](../../how-tos/test-sizing/).
 {{% /note %}}
 
 After your test finished and the mastercontroller has downloaded all the data required for report generation, gce_admin/ec2_admin can also help you to easily terminate all of your test machines.
@@ -419,7 +413,7 @@ com.xceptance.xlt.mastercontroller.agentcontrollers.ac001_ap-southeast-2.url = h
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac002_us-east-1.url = https://54.82.197.127:8500
 ```
 
-The generated agent controller names will also contain the region in which the respective machine is running. If your load test is driven from multiple locations in the world, this way it is much easier to tell which agent controller runs in which AWS region. It also allows later filtering using merge rules for enhanced reports.
+The generated agent controller names will also contain the region in which the respective machine is running. If your load test is driven from multiple locations in the world, this way it is much easier to tell which agent controller runs in which AWS region. It also allows later filtering using [merge rules](../010-merge-rules) for enhanced reports.
 
 #### More Details about Running Instances
 
