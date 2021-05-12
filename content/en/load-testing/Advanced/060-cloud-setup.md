@@ -10,7 +10,7 @@ description: >
 
 ## Introduction
 
-XLT enables you to develop and run test scenarios from your own machine. However, load testing often requires a lot of virtual users executing the test scenarios at the same time. This requires more hardware and more bandwidth than a single machine can deliver such as a cluster of test machines. XLT comes with tools to set up your own cluster using Google Cloud or Amazon Web Services. 
+XLT enables you to develop and run test scenarios from your own machine. However, load testing often requires a lot of virtual users executing the test scenarios at the same time. Therefore we recommend to use a cluster of test machines which can deliver more hardware and more bandwidth than a single machine. XLT comes with tools to set up your own cluster using Google Cloud or Amazon Web Services. 
 
 This page contains an overview of how to use them, which caveats you might face, and enhances the general understanding of testing from the cloud.
 
@@ -24,7 +24,7 @@ Distributed Load Generation Environment
 
 One machine runs your [master controller](../../manual/010-basics/#mcmaster-controller), which controls several machines that run the [agent controllers](../../manual/010-basics/#acagent-controller) and [agents](../../manual/010-basics/#agents). 
 
-Xceptance offers public images for AWS machines (AMIs). You can also use <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">Packer</a> to build your own images for GCP and AWS. 
+Xceptance offers public images for AWS machines (AMIs). You can also use <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">XLT-Packer</a> to build your own images for GCP and AWS. 
 
 XLT ships with two small scripts that simplify the process of setting up and managing load test instances: **[gce_admin](#google-cloud-gc)** (for Google Cloud) and **[ec2_admin](#amazon-web-services-aws)** (for Amazon Web Services).
 
