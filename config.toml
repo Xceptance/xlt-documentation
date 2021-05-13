@@ -18,6 +18,10 @@ enableMissingTranslationPlaceholders = true
 
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
+[frontmatter]
+date = [":git", "lastmod", "date", "publishDate", ":fileModTime"]
+lastmod = [":git", "lastmod", "date", "publishDate", ":fileModTime"]
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
