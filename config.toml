@@ -18,6 +18,10 @@ enableMissingTranslationPlaceholders = true
 
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
+[frontmatter]
+date = [":git", "lastmod", "date", "publishDate", ":fileModTime"]
+lastmod = [":git", "lastmod", "date", "publishDate", ":fileModTime"]
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
@@ -83,6 +87,7 @@ weight = 1
 [params]
 copyright = "Xceptance GmbH"
 privacy_policy = "https://policies.google.com/privacy"
+host = "xltdoc.xceptance.com"
 
 rss_sections = ["docs"]
 
