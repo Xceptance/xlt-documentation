@@ -9,6 +9,17 @@
 
 }
 
+footer {
+    a {
+        color: scale-color($link-color, $saturation: -20%, $lightness: 50%);
+        
+        &:hover {
+            color: scale-color($link-hover-color, $saturation: 0%, $lightness: 50%);
+        }
+    }
+    
+}
+
 .td-content {
     /* give the content less of a hard contrast */
     color: $main-text-color !important;
