@@ -217,5 +217,3 @@ XLT is Open Source and available under the Apache License 2.0.
 ```
 
 So to get an intermediate results and report, use the options **(d)** and **(c)** while the test is running. By default, the report will be created from the latest downloaded results and be named *\<timestamp\>-intermediate*. This can be useful to check the reasons for test failures while the test is still running.
-
-{{< TODO comment="other usecases & insights?" >}}
