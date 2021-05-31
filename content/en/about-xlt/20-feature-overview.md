@@ -6,27 +6,27 @@ type: docs
 weight: 20
 
 description: >
-    All about the most important feature in a nutshell.
+    All about the most important features in a nutshell.
 ---
 
 ## Platform Independence
 Going MS Windows only was never an option when XLT was developed. We wanted a tool that runs everywhere with a preference for Linux. XLT load tests can be developed and executed on every platform with a supported JDK. Of course, you can easily run your load tests on a [distributed cloud infrastructure](../../load-testing/advanced/060-cloud-setup/). Releases come with [pre-built Amazon Webservice AMIs](../../load-testing/advanced/060-cloud-setup/#image-templates-for-aws). Images for other cloud providers and containers can be built easily (see [XLT-Packer](https://github.com/Xceptance/XLT-Packer).
 
 ## Java 
-XLT runs a Java application stack: XLT is written in Java and tests are written in Java too. That way, you can apply your existing knowledge, use your own favorite tool chain, and favorite IDE. Of course, there are recommendations for what works best.
+XLT runs a Java application stack: XLT is written in Java and tests are written in Java, too. That way, you can apply your existing knowledge, use your own favorite tool chain, and favorite IDE. Of course, there are recommendations for what works best.
 
 ## Open Source
 XLT uses trusted open source components such as Apache HttpClient, HtmlUnit, JUnit, WebDriver, Apache Commons, and many more.
 
 ## Command-Line Driven
-XLT load tests are typically run from the command line (on your local machine or any remote machine). Results are stored wherever the tests are executed from. Anyone with the right password and agent IPs can attach to a running test. This way, it is very easy to share work and watch running test from wherever you are. 
+XLT load tests are typically run from the command line (on your local machine or any remote machine). Results are stored wherever the tests are executed from. Anyone with the right password and agent IPs can attach to a running test. This way, it is very easy to share work and watch a running test from wherever you are. 
 
 If the command line is not your cup of tea, the [XLT Jenkins plugin](#ci-ready---jenkins-module) offers a bit of UI to manage tests. 
 
 Xceptance is working on a SaaS offering to make it more comfortable to schedule, run, store, and share testing work and results.
 
 ## Test Suites
-XLT tests are organized in test suites which hold the code (basically JUnit tests), data, and configuration. This makes test projects easily manageable, as the code can be developed in any IDE and put into any version control system, which enables concurrent work on the test code, offers a history, and overall, makes it very simple to share code and deploy test suites from different machines. The test suites are completely independent from the execution engine, so it is possible to run the same code on several machines, or have one machine run several test suites.
+XLT tests are organized in test suites which hold the code (basically JUnit tests), data, and configuration. This makes test projects easily manageable, as the code can be developed in any IDE and put into any version control system, which enables concurrent work on the test code, offers a history and overall makes it very simple to share code and deploy test suites from different machines. The test suites are completely independent from the execution engine, so it is possible to run the same code on several machines, or have one machine run several test suites.
 
 ## Test Approaches
 There are several approaches how to write and design XLT tests, for example:
@@ -35,7 +35,7 @@ There are several approaches how to write and design XLT tests, for example:
 * Real browser: Use a WebDriver style test approach and scale up load testing using real browser (Chrome, Firefox). XLT will even capture page rendering times. 
 * Request level: For API testing, plain HttpRequests can be built and executed
 
-Xceptance offers [example test suites](../../load-testing/test-suites/) for most of these concepts, so you can get a feeling what suits your needs. That includes a test suite that using YAML for the configuration of the test and skips programming almost entirely. 
+Xceptance offers [example test suites](../../load-testing/test-suites/) for most of these concepts, so you can get a feeling what suits your needs. That includes a test suite that is using YAML for the configuration of the test and skips programming almost entirely. 
 
 ## Load Profiles
 The [load profiles](../../load-testing/manual/470-load-configuration/) offered by XLT are configurable like everything else and therefore totally flexible. Whether you need constant user number or arrival rate is just one of many possible approaches; in addition to that, you can define a rampup or warmup phase for your tests or even create a fully variable load profile for whatever test profile you want to create. The load is freely and independently configurable for every test scenario. To make your test runs easier to configure, you can increase or decrease the load using the load factor feature. 
@@ -65,7 +65,7 @@ Load Testing Dashboard
 {{< /image >}}
 
 ## Misc
-Obviously all the feature mentioned above are just the tip of the iceberg. XLT has many more cool concepts and properties you can exploit to built rich test suites and evaluate the performance of systems under test in detail.
+Obviously all the features mentioned above are just the tip of the iceberg. XLT has many more cool concepts and properties you can exploit to built rich test suites and evaluate the performance of systems under test in detail.
 
 ## Disclaimer
 You might recall the Script Developer. An IDE integrated in Firefox to record, edit, and execute test automation. When Mozilla abandoned the XUL-interface API and effectively broke the add-on concept in half, XLT had to abandon the UI interface for test automation. 
