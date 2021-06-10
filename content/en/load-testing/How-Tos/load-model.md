@@ -1,6 +1,6 @@
 ---
 title: "Selecting the Right Load Model"
-linkTitle: "Load Models"
+linkTitle: "Select a Load Model"
 
 weight: 1
 type: docs
