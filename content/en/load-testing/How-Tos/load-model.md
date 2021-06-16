@@ -2,7 +2,7 @@
 title: "Selecting the Right Load Model"
 linkTitle: "Select a Load Model"
 
-weight: 1
+weight: 40
 type: docs
 
 

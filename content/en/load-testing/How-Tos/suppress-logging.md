@@ -1,7 +1,7 @@
 ---
 title: "Suppress Data Logging"
 
-weight: 1
+weight: 200
 type: docs
 
 
