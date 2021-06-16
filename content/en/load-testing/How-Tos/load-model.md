@@ -39,7 +39,7 @@ With the *Arrival Rate Model*, your criteria is the number of transactions (or h
 
 ## Response Time as Influencing Factor
 
-When using the user count model simply less transactions will be finished. In comparison the arrival rate model will increase the number of concurrent users to make sure, the planned number of orders will be achieved.
+When using the user count model simply less transactions will be finished if the response time increases. In comparison the arrival rate model will increase the number of concurrent users to make sure, the planned number of orders will be achieved.
 
 This means that the arrival rate model works feedback based and will react to response time changes during the test period. This way, the generated load is somewhat unpredictable, but this is more along the lines of how the real world behaves. 
 

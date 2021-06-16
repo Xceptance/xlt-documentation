@@ -13,7 +13,7 @@ description: >
 ## Motivation
 Before you can start a load test for your application, you need to [define load numbers](../../manual/470-load-configuration). The load you apply should model real world traffic on your application, but chances are you do not yet have a complete list of arrival rates and user numbers at hand.
 
-So what should you do when you do not know every detail about the current or future load pattern? We are describing one approach below that works pretty well for ecommerce applications and always yielded satisfying results so far.
+So what should you do when you do not know every detail about the current or future load pattern? We are describing one approach below that works pretty well in the context of ecommerce applications and always yielded satisfying results for us so far.
 
 ## Assumptions
 As you can see in our [example test suites](../../test-suites), you can define a handful of very typical test scenarios for ecommerce applications. For our example here, we will use the following:
@@ -93,4 +93,37 @@ The total mix is:
 
 ## How to put these numbers to work
 
-* arrival rate vs. user count vs. concurrent users?
+There are [two different approaches](../load-model/) (models) to define load: the user count model and the arrival rate model. For the user count model, you define a certain number of concurrent users the system will have to handle, whereas with the arrival rate model, your criteria is the number of transactions per hour.
+The numbers we have calculated just tell us how often we want a test scenario to be run, not how many users are needed to achieve this, so we can [define the arrival rate](../../manual/470-load-configuration/#arrival-rate-model) per test scenario in the test properties:
+
+```bash
+## Test case specific configuration.
+com.xceptance.xlt.loadtests.TBrowsing.users = 5
+com.xceptance.xlt.loadtests.TBrowsing.arrivalRate = 3400
+
+com.xceptance.xlt.loadtests.TSearch.users = 5
+com.xceptance.xlt.loadtests.TSearch.arrivalRate = 3400
+
+com.xceptance.xlt.loadtests.TSingleClickVisit.users = 20
+com.xceptance.xlt.loadtests.TSingleClickVisit.arrivalRate = 1000
+
+com.xceptance.xlt.loadtests.TAdd2Cart.users = 1
+com.xceptance.xlt.loadtests.TAdd2Cart.arrivalRate = 1600
+
+com.xceptance.xlt.loadtests.TGuestCheckout.users = 5
+com.xceptance.xlt.loadtests.TGuestCheckout.arrivalRate = 100
+
+com.xceptance.xlt.loadtests.TRegisteredCheckout.users = 5
+com.xceptance.xlt.loadtests.TRegisteredCheckout.arrivalRate = 100
+
+com.xceptance.xlt.loadtests.TGuestOrder.users = 5
+com.xceptance.xlt.loadtests.TGuestOrder.arrivalRate = 100
+
+com.xceptance.xlt.loadtests.TRegisteredOrder.users = 5
+com.xceptance.xlt.loadtests.TRegisteredOrder.arrivalRate = 100
+```
+
+As you see, you have to specify a user count for the arrival rate model, too, even though the number of concurrent users is rather a result than an input value for this load model. This number is used to impose an upper limit to the number of concurrent users, which may help you to restrict the total load on the system if you want to avoid a total overload resulting from the [feedback loop](../load-model/#response-time-as-influencing-factor).
+
+{{< TODO  >}}where are user numbers coming from?
+
