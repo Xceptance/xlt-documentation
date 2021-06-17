@@ -11,7 +11,7 @@ description: >
 ---
 
 ## Motivation
-Before you can start load testing for your application, you need to [define target numbers](../../manual/470-load-configuration). The load you apply should likely model real world traffic behavior, but chances are you do not yet have a complete list of numbers at hand at hand. You might also have heard about ["concurrent users"](#calculation-of-concurrent-users) or got these as a metric, which makes things even more tricky.
+Before you can start load testing for your application, you need to [define target numbers](../../manual/470-load-configuration). The load you apply should likely model real world traffic behavior, but chances are you do not yet have a complete list of numbers at hand. You might also have heard about ["concurrent users"](#calculation-of-concurrent-users) or got these as a metric, which makes things even more tricky.
 
 So what should you do when you do not know every detail about the current or future load patterns? We will describe one approach that works pretty well in the context of commerce applications and always yields satisfying results for us.
 
@@ -44,7 +44,7 @@ Since we do not take any daily averages as base but the peaks, we will calculate
 
 There are [two different approaches](../load-model/) (load models) available to define a load test setup: the user count model and the arrival rate model. 
 
-For the user count model, you define a certain number of concurrent users the system will have to handle, whereas with the arrival rate model, your criteria is the number of transactions per hour. The latter is better fit for real world load, we will go with the arrival rate model.
+For the user count model, you define a certain number of concurrent users the system will have to handle, whereas with the arrival rate model, your criteria is the number of transactions per hour. As the latter is better fit for real world load, we will go with the arrival rate model.
 
 ### Orders
 Let's start the calculation bottom up: 200 orders per hour are set as the goal. Splitting them 50/50 between registered and anonymous users, we get 100 visits for both order scenarios. All numbers are per hour of course.
@@ -72,7 +72,7 @@ Usually up to 50% of all created carts aren't checked out at all. For this examp
 * TRegisteredOrder = 100
 
 ### Early Visit Abandonment
-We also know that many users do not continue after hitting the home page or a landing page. Let’s add some of these users now.
+We also know that usually 5–10% of users do not continue after hitting the home page or a landing page. Let’s add some of these users now.
 
 * **TVisit** = 1,000
 * TAdd2Cart = 1,600
@@ -109,7 +109,7 @@ Depending on the store type (large store, small store etc), people tend to use s
 
 ### Configuration
 
-Now we can [setup the arrival rates](../../manual/470-load-configuration/#arrival-rate-model) in the test properties:
+Now we can [set up the arrival rates](../../manual/470-load-configuration/#arrival-rate-model) in the test properties:
 
 ```text
 ## Test case specific configuration.
@@ -157,13 +157,13 @@ You have probably heard the term "Concurrent Users". In the context of load and 
 
 Let's start the explanation with a couple of terms to help you understand what we’re going to talk about:
 
-* _Visit_: Occurs when a request is send to a server and, as a response, the website you requested is displayed. Has a duration which starts with the first page view and ends with the last. Consists of one or more page views or page interactions.
-* _Session_: Technical term for a visit, basically the underlying implementation. Visits and sessions are often used synonymously.
-* _Page view_ or _page impression_: A single complete page delivered due to requesting an URL; in a world of Ajax, intermediate logical pages can be considered an impression or view. Can lead to further technical requests (HTML, CSS, JavaScript, images etc.)
-* _Request_: Submission of a request to a server, in the case of web applications mostly via HTTP/HTTPS protocols. Requested content may be HTML, CSS, JavaScript as well as images and videos.
-* _Think time_: Time period between two page views of a visit.
-* _Scenario_: The course of a visit, basically a use case or test case.
-* _Concurrent User_: That's is what we don't know yet...
+* _Visit:_ Occurs when a request is sent to a server and, as a response, the website you requested is displayed. Has a duration which starts with the first page view and ends with the last. Consists of one or more page views or page interactions.
+* _Session:_ Technical term for a visit, basically the underlying implementation. Visits and sessions are often used synonymously.
+* _Page view_ or _page impression:_ A single complete page delivered due to requesting an URL; in a world of Ajax, intermediate logical pages can be considered an impression or view. Can lead to further technical requests (HTML, CSS, JavaScript, images etc.)
+* _Request:_ Submission of a request to a server, in the case of web applications mostly via HTTP/HTTPS protocols. Requested content may be HTML, CSS, JavaScript as well as images and videos.
+* _Think time:_ Time period between two page views of a visit.
+* _Scenario:_ The course of a visit, basically a use case or test case.
+* _Concurrent User:_ That's what we don't know yet...
 
 We have defined a set of typical test scenarios above. Most of the time, we consider a scenario an isolated visit repeating the steps of the test case and thus using defined data (note that also random data is defined data). Every visit or scenario consists of one or more page views with think times in between.
 
@@ -176,9 +176,9 @@ Let's look at the TBrowse scenario. We might have four page views here:
 
 For now, we'll just assume that each request has an average response time of 1 second, which means the complete browsing scenario would take 4 sec. 
 
-Now, the majority of users aren't that fast which is why usually think times are included. The average think time currently amounts to something between 10-20 seconds It used to be 40 seconds but today’s users are more experienced. Also user guidance has been improved so navigating a website is much easier. Let’s assume a think time of 15 seconds for our example. So the overall duration of the scenario is 4 * 1 sec + 3 * 15 sec = 49 seconds. 
+Now, the majority of users aren't that fast which is why usually think times are included. The average think time currently amounts to something between 10–20 seconds. It used to be 40 seconds but today’s users are more experienced. Also user guidance has been improved so navigating a website is much easier. Let’s assume a think time of 15 seconds for our example. So the overall duration of the scenario is 4 * 1 sec + 3 * 15 sec = 49 seconds. 
 
-This means, a single user can perform this scenario 73.5 times per hour (3,600 seconds / 49 seconds per visit). If we want the scenario to be performed 3,400 times per hour, we'd need 47 users (3,400 / 73.5). Easy, right?
+This means a single user can perform this scenario 73.5 times per hour (3,600 seconds / 49 seconds per visit). If we want the scenario to be performed 3,400 times per hour, we'd need 47 users (3,400 / 73.5). Easy, right?
 
 Because the server response time is most likely not constant, the number of users that XLT should use should be higher. It will automatically only use as many as it needs. But because a user requires resources, you cannot simply use a large random number but should more carefully select one. Be generous but not wasteful.
 
@@ -187,7 +187,7 @@ Because the server response time is most likely not constant, the number of user
 These results are based on a lot of assumptions, which means they are not necessarily correct. 
 
 #### How do I know if the think times are correct?
-For your real world application, it's a bit of work to determine your the correct think times. For most testing, rough estimates are good enough. There are only a few cases where thinktimes play a larger role. For the load test you can [set the think time in your test properties](../../manual/480-test-suite-configuration/#think-times). Make sure the thinktimes are random enough and not fixed up too much.
+For your real world application, it's a bit of work to determine your the correct think times. For most testing, rough estimates are good enough. There are only a few cases where think times play a larger role. For the load test you can [set the think time in your test properties](../../manual/480-test-suite-configuration/#think-times). Make sure the think times are random enough and not fixed up too much.
 
 #### What if the response time gets longer than you expect?
 The user numbers you define are just an upper limit to prevent system overload, so we recommend to use a safety factor. If you multiply the numbers by two, you should be on the safe side. XLT will probably not use as many concurrent users as the number actually needed is driven by the arrival rate and server feedback.
@@ -203,10 +203,10 @@ We mentioned above that without a temporal dimension, the user number is pretty 
 The created traffic is not identical to a run with think times despite the same target KPIs (visits, page views, orders). Parallelism and the unpredictability of both testing and reality comes into play. Concurrent users can potentially fire a request at the same time and it makes a difference whether your system should handle 4, or 47 (or 4,700) requests at the same time. Only by knowing the test cases and additional numbers such as visits and page views per time unit can you a) define a number of concurrent users and b) check each number by means of calculation against the other numbers.
 
 ### Summary
-The concurrent users count alone does not define any business metrics such as page views, visits, or orders. The sentence: "The system should be able to handle 5,000 concurrent users." is not sufficient input to design a load test profile. Concurrent users are the result of a the test profile design, not the starting point.
+The concurrent users count alone does not define any business metrics such as page views, visits, or orders. The sentence: "The system should be able to handle 5,000 concurrent users." is not sufficient input to design a load test profile. Concurrent users are the result of a test profile design, not the starting point.
 
 ## Complete Configuration
-So now that we have the number of users, we can complete our load configuration. Keep in mind, you might want to bump the user numbers higher than your calculated count to account for varying response times.
+So now that we have the number of users, we can complete our load configuration. Keep in mind that you might want to bump the user numbers higher than your calculated count to account for varying response times.
 
 ```bash
 ## Test case configuration
@@ -239,6 +239,6 @@ com.xceptance.xlt.loadtests.TRegisteredOrder.users = 20
 com.xceptance.xlt.loadtests.TRegisteredOrder.arrivalRate = 100
 ```
 
-These are still approximated numbers. It's always best to check your test runs carefully to see if the desired arrival rate was achieved. If all users were required to run to achieve the arrival rate, either the user number is too low or the server too slow. You might even see that you could not achieve the arrival rate goal at all, so you need to add more users when the server is still not overloaded. 
+These are still approximated numbers. It's always best to check your test runs carefully to see if the desired arrival rate was achieved. If all users were required to run to achieve the arrival rate, either the user number is too low or the server too slow. You might even see that you could not achieve the arrival rate goal at all, so you need to add more users if the server is still not overloaded. 
 
 If your server is toast, there is not need to bump up the user number. The next run will yield the same or even worse result.
