@@ -1,7 +1,8 @@
 ---
-title: "Suppress Data Logging"
+title: "How to Suppress Data Logging"
+linkTitle: "Suppress Data Logging"
 
-weight: 1
+weight: 200
 type: docs
 
 

@@ -78,6 +78,19 @@ public class Foo
 foo@picard $./start.sh
 ```
 
+----
+## Footnotes
+
+```markdown
+That's some text with a footnote.[^1]
+
+[^1]: And that's the footnote.
+```
+That's some text with a footnote.[^1]
+
+[^1]: And that's the footnote.
+
+
 ## Links
 ### Any link that is up or down the hierarchy
 Go to [Load Testing]({{< relref "load-testing" >}}).
