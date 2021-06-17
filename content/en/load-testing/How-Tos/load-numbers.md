@@ -1,6 +1,6 @@
 ---
 title: "How to Calculate Load Test Target Numbers"
-linkTitle: "Calculating Target Numbers"
+linkTitle: "Calculate Target Numbers"
 
 weight: 50
 type: docs

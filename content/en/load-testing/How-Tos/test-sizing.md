@@ -1,12 +1,13 @@
 ---
-title: "Test Sizing"
+title: "How to Size Your Test Environment"
+linkTitle: "Test Sizing"
 
 weight: 80
 type: docs
 
 
 description: >
-  How to size your test environment according to your needs.
+  How to determine the number and size of machines you'll need for your load test.
 ---
 
 The number and size of load testing machines you'll need for your setup is largely a matter of experience. 

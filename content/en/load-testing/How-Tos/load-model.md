@@ -1,5 +1,5 @@
 ---
-title: "Selecting the Right Load Model"
+title: "How to Select the Right Load Model"
 linkTitle: "Select a Load Model"
 
 weight: 40
