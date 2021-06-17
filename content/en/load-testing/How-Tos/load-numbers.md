@@ -206,7 +206,7 @@ The created traffic is not identical to a run with think times despite the same 
 The concurrent users count alone does not define any business metrics such as page views, visits, or orders. The sentence: "The system should be able to handle 5,000 concurrent users." is not sufficient input to design a load test profile. Concurrent users are the result of a test profile design, not the starting point.
 
 ## Complete Configuration
-So now that we have the number of users, we can complete our load configuration. Keep in mind that you might want to bump the user numbers higher than your calculated count to account for varying response times.
+So now that we have the number of users, we can complete our load configuration. Keep in mind that you might want to bump the user numbers higher than your calculated count to account for varying response times. 
 
 ```bash
 ## Test case configuration
@@ -239,6 +239,6 @@ com.xceptance.xlt.loadtests.TRegisteredOrder.users = 10
 com.xceptance.xlt.loadtests.TRegisteredOrder.arrivalRate = 100
 ```
 
-These are still approximated numbers. It's always best to check your test runs carefully to see if the desired arrival rate was achieved. If all users were required to run to achieve the arrival rate, either the user number is too low or the server too slow. You might even see that you could not achieve the arrival rate goal at all, so you need to add more users if the server is still not overloaded. 
+These are still approximated numbers. Feel free to round them up, this is not science. It's always best to check your test runs carefully to see if the desired arrival rate was achieved. If all users were required to run to achieve the arrival rate, either the user number is too low or the server too slow. You might even see that you could not achieve the arrival rate goal at all, so you need to add more users if the server is still not overloaded. 
 
 If your server is toast, there is not need to bump up the user number. The next run will yield the same or even a worse result.
