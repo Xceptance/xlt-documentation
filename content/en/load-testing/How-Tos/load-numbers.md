@@ -190,7 +190,7 @@ These results are based on a lot of assumptions, which means they are not necess
 For your real world application, it's a bit of work to determine your the correct think times. For most testing, rough estimates are good enough. There are only a few cases where think times play a larger role. For the load test you can [set the think time in your test properties](../../manual/480-test-suite-configuration/#think-times). Make sure the think times are random enough and not fixed up too much.
 
 #### What if the response time gets longer than you expect?
-The user numbers you define are just an upper limit to prevent system overload, so we recommend to use a safety factor. If you multiply the numbers by two, you should be on the safe side. XLT will probably not use as many concurrent users as the number actually needed is driven by the arrival rate and server feedback.
+The user numbers you define are just an upper limit to prevent system overload, so we recommend to use a safety factor. If you multiply the numbers by two, you're probably on the safe side. XLT will probably not use as many concurrent users as the number actually needed is driven by the arrival rate and server feedback. Anyway we recommend to always check your test runs to see if the desired arrival rate was achieved or if the user numbers need to be adjusted.
 
 #### What if the exact number of page views is unknown?
 Depending on the design of your test suite, you might have a fixed flow and hence fixed interaction count or you have a random flow. We recommend to determine the average scenario runtime by executing a dry run before your actual load test. A dry run is a very low load test execution meant to verify scripts and setup. Use the length of each transaction/scenario to verify the set user number.
@@ -241,4 +241,4 @@ com.xceptance.xlt.loadtests.TRegisteredOrder.arrivalRate = 100
 
 These are still approximated numbers. It's always best to check your test runs carefully to see if the desired arrival rate was achieved. If all users were required to run to achieve the arrival rate, either the user number is too low or the server too slow. You might even see that you could not achieve the arrival rate goal at all, so you need to add more users if the server is still not overloaded. 
 
-If your server is toast, there is not need to bump up the user number. The next run will yield the same or even worse result.
+If your server is toast, there is not need to bump up the user number. The next run will yield the same or even a worse result.
