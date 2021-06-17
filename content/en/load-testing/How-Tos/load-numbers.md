@@ -193,7 +193,7 @@ For your real world application, it's a bit of work to determine your the correc
 The user numbers you define are just an upper limit to prevent system overload, so we recommend to use a safety factor. If you multiply the numbers by two, you should be on the safe side. XLT will probably not use as many concurrent users as the number actually needed is driven by the arrival rate and server feedback.
 
 #### What if the exact number of page views is unknown?
-Depending on the design of your test suite, you might have a fixed flow and hence fixed interaction count or you have a random flow. To determine the average page view count, we recommend to determine the average scenario runtime by executing a dry run before your actual load test. A dry run is a very low load test execution meant to verify scripts and setup. Use the length of each transaction/scenario to verify the set user number.
+Depending on the design of your test suite, you might have a fixed flow and hence fixed interaction count or you have a random flow. We recommend to determine the average scenario runtime by executing a dry run before your actual load test. A dry run is a very low load test execution meant to verify scripts and setup. Use the length of each transaction/scenario to verify the set user number.
 
 As an example, it might take on average a minute to place an order. The range of runtimes might be 30 seconds to 90 seconds. This helps you to estimate that one test user can execute about 60 transactions (scenario executions) per hour.
 
@@ -211,31 +211,31 @@ So now that we have the number of users, we can complete our load configuration.
 ```bash
 ## Test case configuration
 ## User numbers use a safety factor of two.
-com.xceptance.xlt.loadtests.TBrowsing.users = 120
+com.xceptance.xlt.loadtests.TBrowsing.users = 94
 com.xceptance.xlt.loadtests.TBrowsing.arrivalRate = 3400
 
-com.xceptance.xlt.loadtests.TSearch.users = 80
+com.xceptance.xlt.loadtests.TSearch.users = 64
 com.xceptance.xlt.loadtests.TSearch.arrivalRate = 3400
 
-com.xceptance.xlt.loadtests.TRegistration.users = 10
+com.xceptance.xlt.loadtests.TRegistration.users = 6
 com.xceptance.xlt.loadtests.TRegistration.arrivalRate = 200
 
-com.xceptance.xlt.loadtests.TVisit.users = 5
+com.xceptance.xlt.loadtests.TVisit.users = 2
 com.xceptance.xlt.loadtests.TVisit.arrivalRate = 1000
 
-com.xceptance.xlt.loadtests.TAdd2Cart.users = 80
+com.xceptance.xlt.loadtests.TAdd2Cart.users = 58
 com.xceptance.xlt.loadtests.TAdd2Cart.arrivalRate = 1600
 
-com.xceptance.xlt.loadtests.TGuestCheckout.users = 20
+com.xceptance.xlt.loadtests.TGuestCheckout.users = 8
 com.xceptance.xlt.loadtests.TGuestCheckout.arrivalRate = 100
 
-com.xceptance.xlt.loadtests.TRegisteredCheckout.users = 20
+com.xceptance.xlt.loadtests.TRegisteredCheckout.users = 8
 com.xceptance.xlt.loadtests.TRegisteredCheckout.arrivalRate = 100
 
-com.xceptance.xlt.loadtests.TGuestOrder.users = 20
+com.xceptance.xlt.loadtests.TGuestOrder.users = 10
 com.xceptance.xlt.loadtests.TGuestOrder.arrivalRate = 100
 
-com.xceptance.xlt.loadtests.TRegisteredOrder.users = 20
+com.xceptance.xlt.loadtests.TRegisteredOrder.users = 10
 com.xceptance.xlt.loadtests.TRegisteredOrder.arrivalRate = 100
 ```
 
