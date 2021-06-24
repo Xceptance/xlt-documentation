@@ -105,18 +105,115 @@ V,CacheHitRatio,1456928543182,0.1234
 
 ### Custom Samplers
 
-{{% TODO / %}} 
+Custom samplers make use of custom values to regularly record measurements during a load test. Custom samplers are typically used for values that are not related to a specific test scenario.
+
+To this end, provide a custom sampler class extending `com.xceptance.xlt.api.engine.AbstractCustomSampler`. The sampler gets configured in the test suite configuration files (recommended location is `project.properties`).
+
+The sampler must override the `execute()` method that is called after each interval time (see configuration). Furthermore, the sampler might override the methods `initialize()` or `shutdown()` getting called just once for the sampler (before the first call of `execute()` or on shutdown).
+
+The logged custom value is the return value of the `execute()` method.
+
+The `AbstractCustomSampler` can store any `double` value. The stored value indicates the absolute value at a certain point in time. The corresponding report chart directly shows the logged value.
+
+#### Example Implementation
+
+Here's a small example implementation of a custom sampler that records random values:
+
+```java
+public class ValueSamplerDemo extends AbstractCustomSampler 
+{
+    public ValueSamplerDemo()
+    {
+        super();
+    }
+
+
+    @Override
+    public void initialize()
+    {
+        // initialize
+    }
+
+
+    @Override
+    public double execute()
+    {
+        // generate random value based on the configured limits
+
+        // get properties
+        final String lowerLimitProp = getProperties().
+                    getProperty("generatedValueLowerLimit");
+        final String upperLimitProp = getProperties().
+                    getProperty("generatedValueUpperLimit");
+
+        // convert to integer
+        try
+        {
+            final int lowerLimit = Integer.valueOf(lowerLimitProp);
+            final int upperLimit = Integer.valueOf(upperLimitProp);
+
+            // return the value to be logged
+            return
+                XltRandom.nextInt(lowerLimit, upperLimit) +
+                XltRandom.nextDouble();
+        }
+        catch (final NumberFormatException e)
+        {
+            // log 0 in case of an exception
+            return 0;
+        }
+    }
+
+    @Override
+    public void shutdown()
+    {
+        // clean up
+    }
+}
+``` 
+
+#### Example Configuration
+
+To register and configure your sampler, provide these properties:
+
+```bash
+com.xceptance.xlt.customSamplers.1.class = com.xceptance.posters.loadtest.samplers.ValueSamplerDemo
+com.xceptance.xlt.customSamplers.1.name = DemoValueSampler
+com.xceptance.xlt.customSamplers.1.interval = 1000
+com.xceptance.xlt.customSamplers.1.chart.title = Demo Value Sampler
+com.xceptance.xlt.customSamplers.1.chart.yAxisTitle = Value
+com.xceptance.xlt.customSamplers.1.property.generatedValueLowerLimit = 50
+com.xceptance.xlt.customSamplers.1.property.generatedValueUpperLimit = 60
+...
+```
+
+The properties have the following meaning:
+
+* `com.xceptance.xlt.customSamplers.n.` is the saved key for custom sampler properties. Each sampler configuration block must have a unique number (called `n` in this example). The numbers don’t need to be in strictly successive order.
+* `class` points to the sampler class (including full package path).
+* `name` is a customizable name of the sampler.
+* `interval` defines the period the sampler is started at (in milliseconds). The value must be positive (including 0). A new sampler will be started only if it is executed for the first time or if the previous sampler has come to an end. {{% TODO /%}} Hä? Wozu dann mehrere samplers?
+* Providing a `chart.title` is optional. By default, the sampler name is used. `chart.yAxisTitle` defines the title of the y-axis for the rendered chart.
+* Providing further sampler `properties` is optional. The properties can be accessed by calling the methods `getProperties()` or `getProperty(key)` (where key is the string in the configuration between `com.xceptance.xlt.customSamplers.n.property`. and the equals sign (=). In the present example, the keys are `generatedValueLowerLimit` and `generatedValueUpperLimit` which are used for the random number generation). Sampler property keys must not contain dots or whitespace. Apart from that they are free in name and count.
+
+#### Result
+
+XLT will then take care to execute your sampler regularly. It will show up in the [Custom Values](../../manual/320-test-evaluation/#custom-timers--values) section of the load test report just like other custom values.
+
+{{< image src="user-manual/custom_samplers.png">}}
+Custom Samplers in the Test Report
+{{< /image >}}
 
 ## External Data
 
-Sometimes client-side measurements are not enough - that's why XLT is able to enrich its reports with statistics and charts from externally gathered data. This enables you to gather all relevant data in one report, which simplifies analyzing the system behavior. 
+Sometimes client side measurements are not enough - that's why XLT is able to enrich its reports with statistics and charts from externally gathered data. This enables you to gather all relevant data in one report, which simplifies analyzing the system behavior. 
 
 Some examples for usage of external data are
 * resource usage data (CPU, memory, disk space, network usage),
 * cache sizes,
 * GC overhead, ...
 
-To make use of external data, it needs to be collected during the load test, using any appropriate tool. After the load test the collected data files can be processed by XLT for report generation. 
+To make use of external data, it needs to be collected during the load test, using any appropriate tool. After the load test you would gather any relevant data from other systems and make it available as data files in the same results folder as your regular load test result data. When generating the load test report, the report generator processes these additional data files and makes that data available in the load test report as data tables or charts on the _External Data_ page.
 
 The external data files can use csv format (which works out of the box) or other formats (which can be read using custom parsers). All entries in external data files must be timestamped. 
 
