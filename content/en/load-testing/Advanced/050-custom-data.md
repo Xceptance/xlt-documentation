@@ -206,20 +206,70 @@ Custom Samplers in the Test Report
 
 ## External Data
 
-Sometimes client side measurements are not enough - that's why XLT is able to enrich its reports with statistics and charts from externally gathered data. This enables you to gather all relevant data in one report, which simplifies analyzing the system behavior. 
+Sometimes client side measurements are not enough - that's why XLT is able to enrich its reports with statistics and charts from externally gathered data. Use this approach if it’s impossible to access the external data source directly during load testing time, but you would like to see that data as part of the test report, as this simplifies analyzing the system behavior.
 
 Some examples for usage of external data are
 * resource usage data (CPU, memory, disk space, network usage),
 * cache sizes,
 * GC overhead, ...
 
-To make use of external data, it needs to be collected during the load test, using any appropriate tool. After the load test you would gather any relevant data from other systems and make it available as data files in the same results folder as your regular load test result data. When generating the load test report, the report generator processes these additional data files and makes that data available in the load test report as data tables or charts on the _External Data_ page.
+To make use of external data, it needs to be collected during the load test, using any appropriate tool. After the load test you gather any relevant data from other systems and make it available as data files in the same results folder as your regular load test result data. When generating the load test report, the report generator processes these additional data files and makes that data available in the load test report as data tables or charts on the _External Data_ page.
 
+### Types of Data
+
+XLT supports two different types of external data.
+
+**Sampled data** is data that was recorded periodically and that changes over time. Each sampled value must be accompanied by a timestamp. This type of data can be displayed as a graph, and from all the values some basic statistics (mean, minimum, maximum) can be calculated and shown in the report.
+
+* _Example: A data file with a timestamp/CPU usage value pair per line._
+
+**Precomputed data** is data that results from an external value processing and aggregation task. This data is not timestamped, as there is only one aggregated value per data item. Any further data processing does not make sense, so that data will simply be rendered as a table. Consequently, such data can neither be graphed, nor will any statistics be calculated.
+
+* _Example: A file that contains the total number of requests per application tier with a tier/requests pair per line._
+
+
+
+//invalid???
 The external data files can use csv format (which works out of the box) or other formats (which can be read using custom parsers). All entries in external data files must be timestamped. 
+
+### Data Parsers and Value Sets
+
+To read and interpret external data files, a `Parser` class is needed for each type of file or format. The parser takes a line of input (with possibly multiple values) and parses it to a generic set of values. Typically, one line contains all data items of a value set. Sometimes, however, the values are spread across multiple lines. Certain tools, iostat for instance, produce such type of data files. In this case, the parser has to process multiple lines of input before a value set is complete.
+
+Typically, a data file contains many value sets. The parsed value sets for a certain file must have a uniform structure, i.e. they should all contain the same data items at the same position. Otherwise the report generator cannot process them correctly.
+
+A value set can optionally carry a timestamp. This timestamp is valid for all the data items in the value set. Whether or not a timestamp will be set is defined by the parser. If the timestamp is present, the report generator will treat the value set as sampled data, otherwise as precomputed data. Note that if the timestamp does not lie within the load testing period, the value set will be ignored. This way you don’t have to cut out the interesting part from your, say, daily logs.
+
+Later on, when configuring the data to show in the report, we need a way to select the values of interest in a value set. A certain value can always be accessed by an index (starting with 0). Alternatively, you may also use a name to address a data item. However, this requires the parser to store the item under that name. To this end, the parser could use a hard-coded name or it somehow retrieves the name to use right from the data file. For instance, a CSV file could provide a header line with all the value names.
+
+#### Predefined Parsers
+
+XLT ships with a set of predefined parsers for CSV data files. In case you want to process CSV files with sampled data, use one of the following parsers:
+
+* **SimpleCsvParser:** Extracts the data by splitting each line into a set of values and uses the column index as the value name.
+* **HeadedCsvParser:** Like SimpleCsvParser, but takes the value names from the first line of the file.
+
+Note that these two parsers require the timestamp to be in the first column of the CSV data file.
+
+If the external CSV data is precomputed and just needs to be displayed as a data table, use the **PlainDataTableCsvParser** class.
+
+#### Custom Parsers
+If you need to use other input file formats than CSV, you have to write your own custom parser class. Your class must extend `com.xceptance.xlt.api.report.external.AbstractLineParser`.
+
+For an example of an advanced parser class that deals with sampled data, see the two parser implementations in the source directory of the [demo project](#example). They process the logs of the command line tool _iostat_.
+
+* **IostatCpuParser:** Parses the CPU section of an _iostat_ log.
+* **IostatDeviceParser:** Parses the Device section of an _iostat_ log.
+
+{{% note notitle %}}
+Note that if you need to write your own custom parsers, you will have to make the compiled parser classes available in the class path of XLT before the report generator can use them. The simplest way to do this is to deploy the classes packaged as a JAR file to `<xlt>/lib`.
+{{% /note %}}
 
 ### Configuration
 
-Parsing and processing of the data files is configured in `externaldataconfig.xml`. 
+Since external data is completely custom, there is also no standard or built-in way how to interpret and display this data. That’s why you need to help the report generator by providing a detailed configuration of how to parse the data, choosing the values of interest, and how to display them in the report.
+
+All this is configured in `externaldataconfig.xml`. This file is expected in the `config` subdirectory of your load test suite, where all the other load test configuration files live. If XLT can’t locate it there, it will try to find it in its configuration directory `<xlt>/config`.
 
 #### General structure of the configuration file
 
@@ -244,6 +294,31 @@ Parsing and processing of the data files is configured in `externaldataconfig.xm
 </files>
 ```
 
+As you can see, the configuration is centered around the various data files you want to be parsed, processed, and rendered. There can be one ore more input files. The data of each file will be presented in an own subsection in the load test report. For each file/subsection you can define a `headline` and a `description`, configure `charts` (each with one or more data series) or data `tables` (each with a different row or column definition) and additional `properties` to use when parsing the file or rendering the data.
+
+The basic data fields are used as follows:
+* `file`: Defines what file is to be processed and in which way.
+    * `source`: The path to the data file. If the path is relative, it will be resolved against the root directory of the current result set. [required]
+    * `parserClass`: The full class name of the parser class to use for parsing the data file. [required]
+    * `encoding`: The character encoding to use when reading the data file. [optional, defaults to “UTF-8”]
+* `headline` / `description`: Simply provide the text to show as the section header and section description.
+
+**Properties** define additional configuration options. Currently, these are parser settings only, which are used as follows:
+* `property`: additional configuration option, consisting of
+    * `key`: The property name. [required]
+    * `value`: The property value. [required]
+
+The following property names are predefined by XLT, but note that your custom parser classes may define additional properties:
+* `parser.dateFormat.pattern`: The date/time pattern to parse a time value. See `SimpleDateFormat` for more information on date/time patterns. [optional; the time value is expected to be a Java timestamp]
+* `parser.dateFormat.timeZone`: The time zone to use when interpreting time values. [optional, defaults to GMT/UTC]
+* `parser.csv.separator`: The field separator character for CSV files. [optional, defaults to comma]
+
+{{% note notitle %}}
+For tab-separated CSV files, use `&#x9;` as the value of parser.csv.separator.
+{{% /note %}}
+
+
+
 #### How to configure the data tables
 
 ```xml
@@ -262,6 +337,14 @@ Parsing and processing of the data files is configured in `externaldataconfig.xm
 </table>
 </tables>
 ```
+
+* `table` defines the properties of a data table. Each table is defined with its own row or column definition.
+    * `title`: the title of the table [required]
+    * `type`: the type of the table, either `minmaxavg` or `plain`. Use `minmaxavg` for sampled data only, in which case the table will show the mean, the minimum, and the maximum of the sampled values. Similarly, use `plain` for precomputed data only. [optional, defaults to `minmaxavg`]
+* `row` / `col`: Defines the layout of a data table. Tables can be laid out either row-wise or column-wise. If you use rows, the selected values will be shown each in a new table row, otherwise in a new table column. Choose the method that better fits your needs. Both elements provide the same set of configuration options:
+    * `valueName`: the name/index of the value to show [required]
+    * `title`: the title of the series [optional, defaults to the value name]
+    * `unit`: the unit of measurement [optional, defaults to none]
 
 #### How to configure the charts
 
@@ -282,7 +365,22 @@ Parsing and processing of the data files is configured in `externaldataconfig.xm
 </charts>
 ```
 
+* `chart` defines the chart title and the axes titles:
+    * `title`: the title of the chart [required, unique]
+    * `xAxisTitle`: the title of the x-axis [optional, defaults to “Time”]
+    * `yAxisTitle`: the title of the first/left y-axis [optional, defaults to “Values”]
+    * `yAxisTitle2`: the title of the second/right y-axis [optional, defaults to empty in which case the axis is not shown]
+
+* Each chart contains a collection of series (`seriescollection`). A `series` defines which value will be shown as a graph in the chart and how the graph will be styled:
+    * `valueName`: the name/index of the value to graph
+    * `title`: the title of the series [optional, defaults to value name]
+    * `color`: the color of the graph [optional, by default a color from a predefined color set is chosen]
+    * `axis`: the axis to use for this series, either “1” for the first/left axis or “2” for the second/right axis [optional, defaults to “1”]
+    * `average`: the percentage of values to use to calculate the moving average [optional, defaults to empty, in which case no moving average graph will be shown]
+    * `averageColor`: the color to use for the automatically added moving average graph [optional, by default a color from a predefined color set is chosen]
+
 ### Example
 
-{{% TODO / %}}
+XLT ships with a demo project for external data. This project does not only contain a load test result set enriched with external data files and the corresponding load test report, but also shows how to implement custom data file parsers and how to configure the report generator to produce the report. The demo project for external data is located in `<xlt>/samples/demo-external-data`.
 
+{{% TODO / %}} output
