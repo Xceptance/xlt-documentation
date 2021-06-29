@@ -192,7 +192,7 @@ The properties have the following meaning:
 * `com.xceptance.xlt.customSamplers.n.` is the saved key for custom sampler properties. Each sampler configuration block must have a unique number (called `n` in this example). The numbers don’t need to be in strictly successive order.
 * `class` points to the sampler class (including full package path).
 * `name` is a customizable name of the sampler.
-* `interval` defines the period the sampler is started at (in milliseconds). The value must be positive (including 0). A new sampler will be started only if it is executed for the first time or if the previous sampler has come to an end. {{% TODO /%}} Hä? Wozu dann mehrere samplers?
+* `interval` defines the period the sampler is started at (in milliseconds, or as a time period, e.g. `1m 30s` or `90s`). The value must be positive (including 0). A new sampler will be started only if it is executed for the first time or if the previous sampler has come to an end.
 * Providing a `chart.title` is optional. By default, the sampler name is used. `chart.yAxisTitle` defines the title of the y-axis for the rendered chart.
 * Providing further sampler `properties` is optional. The properties can be accessed by calling the methods `getProperties()` or `getProperty(key)` (where key is the string in the configuration between `com.xceptance.xlt.customSamplers.n.property`. and the equals sign (=). In the present example, the keys are `generatedValueLowerLimit` and `generatedValueUpperLimit` which are used for the random number generation). Sampler property keys must not contain dots or whitespace. Apart from that they are free in name and count.
 
@@ -227,18 +227,15 @@ XLT supports two different types of external data.
 
 * _Example: A file that contains the total number of requests per application tier with a tier/requests pair per line._
 
-
-
-//invalid???
-The external data files can use csv format (which works out of the box) or other formats (which can be read using custom parsers). All entries in external data files must be timestamped. 
+The external data files can use csv format (which works out of the box) or other formats (which can be read using custom parsers).
 
 ### Data Parsers and Value Sets
 
-To read and interpret external data files, a `Parser` class is needed for each type of file or format. The parser takes a line of input (with possibly multiple values) and parses it to a generic set of values. Typically, one line contains all data items of a value set. Sometimes, however, the values are spread across multiple lines. Certain tools, iostat for instance, produce such type of data files. In this case, the parser has to process multiple lines of input before a value set is complete.
+To read and interpret external data files, a `Parser` class is needed for each type of file or format. The parser takes a line of input (with possibly multiple values) and parses it to a generic set of values. Typically, one line contains all data items of a value set. Sometimes, however, the values are spread across multiple lines. Certain tools, _iostat_ for instance, produce such types of data files. In this case, the parser has to process multiple lines of input before a value set is complete.
 
 Typically, a data file contains many value sets. The parsed value sets for a certain file must have a uniform structure, i.e. they should all contain the same data items at the same position. Otherwise the report generator cannot process them correctly.
 
-A value set can optionally carry a timestamp. This timestamp is valid for all the data items in the value set. Whether or not a timestamp will be set is defined by the parser. If the timestamp is present, the report generator will treat the value set as sampled data, otherwise as precomputed data. Note that if the timestamp does not lie within the load testing period, the value set will be ignored. This way you don’t have to cut out the interesting part from your, say, daily logs.
+A value set can optionally carry a timestamp. This timestamp is valid for all the data items in the value set. Whether or not a timestamp will be set is defined by the parser. If the timestamp is present, the report generator will treat the value set as sampled data, otherwise as precomputed ("plain") data. Note that if the timestamp does not lie within the load testing period, the value set will be ignored. This way you don’t have to cut out the interesting part from your, say, daily logs.
 
 Later on, when configuring the data to show in the report, we need a way to select the values of interest in a value set. A certain value can always be accessed by an index (starting with 0). Alternatively, you may also use a name to address a data item. However, this requires the parser to store the item under that name. To this end, the parser could use a hard-coded name or it somehow retrieves the name to use right from the data file. For instance, a CSV file could provide a header line with all the value names.
 
@@ -264,6 +261,10 @@ For an example of an advanced parser class that deals with sampled data, see the
 {{% note notitle %}}
 Note that if you need to write your own custom parsers, you will have to make the compiled parser classes available in the class path of XLT before the report generator can use them. The simplest way to do this is to deploy the classes packaged as a JAR file to `<xlt>/lib`.
 {{% /note %}}
+
+{{< image src="user-manual/externalData_customParserOutput.png">}}
+Data parsed with a custom parser in the _External Data_ section of the Test Report
+{{< /image >}}
 
 ### Configuration
 
@@ -317,8 +318,6 @@ The following property names are predefined by XLT, but note that your custom pa
 For tab-separated CSV files, use `&#x9;` as the value of parser.csv.separator.
 {{% /note %}}
 
-
-
 #### How to configure the data tables
 
 ```xml
@@ -345,6 +344,10 @@ For tab-separated CSV files, use `&#x9;` as the value of parser.csv.separator.
     * `valueName`: the name/index of the value to show [required]
     * `title`: the title of the series [optional, defaults to the value name]
     * `unit`: the unit of measurement [optional, defaults to none]
+
+{{< image src="user-manual/externalData_tables.png">}}
+Data Tables in the _External Data_ section of the Test Report
+{{< /image >}}
 
 #### How to configure the charts
 
@@ -379,8 +382,10 @@ For tab-separated CSV files, use `&#x9;` as the value of parser.csv.separator.
     * `average`: the percentage of values to use to calculate the moving average [optional, defaults to empty, in which case no moving average graph will be shown]
     * `averageColor`: the color to use for the automatically added moving average graph [optional, by default a color from a predefined color set is chosen]
 
+{{< image src="user-manual/externalData_charts.png">}}
+Charts in the _External Data_ section of the Test Report
+{{< /image >}}
+
 ### Example
 
 XLT ships with a demo project for external data. This project does not only contain a load test result set enriched with external data files and the corresponding load test report, but also shows how to implement custom data file parsers and how to configure the report generator to produce the report. The demo project for external data is located in `<xlt>/samples/demo-external-data`.
-
-{{% TODO / %}} output
