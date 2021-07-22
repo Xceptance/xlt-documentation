@@ -22,6 +22,6 @@ Everything XTC can do is based on [XLT](../../about-xlt/), so the basic informat
 * You don't have to remember the console commands needed to set up, configure and start a test, as XTC offers a UI to do just that.
 * You don't have to start or shut down machines manually in your Google Cloud - just define the number, size and location of the machines you need, and XTC will do the job for you. (But of course you can still use machines outside the Google Cloud if you want to.)
 * You don't have to trigger test start, download of results or report generation manually in many single steps. This is all part of a test run and XTC will automatically do it for you (while still offering you the possibility to get intermediate results and current state information at every point of the test run).
-* As an additional convenience, XTC enables you to schedule test runs, so you don't have to set yourself an alarm to start the test on time or get up for a nightly test run to start your machines - XTC can just do that for you. 
+<!--* As an additional convenience, XTC enables you to schedule test runs, so you don't have to set yourself an alarm to start the test on time or get up for a nightly test run to start your machines - XTC can just do that for you.--> 
 
 XTC is getting bigger and better even while you read this, so <a href="https://docs.google.com/document/d/1mxxpDsrll2Uzc-1JWZnq-RDWV9rOYwF1V8lZnIRqs_o/edit#heading=h.pookjp6yrw21" target="_blank">stay tuned to see what's new</a>!
