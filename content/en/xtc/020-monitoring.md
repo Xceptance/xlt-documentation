@@ -1,5 +1,5 @@
 ---
-title: "Quick Start"
+title: "Monitoring"
 
 weight: 20
 type: docs
