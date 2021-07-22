@@ -12,7 +12,7 @@ description: >
 
 To use Xceptance Test Center, you need an account. You can easily sign up on https://xtc.xceptance.com/.
 
-{{< TODO >}}How are roles assigned? Can I be my own admin? What is the default customer role?{{< /TODO >}}
+Currently, your role and projects will be assigned by Xceptance. As XTC is still being developed, this may change in the future.
 
 ## Basic UI Structure
 
@@ -39,3 +39,12 @@ The menu of a monitoring project (left) and a load testing project (right).
 {{< /image >}}
 
 In any case, you will see the project members and the configuration. In the project configuration, there are two tabs on the right side, _General_ and _Repository_. In _General_, you can see information like the project name and avatar. In _Repository_, you can define where the test suite repository is located, which branch should be used and how to resolve the test suite root within the repository. If the access to the remote repository is restricted, you can also provide authentication. Note that in load test projects, you can configure specific repository settings per load test that override the general repository settings at the project for this load test.
+
+### Repository Authentication
+
+To add or change repository authentication info, click the editing button:
+
+{{< image src="xtc/repository_authentication.png" >}}
+{{< /image >}} 
+
+You can choose between entering either credentials (username and password, which can also be a token name and value if your repository is using limited access tokens) or an SSH Key (with username and passphrase). To confirm your changes, click "Accept".
