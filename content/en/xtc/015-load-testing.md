@@ -56,17 +56,24 @@ You can then enter the configuration by clicking the name of the newly created t
 
 In the _Settings_ tab
 
-        * load profile: overrides load profile in test suite (if set)
-        * repository: overrides project repository
-        * master/agent controller password (default: random string)
-        * MANDATORY: machines to be used (Google machines: specify region(s), instance template, instance count, agents per instance/or Custom Machines: specify host name(s) and agents per instance)
+{{< TODO >}}Test settings. Link to Load Testing Chapters for Load/Test/Environment Configuration{{< /TODO >}}
+
+* load profile: overrides load profile in test suite (if set)
+* repository: overrides project repository
+* master/agent controller password (default: random string)
+* MANDATORY: machines to be used (Google machines: specify region(s), instance template, instance count, agents per instance/or Custom Machines: specify host name(s) and agents per instance)
 
 ### Start the Load Test
 
-To actually start the load test, 
-    * start load test by start symbol top right
+To actually start the load test, click the link on top of the load test contents:
 
-XTC also offers test scheduling, so instead of 
+{{< image src="xtc/loadtest_start.png" >}}
+Start the configured load test.
+{{< /image >}}
+
+You will be prompted to confirm that you want to start the load test with the given settings now. If you click _Yes, Proceed_ XTC will start the load test by downloading the current state of the project from the repository, building the project, provisioning the requested agents and, if this was successful, run the provided test scenarios for the configured time.
+
+<!--Soon (?) to come: test scheduling-->
 
 ### Monitor the Test 
 
@@ -86,7 +93,13 @@ The status view for a running load test.
 
 ### Create a Report
 
-* generate intermediate report by report symbol top right (automatically downloads intermediate results), report and results will be available in results/reports tab
+XTC will automatically download test results and [create a report](../../load-testing/manual/320-test-evaluation/) at the end of the load test. These will be available in the _Results_ and the _Reports_ tabs. Both will be available as compressed archives ready for downloading if you need them on your local machine. All generated reports will be available inside XTC to browse and evaluate them, and XTC can also generate a link for public sharing (you can adjust when this link is supposed to expire).
+
+However you can generate as many final reports as you like, with adjusted report settings, after the test has finished. 
+
+While the test is still running you can also generate [intermediate reports](../../load-testing/manual/320-test-evaluation/#intermediate-results) by clicking _Generate Intermediate Report_ on top of the load test contents.
+
+{{< TODO >}}Report settings. Also: which settings will be used for automatic report generation at end of test{{< /TODO >}}
 
 ### Evaluate the Test Run
 
