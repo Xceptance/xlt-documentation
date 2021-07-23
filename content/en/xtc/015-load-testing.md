@@ -12,7 +12,9 @@ When you select a load test project, you will be shown the load test project das
 
 ## Select the Test Suite Repository
 
-Select **Configuration** in the menu on the left to check in the **Repository** tab whether the project repository and branch for the test suite is correctly set and can be accessed using the [provided authentication](../010-xtc-basics/#repository-authentication).
+Select **Configuration** in the menu on the left to check in the _Repository_ tab whether the [project repository and branch](../010-xtc-basics/#project-configuration) for the test suite is correctly set and can be accessed using the [provided authentication](../010-xtc-basics/#repository-authentication).
+
+Note that you can override the repository branch in the [test settings](#test-settings) if needed.
 
 ## View Load Tests
 
@@ -54,12 +56,26 @@ You can then enter the configuration by clicking the name of the newly created t
 
 ### Test Settings
 
-In the _Settings_ tab
+The _Settings_ tab contains all settings for the test run. Some of these are mandatory, you need to set them before the test run can be started.
 
-{{< TODO >}}Test settings. Link to Load Testing Chapters for Load/Test/Environment Configuration{{< /TODO >}}
+#### Load Profile
 
-* load profile: overrides load profile in test suite (if set)
-* repository: overrides project repository
+Under _Load Profile_ you can override your test suite's settings for the [test properties file to be used](../../load-testing/manual/480-test-suite-configuration/#test-properties-file). In addition to that, you can override the settings for test duration and [load factor](../../load-testing/manual/470-load-configuration/#load-factor). 
+
+As this is a very limited set of directly accessible properties, please note that not every value makes sense here (as, for example, [ramp-up times](../../load-testing/manual/470-load-configuration/#ramp-up-load-profile) are still read from the property file).
+
+These settings are only needed if you want to override your test suite settings for some reason, e.g. quickly changing the test duration or load factor without pushing changes to the repository, or switching between your prepared test property files. If the fields are left empty, the test suite's settings will be used.
+
+Learn more in our _Load Testing_ section about [configuring load profiles](../../load-testing/manual/470-load-configuration) for your test run.
+
+#### Repository
+
+Under _Repository_ you can enter a branch of the project repository to be used for this test run. This is only necessary if you want to use another branch than the one you [configured for the project](#select-the-test-suite-repository). If this is left empty, the project or default branch will be used.
+
+#### Machine Configuration
+
+{{< TODO >}}Test settings.{{< /TODO >}}
+
 * master/agent controller password (default: random string)
 * MANDATORY: machines to be used (Google machines: specify region(s), instance template, instance count, agents per instance/or Custom Machines: specify host name(s) and agents per instance)
 
@@ -99,7 +115,23 @@ However you can generate as many final reports as you like, with adjusted report
 
 While the test is still running you can also generate [intermediate reports](../../load-testing/manual/320-test-evaluation/#intermediate-results) by clicking _Generate Intermediate Report_ on top of the load test contents.
 
-{{< TODO >}}Report settings. Also: which settings will be used for automatic report generation at end of test{{< /TODO >}}
+#### Report Settings
+
+On creating a report, whether intermediate or final, there will be a popup for report settings to be chosen: you will be prompted to enter a _label_ and _description_ for the report, and may choose a _time range_ to create the report for ({{< TODO >}}intermediate report??{{< /TODO >}}). The default time range is always the complete test duration, but you may determine the start time and end time by several options, similar to the [report creation](../../load-testing/manual/540-report-options/#defining-a-reporting-timeframe) in XLT. To check whether your settings are correct, the effective report time range will be displayed at the end of this section:
+
+{{< image src="xtc/loadtest_report_timerange.png" >}}
+Basic settings for creating a new load test report: adjusting the time range.
+{{< /image >}}
+
+By clicking **Show Advanced Settings** four more sections will appear:
+* _Include/Exclude Patterns_ can be defined either for [test cases](../../load-testing/manual/540-report-options/#excluding-test-scenarios) or [agents](../../load-testing/manual/540-report-options/#report-for-a-subset-of-agents),
+* in _Report Generator Properties_ you can define completely a [custom report configuration](../../load-testing/manual/550-report-configuration/),
+* in _Merge Rules_ you can override the project's [merge rules](../../load-testing/advanced/010-merge-rules/) (to avoid unexpected side effects we recommend to paste your complete set of merge rules here, even the ones that may have been already defined in the project), and 
+* you can even add _Additional Command Line Arguments_ for report generation (learn more about [report generation by command line](../../load-testing/manual/540-report-options/)).
+
+These advanced settings are by no means trivial, so make sure you know what you're doing. 
+
+On clicking **Accept** report creation will be started, the report will appear in the list of reports, showing a little progress/refresh icon left to its name. After the report creation has finished, you will be able to click the name to open and [read it](../../load-testing/manual/320-test-evaluation/#reading-a-test-report).
 
 ### Evaluate the Test Run
 

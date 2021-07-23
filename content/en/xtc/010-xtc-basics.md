@@ -38,7 +38,15 @@ The project menu on the left side will look a bit different, depending on whethe
 The menu of a monitoring project (left) and a load testing project (right).
 {{< /image >}}
 
-In any case, you will see the project members and the configuration. In the project configuration, there are two tabs on the right side, _General_ and _Repository_. In _General_, you can see information like the project name and avatar. In _Repository_, you can define where the test suite repository is located, which branch should be used and how to resolve the test suite root within the repository. If the access to the remote repository is restricted, you can also provide authentication. Note that in load test projects, you can configure specific repository settings per load test that override the general repository settings at the project for this load test.
+In any case, you will see the project _Members_ and the _Configuration_. 
+
+### Project Configuration
+
+In the project configuration, there are two tabs on the right side, _General_ and _Repository_. 
+
+In _General_, you can see information like the project name and avatar (displayed information depends on the project type). 
+
+In _Repository_, you can define where the test suite repository is located, which branch should be used and how to resolve the test suite root within the repository. If the access to the remote repository is restricted, you can also provide [authentication](#repository-authentication). Note that in load test projects, you can configure specific repository settings per load test that override the general repository settings of the project for this load test.
 
 ### Repository Authentication
 
