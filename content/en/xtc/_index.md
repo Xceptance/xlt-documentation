@@ -12,6 +12,6 @@ menu:
   main:
     weight: 15
 
-description: Xceptance Test Center is the UI solution which enables you to run Xceptance Load Tests. This documentation is a stub and still under construction, just as XTC.
+description: Xceptance Test Center (XTC) is the upcoming SaaS solution for XLT and related testing services, such as monitoring. This documentation as well as XTC is work in progress and will be progressively enhanced, in parts by your feedback.
 ---
 
