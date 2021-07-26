@@ -25,3 +25,8 @@ Everything XTC can do is based on [XLT](../../about-xlt/), so the basic informat
 <!--* As an additional convenience, XTC enables you to schedule test runs, so you don't have to set yourself an alarm to start the test on time or get up for a nightly test run to start your machines - XTC can just do that for you.--> 
 
 XTC is getting bigger and better even while you read this, so <a href="https://docs.google.com/document/d/1mxxpDsrll2Uzc-1JWZnq-RDWV9rOYwF1V8lZnIRqs_o/edit#heading=h.pookjp6yrw21" target="_blank">stay tuned to see what's new</a>!
+
+### Availability
+XTC is not part of the XLT open source ecosystem. XTC is a growing SaaS offering by Xceptance for its customers. It is also extensively used internally at Xceptance.
+
+Xceptance will announce the general availability of XTC as soon as a defined state of maturity is reached. If you are already a customer of Xceptance, feel free to contact us if you are interested in evaluating the current state, providing feedback, or even using it in production, because we already do that.
