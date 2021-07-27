@@ -12,7 +12,7 @@ description: >
 
 To use Xceptance Test Center, you need an account. You can easily sign up on https://xtc.xceptance.com/.
 
-Currently, your role and projects will be assigned by Xceptance. As XTC is still being developed, this may change in the future.
+Currently, your role and projects will be assigned by Xceptance. This will change in the future.
 
 ## Basic UI Structure
 
