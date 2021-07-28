@@ -8,13 +8,26 @@ description: >
   What you need to set up and run a load test in XTC.
 ---
 
-When you select a load test project, you will be shown the load test project dashboard. 
+## XTC Load Testing Basics
+
+To run a load test in XTC, we assume you have an [XLT Test Suite](../../load-testing/manual/060-test-development/) available in the [repository](#select-the-test-suite-repository) of your choice. (For more information on what to prepare and think about before load testing, see our recommendations for a load testing [workflow](../../load-testing/manual/050-workflow/).)
+
+XTC enables you to quickly get an [overview of previous test runs](#view-load-tests), offering plenty of information. 
+
+Below we will show you how to [run load tests with XTC](#run-a-load-test), which usually consists of these steps which you can also learn more about in the [load testing documentation](../../load-testing):
+
+* [create a new load test run](#create-a-new-load-test),
+* adjust the [test settings](#test-settings) for this run, 
+* [start the load test](#start-the-load-test),
+* [monitor](#monitor-the-test) your test while it's running,
+* [create test reports](#create-a-report) and
+* [evaluate](#evaluate-the-test-run) the test results.
 
 ## Select the Test Suite Repository
 
-Select **Configuration** in the menu on the left to check in the _Repository_ tab whether the [project repository and branch](../010-xtc-basics/#project-configuration) for the test suite is correctly set and can be accessed using the [provided authentication](../010-xtc-basics/#repository-authentication).
+As the very first step of every test run, XTC will download your test suite from the repository you defined for the project. The repository itself will be defined for the test project, while the repository branch used in a test run can also be overridden in the [test settings](#test-settings) if needed.
 
-Note that you can override the repository branch in the [test settings](#test-settings) if needed.
+To define your repository location, select **Configuration** in the menu on the left to check in the _Repository_ tab whether the [project repository and branch](../010-xtc-basics/#project-configuration) for the test suite is correctly set and can be accessed using the [provided authentication](../010-xtc-basics/#repository-authentication).
 
 ## View Load Tests
 
