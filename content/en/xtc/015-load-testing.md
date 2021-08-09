@@ -141,7 +141,7 @@ While the test is still running you can also generate [intermediate reports](../
 
 #### Report Settings
 
-On creating a report, whether intermediate or final, there will be a popup for report settings to be chosen: you will be prompted to enter a _label_ and _description_ for the report, and may choose a _time range_ to create the report for ({{< TODO >}}intermediate report??{{< /TODO >}}). The default time range is always the complete test duration, but you may determine the start time and end time by several options, similar to the [report creation](../../load-testing/manual/540-report-options/#defining-a-reporting-timeframe) in XLT. To check whether your settings are correct, the effective report time range will be displayed at the end of this section:
+On creating a final report, there will be a popup for report settings to be chosen: you will be prompted to enter a _label_ and _description_ for the report, and may choose a _time range_ to create the report for (when you create an intermediate report, the complete testing time up to report creating will be included). The default time range is always the complete test duration, but you may determine the start time and end time by several options, similar to the [report creation](../../load-testing/manual/540-report-options/#defining-a-reporting-timeframe) in XLT. To check whether your settings are correct, the effective report time range will be displayed at the end of this section:
 
 {{< image src="xtc/loadtest_report_timerange.png" >}}
 Basic settings for creating a new load test report: adjusting the time range.
