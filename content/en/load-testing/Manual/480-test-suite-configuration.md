@@ -352,6 +352,24 @@ Result browser overview page
 
 `com.xceptance.xlt.results.openResultBrowser = true`
 
+## Secret properties
+
+XLT supports defining secret properties that can be used in test cases, but will be masked in test results and and report output. This feature is intended for use cases where users executing and reviewing test cases are not supposed to see certain properties (e.g. login credentials).
+
+You can define secret properties in one of two ways:
+
+1. Properties prefixed with `secret.` are defined as being secret, no matter where they are defined.
+2. Properties defined in the file `secrets.properties` are always prefixed with `secret.` internally, if they don't already have that prefix.
+
+Secret properties are available to test cases under their full name (including the `secret.` prefix), as well as without that prefix: `secret.property` can be accessed as `secret.property` (if you want to ensure, that it was defined as secret) and `property` (in order to keep secret properties compatible to existing test case code).
+
+{{% note %}}
+The usual lookup rules for project/test class/user-specific property names apply for secret properties as well. See [Resolving Property Keys](#resolving-property-keys) for further details.
+{{% /note %}}
+
+{{% danger %}}
+XLT *CANNOT* prevent test code from leaking secret properties. *DO NOT* output the values of secret properties in any form available to the user from your own test code (e.g. as debug messages)!
+{{% /danger %}}
 
 ## Including Additional Property Files
 
@@ -388,6 +406,7 @@ Include properties are treated like normal properties. Thus, if there are two in
 1. `project.properties`, followed by its includes
 1. `test.properties` (or any other test-run-specific properties file), followed by its includes
 1. `dev.properties`, followed by its includes (in development mode only)
+2. `secret.properties`, followed by its includes
 
 Includes will be resolved according to these rules:
 
