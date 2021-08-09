@@ -371,6 +371,10 @@ The usual lookup rules for project/test class/user-specific property names apply
 XLT *CANNOT* prevent test code from leaking secret properties. *DO NOT* output the values of secret properties in any form available to the user from your own test code (e.g. as debug messages)!
 {{% /danger %}}
 
+### Requesting secret properties
+
+Test cases may wish to ensure that certain properties are only used, if they are configured as secret properties (e.g. to prevent leaking credentials in reports circulated to a wider audience). If the test code requests the property with the `secret.` prefix, the corresponding public property will *NOT* be returned, even if it exists. While this does not prevent the public property from being configured and possibly leaked in the test results, it does ensure, that the test will not use this property, most likely causing it to fail and making the result useless anyway.
+
 ## Including Additional Property Files
 
 When dealing with different test environments, different load profiles, and/or different test data at the same time, managing different combinations of configuration settings can be challenging. To make this easier and less error-prone, properties can be included as a set. This allows to:
@@ -522,3 +526,35 @@ When looking up a property value for a scenario, XLT tries the following alterna
 Please check the full [list of currently supported framework properties](../../../release-notes/4.8.x/#scenario-specific-overrides-of-framework-properties) and their default value in the release notes.
 
 
+### Secret properties take precedence
+
+Secret properties always take precedence over their public counterparts. This holds true for the framework properties as well as their scenario-specific overrides.
+
+#### Example
+
+```bash
+credentials.user = testUser
+secret.credentials.user = admin
+TOrder_DE.credentials.user = orderUser
+secret.TOrder_DE.credentials.user = secretOrderUser
+```
+
+Depending on which property key is requested in which context, different values may be accessed:
+
+Test classes *OTHER THAN* `TOrder_DE`:
+
+* `credentials.user` -> `admin`
+* `secret.credentials.user` -> `admin`
+
+Test class `TOrder_DE`:
+
+* `credentials.user` -> `secretOrderUser`
+* `secret.credentials.user` -> `secretOrderUser`
+* `TOrder_DE.credentials.user` -> `secretOrderUser`
+* `secret.TOrder_DE.credentials.user` -> `secretOrderUser`
+
+{{% note title="Best Practice" %}}
+Newly developed test code *SHOULD* always request the form `secret.property` for properties, that are likely to carry secrets. This ensures, that the property value will only ever be available as a secret property, whether from the framework or scenario-specific properties (i.e. a public scenario-specific property *WILL NEVER* override a secret global property, if the code requests the secret value).
+
+Configuration for existing scenarios *SHOULD* be moved to secret properties where appropriate. Due to the override rules changes in the test code are not necessary.
+{{% /note %}}
