@@ -59,7 +59,7 @@ To add or change repository authentication info, click the editing button:
 {{< image src="xtc/repository_authentication.png" >}}
 {{< /image >}} 
 
-You can choose between entering either credentials (username and password, which can also be a token name and value if your repository is using limited access tokens) or an SSH Key (with username and passphrase). To confirm your changes, click "Accept".
+You can choose between entering either **credentials** (username and password, which can also be a token name and value if your repository is using limited access tokens) or an **SSH Key** (with username and passphrase). To confirm your changes, click "Accept".
 
 {{% note notitle %}}
 Please note that while using an SSH key for authentication, you need to enter the matching SSH repository URL above, while user credentials or access tokens require an HTTPS address (both URLs not containing any username or other authentication info).
