@@ -373,7 +373,7 @@ XLT *CANNOT* prevent test code from leaking secret properties. *DO NOT* output t
 
 ### Requesting secret properties
 
-Test cases may wish to ensure that certain properties are only used, if they are configured as secret properties (e.g. to prevent leaking credentials in reports circulated to a wider audience). If the test code requests the property with the `secret.` prefix, the corresponding public property will *NOT* be returned, even if it exists. While this does not prevent the public property from being configured and possibly leaked in the test results, it does ensure, that the test will not use this property, most likely causing it to fail and making the result useless anyway.
+Test cases may wish to ensure that certain properties are only used if they are configured as secret properties (e.g. to prevent leaking credentials in reports circulated to a wider audience). If the test code requests the property with the `secret.` prefix, the corresponding public property will *NOT* be returned, even if it exists. While this does not prevent the public property from being configured and possibly leaked in the test results, it does ensure that the test will not use this property, most likely causing it to fail and making the result useless anyway.
 
 ## Including Additional Property Files
 
@@ -554,7 +554,7 @@ Test class `TOrder_DE`:
 * `secret.TOrder_DE.credentials.user` -> `secretOrderUser`
 
 {{% note title="Best Practice" %}}
-Newly developed test code *SHOULD* always request the form `secret.property` for properties, that are likely to carry secrets. This ensures, that the property value will only ever be available as a secret property, whether from the framework or scenario-specific properties (i.e. a public scenario-specific property *WILL NEVER* override a secret global property, if the code requests the secret value).
+Newly developed test code *SHOULD* always request the form `secret.property` for properties that are likely to carry secrets. This ensures that the property value will only ever be available as a secret property, whether from the framework or scenario-specific properties (i.e. a public scenario-specific property *WILL NEVER* override a secret global property if the code requests the secret value).
 
 Configuration for existing scenarios *SHOULD* be moved to secret properties where appropriate. Due to the override rules changes in the test code are not necessary.
 {{% /note %}}
