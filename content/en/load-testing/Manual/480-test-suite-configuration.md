@@ -352,6 +352,28 @@ Result browser overview page
 
 `com.xceptance.xlt.results.openResultBrowser = true`
 
+## Secret properties
+
+XLT supports defining secret properties that can be used in test cases, but will be masked in test results and and report output. This feature is intended for use cases where users executing and reviewing test cases are not supposed to see certain properties (e.g. login credentials).
+
+You can define secret properties in one of two ways:
+
+1. Properties prefixed with `secret.` are defined as being secret, no matter where they are defined.
+2. Properties defined in the file `secrets.properties` are always prefixed with `secret.` internally, if they don't already have that prefix.
+
+Secret properties are available to test cases under their full name (including the `secret.` prefix), as well as without that prefix: `secret.property` can be accessed as `secret.property` (if you want to ensure, that it was defined as secret) and `property` (in order to keep secret properties compatible to existing test case code).
+
+{{% note %}}
+The usual lookup rules for project/test class/user-specific property names apply for secret properties as well. See [Resolving Property Keys](#resolving-property-keys) for further details.
+{{% /note %}}
+
+{{% danger %}}
+XLT *CANNOT* prevent test code from leaking secret properties. *DO NOT* output the values of secret properties in any form available to the user from your own test code (e.g. as debug messages)!
+{{% /danger %}}
+
+### Requesting secret properties
+
+Test cases may wish to ensure that certain properties are only used if they are configured as secret properties (e.g. to prevent leaking credentials in reports circulated to a wider audience). If the test code requests the property with the `secret.` prefix, the corresponding public property will *NOT* be returned, even if it exists. While this does not prevent the public property from being configured and possibly leaked in the test results, it does ensure that the test will not use this property, most likely causing it to fail and making the result useless anyway.
 
 ## Including Additional Property Files
 
@@ -388,6 +410,7 @@ Include properties are treated like normal properties. Thus, if there are two in
 1. `project.properties`, followed by its includes
 1. `test.properties` (or any other test-run-specific properties file), followed by its includes
 1. `dev.properties`, followed by its includes (in development mode only)
+2. `secret.properties`, followed by its includes
 
 Includes will be resolved according to these rules:
 
@@ -503,3 +526,35 @@ When looking up a property value for a scenario, XLT tries the following alterna
 Please check the full [list of currently supported framework properties](../../../release-notes/4.8.x/#scenario-specific-overrides-of-framework-properties) and their default value in the release notes.
 
 
+### Secret properties take precedence
+
+Secret properties always take precedence over their public counterparts. This holds true for the framework properties as well as their scenario-specific overrides.
+
+#### Example
+
+```bash
+credentials.user = testUser
+secret.credentials.user = admin
+TOrder_DE.credentials.user = orderUser
+secret.TOrder_DE.credentials.user = secretOrderUser
+```
+
+Depending on which property key is requested in which context, different values may be accessed:
+
+Test classes *OTHER THAN* `TOrder_DE`:
+
+* `credentials.user` -> `admin`
+* `secret.credentials.user` -> `admin`
+
+Test class `TOrder_DE`:
+
+* `credentials.user` -> `secretOrderUser`
+* `secret.credentials.user` -> `secretOrderUser`
+* `TOrder_DE.credentials.user` -> `secretOrderUser`
+* `secret.TOrder_DE.credentials.user` -> `secretOrderUser`
+
+{{% note title="Best Practice" %}}
+Newly developed test code *SHOULD* always request the form `secret.property` for properties that are likely to carry secrets. This ensures that the property value will only ever be available as a secret property, whether from the framework or scenario-specific properties (i.e. a public scenario-specific property *WILL NEVER* override a secret global property if the code requests the secret value).
+
+Configuration for existing scenarios *SHOULD* be moved to secret properties where appropriate. Due to the override rules changes in the test code are not necessary.
+{{% /note %}}
