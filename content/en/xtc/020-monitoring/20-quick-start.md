@@ -19,7 +19,7 @@ The _Configuration_ of a monitoring project is very similar to the basic [projec
 * you need to define values for _Data Persistence_ (how long certain data, like Execution History, will be persisted), and
 * enter the _Execution Environment_ (IP addresses where monitoring scenarios are running).
 
-Another specialty for _Repository Configuration_ is that you can define which branch to use by specifying either its name (static branch) or determine the branch dynamically by defining a URL of a resource from which the branch name can be extracted using a regular expression. {{< TODO >}}What's the use case here?{{< /TODO >}}
+Another specialty for _Repository Configuration_ is that you can define which branch to use by specifying either its name (static branch) or determine the branch dynamically by defining a URL of a resource from which the branch name can be extracted using a regular expression. (This may be useful if you want to make the used test scenario code dependent on your currently deployed app version.)
 
 ### Quiet Periods
 
@@ -27,13 +27,11 @@ You can define _Quiet Periods_ for your monitoring projects. These are time span
 
 To add a new quiet period, click the Plus Symbol on top of the Quiet Periods list. You may then define a label, a start time and an end time, and switch whether or not scenarios should be executed in this period. The newly created quiet period will then show up in the list. All periods in the list can be edited, disabled or removed, no matter whether they are in the future, in the past or currently active. 
 
-{{< TODO >}}Can you schedule quiet periods, like every night between 11pm and 5am or something like this? Or do only dates work in time range (yet)?{{< /TODO >}}
-
 ## Setting Up Monitoring Scenarios
 
-{{< TODO >}}To be done...{{< /TODO >}}
+The basis for all monitoring scenarios is a set of [XLT test cases](../../../load-testing/manual/060-test-development/) that will be run continuously. These tests are preferrably organised in a test suite, which is located in the repository you defined in the monitoring [project configuration](#project-configuration). 
 
-To this end, you will need an XTC monitoring project & XLT test suite
+XLT tests are basically Java classes containing JUnit tests. These classes will be built by XTC so it can then run the test scenarios contained in them.
 
 ### Defining Scenario Defaults
 
@@ -59,7 +57,7 @@ In _Properties_ you may add test properties to use for scenario execution. These
 
 In _Notifications_ you can manage the notification recipients or temporary disable notifications. You will find a toggle to deactivate notifications completely (this can be overwritten in each individual scenario). For active notifications you may define
 * a _Send Threshold_, i.e. a fail count (how many executions must fail to send a notification) and the number of considered executions (how many of the last executions should be considered to validate the fail count against, e.g. if the fail count is 2 and you consider 2 executions, a notification will be sent if two consecutive executions fail, but if you consider 5 executions for the same fail count, a notification will be already sent as soon as two out of five consecutive executions fail), 
-* a _Reply-To Address_ (the default reply address for received notification mails) {{< TODO >}}use case?{{< /TODO >}}, and
+* a _Reply-To Address_ (the default reply address for received notification mails - if none is set this is a no-reply service address, but we recommend using any sensible contact in your project for this), and
 * a _Subscription List_, which consists of one or more recipients for your monitoring notifications, which may be added as a user (project member with predefined mail address) or custom entry (custom mail address or phone number). For each subscriber you may choose whether to send notifications via e-mail or text message (or both). The subscriber data can be edited anytime, subscribers can also be deactivated or removed entirely.
 
 #### Criteria
@@ -80,7 +78,11 @@ Expanded scenario information in the scenarios list.
 
 By selecting "Edit" from the menu in the right of the scenario row, you can adjust the scenario settings as needed. Otherwise the [scenario defaults](#defining-scenario-defaults) will be used. The settings we explained in [scenario defaults](#defining-scenario-defaults) are available for each individual scenario, and in addition you have the basic scenario settings in _General_ (scenario name and description, and the Java class containing this scenario). 
 
-{{< TODO >}}How is data overwritten? e.g. if I want to make sure notifications are always on but they are currently on in defaults, can I explicitly set them "on" per individual scenario so they stay active even if I turn them off in the defaults? How do I know which values are taken from defaults and which are overwritten? Can I somehow reset them to default state?{{< /TODO >}} 
+Scenarios with overwritten settings are indicated by a small "(Defaults overwritten)" note next to the scenario name. In the settings overview, the overwritten scenarios are highlighted in blue:
+
+{{< image src="xtc/monitoring_overwrittenSettings.png" >}}
+Scenario information containing an overwritten setting.
+{{< /image >}}
 
 If you do not need a scenario you can disable it temporarily or delete it entirely by choosing these actions from the scenario's context menu.
 
@@ -96,5 +98,9 @@ To add a new monitoring scenario to your project, just click the `+` button on t
 Creating a new monitoring scenario.
 {{< /image >}}  
 
-The new scenario will now show up in the list. It will be enabled by default and it will automatically use the [scenario default settings](#defining-scenario-defaults) right after being created. You can overwrite these settings by [editing the scenario](#managing-existing-scenarios). {{< TODO >}}So a new scenario runs right after creation (after building etc.) for the first time? When is the user supposed to adjust settings that must be different from defaults?{{< /TODO >}} 
+The new scenario will now show up in the list. It will be enabled by default and it will automatically use the [scenario default settings](#defining-scenario-defaults) right after being created. You can overwrite these settings by [editing the scenario](#managing-existing-scenarios). 
+
+{{% warning notitle %}}
+New scenarios are automatically added in enabled mode and will run as soon as the code is built, so if you want to take some time to make adjustments, make sure to disable your scenario right after creation.  
+{{% /warning %}}
 
