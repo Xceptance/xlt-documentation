@@ -12,7 +12,7 @@ description: >
 
 To run a load test in XTC, we assume you have an [XLT Test Suite](../../../load-testing/manual/060-test-development/) available in the [repository](#select-the-test-suite-repository) of your choice. (For more information on what to prepare and think about before load testing, see our recommendations for a load testing [workflow](../../../load-testing/manual/050-workflow/).)
 
-XTC enables you to quickly get an [overview of previous test runs](01-features/#view-load-tests), offering plenty of information. 
+XTC enables you to quickly get an [overview of previous test runs](../01-features/#view-load-tests-in-xtc), offering plenty of information. 
 
 Below we will show you how to [run a load test with XTC](#run-a-load-test), which usually consists of the following steps which you can also learn more about in the [load testing documentation](../../../load-testing):
 
