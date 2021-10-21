@@ -52,6 +52,10 @@ In _Repository_, you can define where the test suite repository is located, whic
 Note that in load test projects, you can configure specific repository settings per load test that override the general repository settings of the project for this load test.
 {{% /note %}}
 
+In _Sharing_, you can define a default for the share expiration time of [reports](../015-load-testing/20-quick-start/#create-a-report) for easier project management. Each report sharing will offer this time as a default. Later on, all shares can be either deactivated, extended, or reactivated at once when required. It is still possible to set individual expiration times per report, but these cannot be extended or deactivated globally then.
+
+In _Properties_, you can globally define [properties](../../load-testing/manual/480-test-suite-configuration/) or [secret properties](../../load-testing/manual/480-test-suite-configuration/#secret-properties) to use for test execution. Properties can be overwritten for each individual load test, and if not set in XTC will be read from the project data.
+
 ### Repository Authentication
 
 To add or change repository authentication info, click the editing button:

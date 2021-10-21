@@ -77,6 +77,9 @@ Instead of starting and terminating Google Machines per XTC, you can also use ot
 
 As **[test sizing](../../../load-testing/how-tos/test-sizing/)** is a whole topic in itself, you might want to check the CPU usage after your test and maybe adjust the number of machines for the next test run.
 
+#### Properties
+In _Properties_ and _Secret Properties_ you may overwrite [properties](../../../load-testing/manual/480-test-suite-configuration/) for test execution. If nothing is set here, the properties from the project repository will be used. Properties may also be overwritten globally for all load tests of this project in the [project configuration](../../010-xtc-basics/#project-configuration).
+
 ### Start the Load Test
 
 To actually start the load test, click the link on top of the load test contents:
@@ -107,7 +110,7 @@ The scenario status view for a running load test.
 
 ### Create a Report
 
-XTC will automatically download test results and [create a report](../../../load-testing/manual/320-test-evaluation/) at the end of the load test. These will be available in the _Results_ and the _Reports_ tabs. Both will be available as compressed archives ready for download if you need them on your local machine. All generated reports will be available inside XTC to browse and evaluate them, and XTC can also generate a link for public sharing (you can adjust when this link is supposed to expire).
+XTC will automatically download test results and [create a report](../../../load-testing/manual/320-test-evaluation/) at the end of the load test. These will be available in the _Results_ and the _Reports_ tabs. Both will be available as compressed archives ready for download if you need them on your local machine. All generated reports will be available inside XTC to browse and evaluate them, and XTC can also generate a link for public sharing (you can adjust when this link is supposed to expire on creating a share link, or configure this [globally for the whole project](../../010-xtc-basics/#project-configuration)).
 
 While the test is still running you can also generate [intermediate reports](../../../load-testing/manual/320-test-evaluation/#intermediate-results) by clicking _Generate Intermediate Report_ on top of the load test contents.
 
