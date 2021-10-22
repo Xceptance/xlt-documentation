@@ -27,7 +27,7 @@ Below we will show you how to [run a load test with XTC](#run-a-load-test), whic
 
 As the very first step of every test run, XTC will download your test suite from the repository you defined for the project. The repository itself will be defined for the test project, while the repository branch used in a test run can also be overridden in the [test settings](#test-settings) if needed.
 
-Select **Configuration** in the menu on the left to check in the _Repository_ tab whether the [project repository and branch](../../010-xtc-basics/#project-configuration) for the test suite is correctly set and can be accessed using the [provided authentication](../../010-xtc-basics/#repository-authentication).
+Select **Configuration** in the menu on the left to check in the _Repository_ tab whether the [project repository and branch](../../010-xtc-basics/#repository-authentication) for the test suite is correctly set and can be accessed using the provided authentication.
 
 ## Run a Load Test
 
@@ -57,7 +57,7 @@ Learn more in our _Load Testing_ section about [configuring load profiles](../..
 
 #### Repository
 
-Under _Repository_ you can enter a branch of the project repository to be used for this test run. This is only necessary if you want to use another branch than the one you [configured for the project](#select-the-test-suite-repository). If this is left empty, the project or default branch will be used.
+Under _Repository_ you can enter a branch of the project repository to be used for this test run. This is only necessary if you want to use another branch than the one you [configured for the project](#define-the-test-suite-repository). If this is left empty, the project or default branch will be used.
 
 #### Machine Configuration
 
@@ -78,7 +78,7 @@ Instead of starting and terminating Google Machines per XTC, you can also use ot
 As **[test sizing](../../../load-testing/how-tos/test-sizing/)** is a whole topic in itself, you might want to check the CPU usage after your test and maybe adjust the number of machines for the next test run.
 
 #### Properties
-In _Properties_ and _Secret Properties_ you may overwrite [properties](../../../load-testing/manual/480-test-suite-configuration/) for test execution. If nothing is set here, the properties from the project repository will be used. Properties may also be overwritten globally for all load tests of this project in the [project configuration](../../010-xtc-basics/#project-configuration).
+In _Properties_ and _Secret Properties_ you may overwrite [properties](../../../load-testing/manual/480-test-suite-configuration/) for test execution. If nothing is set here, the properties from the project repository will be used. Properties may also be overwritten globally for all load tests of this project in the [project configuration](../../010-xtc-basics/#properties).
 
 ### Start the Load Test
 
@@ -110,7 +110,7 @@ The scenario status view for a running load test.
 
 ### Create a Report
 
-XTC will automatically download test results and [create a report](../../../load-testing/manual/320-test-evaluation/) at the end of the load test. These will be available in the _Results_ and the _Reports_ tabs. Both will be available as compressed archives ready for download if you need them on your local machine. All generated reports will be available inside XTC to browse and evaluate them, and XTC can also generate a link for public sharing (you can adjust when this link is supposed to expire on creating a share link, or configure this [globally for the whole project](../../010-xtc-basics/#project-configuration)).
+XTC will automatically download test results and [create a report](../../../load-testing/manual/320-test-evaluation/) at the end of the load test. These will be available in the _Results_ and the _Reports_ tabs. Both will be available as compressed archives ready for download if you need them on your local machine. All generated reports will be available inside XTC to browse and evaluate them, and XTC can also generate a link for public sharing (you can adjust when this link is supposed to expire on creating a share link, or configure this [globally for the whole project](../../010-xtc-basics/#default-sharing-settings)).
 
 While the test is still running you can also generate [intermediate reports](../../../load-testing/manual/320-test-evaluation/#intermediate-results) by clicking _Generate Intermediate Report_ on top of the load test contents.
 

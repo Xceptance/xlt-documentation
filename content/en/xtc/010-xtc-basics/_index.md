@@ -42,21 +42,19 @@ In any case, you will see the project _Members_ and the _Configuration_.
 
 ### Project Configuration
 
-In the project configuration, there are two tabs on the right side, _General_ and _Repository_. 
+In the project configuration, there are several tabs for all kinds of settings that can be applied globally to the project.
 
-In _General_, you can edit the project name and upload a project logo (displayed information depends on the project type). 
+#### General 
 
-In _Repository_, you can define where the test suite repository is located, which branch should be used and how to resolve the test suite root within the repository. If the access to the remote repository is restricted, you can also provide [authentication details](#repository-authentication).
+In the _General_ tab, you can edit the project name and upload a project logo (displayed information depends on the project type). 
+
+#### Repository Authentication
+
+In _Repository_, you can define where the test suite repository is located, which branch should be used and how to resolve the test suite root within the repository. If the access to the remote repository is restricted, you can also provide authentication details.
 
 {{% note notitle %}}
 Note that in load test projects, you can configure specific repository settings per load test that override the general repository settings of the project for this load test.
 {{% /note %}}
-
-In _Sharing_, you can define a default for the share expiration time of [reports](../015-load-testing/20-quick-start/#create-a-report) for easier project management. Each report sharing will offer this time as a default. Later on, all shares can be either deactivated, extended, or reactivated at once when required. It is still possible to set individual expiration times per report, but these cannot be extended or deactivated globally then.
-
-In _Properties_, you can globally define [properties](../../load-testing/manual/480-test-suite-configuration/) or [secret properties](../../load-testing/manual/480-test-suite-configuration/#secret-properties) to use for test execution. Properties can be overwritten for each individual load test, and if not set in XTC will be read from the project data.
-
-### Repository Authentication
 
 To add or change repository authentication info, click the editing button:
 
@@ -69,3 +67,10 @@ You can choose between entering either **credentials** (username and password, w
 Please note that when using an SSH key for authentication, you need to enter the matching SSH repository URL above, while user credentials or access tokens require an HTTPS repository URL. Moreover, both URLs must not contain a username or any other authentication info.
 {{% /note %}}
 
+#### Default Sharing Settings
+
+In _Sharing_, you can define a default for the share expiration time of [reports](../015-load-testing/20-quick-start/#create-a-report) for easier project management. Each report sharing will offer this time as a default. Later on, all shares can be either deactivated, extended, or reactivated at once when required. It is still possible to set individual expiration times per report, but these cannot be extended or deactivated globally then.
+
+#### Properties
+
+In _Properties_, you can globally define [properties](../../load-testing/manual/480-test-suite-configuration/) or [secret properties](../../load-testing/manual/480-test-suite-configuration/#secret-properties) to use for test execution. Properties can be overwritten for each individual load test, and if not set in XTC will be read from the project data.
