@@ -4,8 +4,6 @@ linktitle: "XTC"
 
 type: docs
 
-draft: true
-
 weight: 15
 
 menu:
