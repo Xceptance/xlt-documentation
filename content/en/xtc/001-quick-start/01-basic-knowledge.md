@@ -37,7 +37,7 @@ Xceptance will announce the general availability of XTC as soon as a defined sta
 
 ## Sign Up/Log In
 
-To use Xceptance Test Center, you need an account. You can easily sign up on https://xtc.xceptance.com/. XTC allows you to either select a password for your account, or use an external login provider (Google or Microsoft) for SSO. For more information, see [user accounts](../../200-manual/030-user-accounts).
+To use Xceptance Test Center, you need an account. You can easily sign up on https://xtc.xceptance.com/. XTC allows you to either select a password for your account, or use an external login provider (Google or Microsoft) for SSO. For more information, see [user accounts](../../200-manual/040-user-accounts).
 
 Currently, your role and projects will be assigned by Xceptance. This will change in the future.
 

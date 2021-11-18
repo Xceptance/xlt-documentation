@@ -1,5 +1,5 @@
 ---
-title: "Basic Knowledge"
+title: "About XTC"
 
 weight: 10
 type: docs
@@ -8,18 +8,18 @@ description: >
     What is XTC and what can you do with it?
 ---
 
-{{< TODO comment="(re)write" / >}}
+{{< TODO comment="Mostly redundant information, see quick start/Basic infos... maybe shorten it here and add to basic structure?" / >}}
 
 ## What is XTC?
 
-XTC (**X**ceptance **T**est **C**enter) is the working title of a SaaS offering to deliver XLT as a service. It will increase efficiency, lower the time to test, and enables you to do all things you might have been doing [manually before](../../load-testing/manual/310-test-execution/). It is still in development and continuously improved, but you can already use it. It allows you to:
+XTC (**X**ceptance **T**est **C**enter) is the working title of a SaaS offering to deliver XLT as a service. It will increase efficiency, lower the time to test, and enables you to do all things you might have been doing [manually before](../../../load-testing/manual/310-test-execution/). It is still in development and continuously improved, but you can already use it. It allows you to:
 
 * manage your load test projects,
 * set up, configure, and run load tests,
 * evaluate load test runs and share the results, and
 * run continuous monitoring using browser-based test automation.
 
-XTC load and monitoring service are based fully [XLT](../../about-xlt/), hence everything you know about  [Load Testing](../../load-testing/) is valid. [Test development](../../load-testing/manual/060-test-development/) still takes place in your IDE and test suites live in your preferred GIT repo. 
+XTC load and monitoring service are based fully [XLT](../../../about-xlt/), hence everything you know about [Load Testing](../../../load-testing/) is valid. [Test development](../../../load-testing/manual/060-test-development/) still takes place in your IDE and test suites live in your preferred GIT repo. 
 
 XTC helps you to speed up the more tedious tasks of load testing:
 
