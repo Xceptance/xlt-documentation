@@ -1,22 +1,18 @@
 ---
-title: "XTC Basics"
+title: "Basic UI Structure"
 
-weight: 10
+weight: 30
 type: docs
 
 description: >
-  Some basic information on using XTC.
+    The basic structure of XTC. All about users, orgs and projects.
 ---
 
-## Sign Up/Log In
+{{< TODO comment="(re)write" / >}}
 
-To use Xceptance Test Center, you need an account. You can easily sign up on https://xtc.xceptance.com/.
+## Selecting a Project
 
-Currently, your role and projects will be assigned by Xceptance. This will change in the future.
-
-## Basic UI Structure
-
-After logging in, you will see a dashboard containing the organizations and projects you are  a member of. You can select both via dashboard links or by clicking the links in the header next to the _XTC_ logo:
+After logging in to XTC, you will see a dashboard containing the organizations and projects you are  a member of. You can select both via dashboard links or by clicking the links in the header next to the _XTC_ logo:
 
 {{< image src="xtc/topmenu.png" >}}
 The XTC top menu allows you to select organization and project directly. 

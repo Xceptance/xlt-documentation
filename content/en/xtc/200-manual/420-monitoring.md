@@ -1,14 +1,18 @@
 ---
-title: "Quick Start"
+title: "Monitoring"
 
-weight: 20
+weight: 420
 type: docs
 
 description: >
   How to set up monitoring in XTC.
 ---
 
-Now that we got you all excited about XTC's [monitoring features](../01-features), let's dive in and set up your monitoring project.
+{{< TODO comment="(re)write" / >}}
+
+XTC can be used to monitor your applications. By regularly running test cases, XTC will provide you an overview of the performance and availability of your application over time, providing lots of data and possibly valuable insights.
+
+Now let's dive in and set up your first monitoring project:
 
 ## Monitoring Configuration
 

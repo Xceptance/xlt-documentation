@@ -1,12 +1,14 @@
 ---
-title: "Features"
+title: "Monitoring Projects in XTC"
 
-weight: 1
+weight: 400
 type: docs
 
 description: >
   How XTC can help you monitor your applications.
 ---
+
+{{< TODO comment="(re)write" / >}}
 
 XTC offers a lot of features to make monitoring easier for you, however as it is still growing this page can just give you a first glimpse on what is possible.
 

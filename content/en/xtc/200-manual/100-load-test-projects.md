@@ -1,16 +1,18 @@
 ---
-title: "Features"
+title: "Load Test Projects in XTC"
 
-weight: 1
+weight: 100
 type: docs
 
 description: >
   How XTC enables you to evaluate your load tests easily.
 ---
 
+{{< TODO comment="(re)write" / >}}
+
 ## View Load Tests in XTC
 
-By selecting **Load Tests** in the menu on the left you will be taken to the load tests overview. This is a table of all existing load tests (which have been created for this project at some point, but have not necessarily run). Along with the test name you will see the status:
+By selecting **Load Tests** in the menu on the left of any load testing project you will be taken to the load tests overview. This is a table of all existing load tests (which have been created for this project at some point, but have not necessarily run). Along with the test name you will see the status:
 * _New_ for newly created tests,
 * _Running_ for currently running tests, 
 * _Finished_ for successfully finished tests, 

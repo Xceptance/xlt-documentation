@@ -1,12 +1,14 @@
 ---
-title: "About XTC"
+title: "Basic Knowledge"
 
-weight: 1
+weight: 10
 type: docs
 
 description: >
     What is XTC and what can you do with it?
 ---
+
+{{< TODO comment="(re)write" / >}}
 
 ## What is XTC?
 

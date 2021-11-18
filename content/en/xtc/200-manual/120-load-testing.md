@@ -1,12 +1,14 @@
 ---
-title: "Quick Start"
+title: "Load Testing"
 
-weight: 20
+weight: 120
 type: docs
 
 description: >
-  Basic knowledge for XTC load testing and how to set up your first load testing project.
+  How to set up a load testing project in XTC.
 ---
+
+{{< TODO comment="(re)write" / >}}
 
 ## XTC Load Testing Basics
 
