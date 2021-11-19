@@ -1,11 +1,11 @@
 ---
-title: "Load Test Projects in XTC"
+title: "Features of Load Test Projects"
 
 weight: 100
 type: docs
 
 description: >
-  How XTC enables you to evaluate your load tests easily.
+  What a load test project is and what you can do with it.
 ---
 
 {{< TODO comment="(re)write" / >}}

@@ -1,11 +1,11 @@
 ---
-title: "Monitoring Projects in XTC"
+title: "Features of Monitoring Projects"
 
 weight: 400
 type: docs
 
 description: >
-  How XTC can help you monitor your applications.
+  What a monitoring project is and how XTC can help you monitor your applications.
 ---
 
 {{< TODO comment="(re)write" / >}}

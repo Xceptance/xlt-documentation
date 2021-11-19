@@ -8,7 +8,7 @@ description: >
   How to set up monitoring in XTC.
 ---
 
-{{< TODO comment="(re)write" / >}}
+{{< TODO comment="(re)write, maybe split in more pages" / >}}
 
 XTC can be used to monitor your applications. By regularly running test cases, XTC will provide you an overview of the performance and availability of your application over time, providing lots of data and possibly valuable insights.
 

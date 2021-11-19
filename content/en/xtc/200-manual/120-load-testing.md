@@ -8,7 +8,7 @@ description: >
   How to set up a load testing project in XTC.
 ---
 
-{{< TODO comment="(re)write" / >}}
+{{< TODO comment="(re)write, maybe split in more pages than this one" / >}}
 
 ## XTC Load Testing Basics
 

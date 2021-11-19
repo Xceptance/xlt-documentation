@@ -8,7 +8,7 @@ description: >
     The basic structure of XTC. All about users, orgs and projects.
 ---
 
-{{< TODO comment="(re)write" / >}}
+{{< TODO comment="(re)write: user accounts as members of orgs which contain projects of different project natures" / >}}
 
 
 
@@ -37,6 +37,4 @@ The menu of a monitoring project (left) and a load testing project (right).
 {{< /image >}}
 
 In any case, you will see the project _Members_ and the _Configuration_. 
-
-{{< TODO comment="everything below this line should probably go somewhere else?" / >}}
 
