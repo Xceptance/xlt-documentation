@@ -1,5 +1,5 @@
 ---
-title: "Monitoring"
+title: "XTC Monitoring"
 
 weight: 420
 type: docs

@@ -5,7 +5,7 @@ weight: 10
 type: docs
 
 description: >
-  Some basic information on using XTC.
+  What is XTC and what can you do with it?
 
 ---
 

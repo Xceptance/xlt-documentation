@@ -1,5 +1,5 @@
 ---
-title: "Load Testing"
+title: "XTC Load Testing"
 
 weight: 120
 type: docs

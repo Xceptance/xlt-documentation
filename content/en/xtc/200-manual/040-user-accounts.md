@@ -5,7 +5,7 @@ weight: 40
 type: docs
 
 description: >
-    How to set up user accounts and SSO login in XTC.
+    How to set up user accounts and SSO in XTC.
 ---
 
 ## Creating a User Account

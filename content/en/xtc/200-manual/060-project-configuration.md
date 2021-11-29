@@ -8,7 +8,7 @@ description: >
     Which project wide configuration options you have and how to use them.
 ---
 
-To configure either a load test or monitoring project, select _Configuration_ in the project menu on the left. In the project configuration, there are several tabs for all kinds of settings that can be applied globally to the project. The contents and possible setting differ slightly depending on the project type (load test or monitoring), but most are fairly similar. We will note below if a setting is only available for a specific project type.
+To configure either a load test or monitoring project, select _Configuration_ in the project menu on the left. In the project configuration, there are several tabs for all kinds of settings that will be applied globally to the project. The contents and possible settings differ slightly depending on the project type (load test or monitoring), but most are fairly similar. We will note below if a setting is only available for a specific project type.
 
 ## General 
 

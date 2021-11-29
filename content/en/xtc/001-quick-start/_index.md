@@ -5,6 +5,6 @@ weight: 1
 type: docs
 
 description: >
-    What is XTC and what can you do with it?
+    Basic knowledge for diving into load testing and monitoring with XTC.
 ---
 

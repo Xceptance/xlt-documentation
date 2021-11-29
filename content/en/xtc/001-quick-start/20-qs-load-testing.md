@@ -5,7 +5,7 @@ weight: 20
 type: docs
 
 description: >
-  How to set up your first load testing project in XTC.
+  How to set up your first load test project in XTC.
 ---
 
 ## XTC Load Testing Basics
