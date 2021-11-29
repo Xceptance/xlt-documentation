@@ -12,7 +12,9 @@ description: >
 
 The basic idea of XTC is: [user accounts](#user-accounts) can run tests organized in [projects](#projects) of different project natures for [organizations](#organizations). 
 
-{{< TODO comment="graphic: user accounts as members of orgs which contain projects of different project natures" / >}}
+{{< image src="xtc/xtc_basic_structure.svg" max-width="80%" >}}
+XTC User Accounts as Members of Orgs which Contain Projects that Run Tests 
+{{< /image >}}
 
 ## User Accounts
 
@@ -23,6 +25,8 @@ To use Xceptance Test Center, you need an account. You can easily sign up on htt
 All tests run by XTC are organised in test projects, which in turn are part of an organization. 
 
 Organizations can only be created by our internal XTC admins. They will also assign an administrator for every organization, who will have permissions to add additional members to the organization, and, most importantly, create projects in the organization's context.
+
+### User Roles Within an Organization
 
 As an organization member, a user account can have one of the following roles:
 * as a **guest**, you can only view the organization's dashboard,
@@ -83,7 +87,7 @@ Either way, you will be prompted to enter a name and a short name for the new pr
 
 All information but the short name can be updated using the context menu on the right of the project name in the project list, selecting _Edit_. You can also create new projects by selecting _Duplicate_ in the context menu of any existing project - this way, you can easily apply the configuration of an obsolete project to a new one. 
 
-### Adding and Removing Project Members
+### User Roles Within a Project 
 
 A project's creator is automatically an administrator in this project, and as such can add additional user accounts as members of project. These do not necessarily need to be members of the organization already, but will implicitly be added as guest members to the organization when added to the project (independent of their project role). 
 
@@ -99,6 +103,8 @@ If you are logged in and are currently viewing a project, your project role will
 {{< image src="xtc/ui_projectRole.png" >}}
 Footer displaying the user's role in the project.
 {{< /image >}}
+
+### Adding and Removing Project Members
 
 To **add new members to the project** (permitted for project administrators only), navigate to the project and select _Members_ in the menu on the left. You will see the list of project members, and by clicking the `+` sign in the top right, you can add new members by typing the name (mail address) of their user account and assigning one of the roles from above. The user you want to add needs to be signed up with this e-mail address already. 
 
