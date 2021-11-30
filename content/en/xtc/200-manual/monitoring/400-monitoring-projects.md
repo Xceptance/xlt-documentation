@@ -8,7 +8,7 @@ description: >
   What a monitoring project is and how XTC can help you monitor your applications.
 ---
 
-{{< TODO comment="(re)write" / >}}
+XTC can be used to monitor your applications. By regularly running test cases, XTC will provide you an overview of the performance and availability of your application over time, providing lots of data and possibly valuable insights.
 
 XTC offers a lot of features to make monitoring easier for you, however as it is still growing this page can just give you a first glimpse on what is possible.
 

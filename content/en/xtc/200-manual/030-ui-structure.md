@@ -5,7 +5,7 @@ weight: 30
 type: docs
 
 description: >
-    The basic structure of XTC. All about users, orgs and projects.
+    The basic structure of XTC. All about users, organizations and projects.
 ---
 
 ## Basic Structure
