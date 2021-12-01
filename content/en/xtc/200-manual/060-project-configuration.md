@@ -8,7 +8,7 @@ description: >
     Which project wide configuration options you have and how to use them.
 ---
 
-To configure either a load test or monitoring project, select _Configuration_ in the project menu on the left. In the project configuration, there are several tabs for all kinds of settings that will be applied globally to the project. The contents and possible settings differ slightly depending on the project type (load test or monitoring), but most are fairly similar. We will note below if a setting is only available for a specific project type.
+To configure either a load test or monitoring project, select _Configuration_ in the project menu on the left. In the project configuration, there are several tabs for all kinds of settings that will be applied globally to the project. The contents and possible settings differ slightly depending on the project type (load test or monitoring), but most are fairly similar. For settings that are only available for a specific project type, please check out [load test project configuration](../loadtesting/120-load-project-configuration/) or [monitoring project configuration](../monitoring/420-monitoring-configuration/).
 
 {{% note notitle %}}
 Please note that your [project role](../030-ui-structure/#user-roles-within-a-project) must be at least that of a test manager to edit the project's configuration.
@@ -36,17 +36,3 @@ You can choose between entering either **credentials** (username and password, w
 {{% note notitle %}}
 Please note that when using an SSH key for authentication, you need to enter the matching SSH repository URL above, while user credentials or access tokens require an HTTPS repository URL. Moreover, both URLs must not contain a username or any other authentication info.
 {{% /note %}}
-
-## Default Sharing Settings
-
-_(only available for load test projects)_
-
-{{< TODO comment="update link below as soon as it is available" / >}}
-
-In _Sharing_, you can define a default for the share expiration time of [load test reports](../015-load-testing/20-quick-start/#create-a-report) for easier project management. Each report sharing will offer this time as a default. Later on, all shares can be either deactivated, extended, or reactivated at once when required. It is still possible to set individual expiration times per report, but these cannot be extended or deactivated globally then.
-
-## Properties
-
-_(only available for load test projects)_
-
-In _Properties_, you can globally define [properties](../../load-testing/manual/480-test-suite-configuration/) or [secret properties](../../load-testing/manual/480-test-suite-configuration/#secret-properties) to use for test execution. Properties can be overwritten for each individual load test, and if not set in XTC will be read from the project data.
