@@ -20,11 +20,13 @@ XTC User Accounts as Members of Orgs which Contain Projects that Run Tests
 
 To use Xceptance Test Center, you need an account. You can easily sign up on https://xtc.xceptance.com/. XTC allows you to either select a password for your account, or use an external login provider (Google or Microsoft) for SSO. For more information, see [user accounts](../../200-manual/040-user-accounts).
 
-## Organizations
+## Organizations and Projects
 
-All tests run by XTC are organised in test projects, which in turn are part of an organization. 
+XTC is structured into organization and projects. Each projects belongs to exactly one organization. Imagine organizations as companies or entities and projects as logical work items such a products, services, or tasks. Each user account can be a member of many organizations and many projects. This is especially useful for implementation partners and external consultants while it still serves the needs of development and test departments.
+ 
+Projects can either be of type [monitoring](../30-qs-monitoring) or [load test](../20-qs-load-testing). They have a different set of properties depending on their nature. In short, load test projects are used to perform load/performance tests, while monitoring projects are used to monitor an app's performance constantly over a longer time period including but not limited to functional monitoring of production environments.
 
-Organizations can only be created by our internal XTC admins. They will also assign an administrator for every organization, who will have permissions to add additional members to the organization, and, most importantly, create projects in the organization's context.
+Organizations can only be created by an XTC admins. They will also assign an initial administrator for every organization, who will have permissions to add additional members to the organization, and, most importantly, create projects in the organization's context.
 
 ### User Roles Within an Organization
 
