@@ -130,6 +130,29 @@ com.xceptance.xlt.abortLongRunningTransactions = true
 com.xceptance.xlt.maximumTransactionRunTime = 900000
 ```
 
+### Support for HTTP/2
+
+Nowadays more and more servers talk HTTP/2, however, HtmlUnit does not support HTTP/2 yet. Until proper support is available out-of-box, XLT provides an alternative web connection that uses the OkHttp HTTP client which is able to talk HTTP/2. The new web connection tries to mimic the original web connection, but the browser specifics may not be emulated as accurate. Furthermore, the ability to reconfigure the web connection according to the current web client options during the test scenario is limited only. That's why XLT still uses the standard HtmlUnit web connection by default.
+
+If you want to try out testing with HTTP/2, you first need to enable that feature by setting the following property in the configuration of your test suite:
+
+```
+com.xceptance.xlt.http.client = okhttp3
+```
+
+By default, the client will talk HTTP/2 or HTTP/1.1, whatever the server wants. For testing purposes, you can disable HTTP/2 altogether:
+
+```
+com.xceptance.xlt.http.client.okhttp3.http2Enabled = false
+```
+
+You might want to know which protocol was eventually negotiated between the HTTP client and the server. Please consult the [result browser](../440-result-browser/#request-and-response-information) which will display the protocol version used on the *Request/Response Information* tab.
+
+{{< image src="user-manual/result-browser_protocol.png">}}
+XLT Result Browser displaying the used protocol version
+{{< /image >}}
+
+
 ## Test Project Configuration
 
 To configure your test project, edit the file `project.properties`. The first and most important property is the reference to `test.properties` that should be applied. Changing the value for this property, you can easily switch between different load test profiles configurations.

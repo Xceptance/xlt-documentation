@@ -248,7 +248,7 @@ You cannot disconnect the mastercontroller from the test cluster in this mode wh
 For long-running tests, it is recommended to run the test without the `-auto` option. This makes it possible to disconnect from the test cluster without terminating the test and prevents accidental test termination.
 {{% /warning %}}
 
-### Scripted Commands
+### Non-Interactive Mode (Scripted Commands)
 
 In order to better fit into highly-automated environments, XLT 5.2.1 improved the mastercontroller in order to ease scripting. With the command line option `-c <commandList>` (or `--commands <commandList>`) you can specify which commands the mastercontroller should execute on your behalf. This way, typical use cases can be scripted quite easily:
 
@@ -257,7 +257,21 @@ In order to better fit into highly-automated environments, XLT 5.2.1 improved th
 * abort a running load test (`mastercontroller.sh -c abort`)
 * abort a running load test, download the final results, and generate a report (`mastercontroller.sh -c abort,download,report`)
 
+{{% warning notitle %}}
 Please note that the mastercontroller executes the commands exactly as specified on the command line. It does not run any validation if this makes sense at all.
+{{% /warning %}}
+
+#### Downloads in Non-Interactive Mode
+
+Per default, the command `download` always downloads the results completely. However, sometimes you might want to skip certain artifacts, to save disk space and download time. In the interactive mode, you are able to select what artifacts are to be downloaded by prompt. This is possible in non-interactive mode as well: use the command-line option `--only-download=...` with which you can specify the wanted artifacts. 
+
+Supported artifact types are:
+
+* `measurements` (all the measurements, i.e. the `timers.csv` files)
+* `logs` (all log files)
+* `resultbrowsers` (all existing result browser directories)
+
+Combine these artifacts types as needed, separated by comma, for example `--only-download=measurements,logs`. Note that you have to specify at least one artifact type. If you don't want to download anything, use the already existing command-line option `-noDownload`.
 
 ### Embedded Mode
 
