@@ -1,7 +1,7 @@
 ---
-title: "Basic Knowledge"
+title: "About"
 
-weight: 10
+weight: 2
 type: docs
 
 description: >
@@ -33,17 +33,3 @@ XTC is getting better while you are reading this. Checkout the release notes <a 
 XTC is not part of the XLT open source ecosystem. XTC is a growing SaaS offering by Xceptance. It is also extensively used internally at Xceptance.
 
 Xceptance will announce the general availability of XTC as soon as a defined state of maturity is reached. If you are already a customer of Xceptance, feel free to contact us if you are interested in evaluating XTC, want to provide feedback, or even use it in production, because we already do that.
-
-
-## Sign Up/Log In
-
-To use Xceptance Test Center, you need an account. You can easily sign up on https://xtc.xceptance.com/. XTC allows you to either select a password for your account, or use an external login provider (Google or Microsoft) for SSO. For more information, see [user accounts](../../200-manual/040-user-accounts).
-
-Currently, your role and projects will be assigned by Xceptance. This will change in the future.
-
-## Basic Structure
-
-Projects in XTC are structured by organisation - you may select an organisation in the top nav bar and will then see the available projects of this org (see [UI Structure](../../200-manual/040-ui-stucture) for more detailed information).  
-
-Projects can either be [monitoring](../30-qs-monitoring) or [load test](../20-qs-load-testing) projects and will have a different set of properties depending on their project nature. In short, load test projects are used to perform load/performance tests, while monitoring projects are useful to monitor an app's performance constantly over a longer time period. 
-
