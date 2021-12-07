@@ -1,5 +1,5 @@
 ---
-title: "Features of Load Test Projects"
+title: "Overview"
 
 weight: 100
 type: docs
