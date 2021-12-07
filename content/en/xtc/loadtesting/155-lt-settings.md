@@ -8,8 +8,6 @@ description: >
   Specific settings for your load test, e.g. load profile, repository, machine configuration, and more.
 ---
 
-{{< TODO comment="check all the links!!" / >}}
-
 ## Test Settings
 
 The _Settings_ tab contains all settings for the test run. Some of these are mandatory, you need to set them before the test run can be started.
@@ -24,7 +22,7 @@ Learn more in our _Load Testing_ section about [configuring load profiles](../..
 
 ### Repository
 
-Under _Repository_ you can enter a branch of the project repository to be used for this test run. This is only necessary if you want to use another branch than the one you [configured for the project](#define-the-test-suite-repository). If this is left empty, the project or default branch will be used.
+Under _Repository_ you can enter a branch of the project repository to be used for this test run. This is only necessary if you want to use another branch than the one you [configured for the project](../../060-project-configuration/#repository). If this is left empty, the project or default branch will be used.
 
 ### Machine Configuration
 
@@ -45,4 +43,4 @@ Instead of starting and terminating Google Machines per XTC, you can also use ot
 As **[test sizing](../../../load-testing/how-tos/test-sizing/)** is a whole topic in itself, you might want to check the CPU usage after your test and maybe adjust the number of machines for the next test run.
 
 ### Properties
-In _Properties_ and _Secret Properties_ you may overwrite [properties](../../../load-testing/manual/480-test-suite-configuration/) for test execution. If nothing is set here, the properties from the project repository will be used. Properties may also be overwritten globally for all load tests of this project in the [project configuration](../../010-xtc-basics/#properties).
+In _Properties_ and _Secret Properties_ you may overwrite [properties](../../../load-testing/manual/480-test-suite-configuration/) for test execution. If nothing is set here, the properties from the project repository will be used. Properties may also be overwritten globally for all load tests of this project in the [project configuration](../120-load-project-configuration/#properties).

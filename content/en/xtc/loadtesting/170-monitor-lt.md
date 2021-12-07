@@ -1,5 +1,5 @@
 ---
-title: "Monitoring"
+title: "Monitoring the Test Run"
 
 weight: 170
 type: docs
@@ -8,9 +8,7 @@ description: >
   How to monitor a load test in XTC.
 ---
 
-{{< TODO comment="check all the links!!" / >}}
-
-## Monitoring the Test 
+## Monitoring the Load Test 
 
 ### Test Status
 

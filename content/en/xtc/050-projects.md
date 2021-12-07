@@ -12,7 +12,7 @@ description: >
 
 Organizations are containers for projects, which in turn are the containers for any kind of test run in XTC. 
 
-Projects can either be of type [monitoring](../monitoring) or [load test](../load-testing). They have a different set of properties depending on their nature. In short, load test projects are used to perform load/performance tests, while monitoring projects are used to monitor an app's performance constantly over a longer time period including but not limited to functional monitoring of production environments.
+Projects can either be of type [monitoring](../monitoring) or [load test](../loadtesting). They have a different set of properties depending on their nature. In short, load test projects are used to perform load/performance tests, while monitoring projects are used to monitor an app's performance constantly over a longer time period including but not limited to functional monitoring of production environments.
 
 The project type will be indicated in the project tile:
 

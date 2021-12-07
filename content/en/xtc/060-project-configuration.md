@@ -11,7 +11,7 @@ description: >
 To configure either a load test or monitoring project, select _Configuration_ in the project menu on the left. In the project configuration, there are several tabs for all kinds of settings that will be applied globally to the project. The contents and possible settings differ slightly depending on the project type (load test or monitoring), but most are fairly similar. For settings that are only available for a specific project type, please check out [load test project configuration](../loadtesting/120-load-project-configuration/) or [monitoring project configuration](../monitoring/420-monitoring-configuration/).
 
 {{% note notitle %}}
-Please note that your [project role](../030-ui-structure/#user-roles-within-a-project) must be at least that of a test manager to edit the project's configuration.
+Please note that your [project role](../050-projects/#user-roles-within-a-project) must be at least that of a test manager to edit the project's configuration.
 {{% /note %}}
 
 ## General 

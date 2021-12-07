@@ -1,5 +1,5 @@
 ---
-title: "Starting the Test"
+title: "Starting and Stopping"
 
 weight: 160
 type: docs
@@ -7,8 +7,6 @@ type: docs
 description: >
   How to start and stop a load test
 ---
-
-{{< TODO comment="check all the links!!" / >}}
 
 ## Start the Load Test
 
