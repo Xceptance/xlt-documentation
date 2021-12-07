@@ -1,18 +1,21 @@
 ---
-title: "Overview"
+title: "Load Tests Overview"
 
-weight: 100
+weight: 140
 type: docs
 
 description: >
-  What a load test project is and what you can do with it.
+  All infos that are available on the Load Tests Overview.
 ---
 
 A load test project in XTC may contain a number of [XLT load and performance tests](../../../../load-testing). In XTC, you can easily keep track of which tests have been run for a project and have all the data (e.g. which settings were used, how much load was applied, how did the test go) available in one place.
 
 ## Load Tests Overview
 
+XTC enables you to quickly get an **overview of previous test runs**, offering plenty of information. 
+
 By selecting **Load Tests** in the menu on the left of any load testing project you will be taken to the load tests overview. This is a table of all existing load tests (which have been created for this project at some point, but have not necessarily run). Along with the test name you will see the status:
+
 * _New_ for newly created tests,
 * _Running_ for currently running tests, 
 * _Finished_ for successfully finished tests, 
