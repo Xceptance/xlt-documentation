@@ -10,9 +10,15 @@ description: >
 
 ## Load Testing Basics
 
-Load Tests are used to evaluate performance over time. By running tests containing predefined use cases for the application under test and measuring everything from runtimes to errors under varying load conditions (e.g. with a different amount of virtual users active at the same time), XTC offers valuable insights into your application's performance under load. 
+XTC helps you to streamline your [usual load testing work](../../../load-testing) by a mass of helpful features it puts on top of what's already included in [XLT](../../../load-testing/manual/010-basics/#what-is-xlt): 
 
-To learn more about [load testing with XLT](../../../load-testing/manual/010-basics/) and the underlying [concepts](../../../load-testing/manual/030-concepts/), see the [load testing manual](../../../load-testing/manual/).
+* It simplifies the test setup and allows to duplicate tests for similar reruns.
+* It will make sure you stay on top of things by giving you an easy overview of test setups as well as results.
+* It starts and stops all agent machines for you. You only have to define where you want the agents to be placed and how many agent you need. Thus, no machine time will be wasted.
+* It automatically starts and stops a test, collects all results, and creates a report.
+* It allows to share test results quickly either as a secret public link or within your project setup.
+
+As XTC is still in development it will be continuously improved, in part by your feedback.
 
 ## Prerequisites
 
