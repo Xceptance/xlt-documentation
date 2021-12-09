@@ -10,7 +10,9 @@ description: >
 
 ## Creating a Report
 
-XTC will automatically download test results and [create a report](../../../load-testing/manual/320-test-evaluation/) at the end of the load test. These will be available in the _Results_ and the _Reports_ tabs. Both will be available as compressed archives ready for download if you need them on your local machine. All generated reports will be available inside XTC to browse and evaluate them, and XTC can also generate a link for [public sharing](#sharing-a-report).
+XTC will automatically [create a report](../../../load-testing/manual/320-test-evaluation/) from the [results](../175-results) downloaded at the end of the load test. You can find the generated report in the _Reports_ tab, where it will be available as compressed archive ready for download if you need it on your local machine. 
+
+All generated reports will be available inside XTC to browse and evaluate them, and XTC can also generate a link for [public sharing](#sharing-a-report).
 
 ## Intermediate Reports
 
@@ -42,7 +44,7 @@ These advanced settings are not trivial, so make sure you know what you're doing
 
 On clicking _Accept_ report creation will be started (this may take several minutes depending on the result size). The report will appear in the list of reports, showing a little progress icon left to its name. After the report creation has finished, you will be able to click the name to open and [read it](../../../load-testing/manual/320-test-evaluation/#reading-a-test-report).
 
-To give you a quicker overview, XTC enables you to already open reports while their creation is still in progress. You will notice the different icon next to the report name in the reports overview:
+To give you a quicker overview, XTC enables you to already open reports while their creation is still in progress (as soon as all report html pages and the charts on the overview page are available). You will notice the different icon next to the report name in the reports overview:
 
 {{< image src="xtc/loadtest_report_inProgress.png" >}}
 Topmost report is still incomplete and currently being uploaded
@@ -54,7 +56,7 @@ XTC simplifies sharing your reports with XTC users as well as people outside the
 
 If your [role within the load test project](../../050-projects/#user-roles-within-a-project) is at least that of a **reviewer**, you may view all information about a load test, including every report that was created for any test run. If you are a **project administrator**, you can add XTC users as reviewers to the project if you want them to have access to all reports.
 
-To share reports with people outside XTC, you can create a **Sharing Link** for each report. By clicking _Share_ in the context menu of the report to be shared in the reports tab, a prompt will open and you may select whether to use the [default sharing settings](../120-load-project-configuration/#default-sharing-settings) or define an expiration time specifically for this report. 
+To share reports with people outside XTC, you can create a **Sharing Link** for each report. By clicking _Share_ in the context menu of the report to be shared in the reports tab, a prompt will open and you may select whether to use the [default sharing settings](../120-load-project-configuration/#default-sharing-settings) or define an expiration time specifically for this report link. 
 
 {{< image src="xtc/loadtest_sharingLink_share.png" >}}
 Creating a public sharing link
@@ -64,7 +66,7 @@ Creating a public sharing link
 Creating a sharing link not using the default expiration settings
 {{< /image >}}
 
-Clicking _Create Share_ will create a link for public sharing, which will be displayed below the report link as _Share Link_. Anyone with the link can access the report without authentication. All links are time limited and will expire automatically. Links don't display any project details and can be invalidated at any time manually by the unshare option (in the context menu of the shared report).
+Clicking _Create Share_ will create a link for public sharing, which will be displayed below the report link as _Shared Link_. Anyone with the link can access the report without authentication. All links are time limited and will expire automatically. Links don't display any project details and can be invalidated at any time manually by the unshare option (in the context menu of the shared report).
 
 {{% note notitle %}}
 The sharing link is different from the report link (the report link does _not_ become public by sharing), so please make sure to copy the right one of them, as only the sharing link is publicly accessible.
