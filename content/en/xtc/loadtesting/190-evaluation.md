@@ -8,7 +8,7 @@ description: >
   How to add a short evaluation to a test run.
 ---
 
-## Evaluate the Test Run
+## Evaluating the Test Run
 
 After the test has finished, you can add a short summary, a rating and a more detailed evaluation to the test in the _Evaluation_ tab. Summary and rating will show up in the load tests overview table then. To enter or edit an evaluation, click the pencil button:
 

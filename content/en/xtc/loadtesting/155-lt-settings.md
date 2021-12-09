@@ -12,6 +12,11 @@ description: >
 
 The _Settings_ tab contains all settings for the test run. Some of these are mandatory, you need to set them before the test run can be started.
 
+{{% note notitle %}}
+Please note that none of the test settings can be edited after the test was started.
+{{% /note %}}
+
+
 ### Load Profile
 
 Under _Load Profile_ you can override the settings in your test suite for the [test properties file to be used](../../../load-testing/manual/480-test-suite-configuration/#test-properties-file). In addition to that, you can override the settings for test duration and [load factor](../../../load-testing/manual/470-load-configuration/#load-factor). All other settings, for example, [ramp-up times](../../../load-testing/manual/470-load-configuration/#ramp-up-load-profile), are not directly configurable in the UI yet, but are still read from the properties files in your test suite.

@@ -16,7 +16,7 @@ To actually start the load test, click the link on top of the load test contents
 Start the configured load test.
 {{< /image >}}
 
-You will be prompted to confirm that you want to start the load test with the given settings now. If you click **Start Load Test** XTC will start the load test by downloading the current state of the test suite project from the repository, building the project, provisioning the requested agents and, if this was successful, run the provided test scenarios for the configured time.
+You will be prompted to confirm that you want to start the load test with the given settings now. If you click _Start Load Test_ XTC will start the load test by downloading the current state of the test suite project from the repository, building the project, provisioning the requested agents and, if this was successful, run the provided test scenarios for the configured time.
 
 <!--Soon (?) to come: test scheduling-->
 
@@ -30,7 +30,7 @@ Please note that only [Google Machines](../155-lt-settings/#machine-configuratio
 
 ### Aborting a Load Test
 
-However there might be several reasons why you'd want to abort a load test before it has finished: maybe you noticed too late that you missed some [configuration setting](../155-lt-settings), or you notice a lot of unexpected errors popping up on the [scenario overview](../170-monitor-lt/#scenario-overview) or your app server is already collapsing halfway through the run, to just name a few. In these situations, you can just abort the test run by clicking **Abort Load Test** on the top right. 
+However there might be several reasons why you'd want to abort a load test before it has finished: maybe you noticed too late that you missed some [configuration setting](../155-lt-settings), or you notice a lot of unexpected errors popping up on the [scenario overview](../170-monitor-lt/#scenario-overview) or your app server is already collapsing halfway through the run, to just name a few. In these situations, you can just abort the test run by clicking _Abort Load Test_ on the top right. 
 
 {{< image src="xtc/loadtest_abort_click.png" >}}
 Abort the load test.
@@ -39,7 +39,7 @@ Abort the load test.
 This will open a popup which prompts you to confirm that you want to abort the current run. Depending on the test status (whether any test scenarios have run already, thus producing result data) you may select which result artifacts should be downloaded and whether a report should be created. XTC will then stop the running test scenarios and deprovision all agents.
 
 {{< image src="xtc/loadtest_abort.png" >}}
-Popup after clicking Abort Test
+Popup after clicking _Abort Load Test_ in a test run which is currently STARTING.
 {{< /image >}}
 
 {{% note notitle %}}
