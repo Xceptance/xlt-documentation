@@ -24,14 +24,12 @@ Results are basically the [raw data recorded during a test](../../../load-testin
 
 Sharing results in XTC is very similar to [sharing reports](../180-reports/#sharing-a-report), in that all results are available to any project member who has at least the [project role](../../050-projects/#user-roles-within-a-project) of a **reviewer**. As a **project administrator**, you can add XTC users as reviewers to the project if you want them to have access to all results.
 
-To share results outside XTC, you can create a **public sharing link** by clicking _Share_ in the context menu of the result to be shared. A prompt will open and you may select an expiration time specifically for this result. 
-
-{{% note notitle %}}
-Please note that the project's [default sharing settings](../120-load-project-configuration/#default-sharing-settings) do _not_ apply to shared results.
-{{% /note %}}
+To share results outside XTC, you can create a **public sharing link** by clicking _Share_ in the context menu of the result to be shared. A prompt will open and you may select whether to use the [default sharing settings](../120-load-project-configuration/#default-sharing-settings) or define an expiration time specifically for this result link. 
 
 Clicking _Create Share_ will create the link for public sharing, which will be displayed below the result link as _Shared Link_. Anyone with the link can access the result without authentication. All links are time limited and will expire automatically. Links don't display any project details and can be invalidated at any time manually by the unshare option (in the context menu of the shared result).
 
 {{% note notitle %}}
-The sharing link is different from the report link (the report link does _not_ become public by sharing), so please make sure to copy the right one of them, as only the sharing link is publicly accessible.
+The sharing link is different from the result link (the result link does _not_ become public by sharing), so please make sure to copy the right one of them, as only the sharing link is publicly accessible.
 {{% /note %}}
+
+You can **change the expiration time** of an already shared result later if needed, by either updating the project's [default sharing settings](../120-load-project-configuration/#default-sharing-settings) (which will update expiration times for all results shared by using this default), or by clicking _Edit Share_ in the result's popup menu and selecting a new expiration date. The link won't be changed by this, just its lifetime. If you want to invalidate a shared link, select the _Unshare_ option instead.
