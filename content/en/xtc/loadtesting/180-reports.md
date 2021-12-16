@@ -50,6 +50,18 @@ To give you a quicker overview, XTC enables you to already open reports while th
 Topmost report is still incomplete and currently being uploaded
 {{< /image >}}
 
+### Checking Report Settings
+
+The options used for creating a custom load test report are stored by XTC, and you can review them later on. Just open the context menu of the custom report in question and choose _Show settings_:
+
+{{< image src="xtc/loadtest_showReportSettings.png" >}}
+Show settings used for creating for a custom test report.
+{{< /image >}}
+
+{{< image src="xtc/loadtest_customReportSettings.png" >}}
+Settings from an example report
+{{< /image >}}
+
 ## Sharing a Report
 
 XTC simplifies sharing your reports with XTC users as well as people outside the organization. 
