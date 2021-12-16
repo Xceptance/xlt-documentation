@@ -41,7 +41,7 @@ Before you can run your Java-based test cases, you need to import the sample tes
 ### Importing the _Posters_ Test Suite into Eclipse
 
 Clone the demo test suite from <a href="https://github.com/Xceptance/posters-simple-loadtest-suite" target="_blank">Github</a> to a local directory, e.g. `<posters-simple-loadtest-suite>`. After starting Eclipse and creating a workspace, do the following:
-- Open the import dialog (_File_ > _Import_ > _General_ > _Existing Maven Projects_).
+- Open the import dialog (_File_ > _Import_ > _Maven_ > _Existing Maven Projects_).
 - Select the root directory to search in and point to `<posters-simple-loadtest-suite>`.
 - Select the test suite project's `pom.xml`.
 - Click _Finish_.
