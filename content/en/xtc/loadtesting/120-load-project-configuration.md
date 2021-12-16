@@ -12,7 +12,7 @@ The _Configuration_ of a load test project is very similar to the basic [project
 
 ## Default Sharing Settings
 
-In _Sharing_, you can define a default for the share expiration time of [load test results](../175-results/#sharing-results) and [load test reports](../180-reports/#sharing-a-report) for easier project management. Each result or report sharing will offer this time as a default. Later on, all shares can be either deactivated, extended, or reactivated at once when required. 
+In _Sharing_, you can define a default for the share expiration time of [load test results](../175-results/#sharing-results) and [load test reports](../180-reports/#sharing-a-report) for easier project management. Each result or report sharing will offer this time as a default (but individual expiration times may still be configured if needed). Later on, all shares that use these defaults can be either deactivated, extended, or reactivated at once when required. 
 
 {{% note notitle %}}
 Please note that default expiration dates for results and reports are two independently set values.
