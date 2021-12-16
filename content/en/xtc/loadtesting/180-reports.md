@@ -72,7 +72,7 @@ Clicking _Create Share_ will create a link for public sharing, which will be dis
 The sharing link is different from the report link (the report link does _not_ become public by sharing), so please make sure to copy the right one of them, as only the sharing link is publicly accessible.
 {{% /note %}}
 
-You can **change the expiration time** of an already shared report later if needed, by either updating the project's [default sharing settings](../120-load-project-configuration/#default-sharing-settings) (which will update expiration times for all reports shared by using this default), or by clicking _Edit Share_ in the report's popup menu and selecting a new expiration date. The link won't be changed by this, just its lifetime. If you want to invalidate a shared link, select the _Unshare_ option instead.
+You can **change the expiration time** of an already shared report later if needed, by either updating the project's [default sharing settings](../120-load-project-configuration/#default-sharing-settings) (which will update expiration times for all reports shared by using this default), or by clicking _Edit Share_ in the report's popup menu and selecting a new expiration date. The link won't be changed by this, just its lifetime. If you want to invalidate a shared link, select the _Unshare_ option instead. To remove all custom shared links at once, use the option to _delete existing custom share links_ in the [project's sharing settings](../120-load-project-configuration/#removing-all-custom-share-links).
 
 {{< image src="xtc/loadtest_sharingLink_editUnshare.png" >}}
 Editing the expiration time of a public sharing link or unsharing

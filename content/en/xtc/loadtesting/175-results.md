@@ -33,3 +33,4 @@ The sharing link is different from the result link (the result link does _not_ b
 {{% /note %}}
 
 You can **change the expiration time** of an already shared result later if needed, by either updating the project's [default sharing settings](../120-load-project-configuration/#default-sharing-settings) (which will update expiration times for all results shared by using this default), or by clicking _Edit Share_ in the result's popup menu and selecting a new expiration date. The link won't be changed by this, just its lifetime. If you want to invalidate a shared link, select the _Unshare_ option instead.
+To remove all custom shared links at once, use the option to _delete existing custom share links_ in the [project's sharing settings](../120-load-project-configuration/#removing-all-custom-share-links).
