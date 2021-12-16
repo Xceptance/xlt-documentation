@@ -12,6 +12,8 @@ description: >
 
 To use Xceptance Test Center, you need a user account. You can easily sign up on https://xtc.xceptance.com/. You will be prompted to enter your name, mail address and password.
 
+After the successful registration, XTC will send you an email to the given address, asking you to confirm the registration. You will be able to log in to XTC as soon as you confirmed.
+
 Currently, your role and projects will be assigned by Xceptance. This will change in the future.
 
 ### Sign Up Using an External Provider
