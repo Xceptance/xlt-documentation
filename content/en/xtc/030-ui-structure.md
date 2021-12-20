@@ -22,16 +22,18 @@ To use Xceptance Test Center, you need an account. You can easily sign up on htt
 
 ## Selecting an Organization and a Project
 
-When you log in to XTC you will first see a dashboard containing the organizations and projects you are a member of. You can select both via dashboard links or by clicking the links in the header next to the _XTC_ logo:
+When you log in to XTC you will first see a dashboard containing the organizations and projects you are a member of. You can select both via dashboard links or by using the two select boxes in the header next to the _XTC_ logo. (Click the _XTC_ logo to return to your main dashboard.)
 
 {{< image src="xtc/topmenu.png" >}}
 The XTC top menu allows you to select organization and project directly. 
 {{< /image >}}
 
+The navigation links to the sub pages of an organization or project can be found in the sidebar to the left. Click the hamburger menu button to minimize/expand the sidebar.
+
 {{% note notitle %}}
-Please note that the menu on the left offers different options depending on whether you are currently viewing the dashboard, an organization, or a project.
+Please note that the menu on the left offers different options depending on whether you are currently viewing the dashboard, an organization, or a load testing or monitoring project.
 {{% /note %}}
 
 To set up any kind of test, either for load testing or monitoring, you need to navigate to the right project. 
 
-On the right side of the footer XTC is always displaying your role in the organization or project you are currently viewing.
+On the right side of the footer XTC is always displaying your role in the organization or project you are currently viewing. You can also find the current XTC version and the Contact/Privacy/Changelog links in the footer.
