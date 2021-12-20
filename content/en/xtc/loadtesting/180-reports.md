@@ -24,6 +24,8 @@ You will be prompted to select which result artifacts should be downloaded. The 
 Prompt for creating an intermediate test report
 {{< /image >}}
 
+Creating an intermediate report also generated an intermediate [test result](../175-results) which can be used to create a [custom intermediate report](../175-results/#creating-a-report-from-results) using settings other than the defaults.
+
 ## Custom Reports
 
 After the load test has finished, you can create as many custom reports with adjusted report settings as you need. 
@@ -89,3 +91,13 @@ You can **change the expiration time** of an already shared report later if need
 {{< image src="xtc/loadtest_sharingLink_editUnshare.png" >}}
 Editing the expiration time of a public sharing link or unsharing
 {{< /image >}}
+
+### Downloading Results
+To download a report to your local machine, click _Download_ in the report's context menu. You will get a .tar.gz archive containing the complete load test report including all the result browsers that the report links to.
+
+## Deleting a Report
+Finally, if you don't need a generated report any longer, you may want to delete it to save storage space. To do this, just click _Delete_ in the report's context menu. You will be prompted to confirm that you really want to delete the report. 
+
+{{% warning notitle %}}
+Please note that when deleting load test reports from XTC, they are truly deleted from the backing file storage, so this process **cannot be undone**.
+{{% /warning %}}
