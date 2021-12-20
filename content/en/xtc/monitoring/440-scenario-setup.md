@@ -73,7 +73,7 @@ The context menu for a monitoring scenario.
 
 ## Adding a New Scenario
 
-To add a new monitoring scenario to your project, just click the `+` button at the top of the scenarios list. You will be asked to enter a name and description and, most importantly, the name (including class path) of the Java class in your repository that contains this scenario as a JUnit test case. 
+To add a new monitoring scenario to your project, just click the `+` button at the top of the scenarios list. You will be asked to enter a **Name** (which must be unique across all scenarios in this project) and **Description** and, most importantly, the **Java Class** (including class path) in your repository that contains this scenario as a JUnit test case. 
 
 {{< image src="xtc/monitoring_newScenario.png" >}}
 Creating a new monitoring scenario.
