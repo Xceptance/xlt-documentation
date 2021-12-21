@@ -24,4 +24,7 @@ It is still possible to set individual expiration times per result and reports i
 
 ## Properties
 
-In _Properties_, you can globally define [properties](../../../load-testing/manual/480-test-suite-configuration/) or [secret properties](../../../load-testing/manual/480-test-suite-configuration/#secret-properties) to use for test execution. Properties can be overwritten for each individual load test, and if not set in XTC will be read from the project data. 
+In _Properties_, you can globally define [properties](../../../load-testing/manual/480-test-suite-configuration/) or [secret properties](../../../load-testing/manual/480-test-suite-configuration/#secret-properties) to use for test execution. 
+
+Properties configured at project level apply to all new load tests alike, while [properties defined at a certain load test](../155-lt-settings) apply to that load test only. Load-test-level properties will overwrite project-level properties. Properties that are not set in XTC will be read from the project data. 
+
