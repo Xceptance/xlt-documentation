@@ -24,7 +24,9 @@ You will be prompted to select which result artifacts should be downloaded. The 
 Prompt for creating an intermediate test report
 {{< /image >}}
 
-Creating an intermediate report also generated an intermediate [test result](../175-results) which can be used to create a [custom intermediate report](../175-results/#creating-a-report-from-results) using settings other than the defaults.
+Only one intermediate report can be created at a time. The trigger button is disabled whenever another intermediate report is in progress.
+
+Creating an intermediate report also generates an intermediate [test result](../175-results) which can be used to create a [custom intermediate report](../175-results/#creating-a-report-from-results) using settings other than the defaults.
 
 ## Custom Reports
 
