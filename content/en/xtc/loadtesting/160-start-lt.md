@@ -44,6 +44,8 @@ This will open a popup which prompts you to confirm that you want to abort the c
 Popup after clicking _Abort Load Test_ in a test run which is currently STARTING.
 {{< /image >}}
 
+Right after a user has clicked the _Abort Load Test_ button, the button will be disabled for the current user as well as _for all other users_. This is to indicate that the abort procedure is in progress.
+
 {{% note notitle %}}
 Please note that only [Google Machines](../155-lt-settings/#machine-configuration) provisioned by XTC itself will be deprovisioned automatically after the test is aborted. You will need to shut down any Custom Machines you added yourself.
 {{% /note %}}

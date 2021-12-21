@@ -14,13 +14,15 @@ The _Configuration_ of a load test project is very similar to the basic [project
 
 In _Sharing_, you can define a default for the share expiration time of [load test results](../175-results/#sharing-results) and [load test reports](../180-reports/#sharing-a-report) for easier project management. Each result or report sharing will offer this time as a default (but individual expiration times may still be configured if needed). Later on, all shares that use these defaults can be either deactivated, extended, or reactivated at once when required. 
 
+We recommend using the default because if the share expiration time needs to be adjusted/prolonged, you can set the new default and it will apply to all existing shares alike. This also includes disabling these shares.
+
 {{% note notitle %}}
 Please note that default expiration dates for results and reports are two independently set values.
 {{% /note %}}
 
 ### Removing All Custom Share Links
 
-It is still possible to set individual expiration times per result and reports instead of referring to the global preset. To remove all custom links to reports or results, you can use the buttons _Remove Custom Report Shares_ and _Remove Custom Result Shares_ which you find below the default sharing settings. Both will prompt you to confirm this action, as it cannot be undone. 
+It is still possible to set individual expiration times per result and reports instead of referring to the global preset. These shares won't be affected in any way when changing/disabling the [project-wide default expiration date](#default-sharing-settings). To remove all custom links to reports or results, you can use the buttons _Remove Custom Report Shares_ and _Remove Custom Result Shares_ which you find below the default sharing settings. Both will prompt you to confirm this action, as it cannot be undone. 
 
 ## Properties
 

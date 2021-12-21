@@ -28,6 +28,10 @@ When you log in to XTC you will first see a dashboard containing the organizatio
 The XTC top menu allows you to select organization and project directly. 
 {{< /image >}}
 
+{{% note notitle %}}
+In case you are a member of many organizations, the dashboard shows the projects of the first 10 organizations only so that everything loads quickly, but you can always click the _Show More_ button to load more. Alternatively, use the project dropdown in the page header to quickly navigate to projects that are not listed by default.
+{{% /note %}}
+
 The navigation links to the sub pages of an organization or project can be found in the sidebar to the left. Click the hamburger menu button to minimize/expand the sidebar.
 
 {{% note notitle %}}
