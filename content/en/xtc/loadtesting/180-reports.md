@@ -44,7 +44,7 @@ By clicking **Show Advanced Settings** four more sections will appear:
 
 These advanced settings are not trivial, so make sure you know what you're doing. 
 
-On clicking _Accept_ report creation will be started (this may take several minutes depending on the result size). The report will appear in the list of reports, showing a little progress icon left to its name. After the report creation has finished, you will be able to click the name to open and [read it](../../../load-testing/manual/320-test-evaluation/#reading-a-test-report).
+On clicking _Accept_ report creation will be started (this may take several minutes depending on the result size). The report will appear in the list of reports, showing a little progress icon left to its name. After the report creation has finished, you will be able to click the name to open and [read it](../../../load-testing/manual/320-test-evaluation/#reading-a-test-report). When creating a load test report fails, for example, because of an invalid custom command-line option, the report will be marked as _failed_.
 
 To give you a quicker overview, XTC enables you to already open reports while their creation is still in progress (as soon as all report html pages and the charts on the overview page are available). You will notice the different icon next to the report name in the reports overview:
 
