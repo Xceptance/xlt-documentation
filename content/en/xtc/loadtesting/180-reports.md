@@ -93,9 +93,13 @@ Editing the expiration time of a public sharing link or unsharing
 {{< /image >}}
 
 ### Downloading Results
+
 To download a report to your local machine, click _Download_ in the report's context menu. You will get a .tar.gz archive containing the complete load test report including all the result browsers that the report links to.
 
+Even if a load test report can already be viewed, the corresponding report archive might not be available for download yet. The related context menu item is disabled until the report archive is uploaded completely.
+
 ## Deleting a Report
+
 Finally, if you don't need a generated report any longer, you may want to delete it to save storage space. To do this, just click _Delete_ in the report's context menu. You will be prompted to confirm that you really want to delete the report. 
 
 {{% warning notitle %}}
