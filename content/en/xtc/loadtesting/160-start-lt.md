@@ -38,7 +38,9 @@ However there might be several reasons why you'd want to abort a load test befor
 Abort the load test.
 {{< /image >}}
 
-This will open a popup which prompts you to confirm that you want to abort the current run. Depending on the test status (whether any test scenarios have run already, thus producing result data) you may select which result artifacts should be downloaded and whether a report should be created. XTC will then stop the running test scenarios and deprovision all agents.
+This will open a popup which prompts you to confirm that you want to abort the current run. Depending on the test status (whether any test scenarios have run already, thus producing result data) you may select which result artifacts should be downloaded and whether a report should be created. By deselecting unneeded artifacts, result browsers for example, the initial download may progress much faster and, consequently, storing the result and load test report to persistent storage later on may take less time as well.
+
+XTC will then stop the running test scenarios and deprovision all agents.
 
 {{< image src="xtc/loadtest_abort.png" >}}
 Popup after clicking _Abort Load Test_ in a test run which is currently STARTING.

@@ -81,7 +81,7 @@ Creating a new monitoring scenario.
 
 The new scenario will now show up in the list. It will be enabled by default and it will automatically use the [scenario default settings](#defining-scenario-defaults). You can now adjust these settings as needed by [editing the scenario](#managing-existing-scenarios). 
 
-{{% warning notitle %}}
-New scenarios are enabled by default and will be run according to the default execution interval, so if you want to take some time to make adjustments, make sure to disable your scenario right after creation.  
-{{% /warning %}}
+{{% note notitle %}}
+New scenarios are disabled by default you time to finish customizing the scenario settings. Don't forget to enable the scenario when done.
+{{% /note %}}
 
