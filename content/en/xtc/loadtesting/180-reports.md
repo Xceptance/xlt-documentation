@@ -24,6 +24,10 @@ You will be prompted to select which result artifacts should be downloaded. The 
 Prompt for creating an intermediate test report
 {{< /image >}}
 
+Only one intermediate report can be created at a time. The trigger button is disabled whenever another intermediate report is in progress.
+
+Creating an intermediate report also generates an intermediate [test result](../175-results) which can be used to create a [custom intermediate report](../175-results/#creating-a-report-from-results) using settings other than the defaults.
+
 ## Custom Reports
 
 After the load test has finished, you can create as many custom reports with adjusted report settings as you need. 
@@ -42,7 +46,7 @@ By clicking **Show Advanced Settings** four more sections will appear:
 
 These advanced settings are not trivial, so make sure you know what you're doing. 
 
-On clicking _Accept_ report creation will be started (this may take several minutes depending on the result size). The report will appear in the list of reports, showing a little progress icon left to its name. After the report creation has finished, you will be able to click the name to open and [read it](../../../load-testing/manual/320-test-evaluation/#reading-a-test-report).
+On clicking _Accept_ report creation will be started (this may take several minutes depending on the result size). The report will appear in the list of reports, showing a little progress icon left to its name. After the report creation has finished, you will be able to click the name to open and [read it](../../../load-testing/manual/320-test-evaluation/#reading-a-test-report). When creating a load test report fails, for example, because of an invalid custom command-line option, the report will be marked as _failed_.
 
 To give you a quicker overview, XTC enables you to already open reports while their creation is still in progress (as soon as all report html pages and the charts on the overview page are available). You will notice the different icon next to the report name in the reports overview:
 
@@ -89,3 +93,17 @@ You can **change the expiration time** of an already shared report later if need
 {{< image src="xtc/loadtest_sharingLink_editUnshare.png" >}}
 Editing the expiration time of a public sharing link or unsharing
 {{< /image >}}
+
+### Downloading Results
+
+To download a report to your local machine, click _Download_ in the report's context menu. You will get a .tar.gz archive containing the complete load test report including all the result browsers that the report links to.
+
+Even if a load test report can already be viewed, the corresponding report archive might not be available for download yet. The related context menu item is disabled until the report archive is uploaded completely.
+
+## Deleting a Report
+
+Finally, if you don't need a generated report any longer, you may want to delete it to save storage space. To do this, just click _Delete_ in the report's context menu. You will be prompted to confirm that you really want to delete the report. 
+
+{{% warning notitle %}}
+Please note that when deleting load test reports from XTC, they are truly deleted from the backing file storage, so this process **cannot be undone**.
+{{% /warning %}}

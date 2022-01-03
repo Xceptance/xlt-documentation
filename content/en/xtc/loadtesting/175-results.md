@@ -12,13 +12,16 @@ description: >
 
 XTC will automatically download the test results at the end of the load test. These will be available in the _Results_ tab. 
 
-You may download all results as compressed archives if you need them on your local machine, and XTC can also generate a link for [public sharing](#sharing-results). In addition to that, XTC allows you to [generate reports](../180-reports/#custom-reports) from every available result set, be it final or intermediate. 
+You may download all results as compressed archives if you need them on your local machine, and XTC can also generate a link for [public sharing](#sharing-results). In addition to that, XTC allows you to [generate reports]() from every available result set, be it final or intermediate. 
 
 {{< image src="xtc/loadtest_results.png" >}}
-Results tab and results menu
+Results tab and results context menu
 {{< /image >}}
 
 Results are basically the [raw data recorded during a test](../../../load-testing/advanced/150-results/). They are hard to read and usually you will only need them if you are looking for very specific information that is not contained in the [test report](../../../load-testing/manual/320-test-evaluation//#reading-a-test-report). 
+
+### Downloading Results
+To download a set of test results, click _Download_ in the result set's context menu. You will get a .tar.gz archive containing nested archives for all [_timers.csv_ files](../../../load-testing/advanced/150-results/#collected-values).
 
 ### Sharing Results
 
@@ -34,3 +37,16 @@ The sharing link is different from the result link (the result link does _not_ b
 
 You can **change the expiration time** of an already shared result later if needed, by either updating the project's [default sharing settings](../120-load-project-configuration/#default-sharing-settings) (which will update expiration times for all results shared by using this default), or by clicking _Edit Share_ in the result's popup menu and selecting a new expiration date. The link won't be changed by this, just its lifetime. If you want to invalidate a shared link, select the _Unshare_ option instead.
 To remove all custom shared links at once, use the option to _delete existing custom share links_ in the [project's sharing settings](../120-load-project-configuration/#removing-all-custom-share-links).
+
+### Creating a Report from Results
+
+XTC allows you to generate as many [custom reports](../180-reports/#custom-reports) as you like from any available result set. Just click _Create Report_ in the result set's context menu: there will be a popup to configure the report settings, just like on [creating a new custom report from the _Reports_ tab](../180-reports/#custom-reports). 
+
+In fact, creating a new custom report in the _Reports_ tab does the same thing as creating a new report from the final results, however this option is useful for **creating custom reports from intermediate test results**.
+
+### Deleting Results
+Finally, if you don't need a generated result set any longer, you may want to delete it to save storage space. To do this, just click _Delete_ in the result set's context menu. You will be prompted to confirm that you really want to delete the results. 
+
+{{% warning notitle %}}
+Please note that when deleting load test results from XTC, they are truly deleted from the backing file storage, so this process **cannot be undone**.
+{{% /warning %}}

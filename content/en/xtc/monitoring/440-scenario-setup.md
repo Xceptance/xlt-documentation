@@ -73,7 +73,7 @@ The context menu for a monitoring scenario.
 
 ## Adding a New Scenario
 
-To add a new monitoring scenario to your project, just click the `+` button at the top of the scenarios list. You will be asked to enter a name and description and, most importantly, the name (including class path) of the Java class in your repository that contains this scenario as a JUnit test case. 
+To add a new monitoring scenario to your project, just click the `+` button at the top of the scenarios list. You will be asked to enter a **Name** (which must be unique across all scenarios in this project) and **Description** and, most importantly, the **Java Class** (including class path) in your repository that contains this scenario as a JUnit test case. 
 
 {{< image src="xtc/monitoring_newScenario.png" >}}
 Creating a new monitoring scenario.
@@ -81,7 +81,7 @@ Creating a new monitoring scenario.
 
 The new scenario will now show up in the list. It will be enabled by default and it will automatically use the [scenario default settings](#defining-scenario-defaults). You can now adjust these settings as needed by [editing the scenario](#managing-existing-scenarios). 
 
-{{% warning notitle %}}
-New scenarios are enabled by default and will be run according to the default execution interval, so if you want to take some time to make adjustments, make sure to disable your scenario right after creation.  
-{{% /warning %}}
+{{% note notitle %}}
+New scenarios are disabled by default you time to finish customizing the scenario settings. Don't forget to enable the scenario when done.
+{{% /note %}}
 
