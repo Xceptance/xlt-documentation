@@ -22,7 +22,7 @@ To use Xceptance Test Center, you need an account. You can easily sign up on htt
 
 ## Selecting an Organization and a Project
 
-When you log in to XTC you will first see a dashboard containing the organizations and projects you are a member of. You can select both via dashboard links or by using the two select boxes in the header next to the _XTC_ logo. (Click the _XTC_ logo to return to your main dashboard.)
+When you log in to XTC you will first see a dashboard containing the organizations and projects you are a member of. You can select both via dashboard links or by using the two select boxes in the header next to the _XTC_ logo. If you are a member of many organizations and projects, the organization and project selectors in the page header feature a useful search input field to filter the list of displayed entries by substring and ignoring case. (Click the _XTC_ logo to return to your main dashboard.)
 
 {{< image src="xtc/topmenu.png" >}}
 The XTC top menu allows you to select organization and project directly. 
