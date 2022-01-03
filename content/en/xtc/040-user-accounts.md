@@ -1,28 +1,24 @@
 ---
-title: "External Login Providers"
+title: "User Accounts"
 
-weight: 20
+weight: 40
 type: docs
 
 description: >
-  Details for SSO login in XTC.
+    How to set up user accounts and SSO in XTC.
 ---
 
+## Creating a User Account
+
+To use Xceptance Test Center, you need a user account. You can easily sign up on https://xtc.xceptance.com/. You will be prompted to enter your name, mail address and password.
+
+After the successful registration, XTC will send you an email to the given address, asking you to confirm the registration. You will be able to log in to XTC as soon as you confirmed.
+
+Currently, your role and projects will be assigned by Xceptance. This will change in the future.
+
+### Sign Up Using an External Provider
+
 XTC supports authenticating users using their Google or Microsoft accounts. This allows users to use their existing Single-Sign-On accounts without having to remember additional login credentials.
-
-## Login using an external provider
-
-{{< image src="xtc/login-form.png" >}}
-Login form with buttons for external login providers
-{{< /image >}}
-
-To log in using either your Google or Microsoft account click on the respective buttons in the login form. This will forward you to your login provider and perform authentication there.
-
-{{% note %}}
-Depending on whether you are already logged into your Google or Microsoft account, you may not see any indication of being redirected at all. The provider may redirect you back into XTC immediately without showing any login interface at all.
-{{% /note %}}
-
-## Sign up using an external provider
 
 To sign up with your Google or Microsoft account click on the appropriate button in the registration form. This will forward you to your preferred provider to log in.
 
@@ -48,9 +44,9 @@ The details form may already contain the details returned by your login provider
 The supplied email address MUST be unique. DO NOT use shared addresses (e.g. mailing lists), because other users will be unable to register with the same address.
 {{% /warning %}}
 
-## Connecting existing XTC accounts
+## Connecting Existing XTC Accounts to an External Login Provider
 
-If you already have an existing account, you can connect it to an external login provider.
+If you already have an existing XTC account, you can connect it to an external login provider in order to use your existing Single-Sign-On account instead of previously defined XTC login credentials.
 
 1. Click on your avatar in the top right corner and go to "My Account" > "Login Data".
 2. Edit the "External Login Providers" section by clicking on the pen icon.
@@ -69,3 +65,17 @@ Depending on whether you are already logged into your Google or Microsoft accoun
 {{% warning %}}
 After connecting your account to an external login provider normal login via username and password is no longer possible.
 {{% /warning %}}
+
+## Login Using an External Provider
+
+XTC supports authenticating users by login credentials as well as by using their Google or Microsoft accounts. Depending on whether your user account is set up to use SSO (see above for how this is done) you can log in using external login providers:
+
+{{< image src="xtc/login-form.png" >}}
+Login form with buttons for external login providers
+{{< /image >}}
+
+To log in using either your Google or Microsoft account click on the respective buttons in the login form. This will forward you to your login provider and perform authentication there.
+
+{{% note %}}
+Depending on whether you are already logged into your Google or Microsoft account, you may not see any indication of being redirected at all. The provider may redirect you back into XTC immediately without showing any login interface at all.
+{{% /note %}}
