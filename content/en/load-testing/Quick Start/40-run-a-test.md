@@ -31,11 +31,11 @@ com.xceptance.xlt.loadtests.TVisit.users = 1
 com.xceptance.xlt.loadtests.TVisit.arrivalRate = 500
 ```
 
-In this case we run a test for 1 hour with a 5 minute ramp-up period, and a 1 minute shutdown phase. The shutdown phase will not turn up in our measurements, but ramp-up does. You can exclude it later if desired. Total runtime is 1h 5min (measurement period + shutdown period).
+In this case we run a test for 1 hour with a 5 minute [ramp-up](../../glossary/#ramp-up-period-xlt) period, and a 1 minute [shutdown](../../glossary/#shutdown-period-xlt) period. The shutdown phase will not turn up in our measurements, but ramp-up does. You can exclude it later if desired. Total runtime is 1h 5min ( [measurement](../../glossary/#measurement-period-xlt) period + shutdown period).
 
 ## Run the Test Execution
 
-To run the test execution, tell the mastercontroller where the test suite is (in `<xlt>/config/mastercontroller.properties`):
+To run the test execution, tell the [mastercontroller](../../manual/490-environment-configuration/#mastercontroller-configuration) where the test suite is (in `<xlt>/config/mastercontroller.properties`):
 
 ```bash
 com.xceptance.xlt.mastercontroller.testSuitePath = <posters-simple-loadtest-suite>

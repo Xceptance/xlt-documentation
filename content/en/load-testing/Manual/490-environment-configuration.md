@@ -11,8 +11,8 @@ XLT uses Java properties files to configure its components and your [load test s
 
 These property files are used to configure the main components of the XLT load generation runtime:
 
-- `<XLT>/config/agentcontroller.properties` - [Agent Controller Configuration](#agent-controller-configuration)
-- `<XLT>/config/mastercontroller.properties` - [Master Controller Configuration](#master-controller-configuration)
+- `<XLT>/config/agentcontroller.properties` - [Agent Controller Configuration](#agentcontroller-configuration)
+- `<XLT>/config/mastercontroller.properties` - [Master Controller Configuration](#mastercontroller-configuration)
 
 ## Agentcontroller Configuration
 
