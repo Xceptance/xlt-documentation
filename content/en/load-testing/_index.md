@@ -4,7 +4,7 @@ linkTitle: "Load Testing"
 
 type: docs
 
-weight: 10
+weight: 50
 
 menu:
   main:
