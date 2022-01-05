@@ -11,7 +11,7 @@ description: >
 ## Usage
 
 - `mastercontroller [<other options>]` runs in [interactive mode](../310-test-execution/#interactive-mode). Any command can be chosen to be executed next.
-- `mastercontroller --c` or `mastercontroller --commands` displays all the available options and a brief guide about their usage.
+- `mastercontroller --help` displays all the available options and a brief guide about their usage.
 - `mastercontroller -auto [<other options>]` runs a load test in [non-interactive mode](../310-test-execution/#non-interactive-mode-scripted-commands). by executing all commands automatically.
 
 ### Example(Windows PowerShell)
