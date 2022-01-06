@@ -44,7 +44,19 @@ The details form may already contain the details returned by your login provider
 The supplied email address MUST be unique. DO NOT use shared addresses (e.g. mailing lists), because other users will be unable to register with the same address.
 {{% /warning %}}
 
-## Connecting Existing XTC Accounts to an External Login Provider
+## Account Management
+
+XTC enables you to manage your account information. After logging in, click your avatar on the right side of the header and go to _My Account_. 
+
+The _My Account_ view contains two tabs: _Profile_ and _Login Data_. 
+
+In **Profile** you may update your profile information such as your first and last name, your phone number (which may be useful for receiving [monitoring notifications](../monitoring/440-scenario-setup/#notifications)), and you can also upload an avatar/profile picture.
+
+In **Login Data** you can update your login data: to set a new e-mail address or password for your account, you need to enter the new data twice and confirm this with your current password. (If you are using an external provider for authentication, entering the password will not be necessary, and you will only be able to update your account's e-mail address.)
+
+External login providers for this account will be listed here and if you want to switch from internal authentication to using an external provider, you can [connect your XTC account to an external login provider](#connecting-existing-xtc-accounts-to-an-external-login-provider) here.
+
+### Connecting Existing XTC Accounts to an External Login Provider
 
 If you already have an existing XTC account, you can connect it to an external login provider in order to use your existing Single-Sign-On account instead of previously defined XTC login credentials.
 
@@ -63,7 +75,7 @@ Depending on whether you are already logged into your Google or Microsoft accoun
 {{% /note %}}
 
 {{% warning %}}
-After connecting your account to an external login provider normal login via username and password is no longer possible.
+After connecting your account to an external login provider normal login via username and password is no longer possible. This action cannot be undone.
 {{% /warning %}}
 
 ## Login Using an External Provider

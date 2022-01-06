@@ -8,11 +8,15 @@ description: >
     Projects in XTC, how they work, how to create them and change project members.
 ---
 
-## XTC Projects
-
 Organizations are containers for projects, which in turn are the containers for any kind of test run in XTC. 
 
-Projects can either be of type [monitoring](../monitoring) or [load test](../loadtesting). They have a different set of properties depending on their nature. In short, load test projects are used to perform load/performance tests, while monitoring projects are used to monitor an app's performance constantly over a longer time period including but not limited to functional monitoring of production environments.
+## XTC Project Types
+
+Projects can either be of type [monitoring](../monitoring) or [load test](../loadtesting). They have a different set of properties depending on their nature. 
+
+In short, **Load Test Projects** are used to perform a number of load/performance tests, each of which can be configured individually (e.g. for gradually increasing the load applied to the system). XTC will save the results and generate performance reports for each load test it runs, so you have test management and evaluation conveniently available in one place.
+
+**Monitoring Projects** contain a number of test scenarios that are repeated periodically to monitor the reliability and performance of an app over a longer time period including but not limited to functional monitoring of production environments. You may define criteria which will be validated during the scenario execution (runtime limits, error thresholds etc.) - violation of these causes notifications to be sent (you may define how and to whom).
 
 The project type will be indicated in the project tile:
 
@@ -28,7 +32,8 @@ The menu of a monitoring project (left) and a load testing project (right).
 
 Every project can be [assigned its own set of members](#adding-and-removing-project-members) and [configured](../060-project-configuration) independently of any other project in the organization. 
 
-### Creating a New Project
+
+## Creating a New Project
 
 To create a new project within an organization (only permitted for this organization's administrators), navigate to this organization and select _Projects_ in the menu on the left. 
 
@@ -48,7 +53,7 @@ Either way, you will be prompted to enter a name and a short name for the new pr
 
 All information but the short name can be updated using the context menu on the right of the project name in the project list, selecting _Edit_. You can also create new projects by selecting _Duplicate_ in the context menu of any existing project - this way, you can easily apply the configuration of an obsolete project to a new one. 
 
-### User Roles Within a Project 
+## User Roles Within a Project 
 
 A project's creator is automatically an administrator in this project, and as such can add additional user accounts as members of project. These do not necessarily need to be members of the organization already, but will implicitly be added as guest members to the organization when added to the project (independent of their project role). 
 
@@ -65,7 +70,7 @@ If you are logged in and are currently viewing a project, your project role will
 Footer displaying the user's role in the project.
 {{< /image >}}
 
-### Adding and Removing Project Members
+## Adding and Removing Project Members
 
 To **add new members to the project** (permitted for project administrators only), navigate to the project and select _Members_ in the menu on the left. You will see the list of project members, and by clicking the `+` sign in the top right, you can add new members by typing the name (mail address) of their user account and assigning one of the roles from above. The user you want to add needs to be signed up with this e-mail address already. 
 
