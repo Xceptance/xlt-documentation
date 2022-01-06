@@ -16,7 +16,7 @@ Projects can either be of type [monitoring](../monitoring) or [load test](../loa
 
 In short, **Load Test Projects** are used to perform a number of load/performance tests, each of which can be configured individually (e.g. for gradually increasing the load applied to the system). XTC will save the results and generate performance reports for each load test it runs, so you have test management and evaluation conveniently available in one place.
 
-**Monitoring Projects** contain a number of test scenarios that are repeated periodically to monitor the reliability and performance of an app over a longer time period including but not limited to functional monitoring of production environments. You may define criteria which will be validated during the scenario execution (runtime limits, error thresholds etc.) - violation of these causes notifications to be sent (how may define how and to whom).
+**Monitoring Projects** contain a number of test scenarios that are repeated periodically to monitor the reliability and performance of an app over a longer time period including but not limited to functional monitoring of production environments. You may define criteria which will be validated during the scenario execution (runtime limits, error thresholds etc.) - violation of these causes notifications to be sent (you may define how and to whom).
 
 The project type will be indicated in the project tile:
 
@@ -31,7 +31,6 @@ The menu of a monitoring project (left) and a load testing project (right).
 {{< /image >}}
 
 Every project can be [assigned its own set of members](#adding-and-removing-project-members) and [configured](../060-project-configuration) independently of any other project in the organization. 
-
 
 
 ## Creating a New Project

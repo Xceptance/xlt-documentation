@@ -54,7 +54,7 @@ In **Profile** you may update your profile information such as your first and la
 
 In **Login Data** you can update your login data: to set a new e-mail address or password for your account, you need to enter the new data twice and confirm this with your current password. (If you are using an external provider for authentication, entering the password will not be necessary, and you will only be able to update your account's e-mail address.)
 
-External login providers for this account will be listed here and if you want to switch from internal authentication to using an external provider, you can [connect your XTC account to an external login](#connecting-existing-xtc-accounts-to-an-external-login-provider) provider here.
+External login providers for this account will be listed here and if you want to switch from internal authentication to using an external provider, you can [connect your XTC account to an external login provider](#connecting-existing-xtc-accounts-to-an-external-login-provider) here.
 
 ### Connecting Existing XTC Accounts to an External Login Provider
 
