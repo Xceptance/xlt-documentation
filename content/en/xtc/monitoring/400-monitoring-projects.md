@@ -1,12 +1,16 @@
 ---
-title: "Features"
+title: "About"
 
-weight: 1
+weight: 400
 type: docs
 
 description: >
-  How XTC can help you monitor your applications.
+  What a monitoring project is and how XTC can help you monitor your applications.
 ---
+
+## Monitoring Basics
+
+XTC can be used to monitor your applications. By regularly running test cases, XTC will provide you an overview of the performance and availability of your application over time, providing lots of data and possibly valuable insights.
 
 XTC offers a lot of features to make monitoring easier for you, however as it is still growing this page can just give you a first glimpse on what is possible.
 
@@ -52,4 +56,4 @@ Currently you can not configure this dashboard. XTC offers a default dashboard f
 
 ### Exports
 
-Finally, XTC generates a compressed archive of test execution data (a csv file containing basic information for each executed scenario, such as start time, duration, scenario name, result, failure message or runtime values) automatically for every finished month of your monitoring project. You can find and download this data under **Exports**.
+Finally, XTC generates a compressed archive of test [execution data](../480-exports) (a csv file containing basic information for each executed scenario, such as start time, duration, scenario name, result, failure message or runtime values) automatically for every finished month of your monitoring project. You can find and download this data under **Exports**.
