@@ -20,7 +20,7 @@ cd <XLT>\bin
 >>./create_report.cmd ../results/20210221-112110 
 ```
 ## List of Command Options
-- `-ae --exclude-agents <agents>` can be used for excluding a list of comma-separated agents.
+- `-ae --exclude-agents <agents>` can be used for [excluding a list of comma-separated agents.](../540-report-options/#report-for-a-subset-of-agents)
 
 - `-ai --include-agents <agents>` is to be used for [including a list of comma-separated agents.](../540-report-options/#report-for-a-subset-of-agents) 
 
@@ -28,10 +28,9 @@ cd <XLT>\bin
 
 - `-e,--exclude-testcases <test cases>` [excludes a comma-separated list of test cases.](../540-report-options/#excluding-test-scenarios)
 
-- `-from <time>` can be used to ignore results generated before the given time. it can also be combined with `-l` and `-to` for [defining a reporting timeframe.](../540-report-options/#defining-a-reporting-timeframe)
+- `-from <time>` can be used to ignore results generated before the given time. It can also be combined with `-l` and `-to` for [defining a reporting timeframe.](../540-report-options/#defining-a-reporting-timeframe)
 
-- `-i,--include-testcases <test cases>` can be used to include a list of comma-separated test cases.
-
+- `-i,--include-testcases <test cases>` can be used to [include a list of comma-separated test cases.](../540-report-options/#excluding-test-scenarios)
 - `-l <duration>` is used for utilizing results generated in the specified duration, must be used with `from` or `to` option.
 
 - `-linkToResults <yes|no>` will control whether or not to link to the result browsers.
