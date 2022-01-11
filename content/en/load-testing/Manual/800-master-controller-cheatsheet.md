@@ -54,4 +54,4 @@ cd <XLT>\bin
 
 - `testPropertiesFile <filename>` can be used for specifying properties file for the test-run.  
 
-- `timezone <timezoneID>` [overrides user's default timezone,](../540-report-options/#setting-a-custom-time-zone) user's default timezone, while generating a test report.
+- `timezone <timezoneID>` [overrides user's default timezone,](../540-report-options/#setting-a-custom-time-zone) while generating a test report.
