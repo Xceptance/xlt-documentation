@@ -92,6 +92,11 @@ Likewise, to exclude all agents with ‘us-east-1’ in their name, use this com
 
 As you can see, you may not only specify a list of plain agent names (comma-separated) but also a (comma-separated) list of regular expressions.
 
+## Setting a Custom Time Zone 
+The load test report generated will be based on the default time zone of the machine that creates it. The default time zone, however can be overridden. This can be done using a command-line parameter to specify a timezone such as UTC, while generating a test report.
+```bash
+./create_report.sh -timezone UTC ../results/20120625-211541
+```
 ## Speeding It Up
 
 Finally, the `-noCharts` option might help you speed up your report generation, as it omits all charts.
