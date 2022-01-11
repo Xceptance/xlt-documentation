@@ -1,6 +1,6 @@
 ---
-title: "Master Controller Cheat-Sheet"
-linkTitle: "Cheat-Sheet MasterController"
+title: "Mastercontroller Cheat Sheet"
+linkTitle: "Cheat Sheet Mastercontroller"
 
 weight: 800
 type: docs
@@ -12,23 +12,25 @@ description: >
 
 - `mastercontroller [<other options>]` runs in [interactive mode](../310-test-execution/#interactive-mode). Any command can be chosen to be executed next.
 - `mastercontroller --help` displays all the available options and a brief guide about their usage.
-- `mastercontroller -auto [<other options>]` runs a load test in [non-interactive mode](../310-test-execution/#non-interactive-mode-scripted-commands). by executing all commands automatically.
+- `mastercontroller -auto [<other options>]` runs a load test in [non-interactive mode](../310-test-execution/#non-interactive-mode-scripted-commands) by executing all commands automatically.
 
-### Example(Windows PowerShell)
+### Example
 
-- This would display all the available command options
-```powershell 
-C:\xlt-5.7.1\bin> ./mastercontroller.cmd --c 
+- For displaying all the available command options you can run
+```powershell
+cd <XLT>\bin 
+>>./mastercontroller.cmd --help 
 ```
 - This would make a load test run in [non-interactive mode](../310-test-execution/#non-interactive-mode-scripted-commands), executing commands automatically in combination with [embedded mode](../310-test-execution/#embedded-mode).
 ```powershell 
-C:\xlt-5.7.1\bin> ./mastercontroller.cmd -auto -embedded -comment "Test Run" 
+cd <XLT>\bin
+>>./mastercontroller.cmd -auto -embedded -comment "Test Run" 
 ```
 
 ## List of Command Options
-- `-auto` is to be [used](../310-test-execution/#auto-mode) for running a load test in [non-interactive mode](../310-test-execution/#non-interactive-mode-scripted-commands).
+- `-auto` is to be used for running a load test in [non-interactive mode](../310-test-execution/#non-interactive-mode-scripted-commands).
 
-- `-c <commandList>` or `--commands <commandList>` will execute commands in a comma separated list, in the specified order and then quit. `abort`, `upload`,`report`,`start`, `download` are the supported commands that may be used.
+- `-c <commandList>` or `--commands <commandList>` will execute commands in a comma-separated list, in the specified order and then quit. `abort`, `upload`,`report`,`start`, `download` are the supported commands that may be used.
 
 - `-comment <string>` sets a comment for your test run. 
 
@@ -46,9 +48,9 @@ C:\xlt-5.7.1\bin> ./mastercontroller.cmd -auto -embedded -comment "Test Run"
 
 - `-pf <file>` can be employed to utilize a separate properties file, which overrides the values in file `mastercontroller.properties`.
 
-- `report` will generate a report after downloading test results. it will not be effective in commands mode.
+- `report` will generate a report after downloading test results. It will not be effective in commands mode.
 
-- `sequential` used for running test cases sequentially(one after the other).
+- `sequential` used for running test cases sequentially (one after the other).
 
 - `testPropertiesFile <filename>` can be used for specifying properties file for the test-run.  
 
