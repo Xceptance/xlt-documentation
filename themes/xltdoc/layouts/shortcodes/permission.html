@@ -11,7 +11,11 @@
         {{ else }}
             use this feature,
         {{ end }}
-        your account must have the role of 
+        your account must 
+        {{ if eq (.Get "least") "true" }}
+            at least
+        {{ end }}
+        have the role of 
         {{ if eq (.Get "role") "organization administrator" }}
             an
         {{ else }}

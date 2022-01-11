@@ -18,9 +18,14 @@ Please note that your [project role](../050-projects/#user-roles-within-a-projec
 
 In the _General_ tab, you can edit the **project name** and upload a **project logo**. 
 
+{{% permission type="project" role="project administrator" %}}
+
 For monitoring projects, this tab will additionally contain information on **data persistence** and the **execution environment** where the monitoring scenarios are running in. These settings are for your information only and can be changed by XTC administrators only.
 
 ## Repository
+
+{{% permission type="project" least="true" role="tester" action="view repository settings" %}}
+{{% permission type="project" least="true" role="test manager" action="edit repository settings" %}}
 
 In _Repository_, you can define where the test suite repository is located, which branch should be used and how to resolve the test suite root within the repository. If the access to the remote repository is restricted, you can also provide authentication details.
 

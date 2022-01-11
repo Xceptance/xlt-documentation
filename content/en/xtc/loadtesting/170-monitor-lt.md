@@ -10,6 +10,8 @@ description: >
 
 ## Monitoring the Load Test 
 
+{{% permission type="project" least="true" role="reviewer" action="view the load test and scenario status" %}}
+
 ### Test Status
 
 The _Status_ tab contains an overview of the test status. This is a list of the steps carried out in the load test phases _Preparation_, _Execution_,  and _Results and Clean Up_ which will be marked done while the test progresses. 

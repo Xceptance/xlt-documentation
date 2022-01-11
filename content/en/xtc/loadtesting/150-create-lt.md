@@ -10,6 +10,8 @@ description: >
 
 ## Creating a New Load Test
 
+{{% permission type="project" least="true" role="tester" action="create a load test" %}}
+
 To create a new load test, navigate to the _Load Tests_ overview of your load test project. You can either duplicate (and probably edit) an existing test run, or create a completely new test setup:
 
 {{< image src="xtc/loadtest_newOrDuplicate.png" >}}

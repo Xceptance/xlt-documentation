@@ -12,6 +12,8 @@ description: >
 
 XTC will automatically download the test results at the end of the load test. These will be available in the _Results_ tab. 
 
+{{% permission type="project" least="true" role="reviewer" action="view test results" %}}
+
 You may download all results as compressed archives if you need them on your local machine, and XTC can also generate a link for [public sharing](#sharing-results). In addition to that, XTC allows you to [generate reports]() from every available result set, be it final or intermediate. 
 
 {{< image src="xtc/loadtest_results.png" >}}
@@ -23,7 +25,11 @@ Results are basically the [raw data recorded during a test](../../../load-testin
 ### Downloading Results
 To download a set of test results, click _Download_ in the result set's context menu. You will get a .tar.gz archive containing nested archives for all [_timers.csv_ files](../../../load-testing/advanced/150-results/#collected-values).
 
+{{% permission type="project" least="true" role="tester" %}}
+
 ### Sharing Results
+
+{{% permission type="project" least="true" role="tester" %}}
 
 Sharing results in XTC is very similar to [sharing reports](../180-reports/#sharing-a-report), in that all results are available to any project member who has at least the [project role](../../050-projects/#user-roles-within-a-project) of a **reviewer**. As a **project administrator**, you can add XTC users as reviewers to the project if you want them to have access to all results.
 
@@ -40,11 +46,16 @@ To remove all custom shared links at once, use the option to _delete existing cu
 
 ### Creating a Report from Results
 
+{{% permission type="project" least="true" role="tester" %}}
+
 XTC allows you to generate as many [custom reports](../180-reports/#custom-reports) as you like from any available result set. Just click _Create Report_ in the result set's context menu: there will be a popup to configure the report settings, just like on [creating a new custom report from the _Reports_ tab](../180-reports/#custom-reports). 
 
 In fact, creating a new custom report in the _Reports_ tab does the same thing as creating a new report from the final results, however this option is useful for **creating custom reports from intermediate test results**.
 
 ### Deleting Results
+
+{{% permission type="project" least="true" role="tester" %}}
+
 Finally, if you don't need a generated result set any longer, you may want to delete it to save storage space. To do this, just click _Delete_ in the result set's context menu. You will be prompted to confirm that you really want to delete the results. 
 
 {{% warning notitle %}}

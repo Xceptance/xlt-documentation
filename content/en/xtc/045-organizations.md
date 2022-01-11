@@ -23,6 +23,8 @@ As an organization member, a user account can have one of the following roles:
 * a **billing administrator** has permission to view and evaluate [resource usage](../loadtesting/400-resource-usage) of the organization, and
 * as an **organization administrator** you have complete permissions to change the organization's projects, members and configuration.
 
+(Permissions increase in order of the list, i.e. a billing administrator has the same permissions as a member plus some in addition to that.)
+
 If you are logged in and are currently viewing an organization, your role will be displayed at the bottom right in the footer:
 
 {{< image src="xtc/ui_orgRole.png" >}}
@@ -36,3 +38,10 @@ To add new members to the organization (permitted for organization administrator
 If you want to add multiple users at once, simply paste a list of e-mail addresses (separated by comma, newline or space). All users will be assigned the same role.
 
 Explicitly assigning organization members is usually not necessary in your daily work, as organization membership and roles are assigned implicitly by [adding and removing project members](../050-projects/#adding-and-removing-project-members).
+
+### Organization Configuration
+
+In _Configuration_, you may edit the name, short name and description of your organization as well as upload an organization logo (which will also be displayed when the organization is shown in the list on the Dashboard page).
+
+{{% permission role="organization administrator" %}}
+
