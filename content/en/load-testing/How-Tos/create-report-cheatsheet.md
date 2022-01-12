@@ -1,12 +1,12 @@
 ---
-title: "Create_report Cheat Sheet"
-linkTitle: "Cheat Sheet Create_report"
+title: "How to use Mastercontroller Create_report (Cheat Sheet)"
+linkTitle: "Create_report Cheat Sheet"
 
-weight: 900
+weight: 400
 type: docs
 
 description: >
-  You will find the usage instructions and a list of available command options below.
+How to make use of different create_report command options. <!-- You will find the usage instructions and a list of available command options below. -->
 ---
 ## Usage
 - `create_report [<options>] <inputdir>` is used to generate a test report.
