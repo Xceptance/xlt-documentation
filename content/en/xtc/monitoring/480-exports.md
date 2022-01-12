@@ -8,6 +8,8 @@ description: >
   Export of Scenario Execution Data
 ---
 
+{{% permission type="project" least="true" role="reviewer" %}}
+
 ## Export of Scenario Execution Data
 
 Sometimes you need to know in retrospect when the monitoring scenarios reported issues with your site in the past and what happened exactly. XTC is not able to store this information forever, but deletes it after a certain time. 

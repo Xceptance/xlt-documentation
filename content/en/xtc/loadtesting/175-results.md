@@ -25,11 +25,11 @@ Results are basically the [raw data recorded during a test](../../../load-testin
 ### Downloading Results
 To download a set of test results, click _Download_ in the result set's context menu. You will get a .tar.gz archive containing nested archives for all [_timers.csv_ files](../../../load-testing/advanced/150-results/#collected-values).
 
-{{% permission type="project" least="true" role="tester" %}}
+{{% permission type="project" least="true" role="reviewer" %}}
 
 ### Sharing Results
 
-{{% permission type="project" least="true" role="tester" %}}
+{{% permission type="project" least="true" role="test manager" %}}
 
 Sharing results in XTC is very similar to [sharing reports](../180-reports/#sharing-a-report), in that all results are available to any project member who has at least the [project role](../../050-projects/#user-roles-within-a-project) of a **reviewer**. As a **project administrator**, you can add XTC users as reviewers to the project if you want them to have access to all results.
 

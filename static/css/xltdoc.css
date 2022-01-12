@@ -20,6 +20,11 @@
   background-color: #f7c1ba;
 }
 
+/* Permissions */
+.permission {
+  background-color: #dddddd;
+}
+
 .alert > p {
   margin-bottom: 5px;
 }

@@ -62,7 +62,7 @@ Topmost report is still incomplete and currently being uploaded
 
 ### Checking Report Settings
 
-{{% permission type="project" least="true" role="tester" %}}
+{{% permission type="project" least="true" role="reviewer" %}}
 
 The options used for creating a custom load test report are stored by XTC, and you can review them later on. Just open the context menu of the custom report in question and choose _Show settings_:
 
@@ -76,7 +76,7 @@ Settings from an example report
 
 ## Sharing a Report
 
-{{% permission type="project" least="true" role="tester" %}}
+{{% permission type="project" least="true" role="test manager" %}}
 
 XTC simplifies sharing your reports with XTC users as well as people outside the organization. 
 
@@ -106,7 +106,7 @@ Editing the expiration time of a public sharing link or unsharing
 
 ### Downloading Reports
 
-{{% permission type="project" least="true" role="tester" %}}
+{{% permission type="project" least="true" role="reviewer" %}}
 
 To download a report to your local machine, click _Download_ in the report's context menu. You will get a .tar.gz archive containing the complete load test report including all the result browsers that the report links to.
 

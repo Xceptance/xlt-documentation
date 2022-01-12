@@ -26,6 +26,8 @@ Please note that default expiration dates for results and reports are two indepe
 
 ### Removing All Custom Share Links
 
+{{% permission type="project" least="true" role="test manager" %}}
+
 It is still possible to set individual expiration times per result and reports instead of referring to the global preset. These shares won't be affected in any way when changing/disabling the [project-wide default expiration date](#default-sharing-settings). To remove all custom links to reports or results, you can use the buttons _Remove Custom Report Shares_ and _Remove Custom Result Shares_ which you find below the default sharing settings. Both will prompt you to confirm this action, as it cannot be undone. 
 
 ## Properties
