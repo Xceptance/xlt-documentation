@@ -30,7 +30,7 @@ This screen lists the spent machine hours and occupied storage for this project 
 
 ## Project Resource Usage
 
-{{% permission type="project" role="tester, test manager or project administrator" %}}
+{{% permission type="project" least="true" role="tester" %}}
 
 In addition to the resource usage overview for the whole organization, XTC offers you an overview for each load test project's resource usage. To access this information, navigate to your load test project and click _Resource Usage_ in the menu on the left.
 
