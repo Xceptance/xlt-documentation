@@ -16,6 +16,10 @@ The _Settings_ tab contains all settings for the test run. Some of these are man
 Please note that none of the test settings can be edited after the test was started.
 {{% /note %}}
 
+{{% permission type="project" least="true" role="tester" action="edit test settings" %}}
+
+{{% permission type="project" least="true" role="reviewer" action="view test settings" %}}
+
 
 ### Load Profile
 

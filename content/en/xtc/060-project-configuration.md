@@ -10,17 +10,18 @@ description: >
 
 To configure either a load test or monitoring project, select _Configuration_ in the project menu on the left. In the project configuration, there are several tabs for all kinds of settings that will be applied globally to the project. The contents and possible settings differ slightly depending on the project type (load test or monitoring), but most are fairly similar. For settings that are only available for a specific project type, please check out [load test project configuration](../loadtesting/120-load-project-configuration/) or [monitoring project configuration](../monitoring/420-monitoring-configuration/).
 
-{{% note notitle %}}
-Please note that your [project role](../050-projects/#user-roles-within-a-project) must be at least that of a test manager to edit the project's configuration.
-{{% /note %}}
-
 ## General 
 
 In the _General_ tab, you can edit the **project name** and upload a **project logo**. 
 
+{{% permission type="project" role="project administrator" %}}
+
 For monitoring projects, this tab will additionally contain information on **data persistence** and the **execution environment** where the monitoring scenarios are running in. These settings are for your information only and can be changed by XTC administrators only.
 
 ## Repository
+
+{{% permission type="project" least="true" role="tester" action="view repository settings" %}}
+{{% permission type="project" least="true" role="test manager" action="edit repository settings" %}}
 
 In _Repository_, you can define where the test suite repository is located, which branch should be used and how to resolve the test suite root within the repository. If the access to the remote repository is restricted, you can also provide authentication details.
 

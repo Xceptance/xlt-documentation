@@ -10,11 +10,15 @@ description: >
 
 ## Creating a Report
 
+{{% permission type="project" least="true" role="reviewer" action="view a test report" %}}
+
 XTC will automatically [create a report](../../../load-testing/manual/320-test-evaluation/) from the [results](../175-results) downloaded at the end of the load test. You can find the generated report in the _Reports_ tab, where it will be available as compressed archive ready for download if you need it on your local machine. 
 
 All generated reports will be available inside XTC to browse and evaluate them, and XTC can also generate a link for [public sharing](#sharing-a-report).
 
 ## Intermediate Reports
+
+{{% permission type="project" least="true" role="tester" %}}
 
 While the test is still running you can also generate [intermediate reports](../../../load-testing/manual/320-test-evaluation/#intermediate-results) by clicking _Generate Intermediate Report_ on top of the load test contents.
 
@@ -29,6 +33,8 @@ Only one intermediate report can be created at a time. The trigger button is dis
 Creating an intermediate report also generates an intermediate [test result](../175-results) which can be used to create a [custom intermediate report](../175-results/#creating-a-report-from-results) using settings other than the defaults.
 
 ## Custom Reports
+
+{{% permission type="project" least="true" role="tester" %}}
 
 After the load test has finished, you can create as many custom reports with adjusted report settings as you need. 
 
@@ -56,6 +62,8 @@ Topmost report is still incomplete and currently being uploaded
 
 ### Checking Report Settings
 
+{{% permission type="project" least="true" role="reviewer" %}}
+
 The options used for creating a custom load test report are stored by XTC, and you can review them later on. Just open the context menu of the custom report in question and choose _Show settings_:
 
 {{< image src="xtc/loadtest_showReportSettings.png" >}}
@@ -67,6 +75,8 @@ Settings from an example report
 {{< /image >}}
 
 ## Sharing a Report
+
+{{% permission type="project" least="true" role="test manager" %}}
 
 XTC simplifies sharing your reports with XTC users as well as people outside the organization. 
 
@@ -94,13 +104,17 @@ You can **change the expiration time** of an already shared report later if need
 Editing the expiration time of a public sharing link or unsharing
 {{< /image >}}
 
-### Downloading Results
+### Downloading Reports
+
+{{% permission type="project" least="true" role="reviewer" %}}
 
 To download a report to your local machine, click _Download_ in the report's context menu. You will get a .tar.gz archive containing the complete load test report including all the result browsers that the report links to.
 
 Even if a load test report can already be viewed, the corresponding report archive might not be available for download yet. The related context menu item is disabled until the report archive is uploaded completely.
 
 ## Deleting a Report
+
+{{% permission type="project" least="true" role="tester" %}}
 
 Finally, if you don't need a generated report any longer, you may want to delete it to save storage space. To do this, just click _Delete_ in the report's context menu. You will be prompted to confirm that you really want to delete the report. 
 

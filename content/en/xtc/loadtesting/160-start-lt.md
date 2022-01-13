@@ -8,6 +8,8 @@ description: >
   How to start and stop a load test
 ---
 
+{{% permission type="project" least="true" role="tester" action="start, stop and abort load tests" %}}
+
 ## Starting the Load Test
 
 To actually start the load test, click the link on top of the load test contents:

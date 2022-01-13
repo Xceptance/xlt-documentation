@@ -8,6 +8,10 @@ description: >
   How to set up monitoring scenarios in XTC.
 ---
 
+{{% permission type="project" least="true" role="tester" action="view monitoring scenarios" %}}
+
+{{% permission type="project" least="true" role="test manager" action="create, edit and delete monitoring scenarios and scenario defaults" %}}
+
 ## Setting Up Monitoring Scenarios
 
 The basis for all monitoring scenarios is a set of [XLT test cases](../../../load-testing/manual/060-test-development/) that will be run continuously. These tests are preferably organized in a test suite, which is located in the repository you defined in the monitoring [project configuration](../../060-project-configuration#repository). 

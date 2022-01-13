@@ -12,7 +12,9 @@ When performing load tests, agent machines are started on your behalf to drive t
 
 ## Organization Resource Usage
 
-If you are [Administrator or Billing Administrator of an Organization](../../045-organizations/#user-roles-within-an-organization), XTC offers you an overview for the organization's resource usage. To access this information, navigate to your organization and just click _Resource Usage_ in the menu on the left.
+{{% permission role="billing administrator or organization administrator" %}}
+
+If you are administrator or billing administrator of an organization, XTC offers you an overview for the organization's resource usage. To access this information, navigate to your organization and just click _Resource Usage_ in the menu on the left.
 
 You will get a list of the total resources used, that is one tab for **machine minutes** and another tab for **storage space**. Resource usage is listed by month - the default list view shows the accumulated value across all projects in this organization, and by clicking right of the month you want to expect, you can expand it to view the resource usage of all projects seperately. 
 
@@ -28,11 +30,11 @@ This screen lists the spent machine hours and occupied storage for this project 
 
 ## Project Resource Usage
 
+{{% permission type="project" least="true" role="tester" %}}
+
 In addition to the resource usage overview for the whole organization, XTC offers you an overview for each load test project's resource usage. To access this information, navigate to your load test project and click _Resource Usage_ in the menu on the left.
 
-This screen lists the spent machine hours and occupied storage for this project for your information. Note that this screen is not visible to users with the [project role](../../050-projects/#user-roles-within-a-project) _Reviewer_ or _Guest_.
-
-You will get one tab for **machine minutes** and another tab for **storage space**. Used storage is listed by day, while used machines are listed for each load test in this project, and by clicking the expand button on the right you may view more detailed data for this load test.
+This screen lists the spent machine hours and occupied storage for this project for your information. You will get one tab for **machine minutes** and another tab for **storage space**. Used storage is listed by day, while used machines are listed for each load test in this project, and by clicking the expand button on the right you may view more detailed data for this load test.
 
 {{< image src="xtc/resourceUsagePro_storage.png" max-width="80%" >}}
 Storage Space Overview, listed per day. 
