@@ -8,11 +8,14 @@ type: docs
 description: >
   How to make use of different mastercontroller command options. <!-- You will find the usage instructions and a list of available commands below. -->
 ---
+## Mastercontroller 
+The mastercontroller is the primary tool for managing the entire load test. It calculates the load distribution, begins and ends the test and also deploys the test suite to all the agentcontrollers. At the end mastercontroller saves the test results on the file system. It can be run making use of the [interactive mode](../../manual/310-test-execution/#interactive-mode), [auto mode](../../manual/310-test-execution/#auto-mode) or [non-interactive mode (scripted commands)](../../manual/310-test-execution/#non-interactive-mode-scripted-commands).
+
 ## Usage
 
 - `mastercontroller [<other options>]` runs in [interactive mode](../../manual/310-test-execution/#interactive-mode). Any command can be chosen to be executed next.
 - `mastercontroller --help` displays all the available options and a brief guide about their usage.
-- `mastercontroller -auto [<other options>]` runs a load test in non-interactive [auto mode](../../manual/310-test-execution/#auto-mode) by executing all commands automatically.
+- `mastercontroller -auto [<other options>]` runs a load test in [auto mode](../../manual/310-test-execution/#auto-mode) by executing all commands automatically.
 
 ### Example
 
@@ -44,7 +47,7 @@ cd <XLT>\bin
 
 - `-o <dir>`  stores test results that have been downloaded in the directory specified. 
 
-- `--only-download <dataTypeList>` restricts download to only the given result data types in a comma-separated list. Applicable in non-interactive mode only.
+- `--only-download <dataTypeList>` restricts download to only the given result data types in a comma-separated list. Applicable for [downloads in non-interactive mode](../../manual/310-test-execution/#downloads-in-non-interactive-mode) only. 
 
 - `-pf <file>` can be employed to utilize a separate properties file, which overrides the values in file `mastercontroller.properties`.
 
