@@ -19,15 +19,16 @@ The mastercontroller is the primary tool for managing the entire load test. It c
 
 ### Example
 
-- For displaying all the available command options you can run
-```powershell
-cd <XLT>\bin 
->>./mastercontroller.cmd --help 
-```
-- This would make a load test run in [auto mode](../../manual/310-test-execution/#auto-mode), executing commands automatically in combination with [embedded mode](../../manual/310-test-execution/#embedded-mode).
+#### - This will make a load test run in [auto mode](../../manual/310-test-execution/#auto-mode), in combination with [embedded mode](../../manual/310-test-execution/#embedded-mode).
+##### Windows
 ```powershell 
 cd <XLT>\bin
->>./mastercontroller.cmd -auto -embedded -comment "Test Run" 
+./mastercontroller.cmd -auto -embedded -comment "Test Run" 
+```
+##### Linux
+```shell 
+cd <XLT>\bin
+>>./mastercontroller.sh -auto -embedded -comment "Test Run" 
 ```
 
 ## List of Command Options
@@ -51,10 +52,10 @@ cd <XLT>\bin
 
 - `-pf <file>` can be employed to utilize a separate properties file, which overrides the values in file `mastercontroller.properties`.
 
-- `report` will generate a report after downloading test results. It will not be effective in commands mode.
+- `report` will generate a report after downloading test results. It will not be effective in commands mode. It can be used with [auto mode](../../manual/310-test-execution/#auto-mode) using the `-auto` option to generate a report automatically once the tests are downloaded.
 
 - `sequential` used for running test cases sequentially (one after the other).
 
 - `testPropertiesFile <filename>` can be used for specifying properties file for the test-run.  
 
-- `timezone <timezoneID>` [overrides user's default timezone,](../540-report-options/#setting-a-custom-time-zone) while generating a test report.
+- `timezone <timezoneID>` [overrides user's default timezone,](../../manual/540-report-options/#setting-a-custom-time-zone) while generating a test report.
