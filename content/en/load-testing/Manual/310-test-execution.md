@@ -192,7 +192,7 @@ cd <XLT>/bin
 ./mastercontroller.sh -auto
 ```
 
-When the test suite is uploaded and the test has started successfully, XLT automatically refreshes the agent status until the test has finished. The results are downloaded, when the test finishes.
+When the test suite is uploaded and the test has started successfully, XLT automatically refreshes the agent status until the test has finished. The results are downloaded when the test finishes.
 
 Using the optional option `-report`, a test report will be automatically generated after the results have been downloaded.
 
