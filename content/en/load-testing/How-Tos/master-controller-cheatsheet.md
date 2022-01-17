@@ -19,7 +19,7 @@ The mastercontroller is the primary tool for managing the entire load test. It c
 
 ### Example
 
-#### This will make a load test run in [auto mode](../../manual/310-test-execution/#auto-mode), in combination with [embedded mode](../../manual/310-test-execution/#embedded-mode).
+ This will make a load test run in [auto mode](../../manual/310-test-execution/#auto-mode), in combination with [embedded mode](../../manual/310-test-execution/#embedded-mode).
 ##### Windows
 ```powershell 
 cd <XLT>\bin
