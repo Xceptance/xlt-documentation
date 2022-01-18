@@ -127,6 +127,25 @@ Another image using the `imageres` shortcode, which will resize images to a smal
 ## Colored Text
 Should you need colored text, use {{< ctext color="green" >}}ctext in green{{< /ctext >}} or any other html compatible color code. If none is given, this defaults to {{< ctext >}}grey{{< /ctext >}}.
 
+## XTC Permissions
+
+Several XTC actions require certain user roles to be performed, either in project or organization context. Use this shortcode to quickly add the necessary role:
+
+```
+{{%/* permission type="project" role="reader" action="chew gum" */%}}
+```
+
+{{% permission type="project" role="reader" action="chew gum" %}}
+
+There is no inner part required for this shortcode. The parameters "type" and "action" are optional, the default looks like this:
+
+```
+{{%/* permission role="reader" */%}}
+```
+
+{{% permission role="reader"%}}
+
+
 ## TODO
 ### To-Do Marker
 {{< TODO / >}}To remind us that something needs to be done, it introduces a marked TODO at the position of the shortcode `{{</* TODO / */>}}`. TODO markers right now assume to be in the beginning because they make a little room on the right side - "{{< TODO / >}}".
@@ -145,6 +164,3 @@ Should you need colored text, use {{< ctext color="green" >}}ctext in green{{< /
 {{%/* TODO */%}}To use **markdown** in the to-do, use this.{{%/* /TODO */%}}
 ```
 {{% TODO %}}To use **markdown** in the to-do, use this.{{% /TODO %}}
-
-
-

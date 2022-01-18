@@ -32,10 +32,11 @@ The menu of a monitoring project (left) and a load testing project (right).
 
 Every project can be [assigned its own set of members](#adding-and-removing-project-members) and [configured](../060-project-configuration) independently of any other project in the organization. 
 
-
 ## Creating a New Project
 
-To create a new project within an organization (only permitted for this organization's administrators), navigate to this organization and select _Projects_ in the menu on the left. 
+{{% permission role="organization administrator" action="create new projects" %}}
+
+To create a new project within an organization, navigate to this organization and select _Projects_ in the menu on the left. 
 
 You will be shown a list of the projects in this organization:
 
@@ -43,15 +44,19 @@ You will be shown a list of the projects in this organization:
 A list of projects in an organization, as seen by the organization administrator.
 {{< /image >}}
 
-By clicking the `+` button top right, you will see a popup menu to add either a [Monitoring Project](../monitoring) or a [Load Testing Project](../loadtesting).
+By clicking the `+` button top right, you will see a popup menu to add either a [Monitoring Project](../monitoring) or a [Load Testing Project](../loadtesting). The project nature can not be changed once the project was created. 
 
 {{< image src="xtc/ui_newProject.png" >}}
 Adding a new project
 {{< /image >}}
 
-Either way, you will be prompted to enter a name and a short name for the new project. The short name must be unique within the organization, must start with a lower-case letter, followed by at most 39 lower-case letters, digits and hyphens, and must not end with a hyphen.
+On **creating a new project**, you will then be prompted to enter a name and a short name for the new project. The short name must be unique within the organization, must start with a lower-case letter, followed by at most 39 lower-case letters, digits and hyphens, and must not end with a hyphen.
 
-All information but the short name can be updated using the context menu on the right of the project name in the project list, selecting _Edit_. You can also create new projects by selecting _Duplicate_ in the context menu of any existing project - this way, you can easily apply the configuration of an obsolete project to a new one. 
+All information but the short name can be updated using the context menu on the right of the project name in the project list, selecting _Edit_. 
+
+You can also create new projects by selecting _Duplicate_ in the context menu of any existing project - this way, you can easily apply the configuration of an obsolete project to a new one.
+
+On **duplicating a project** you will have to update at least the short name to be unique across the organization. The duplicated project will then be copied including its entire configuration. Please note that the duplicated project will need to be activated explicitly though (by clicking _Edit_ in the new project's context menu you can change the state from _Locked_ to _Active_). 
 
 ## User Roles Within a Project 
 
@@ -64,6 +69,8 @@ Project members can have one of the following roles (which are not necessarily i
 * a **test manager** is additionally allowed to edit most of the project configuration for load test projects as well as monitoring projects, and
 * a **project administrator** has the complete set of permissions, including editing the project members.
 
+(Permissions increase in order of the list, i.e. a tester has the same permissions as a reviewer plus some in addition to that.)
+
 If you are logged in and are currently viewing a project, your project role will be displayed at the bottom right in the footer:
 
 {{< image src="xtc/ui_projectRole.png" >}}
@@ -72,7 +79,9 @@ Footer displaying the user's role in the project.
 
 ## Adding and Removing Project Members
 
-To **add new members to the project** (permitted for project administrators only), navigate to the project and select _Members_ in the menu on the left. You will see the list of project members, and by clicking the `+` sign in the top right, you can add new members by typing the name (mail address) of their user account and assigning one of the roles from above. The user you want to add needs to be signed up with this e-mail address already. 
+{{% permission type="project" role="project administrator" %}}
+
+To **add new members to the project**, navigate to the project and select _Members_ in the menu on the left. You will see the list of project members, and by clicking the `+` sign in the top right, you can add new members by typing the name (mail address) of their user account and assigning one of the roles from above. The user you want to add needs to be signed up with this e-mail address already. 
 
 If you want to add multiple users at once, simply paste a list of e-mail addresses (separated by comma, newline or space). All users will be assigned the same role.
 

@@ -26,6 +26,10 @@ The overview on the dashboard of a monitoring project.
 
 ### History
 
+{{% permission type="project" least="true" role="reviewer" %}}
+
+{{% permission type="project" least="true" role="tester" action="view execution logs and measurements" %}}
+
 **History** provides more information about the latest scenario executions. Here you can define the time range to view (maximum: the time range shown in _Configuration > Data Persistence > History_) and select the type of tests to display in the top left (successful, warnings, errors, aborted and/or running tests). 
 
 {{< image src="xtc/monitoring_history.png" >}}

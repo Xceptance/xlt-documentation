@@ -12,6 +12,8 @@ A load test project in XTC may contain a number of [XLT load and performance tes
 
 ## Load Tests Overview
 
+{{% permission type="project" least="true" role="reviewer" %}}
+
 XTC enables you to quickly get an **overview of previous test runs**, offering plenty of information. 
 
 By selecting **Load Tests** in the menu on the left of any load testing project you will be taken to the load tests overview. This is a table of all existing load tests (which have been created for this project at some point, but have not necessarily run). Along with the test name you will see the status:
