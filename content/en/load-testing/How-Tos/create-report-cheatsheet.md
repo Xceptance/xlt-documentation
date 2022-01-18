@@ -14,15 +14,15 @@ description: >
 
 ### Example
 
-#### A report can be generated in the following way, without using any options.
-##### Windows
+ A report can be generated in the following way, without using any options.
+#### Windows
 ```powershell 
 cd <XLT>\bin 
 ./create_report.cmd ../results/20210221-112110 
 ```
-##### Linux
+#### Linux
 ```shell 
-cd <XLT>\bin 
+cd <XLT>/bin 
 ./create_report.sh ../results/20210221-112110 
 ```
 
