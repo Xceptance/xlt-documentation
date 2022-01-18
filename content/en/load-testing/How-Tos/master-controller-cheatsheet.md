@@ -32,7 +32,7 @@ cd <XLT>\bin
 ```
 
 ## List of Command Options
-- `-auto` is to be used for running a load test in [auto mode](../../manual/310-test-execution/#auto-mode).
+- `-auto` is to be used for running a load test in [auto mode](../../manual/310-test-execution/#auto-mode). This option will automatically execute a number of [steps](../../manual/310-test-execution/#steps-executed-in-auto-mode) including upload of the test suite, starting the test, and download of the test results. It can also be used in combination with the `-report` option to create a report automatically on completion of the test.  
 
 - `-c <commandList>` or `--commands <commandList>` will execute commands in a comma-separated list, in the specified order and then quit. `abort`, `upload`,`report`,`start`, `download` are the supported commands that may be used.
 
@@ -52,7 +52,7 @@ cd <XLT>\bin
 
 - `-pf <file>` can be employed to utilize a separate properties file, which overrides the values in file `mastercontroller.properties`.
 
-- `report` will generate a report after downloading test results. It will not be effective in commands mode. It can be used with [auto mode](../../manual/310-test-execution/#auto-mode) using the `-auto` option to generate a report automatically once the tests are downloaded.
+- `-report` will generate a report after downloading test results. It will not be effective in commands mode. It can be used with [auto mode](../../manual/310-test-execution/#auto-mode) using the `-auto` option to generate a report automatically once the tests are downloaded.
 
 - `sequential` used for running test cases sequentially (one after the other).
 

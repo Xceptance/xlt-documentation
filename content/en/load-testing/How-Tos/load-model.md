@@ -11,7 +11,7 @@ description: >
 ---
 
 ## Motivation
-One of the decisions you have to make before running a load test is the selection of the right load model. A load model describes what basic characteristic are influenced to reach a certain load and performance behavior.
+One of the decisions you have to make before running a load test is the selection of the right load model. A load model describes what basic characteristics are influenced to reach a certain load and performance behavior.
 
 Let's just clarify some terminology before we talk about the models, because the definitions used in the following paragraph are not unique across the industry:
 
