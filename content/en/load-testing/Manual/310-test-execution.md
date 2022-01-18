@@ -185,16 +185,29 @@ A typical usage scenario for a test execution is reflected in menu ordering of t
 
 ### Auto Mode
 
-As outlined in the previous sections, there is a typical sequence of steps to be executed when running a load test. It may become tedious and error-prone to type the necessary keys over and over again. XLT provides another operating mode to automate this - the _auto_ mode. All the steps mentioned above are executed automatically without requiring any user interaction.
+As outlined in the previous sections, there is a typical sequence of steps to be executed when running a load test. It may become tedious and error-prone to type the necessary keys over and over again. XLT provides another operating mode to automate this - the _auto_ mode. All the steps mentioned above are executed automatically without requiring any user interaction. 
+
 
 ```bash
 cd <XLT>/bin
 ./mastercontroller.sh -auto
 ```
 
-When the test suite is uploaded and the test started successfully, XLT automatically refreshes the agent status until the test finished. When the test finished, the results are downloaded.
+When the test suite is uploaded and the test has started successfully, XLT automatically refreshes the agent status until the test has finished. The results are downloaded when the test finishes.
 
-When the optional option `-report`, a test report will be automatically generated after the results have been downloaded.
+ #### Steps executed in auto mode
+`-auto` option will execute the following steps in order.
+<!-- `-auto` option will execute the following steps. -->
+
+1. Upload the test suite
+1. Check the agentcontroller/test setup
+1. Start the test
+1. Show status report
+1. Download the test results
+1. Quit the mastercontroller
+
+
+Using the optional option `-report`, a test report will be generated automatically in addition to the steps mentioned above after the results have been downloaded.
 
 ```bash
 cd <XLT>/bin
