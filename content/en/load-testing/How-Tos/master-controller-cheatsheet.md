@@ -20,14 +20,14 @@ The mastercontroller is the primary tool for managing the entire load test. It c
 ### Example
 
  This will make a load test run in [auto mode](../../manual/310-test-execution/#auto-mode), in combination with [embedded mode](../../manual/310-test-execution/#embedded-mode).
-##### Windows
+#### Windows
 ```powershell 
 cd <XLT>\bin
 ./mastercontroller.cmd -auto -embedded -comment "Test Run" 
 ```
 ##### Linux
 ```shell 
-cd <XLT>\bin
+cd <XLT>/bin
 ./mastercontroller.sh -auto -embedded -comment "Test Run" 
 ```
 
@@ -38,7 +38,7 @@ cd <XLT>\bin
 
 - `-comment <string>` sets a comment for your test run. 
 
-- `-D <property=value>` is used for [overriding or configuring](../490-environment-configuration/#configuration-via-command-line) a property in `mastercontroller.properties` file.
+- `-D <property=value>` is used for [overriding or configuring](../../manual/490-environment-configuration/#configuration-via-command-line) a property in `mastercontroller.properties` file.
 
 - `-embedded` utilizes a single embedded agent controller. It makes the test run in [embedded mode](../../manual/310-test-execution/#embedded-mode).
 
