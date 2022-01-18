@@ -25,7 +25,7 @@ The mastercontroller is the primary tool for managing the entire load test. It c
 cd <XLT>\bin
 ./mastercontroller.cmd -auto -embedded -comment "Test Run" 
 ```
-##### Linux
+#### Linux
 ```shell 
 cd <XLT>/bin
 ./mastercontroller.sh -auto -embedded -comment "Test Run" 
