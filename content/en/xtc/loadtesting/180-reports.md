@@ -16,6 +16,14 @@ XTC will automatically [create a report](../../../load-testing/manual/320-test-e
 
 All generated reports will be available inside XTC to browse and evaluate them, and XTC can also generate a link for [public sharing](#sharing-a-report).
 
+{{% note %}}
+The [Test Comment section](../../../load-testing/manual/320-test-evaluation/#overview) of XLT load test reports is automatically enriched with data from XTC. This includes:
+* The name and the description of the load test the report was created for.
+* Metadata such as organization and project short name, the number of the load test and the result the report is based on, and the number of the report itself.
+* An additional report comment that can be entered when [creating a custom report](#custom-reports).
+{{% /note %}}
+
+
 ## Intermediate Reports
 
 {{% permission type="project" least="true" role="tester" %}}

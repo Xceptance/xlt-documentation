@@ -78,6 +78,18 @@ Depending on whether you are already logged into your Google or Microsoft accoun
 After connecting your account to an external login provider normal login via username and password is no longer possible. This action cannot be undone.
 {{% /warning %}}
 
+### Two-Factor Authentication (2FA)
+
+It is possible to secure your XTC account not only with a regular password, but also with a second factor. Currently, XTC supports _time-based one-time passwords (TOTP)_ as the second factor. Use apps like Twilio Authy or Google Authenticator on your phone to generate such passwords. 2FA is optional at the moment, but we recommend that you set up 2FA for your account right now.
+
+To enable 2FA for your XTC account, go to _My Account > Login Data_. In the section _Two-Factor Authentication_, click the button _Enable Two-Factor Authentication_ and follow the instructions to set up your preferred TOTP app on your phone. When this is done and you want to sign in to XTC again, you will first have to enter your regular password as usual, but afterwards you will now be prompted to enter the second factor, a one-time password. Use your TOTP app to generate that one for you.
+
+If you later need to disable 2FA, simply click the button _Disable Two-Factor Authentication_ and confirm.
+
+{{% note notitle %}}
+Note that if you have bound your account to an [external login provider](#connecting-existing-xtc-accounts-to-an-external-login-provider) (currently Google or Microsoft), the section **Two-Factor Authentication** is not available in XTC as in this case 2FA is managed in the settings of your external account.
+{{% /note %}}
+
 ## Login Using an External Provider
 
 XTC supports authenticating users by login credentials as well as by using their Google or Microsoft accounts. Depending on whether your user account is set up to use SSO (see above for how this is done) you can log in using external login providers:
