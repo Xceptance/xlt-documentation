@@ -5,7 +5,7 @@ type: docs
 weight: 40
 
 description: >
-  How to install XLT and setup agents.
+  How to install XLT and set up agents.
 ---
 
 ## Hardware and Software Requirements
@@ -15,7 +15,7 @@ description: >
 -   CPU at 1.5GHz or higher
 -   1.0 GB RAM
 -   1.0 GB available in the hard disk (default installation requires
-    about 150 MB but test results might need additional capacity)
+    about 150 MB, but test results might need additional capacity)
 
 ### Software
 
@@ -24,7 +24,7 @@ description: >
     higher) is available.
 -   JVM: It’s recommended to use Oracle’s JVM, but XLT also runs on OpenJDK.
     JVMs provided by vendors such as OpenJDK BEA, HP, or IBM have not
-    been tested extensivly and may or may not work.
+    been tested extensively and may or may not work.
 -   Browser: Firefox, Chrome, Internet Explorer 10, or Safari 6 for the
     HTML load reports. Note that JavaScript has to be enabled to utilize
     all functionality.
@@ -50,7 +50,7 @@ Make sure the executable directory of your Java installation is listed in your P
 </dependencies>
 ```
 {{% warning title="Version" %}}
-The version above might not be the latest version. Please adjust the version information accordingly.
+The version above might not be the latest. Please adjust the version information accordingly.
 
 For versions below XLT 5.0.x you need to [configure the Xceptance repository](../../advanced/200-maven-builds/).
 {{% /warning %}}
@@ -58,7 +58,7 @@ For versions below XLT 5.0.x you need to [configure the Xceptance repository](..
 ## Updating
 Before you update XLT, it’s highly recommended to back up all modified files and project-specific or customized settings. In particular, this includes:
 
-* All your test suites (especially, when stored in a sub-folder of the XLT installation directory)
+* All your test suites (especially when stored in a sub-folder of the XLT installation directory)
 * Result files (stored in `<XLT>/results` by default)
 * Generated load test reports (stored in `<XLT>/reports` by default)
 * Modified XLT properties files (`<XLT>/config`)
