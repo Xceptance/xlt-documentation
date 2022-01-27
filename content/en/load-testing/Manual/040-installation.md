@@ -21,13 +21,9 @@ description: >
 #### Operating System 
 Microsoft Windows, Linux, Oracle Solaris, HP-UX, or macOS. Which essentially means it will work on any operating system for which a JVM 8 (or higher) is available.
 #### JVM 
-It’s recommended to use Oracle’s JVM, but XLT also runs on OpenJDK.
-    JVMs provided by vendors such as OpenJDK BEA, HP, or IBM have not
-    been tested extensively and may or may not work.
+It’s recommended to use Oracle’s JVM, but XLT also runs on OpenJDK. JVMs provided by vendors such as OpenJDK BEA, HP, or IBM have not been tested extensively and may or may not work.
 #### Browser 
-Firefox, Chrome, Internet Explorer 10, or Safari 6 for the
-    HTML load reports. Note that JavaScript has to be enabled to utilize
-    all functionality.
+Firefox, Chrome, Internet Explorer 10, or Safari 6 for the HTML load reports. Note that JavaScript has to be enabled to utilize all functionality.
 
 ## Installation
 
