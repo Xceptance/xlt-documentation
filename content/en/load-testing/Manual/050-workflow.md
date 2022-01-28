@@ -9,7 +9,7 @@ description: >
 ---
 
 ## The Recommended Steps to a Running Load Test
-XLT is a powerful tool and as such might seem complex at first. But the way to your first running load test does not need to be hard, and we are here to help you. As a software developer or developer in test you will find a thousand ways to reach your testing goal with XLT, as you can just use all your previous experience with Java and Junit, but this is what we recommend you do:
+XLT is a powerful tool and as such might seem complex at first. But the way to running your first load test does not need to be hard, and we are here to help you. As a software developer or developer in test you will find a thousand ways to reach your testing goal with XLT, as you can just use all your previous experience with Java and Junit, but this is what we recommend you to do:
 
 ### Have a Test Suite
 
