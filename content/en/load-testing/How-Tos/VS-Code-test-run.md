@@ -14,7 +14,7 @@ description: >
 After downloading and installing Visual Studio Code on a system you can use the following process to get a demo test suite up and running on your IDE. 
 
 ### Obtaining the Test Suite
-Clone the demo test suite from <a href="https://github.com/Xceptance/posters-simple-loadtest-suite" target="_blank">Github</a> to a local directory, e.g. `<posters-simple-loadtest-suite>`. 
+Clone the demo test suite from <a href="https://github.com/Xceptance/posters-simple-loadtest-suite" target="_blank">Github</a> to a local directory, e.g.`<posters-simple-loadtest-suite>`. 
 
 ### Obtaining Relevant Java Extensions
 In order to be able to run Java test cases in Visual Studio Code a few extensions are required, if they are not installed already. Once Visual Studio Code has started, they can be searched and downloaded from the extensions tab on the left of the VS Code window.

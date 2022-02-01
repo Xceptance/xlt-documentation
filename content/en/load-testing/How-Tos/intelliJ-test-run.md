@@ -18,7 +18,7 @@ Clone the demo test suite from <a href="https://github.com/Xceptance/posters-sim
 
 ### Importing the _Posters_ Test Suite into IntelliJ 
 Once IntelliJ has started, do the following:
-- On the left pan make sure you have selcted the 'Projects' tab.
+- On the left pan make sure you have selected the 'Projects' tab.
 - On the top right of the window click on the 'Open' button.
 - Select the root directory to search in and point to your cloned test suite, e.g. `<posters-simple-loadtest-suite>`.
 - After clicking 'OK' the test suite should open as a Maven project in the IDE.
