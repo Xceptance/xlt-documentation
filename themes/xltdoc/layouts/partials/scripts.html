@@ -1,3 +1,5 @@
+<script src="/js/popper.min.js" type="text/javascript" ></script>
+<script src="/js/bootstrap.min.js" type="text/javascript" ></script>
 {{ $jsBase := resources.Get "js/base.js" }}
 {{ $jsAnchor := resources.Get "js/anchor.js" }}
 {{ $jsSearch := resources.Get "js/search.js" | resources.ExecuteAsTemplate "js/search.js" .Site.Home }}
