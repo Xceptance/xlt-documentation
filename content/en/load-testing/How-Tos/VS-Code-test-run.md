@@ -46,6 +46,6 @@ Before executing the tests make sure that the [demo application](../../quick-sta
 
 The tests imported can be run in Visual Studio Code in headless browser mode. Once imported choose the 'Testing' on the left of the window. You can find it below the explorer tab, you should be in at the moment.
 
- The tests from the suite should all be visible now. Right click the test suite and select select 'run all tests'. Per default, the test cases will run against the [demo application](../20-demo-application) you started already (if you modified the ports there, you might have to change them in `<project>/config/project.properties` accordingly, just look for the property `store-url`). 
+ The tests from the suite should all be visible now. Right click the test suite and select select 'run all tests'. Per default, the test cases will run against the [demo application](../../quick-start/20-demo-application) you started already (if you modified the ports there, you might have to change them in `<project>/config/project.properties` accordingly, just look for the property `store-url`). 
 
 

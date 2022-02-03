@@ -28,6 +28,6 @@ Before executing the tests make sure that the [demo application](../../quick-sta
 {{% /note %}}
 
 ### Executing Java Test Cases in IntelliJ
-The tests imported can be run in IntelliJ in headless browser mode. Go to package `com.xceptance.xlt.samples.tests`, right click and select select 'run all tests'. Per default, the test cases will run against the [demo application](../20-demo-application) you started already (if you modified the ports there, you might have to change them in `<project>/config/project.properties` accordingly, just look for the property `store-url`). 
+The tests imported can be run in IntelliJ in headless browser mode. Go to package `com.xceptance.xlt.samples.tests`, right click and select select 'run all tests'. Per default, the test cases will run against the [demo application](../../quick-start/20-demo-application) you started already (if you modified the ports there, you might have to change them in `<project>/config/project.properties` accordingly, just look for the property `store-url`). 
 
 
