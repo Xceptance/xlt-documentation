@@ -13,21 +13,28 @@ debug: false // Set debug to true if you want to inspect the dropdown
 
 <div id="consent-banner" style="display:none">
     <p>
-        By using the search, you agree to interact with 
-        <a href="https://docsearch.algolia.com/">Algolia Docsearch</a>.
+        This search is using <a href="https://docsearch.algolia.com/">Algolia Search Services</a>. Please confirm that you understand and accept their <a href="https://www.algolia.com/policies/privacy/" target="_blank">privacy policy</a> before searching. If you don't wish to interact with this third party, simply click <em>Cancel</em>.
     </p>
-    <div id="close" onclick="hideSearchConsent()"><p>I understand.</p></div>
+    <div id="agree" onclick="agree()"><p>I understand</p></div>
+    <div id="cancel" onclick="hideSearchConsent()"><p>Cancel</p></div>
 </div>
 
 <script type="text/javascript">
-    function showSearchConsent() {
+    function showSearchConsent() 
+    {
         if (localStorage.getItem('searchConsentSeen') != 'yes') 
         {
-            document.getElementById('consent-banner').style = 'display:block';
-            localStorage.setItem('searchConsentSeen','yes');
+            document.getElementById('consent-banner').style = 'display:block';     
         }
     }
-    function hideSearchConsent() {
+    function agree() 
+    {
+        localStorage.setItem('searchConsentSeen','yes');
+        document.getElementById('consent-banner').style = 'display:none';
+        document.getElementById('docSearchInputField').focus();
+    }
+    function hideSearchConsent() 
+    {
         document.getElementById('consent-banner').style = 'display:none';
     }
 </script>
