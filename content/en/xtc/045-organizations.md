@@ -39,6 +39,10 @@ To add new members to the organization, select _Members_ in the menu on the left
 
 If you want to add multiple users at once, simply paste a list of e-mail addresses (separated by comma, newline or space). All users will be assigned the same role.
 
+{{% note notitle %}}
+The _Members_ page of an organization shows the [login provider](../040-user-accounts/#connecting-existing-xtc-accounts-to-an-external-login-provider) for every member and whether or not a member has [2FA enabled](../040-user-accounts/#two-factor-authentication-2fa). This way, organization admins can easily check if certain security requirements imposed by the organization are met.
+{{% /note %}}
+
 Explicitly assigning organization members is usually not necessary in your daily work, as organization membership and roles are assigned implicitly by [adding and removing project members](../050-projects/#adding-and-removing-project-members).
 
 ### Organization Configuration

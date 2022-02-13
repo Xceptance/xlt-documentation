@@ -7,7 +7,7 @@ type: docs
 
 
 description: >
-    How to select the right load model for accurately testing requirements.
+    How to select the right load model for accurately testing the requirements.
 ---
 
 ## Motivation

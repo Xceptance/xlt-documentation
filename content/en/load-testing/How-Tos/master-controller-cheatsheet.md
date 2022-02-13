@@ -54,7 +54,7 @@ cd <XLT>/bin
 
 - `-report` will generate a report after downloading test results. It will not be effective in commands mode. It can be used with [auto mode](../../manual/310-test-execution/#auto-mode) using the `-auto` option to generate a report automatically once the tests are downloaded.
 
-- `sequential` used for running test cases sequentially (one after the other).
+- `sequential` is used for running test cases sequentially (one after the other).
 
 - `testPropertiesFile <filename>` can be used for specifying properties file for the test-run.  
 

@@ -1,6 +1,6 @@
 {{ with .Site.Params.algolia_docsearch }}
 <!-- scripts for algolia docsearch -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript" src="/js/docsearch.min.js"></script>
 <script type="text/javascript"> docsearch({
 appId: 'ST9X79HXPB',
 apiKey: 'e85a2de16188db7d5d5cd4f73e7bceef',
@@ -10,3 +10,31 @@ debug: false // Set debug to true if you want to inspect the dropdown
 });
 </script>
 {{ end }}
+
+<div id="consent-banner" style="display:none">
+    <p>
+        This search is using <a href="https://docsearch.algolia.com/" target="_blank">Algolia Search Services</a>. Please confirm that you understand and accept their <a href="https://www.algolia.com/policies/privacy/" target="_blank">privacy policy</a> before searching. If you don't wish to interact with this third party, simply click <em>Cancel</em>.
+    </p>
+    <div id="agree" onclick="agree()"><p>I understand</p></div>
+    <div id="cancel" onclick="hideSearchConsent()"><p>Cancel</p></div>
+</div>
+
+<script type="text/javascript">
+    function showSearchConsent() 
+    {
+        if (localStorage.getItem('searchConsentSeen') != 'yes') 
+        {
+            document.getElementById('consent-banner').style = 'display:block';     
+        }
+    }
+    function agree() 
+    {
+        localStorage.setItem('searchConsentSeen','yes');
+        document.getElementById('consent-banner').style = 'display:none';
+        document.getElementById('docSearchInputField').focus();
+    }
+    function hideSearchConsent() 
+    {
+        document.getElementById('consent-banner').style = 'display:none';
+    }
+</script>

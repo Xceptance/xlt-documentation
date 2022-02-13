@@ -8,6 +8,8 @@ weight: 40
 
 description: >
     All about the XLT test approaches. 
+
+draft: true
 ---
 
 * Full DOM mode
@@ -18,3 +20,5 @@ description: >
 * Automatic or manual static content handling
 
 ## Test suites for that
+
+{{< TODO >}}This page is still a work in progress.{{< /TODO >}}
