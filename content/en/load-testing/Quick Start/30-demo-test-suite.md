@@ -49,7 +49,7 @@ Clone the demo test suite from <a href="https://github.com/Xceptance/posters-sim
 The imported project has dependencies on the libraries of XLT. These should be added with the first automatic build, but if you still see build errors, right-clicking on the project and selecting `Maven > Update Project` might help. Eclipse shouldn't report any build problems if configured properly.
 
 {{% note notitle %}}
-Users of other IDEs have to carry out similar steps.
+Users of other IDEs may have to follow similar steps and can check out the guides for [IntelliJ](../../how-tos/intellij-test-run/) and [Visual Studio Code](../../how-tos/vs-code-test-run) as well.
 {{% /note %}}
 
 ### Executing Java Test Cases in Eclipse
