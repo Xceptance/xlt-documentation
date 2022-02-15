@@ -18,6 +18,9 @@ enableMissingTranslationPlaceholders = true
 
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
+# log warning if link does not exist on build (instead of default ERROR, which fails the build)
+refLinksErrorLevel = "WARNING"
+
 [frontmatter]
 date = [":git", "lastmod", "date", "publishDate", ":fileModTime"]
 lastmod = [":git", "lastmod", "date", "publishDate", ":fileModTime"]
@@ -173,4 +176,3 @@ enable = false
 	url = "https://blog.xceptance.com/"
 	icon = "fa fa-newspaper"
         desc = "The Xceptance Blog"
-
