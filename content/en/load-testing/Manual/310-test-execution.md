@@ -9,7 +9,7 @@ description: >
 ---
 ## Motivation
 
-This chapter explains the setup of a base test environment and how to configure the components of XLT correctly. Please ensure you have read the [Architecture]({{< relref "30-architecture" >}}) guide first. You should also have created a test suite by now (see [Test Development](../060-test-development)) and likely configured a first test (see [Test Setup](../300-test-setup)).
+This chapter explains the setup of a base test environment and how to configure the components of XLT correctly. Please ensure you have read the [Architecture]({{< relref "30-architecture" >}}) guide first. You should also have created a test suite by now (see [Test Development]({{< relref "060-test-development" >}})) and likely configured a first test (see [Test Setup]({{< relref "300-test-setup" >}})).
 
 The setup of the environment and execution of a test consists of the following steps:
 
@@ -50,7 +50,7 @@ cd <XLT>/bin
 Windows users have to use the respective `.cmd` files. The documentation will not highlight this difference all the time and mostly use UNIX path and file name references.
 {{% /note %}}
 
-The agent controller starts and listens on the specified port. With default logging enabled (WARN), no messages are printed during the agentcontroller startup. When [info logging is enabled](../490-environment-configuration/#agent-controller-logging), the output might look like this:
+The agent controller starts and listens on the specified port. With default logging enabled (WARN), no messages are printed during the agentcontroller startup. When [info logging is enabled]({{< relref "490-environment-configuration/#agent-controller-logging" >}}), the output might look like this:
 
 ```dos
 [15:00:51,452] INFO  [main] - start servlet
@@ -67,7 +67,7 @@ The agent controller starts and listens on the specified port. With default logg
 
 ## Configuring the Mastercontroller
 
-The mastercontroller requires information about the machines participating in this test (except when in [embedded mode](#embedded-mode) where the mastercontroller starts its own agentcontroller). For that you need to add all agentcontroller URLs to `<XLT>/config/mastercontroller.properties`.
+The mastercontroller requires information about the machines participating in this test (except when in [embedded mode]({{< relref "#embedded-mode" >}}) where the mastercontroller starts its own agentcontroller). For that you need to add all agentcontroller URLs to `<XLT>/config/mastercontroller.properties`.
 
 ```bash
 com.xceptance.xlt.mastercontroller.agentcontrollers.<id>.url = <url>
@@ -87,7 +87,7 @@ com.xceptance.xlt.mastercontroller.agentcontrollers.north-01.url = https://191.2
 Because you can later optionally also filter your report by agent names, make sure your names are "speaking" if they are different enough to possibly yield different results. This could be, for instance, a different provider or geographical location.
 {{% /note %}}
 
-For more information on configuration options for agentcontrollers, see [Environment Configuration](../490-environment-configuration/#agent-controllers).
+For more information on configuration options for agentcontrollers, see [Environment Configuration]({{< relref "490-environment-configuration/#agent-controllers" >}}).
 
 ## Running the Mastercontroller
 
@@ -290,7 +290,7 @@ Combine these artifacts types as needed, separated by comma, for example `--only
 
 Both interactive mode and auto mode can be combined with the command line option `-embedded`. It starts the master controller as well as an internal agentcontroller.
 
-This is useful if you want to run load tests without a distributed load test environment. It will start a single agentcontroller as well as the mastercontroller on the same machine. There's no need to manually start an agentcontroller. This option is also recommended when playing around with the [Posters demo](../../quick-start/30-demo-test-suite) for training purposes because it simplifies the process of running a load test.
+This is useful if you want to run load tests without a distributed load test environment. It will start a single agentcontroller as well as the mastercontroller on the same machine. There's no need to manually start an agentcontroller. This option is also recommended when playing around with the [Posters demo]({{< relref "/load-testing/quick-start/30-demo-test-suite" >}}) for training purposes because it simplifies the process of running a load test.
 
 {{% note notitle %}}
 When you use the `-embedded` option, the local agent controller settings will override the set of agent controllers configured in `mastercontroller.properies`.

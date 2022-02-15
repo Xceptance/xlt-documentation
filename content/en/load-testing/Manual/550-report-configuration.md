@@ -8,7 +8,7 @@ description: >
     How to customize the reports via configuration file.
 ---
 
-By [adjusting the report options](../540-report-options) you can already adjust the focus of your generated reports very well, but there are even more possibilities by configuring the file `<xlt>/config/reportgenerator.properties`. 
+By [adjusting the report options]({{< relref "540-report-options" >}}) you can already adjust the focus of your generated reports very well, but there are even more possibilities by configuring the file `<xlt>/config/reportgenerator.properties`. 
 
 ## Using Custom Report Generator Settings
 
@@ -29,7 +29,7 @@ bin $ ./create_report.sh ../results/20191224-131200 -pf ../config/myPerfectRepor
 
 ## Customizing the Default Output Directory
 
-To define your preferred default directory where test reports shall be stored (which is used when no [custom output directory](../540-report-options/#setting-a-custom-output-directory) is specified during report generation), set: 
+To define your preferred default directory where test reports shall be stored (which is used when no [custom output directory]({{< relref "540-report-options/#setting-a-custom-output-directory" >}}) is specified during report generation), set: 
 
 ```bash
 com.xceptance.xlt.reportgenerator.reports = myReports
@@ -237,7 +237,7 @@ com.xceptance.xlt.reportgenerator.requests.table.colorization.default.percentile
 com.xceptance.xlt.reportgenerator.requests.table.colorization.default.percentile.p95 = 250 500 1000
 ```
 
-Again, you can configure this either in `<xlt>/config/reportgenerator.properties` or, alternatively, in your test suite settings, e.g. in `<test-suite>/config/project.properties`. You might even want to create additional property files for your favorite report colorization and then [include them](../480-test-suite-configuration/#including-additional-property-files) in your project properties as needed.
+Again, you can configure this either in `<xlt>/config/reportgenerator.properties` or, alternatively, in your test suite settings, e.g. in `<test-suite>/config/project.properties`. You might even want to create additional property files for your favorite report colorization and then [include them]({{< relref "480-test-suite-configuration/#including-additional-property-files" >}}) in your project properties as needed.
 
 {{% note notitle %}}
 If you don’t want to highlight requests that exceed/fall below the target value, simply set the respective boundary equal to the target value. Typically, you would do this for requests outperforming the target value, so you can focus on the red ones.
@@ -246,7 +246,7 @@ If you don’t want to highlight requests that exceed/fall below the target valu
 ## Merge Rules
 
 In order to reduce the list of requests in the report, the values of different
-requests can be merged together. This is done by defining merge rules for your project. Merge rules are one of the most unique XLT features, you can also think of them as bucketing rules for your requests. Setting them up requires some careful thinking, as they can do quite some harm to your reports, but well crafted merge rules will help you make sense of your reports. You can read more on this topic in the [Advanced section](../../advanced/010-merge-rules).
+requests can be merged together. This is done by defining merge rules for your project. Merge rules are one of the most unique XLT features, you can also think of them as bucketing rules for your requests. Setting them up requires some careful thinking, as they can do quite some harm to your reports, but well crafted merge rules will help you make sense of your reports. You can read more on this topic in the [Advanced section]({{< relref "../advanced/010-merge-rules" >}}).
 
 ## Masking Passwords in the Test Report
 

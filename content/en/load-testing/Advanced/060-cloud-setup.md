@@ -22,7 +22,7 @@ A possible setup which you could use to run a load test using a distributed load
 Distributed Load Generation Environment
 {{< /image >}}
 
-One machine runs your [master controller]({{< relref "/load-testing/manual/010-basics#mcmaster-controller" >}}), which controls several machines that run the [agent controllers](../../manual/010-basics/#acagent-controller) and [agents]({{< relref "/load-testing/manual/010-basics#agents" >}}). 
+One machine runs your [master controller]({{< relref "/load-testing/manual/010-basics#mcmaster-controller" >}}), which controls several machines that run the [agent controllers]({{< relref "../manual/010-basics#acagent-controller" >}}) and [agents]({{< relref "/load-testing/manual/010-basics#agents" >}}). 
 
 Xceptance offers public images for AWS machines (AMIs). You can also use [XLT Packer](https://github.com/Xceptance/XLT-Packer) to build your own images for GCP and AWS. 
 

@@ -97,9 +97,9 @@ While automated performance testing is useful and reasonable to ensure good perf
 
 ## Measuring Client Performance with XLT
 
-XLT can be used to measure your application's client performance in terms of the above [metrics](#metrics-for-perceived-performance), to give you a first insight into your application's perceived performance. By using a special WebDriver setup, XLT is able to retrieve data from the browser by querying the Performance and Navigation Timing API. This data is then stored alongside the other XLT data and will be available for evaluation in the test report. 
+XLT can be used to measure your application's client performance in terms of the above [metrics]({{< relref "#metrics-for-perceived-performance" >}}), to give you a first insight into your application's perceived performance. By using a special WebDriver setup, XLT is able to retrieve data from the browser by querying the Performance and Navigation Timing API. This data is then stored alongside the other XLT data and will be available for evaluation in the test report. 
 
-To enable performance testing, you need to set up XLT's web driver (the default setting can be found in `default.properties` - we recommend you to create a dedicated client performance settings file like `test-cp.properties`, overwrite the settings there and then [use it as the test properties file](../480-test-suite-configuration/#test-properties-file)).
+To enable performance testing, you need to set up XLT's web driver (the default setting can be found in `default.properties` - we recommend you to create a dedicated client performance settings file like `test-cp.properties`, overwrite the settings there and then [use it as the test properties file]({{< relref "480-test-suite-configuration/#test-properties-file" >}})).
 
 {{% note title="Install ChromeDriver" %}}
 You might first need to install a suitable web driver, for example the ChromeDriver, which can be found <a href="https://chromedriver.chromium.org/downloads" target="_blank">here</a> (pick your preferred version).
@@ -149,10 +149,10 @@ In the latter case (for `AbstractWebDriverScriptTestCase`) the costructor may be
 {{< TODO comment="What about `AbstractWebDriverTestCase`? How does this even work?" / >}}
 
 ### Running the Client Performance Test
-To run your XLT client performance test, just make sure you use the right web driver settings and enabled the client performance test cases you wrote, then you can just run a small performance test [as usual](../310-test-execution/) to measure and sample enough data (keep in mind a much shorter testing window might be sufficient in this case).
+To run your XLT client performance test, just make sure you use the right web driver settings and enabled the client performance test cases you wrote, then you can just run a small performance test [as usual]({{< relref "310-test-execution" >}}) to measure and sample enough data (keep in mind a much shorter testing window might be sufficient in this case).
 
 ### Evaluating the Client Performance Test
-After you executed and finished your client performance load test, you can now [create the test report](../320-test-evaluation/) which will contain additional information in the **Page Load Timings** section. The result will look something like this (example for action named "Homepage"):
+After you executed and finished your client performance load test, you can now [create the test report]({{< relref "320-test-evaluation" >}}) which will contain additional information in the **Page Load Timings** section. The result will look something like this (example for action named "Homepage"):
 
 {{< image src="user-manual/pageLoadTimings.png" >}}
 Page Load Timings table in XLT report

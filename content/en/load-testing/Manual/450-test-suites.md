@@ -13,7 +13,7 @@ description: >
 XLT uses the concept of a test suite to make test projects more easily manageable. A test suite builds as its own project; it holds all code, data and config necessary for testing and is therefore perfect for sharing and perfect for version control. You can use a test suite as a standalone project and run the tests locally for regression testing, or the test suite can be referenced by an XLT execution engine to run a load test - tests and test environment are separated. 
 
 ## Basic Directory Structure
-The directory of any [sample test suite](../../test-suites/), and also of your own test suite, should look similar to this:
+The directory of any [sample test suite]({{< relref "../test-suites/" >}}), and also of your own test suite, should look similar to this:
 
 ```txt
     test-suite
@@ -24,7 +24,7 @@ The directory of any [sample test suite](../../test-suites/), and also of your o
     ├── classes
     └── results
 ```
-* **config** contains all [test settings](../480-test-suite-configuration) files. The only file that is mandatory is `log4j.properties`, but usually there will be several property files containing test settings. XLT will look for all properties in this directory by default, but the location may be overridden by the system property `com.xceptance.xlt.configDir` and, alternatively, the environment variable `XLT_CONFIG_DIR`, which both allow to specify the configuration directory to use (system property takes precedence; the directory location is required to be within the test suite in any case). 
+* **config** contains all [test settings]({{< relref "480-test-suite-configuration" >}}) files. The only file that is mandatory is `log4j.properties`, but usually there will be several property files containing test settings. XLT will look for all properties in this directory by default, but the location may be overridden by the system property `com.xceptance.xlt.configDir` and, alternatively, the environment variable `XLT_CONFIG_DIR`, which both allow to specify the configuration directory to use (system property takes precedence; the directory location is required to be within the test suite in any case). 
 	* test data lives in **data** - this is the default location for data files that are used by the DataProvider classes, but it can be overridden by the property `com.xceptance.xlt.data.directory`.
 * **lib** contains custom jars if needed. Make sure that everything you need is part of your suite - what is not in your suite is not uploaded, and neither the MC nor the AC run any dependency checks. If a Maven setup is used, make sure all libs are pulled into this folder of your suite during the build process. (XLT will also find libraries in `<test-suite>/target/dependency`.)
 * **src** contains the Java source code aka the JUnit tests cases. The location of these files inside your testsuite is basically up to you and might depend on the used build tool. Read on below to learn more about recommended code structure.
@@ -39,11 +39,11 @@ As your XLT test suites live in your favorite Java IDE, you will have the same o
 
 The `<testsuite>/src` directory contains subdirectories with the structure of your Java packages in the standard manner. Your source code should be organized in main packages. Typically, one individual package should be created for test cases, for actions, for flows, for validators, and for utility classes. The resulting directory structure might look like this:
 
-* [`<testsuite>/src/.../actions`](#action)
-* [`<testsuite>/src/.../flow`](#flow)
+* [`<testsuite>/src/.../actions`]({{< relref "#action" >}})
+* [`<testsuite>/src/.../flow`]({{< relref "#flow" >}})
 * `<testsuite>/src/.../util`
-* [`<testsuite>/src/.../validators`](#validation)
-* [`<testsuite>/src/.../tests`](#test-case)
+* [`<testsuite>/src/.../validators`]({{< relref "#validation" >}})
+* [`<testsuite>/src/.../tests`]({{< relref "#test-case" >}})
 
 Additionally, there are XLT-specific framework conditions for structuring your test suite and test cases. In particular, each test case is necessarily implemented as a Java class extending an XLT test case class, which is approach-specific and contains one method annotated with `@Test`. See the following sections for such specific framework conditions and further ways of structuring.
 
@@ -53,7 +53,7 @@ The easiest way for you to structure your test suite is to name the test cases a
 
 ## Test Suite Concepts
 
-You might have read about the [concepts](../030-concepts) underlying XLT test cases. In short, a test scenario is modeled as a JUnit [test case](#test-case). A single execution of this test case is a transaction. For example, _Search_ and _ViewProductDetails_ are [actions](#action) in [this example](../030-concepts#example) to go from one page to the next. Consecutive actions that form a procedural entity may be collected in a [flow](#flow) for easier reusability in other test cases. [Validations](#validation) after each page transition ensure you arrived on the right page with the right content. 
+You might have read about the [concepts]({{< relref "030-concepts" >}}) underlying XLT test cases. In short, a test scenario is modeled as a JUnit [test case]({{< relref "#test-case" >}}). A single execution of this test case is a transaction. For example, _Search_ and _ViewProductDetails_ are [actions]({{< relref "#action" >}}) in [this example]({{< relref "030-concepts#example" >}}) to go from one page to the next. Consecutive actions that form a procedural entity may be collected in a [flow]({{< relref "#flow" >}}) for easier reusability in other test cases. [Validations]({{< relref "#validation" >}}) after each page transition ensure you arrived on the right page with the right content. 
 
 ### Test Case
 
