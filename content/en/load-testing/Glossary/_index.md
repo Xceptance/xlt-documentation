@@ -55,7 +55,7 @@ other metrics like minimum value, maximum value, standard deviation
 
 ## Arrival Rate
 
-see [Constant Arrival Rate](#constant-arrival-rate).
+see [Constant Arrival Rate]({{< relref "#constant-arrival-rate" >}}).
 
 ## Bottleneck
 
@@ -92,8 +92,7 @@ Main problems with pure recorded test scripts are:
 -   Often insufficient validation of results
 
 The XLT Script Developer was such an advanced Capture & Replay Tool, 
-featuring a broad range of additional functionality, but it was [discontinued](../../about-xlt/10-history/#2017---script-developer-discontinued) when Mozilla 
-removed the XUL-application API from Firefox.
+featuring a broad range of additional functionality, but it was [discontinued]({{< relref "/about-xlt/10-history#2017---script-developer-discontinued" >}}) when Mozilla removed the XUL-application API from Firefox.
 
 ## Client
 
@@ -251,7 +250,7 @@ Microsoft with one of the earlier versions of Internet Explorer.
 
 ## Flash Cookie
 
-See [Local Shared Object](#local-shared-object).
+See [Local Shared Object]({{< relref "#local-shared-object" >}}).
 
 ## Flow (XLT)
 
@@ -303,7 +302,7 @@ defined by CSS rules. In XLT the image loading can be configured with
 the property  
 `com.xceptance.xlt.css.download.images`. Sometimes the term “image
 loading” is also used for other static contents like CSS or JavaScript.
-See also [Static Content Loading](#static-content-loading).
+See also [Static Content Loading]({{< relref "#static-content-loading" >}}).
 
 ## Initial Delay (XLT)
 
@@ -422,7 +421,7 @@ per second, the mean response time in seconds or the CPU usage in %.
 
 ## Page Impression
 
-See [Page View](#page-view).
+See [Page View]({{< relref "#page-view" >}}).
 
 ## Page View
 
@@ -515,7 +514,7 @@ all previously executed test cases can be repeated.
 ## Request
 
 A Request is an inquiry from a client to a server mostly using the HTTP
-or HTTPS protocol. Also see [Hit](#hit).
+or HTTPS protocol. Also see [Hit]({{< relref "#hit" >}}).
 
 ## Response
 
@@ -586,7 +585,7 @@ over the hardware and software.
 
 ## Scenario
 
-See [Test scenario](#test-scenario).
+See [Test scenario]({{< relref "#test-scenario" >}}).
 
 ## Server
 
@@ -654,7 +653,7 @@ shutdown period has timed out will be stopped abruptly.
 
 ## Simulated User
 
-See [Virtual User](#virtual-user).
+See [Virtual User]({{< relref "#virtual-user" >}}).
 
 ## Sizing-Test
 
@@ -735,7 +734,7 @@ load or to find performance flaws (bottlenecks).
 
 ## Super Cookie
 
-See [Local Shared Object](#local-shared-object).
+See [Local Shared Object]({{< relref "#local-shared-object" >}}).
 
 ## System Under Test (SUT)
 
@@ -787,7 +786,7 @@ Execution of a certain test case that models a test scenario.
 
 ## User Scenario
 
-See [Test Scenario](#test-scenario).
+See [Test Scenario]({{< relref "#test-scenario" >}}).
 
 ## Virtual User
 

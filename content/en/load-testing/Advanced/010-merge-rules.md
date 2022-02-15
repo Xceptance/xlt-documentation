@@ -34,7 +34,7 @@ Rules are defined to match and capture data for a new name. Merge rules are numb
 So before crunching data, know what the request does. Decide what details you need, then carefully craft the regex. Avoid separating good from bad (e.g. splitting requests with errors from the ones that ran fine but did basically the same). Better use merge rules to split up redirects or sum up identical requests. Don't destroy the context (action) except when not needed. And keep in mind that the smaller the bucket gets, the fewer data it contains, the less meaningful the measured data becomes.
 
 {{% note notitle %}}
-More about the collected data and the CSV format can be found in the chapter [Result Data](../150-results).
+More about the collected data and the CSV format can be found in the chapter [Result Data]({{< relref "150-results" >}}).
 {{% /note %}}
 
 ## Parameters
