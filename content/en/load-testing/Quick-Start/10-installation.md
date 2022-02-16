@@ -28,7 +28,7 @@ Firefox, Chrome, Internet Explorer 10, or Safari 6 for the HTML load reports. No
 ## Installation
 
 ### Download
-The XLT archive can either be obtained from the <a href="https://www.xceptance.com/en/xlt/download.html" target="_blank">Xceptance website</a> or from Xceptance's custom Maven-compatible repository (see [below](#maven)) which allows users of Maven and Ivy to conveniently integrate XLT and all of its dependencies into their build processes.
+The XLT archive can either be obtained from the <a href="https://www.xceptance.com/en/xlt/download.html" target="_blank">Xceptance website</a> or from Xceptance's custom Maven-compatible repository (see [below]({{< relref "#maven" >}})) which allows users of Maven and Ivy to conveniently integrate XLT and all of its dependencies into their build processes.
 
 ### Extract
 Unzip the XLT archive to a file system location of your choice. The root directory is part of the archive, so you don’t need to create it separately. XLT supports spaces in the path; however, it's easier to code tests when the path is free of them.
@@ -54,7 +54,7 @@ Please make sure the executable directory of your Java installation is listed in
 {{% warning title="Version" %}}
 The version above might not be the latest. Please adjust the version information accordingly.
 
-For versions below XLT 5.0.x you need to [configure the Xceptance repository](../../advanced/200-maven-builds/).
+For versions below XLT 5.0.x you need to [configure the Xceptance repository]({{< relref "../advanced/200-maven-builds" >}}).
 {{% /warning %}}
 
 ## Updating
@@ -68,7 +68,7 @@ Before you update XLT, it’s highly recommended to back up all modified files a
 * Modified XLT properties files (`<XLT>/config`)
 
 ### Download and install
-As described above in the [installation](#installation) section, download and install the latest XLT version from the Xceptance website. You can have multiple XLT versions simultaneously existing in the same directory since the name of the unpacked installation folder includes the version number by default.
+As described above in the [installation]({{< relref "#installation" >}}) section, download and install the latest XLT version from the Xceptance website. You can have multiple XLT versions simultaneously existing in the same directory since the name of the unpacked installation folder includes the version number by default.
 
 ### Copy Backed-up Files
 Copy your backed-up files and directories to the corresponding place in the new XLT installation directory.

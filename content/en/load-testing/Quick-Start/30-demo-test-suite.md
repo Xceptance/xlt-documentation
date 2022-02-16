@@ -8,7 +8,7 @@ description: >
   What is the demo test suite and how you can install and run it.
 ---
 
-To get you started with XLT we offer a real-world [demo web application](../20-demo-application) (*Posters*) as the system under test as well as a number of free sample test suites to test this application. All test suites can be found on <a href="https://github.com/Xceptance?q=loadtest-suite&type=&language=" target="_blank">Github</a>. We recommend to start with this <a href="https://github.com/Xceptance/posters-simple-loadtest-suite" target="_blank">very simple test suite</a> to get used to the concepts. This is just a minimal test suite that helps you understand how things are supposed to work. We provide even more sample test suites for more special needs, containing more complex examples - check out the [Test Suites](../../test-suites) overview to learn more about them.
+To get you started with XLT we offer a real-world [demo web application]({{< relref "20-demo-application" >}}) (*Posters*) as the system under test as well as a number of free sample test suites to test this application. All test suites can be found on <a href="https://github.com/Xceptance?q=loadtest-suite&type=&language=" target="_blank">Github</a>. We recommend to start with this <a href="https://github.com/Xceptance/posters-simple-loadtest-suite" target="_blank">very simple test suite</a> to get used to the concepts. This is just a minimal test suite that helps you understand how things are supposed to work. We provide even more sample test suites for more special needs, containing more complex examples - check out the [Test Suites]({{< relref "../test-suites" >}}) overview to learn more about them.
 
 ## The Posters Test Suite
 
@@ -22,7 +22,7 @@ An XLT test project has a simple directory structure. The following directories 
 - `<project>/config` contains all the properties files used to configure the project.
 - There can be an optional `<project>/config/data` directory where you can place any data file you need for the test, such as address data, logins, and so on. All files are uploaded to the agent before a load test takes place. The programming API provides easy access to this data.
 - You can place all your required libraries in `<project>/lib`. The content is uploaded to the runtime agent and included in the class path. For your local development within an IDE, you have to manually add the libraries to the class path of your project.
-- The `<project>/src` directory holds the Java-based test cases of your project. This code is compiled into classes by your IDE or build environment. It's organized in main packages, typically one package for [test cases](../../11-glossary/#test-case-xlt), one for [flows](../../11-glossary/#flow-xlt), one for [actions](../../11-glossary/#action-xlt), and one for utility classes. Make sure the compiled classes end up in `project/classes` because this is the directory XLT configures as class path for your test.
+- The `<project>/src` directory holds the Java-based test cases of your project. This code is compiled into classes by your IDE or build environment. It's organized in main packages, typically one package for [test cases]({{< relref "../glossary#test-case-xlt" >}}), one for [flows]({{< relref "../glossary#flow-xlt" >}}), one for [actions]({{< relref "../glossary#action-xlt" >}}), and one for utility classes. Make sure the compiled classes end up in `project/classes` because this is the directory XLT configures as class path for your test.
 
 ### Understanding the Test Scenarios
 
@@ -54,5 +54,5 @@ Users of other IDEs have to carry out similar steps.
 
 ### Executing Java Test Cases in Eclipse
 
-Any Java test case can be directly run in Eclipse in headless browser mode. Go to package `com.xceptance.xlt.samples.tests`, select the test case class (e.g. `TSearch`), and run it as JUnit test via the Eclipse class file context menu. Per default, the test cases will run against the [demo application](../20-demo-application) you started already (if you modified the ports there, you might have to change them in `<project>/config/project.properties` accordingly, just look for the property `store-url`). 
+Any Java test case can be directly run in Eclipse in headless browser mode. Go to package `com.xceptance.xlt.samples.tests`, select the test case class (e.g. `TSearch`), and run it as JUnit test via the Eclipse class file context menu. Per default, the test cases will run against the [demo application]({{< relref "20-demo-application" >}}) you started already (if you modified the ports there, you might have to change them in `<project>/config/project.properties` accordingly, just look for the property `store-url`). 
 

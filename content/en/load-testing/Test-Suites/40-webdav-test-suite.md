@@ -32,10 +32,10 @@ the library, you won’t have to clone it too. If you need to do so
 nevertheless, please let us know, so all XLT users can benefit from your
 improvements. Pull request are welcome!
 
-To conveniently try out the demo test suite, the [demo application server](../../quick-start/20-demo-application/)
+To conveniently try out the demo test suite, the [demo application server]({{< relref "../quick-start/20-demo-application" >}})
 that ships with XLT has been enabled to act as a WebDAV server. The
-WebDAV server application is available at <http://localhost:8080/webdav/>
-and <https://localhost:8443/webdav/>, respectively. In the latter case,
+WebDAV server application is available at [http://localhost:8080/webdav/](http://localhost:8080/webdav/)
+and [https://localhost:8443/webdav/](https://localhost:8443/webdav/), respectively. In the latter case,
 make sure to configure your WebDAV client to accept self-signed
 certificates. In order to get access, you need to provide valid user
 credentials (use *webdav* for both username and password). The root
