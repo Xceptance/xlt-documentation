@@ -14,7 +14,7 @@ description: >
 
 ## Setting Up Monitoring Scenarios
 
-The basis for all monitoring scenarios is a set of [XLT test cases](../../../load-testing/manual/060-test-development/) that will be run continuously. These tests are preferably organized in a test suite, which is located in the repository you defined in the monitoring [project configuration](../../060-project-configuration#repository). 
+The basis for all monitoring scenarios is a set of [XLT test cases]({{< relref "/load-testing/manual/060-test-development" >}}) that will be run continuously. These tests are preferably organized in a test suite, which is located in the repository you defined in the monitoring [project configuration]({{< relref "../060-project-configuration#repository" >}}). 
 
 XLT tests are basically Java classes containing JUnit tests. These classes will be built by XTC so it can then run the test scenarios contained in them.
 
@@ -61,7 +61,7 @@ You can open an overview of a scenario's current settings by clicking the scenar
 Expanded scenario information in the scenarios list.
 {{< /image >}}
 
-By selecting "Edit" from the menu in the right of the scenario row, you can adjust the scenario settings as needed. Otherwise the [scenario defaults](#defining-scenario-defaults) will be used. The settings we explained in [scenario defaults](#defining-scenario-defaults) are available for each individual scenario, and in addition you have the basic scenario settings in _General_ (scenario name and description, and the Java class containing this scenario). 
+By selecting "Edit" from the menu in the right of the scenario row, you can adjust the scenario settings as needed. Otherwise the [scenario defaults]({{< relref "#defining-scenario-defaults" >}}) will be used. The settings we explained in [scenario defaults]({{< relref "#defining-scenario-defaults" >}}) are available for each individual scenario, and in addition you have the basic scenario settings in _General_ (scenario name and description, and the Java class containing this scenario). 
 
 Scenarios with overwritten settings are indicated by a small "(Defaults overwritten)" note next to the scenario name. In the settings overview, the overwritten scenarios are highlighted in blue:
 
@@ -83,7 +83,7 @@ To add a new monitoring scenario to your project, just click the `+` button at t
 Creating a new monitoring scenario.
 {{< /image >}}  
 
-The new scenario will now show up in the list. It will be enabled by default and it will automatically use the [scenario default settings](#defining-scenario-defaults). You can now adjust these settings as needed by [editing the scenario](#managing-existing-scenarios). 
+The new scenario will now show up in the list. It will be enabled by default and it will automatically use the [scenario default settings]({{< relref "#defining-scenario-defaults" >}}). You can now adjust these settings as needed by [editing the scenario]({{< relref "#managing-existing-scenarios" >}}). 
 
 {{% note notitle %}}
 New scenarios are disabled by default you time to finish customizing the scenario settings. Don't forget to enable the scenario when done.

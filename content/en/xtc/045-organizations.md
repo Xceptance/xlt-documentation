@@ -20,7 +20,7 @@ Organizations can only be created by an XTC admin. They will also assign an init
 As an organization member, a user account can have one of the following roles:
 * as a **guest**, you can only view the organization's dashboard,
 * a **member** is basically the default role for any new project user and is allowed to view organization settings and view and work on projects,
-* a **billing administrator** has permission to view and evaluate [resource usage](../loadtesting/400-resource-usage) of the organization, and
+* a **billing administrator** has permission to view and evaluate [resource usage]({{< relref "loadtesting/400-resource-usage" >}}) of the organization, and
 * as an **organization administrator** you have complete permissions to change the organization's projects, members and configuration.
 
 (Permissions increase in order of the list, i.e. a billing administrator has the same permissions as a member plus some in addition to that.)
@@ -40,10 +40,10 @@ To add new members to the organization, select _Members_ in the menu on the left
 If you want to add multiple users at once, simply paste a list of e-mail addresses (separated by comma, newline or space). All users will be assigned the same role.
 
 {{% note notitle %}}
-The _Members_ page of an organization shows the [login provider](../040-user-accounts/#connecting-existing-xtc-accounts-to-an-external-login-provider) for every member and whether or not a member has [2FA enabled](../040-user-accounts/#two-factor-authentication-2fa). This way, organization admins can easily check if certain security requirements imposed by the organization are met.
+The _Members_ page of an organization shows the [login provider]({{< relref "040-user-accounts/#connecting-existing-xtc-accounts-to-an-external-login-provider" >}}) for every member and whether or not a member has [2FA enabled]({{< relref "040-user-accounts/#two-factor-authentication-2fa" >}}). This way, organization admins can easily check if certain security requirements imposed by the organization are met.
 {{% /note %}}
 
-Explicitly assigning organization members is usually not necessary in your daily work, as organization membership and roles are assigned implicitly by [adding and removing project members](../050-projects/#adding-and-removing-project-members).
+Explicitly assigning organization members is usually not necessary in your daily work, as organization membership and roles are assigned implicitly by [adding and removing project members]({{< relref "050-projects/#adding-and-removing-project-members" >}}).
 
 ### Organization Configuration
 
