@@ -8,7 +8,7 @@ description: >
   What is the demo test suite and how you can install and run it.
 ---
 
-To get you started with XLT we offer a real-world [demo web application]({{< relref "20-demo-application" >}}) (*Posters*) as the system under test as well as a number of free sample test suites to test this application. All test suites can be found on <a href="https://github.com/Xceptance?q=loadtest-suite&type=&language=" target="_blank">Github</a>. We recommend to start with this <a href="https://github.com/Xceptance/posters-simple-loadtest-suite" target="_blank">very simple test suite</a> to get used to the concepts. This is just a minimal test suite that helps you understand how things are supposed to work. We provide even more sample test suites for more special needs, containing more complex examples - check out the [Test Suites]({{< relref "../test-suites" >}}) overview to learn more about them.
+To get you started with XLT we offer a real-world [demo web application]({{< relref "20-demo-application" >}}) (*Posters*) as the system under test as well as a number of free sample test suites to test this application. All test suites can be found on [Github](https://github.com/Xceptance?q=loadtest-suite&type=&language=). We recommend to start with this [very simple test suite](https://github.com/Xceptance/posters-simple-loadtest-suite) to get used to the concepts. This is just a minimal test suite that helps you understand how things are supposed to work. We provide even more sample test suites for more special needs, containing more complex examples - check out the [Test Suites]({{< relref "../test-suites" >}}) overview to learn more about them.
 
 ## The Posters Test Suite
 
@@ -40,7 +40,7 @@ Before you can run your Java-based test cases, you need to import the sample tes
 
 ### Importing the _Posters_ Test Suite into Eclipse
 
-Clone the demo test suite from <a href="https://github.com/Xceptance/posters-simple-loadtest-suite" target="_blank">Github</a> to a local directory, e.g. `<posters-simple-loadtest-suite>`. After starting Eclipse and creating a workspace, do the following:
+Clone the demo test suite from [Github](https://github.com/Xceptance/posters-simple-loadtest-suite) to a local directory, e.g. `<posters-simple-loadtest-suite>`. After starting Eclipse and creating a workspace, do the following:
 - Open the import dialog (_File_ > _Import_ > _Maven_ > _Existing Maven Projects_).
 - Select the root directory to search in and point to `<posters-simple-loadtest-suite>`.
 - Select the test suite project's `pom.xml`.

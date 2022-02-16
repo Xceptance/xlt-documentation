@@ -9,7 +9,7 @@ description: >
 ---
 
 ## What is XLT?
-XLT, the Xceptance Load Test tool, is a regression and performance testing tool. The first prototype was released in 2005 and it has been improving ever since. The tool is used on a daily basis at <a href="https://xceptance.com" target="_blank">Xceptance</a>, so our developers know what our load testers need.
+XLT, the Xceptance Load Test tool, is a regression and performance testing tool. The first prototype was released in 2005 and it has been improving ever since. The tool is used on a daily basis at [Xceptance](https://xceptance.com), so our developers know what our load testers need.
 
 XLT is platform independent (you can develop and run your tests on any platform with a JDK), and is open source, available under Apache License 2.0 starting February 2020. It is simple to deploy and highly scalable, provides ready to use reports (for single or multiple test runs, so you can also compare runs or see trends) and realtime test monitoring. Nothing about XLT is proprietary, no custom IDE is needed, you can just use your tool chain and existing knowledge.
 
@@ -57,8 +57,8 @@ While you develop your test cases, the app you want to test should be in a stabl
 To run XLT, you will need the following:
 * latest JDK 8 (or 11)
 * Java IDE of choice
-* Latest <a href="https://ant.apache.org/" target="_blank">Apache Ant</a>
-* <a href="https://maven.apache.org/" target="_blank">Maven</a>
+* Latest [Apache Ant](https://ant.apache.org/)
+* [Maven](https://maven.apache.org/)
 
 Installing XLT is described in more detail [here]({{< relref "040-installation" >}}).
 

@@ -135,7 +135,7 @@ First, let's split off the _\_\_Analytics-Start_ requests we have seen in COLogi
 ...requestMergeRules.10.urlPattern = /__Analytics-Start\\?
 ...requestMergeRules.10.stopOnMatch = true
 ```
-Please pay attention to the double backslash before the question mark (`\\?`). The first `\`  quotes the `?` from the regular expression point of view to treat it as a normal character. The second `\` quotes the `\` characters because this is a Java property file format. Here, `\` is a protected character (see <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Properties.html#load-java.io.Reader-" target="_blank">Java Properties</a>).
+Please pay attention to the double backslash before the question mark (`\\?`). The first `\`  quotes the `?` from the regular expression point of view to treat it as a normal character. The second `\` quotes the `\` characters because this is a Java property file format. Here, `\` is a protected character (see [Java Properties](https://docs.oracle.com/javase/8/docs/api/java/util/Properties.html#load-java.io.Reader-)).
 
 ### Step 2: Remove the Index
 
@@ -211,7 +211,7 @@ Requests table, organised with merge rules
 
 This sorted table gives us more precise data and helps to pinpoint higher runtimes.
 
-As you see, this is not rocket science, but requires careful thinking and some regular expression knowledge (see <a href="https://xkcd.com/208/" target="_blank">regular expression skills</a>).
+As you see, this is not rocket science, but requires careful thinking and some regular expression knowledge (see [regular expression skills](https://xkcd.com/208/)).
 
 ## Good to Know
 
@@ -274,7 +274,7 @@ If you define rules that will never match, because your data does not contain su
 
 #### Expensive Regular Expressions
 
-Regular expressions can be very expensive, especially when they only slowly can see if data matches. For more information, see this example: <a href="https://www.loggly.com/blog/regexes-the-bad-better-best/" target="_blank">Regexes: The Bad, the Better, and the Best</a>.
+Regular expressions can be very expensive, especially when they only slowly can see if data matches. For more information, see this example: [Regexes: The Bad, the Better, and the Best](https://www.loggly.com/blog/regexes-the-bad-better-best/).
 
 #### Terminating Early
 

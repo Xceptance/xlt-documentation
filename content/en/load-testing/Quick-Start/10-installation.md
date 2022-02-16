@@ -28,7 +28,7 @@ Firefox, Chrome, Internet Explorer 10, or Safari 6 for the HTML load reports. No
 ## Installation
 
 ### Download
-The XLT archive can either be obtained from the <a href="https://www.xceptance.com/en/xlt/download.html" target="_blank">Xceptance website</a> or from Xceptance's custom Maven-compatible repository (see [below]({{< relref "#maven" >}})) which allows users of Maven and Ivy to conveniently integrate XLT and all of its dependencies into their build processes.
+The XLT archive can either be obtained from the [Xceptance website](https://www.xceptance.com/en/xlt/download.html) or from Xceptance's custom Maven-compatible repository (see [below]({{< relref "#maven" >}})) which allows users of Maven and Ivy to conveniently integrate XLT and all of its dependencies into their build processes.
 
 ### Extract
 Unzip the XLT archive to a file system location of your choice. The root directory is part of the archive, so you don’t need to create it separately. XLT supports spaces in the path; however, it's easier to code tests when the path is free of them.

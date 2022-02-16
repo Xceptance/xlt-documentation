@@ -14,7 +14,7 @@ One is often faced with the requirement to just fire a couple of simple URLs, to
 
 TestSuite-NoCoding  is a test suite for XLT and delivers an easy way to define and fire HTTP requests and offers various tools to validate the responses. Additionally it is possible to filter, select, and store data from the response with the view of inserting it into the next request or its validation. This is a fast and likewise easy way to define test cases, since **no programming** is needed!
 
-The test suite relies on the library <a href="https://github.com/Xceptance/xlt-nocoding" target="_blank">xlt-nocoding</a> in order to interpret and execute the no-coding test definitions. Since the source of that library is open and licensed under the Apache License V2.0, feel free to extend and customize it.
+The test suite relies on the library [xlt-nocoding](https://github.com/Xceptance/xlt-nocoding) in order to interpret and execute the no-coding test definitions. Since the source of that library is open and licensed under the Apache License V2.0, feel free to extend and customize it.
 
 ### Features
 
@@ -36,11 +36,11 @@ The test suite relies on the library <a href="https://github.com/Xceptance/xlt-n
 
 ## Getting Started
 
-The NoCoding test suite is available on <a href="https://github.com/Xceptance/testsuite-nocoding" target="_blank">Github</a>.
+The NoCoding test suite is available on [Github](https://github.com/Xceptance/testsuite-nocoding).
 
 To learn more, try one of the following links.
 
-* <a href="https://github.com/Xceptance/testsuite-nocoding/wiki" target="_blank">Overview</a>: In order to get an overview.
-* <a href="https://github.com/Xceptance/testsuite-nocoding/wiki/Quickstart" target="_blank">Quickstart</a>: To get started.
-* <a href="https://github.com/Xceptance/testsuite-nocoding/wiki/Examples" target="_blank">Examples</a>: To see some examples.
+* [Overview](https://github.com/Xceptance/testsuite-nocoding/wiki): In order to get an overview.
+* [Quickstart](https://github.com/Xceptance/testsuite-nocoding/wiki/Quickstart): To get started.
+* [Examples](https://github.com/Xceptance/testsuite-nocoding/wiki/Examples): To see some examples.
 

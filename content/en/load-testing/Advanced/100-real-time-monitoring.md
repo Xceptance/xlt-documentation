@@ -51,7 +51,7 @@ If enabled, XLT reports the following metrics to Graphite:
 Since not all performance details are sent to Graphite, you will only get a first impression of the application’s behavior. For a detailed analysis, the load test report is still the tool of choice.
 
 {{% note notitle %}}
-<a href="http://graphite.readthedocs.org/en/latest/install.html" target="_blank">Graphite</a> is not bundled with XLT. You need to install, configure, and run it yourself.
+[Graphite](http://graphite.readthedocs.org/en/latest/install.html) is not bundled with XLT. You need to install, configure, and run it yourself.
 {{% /note %}}
 
 ### Page load timings in Graphite

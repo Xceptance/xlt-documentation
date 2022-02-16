@@ -31,10 +31,10 @@ Because there are many things that could be easier to handle, we built a more co
 * Component based modelling of the site under test
 * Replayable randomness among test scenario executions
 
-The test suite is ready to be executed against the <a href="https://35.184.136.113:8443/posters/" target="_blank">Posters</a> demo store. Please note that this setup is for testing purposes only and does not handle a lot of load. Please setup your [own copy of the Posters demo store]({{< relref "../quick-start/20-demo-application" >}}) if you want to experiment with executions of higher load factors and more complex test configurations.
+The test suite is ready to be executed against the [Posters](https://35.184.136.113:8443/posters/) demo store. Please note that this setup is for testing purposes only and does not handle a lot of load. Please setup your [own copy of the Posters demo store]({{< relref "../quick-start/20-demo-application" >}}) if you want to experiment with executions of higher load factors and more complex test configurations.
 
 ## Getting Started
 
-The Advanced Web Test Suite is available on <a href="https://github.com/Xceptance/posters-advanced-loadtest-suite" target="_blank">Github</a>.
+The Advanced Web Test Suite is available on [Github](https://github.com/Xceptance/posters-advanced-loadtest-suite).
 
 The **README** contains many useful information on XLT and how to work with this test suite, running your own load tests. 

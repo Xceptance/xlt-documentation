@@ -27,7 +27,7 @@ XTC helps you to speed up the more tedious tasks of load testing:
 * It automatically starts and stops a test, collects all results, and creates a report.
 * It allows to share a test result quickly either as a secret public link or within your project setup.
 
-XTC is getting better while you are reading this. Checkout the release notes <a href="https://docs.google.com/document/d/1mxxpDsrll2Uzc-1JWZnq-RDWV9rOYwF1V8lZnIRqs_o/edit#heading=h.pookjp6yrw21" target="_blank">to see what's new</a>!
+XTC is getting better while you are reading this. Checkout the release notes [to see what's new](https://docs.google.com/document/d/1mxxpDsrll2Uzc-1JWZnq-RDWV9rOYwF1V8lZnIRqs_o/edit#heading=h.pookjp6yrw21)!
 
 ### Availability
 XTC is not part of the XLT open source ecosystem. XTC is a growing SaaS offering by Xceptance. It is also extensively used internally at Xceptance.
