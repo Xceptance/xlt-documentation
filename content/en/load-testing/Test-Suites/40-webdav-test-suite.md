@@ -26,7 +26,7 @@ actions.
 
 The source code for both the
 [library](https://github.com/Xceptance/xlt-webdav) and the [demo test suite](https://github.com/Xceptance/testsuite-webdav) is available on
-GitHub under the MIT License. If you just want to create test scenarios,
+Github under the MIT License. If you just want to create test scenarios,
 simply clone the demo test suite. Unless you need to modify or extend
 the library, you won’t have to clone it too. If you need to do so
 nevertheless, please let us know, so all XLT users can benefit from your
