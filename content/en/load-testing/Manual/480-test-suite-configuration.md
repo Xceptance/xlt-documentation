@@ -546,7 +546,7 @@ When looking up a property value for a scenario, XLT tries the following alterna
 2.  *\<test-class-name\>.\<property-name\>* - the property name prefixed with the fully qualified test class name
 3.  *\<property-name>* - the bare property name, without any prefix
 
-Please check the full [list of currently supported framework properties](/release-notes/4.8.x/#scenario-specific-overrides-of-framework-properties) and their default value in the release notes.
+Please check the full [list of currently supported framework properties]({{< relref "/release-notes/4_8_x#scenario-specific-overrides-of-framework-properties" >}}) and their default value in the release notes.
 
 
 ### Secret properties take precedence

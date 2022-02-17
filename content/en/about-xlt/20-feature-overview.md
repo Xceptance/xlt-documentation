@@ -21,7 +21,7 @@ XLT uses trusted open source components such as Apache HttpClient, HtmlUnit, JUn
 ## Command-Line Driven
 XLT load tests are typically run from the command line (on your local machine or any remote machine). Results are stored wherever the tests are executed from. Anyone with the right password and agent IPs can attach to a running test. This way, it is very easy to share work and watch a running test from wherever you are. 
 
-If the command line is not your cup of tea, the [XLT Jenkins plugin]({{< relref "#ci-ready---jenkins-module" >}}) offers a bit of UI to manage tests. 
+If the command line is not your cup of tea, the [XLT Jenkins plugin]({{< relref "#cicd-ready---jenkins-module" >}}) offers a bit of UI to manage tests. 
 
 Xceptance is working on a SaaS offering to make it more comfortable to schedule, run, store, and share testing work and results.
 
@@ -54,7 +54,7 @@ XLT Performance Test Report
 ## Open Data Formats
 XLT uses open data formats to aid custom analytics and reporting. All measured data is held in [csv files]({{< relref "/load-testing/advanced/150-results" >}}), intermediate data is stored in an XML format (using XSLT for transformation into HTML and CSS for styling).
 
-## CICD Ready - Jenkins Module
+## CI/CD Ready - Jenkins Module
 XLT provides the tools to make continuous load testing an engineering habit: by offering a [Jenkins plug-in]({{< relref "/load-testing/advanced/080-ci-cd" >}}), you can run your XLT test with every build. You don’t have to deal with XLT tools directly, that is you don’t need to write shell scripts to drive the load test - instead, you simply configure some basic settings via the Jenkins UI and the plug-in will then take care of carrying out the necessary steps with the parameters you have provided. Furthermore, the plug-in automatically stores the results, creates load test reports, and updates trend reports for you. By defining success criteria (such as, no errors and maximum runtime below 10 seconds) you can even automate the evaluation of the load test results. The XLT Jenkins plug-in can even visualize long-term trends across multiple builds. Simply define the values that you would like to watch over time.
 
 ## Realtime Test Monitoring

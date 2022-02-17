@@ -23,7 +23,7 @@ cd <XLT>/samples/app-server/bin
 Windows users have to use the appropriate `.cmd` file located in the same directory by entering `start.cmd` into the command prompt.
 {{% /note %}}
 
-This starts an application server containing the *Posters* application. To access it, open a browser with this URL: <http://localhost:8080/posters/>. Please take some time to become familiar with *Posters*.
+This starts an application server containing the *Posters* application. To access it, open a browser with this URL: [http://localhost:8080/posters/](http://localhost:8080/posters/). Please take some time to become familiar with *Posters*.
 
 {{% note title="Changing the default ports" %}}
 The demo application uses ports 8080 (http) and 8443 (https) per default. If you need to change this, you can do so by opening the file `<XLT>/samples/app-server/start.ini` and changing the settings for `jetty.http.port` and `jetty.ssl.port`.

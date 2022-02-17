@@ -48,6 +48,7 @@ lastmod = [":git", "lastmod", "date", "publishDate", ":fileModTime"]
 # Configure how URLs look like per section.
 [permalinks]
 blog = "/:section/:year/:month/:day/:slug/"
+release-notes = "/release-notes/:title/"
 
 ## Configuration for BlackFriday markdown parser: https://github.com/russross/blackfriday
 [blackfriday]
