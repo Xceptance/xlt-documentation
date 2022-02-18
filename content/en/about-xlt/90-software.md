@@ -1,12 +1,12 @@
 ---
-title: "Used Software"
+title: "Software Used"
 
 type: docs
 
 weight: 90
 
 aliases: 
-    - /about-xlt/used-software
+    - /about-xlt/software-used
 
 description: >
     The open source software and components used to build this documentation.
