@@ -8,7 +8,7 @@ description: >
     How XTC helps you to keep track of resource usage within your organization.
 ---
 
-When performing load tests, agent machines are started on your behalf to drive the traffic against the system under test. After a load test, both the raw load test results (measurements, error information, etc.) and also the reports generated from the results are saved to a storage device. Both agent machines and storage incur costs. XTC records information about machine hours and occupied storage to give you an overview for an [organization's](#organization-resource-usage) or [project's](#project-resource-usage) resource usage.
+When performing load tests, agent machines are started on your behalf to drive the traffic against the system under test. After a load test, both the raw load test results (measurements, error information, etc.) and also the reports generated from the results are saved to a storage device. Both agent machines and storage incur costs. XTC records information about machine hours and occupied storage to give you an overview for an [organization's]({{< relref "#organization-resource-usage" >}}) or [project's]({{< relref "#project-resource-usage" >}}) resource usage.
 
 ## Organization Resource Usage
 

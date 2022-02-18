@@ -7,12 +7,12 @@ type: docs
 description: >
   All properties for controlling the load and performance test environment.
 ---
-XLT uses Java properties files to configure its components and your [load test suite](../460-test-suite-configuration/). Typically, a distributed load generation environment is required to generate enough load. This requires a cluster of test machines. Don’t worry, it is also possible to generate low load without any remote machines. In any case, before you can start a test you need to configure the XLT load generation environment as outlined below. 
+XLT uses Java properties files to configure its components and your [load test suite]({{< relref "480-test-suite-configuration" >}}). Typically, a distributed load generation environment is required to generate enough load. This requires a cluster of test machines. Don’t worry, it is also possible to generate low load without any remote machines. In any case, before you can start a test you need to configure the XLT load generation environment as outlined below. 
 
 These property files are used to configure the main components of the XLT load generation runtime:
 
-- `<XLT>/config/agentcontroller.properties` - [Agent Controller Configuration](#agentcontroller-configuration)
-- `<XLT>/config/mastercontroller.properties` - [Master Controller Configuration](#mastercontroller-configuration)
+- `<XLT>/config/agentcontroller.properties` - [Agent Controller Configuration]({{< relref "#agentcontroller-configuration" >}})
+- `<XLT>/config/mastercontroller.properties` - [Master Controller Configuration]({{< relref "#mastercontroller-configuration" >}})
 
 ## Agentcontroller Configuration
 
@@ -67,7 +67,7 @@ log4j.appender.console.layout = org.apache.log4j.PatternLayout
 log4j.appender.console.layout.ConversionPattern = [%d{HH:mm:ss,SSS}] %-5p [%t] - %m%n
 ```
 
-Also see <a href="http://logging.apache.org/log4j/1.2/apidocs/index.html" target="_blank">Apache Log4j API Docs</a> for more information on log4j settings.
+Also see [Apache Log4j API Docs](http://logging.apache.org/log4j/1.2/apidocs/index.html) for more information on log4j settings.
 
 ### Configuration via Command Line
 
@@ -170,7 +170,7 @@ This setting can also be specified on the command line:
     -Dcom.xceptance.xlt.mastercontroller.ignoreUnreachableAgentControllers=true
 ```
 
-Note that this setting only has an effect when running the master controller in [non-interactive mode](../310-test-execution/#auto-mode) (i.e. when started with `-auto`).
+Note that this setting only has an effect when running the master controller in [non-interactive mode]({{< relref "310-test-execution/#auto-mode" >}}) (i.e. when started with `-auto`).
 
 ### Parallel Communication with Remote Agentcontrollers
 

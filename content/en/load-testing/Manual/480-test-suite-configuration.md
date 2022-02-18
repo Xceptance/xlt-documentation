@@ -8,7 +8,7 @@ description: >
   All properties to control the load and performance test suite, and how to use them.
 ---
 
-XLT uses Java properties files to configure the main components of the [load generation environment](../490-environment-configuration/) and your load test suite. The basic characteristics and syntax of this format are also valid for the XLT properties files.
+XLT uses Java properties files to configure the main components of the [load generation environment]({{< relref "490-environment-configuration/" >}}) and your load test suite. The basic characteristics and syntax of this format are also valid for the XLT properties files.
 
 When reading the properties, XLT distinguishes between _load test mode_ and _development mode_. As its name implies, the _load test mode_ is active when test cases are executed as load tests by the XLT master controller/agent controller. When test cases are executed as JUnit tests in Eclipse or any other JUnit test runner, they run in _development mode_. Even though the _development mode_ is mainly used for test case development, it will also be active if your test suite is meant to perform an automated functional test manually triggered from time to time or integrated in a build process.
 
@@ -16,10 +16,10 @@ XLT makes use of a hierarchical file system so that properties can be distribute
 
 All properties are read from the `<testsuite>/config/` directory. The existing properties files are listed below, sorted by priority from lowest to highest. The following sections outline the settings relevant to load testings, as contained in these property files:
 
-- `<testsuite>/config/default.properties` - [Default Configuration](#default-configuration)
-- `<testsuite>/config/project.properties` - [Test Project Configuration](#test-project-configuration)
-- `<testsuite>/config/test.properties` - [Load Test Profile Configuration](#load-test-profile-configuration)
-- `<testsuite>/config/dev.properties` - [Development Environment Configuration](#development-environment-configuration)
+- `<testsuite>/config/default.properties` - [Default Configuration]({{< relref "#default-configuration" >}})
+- `<testsuite>/config/project.properties` - [Test Project Configuration]({{< relref "#test-project-configuration" >}})
+- `<testsuite>/config/test.properties` - [Load Test Profile Configuration]({{< relref "#load-test-profile-configuration" >}})
+- `<testsuite>/config/dev.properties` - [Development Environment Configuration]({{< relref "#development-environment-configuration" >}})
 
 ## Default Configuration
 
@@ -146,7 +146,7 @@ By default, the client will talk HTTP/2 or HTTP/1.1, whatever the server wants. 
 com.xceptance.xlt.http.client.okhttp3.http2Enabled = false
 ```
 
-You might want to know which protocol was eventually negotiated between the HTTP client and the server. Please consult the [result browser](../440-result-browser/#request-and-response-information) which will display the protocol version used on the *Request/Response Information* tab.
+You might want to know which protocol was eventually negotiated between the HTTP client and the server. Please consult the [result browser]({{< relref "440-result-browser/#request-and-response-information" >}}) which will display the protocol version used on the *Request/Response Information* tab.
 
 {{< image src="user-manual/result-browser_protocol.png">}}
 XLT Result Browser displaying the used protocol version
@@ -223,7 +223,7 @@ com.xceptance.xlt.samples.tests.webdriver.TAuthor.write-count = 2
 
 ## Load Test Profile Configuration
 
-The settings required to configure a particular load test profile are collected in a separate file. See [Load Configuration](../470-load-configuration) or the properties file itself for details of the available load test settings, what they mean and how to define values for them. 
+The settings required to configure a particular load test profile are collected in a separate file. See [Load Configuration]({{< relref "470-load-configuration" >}}) or the properties file itself for details of the available load test settings, what they mean and how to define values for them. 
 
 The default name of this file is `test.properties`. However, it’s variable and several files with different load test profile configurations may exist such as `test-target-load.properties` and `test-2x-target-load.properties`. This way, many configurations can be defined and prepared in advance and used as needed. You switch between these files by changing the property `com.xceptance.xlt.testPropertiesFile` in the `project.properties` file.
 
@@ -387,7 +387,7 @@ You can define secret properties in one of two ways:
 Secret properties are available to test cases under their full name (including the `secret.` prefix), as well as without that prefix: `secret.property` can be accessed as `secret.property` (if you want to ensure, that it was defined as secret) and `property` (in order to keep secret properties compatible to existing test case code).
 
 {{% note %}}
-The usual lookup rules for project/test class/user-specific property names apply for secret properties as well. See [Resolving Property Keys](#resolving-property-keys) for further details.
+The usual lookup rules for project/test class/user-specific property names apply for secret properties as well. See [Resolving Property Keys]({{< relref "#resolving-property-keys" >}}) for further details.
 {{% /note %}}
 
 {{% danger %}}
@@ -546,7 +546,7 @@ When looking up a property value for a scenario, XLT tries the following alterna
 2.  *\<test-class-name\>.\<property-name\>* - the property name prefixed with the fully qualified test class name
 3.  *\<property-name>* - the bare property name, without any prefix
 
-Please check the full [list of currently supported framework properties](../../../release-notes/4.8.x/#scenario-specific-overrides-of-framework-properties) and their default value in the release notes.
+Please check the full [list of currently supported framework properties]({{< relref "/release-notes/4_8_x#scenario-specific-overrides-of-framework-properties" >}}) and their default value in the release notes.
 
 
 ### Secret properties take precedence

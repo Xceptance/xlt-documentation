@@ -8,7 +8,7 @@ description: >
   How to setup the test suite to run as performance test and what load profiles are supported.
 ---
 
-Before running your test suite as a performance test, you will need to configure the load to be applied to your app under test. The settings required to configure a particular load test profile are collected in a property file inside the load test suite. Several files with different load test profile configurations may exist. This way, many configurations can be defined and prepared in advance and used as needed. You switch between these files by changing the property `com.xceptance.xlt.testPropertiesFile` in the `project.properties` file. For more information about the properties and syntax, also see [Load Test Profile Configuration](../480-test-suite-configuration#load-test-profile-configuration). Here we will have a look at the basic concepts of [load models](#load-models), [load factor](#load-factor) and [load profiles](#load-profiles) and how you may define your target load in different ways with XLT.
+Before running your test suite as a performance test, you will need to configure the load to be applied to your app under test. The settings required to configure a particular load test profile are collected in a property file inside the load test suite. Several files with different load test profile configurations may exist. This way, many configurations can be defined and prepared in advance and used as needed. You switch between these files by changing the property `com.xceptance.xlt.testPropertiesFile` in the `project.properties` file. For more information about the properties and syntax, also see [Load Test Profile Configuration]({{< relref "480-test-suite-configuration#load-test-profile-configuration" >}}). Here we will have a look at the basic concepts of [load models]({{< relref "#load-models" >}}), [load factor]({{< relref "#load-factor" >}}) and [load profiles]({{< relref "#load-profiles" >}}) and how you may define your target load in different ways with XLT.
 
 ## Load Models
 
@@ -150,7 +150,7 @@ The variable profile comes in handy when you want to combine different load leve
 
 To define how the load parameter should vary over time, you need to specify a load function. You do so by defining a sequence of time/value pairs, each denoting a point in time when the slope of the load function changes. When you connect the dots by a straight line, the final shape of the load function evolves.
 
-Multiple time/value pairs can be specified by separating them using one or more spaces, commas, semi-colons, or tab characters. The time part can be given in all formats supported for [time periods](../480-test-suite-configuration/#time_period_values).
+Multiple time/value pairs can be specified by separating them using one or more spaces, commas, semi-colons, or tab characters. The time part can be given in all formats supported for [time periods]({{< relref "480-test-suite-configuration/#time_period_values" >}}).
 
 {{% note notitle %}}
 Please do not use white-space characters (space or tab) to separate both the sub-parts of the time part and the various time/value parts, as this leads to ambiguities and misunderstandings. In order to avoid such situations, we strongly recommend to use either commas or semi-colons to separate the time/value parts.
