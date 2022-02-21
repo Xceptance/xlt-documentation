@@ -9,7 +9,7 @@ description: >
     How to Watch Performance Data Instantly in Your Graphite Instance
 ---
 
-While a load test is running, the master controller only shows basic information about the load test status. In interactive mode, you could at least download [intermediate results](../../manual/320-test-evaluation#intermediate-results) and generate a report to see how the test is going. In automated environments, however, you would have to wait until the test run is finished before you can actually do so.
+While a load test is running, the master controller only shows basic information about the load test status. In interactive mode, you could at least download [intermediate results]({{< relref "/load-testing/manual/320-test-evaluation#intermediate-results" >}}) and generate a report to see how the test is going. In automated environments, however, you would have to wait until the test run is finished before you can actually do so.
 
 Wouldn’t it be great if you could watch the results in real time and see how the performance varies over time while the test is still running? To this end, we have added the support of Graphite, a well-known data collection and graphing tool. During a load test, XLT could push selected metrics to Graphite. Using Graphite’s graphing capabilities or another graphing/dashboard tool on top of Graphite, you can watch the most important performance data instantly:
 
@@ -51,7 +51,7 @@ If enabled, XLT reports the following metrics to Graphite:
 Since not all performance details are sent to Graphite, you will only get a first impression of the application’s behavior. For a detailed analysis, the load test report is still the tool of choice.
 
 {{% note notitle %}}
-<a href="http://graphite.readthedocs.org/en/latest/install.html" target="_blank">Graphite</a> is not bundled with XLT. You need to install, configure, and run it yourself.
+[Graphite](http://graphite.readthedocs.org/en/latest/install.html) is not bundled with XLT. You need to install, configure, and run it yourself.
 {{% /note %}}
 
 ### Page load timings in Graphite

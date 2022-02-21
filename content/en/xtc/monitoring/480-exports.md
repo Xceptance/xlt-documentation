@@ -26,7 +26,7 @@ Download automatically generated execution data by clicking the filename.
 
 ### Manual Export of Execution Data
 
-It is also possible to manually export scenario executions from the last 31 days, either all available executions or only those that ended with a certain result or match a certain search phrase in the chosen time range. To this end, open the _History_ page of your monitoring project, [filter the entries as needed](../400-monitoring-projects/#history), and click the _Export_ button to download the resulting CSV file to your disk:
+It is also possible to manually export scenario executions from the last 31 days, either all available executions or only those that ended with a certain result or match a certain search phrase in the chosen time range. To this end, open the _History_ page of your monitoring project, [filter the entries as needed]({{< relref "400-monitoring-projects#history" >}}), and click the _Export_ button to download the resulting CSV file to your disk:
 
 {{< image src="xtc/monitoring_history_export.png" >}}
 Download execution data from history by clicking _Export to CSV_.

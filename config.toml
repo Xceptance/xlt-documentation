@@ -18,6 +18,9 @@ enableMissingTranslationPlaceholders = true
 
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
+# log warning if link does not exist on build (instead of default ERROR, which fails the build)
+refLinksErrorLevel = "WARNING"
+
 [frontmatter]
 date = [":git", "lastmod", "date", "publishDate", ":fileModTime"]
 lastmod = [":git", "lastmod", "date", "publishDate", ":fileModTime"]
@@ -45,6 +48,7 @@ lastmod = [":git", "lastmod", "date", "publishDate", ":fileModTime"]
 # Configure how URLs look like per section.
 [permalinks]
 blog = "/:section/:year/:month/:day/:slug/"
+release-notes = "/release-notes/:title/"
 
 ## Configuration for BlackFriday markdown parser: https://github.com/russross/blackfriday
 [blackfriday]
@@ -173,4 +177,3 @@ enable = false
 	url = "https://blog.xceptance.com/"
 	icon = "fa fa-newspaper"
         desc = "The Xceptance Blog"
-

@@ -22,18 +22,18 @@ A possible setup which you could use to run a load test using a distributed load
 Distributed Load Generation Environment
 {{< /image >}}
 
-One machine runs your [master controller](../../manual/010-basics/#mcmaster-controller), which controls several machines that run the [agent controllers](../../manual/010-basics/#acagent-controller) and [agents](../../manual/010-basics/#agents). 
+One machine runs your [master controller]({{< relref "/load-testing/manual/010-basics#mcmaster-controller" >}}), which controls several machines that run the [agent controllers]({{< relref "../manual/010-basics#acagent-controller" >}}) and [agents]({{< relref "/load-testing/manual/010-basics#agents" >}}). 
 
-Xceptance offers public images for AWS machines (AMIs). You can also use <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">XLT-Packer</a> to build your own images for GCP and AWS. 
+Xceptance offers public images for AWS machines (AMIs). You can also use [XLT Packer](https://github.com/Xceptance/XLT-Packer) to build your own images for GCP and AWS. 
 
-XLT ships with two small scripts that simplify the process of setting up and managing load test instances: **[gce_admin](#google-cloud-gc)** (for Google Cloud) and **[ec2_admin](#amazon-web-services-aws)** (for Amazon Web Services).
+XLT ships with two small scripts that simplify the process of setting up and managing load test instances: **[gce_admin]({{< relref "#google-cloud-gc" >}})** (for Google Cloud) and **[ec2_admin]({{< relref "#amazon-web-services-aws" >}})** (for Amazon Web Services).
 
 #### Add Machines to the MC Configuration
 
 The scripts will set up a cluster of test machines quickly. After the setup, you just have to add the machines to the master controller configuration: navigate to `<XLT>/config/mastercontroller.properties` on your MC machine, then enter the AC data the tools give you when you list the created instances. Now you are ready for load testing.
 
 {{% note title="How many machines do I need?" %}}
-It can be hard to determine the number and size of load testing machines you'll need for your setup. Here's [a small guide about test sizing](../../how-tos/test-sizing/).
+It can be hard to determine the number and size of load testing machines you'll need for your setup. Here's [a small guide about test sizing]({{< relref "/load-testing/how-tos/test-sizing" >}}).
 {{% /note %}}
 
 After your test finished and the mastercontroller has downloaded all the data required for report generation, gce_admin/ec2_admin can also help you to easily terminate all of your test machines.
@@ -42,7 +42,7 @@ After your test finished and the mastercontroller has downloaded all the data re
 
 ### Setting up Google Cloud Access
 
-To start the XLT **gce_admin** tool to manage load test machines, you need to set up GCP access first using Google's **gcloud command line tool**. In order to do this, download and install the Google Cloud SDK for your platform. Follow the directions to <a href="https://cloud.google.com/sdk/docs/downloads-interactive" target="_blank">setup the SDK</a>. 
+To start the XLT **gce_admin** tool to manage load test machines, you need to set up GCP access first using Google's **gcloud command line tool**. In order to do this, download and install the Google Cloud SDK for your platform. Follow the directions to [setup the SDK](https://cloud.google.com/sdk/docs/downloads-interactive). 
 
 Add the Cloud SDK command line tools to your PATH and enable command completion if you want to. In any case, restart your shell after the installation and run `gcloud init` to initialize the gcloud environment. This will prompt you to log in using your Google user account - log in (in your browser) and click _Allow_ to grant permission to access Google Cloud resources.
 
@@ -67,7 +67,7 @@ In the browser, log in and accept the requested permissions.
 
 ### Image Templates for Google Cloud 
 
-Right now there are no public XLT gcloud images provided, however you can build your own images using our public <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">XLT-Packer project</a>. It contains a README on how to use it to create images for the cloud vendor of your choice.
+Right now there are no public XLT gcloud images provided, however you can build your own images using our public [XLT-Packer project](https://github.com/Xceptance/XLT-Packer). It contains a README on how to use it to create images for the cloud vendor of your choice.
 
 ### Setting up gce_admin
 
@@ -77,7 +77,7 @@ Before its first usage, the gce_admin tool needs to be configured. You can do th
 xlt.gce.projectId = my-project-1
 ```
 
-To use the **gce_admin** tool to create, list, and stop Google Cloud instances (which will run your [agent controllers](../../manual/010-basics/#acagent-controller) and [agents](../../manual/010-basics/#agents)), navigate to `<XLT>/bin/` and run:
+To use the **gce_admin** tool to create, list, and stop Google Cloud instances (which will run your [agent controllers]({{< relref "/load-testing/manual/010-basics#acagent-controller" >}}) and [agents]({{< relref "/load-testing/manual/010-basics#agents" >}})), navigate to `<XLT>/bin/` and run:
 
 ```bash
 $ ./gce_admin.sh
@@ -218,13 +218,13 @@ The Amazon Elastic Compute Cloud service is another perfect fit for on-demand lo
 -   stop running instances
 -   list running instances (and print a corresponding agent controller configuration ready to be pasted into `mastercontroller.properties`)
 
-Note that this tool is not intended to replace the <a href="http://aws.amazon.com/" target="_blank">AWS console</a> or similar tools.
+Note that this tool is not intended to replace the [AWS console](http://aws.amazon.com/) or similar tools.
 
 ### AMIs for AWS 
 
-Xceptance provides ready to go AMIs (Amazon Machine Images) with XLT. These AMIs are pre-packaged systems, which are optimized for load testing and have XLT already installed. Using one of these AMIs may save you the work to create and maintain your own AMIs, but may also impose additional costs. Amazon will charge you for the infrastructure usage. Make sure that your security group permits communication on port 8500. This is the XLT agent port on these machines. A list of current AWS AMI ids can be found next to the release information on <a href="https://github.com/Xceptance/XLT/releases" target="_blank">GitHub</a>.
+Xceptance provides ready to go AMIs (Amazon Machine Images) with XLT. These AMIs are pre-packaged systems, which are optimized for load testing and have XLT already installed. Using one of these AMIs may save you the work to create and maintain your own AMIs, but may also impose additional costs. Amazon will charge you for the infrastructure usage. Make sure that your security group permits communication on port 8500. This is the XLT agent port on these machines. A list of current AWS AMI ids can be found next to the release information on [Github](https://github.com/Xceptance/XLT/releases).
 
-In addition to that, you can also build your own images using our public <a href="https://github.com/Xceptance/XLT-Packer" target="_blank">XLT-Packer project</a>. It contains a README on how to use it to create images set up for running XLT for the cloud vendor of your choice.
+In addition to that, you can also build your own images using our public [XLT-Packer project](https://github.com/Xceptance/XLT-Packer). It contains a README on how to use it to create images set up for running XLT for the cloud vendor of your choice.
 
 {{%warning title="Older AMIs"%}}
 Usually the last major and minor versions of XLT AMIs are provided by Xceptance. There is no guarantee that older version will be kept available. Make sure you either have your own AMIs setup or upgrade to a more current one frequently.
@@ -266,7 +266,7 @@ Note that when creating AWS instances from AMIs you will see your own AMIs to ch
 {{% /note %}}
 
 {{% warning notitle %}}
-When using the **ec2_admin** to stop instances, it does not distinguish between instances it started and instances you might have started manually using other tools. For more fine-grained control, we recommend the <a href="http://aws.amazon.com/" target="_blank">AWS Management Console</a>.
+When using the **ec2_admin** to stop instances, it does not distinguish between instances it started and instances you might have started manually using other tools. For more fine-grained control, we recommend the [AWS Management Console](http://aws.amazon.com/).
 {{% /warning %}}
 
 ### Running AWS Instances
@@ -319,7 +319,7 @@ This is just for information purposes to make machines better comparable because
 
 <a name="aws-name-tag"></a>
 
-`ec2_admin` will ask you _how many instances_ you want to start, and lets you set an _instance name_. All instances set up in this action will be tagged with this name, so you can easily filter them later when [listing](#listing-running-aws-instances) or [terminating](#terminating-aws-instances) instances. Keep in mind that <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#tag-restrictions" target="_blank">AWS tag value restrictions</a> apply.
+`ec2_admin` will ask you _how many instances_ you want to start, and lets you set an _instance name_. All instances set up in this action will be tagged with this name, so you can easily filter them later when [listing]({{< relref "#listing-running-aws-instances" >}}) or [terminating]({{< relref "#terminating-aws-instances" >}}) instances. Keep in mind that [AWS tag value restrictions](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#tag-restrictions) apply.
 
 ```text
 Enter the number of instances to start: => 2
@@ -398,7 +398,7 @@ Filter instances by one or more tags:
 => 2 4
 ```
 
-When starting Amazon EC2 machine instances, you can also [specify a name tag](#aws-name-tag) that will be assigned to each instance that has been started. This name tag can be used later on to filter the running instances, for example when listing or terminating them. 
+When starting Amazon EC2 machine instances, you can also [specify a name tag]({{< relref "#aws-name-tag" >}}) that will be assigned to each instance that has been started. This name tag can be used later on to filter the running instances, for example when listing or terminating them. 
 
 The tool will then output a mastercontroller configuration for the chosen set of AWS machines:
 
@@ -413,7 +413,7 @@ com.xceptance.xlt.mastercontroller.agentcontrollers.ac001_ap-southeast-2.url = h
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac002_us-east-1.url = https://54.82.197.127:8500
 ```
 
-The generated agent controller names will also contain the region in which the respective machine is running. If your load test is driven from multiple locations in the world, this way it is much easier to tell which agent controller runs in which AWS region. It also allows later filtering using [merge rules](../010-merge-rules) for enhanced reports.
+The generated agent controller names will also contain the region in which the respective machine is running. If your load test is driven from multiple locations in the world, this way it is much easier to tell which agent controller runs in which AWS region. It also allows later filtering using [merge rules]({{< relref "010-merge-rules" >}}) for enhanced reports.
 
 #### More Details about Running Instances
 
@@ -433,7 +433,7 @@ Test1 | 35.177.98.135 | t2.micro | xc-eu-west-2  | default         | Proxy | run
 
 ### Terminating AWS Instances
 
-To terminate AWS instances by `ec2_admin` ({{< kbd >}}t{{</ kbd >}}), you will be prompted to select a region and filters as [above](#listing-running-aws-instances). 
+To terminate AWS instances by `ec2_admin` ({{< kbd >}}t{{</ kbd >}}), you will be prompted to select a region and filters as [above]({{< relref "#listing-running-aws-instances" >}}). 
 
 This way, running machine instances with the same name tag assigned can be terminated all at once, even across regions. This saves you going through each region separately. Simply specify multiple regions separated by comma when prompted.
 

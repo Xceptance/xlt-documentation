@@ -63,7 +63,7 @@ When saving request data to disk for the result browser, the request body of POS
 com.xceptance.xlt.output2disk.maxRequestBodySize = 12345
 ```
 
-If you have saved the page output to disk and want links from the error entries in the load test report to the corresponding result browsers in the results directory in your [report](../320-test-evaluation), make sure the property is set accordingly in `reportgenerator.properties`:
+If you have saved the page output to disk and want links from the error entries in the load test report to the corresponding result browsers in the results directory in your [report]({{< relref "320-test-evaluation" >}}), make sure the property is set accordingly in `reportgenerator.properties`:
 
 ```bash
 com.xceptance.xlt.reportgenerator.linkToResultBrowsers = true
@@ -96,7 +96,7 @@ This is handy during test development, but these results (result browsers) will 
 
 The saved page output is held in a folder that represents a specific execution of a test (`results/[testcase]/[virtual-user]/output/[transaction-ID]`). There you will find an `index.html` containing the _XLT Result Browser_. The result browser comes with an integrated navigation side bar to facilitate browsing the complete page output of the transaction and looking at every single request in detail. The file `last.html` in the output folder `results/[testcase]/[virtual-user]/output` references the result browser for the last executed transaction of this virtual user.
 
-The result browser navigation will only permit access to the pages of a transaction if they are directly related to actions. Therefore, defining actions correctly is very important to make the most effective use of the result browser. For details on how to structure test cases and create actions, see [Basic Concepts](../030-concepts) and [Code Structuring Recommendations](../450-test-suites/#code-structuring-recommendations).
+The result browser navigation will only permit access to the pages of a transaction if they are directly related to actions. Therefore, defining actions correctly is very important to make the most effective use of the result browser. For details on how to structure test cases and create actions, see [Basic Concepts]({{< relref "030-concepts" >}}) and [Code Structuring Recommendations]({{< relref "450-test-suites/#code-structuring-recommendations" >}}).
 
 {{< image src="user-manual/result-browser.png">}}
 XLT Result Browser - Page Output
@@ -153,7 +153,7 @@ XLT Result Browser - Request Details
 
 ### Response Content Tools
 
-Use the tabs at the top of the right-hand side output area to see the (raw) request body and response content. If you opened the report as a file from a local disk, most browser will warn you that the content can not be displayed. This is caused by a security measure in place to prevent exposing local data. Please use a local webserver instead to open the report from a local disk. Recommended applications are <a href="https://www.npmjs.com/package/serve" target="_blank">Node.JS - serve</a>, <a href="https://2ality.com/2014/06/simple-http-server.html" target="_blank">Python SimpleHTTPServer</a>, or the <a href="http://php.kambing.ui.ac.id/manual/en/features.commandline.webserver.php" target="_blank">PHP Built-In Web Server</a>.
+Use the tabs at the top of the right-hand side output area to see the (raw) request body and response content. If you opened the report as a file from a local disk, most browser will warn you that the content can not be displayed. This is caused by a security measure in place to prevent exposing local data. Please use a local webserver instead to open the report from a local disk. Recommended applications are [Node.JS - serve](https://www.npmjs.com/package/serve), [Python SimpleHTTPServer](https://2ality.com/2014/06/simple-http-server.html), or the [PHP Built-In Web Server](http://php.kambing.ui.ac.id/manual/en/features.commandline.webserver.php).
 
 {{< image src="user-manual/result-browser_response1_small.png" large="user-manual/result-browser_response1.png">}}
 XLT Result Browser - Response Content

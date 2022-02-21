@@ -12,13 +12,13 @@ description: >
 
 XTC is structured into organization and projects. Each projects belongs to exactly one organization. Imagine organizations as companies or entities and projects as logical work items such a products, services, or tasks. Each user account can be a member of many organizations and many projects. This is especially useful for implementation partners and external consultants while it still serves the needs of development and test departments.
 
-The basic idea of XTC is: [user accounts](../040-user-accounts) can run tests organized in [projects](../050-projects) of different project natures for [organizations](../045-organizations). 
+The basic idea of XTC is: [user accounts]({{< relref "040-user-accounts" >}}) can run tests organized in [projects]({{< relref "050-projects" >}}) of different project natures for [organizations]({{< relref "045-organizations" >}}). 
 
 {{< image src="xtc/xtc_basic_structure.svg" max-width="80%" >}}
 XTC User Accounts as Members of Orgs which Contain Projects that Run Tests 
 {{< /image >}}
 
-To use Xceptance Test Center, you need an account. You can easily sign up on https://xtc.xceptance.com/. XTC allows you to either select a password for your account, or use an external login provider (Google or Microsoft) for SSO. For more information, see [user accounts](../040-user-accounts).
+To use Xceptance Test Center, you need an account. You can easily sign up on https://xtc.xceptance.com/. XTC allows you to either select a password for your account, or use an external login provider (Google or Microsoft) for SSO. For more information, see [user accounts]({{< relref "040-user-accounts" >}}).
 
 ## Selecting an Organization and a Project
 

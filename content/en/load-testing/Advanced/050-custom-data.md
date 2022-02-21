@@ -11,14 +11,14 @@ description: >
 
 ## Introduction
 
-XLT [captures a lot of data](../150-results/) out of the box, and since it's using open data formats (xml/csv) it is well fitted for custom analytics and reporting. In addition to the recorded information about transactions, actions, and requests being executed as well as event information you can also get
+XLT [captures a lot of data]({{< relref "150-results" >}}) out of the box, and since it's using open data formats (xml/csv) it is well fitted for custom analytics and reporting. In addition to the recorded information about transactions, actions, and requests being executed as well as event information you can also get
 
 * custom events,
 * custom timers,
 * custom values and
 * external data. 
 
-This page shows you how to add the different kinds of custom information to your test scenarios. To learn more about the format and contents of the recorded csv data and the meaning of every column depending on the data record type, see [Result Data](../150-results/). 
+This page shows you how to add the different kinds of custom information to your test scenarios. To learn more about the format and contents of the recorded csv data and the meaning of every column depending on the data record type, see [Result Data]({{< relref "150-results" >}}). 
 
 ## Custom Events
 
@@ -49,7 +49,7 @@ E,ProductHasNoPrice,1456928543182,TOrder,PID: 12345
 
 ## Custom Timers
 
-Custom timers are used to record measurements of elapsed time in your test scenarios. The logged data contains the runtime in ms as well as a failed flag for the measured action. The recorded data will be shown in the [Custom Timers](../../manual/320-test-evaluation/#custom-timers--values) section in the load test report. This rendering will show the same level of detail as other timers in the report.
+Custom timers are used to record measurements of elapsed time in your test scenarios. The logged data contains the runtime in ms as well as a failed flag for the measured action. The recorded data will be shown in the [Custom Timers]({{< relref "/load-testing/manual/320-test-evaluation#custom-timers--values" >}}) section in the load test report. This rendering will show the same level of detail as other timers in the report.
 
 {{< image src="user-manual/custom_timers.png">}}
 Custom Timers in the Test Report
@@ -81,7 +81,7 @@ C,Foo,1456928543182,1234,true
 ```
 
 ## Custom Values
-Custom values are used to record measurements of arbitrary double values. They will show up in the [Custom Values](../../manual/320-test-evaluation/#custom-timers--values) section in the load test report with almost the same level of detail as timers.
+Custom values are used to record measurements of arbitrary double values. They will show up in the [Custom Values]({{< relref "/load-testing/manual/320-test-evaluation#custom-timers--values" >}}) section in the load test report with almost the same level of detail as timers.
 
 {{< image src="user-manual/custom_values.png">}}
 Custom Values in the Test Report
@@ -198,7 +198,7 @@ The properties have the following meaning:
 
 #### Result
 
-XLT will then take care to execute your sampler regularly. It will show up in the [Custom Values](../../manual/320-test-evaluation/#custom-timers--values) section of the load test report just like other custom values.
+XLT will then take care to execute your sampler regularly. It will show up in the [Custom Values]({{< relref "/load-testing/manual/320-test-evaluation#custom-timers--values" >}}) section of the load test report just like other custom values.
 
 {{< image src="user-manual/custom_samplers.png">}}
 Custom Samplers in the Test Report
@@ -253,7 +253,7 @@ If the external CSV data is precomputed and just needs to be displayed as a data
 #### Custom Parsers
 If you need to use other input file formats than CSV, you have to write your own custom parser class. Your class must extend `com.xceptance.xlt.api.report.external.AbstractLineParser`.
 
-For an example of an advanced parser class that deals with sampled data, see the two parser implementations in the source directory of the [demo project](#example). They process the logs of the command line tool _iostat_.
+For an example of an advanced parser class that deals with sampled data, see the two parser implementations in the source directory of the [demo project]({{< relref "#example" >}}). They process the logs of the command line tool _iostat_.
 
 * **IostatCpuParser:** Parses the CPU section of an _iostat_ log.
 * **IostatDeviceParser:** Parses the Device section of an _iostat_ log.

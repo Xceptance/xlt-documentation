@@ -60,4 +60,4 @@ Currently you can not configure this dashboard. XTC offers a default dashboard f
 
 ### Exports
 
-Finally, XTC generates a compressed archive of test [execution data](../480-exports) (a csv file containing basic information for each executed scenario, such as start time, duration, scenario name, result, failure message or runtime values) automatically for every finished month of your monitoring project. You can find and download this data under **Exports**.
+Finally, XTC generates a compressed archive of test [execution data]({{< relref "480-exports" >}}) (a csv file containing basic information for each executed scenario, such as start time, duration, scenario name, result, failure message or runtime values) automatically for every finished month of your monitoring project. You can find and download this data under **Exports**.
