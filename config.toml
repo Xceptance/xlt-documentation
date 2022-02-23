@@ -1,5 +1,5 @@
 baseURL = "/"
-title = "XLT Documentation"
+title = "Xceptance Documentation Hub"
 
 enableRobotsTXT = true
 
@@ -72,8 +72,8 @@ anchor = "smart"
 
 [languages]
 [languages.en]
-title = "XLT Documentation"
-description = "XLT's Documentation including Manuals and How-Tos"
+title = "Xceptance Documentation Hub"
+description = "Documentation for XLT and XTC including Manuals and How-Tos"
 languageName ="English"
 # Weight used for sorting.
 weight = 1
@@ -177,3 +177,8 @@ enable = false
 	url = "https://blog.xceptance.com/"
 	icon = "fa fa-newspaper"
         desc = "The Xceptance Blog"
+
+[[menu.main]]
+    name = "XLT"
+    weight = 15
+    url = "/xlt"

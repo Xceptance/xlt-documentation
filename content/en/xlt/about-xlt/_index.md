@@ -8,9 +8,6 @@ weight: 1
 
 # breadcrumb: disable
 
-menu:
-  main:
-    weight: 1
 ---
 
 XLT (Xceptance Load Test) is a multi-purpose load and performance test tool with the ability to be used for test automation too. The test automation supports WebDriver-style automation but adds features to it. Load testing and test automation together permit you to run client performance testing. That means, you can use a real browser to run a performance test at scale rather than trying to build all the calls manually.

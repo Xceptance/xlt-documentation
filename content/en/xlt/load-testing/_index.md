@@ -6,9 +6,8 @@ type: docs
 
 weight: 10
 
-menu:
-  main:
-    weight: 10
+aliases:
+    - /load-testing
     
 description: >
     Learn all about the load and performance testing with XLT
