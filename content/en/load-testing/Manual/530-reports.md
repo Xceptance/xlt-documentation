@@ -11,16 +11,16 @@ description: >
 
 As the most important tool for analyzing the results of a load test run, XLT offers three types of load test reports, which are thoroughly illustrated in the sections below.
 
-* [Load test report](#load-test-report): The bread and butter report for your daily work. It contains all information about a single test run. 
-* [Comparison report](#comparison-report): A quick way to compare two test runs and see the differences. 
-* [Trend report](#trend-report): When you want to see the development of performance over time and set more than two reports in relation to each other, you will use the trend report.
+* [Load test report]({{< relref "#load-test-report" >}}): The bread and butter report for your daily work. It contains all information about a single test run. 
+* [Comparison report]({{< relref "#comparison-report" >}}): A quick way to compare two test runs and see the differences. 
+* [Trend report]({{< relref "#trend-report" >}}): When you want to see the development of performance over time and set more than two reports in relation to each other, you will use the trend report.
 
 ## Load Test Report
 
 A load test report is a report for a single test run or a manually combined set of runs. This report gives you all the information needed for a detailed analysis of a test run. This is what you need most often.
 
 {{% note title="Creating and Evaluating Reports" %}}
-You can find more about creating and evaluating load test reports in the section [Test Evaluation](/load-testing/manual/320-test-evaluation/). More information about reporting options can be found in the [Report Options](../540-report-options) section of the manual. 
+You can find more about creating and evaluating load test reports in the section [Test Evaluation]({{< relref "320-test-evaluation" >}}). More information about reporting options can be found in the [Report Options]({{< relref "540-report-options" >}}) section of the manual. 
 {{% /note %}}
 
 ## Comparison Report

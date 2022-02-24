@@ -30,7 +30,7 @@ The output path can be relative to your current location or absolute. XLT will n
 
 ## Excluding the Ramp-Up Phase
 
-In most cases you won’t be interested in what’s happening during the [ramp up phase](../../manual/470-load-configuration/#ramp-up-load-profile) (the period of your load test when, one by one, all the users are becoming active) because you typically just want to check what happens under full load. You can easily cut the ramp up part of the test from the report by using the `-noRampUp` parameter, e.g.:
+In most cases you won’t be interested in what’s happening during the [ramp up phase]({{< relref "470-load-configuration/#ramp-up-load-profile" >}}) (the period of your load test when, one by one, all the users are becoming active) because you typically just want to check what happens under full load. You can easily cut the ramp up part of the test from the report by using the `-noRampUp` parameter, e.g.:
 
 ```bash
 bin $ ./create_report.sh ../results/20191224-131200 -noRampUp

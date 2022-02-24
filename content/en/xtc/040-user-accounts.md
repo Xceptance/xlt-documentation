@@ -50,11 +50,11 @@ XTC enables you to manage your account information. After logging in, click your
 
 The _My Account_ view contains two tabs: _Profile_ and _Login Data_. 
 
-In **Profile** you may update your profile information such as your first and last name, your phone number (which may be useful for receiving [monitoring notifications](../monitoring/440-scenario-setup/#notifications)), and you can also upload an avatar/profile picture.
+In **Profile** you may update your profile information such as your first and last name, your phone number (which may be useful for receiving [monitoring notifications]({{< relref "monitoring/440-scenario-setup#notifications" >}})), and you can also upload an avatar/profile picture.
 
 In **Login Data** you can update your login data: to set a new e-mail address or password for your account, you need to enter the new data twice and confirm this with your current password. (If you are using an external provider for authentication, entering the password will not be necessary, and you will only be able to update your account's e-mail address.)
 
-External login providers for this account will be listed here and if you want to switch from internal authentication to using an external provider, you can [connect your XTC account to an external login provider](#connecting-existing-xtc-accounts-to-an-external-login-provider) here.
+External login providers for this account will be listed here and if you want to switch from internal authentication to using an external provider, you can [connect your XTC account to an external login provider]({{< relref "#connecting-existing-xtc-accounts-to-an-external-login-provider" >}}) here.
 
 ### Connecting Existing XTC Accounts to an External Login Provider
 
@@ -87,7 +87,7 @@ To enable 2FA for your XTC account, go to _My Account > Login Data_. In the sect
 If you later need to disable 2FA, simply click the button _Disable Two-Factor Authentication_ and confirm.
 
 {{% note notitle %}}
-Note that if you have bound your account to an [external login provider](#connecting-existing-xtc-accounts-to-an-external-login-provider) (currently Google or Microsoft), the section **Two-Factor Authentication** is not available in XTC as in this case 2FA is managed in the settings of your external account.
+Note that if you have bound your account to an [external login provider]({{< relref "#connecting-existing-xtc-accounts-to-an-external-login-provider" >}}) (currently Google or Microsoft), the section **Two-Factor Authentication** is not available in XTC as in this case 2FA is managed in the settings of your external account.
 {{% /note %}}
 
 ## Login Using an External Provider
