@@ -1,14 +1,10 @@
 ---
 title: "Xceptance Test Center"
-linktitle: "XTC"
+linktitle: "Basics"
 
 type: docs
 
 weight: 15
-
-menu:
-  main:
-    weight: 15
 
 description: All about XTC and how to use it for performance testing and monitoring.
 ---

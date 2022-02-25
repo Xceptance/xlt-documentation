@@ -229,3 +229,26 @@ footer {
 #cancel {
     margin-top: 5px;
 }
+
+/* from here on down it's all about dropdowns in the navbar */
+.xc-dropdown-menu {
+    position: absolute;
+    display: none;
+    z-index: 1000;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font-size: 1rem;
+    color: #222;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5rem 1rem;
+}
+
+.xc-dropdown-menu .dropdown-item::hover {
+    background-color: #999;
+}
