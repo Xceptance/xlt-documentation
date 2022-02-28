@@ -35,17 +35,34 @@ Before importing the test suite, place the tests in the following directory:
 ### Importing the _Posters_ Test Suite into Visual Studio Code 
 Once you are sure you have the required extensions, do the following:
 - Open the File dialog (File > Open Folder) 
-- Select the root directory to search in and point to your cloned test suite, e.g. `<posters-simple-loadtest-suite>`.
-- Click the 'Select Folder' button and the test suite should open as a Java project in Visual Studio Code.
 
+  {{< image src="how-to/ide/vsc1.png" max-width="75%">}}
+{{< /image >}}
+
+
+- Select the root directory to search in and point to your cloned test suite, e.g. `<posters-simple-loadtest-suite>`.
+
+  {{< image src="how-to/ide/vsc2.png" max-width="75%">}}
+{{< /image >}}
+
+- Click the 'Select Folder' button and the test suite should open as a Java project in Visual Studio Code.
+  
+  {{< image src="how-to/ide/vsc3.png" max-width="75%">}}
+{{< /image >}}
 {{% note notitle %}}
 Before executing the tests make sure that the [demo application](../../quick-start/20-demo-application/) is running.
 {{% /note %}}
 
 ### Executing Java Test Cases in Visual Studio Code
 
-The tests imported can be run in Visual Studio Code in headless browser mode. Once imported choose the 'Testing' on the left of the window. You can find it below the explorer tab, you should be in at the moment.
+The tests imported can be run in Visual Studio Code in headless browser mode. Once imported choose the 'Testing' tab on the left of the window. You can find it below the explorer tab, you should be in now.
 
- The tests from the suite should all be visible now. Right click the test suite and select select 'run all tests'. Per default, the test cases will run against the [demo application](../../quick-start/20-demo-application) you started already (if you modified the ports there, you might have to change them in `<project>/config/project.properties` accordingly, just look for the property `store-url`). 
+  {{< image src="how-to/ide/vsc4.png" max-width="75%">}}
+{{< /image >}}
+
+ The tests from the suite should all be visible now. Right click the test suite and select select 'run test'. Per default, the test cases will run against the [demo application](../../quick-start/20-demo-application) you started already (if you modified the ports there, you might have to change them in `<project>/config/project.properties` accordingly, just look for the property `store-url`). 
+
+{{< image src="how-to/ide/vsc5.png" max-width="75%">}}
+{{< /image >}}
 
 
