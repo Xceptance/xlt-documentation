@@ -231,7 +231,7 @@ footer {
 }
 
 /* from here on down it's all about dropdowns in the navbar */
-.xc-dropdown-menu {
+.xc-dropdown-content {
     position: absolute;
     display: none;
     z-index: 1000;
@@ -249,6 +249,6 @@ footer {
     box-shadow: 0 0.5rem 1rem;
 }
 
-.xc-dropdown-menu .dropdown-item::hover {
-    background-color: #999;
+.xc-dropdown-menu:hover .xc-dropdown-content {
+    display: block;
 }
