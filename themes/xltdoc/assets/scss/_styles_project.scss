@@ -230,15 +230,32 @@ footer {
     margin-top: 5px;
 }
 
+.td-default main section:first-of-type {
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+}
+
+.td-navbar-cover {
+    background: $primary !important;
+
+    .nav-link {
+            text-shadow: none;
+        }
+}
+
+.td-cover-block h1 {
+    font-size: 300%;
+}
+
 /* from here on down it's all about dropdowns in the navbar */
 .xc-dropdown-content {
     position: absolute;
     display: none;
     z-index: 1000;
     min-width: 10rem;
-    padding: 0.5rem 0;
-    margin: 0.125rem 0 0;
-    font-size: 1rem;
+    padding: 0.5em 0;
+    margin: 0px;
+    font-size: 1em;
     color: #222;
     text-align: left;
     list-style: none;
