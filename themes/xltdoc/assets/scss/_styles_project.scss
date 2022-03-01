@@ -247,6 +247,10 @@ footer {
     font-size: 300%;
 }
 
+.td-box--dark p > a:hover {
+    color: #fff;
+}
+
 /* from here on down it's all about dropdowns in the navbar */
 .xc-dropdown-content {
     position: absolute;
