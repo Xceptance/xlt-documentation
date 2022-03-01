@@ -22,7 +22,7 @@ A possible setup which you could use to run a load test using a distributed load
 Distributed Load Generation Environment
 {{< /image >}}
 
-One machine runs your [master controller]({{< relref "/load-testing/manual/010-basics#mcmaster-controller" >}}), which controls several machines that run the [agent controllers]({{< relref "../manual/010-basics#acagent-controller" >}}) and [agents]({{< relref "/load-testing/manual/010-basics#agents" >}}). 
+One machine runs your [master controller]({{< relref "../manual/010-basics#mcmaster-controller" >}}), which controls several machines that run the [agent controllers]({{< relref "../manual/010-basics#acagent-controller" >}}) and [agents]({{< relref "../manual/010-basics#agents" >}}). 
 
 Xceptance offers public images for AWS machines (AMIs). You can also use [XLT Packer](https://github.com/Xceptance/XLT-Packer) to build your own images for GCP and AWS. 
 
@@ -33,7 +33,7 @@ XLT ships with two small scripts that simplify the process of setting up and man
 The scripts will set up a cluster of test machines quickly. After the setup, you just have to add the machines to the master controller configuration: navigate to `<XLT>/config/mastercontroller.properties` on your MC machine, then enter the AC data the tools give you when you list the created instances. Now you are ready for load testing.
 
 {{% note title="How many machines do I need?" %}}
-It can be hard to determine the number and size of load testing machines you'll need for your setup. Here's [a small guide about test sizing]({{< relref "/load-testing/how-tos/test-sizing" >}}).
+It can be hard to determine the number and size of load testing machines you'll need for your setup. Here's [a small guide about test sizing]({{< relref "../how-tos/test-sizing" >}}).
 {{% /note %}}
 
 After your test finished and the mastercontroller has downloaded all the data required for report generation, gce_admin/ec2_admin can also help you to easily terminate all of your test machines.
@@ -77,7 +77,7 @@ Before its first usage, the gce_admin tool needs to be configured. You can do th
 xlt.gce.projectId = my-project-1
 ```
 
-To use the **gce_admin** tool to create, list, and stop Google Cloud instances (which will run your [agent controllers]({{< relref "/load-testing/manual/010-basics#acagent-controller" >}}) and [agents]({{< relref "/load-testing/manual/010-basics#agents" >}})), navigate to `<XLT>/bin/` and run:
+To use the **gce_admin** tool to create, list, and stop Google Cloud instances (which will run your [agent controllers]({{< relref "../manual/010-basics#acagent-controller" >}}) and [agents]({{< relref "../manual/010-basics#agents" >}})), navigate to `<XLT>/bin/` and run:
 
 ```bash
 $ ./gce_admin.sh

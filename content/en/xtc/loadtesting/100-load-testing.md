@@ -10,7 +10,7 @@ description: >
 
 ## Load Testing Basics
 
-XTC helps you to streamline your [usual load testing work]({{< relref "/load-testing" >}}) by a mass of helpful features it puts on top of what's already included in [XLT]({{< relref "/load-testing/manual/010-basics#what-is-xlt" >}}): 
+XTC helps you to streamline your [usual load testing work]({{< relref "/xlt/load-testing" >}}) by a mass of helpful features it puts on top of what's already included in [XLT]({{< relref "/xlt/load-testing/manual/010-basics#what-is-xlt" >}}): 
 
 * It simplifies the test setup and allows to duplicate tests for similar reruns.
 * It will make sure you stay on top of things by giving you an easy overview of test setups as well as results.
@@ -22,11 +22,11 @@ As XTC is still in development it will be continuously improved, in part by your
 
 ## Prerequisites
 
-To run a load test in XTC, we assume you have an [XLT Test Suite]({{< relref "/load-testing/manual/060-test-development" >}}) available in the [repository]({{< relref "../060-project-configuration/#repository" >}}) of your choice. (For more information on what to prepare and think about before load testing, see our recommendations for a load testing [workflow]({{< relref "/load-testing/manual/050-workflow" >}}).)
+To run a load test in XTC, we assume you have an [XLT Test Suite]({{< relref "/xlt/load-testing/manual/060-test-development" >}}) available in the [repository]({{< relref "../basics/060-project-configuration/#repository" >}}) of your choice. (For more information on what to prepare and think about before load testing, see our recommendations for a load testing [workflow]({{< relref "/xlt/load-testing/manual/050-workflow" >}}).)
 
 ## Workflow
 
-**Running a load test with XTC** usually consists of the following steps which you can also learn more about in the [load testing documentation]({{< relref "/load-testing" >}}):
+**Running a load test with XTC** usually consists of the following steps which you can also learn more about in the [load testing documentation]({{< relref "/xlt/load-testing" >}}):
 
 * [create a new load test run]({{< relref "150-create-lt" >}}),
 * adjust the [test settings]({{< relref "155-lt-settings" >}}) for this run, 

@@ -20,10 +20,10 @@ You may download all results as compressed archives if you need them on your loc
 Results tab and results context menu
 {{< /image >}}
 
-Results are basically the [raw data recorded during a test]({{< relref "/load-testing/advanced/150-results" >}}). They are hard to read and usually you will only need them if you are looking for very specific information that is not contained in the [test report]({{< relref "/load-testing/manual/320-test-evaluation#reading-a-test-report" >}}). 
+Results are basically the [raw data recorded during a test]({{< relref "/xlt/load-testing/advanced/150-results" >}}). They are hard to read and usually you will only need them if you are looking for very specific information that is not contained in the [test report]({{< relref "/xlt/load-testing/manual/320-test-evaluation#reading-a-test-report" >}}). 
 
 ### Downloading Results
-To download a set of test results, click _Download_ in the result set's context menu. You will get a .tar.gz archive containing nested archives for all [_timers.csv_ files]({{< relref "/load-testing/advanced/150-results#collected-values" >}}).
+To download a set of test results, click _Download_ in the result set's context menu. You will get a .tar.gz archive containing nested archives for all [_timers.csv_ files]({{< relref "/xlt/load-testing/advanced/150-results#collected-values" >}}).
 
 {{% permission type="project" least="true" role="reviewer" %}}
 
@@ -31,7 +31,7 @@ To download a set of test results, click _Download_ in the result set's context 
 
 {{% permission type="project" least="true" role="test manager" %}}
 
-Sharing results in XTC is very similar to [sharing reports]({{< relref "180-reports/#sharing-a-report" >}}), in that all results are available to any project member who has at least the [project role]({{< relref "050-projects#user-roles-within-a-project" >}}) of a **reviewer**. As a **project administrator**, you can add XTC users as reviewers to the project if you want them to have access to all results.
+Sharing results in XTC is very similar to [sharing reports]({{< relref "180-reports/#sharing-a-report" >}}), in that all results are available to any project member who has at least the [project role]({{< relref "../basics/050-projects#user-roles-within-a-project" >}}) of a **reviewer**. As a **project administrator**, you can add XTC users as reviewers to the project if you want them to have access to all results.
 
 To share results outside XTC, you can create a **public sharing link** by clicking _Share_ in the context menu of the result to be shared. A prompt will open and you may select whether to use the [default sharing settings]({{< relref "120-load-project-configuration#default-sharing-settings" >}}) or define an expiration time specifically for this result link. 
 

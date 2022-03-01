@@ -49,7 +49,7 @@ E,ProductHasNoPrice,1456928543182,TOrder,PID: 12345
 
 ## Custom Timers
 
-Custom timers are used to record measurements of elapsed time in your test scenarios. The logged data contains the runtime in ms as well as a failed flag for the measured action. The recorded data will be shown in the [Custom Timers]({{< relref "/load-testing/manual/320-test-evaluation#custom-timers--values" >}}) section in the load test report. This rendering will show the same level of detail as other timers in the report.
+Custom timers are used to record measurements of elapsed time in your test scenarios. The logged data contains the runtime in ms as well as a failed flag for the measured action. The recorded data will be shown in the [Custom Timers]({{< relref "../manual/320-test-evaluation#custom-timers--values" >}}) section in the load test report. This rendering will show the same level of detail as other timers in the report.
 
 {{< image src="user-manual/custom_timers.png">}}
 Custom Timers in the Test Report
@@ -81,7 +81,7 @@ C,Foo,1456928543182,1234,true
 ```
 
 ## Custom Values
-Custom values are used to record measurements of arbitrary double values. They will show up in the [Custom Values]({{< relref "/load-testing/manual/320-test-evaluation#custom-timers--values" >}}) section in the load test report with almost the same level of detail as timers.
+Custom values are used to record measurements of arbitrary double values. They will show up in the [Custom Values]({{< relref "../manual/320-test-evaluation#custom-timers--values" >}}) section in the load test report with almost the same level of detail as timers.
 
 {{< image src="user-manual/custom_values.png">}}
 Custom Values in the Test Report
@@ -198,7 +198,7 @@ The properties have the following meaning:
 
 #### Result
 
-XLT will then take care to execute your sampler regularly. It will show up in the [Custom Values]({{< relref "/load-testing/manual/320-test-evaluation#custom-timers--values" >}}) section of the load test report just like other custom values.
+XLT will then take care to execute your sampler regularly. It will show up in the [Custom Values]({{< relref "../manual/320-test-evaluation#custom-timers--values" >}}) section of the load test report just like other custom values.
 
 {{< image src="user-manual/custom_samplers.png">}}
 Custom Samplers in the Test Report

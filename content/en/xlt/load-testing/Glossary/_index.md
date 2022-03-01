@@ -92,7 +92,7 @@ Main problems with pure recorded test scripts are:
 -   Often insufficient validation of results
 
 The XLT Script Developer was such an advanced Capture & Replay Tool, 
-featuring a broad range of additional functionality, but it was [discontinued]({{< relref "/about-xlt/10-history#2017---script-developer-discontinued" >}}) when Mozilla removed the XUL-application API from Firefox.
+featuring a broad range of additional functionality, but it was [discontinued]({{< relref "../../about-xlt/10-history#2017---script-developer-discontinued" >}}) when Mozilla removed the XUL-application API from Firefox.
 
 ## Client
 

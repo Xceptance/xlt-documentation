@@ -20,7 +20,7 @@ Organizations can only be created by an XTC admin. They will also assign an init
 As an organization member, a user account can have one of the following roles:
 * as a **guest**, you can only view the organization's dashboard,
 * a **member** is basically the default role for any new project user and is allowed to view organization settings and view and work on projects,
-* a **billing administrator** has permission to view and evaluate [resource usage]({{< relref "loadtesting/400-resource-usage" >}}) of the organization, and
+* a **billing administrator** has permission to view and evaluate [resource usage]({{< relref "../loadtesting/400-resource-usage" >}}) of the organization, and
 * as an **organization administrator** you have complete permissions to change the organization's projects, members and configuration.
 
 (Permissions increase in order of the list, i.e. a billing administrator has the same permissions as a member plus some in addition to that.)

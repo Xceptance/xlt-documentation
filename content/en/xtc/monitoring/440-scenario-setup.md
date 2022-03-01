@@ -14,7 +14,7 @@ description: >
 
 ## Setting Up Monitoring Scenarios
 
-The basis for all monitoring scenarios is a set of [XLT test cases]({{< relref "/load-testing/manual/060-test-development" >}}) that will be run continuously. These tests are preferably organized in a test suite, which is located in the repository you defined in the monitoring [project configuration]({{< relref "../060-project-configuration#repository" >}}). 
+The basis for all monitoring scenarios is a set of [XLT test cases]({{< relref "/xlt/load-testing/manual/060-test-development" >}}) that will be run continuously. These tests are preferably organized in a test suite, which is located in the repository you defined in the monitoring [project configuration]({{< relref "../basics/060-project-configuration#repository" >}}). 
 
 XLT tests are basically Java classes containing JUnit tests. These classes will be built by XTC so it can then run the test scenarios contained in them.
 

@@ -23,15 +23,15 @@ Please note that none of the test settings can be edited after the test was star
 
 ### Load Profile
 
-Under _Load Profile_ you can override the settings in your test suite for the [test properties file to be used]({{< relref "/load-testing/manual/480-test-suite-configuration#test-properties-file" >}}). In addition to that, you can override the settings for test duration and [load factor]({{< relref "/load-testing/manual/470-load-configuration#load-factor" >}}). All other settings, for example, [ramp-up times]({{< relref "/load-testing/manual/470-load-configuration#ramp-up-load-profile" >}}), are not directly configurable in the UI yet, but are still read from the properties files in your test suite.
+Under _Load Profile_ you can override the settings in your test suite for the [test properties file to be used]({{< relref "/xlt/load-testing/manual/480-test-suite-configuration#test-properties-file" >}}). In addition to that, you can override the settings for test duration and [load factor]({{< relref "/xlt/load-testing/manual/470-load-configuration#load-factor" >}}). All other settings, for example, [ramp-up times]({{< relref "/xlt/load-testing/manual/470-load-configuration#ramp-up-load-profile" >}}), are not directly configurable in the UI yet, but are still read from the properties files in your test suite.
 
 The load profile settings are only needed if you want to override your test suite settings for some reason, e.g. quickly changing the test duration or load factor without pushing changes to the repository, or switching between your prepared test property files. If the fields are left empty, the settings in the test suite will be used.
 
-Learn more in our _Load Testing_ section about [configuring load profiles]({{< relref "/load-testing/manual/470-load-configuration" >}}) for your test run.
+Learn more in our _Load Testing_ section about [configuring load profiles]({{< relref "/xlt/load-testing/manual/470-load-configuration" >}}) for your test run.
 
 ### Repository
 
-Under _Repository_ you can enter a branch of the project repository to be used for this test run. This is only necessary if you want to use another branch than the one you [configured for the project]({{< relref "../060-project-configuration#repository" >}}). If this is left empty, the project or default branch will be used.
+Under _Repository_ you can enter a branch of the project repository to be used for this test run. This is only necessary if you want to use another branch than the one you [configured for the project]({{< relref "../basics/060-project-configuration#repository" >}}). If this is left empty, the project or default branch will be used.
 
 ### Machine Configuration
 
@@ -49,7 +49,7 @@ If you want to use machines in the **Google Cloud**, you just enter configuratio
 
 Instead of starting and terminating Google Machines per XTC, you can also use other machines for testing. You can define these in **Custom Machines**: just enter a list of host names and the agents per instance for your machines, and make sure these are running while the test is executed. 
 
-As **[test sizing]({{< relref "/load-testing/how-tos/test-sizing" >}})** is a whole topic in itself, you might want to check the CPU usage after your test and maybe adjust the number of machines for the next test run.
+As **[test sizing]({{< relref "/xlt/load-testing/how-tos/test-sizing" >}})** is a whole topic in itself, you might want to check the CPU usage after your test and maybe adjust the number of machines for the next test run.
 
 ### Properties
-In _Properties_ and _Secret Properties_ you may overwrite [properties]({{< relref "/load-testing/manual/480-test-suite-configuration" >}}) for test execution. If nothing is set here, the properties from the project repository will be used. Properties may also be overwritten globally for all load tests of this project in the [project configuration]({{< relref "120-load-project-configuration#properties" >}}).
+In _Properties_ and _Secret Properties_ you may overwrite [properties]({{< relref "/xlt/load-testing/manual/480-test-suite-configuration" >}}) for test execution. If nothing is set here, the properties from the project repository will be used. Properties may also be overwritten globally for all load tests of this project in the [project configuration]({{< relref "120-load-project-configuration#properties" >}}).

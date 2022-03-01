@@ -16,7 +16,7 @@ Before you can start load testing for your application, you need to [define targ
 So what should you do when you do not know every detail about the current or future load patterns? We will describe one approach that works pretty well in the context of commerce applications and always yields satisfying results for us.
 
 ## Assumptions
-As you can see in our [example test suites]({{< relref "/load-testing/test-suites" >}}), we defined a handful of typical test scenarios for commerce applications. For our example, we will use the following scenarios:
+As you can see in our [example test suites]({{< relref "../test-suites" >}}), we defined a handful of typical test scenarios for commerce applications. For our example, we will use the following scenarios:
 
 * _TVisit_: Enters the store and does not move beyond this starting page
 * _TBrowsing_: _TVisit_ plus category and product browsing
