@@ -251,6 +251,18 @@ footer {
     color: #fff;
 }
 
+.col-xc {
+    padding: 15px;
+}
+
+.col-xc:hover {
+    background-color: rgba(220, 220, 220, 0.1); 
+}
+
+.col-xc > a {
+    color: $light;
+}
+
 /* from here on down it's all about dropdowns in the navbar */
 .xc-dropdown-content {
     position: absolute;
