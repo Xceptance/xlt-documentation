@@ -249,5 +249,5 @@ enable = false
 [[menu.main]]
     name = "XTC Release Notes"
     weight = 4
-    url = "/xtc/release-notes"
+    url = "/xtc/xtc-release-notes"
     parent = "xtc"
