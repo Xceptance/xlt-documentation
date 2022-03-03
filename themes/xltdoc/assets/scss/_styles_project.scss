@@ -249,7 +249,7 @@ footer {
 
 .td-cover-block h1 {
     font-size: 300%;
-    padding-top: 6rem;
+    padding-top: 2rem;
 }
 
 .td-box--dark p > a:hover {
@@ -262,7 +262,7 @@ footer {
 }
 
 .td-cover-block  .col-xc {
-    background-color: rgba(64, 63, 76, 0.5);
+    background-color: rgba(64, 63, 76, 0.6);
 }
 
 .col-xc:hover {
@@ -270,6 +270,14 @@ footer {
 }
 
 .col-xc > a {
+    color: $light;
+}
+
+.col-xc p > a {
+    color: #999;
+}
+
+.col-xc p > a:hover {
     color: $light;
 }
 
