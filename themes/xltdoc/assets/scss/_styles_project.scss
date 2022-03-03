@@ -191,6 +191,8 @@ footer {
     @include border-radius($card-border-radius);
 }
 
+/* Search-Consent Styles: */
+
 #consent-banner {
     position: fixed;
     top: 30px;
@@ -230,6 +232,8 @@ footer {
     margin-top: 5px;
 }
 
+/* Documentation Homepages Styles: */
+
 .td-default main section:first-of-type {
     padding-top: 4rem;
     padding-bottom: 1rem;
@@ -245,6 +249,7 @@ footer {
 
 .td-cover-block h1 {
     font-size: 300%;
+    padding-top: 6rem;
 }
 
 .td-box--dark p > a:hover {
@@ -253,6 +258,11 @@ footer {
 
 .col-xc {
     padding: 15px;
+    float: left;
+}
+
+.td-cover-block  .col-xc {
+    background-color: rgba(64, 63, 76, 0.5);
 }
 
 .col-xc:hover {
