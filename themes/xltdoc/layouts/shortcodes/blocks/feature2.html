@@ -1,14 +1,7 @@
-{{ $icon := .Get "icon" | default "fa-lightbulb" }}
-{{ $url_text := .Get "url_text" }}
-
 <div class="col-xc col-lg-6 mb-5 mb-lg-0 text-center ">
-    {{ with .Get "url" }}<a href="{{ . }}">{{ end }}
-  <div class="mb-4 h1">
-    <i class="{{ if not (or (hasPrefix $icon "fas ") (hasPrefix $icon "fab ")) }}fas {{ end }}{{ $icon }}"></i>
-  </div>
-  <h4 class="h3">{{ .Get "title" | markdownify }}</h4>
-  <p class="mb-0">{{ .Inner }}</p>
-    
-</p>
-</a>
+{{ with .Get "url" }}<a href="{{ . }}">{{ end }}
+        <img src='/images/{{ .Get "image" }}' style="max-width:200px; margin-top:10px; margin-bottom:20px" />
+        <h4 class="h3">{{ .Get "title" | markdownify }}</h4>
+        <p class="mb-0">{{ .Inner }}</p>
+    </a>
 </div>
