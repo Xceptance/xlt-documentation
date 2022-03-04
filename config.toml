@@ -220,6 +220,7 @@ enable = false
     url = "/xlt/load-testing/glossary"
     parent = "xlt"
 [[menu.main]]
+    identifier = "xlt-RN"
     name = "Release Notes"
     weight = 8
     url = "/xlt/release-notes"
@@ -237,17 +238,18 @@ enable = false
     url = "/xtc/basics"
     parent = "xtc"
 [[menu.main]]
-    name = "XTC Load Testing"
+    name = "Load Testing"
     weight = 2
     url = "/xtc/loadtesting"
     parent = "xtc"
 [[menu.main]]
-    name = "XTC Monitoring"
+    name = "Monitoring"
     weight = 3
     url = "/xtc/monitoring"
     parent = "xtc"
 [[menu.main]]
-    name = "XTC Release Notes"
+    identifier = "xtc-RN"
+    name = "Release Notes"
     weight = 4
     url = "/xtc/xtc-release-notes"
     parent = "xtc"
