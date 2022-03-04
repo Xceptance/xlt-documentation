@@ -1,6 +1,5 @@
 ---
-title: "XTC Release Notes"
-linkTitle: "XTC Release Notes"
+title: "Release Notes"
 
 type: docs
 
