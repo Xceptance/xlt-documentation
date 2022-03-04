@@ -8,4 +8,4 @@ weight: 600
 
 ---
 
-Find the most important fixes, improvements, and features listed in the release notes. For additional information as well as a full list of changes, please refer to each individual release.
+Here you will find a full list of changes including the most important fixes, improvements, and features, as well as additional information for each officially published XTC version.
