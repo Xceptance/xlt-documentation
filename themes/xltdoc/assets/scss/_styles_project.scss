@@ -191,6 +191,8 @@ footer {
     @include border-radius($card-border-radius);
 }
 
+/* Search-Consent Styles: */
+
 #consent-banner {
     position: fixed;
     top: 30px;
@@ -228,4 +230,76 @@ footer {
 
 #cancel {
     margin-top: 5px;
+}
+
+/* Documentation Homepages Styles: */
+
+.td-default main section:first-of-type {
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+}
+
+.td-navbar-cover {
+    background: $primary !important;
+
+    .nav-link {
+            text-shadow: none;
+        }
+}
+
+.td-cover-block h1 {
+    font-size: 300%;
+    padding-top: 2rem;
+}
+
+.td-box--dark p > a:hover {
+    color: #fff;
+}
+
+.col-xc {
+    padding: 3%;
+    float: left;
+}
+
+.td-cover-block  .col-xc {
+    background-color: rgba(64, 63, 76, 0.6);
+}
+
+.col-xc:hover {
+    background-color: rgba(220, 220, 220, 0.1); 
+}
+
+.col-xc > a {
+    color: $light;
+}
+
+.col-xc p > a {
+    color: #999;
+}
+
+.col-xc p > a:hover {
+    color: $light;
+}
+
+/* from here on down it's all about dropdowns in the navbar */
+.xc-dropdown-content {
+    position: absolute;
+    display: none;
+    z-index: 1000;
+    min-width: 10rem;
+    padding: 0.5em 0;
+    margin: 0px;
+    font-size: 1em;
+    color: #222;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5rem 1rem;
+}
+
+.xc-dropdown-menu:hover .xc-dropdown-content {
+    display: block;
 }

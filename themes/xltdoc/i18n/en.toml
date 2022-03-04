@@ -22,6 +22,9 @@ other = "in"
 [footer_all_rights_reserved]
 other = "All Rights Reserved"
 
+[footer_copyright]
+other = "Xceptance GmbH"
+
 [footer_license]
 other = "Apache License 2.0"
 

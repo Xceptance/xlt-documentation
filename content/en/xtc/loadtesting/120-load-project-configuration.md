@@ -8,7 +8,7 @@ description: >
   Special configuration settings for load test projects in XTC.
 ---
 
-The _Configuration_ of a load test project is very similar to the basic [project configuration]({{< relref "../060-project-configuration" >}}), but there are a few special settings for this project type:
+The _Configuration_ of a load test project is very similar to the basic [project configuration]({{< relref "../basics/060-project-configuration" >}}), but there are a few special settings for this project type:
 
 ## Default Sharing Settings
 
@@ -36,9 +36,9 @@ It is still possible to set individual expiration times per result and reports i
 
 {{% permission type="project" least="true" role="test manager" action="edit properties" %}}
 
-In _Properties_, you can globally define [properties]({{< relref "/load-testing/manual/480-test-suite-configuration" >}}) or [secret properties]({{< relref "/load-testing/manual/480-test-suite-configuration#secret-properties" >}}) to use for test execution. 
+In _Properties_, you can globally define [properties]({{< relref "/xlt/load-testing/manual/480-test-suite-configuration" >}}) or [secret properties]({{< relref "/xlt/load-testing/manual/480-test-suite-configuration#secret-properties" >}}) to use for test execution. 
 
-[Secret properties]({{< relref "/load-testing/manual/480-test-suite-configuration#secret-properties" >}}) behave the same as [regular properties]({{< relref "/load-testing/manual/480-test-suite-configuration" >}}). However, their values will be masked with ****** both in the load test report and in the result data set.
+[Secret properties]({{< relref "/xlt/load-testing/manual/480-test-suite-configuration#secret-properties" >}}) behave the same as [regular properties]({{< relref "/xlt/load-testing/manual/480-test-suite-configuration" >}}). However, their values will be masked with ****** both in the load test report and in the result data set.
 When editing an existing secret property in the UI, its current value will be shown as \*\*\*. To redefine that setting, simply overwrite \*\*\* with the new value.
 
 Properties configured at project level apply to all new load tests alike, while [properties defined at a certain load test]({{< relref "155-lt-settings" >}}) apply to that load test only. Load-test-level properties will overwrite project-level properties. Properties that are not set in XTC will be read from the project data. 

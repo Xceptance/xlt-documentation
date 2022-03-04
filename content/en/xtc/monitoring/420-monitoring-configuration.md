@@ -14,7 +14,7 @@ description: >
 
 ### Read-Only Settings
 
-The _Configuration_ of a monitoring project is very similar to the basic [project configuration]({{< relref "../060-project-configuration" >}}), but there are a few special settings for this project type. The following settings are for your information only and can be changed by XTC administrators only:
+The _Configuration_ of a monitoring project is very similar to the basic [project configuration]({{< relref "../basics/060-project-configuration" >}}), but there are a few special settings for this project type. The following settings are for your information only and can be changed by XTC administrators only:
 
 * _Data Persistence_ (how long certain data, like Execution History, will be persisted), and
 * _Execution Environment_ (IP addresses of the machines where monitoring scenarios are running).
