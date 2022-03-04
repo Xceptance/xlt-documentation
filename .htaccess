@@ -1,0 +1,71 @@
+RewriteEngine on
+RewriteBase /
+
+###
+# Set the error handler aka 404 page
+ErrorDocument 404 /404.html
+
+###
+# Capture schema aka http or https
+# http://stackoverflow.com/questions/18008135/is-serverrequest-scheme-reliable
+RewriteCond %{HTTPS} off
+RewriteRule .* - [E=REQUEST_SCHEME:http]
+
+RewriteCond %{HTTPS} on
+RewriteRule .* - [E=REQUEST_SCHEME:https]
+
+###
+# Send xltdoc to docs, all start at the top because we change the urls
+RewriteCond %{HTTP_HOST} ^xltdoc.xceptance.com$ [NC]
+RewriteRule ^(.*)$ https://docs.xceptance.com/ [L,R=301]
+
+###
+# Send non-https to https
+# We should be all on xceptance.com now!
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+####
+#
+# Tuning of the static delivery
+#
+####
+<ifModule mod_gzip.c>
+    mod_gzip_on Yes
+    mod_gzip_dechunk Yes
+    mod_gzip_item_include file .(html?|txt|css|js|woff|woff2|svg)$
+    mod_gzip_item_include handler ^cgi-script$
+    mod_gzip_item_include mime ^text/.*
+    mod_gzip_item_include mime ^application/x-javascript.*
+    mod_gzip_item_exclude mime ^image/.*
+    mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+</ifModule>
+
+<IfModule mod_expires.c>
+    # Set Expires Header
+    ExpiresActive On
+    ExpiresDefault "modification plus 30 days"
+
+    ExpiresByType text/html "modification plus 1 day"
+
+    # Set Cache-Control manually, to force the browser to ask more often with 304
+    Header merge Cache-Control "must-revalidate"    
+</IfModule>
+
+<IfModule mod_deflate.c>
+    <IfModule mod_headers.c>
+        Header append Vary User-Agent env=!dont-vary
+    </IfModule>
+        AddOutputFilterByType DEFLATE text/css text/x-component application/x-javascript application/javascript text/javascript text/x-js text/html text/richtext image/svg+xml text/plain text/xsd text/xsl text/xml image/x-icon application/json
+    <IfModule mod_mime.c>
+        # DEFLATE by extension
+        AddOutputFilter DEFLATE js css htm html xml svg
+    </IfModule>
+</IfModule>
+
+# No ETags, use modified since instead
+Header unset Etag
+FileETag none
+Header unset Pragma
+
+
