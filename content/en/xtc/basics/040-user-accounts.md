@@ -90,6 +90,10 @@ If you later need to disable 2FA, simply click the button _Disable Two-Factor Au
 Note that if you have bound your account to an [external login provider]({{< relref "#connecting-existing-xtc-accounts-to-an-external-login-provider" >}}) (currently Google or Microsoft), the section **Two-Factor Authentication** is not available in XTC as in this case 2FA is managed in the settings of your external account.
 {{% /note %}}
 
+#### 2FA Recovery Codes
+
+XTC allows you to **create new 2FA recovery codes** at any time. Use this feature if you lost your recovery codes or used them all up. To create new codes, go to *My Account > Security > Two-Factor Authentication*, click the button *Reset Recovery Codes* and follow the instructions. The 2FA setup on your authentication device will not be affected.
+
 ## Login Using an External Provider
 
 XTC supports authenticating users by login credentials as well as by using their Google or Microsoft accounts. Depending on whether your user account is set up to use SSO (see above for how this is done) you can log in using external login providers:
