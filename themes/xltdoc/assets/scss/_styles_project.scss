@@ -282,7 +282,7 @@ footer {
 }
 
 /* from here on down it's all about dropdowns in the navbar */
-.xc-dropdown-content {
+/*.xc-dropdown-content {
     position: absolute;
     display: none;
     z-index: 1000;
@@ -302,4 +302,28 @@ footer {
 
 .xc-dropdown-menu:hover .xc-dropdown-content {
     display: block;
+}*/
+
+.td-sidebar__toggle {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.td-sidebar__toggle:hover {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+@media all and (max-width: 767px) {
+
+    .td-sidebar {
+        background-color: rgba(160, 0, 0, 0.03);
+        border-bottom: 1px solid #dee2e6;
+    }
+}
+
+@media (hover:none) {
+
+    .td-sidebar {
+        background-color: rgba(160, 0, 0, 1);
+        border-bottom: 1px solid #dee2e6;
+    }
 }
