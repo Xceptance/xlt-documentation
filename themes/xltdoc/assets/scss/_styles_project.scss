@@ -291,7 +291,7 @@ footer {
 
     .td-sidebar__toggle {
         color: rgba(64, 63, 76, 0.5) !important;
-        padding: 0px;
+        padding: 15px !important;
         margin: 0px;
         border: 0px;
         width: 100%;
@@ -299,7 +299,19 @@ footer {
     }
 
     .dropdown-item {
-        padding-top:15px;
-        padding-bottom:15px;
+        padding-top:10px;
+        padding-bottom:10px;
+    }
+
+    .nav-link {
+        padding: 10px;
+    }
+
+    .td-sidebar-link {
+        padding: 10px;
+    }
+
+    .td-sidebar-nav__section > ul {
+        padding-left: 0.5rem;
     }
 }
