@@ -262,11 +262,11 @@ footer {
 }
 
 .td-cover-block  .col-xc {
-    background-color: rgba(64, 63, 76, 0.6);
+    background-color: rgba(64, 63, 76, 0.5);
 }
 
 .col-xc:hover {
-    background-color: rgba(220, 220, 220, 0.1); 
+    background-color: rgba(64, 63, 76, 0.8); 
 }
 
 .col-xc > a {
@@ -281,25 +281,47 @@ footer {
     color: $light;
 }
 
-/* from here on down it's all about dropdowns in the navbar */
-.xc-dropdown-content {
-    position: absolute;
-    display: none;
-    z-index: 1000;
-    min-width: 10rem;
-    padding: 0.5em 0;
-    margin: 0px;
-    font-size: 1em;
-    color: #222;
-    text-align: left;
-    list-style: none;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 0.25rem;
-    box-shadow: 0 0.5rem 1rem;
+/* overwriting settings from sidebar-tree.scss to use full page length for menu*/
+@media (hover:hover) {
+    .td-sidebar-nav {
+        max-height: calc(100vh - 4rem);
+        overflow-y: auto;
+    }
 }
 
-.xc-dropdown-menu:hover .xc-dropdown-content {
-    display: block;
+@media (hover:none) {
+
+    .td-sidebar {
+        background-color: rgba(160, 0, 0, 0.03);
+        border-bottom: 1px solid #dee2e6;
+        padding-bottom: 0px;
+    }
+
+    .td-sidebar__toggle {
+        color: rgba(64, 63, 76, 0.5) !important;
+        padding: 0px;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+        margin: 0px;
+        border: 0px;
+        width: 100%;
+        text-align: left;
+    }
+
+    .dropdown-item {
+        padding-top:10px;
+        padding-bottom:10px;
+    }
+
+    .nav-link {
+        padding: 10px;
+    }
+
+    .td-sidebar-link {
+        padding: 10px;
+    }
+
+    .td-sidebar-nav__section > ul {
+        padding-left: 0.5rem;
+    }
 }

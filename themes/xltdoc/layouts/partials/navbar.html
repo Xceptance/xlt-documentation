@@ -8,16 +8,16 @@
 			{{ $p := . }}
 			{{ range .Site.Menus.main }}
 			{{ if .HasChildren }}
-			<li class="nav-item mr-4 mb-2 mb-lg-0 xc-dropdown-menu">
+			<li class="nav-item mr-4 mb-2 mb-lg-0 dropdown">
 				{{ $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) }}
 				{{ with .Page }}
 				{{ $active = or $active ( $.IsDescendant .)  }}
 				{{ end }}
 				{{ $url := urls.Parse .URL }}
 				{{ $baseurl := urls.Parse $.Site.Params.Baseurl }}
-				<a class="nav-link{{if $active }} active{{end}}" href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}" {{ if ne $url.Host $baseurl.Host }}target="_blank" {{ end }}><span{{if $active }} class="active"{{end}}>{{ .Name }}</span>
+				<a class="nav-link{{if $active }} active{{end}}" data-toggle="dropdown" href="#"><span{{if $active }} class="active"{{end}}>{{ .Name }}</span>
 				<span class="dropdown-caret"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 7 12 13 18 7"></polyline></svg></span></a>
-				<ul class="xc-dropdown-content" aria-labelledby="navbarDropdownMenuLink">
+				<ul class="dropdown-menu xc-dropdown-content" aria-labelledby="navbarDropdownMenuLink">
 				{{ range .Children }}
 				{{- $active = eq .Name $p.Title -}}
 					<li>
@@ -50,5 +50,7 @@
 			{{ end }}
 		</ul>
 	</div>
-	<div class="navbar-nav d-none d-lg-block">{{ partial "search-input.html" . }}</div>
+	<div class="xc-search">
+		{{ partial "search-input.html" . }}
+	</div>
 </nav>

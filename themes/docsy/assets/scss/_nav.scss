@@ -70,7 +70,7 @@
         min-width: 100px;
     }
 
-    @include media-breakpoint-down(md) {
+    /*@include media-breakpoint-down(md) {
         padding-right: .5rem;
         padding-left: .75rem;
 
@@ -94,5 +94,5 @@
 
             }
         }
-    }
+    }*/
 }
