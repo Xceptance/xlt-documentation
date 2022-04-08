@@ -281,6 +281,14 @@ footer {
     color: $light;
 }
 
+/* overwriting settings from sidebar-tree.scss to use full page length for menu*/
+@media (hover:hover) {
+    .td-sidebar-nav {
+        max-height: calc(100vh - 4rem);
+        overflow-y: auto;
+    }
+}
+
 @media (hover:none) {
 
     .td-sidebar {
