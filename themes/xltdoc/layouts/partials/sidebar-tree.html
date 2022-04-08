@@ -8,6 +8,12 @@
     </button>
   </form>
   {{ end }}
+
+  <div id="content-mobile">
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 7 12 13 18 7"></polyline></svg>
+    </button>
+  </div>
   
   <nav class="collapse td-sidebar-nav" id="td-section-nav">
     {{ if  (gt (len .Site.Home.Translations) 0) }}
