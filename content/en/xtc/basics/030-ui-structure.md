@@ -41,3 +41,9 @@ Please note that the menu on the left offers different options depending on whet
 To set up any kind of test, either for load testing or monitoring, you need to navigate to the right project. 
 
 On the right side of the footer XTC is always displaying your role in the organization or project you are currently viewing. You can also find the current XTC version and the Contact/Privacy/Changelog links in the footer.
+
+In order to **quickly navigate from a project back to its organization**, use the link in the left sidebar:
+
+{{< image src="xtc/ui_backToOrg.png" >}}
+Clicking the link in the sidebar will take you back to a project's organization. 
+{{< /image >}}

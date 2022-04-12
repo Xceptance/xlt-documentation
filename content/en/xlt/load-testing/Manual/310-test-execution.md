@@ -274,6 +274,16 @@ In order to better fit into highly-automated environments, XLT 5.2.1 improved th
 Please note that the mastercontroller executes the commands exactly as specified on the command line. It does not run any validation if this makes sense at all.
 {{% /warning %}}
 
+#### Preparing Tests in Non-Interactive Mode
+Sometimes it would be nice if we could prepare everything beforehand (as uploads may take a while) and later just start the load test, for example to begin load testing exactly at a certain time:
+
+```bash
+mastercontroller.sh -c upload
+mastercontroller.sh -c start
+```
+
+Starting with [XLT 6.2.0]({{< relref "/xlt/release-notes/6_2_x#run-start-command-independently-from-upload-command" >}}), the start command can be run separately in non-interactive mode. Please ensure that you have uploaded the test suite before or otherwise the load test will finish immediately.
+
 #### Downloads in Non-Interactive Mode
 
 Per default, the command `download` always downloads the results completely. However, sometimes you might want to skip certain artifacts, to save disk space and download time. In the interactive mode, you are able to select what artifacts are to be downloaded by prompt. This is possible in non-interactive mode as well: use the command-line option `--only-download=...` with which you can specify the wanted artifacts. 

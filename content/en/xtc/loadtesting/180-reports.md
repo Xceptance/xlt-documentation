@@ -16,11 +16,13 @@ XTC will automatically [create a report]({{< relref "/xlt/load-testing/manual/32
 
 All generated reports will be available inside XTC to browse and evaluate them, and XTC can also generate a link for [public sharing]({{< relref "#sharing-a-report" >}}).
 
-{{% note %}}
+{{% note title="Metadata Added by XTC" %}}
 The [Test Comment section]({{< relref "/xlt/load-testing/manual/320-test-evaluation#overview" >}}) of XLT load test reports is automatically enriched with data from XTC. This includes:
 * The name and the description of the load test the report was created for.
 * Metadata such as organization and project short name, the number of the load test and the result the report is based on, and the number of the report itself.
 * An additional report comment that can be entered when [creating a custom report]({{< relref "#custom-reports" >}}).
+
+In case you don’t want to expose this data in the report, you can create a custom report without this data. Simply uncheck the _Include XTC Metadata_ option in the _New Load Test Report_ dialog.
 {{% /note %}}
 
 
