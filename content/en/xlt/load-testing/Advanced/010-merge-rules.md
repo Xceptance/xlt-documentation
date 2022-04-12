@@ -203,7 +203,7 @@ What remains are requests that follow the pattern _'-Site/locale/Action'_. We no
 ...requestMergeRules.80.stopOnMatch = false
 ```
 
-## Step 5: Result
+### Step 5: Result
 We sorted our COLogin requests to show up in the requests table plus, there will be another table row for all _\_\_Analytics-Start_ requests:
 
 {{< image src="user-manual/cologin-in-buckets.png" >}}
