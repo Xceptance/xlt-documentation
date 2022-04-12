@@ -50,7 +50,7 @@ newName .................. new request name (required)
 [c] contentTypePattern ... reg-ex defining a matching response content type
 [s] statusCodePattern .... reg-ex defining a matching status code
 [u] urlPattern ........... reg-ex defining a matching request URL
-[m] httpMethodPattern .... reg-ex defining a matching HTTP method
+[m] methodPattern ........ reg-ex defining a matching request method
 [r] runTimeRanges ........ list of runtime segment boundaries
 
 stopOnMatch .............. whether or not to process more rules when the current rule applies
@@ -59,7 +59,7 @@ dropOnMatch .............. whether or not to discard a matching request instead 
                                 (defaults to false). dropOnMatch implies stopOnMatch.
 ```
 
-At least one of _namePattern_, _transactionPattern_, _agentPattern_, _contentTypePattern_, _statusCodePattern_, _urlPattern_, [_httpMethodPattern_]({{< relref "/xlt/release-notes/6_2_x#use-request-method-in-merge-rules" >}}) or _runTimeRanges_ must be specified. If more than one pattern is given, all given patterns must match.
+At least one of _namePattern_, _transactionPattern_, _agentPattern_, _contentTypePattern_, _statusCodePattern_, _urlPattern_, [_methodPattern_]({{< relref "/xlt/release-notes/6_2_x#use-request-method-in-merge-rules" >}}) or _runTimeRanges_ must be specified. If more than one pattern is given, all given patterns must match.
 
 Note that _newName_ may contain placeholders, which are swapped for the content of a specified capturing group of the respective pattern. The placeholder format is as follows: `{<category>:<capturingGroupIndex>}`, where `<category>` is the type code of the respective pattern (see parameter list above). `<capturingGroupIndex>` denotes the respective capturing group in the selected pattern (does not apply to _runTimeRanges_).
 
