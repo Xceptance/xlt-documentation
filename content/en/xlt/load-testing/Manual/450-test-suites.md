@@ -10,7 +10,7 @@ description: >
 
 ## Overview
 
-XLT uses the concept of a test suite to make test projects more easily manageable. A test suite builds as its own project; it holds all code, data and config necessary for testing and is therefore perfect for sharing and perfect for version control. You can use a test suite as a standalone project and run the tests locally for regression testing, or the test suite can be referenced by an XLT execution engine to run a load test - tests and test environment are separated. 
+XLT uses the concept of a test suite to make test projects more easily manageable. A test suite builds as its own project; it holds all code, data and config necessary for testing and is therefore perfect for sharing and perfect for version control. You can use a test suite as a standalone project and run the tests locally for regression testing, or the test suite can be referenced by an XLT execution engine to run a load test - tests and test environment are separated.
 
 ## Basic Directory Structure
 The directory of any [sample test suite]({{< relref "../test-suites/" >}}), and also of your own test suite, should look similar to this:
@@ -24,12 +24,12 @@ The directory of any [sample test suite]({{< relref "../test-suites/" >}}), and 
     ├── classes
     └── results
 ```
-* **config** contains all [test settings]({{< relref "480-test-suite-configuration" >}}) files. The only file that is mandatory is `log4j.properties`, but usually there will be several property files containing test settings. XLT will look for all properties in this directory by default, but the location may be overridden by the system property `com.xceptance.xlt.configDir` and, alternatively, the environment variable `XLT_CONFIG_DIR`, which both allow to specify the configuration directory to use (system property takes precedence; the directory location is required to be within the test suite in any case). 
-	* test data lives in **data** - this is the default location for data files that are used by the DataProvider classes, but it can be overridden by the property `com.xceptance.xlt.data.directory`.
+* **config** contains all [test settings]({{< relref "480-test-suite-configuration" >}}) files. The only file that is mandatory is `log4j.properties`, but usually there will be several property files containing test settings. XLT will look for all properties in this directory by default, but the location may be overridden by the system property `com.xceptance.xlt.configDir` and, alternatively, the environment variable `XLT_CONFIG_DIR`, which both make it possible to specify the configuration directory to use (system property takes precedence; the directory location is required to be within the test suite in any case).
+* test data lives in **data** - this is the default location for data files that are used by the DataProvider classes, but it can be overridden by the property `com.xceptance.xlt.data.directory`.
 * **lib** contains custom jars if needed. Make sure that everything you need is part of your suite - what is not in your suite is not uploaded, and neither the MC nor the AC run any dependency checks. If a Maven setup is used, make sure all libs are pulled into this folder of your suite during the build process. (XLT will also find libraries in `<test-suite>/target/dependency`.)
 * **src** contains the Java source code aka the JUnit tests cases. The location of these files inside your testsuite is basically up to you and might depend on the used build tool. Read on below to learn more about recommended code structure.
 * **classes** contains compiled Java classes. The name and location might be dependent on the used build tool - XLT supports several locations: `./classes`, `./bin`, `./target/classes` or `./target/test-classes`.
-* **results** is a container for XLT to write all results data (logs, measurements, result browsers) into. The default location is `./results`, but this may be overridden by the property `com.xceptance.xlt.result-dir` (location is required to be within the test suite). 
+* **results** is a container for XLT to write all results data (logs, measurements, result browsers) into. The default location is `./results`, but this may be overridden by the property `com.xceptance.xlt.result-dir` (location is required to be within the test suite).
 
 ## Code Structuring Recommendations
 
@@ -53,7 +53,7 @@ The easiest way for you to structure your test suite is to name the test cases a
 
 ## Test Suite Concepts
 
-You might have read about the [concepts]({{< relref "030-concepts" >}}) underlying XLT test cases. In short, a test scenario is modeled as a JUnit [test case]({{< relref "#test-case" >}}). A single execution of this test case is a transaction. For example, _Search_ and _ViewProductDetails_ are [actions]({{< relref "#action" >}}) in [this example]({{< relref "030-concepts#example" >}}) to go from one page to the next. Consecutive actions that form a procedural entity may be collected in a [flow]({{< relref "#flow" >}}) for easier reusability in other test cases. [Validations]({{< relref "#validation" >}}) after each page transition ensure you arrived on the right page with the right content. 
+You might have read about the [concepts]({{< relref "030-concepts" >}}) underlying XLT test cases. In short, a test scenario is modeled as a JUnit [test case]({{< relref "#test-case" >}}). A single execution of this test case is a transaction. For example, _Search_ and _ViewProductDetails_ are [actions]({{< relref "#action" >}}) in [this example]({{< relref "030-concepts#example" >}}) to go from one page to the next. Consecutive actions that form a procedural entity may be collected in a [flow]({{< relref "#flow" >}}) for easier reusability in other test cases. [Validations]({{< relref "#validation" >}}) after each page transition ensure you arrived on the right page with the right content.
 
 ### Test Case
 
@@ -67,7 +67,7 @@ Implementing the test case as a JUnit4 test also lets you use standard JUnit ass
 
 As a test case models a transaction and as transactions rely on actions, defining the appropriate actions is the first step. An action interacts with the current page and, as a result, loads the next page. The latter is associated with this action and becomes the current page for the next action in the test case. These XLT action classes can be seen as reusable building blocks to write your test case and define the page flow.
 
-All actions must inherit the abstract class `AbstractAction` or `AbstractHtmlPageAction`. Note that `AbstractAction` doesn't offer any web support. Therefore, any web-based test should inherit the abstract class `AbstractHtmlPageAction`, which is a specialization of `AbstractAction` and which does offer support for web testing. 
+All actions must inherit the abstract class `AbstractAction` or `AbstractHtmlPageAction`. Note that `AbstractAction` doesn't offer any web support. Therefore, any web-based test should inherit the abstract class `AbstractHtmlPageAction`, which is a specialization of `AbstractAction` and which does offer support for web testing.
 
 This forces you to implement the three methods `execute()`, `preValidate()`, and `postValidate()`. As mentioned earlier, the `preValidate()` and `postValidate()` methods perform validations before and after the execution of that action itself. Therefore, the call sequence of an action generated by the XLT framework is always:
 1. `preValidate()`
@@ -84,13 +84,13 @@ Note that `AbstractAction` doesn't offer any web support. Therefore, any web-bas
 
 ### Flow
 
-When creating XLT test cases, you sometimes might want to reuse blocks of code containing more than one single action. Just like for modules, you can create your own class with one method that combines a sequence of several XLT actions as a flow. Different test cases can call this method now to reuse the flow. This is a concept for code structuring you can implement if needed.
+When creating XLT test cases, you sometimes might want to reuse blocks of code containing more than one single action. Just like for modules, you can create your own class with one method that combines a sequence of several XLT actions as a flow. Different test cases can now call this method to reuse the flow. This helps structure your code and make some repetitive parts of scenarios more manageable.
 
 ### Validation
 
 #### Assertion
 
-JUnit provides the concept of assertions and XLT uses this concept for all validations. Since XLT doesn't change JUnit in any way, you can use assertions just as you're used from JUnit.
+JUnit provides the concept of assertions and XLT uses this concept for all validations. Since XLT doesn't change JUnit in any way, you can use assertions as you would with JUnit.
 
 #### Pre-validation
 
@@ -100,11 +100,11 @@ XLT offers two ways of using the `preValidate()` method. Any exception on the di
 
 The `postValidate()` method works similarly to `preValidate()`. It is used to validate the page just loaded in `execute()` and ensures that the data matches the expectations. The full set of JUnit assertions is available.
 
-You can't explicitly call the `postValidate()` method; the framework does so instead. Additionally, error messages can't be suppressed. If a page has different outcomes based on random data or states, you have to explicitly handle that in your validation code.
+You can't explicitly call the `postValidate()` method; the framework does it for you. Additionally, error messages can't be suppressed. If a page has different outcomes based on random data or states, you have to explicitly handle that in your validation code.
 
 #### Validators
 
-We strongly encourage you to write individual validation classes for easy reuse. As soon as a certain check has to be done more than once, it is suited for a validator implementation. This simplifies the maintenance of tests and makes them less error-prone because copy-paste causes typical programming errors.
+We strongly encourage you to write individual validation classes for easy reuse. As soon as a certain check has to be done more than once, it should be implemented as a validator. This simplifies the maintenance of tests and makes them less prone to typical copy-paste errors.
 
 Some common validation routines are already covered by default validators, such as a HTTP response code, HTML end tag, and HTTP content length validation. See package `com.xceptance.xlt.api.validators` in the API documentation for more information on this topic.
 
@@ -231,7 +231,7 @@ public class Search extends AbstractHtmlPageAction
 }
 ```
 
-Note that the constructor of this class has two parameters. One of them is the search phrase the action has to know about. The other parameter is the previously performed action. To enable a flow, all the actions that will be used in page flows need to provide a constructor with a parameter representing the previous action. Without passing the previous action, each action would be stand-alone and behave as if you had just opened a new web browser. Normally, only the start action does so.
+Note that the constructor of this class has two parameters. One of them is the search phrase the action has to know about. The other parameter is the previously performed action. To enable a flow, all the actions that will be used in page flows need to provide a constructor with a parameter representing the previous action. Without passing the previous action, each action would be stand-alone and behave as if you had just opened a new web browser. Normally, only the starting action does so.
 
 You'll notice that the `postValidate()` method uses some of the predefined validators. XLT also offers a `StandardValidator` performing the most common validations in one go. This includes:
 * HTTP response code validation,
