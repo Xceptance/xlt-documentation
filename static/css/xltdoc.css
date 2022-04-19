@@ -20,6 +20,14 @@
   background-color: #f7c1ba;
 }
 
+/* Permissions */
+.permission {
+  background-color: #dddddd;
+  border-width: 0px 0px 0px 4px;
+  border-style: solid;
+  border-color: #bbb;
+}
+
 .alert > p {
   margin-bottom: 5px;
 }

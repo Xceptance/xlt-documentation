@@ -1,0 +1,36 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+
+<div class="alert permission" style="min-height:3.5em; font-weight:300">
+    <div class="alert-heading" style="font-size:1.5em; float:left; margin-right:10px;">
+        <i class="fas fa-user-shield"></i>
+    </div>
+    <p style="margin-top:5px">
+        To 
+        {{ if .Get "action" }}
+            {{ .Get "action" }},
+        {{ else }}
+            use this feature,
+        {{ end }}
+        your account must 
+        {{ if eq (.Get "least") "true" }}
+            at least
+        {{ end }}
+        have the role of 
+        {{ if eq (.Get "role") "organization administrator" }}
+            an
+        {{ else }}
+            a
+        {{ end }} 
+        {{ if eq (.Get "type") "project" }}
+            <a href="/xtc/050-projects/#user-roles-within-a-project">
+        {{ else }}
+            <a href="/xtc/045-organizations/#user-roles-within-an-organization">
+        {{ end }}
+        {{ .Get "role" }}</a> within the 
+        {{ if eq (.Get "type") "project" }}
+            project. 
+        {{ else }}
+            organization. 
+        {{ end }}
+    </p>
+</div>

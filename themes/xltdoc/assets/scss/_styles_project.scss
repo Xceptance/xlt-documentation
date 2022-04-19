@@ -9,27 +9,46 @@
 
 }
 
+footer {
+    a {
+        color: scale-color($link-color, $saturation: -20%, $lightness: 50%);
+        
+        &:hover {
+            color: scale-color($link-hover-color, $saturation: 0%, $lightness: 50%);
+        }
+    }
+    
+}
+
 .td-content {
     /* give the content less of a hard contrast */
     color: $main-text-color !important;
     
     h1, h2, h3, h4, h5, h6 {
         font-family: $font-family-headlines;
+        margin-bottom: 0.5rem;
     }
     h1, h2 {
         font-weight: 700;
+        margin-top: 2rem;
     }
-    h3, h4, h5, h6 {
+    h3 {
+        font-weight: 700;
+        margin-top: 2rem;
+        font-size:1.8rem;
+    }
+    h4, h5, h6 {
         font-weight: 400;
     }
     
     h2 {
         border-bottom: 1px solid $gray-400;
-        padding-bottom: 0.25em;
+        padding-bottom: 0.25rem;
+        font-size: 2.3rem;
     }
 
     h4 {
-        font-size:1.2rem;
+        font-size:1.35rem;
     }
 }
 
@@ -149,4 +168,160 @@
 .alert {
     //border: 1px solid;
     border-radius: 4px;
+}
+
+.lead > code {
+    color: $primary;
+    font-size: 100%;
+    padding: 0px 2px;
+}
+
+.td-content li > a > code {
+    color: inherit;
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    word-break: normal;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 0.25rem;
+}
+
+.highlight, .td-content > pre {
+    border: $card-border-width solid $card-border-color;
+    @include border-radius($card-border-radius);
+}
+
+/* Search-Consent Styles: */
+
+#consent-banner {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    width: 300px;
+    z-index: 100;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    background-color: #eee;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+#agree p, #cancel p {
+    margin-top: 4px;
+}
+
+#agree, #cancel {
+    height: 35px;
+    background-color: $dark;
+    border: none;
+    color: white;
+    border-radius: 2px;
+    cursor: pointer;
+    text-align: center;
+    padding: 1px;
+}
+
+#agree:hover, #cancel:hover {
+    background-color: $primary;
+}
+
+#cancel {
+    margin-top: 5px;
+}
+
+/* Documentation Homepages Styles: */
+
+.td-default main section:first-of-type {
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+}
+
+.td-navbar-cover {
+    background: $primary !important;
+
+    .nav-link {
+            text-shadow: none;
+        }
+}
+
+.td-cover-block h1 {
+    font-size: 300%;
+    padding-top: 2rem;
+}
+
+.td-box--dark p > a:hover {
+    color: #fff;
+}
+
+.col-xc {
+    padding: 3%;
+    float: left;
+}
+
+.td-cover-block  .col-xc {
+    background-color: rgba(64, 63, 76, 0.5);
+}
+
+.col-xc:hover {
+    background-color: rgba(64, 63, 76, 0.8); 
+}
+
+.col-xc > a {
+    color: $light;
+}
+
+.col-xc p > a {
+    color: #999;
+}
+
+.col-xc p > a:hover {
+    color: $light;
+}
+
+/* overwriting settings from sidebar-tree.scss to use full page length for menu*/
+@media (hover:hover) {
+    .td-sidebar-nav {
+        max-height: calc(100vh - 5rem);
+        overflow-y: auto;
+    }
+}
+
+@media (hover:none) {
+
+    .td-sidebar {
+        background-color: rgba(160, 0, 0, 0.03);
+        border-bottom: 1px solid #dee2e6;
+        padding-bottom: 0px;
+    }
+
+    .td-sidebar__toggle {
+        color: rgba(64, 63, 76, 0.5) !important;
+        padding: 0px;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+        margin: 0px;
+        border: 0px;
+        width: 100%;
+        text-align: left;
+    }
+
+    .dropdown-item {
+        padding-top:10px;
+        padding-bottom:10px;
+    }
+
+    .nav-link {
+        padding: 10px;
+    }
+
+    .td-sidebar-link {
+        padding: 10px;
+    }
+
+    .td-sidebar-nav__section > ul {
+        padding-left: 0.5rem;
+    }
 }

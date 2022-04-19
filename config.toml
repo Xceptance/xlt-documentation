@@ -1,12 +1,10 @@
 baseURL = "/"
-title = "XLT Documentation"
+title = "Xceptance Documentation Hub"
 
 enableRobotsTXT = true
 
 # Hugo allows theme composition (and inheritance). The precedence is from left to right.
 theme = ["xltdoc", "docsy"]
-
-rss_sections = ["release-notes", "load-test", "test-automation", "xlt-in-a-nutshell"]
 
 # Will give values to .Lastmod etc.
 enableGitInfo = true
@@ -20,6 +18,13 @@ enableMissingTranslationPlaceholders = true
 
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
+# log warning if link does not exist on build (instead of default ERROR, which fails the build)
+refLinksErrorLevel = "WARNING"
+
+[frontmatter]
+date = [":git", "lastmod", "date", "publishDate", ":fileModTime"]
+lastmod = [":git", "lastmod", "date", "publishDate", ":fileModTime"]
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
@@ -29,7 +34,7 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
       guessSyntax = false
       hl_Lines = ""
       lineNoStart = 1
-      lineNos = true
+      lineNos = false
       lineNumbersInTable = true
       noClasses = false
       style = "tango"
@@ -43,6 +48,7 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
 # Configure how URLs look like per section.
 [permalinks]
 blog = "/:section/:year/:month/:day/:slug/"
+release-notes = "/release-notes/:title/"
 
 ## Configuration for BlackFriday markdown parser: https://github.com/russross/blackfriday
 [blackfriday]
@@ -66,8 +72,8 @@ anchor = "smart"
 
 [languages]
 [languages.en]
-title = "XLT Documentation"
-description = "XLT's Documentation including Manuals and How-Tos"
+# title = "Xceptance Documentation Hub"
+description = "Documentation for XLT and XTC including Manuals and How-Tos"
 languageName ="English"
 # Weight used for sorting.
 weight = 1
@@ -83,8 +89,12 @@ weight = 1
 # Everything below this are Site Params
 
 [params]
-copyright = "Xceptance GmbH"
-privacy_policy = "https://policies.google.com/privacy"
+copyright = "https://xceptance.com"
+privacy_policy = "https://www.xceptance.com/en/contact/privacy.html"
+doc_license = "https://www.apache.org/licenses/LICENSE-2.0"
+host = "xltdoc.xceptance.com"
+
+rss_sections = ["docs"]
 
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
@@ -122,7 +132,7 @@ breadcrumb_disable = false
 #  Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
 sidebar_search_disable = true
 #  Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top nav bar
-navbar_logo = true
+navbar_logo = false
 
 # Adds a H2 section titled "Feedback" to the bottom of each doc. The responses are sent to Google Analytics as events.
 # This feature depends on [services.googleAnalytics] and will be disabled if "services.googleAnalytics.id" is not set.
@@ -168,3 +178,78 @@ enable = false
 	icon = "fa fa-newspaper"
         desc = "The Xceptance Blog"
 
+# Main menu configuration
+[[menu.main]]
+    identifier = "xlt"
+    name = "XLT"
+    weight = 5
+    url = "/xlt"
+[[menu.main]]
+    name = "About XLT"
+    weight = 1
+    url = "/xlt/about-xlt"
+    parent = "xlt"
+[[menu.main]]
+    name = "Quick Start"
+    weight = 2
+    url = "/xlt/load-testing/quick-start"
+    parent = "xlt"
+[[menu.main]]
+    name = "Base Manual"
+    weight = 3
+    url = "/xlt/load-testing/manual"
+    parent = "xlt"
+[[menu.main]]
+    name = "Advanced Load Testing"
+    weight = 4
+    url = "/xlt/load-testing/advanced"
+    parent = "xlt"
+[[menu.main]]
+    name = "Test Suites"
+    weight = 5
+    url = "/xlt/load-testing/test-suites"
+    parent = "xlt"
+[[menu.main]]
+    name = "How-Tos"
+    weight = 6
+    url = "/xlt/load-testing/how-tos"
+    parent = "xlt"
+[[menu.main]]
+    name = "Glossary"
+    weight = 7
+    url = "/xlt/load-testing/glossary"
+    parent = "xlt"
+[[menu.main]]
+    identifier = "xlt-RN"
+    name = "Release Notes"
+    weight = 8
+    url = "/xlt/release-notes"
+    parent = "xlt"
+
+    
+[[menu.main]]
+    identifier = "xtc"
+    name = "XTC"
+    weight = 10
+    url = "/xtc"
+[[menu.main]]
+    name = "Basics"
+    weight = 1
+    url = "/xtc/basics"
+    parent = "xtc"
+[[menu.main]]
+    name = "Load Testing"
+    weight = 2
+    url = "/xtc/loadtesting"
+    parent = "xtc"
+[[menu.main]]
+    name = "Monitoring"
+    weight = 3
+    url = "/xtc/monitoring"
+    parent = "xtc"
+[[menu.main]]
+    identifier = "xtc-RN"
+    name = "Release Notes"
+    weight = 4
+    url = "/xtc/xtc-release-notes"
+    parent = "xtc"
