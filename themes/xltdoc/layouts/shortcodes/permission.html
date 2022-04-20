@@ -22,9 +22,9 @@
             a
         {{ end }} 
         {{ if eq (.Get "type") "project" }}
-            <a href="/xtc/050-projects/#user-roles-within-a-project">
+            <a href="/xtc/basics/050-projects/#user-roles-within-a-project">
         {{ else }}
-            <a href="/xtc/045-organizations/#user-roles-within-an-organization">
+            <a href="/xtc/basics/045-organizations/#user-roles-within-an-organization">
         {{ end }}
         {{ .Get "role" }}</a> within the 
         {{ if eq (.Get "type") "project" }}
