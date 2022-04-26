@@ -191,6 +191,18 @@ footer {
     @include border-radius($card-border-radius);
 }
 
+.image-description {
+    color:#999; 
+    padding-top: 5px;
+    font-family: $font-family-headlines;
+}
+
+.imagebox {
+    width: 95%;
+    text-align: center;
+    margin: 50px 0px;
+}
+
 /* Search-Consent Styles: */
 
 #consent-banner {
