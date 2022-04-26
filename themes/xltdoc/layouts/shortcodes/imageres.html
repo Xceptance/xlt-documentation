@@ -3,10 +3,12 @@
 {{ .Scratch.Set "image" ($original.Resize "600x") }}
 {{ $image := .Scratch.Get "image" }}
 
+<div class="imagebox">
 <a href="{{ .Get `src` }}" data-lightbox="{{ .Page.Title }}" {{ with .Inner }}data-title="{{ . | markdownify}}"{{ end }}>
-	<img  style="box-shadow: 1px 4px 12px 1px #ccc" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="" />
+	<img  style="box-shadow: 1px 1px 5px 1px #ccc" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="" />
 </a>
 
 {{ with .Inner }}
-<p style="color:#999; padding-top: 5px">{{ . | markdownify }}</p>
+<p class="image-description">{{ . | markdownify }}</p>
 {{ end }}
+</div>
