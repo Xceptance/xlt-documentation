@@ -39,13 +39,13 @@ When you use it, the target number of transactions per hour determines the load 
 
 The number of concurrent users is not static and influenced by the response time. If the response time temporarily increases, for example due to a server-side background job, the user count may increase as well. As soon as the response times improve, the number of concurrent users will automatically decrease. This way, the generated load is somewhat unpredictable, at least in terms of concurrency.
 
-The relationship between response times and concurrent users can lead to situations where more users cause more load and thus longer response times. Even more users are now required to run, which eventually causes the server to be overloaded. Even though this behavior appears pretty aggressive, it's more realistic. Compare it to a real-world situation where a lot of people are waiting at the check-out counter at the end of a store, but customers are still coming in because they don't know that people are waiting already. Or transferred to the online world: when you visit an online presence, you won't know the system behaves poorly until you start acting.
+The relationship between response times and concurrent users can lead to situations where more users cause more load and thus longer response times. Even more users are now required to run, which eventually causes the server to be overloaded. Even though this behavior appears pretty aggressive, it's more realistic. Compare it to a real-world situation where a lot of people are waiting at the check-out counter at the end of a store, but customers are still coming in because they don't know that people are waiting already. Or transferred to the online world: when you visit an online presence, you won't know the system behaves poorly until you start interacting with it.
 
 {{% note notitle %}}
-Even though the number of concurrent users is rather a result than an input value for this load model, XLT requires you to specify a user count. This number is used to impose an upper limit to the number of concurrent users, which may help you to restrict the total load on the system if you want to avoid a total overload resulting from the feedback loop.
+Even though the number of concurrent users is more of a result than an input value for this load model, XLT does still require you to specify a user count. In this case, this number is used to impose an upper limit to the number of concurrent users, which may help you to restrict the total load on the system if you want to avoid a total overload resulting from the feedback loop.
 {{% /note %}}
 
-The arrival rate load model is suited best if the load test is meant to prove that a system is in fact able to handle a certain number of transactions per hour. Since this is the primary purpose of load and performance testing, this model is the best choice for most of your test tasks.
+The arrival rate load model is best suited for a load test that is meant to prove that a system is in fact able to handle a certain number of transactions per hour. Since this is the primary purpose of load and performance testing, this model is the best choice for most of your test tasks.
 
 ## Load Factor
 
@@ -66,7 +66,7 @@ XLT also supports a variable load factor, a load factor that changes over time. 
 com.xceptance.xlt.loadtests.default.loadFactor = 0/1.0, 1h/1.0, 1h/1.5, 2h/1.5, 2h/0.5
 ```
 
-Note that a variable load factor cannot be used together with variable users (or arrival rate). Only one of them can be variable.
+Note that a variable load factor cannot be used with variable users (or arrival rate). Only one of them can be variable.
 
 The application of a load factor always involves some kind of rounding. Computed values will always be *rounded up* to the smallest integer number that is greater than or equal to the computed value (because arithmetic rounding would mean that test cases with a computed value of less than 0.5 are not run at all for the entire period of time this load factor is effective). Hence, users have to explicitly configure a load factor of 0.0 for a certain test case when they want it not to be run.
 
@@ -82,7 +82,7 @@ See below for their detailed explanation.
 
 ### Static Load Profile
 
-The load parameter remains unchanged during the test. This is the simplest profile. Note that the target systems must be able to handle the full load right from the beginning. You only need to define the number of test users and the measurement period: 
+The load parameter remains unchanged during the test. This is the simplest profile. Note that the target systems must be able to handle the full load right from the beginning. You only need to define the number of test users and the measurement period:
 
 ```bash
 com.xceptance.xlt.loadtests.TVisit.users = 500
@@ -113,10 +113,10 @@ For example, given a ramp-up step size of 100 users and a total of 500 users as 
 
 ```bash
 com.xceptance.xlt.loadtests.TVisit.users = 500
-#com.xceptance.xlt.loadtests.TVisit.rampUpPeriod = 40m  
-com.xceptance.xlt.loadtests.TVisit.rampUpSteadyPeriod = 10m  
-com.xceptance.xlt.loadtests.TVisit.rampUpStepSize = 100  
-com.xceptance.xlt.loadtests.TVisit.rampUpInitialValue = 100  
+#com.xceptance.xlt.loadtests.TVisit.rampUpPeriod = 40m
+com.xceptance.xlt.loadtests.TVisit.rampUpSteadyPeriod = 10m
+com.xceptance.xlt.loadtests.TVisit.rampUpStepSize = 100
+com.xceptance.xlt.loadtests.TVisit.rampUpInitialValue = 100
 com.xceptance.xlt.loadtests.TVisit.measurementPeriod = 60m
 ```
 
@@ -126,14 +126,14 @@ The resulting load profile looks like this:
 {{< /image >}}
 
 {{% note notitle %}}
-Please keep in mind that times in the configuration can be specified in different ways. So instead of `60m` you can also write `1h` or `3600s`. `90m` can also be expressed as `1h 30m`. 
+Please keep in mind that times in the configuration can be specified in different ways. So instead of `60m` you can also write `1h` or `3600s`. `90m` can also be expressed as `1h 30m`.
 {{% /note %}}
 
-But to just configure a simple ramp-up phase for the system to warm up, this setting is sufficient:
+But to just configure a simple ramp-up phase for the system to warm up, these settings is sufficient:
 
 ```bash
 com.xceptance.xlt.loadtests.TVisit.users = 500
-com.xceptance.xlt.loadtests.TVisit.rampUpPeriod = 40m  
+com.xceptance.xlt.loadtests.TVisit.rampUpPeriod = 40m
 com.xceptance.xlt.loadtests.TVisit.measurementPeriod = 60m
 ```
 
