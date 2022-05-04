@@ -16,6 +16,14 @@ After the successful registration, XTC will send you an email to the given addre
 
 Currently, your role and projects will be assigned by Xceptance. This will change in the future.
 
+## Notifications
+
+XTC users will get notified by email whenever their membership in a project or organization has changed:
+
+* when they have been added to or removed from an [org]({{< relref "045-organizations#adding-members-to-an-organization" >}}) or [project]({{< relref "050-projects#adding-and-removing-project-members" >}}),
+* when their [org]({{< relref "045-organizations#user-roles-within-an-organization" >}}) or [project]({{< relref "050-projects#user-roles-within-a-project" >}}) role has been changed, or
+* when they have actively been [locked or unlocked]({{< relref "045-organizations#locking-members-of-an-organization" >}}) by an org admin.
+
 ## Account Management
 
 XTC enables you to manage your account information. After logging in, click your avatar on the right side of the header and go to _My Account_. 

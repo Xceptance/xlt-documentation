@@ -85,11 +85,19 @@ To **add new members to the project**, navigate to the project and select _Membe
 
 If you want to add multiple users at once, simply paste a list of e-mail addresses (separated by comma, newline or space). All users will be assigned the same role.
 
-To **update a user's role** within a project, go to the project members list and click the context menu right of the user name, then select _Edit_. You can then pick a new membership role. 
+To **update a user's role** within a project, go to the project members list and click the context menu right of the user name, then select _Edit Role_. You can then pick a new membership role. 
 
 To **remove members** from a project, go to the project members list and click the context menu right of the user name, then select _Remove_ (you will be prompted to confirm the deletion).
 
 {{% note notitle %}}
 Please note that after removing members from the project, they are not automatically deleted from the organization as well, but will remain there until you explicitly remove them from the organization.
 {{% /note %}}
+
+### Inviting Users to Join XTC
+
+{{% permission type="project" role="project administrator" %}}
+
+As a project admin you may invite users who do not have an XTC account yet to join your project in XTC (if this feature is [enabled]({{< relref "#organization-configuration" >}}) for the organization). Simply [add these users to your project]({{< relref "#adding-and-removing-project-members" >}}) as usual, but make sure you activate the _Invite Users_ toggle.
+
+Users invited this way will receive an email with a link to complete their registration (provide name, password, etc.). Once this is done, these users are all set and ready to participate in the project.
 
