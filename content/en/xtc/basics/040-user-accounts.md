@@ -102,10 +102,6 @@ If you already have an existing XTC account, you can connect it to an external l
 Depending on whether you are already logged into your Google or Microsoft account, you may not see any indication of being redirected at all. The provider may redirect you back into XTC immediately without showing any login interface at all.
 {{% /note %}}
 
-{{% warning %}}
-After connecting your account to an external login provider normal login via username and password is no longer possible.
-{{% /warning %}}
-
 {{% note %}}
 When binding your XTC account to an external account, any **previously set XTC password** remains intact. This means you can use both your XTC login data or your external account to sign in.
 {{% /note %}}
