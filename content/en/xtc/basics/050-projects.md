@@ -81,7 +81,9 @@ Footer displaying the user's role in the project.
 
 {{% permission type="project" role="project administrator" %}}
 
-To **add new members to the project**, navigate to the project and select _Members_ in the menu on the left. You will see the list of project members, and by clicking the `+` sign in the top right, you can add new members by typing the name (mail address) of their user account and assigning one of the roles from above. The user you want to add needs to be signed up with this e-mail address already. 
+To **add new members to the project**, navigate to the project and select _Members_ in the menu on the left. You will see the list of project members, and by clicking the `+` sign in the top right, you can add new members by typing the name (mail address) of their user account and assigning one of the roles from above. 
+
+By default, you can only assign users who are already [members of your organization]({{< relref "045-organizations#adding-members-to-an-organization" >}}). If desired, you can [invite users]({{< relref "#inviting-users-to-join-xtc" >}}) who either don't have an XTC account yet or are not part of your organization.
 
 If you want to add multiple users at once, simply paste a list of e-mail addresses (separated by comma, newline or space). All users will be assigned the same role.
 
