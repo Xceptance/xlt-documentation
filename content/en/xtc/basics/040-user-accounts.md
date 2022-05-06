@@ -28,11 +28,11 @@ XTC users will get notified by email whenever their membership in a project or o
 
 XTC enables you to manage your account information. After logging in, click your avatar on the right side of the header and go to _My Account_. 
 
-The _My Account_ view contains two tabs: _Profile_ and _Login Data_. 
+The _My Account_ view contains two tabs: _Profile_ and _Security_. 
 
 In **Profile** you may update your profile information such as your first and last name, your phone number (which may be useful for receiving [monitoring notifications]({{< relref "../monitoring/440-scenario-setup#notifications" >}})), and you can also upload an avatar/profile picture.
 
-In **Security** you can update your login data: to set a new e-mail address or password for your account, you need to enter the new data twice and confirm this with your current password. (If you are using an external provider for authentication, entering the password will not be necessary, and you will only be able to update your account's e-mail address.)
+In **Security** you can update your login data: to set a new e-mail address or password for your account, you need to enter the new data twice and confirm this with your current password. (If you are using an external provider for authentication and have not set up an additional XTC password for your account, entering the password will not be necessary, and you will only be able to update your account's e-mail address.)
 
 In addition to securing your account with a regular password, you may set up _time-based one-time passwords (TOTP)_ as a [second factor (2FA)]({{< relref "#two-factor-authentication-2fa" >}}) here.
 
@@ -126,11 +126,9 @@ XTC allows you to remove the binding of your account to an external login provid
 
 {{% note notitle %}}
 Users that signed up with an SSO account typically don’t have an XTC password yet and therefore need to set up one first by using the _Forgot Your Password?_ mechanism on the login page.
-
-After setting up a password, your account will still be bound to its external login provider, i.e. the newly created password can not be used for logging in yet!
 {{% /note %}}
 
-To then unbind your SSO account and use the newly created password for future logins, 
+To then unbind your SSO account and only use the newly created password for future logins, 
 
 1. Click on your avatar in the top right corner and go to "My Account" > "Security". 
 1. Edit the "Single Sign-On" section by clicking on the pen icon.
