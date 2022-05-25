@@ -121,7 +121,7 @@ algolia_docsearch = true
 [sitemap]
   changefreq = "weekly"
   filename = "sitemap.xml"
-  priority = 0.5
+  priority = 0.8
 
 # User interface configuration
 [params.ui]
