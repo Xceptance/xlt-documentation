@@ -1,12 +1,32 @@
 {{ with .Site.Params.algolia_docsearch }}
 <!-- scripts for algolia docsearch -->
-<script type="text/javascript" src="/js/docsearch.min.js"></script>
+<!--script type="text/javascript" src="/js/docsearch.min.js"></script-->
+<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
 <script type="text/javascript"> docsearch({
+container: '#docsearch',
 appId: 'ST9X79HXPB',
 apiKey: 'e85a2de16188db7d5d5cd4f73e7bceef',
 indexName: 'xltdoc',
-inputSelector: '.td-search-input',
-debug: false // Set debug to true if you want to inspect the dropdown
+//inputSelector: '.td-search-input',
+debug: true, // Set debug to true if you want to inspect the dropdown
+searchParameters: { hitsPerPage: 50 },
+resultsFooterComponent({ state }) {
+    return {
+      type: "a",
+      ref: undefined,
+      constructor: undefined,
+      key: state.query,
+      props: {
+        href: "https://docsearch.algolia.com/apply",
+        target: "_blank",
+        onClick: (event) => {
+          console.log(event);
+        },
+        children: `${state.context.nbHits} search results found!`
+      },
+      __v: null
+    };
+  }
 });
 </script>
 
