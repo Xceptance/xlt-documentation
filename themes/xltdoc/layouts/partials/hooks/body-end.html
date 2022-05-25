@@ -1,11 +1,27 @@
 {{ with .Site.Params.algolia_docsearch }}
 <!-- scripts for algolia docsearch -->
 <script type="text/javascript" src="/js/docsearch.min.js"></script>
+<style>
+    .algolia-autocomplete .ds-dropdown-menu [class^=ds-dataset-] {
+        overflow: scroll;
+        max-height: 300px;
+    }
+    .algolia-autocomplete .algolia-docsearch-suggestion--highlight {
+        color: #a00000;
+    }
+    .algolia-autocomplete .algolia-docsearch-suggestion--text .algolia-docsearch-suggestion--highlight {
+        box-shadow: inset 0 -2px 0 0 #a00000;
+    }
+</style>
 <script type="text/javascript"> docsearch({
 appId: 'ST9X79HXPB',
 apiKey: 'e85a2de16188db7d5d5cd4f73e7bceef',
 indexName: 'xltdoc',
 inputSelector: '.td-search-input',
+algoliaOptions: {
+    hitsPerPage: 50,
+    // See https://www.algolia.com/doc/api-reference/api-parameters/
+  },
 debug: false // Set debug to true if you want to inspect the dropdown
 });
 </script>
