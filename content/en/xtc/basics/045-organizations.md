@@ -53,6 +53,11 @@ In _Configuration_, you may edit the name, short name and description of your or
 
 {{% permission role="organization administrator" %}}
 
+
+#### Integrations
+
+The _Integrations_ tab allows you to integrate XTC with your Slack Workspace to be notified of certain events like load test status changes. See the [Slack Integration]({{< relref "../integrations/510-slack" >}}) for further details.
+
 ### Mandatory Login Requirements
 
 {{% permission role="organization administrator" %}}

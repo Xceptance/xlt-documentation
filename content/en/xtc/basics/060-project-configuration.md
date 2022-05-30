@@ -37,3 +37,9 @@ You can choose between entering either **credentials** (username and password, w
 {{% note notitle %}}
 Please note that when using an SSH key for authentication, you need to enter the matching SSH repository URL above, while user credentials or access tokens require an HTTPS repository URL. Moreover, both URLs must not contain a username or any other authentication info.
 {{% /note %}}
+
+## Integrations
+
+{{% permission type="project" least="true" role="test manager" action="edit repository settings" %}}
+
+The _Integrations_ tab allows you to integrate XTC with your Slack Workspace to be notified of certain events like load test status changes. See the [Slack Integration]({{< relref "../integrations/510-slack" >}}) for further details.
