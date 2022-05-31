@@ -81,11 +81,13 @@ Footer displaying the user's role in the project.
 
 {{% permission type="project" role="project administrator" %}}
 
-To **add new members to the project**, navigate to the project and select _Members_ in the menu on the left. You will see the list of project members, and by clicking the `+` sign in the top right, you can add new members by typing the name (mail address) of their user account and assigning one of the roles from above. The user you want to add needs to be signed up with this e-mail address already. 
+To **add new members to the project**, navigate to the project and select _Members_ in the menu on the left. You will see the list of project members, and by clicking the `+` sign in the top right, you can add new members by typing the name (mail address) of their user account and assigning one of the roles from above. 
+
+By default, you can only assign users who are already [members of your organization]({{< relref "045-organizations#adding-members-to-an-organization" >}}). If desired, you can [invite users]({{< relref "#inviting-users-to-join-xtc" >}}) who either don't have an XTC account yet or are not part of your organization.
 
 If you want to add multiple users at once, simply paste a list of e-mail addresses (separated by comma, newline or space). All users will be assigned the same role.
 
-To **update a user's role** within a project, go to the project members list and click the context menu right of the user name, then select _Edit_. You can then pick a new membership role. 
+To **update a user's role** within a project, go to the project members list and click the context menu right of the user name, then select _Edit Role_. You can then pick a new membership role. 
 
 To **remove members** from a project, go to the project members list and click the context menu right of the user name, then select _Remove_ (you will be prompted to confirm the deletion).
 
@@ -93,3 +95,10 @@ To **remove members** from a project, go to the project members list and click t
 Please note that after removing members from the project, they are not automatically deleted from the organization as well, but will remain there until you explicitly remove them from the organization.
 {{% /note %}}
 
+### Inviting Users to Join a Project
+
+{{% permission type="project" role="project administrator" %}}
+
+As a project admin you may invite users who do not have an XTC account or are not part of the project's organization yet to join your project in XTC (if this feature is [enabled]({{< relref "#organization-configuration" >}}) for the organization). Simply [add these users to your project]({{< relref "#adding-and-removing-project-members" >}}) as usual, but make sure you activate the _Invite Users_ toggle.
+
+Previously unregistered users invited this way will receive an email with a link to complete their registration (provide name, password, etc.). Once this is done, they will be automatically added to the project's organization as _Guest_ members (just like previously registered users), and are then all set and ready to participate in the project.
