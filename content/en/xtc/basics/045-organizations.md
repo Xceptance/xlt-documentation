@@ -8,14 +8,21 @@ description: >
     Organizations in XTC and user roles within organizations.
 ---
 
-## XTC Organizations
-
 All tests run by XTC are organised in test projects, which in turn are part of an organization.
 
 Organizations can only be created by an XTC admin. They will also assign an initial administrator for every organization, who will have permissions to add additional members to the organization, and, most importantly, create projects in the organization's context.
 
+## Organization Configuration
 
-### User Roles Within an Organization
+{{% permission role="organization administrator" %}}
+
+In _Configuration_, you may edit the name, short name and description of your organization as well as upload an organization logo (which will also be displayed when the organization is shown in the list on the Dashboard page).
+
+In the _Security_ tab, you may enable or disable [user invitations]({{< relref "#inviting-users-to-join-xtc" >}}) or define [authorization requirements]({{< relref "#mandatory-login-requirements" >}}) for the members of your organization.
+
+The _Integrations_ tab allows you to integrate XTC with your Slack Workspace to be notified of certain events like load test status changes. See the [Slack Integration]({{< relref "../integrations/510-slack" >}}) for further details.
+
+## User Roles Within an Organization
 
 As an organization member, a user account can have one of the following roles:
 * as a **guest**, you can only view the organization's dashboard,
@@ -31,7 +38,7 @@ If you are logged in and are currently viewing an organization, your role will b
 Footer displaying the user's role in the organization.
 {{< /image >}}
 
-### Adding Members to an Organization
+## Adding Members to an Organization
 
 {{% permission role="organization administrator" %}}
 
@@ -47,18 +54,31 @@ The _Members_ page of an organization shows the [login provider]({{< relref "040
 
 Explicitly assigning organization members is usually not necessary in your daily work, as organization membership and roles are assigned implicitly by [adding and removing project members]({{< relref "050-projects/#adding-and-removing-project-members" >}}).
 
-### Organization Configuration
-
-In _Configuration_, you may edit the name, short name and description of your organization as well as upload an organization logo (which will also be displayed when the organization is shown in the list on the Dashboard page).
+### Inviting Users to Join XTC
 
 {{% permission role="organization administrator" %}}
 
+As an org admin you may invite users who do not have an XTC account yet to join your org in XTC (if this feature is [enabled]({{< relref "#organization-configuration" >}})). Simply [add these users to your organization]({{< relref "#adding-members-to-an-organization" >}}) as usual, but make sure you activate the _Invite Users_ toggle.
 
-#### Integrations
+Users invited this way will receive an email with a link to complete their registration (provide name, password, etc.). Once this is done, these users are all set and ready to participate in the organization.
 
-The _Integrations_ tab allows you to integrate XTC with your Slack Workspace to be notified of certain events like load test status changes. See the [Slack Integration]({{< relref "../integrations/510-slack" >}}) for further details.
+## Editing and Removing Org Members
 
-### Mandatory Login Requirements
+{{% permission role="organization administrator" %}}
+
+To **update a user’s role** within an organization, go to the _Members_ page and click the context menu right of the user name, then select _Edit Role_. You can then pick a new membership role.
+
+To **remove members** from an organization, go to the _Members_ page and click the context menu right of the user name, then select _Remove_ (you will be prompted to confirm the deletion).
+
+## Locking Members of an Organization
+
+{{% permission role="organization administrator" %}}
+
+When a user is a member of an organization, but does not yet or no longer fulfill the current requirements imposed by the organization (mostly security-related), the user should be locked out, either [automatically by the system]({{< relref "#mandatory-login-requirements" >}}) or manually by an admin of the organization. When locked, the user remains a member of this organization, but can no longer see any data or perform any action.
+
+To lock out a user manually, open the _Members_ page, locate the user in question and click _Lock Member_ in the context menu. To unlock the user again, click _Unlock Member_.
+
+## Mandatory Login Requirements
 
 {{% permission role="organization administrator" %}}
 
@@ -78,7 +98,7 @@ Changes to the login requirement take effect immediately. Users that are already
 XTC currently does not support requiring both, 2FA and SSO login. If your security policies require this setup please configure your SSO provider as the sole allowed login method and configure 2FA as a requirement in your provider's setup.
 {{% /note %}}
 
-#### Mandatory Two-Factor Authentication
+### Mandatory Two-Factor Authentication
 
 To enable mandatory 2FA for an organization go to the organization's _Configuration_, open the _Security_ tab and edit _Access Requirements_. Select the value _Two-Factor login required_ and save the changes.
 
@@ -90,7 +110,7 @@ If you are not currently logged in via 2FA the system will warn you about **lock
 Example of an admin about to lock themselves out of an organization by enabling mandatory 2FA.
 {{< /image >}}
 
-#### Mandatory Login via an External Provider
+### Mandatory Login via an External Provider
 
 To enable the mandatory use of an external login provider go to the organization's _Configuration_, open the _Security_ tab and edit _Access Requirements_. Select the value _SSO login required_ and save the changes.
 
