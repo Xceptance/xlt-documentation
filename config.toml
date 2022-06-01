@@ -248,8 +248,13 @@ enable = false
     url = "/xtc/monitoring"
     parent = "xtc"
 [[menu.main]]
+    name = "Integrations"
+    weight = 4
+    url = "/xtc/integrations"
+    parent = "xtc"
+[[menu.main]]
     identifier = "xtc-RN"
     name = "Release Notes"
-    weight = 4
+    weight = 5
     url = "/xtc/xtc-release-notes"
     parent = "xtc"
