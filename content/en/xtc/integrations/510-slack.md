@@ -12,10 +12,10 @@ XTC can integrate with [Slack](https://slack.com) to send notifications about ce
 
 ### Configuration
 
-Slack notifications can be configured either at the organization or project levels.
+Slack notifications can be configured either at the organization or project level.
 
 {{< image src="xtc/slack-config-readonly.png" max-width="80%" >}}
-Default configuration values at the Organization level: message sending is disable, the integration is not configured and no target channels are set.
+Default configuration values at the organization level: message sending is disabled, the integration is not configured and no target channels are set.
 {{< /image >}}
 
 Organization-level configuration values take effect in all the organization's projects unless explicitly overridden. Overriding occurs at a value level, i.e. not setting a specific configuration value at the project level will leave the corresponding value of the organization's config in place.
@@ -24,7 +24,7 @@ Organization-level configuration values take effect in all the organization's pr
 An integration config of a project with the "Send messages" overriden and all other values inherited from the surrounding organization.
 {{< /image >}}
 
-### Configuration values
+### Configuration Values
 
 {{< image src="xtc/slack-config.png" max-width="80%" >}}
 The Slack integration config form
@@ -52,7 +52,7 @@ The Slack integration config form
   {{% /note %}}
 * **Send Test Message** If a complete configuration (i.e. integration data and target channels) is available (inherited or configured directly), admins can send a test message to check for a correct setup. Please check in your Slack client whether the message arrived as expected. If not please re-check the configured values.
 
-### Notification events
+### Notification Events
 
 Once configured XTC will send notifications for the following events:
 

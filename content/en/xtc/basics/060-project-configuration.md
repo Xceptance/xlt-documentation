@@ -40,6 +40,6 @@ Please note that when using an SSH key for authentication, you need to enter the
 
 ## Integrations
 
-{{% permission type="project" least="true" role="test manager" action="edit repository settings" %}}
+{{% permission type="project" least="true" role="test manager" action="manage XTC integrations" %}}
 
 The _Integrations_ tab allows you to integrate XTC with your Slack Workspace to be notified of certain events like load test status changes. See the [Slack Integration]({{< relref "../integrations/510-slack" >}}) for further details.

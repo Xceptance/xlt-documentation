@@ -6,7 +6,11 @@ appId: 'ST9X79HXPB',
 apiKey: 'e85a2de16188db7d5d5cd4f73e7bceef',
 indexName: 'xltdoc',
 inputSelector: '.td-search-input',
-debug: false // Set debug to true if you want to inspect the dropdown
+algoliaOptions: {
+    hitsPerPage: 50,
+    // See https://www.algolia.com/doc/api-reference/api-parameters/
+  },
+debug: true // Set debug to true if you want to inspect the dropdown
 });
 </script>
 
