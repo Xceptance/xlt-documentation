@@ -41,8 +41,8 @@ The Slack integration config form
   {{% note notitle %}}
   If your Slack workspace is set up to require app approval, you may be presented with a screen to request said approval from an appropriate user in your workspace. Once this approval has been granted you can just restart the setup from the XTC config form.
   {{% /note %}}
-  This value will override an inherited token if it is non-empty.
-* **Remove Slack Integration** Removing the integration from your organization or project will remove all necessary integration data and potentially uninstall XTC from your workspace. In order to re-enable the integration again, you will have to repeat the setup process, potentially including any confirmation process within Slack.
+  When an integration is set up on the project level it will override any inherited values from the surrounding organization.
+* **Remove Slack Integration** Removing the integration from your organization or project will remove all necessary integration data. In order to re-enable the integration again, you will have to repeat the setup process, potentially including any confirmation process within Slack.
   {{% note notitle %}}
   When removing the integration from a project the integration of the surrounding organization takes effect. XTC does not allow projects to override an organization-wide integration with "empty data".
   {{% /note %}}
