@@ -108,18 +108,35 @@ com.xceptance.xlt.reportgenerator.charts.width = 900
 com.xceptance.xlt.reportgenerator.charts.height = 300
 ```
 
+### Scale
+
 You can also adjust the scale used for the y-axis in the run time charts. Valid values are “linear" (which is the default) and "logarithmic". This, for example, is how you can still see the runtime differences in your “normal” requests when there are some timeouts that would otherwise completely mess up your scale and make everything below a minute indistinguishable noise.
 
 ```bash
 com.xceptance.xlt.reportgenerator.charts.scale = logarithmic
 ```
 
+### Capping
+
 Another way to make your charts show meaningful data is to adjust the capping, i.e. the run time value above which the chart is just cropped. The cap can be defined using two alternative methods. First, you may specify the capping value directly. Second, you may specify a factor that, when applied to the mean of all run time values, defines the ultimate capping value (e.g. mean runtime is 500ms, then for a cappingFactor of 5 the charts are capped at 2500ms). This factor must be a double greater than 1. Note that capping values take precedence over capping factors. By default, there is no capping.
 
-Furthermore, you may configure the capping mode (`com.xceptance.xlt.reportgenerator.charts.cappingMode`):
+Furthermore, you may configure the **capping mode** (`com.xceptance.xlt.reportgenerator.charts.cappingMode`):
 * **smart:** cap the chart only if necessary (i. e. max > cap - this is the default)
 * **always:** always cap the chart at the capping value
-Note that the capping value/factor and the capping mode can be defined separately for each chart type, but it is also possible to define a default that applies to all chart types.
+
+Note that the capping value/factor and the capping mode can be defined separately for each **chart type**, but it is also possible to define a default that applies to all chart types:
+```bash
+# Default:
+com.xceptance.xlt.reportgenerator.charts.cappingValue = 5000
+# Transaction Charts
+com.xceptance.xlt.reportgenerator.charts.cappingValue.transactions = 50000
+# Action Charts
+com.xceptance.xlt.reportgenerator.charts.cappingValue.actions = 10000
+# Request Charts
+com.xceptance.xlt.reportgenerator.charts.cappingValue.requests = 5000
+# Custom Timers Charts
+com.xceptance.xlt.reportgenerator.charts.cappingValue.custom = 15
+```
 
 For example, to cap transaction charts to a value of 10000 (10sec), all other chart types (default) to a value of 5000 (5sec), always, use:
 ```bash
@@ -132,6 +149,8 @@ To cap request charts to a factor of 5 of request mean time, all other chart typ
 com.xceptance.xlt.reportgenerator.charts.cappingFactor = 10
 com.xceptance.xlt.reportgenerator.charts.cappingFactor.requests = 5
 ```
+
+### Example
 
 Here is a small glimpse of what can be done by this feature - first, we have the default chart without any customized capping:
 
