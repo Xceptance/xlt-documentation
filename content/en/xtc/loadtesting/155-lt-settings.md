@@ -29,9 +29,11 @@ The load profile settings are only needed if you want to override your test suit
 
 Learn more in our _Load Testing_ section about [configuring load profiles]({{< relref "/xlt/load-testing/manual/470-load-configuration" >}}) for your test run.
 
-### Repository
+### Schedule
 
-Under _Repository_ you can enter a branch of the project repository to be used for this test run. This is only necessary if you want to use another branch than the one you [configured for the project]({{< relref "../basics/060-project-configuration#repository" >}}). If this is left empty, the project or default branch will be used.
+Instead of starting the load test manually you can schedule it for an automated start. If you use this feature, make sure you have all settings properly configured. The scheduling does not validate the setup. You can remove a schedule at any time or start the test manually if desired. Also, editing of settings is possible as long as the test has not been started.
+
+To update the test schedule, click the edit button in the _Schedule_ section, then pick a date and time (UTC). To delete the schedule settings, click the delete button (only visible if a schedule is set).
 
 ### Machine Configuration
 
@@ -53,3 +55,7 @@ As **[test sizing]({{< relref "/xlt/load-testing/how-tos/test-sizing" >}})** is 
 
 ### Properties
 In _Properties_ and _Secret Properties_ you may overwrite [properties]({{< relref "/xlt/load-testing/manual/480-test-suite-configuration" >}}) for test execution. If nothing is set here, the properties from the project repository will be used. Properties may also be overwritten globally for all load tests of this project in the [project configuration]({{< relref "120-load-project-configuration#properties" >}}).
+
+### Repository
+
+Under _Repository_ you can enter a branch of the project repository to be used for this test run. This is only necessary if you want to use another branch than the one you [configured for the project]({{< relref "../basics/060-project-configuration#repository" >}}). If this is left empty, the project or default branch will be used.
