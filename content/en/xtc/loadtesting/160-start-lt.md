@@ -20,7 +20,9 @@ Start the configured load test.
 
 You will be prompted to confirm that you want to start the load test with the given settings now. If you click _Start Load Test_ XTC will start the load test by downloading the current state of the test suite project from the repository, building the project, provisioning the requested agents and, if this was successful, run the provided test scenarios for the configured time.
 
-<!--Soon (?) to come: test scheduling-->
+{{% note title="Test Scheduling" %}}
+XTC can schedule tests to start automatically at a certain time. To configure a test schedule, see [load test settings]({{< relref "155-lt-settings#schedule" >}}).
+{{% /note %}}
 
 ## Stopping a Load Test
 
