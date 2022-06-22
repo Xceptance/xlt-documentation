@@ -44,7 +44,7 @@ The Slack integration will not send any messages unless enabled. If a project ha
 
 This will forward the browser to Slack to initiate the integration process. If your Slack user has the appropriate permissions within the Slack workspace you will be presented with a screen to confirm the installation of XTC in your workspace. Upon confirmation you will be redirected back to the configuration overview where **Slack Integration** now should have changed to "Done" and and the **Slack Workspace** should contain the name of the Slack workspace you just installed XTC to.
 
-{{< image src="xtc/slack-config-token-installed.png" max-width="80%" >}}
+{{< image src="xtc/slack-config-token-installed.png" max-width="90%" >}}
 Slack integration installed into a workspace named "XTC-Test-Workspace"
 {{< /image >}}
   
@@ -60,7 +60,7 @@ When an integration is set up on the project level it will override any inherite
 
 ### Remove Slack Integration
 
-Removing the integration from your organization or project will remove all necessary integration data. In order to re-enable the integration again, you will have to repeat the setup process, potentially including any confirmation process within Slack.
+Removing the integration from your organization or project will remove all necessary integration data. In order to re-enable the integration again, you might have to repeat the setup process, potentially including any confirmation process within Slack.
 
 {{% note notitle %}}
 When removing the integration from a project the integration of the surrounding organization takes effect. XTC does not allow projects to override an organization-wide integration with "empty data".
@@ -98,6 +98,7 @@ Once configured XTC will send notifications for the following events:
   * **Start** A user started a load test from the UI.
   * **Running** The setup phase is complete; the actual test run starts.
   * **Finished** The test run is done.
+  * **Aborted** The test run has been aborted by a user.
   * **Error** The load test failed at any step.
   * **Report Available** The final report for the test is available.
 
