@@ -94,6 +94,10 @@ If a complete configuration (i.e. integration data and target channels) is avail
 
 Once configured XTC will send notifications for the following events:
 
+{{% warning notitle %}}
+Due to limitations in Slack's text renderer certain control characters will be filtered from the input values when displaying them in messages. If any of your organization's, project's, load test's or report's names containes any of the following characters, these may be removed: `_`, `*`, `` ` `` or `~`.
+{{% /warning %}}
+
 ### Load Tests
   * **Start** A user started a load test from the UI.
   * **Running** The setup phase is complete; the actual test run starts.
