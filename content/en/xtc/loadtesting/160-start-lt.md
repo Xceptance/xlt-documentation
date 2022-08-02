@@ -19,11 +19,11 @@ Instead of manually starting your load tests, XTC can also [schedule tests]({{<r
 To actually start the load test, click the _Start_ context menu item in the load test table or the _Start_ button on the load test details page:
 
 {{< image src="xtc/loadtest_start1.png" >}}
-Start the configured load test via context menu.
+Start or schedule the configured load test via context menu.
 {{< /image >}}
 
 {{< image src="xtc/loadtest_start2.png" >}}
-Start the configured load test on the test page.
+Start or schedule the configured load test on the test page.
 {{< /image >}}
 
 You will be prompted to confirm that you want to start the load test with the given settings now. If you click _Start Load Test_ XTC will start the load test by downloading the current state of the test suite project from the repository, building the project, provisioning the requested agents and, if this was successful, run the provided test scenarios for the configured time.
