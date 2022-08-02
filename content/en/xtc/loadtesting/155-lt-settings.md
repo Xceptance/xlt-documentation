@@ -29,12 +29,6 @@ The load profile settings are only needed if you want to override your test suit
 
 Learn more in our _Load Testing_ section about [configuring load profiles]({{< relref "/xlt/load-testing/manual/470-load-configuration" >}}) for your test run.
 
-### Schedule
-
-Instead of starting the load test manually you can schedule it for an automated start. If you use this feature, make sure you have all settings properly configured. The scheduling does not validate the setup. You can remove a schedule at any time or start the test manually if desired. Also, editing of settings is possible as long as the test has not been started.
-
-To update the test schedule, click the edit button in the _Schedule_ section, then pick a date and time (UTC). To delete the schedule settings, click the delete button (only visible if a schedule is set).
-
 ### Machine Configuration
 
 The most important (and mandatory) part of the test setup is the configuration of the test machines to be used. 
