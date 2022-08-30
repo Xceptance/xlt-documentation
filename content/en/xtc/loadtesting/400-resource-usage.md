@@ -12,9 +12,9 @@ When performing load tests, agent machines are started on your behalf to drive t
 
 ## Organization Resource Usage
 
-{{% permission role="billing administrator or organization administrator" %}}
+{{% permission role="billing manager or organization administrator" %}}
 
-If you are administrator or billing administrator of an organization, XTC offers you an overview for the organization's resource usage. To access this information, navigate to your organization and just click _Resource Usage_ in the menu on the left.
+If you are administrator or billing manager of an organization, XTC offers you an overview for the organization's resource usage. To access this information, navigate to your organization and just click _Resource Usage_ in the menu on the left.
 
 You will get a list of the total resources used, that is one tab for **machine minutes** and another tab for **storage space**. Resource usage is listed by month - the default list view shows the accumulated value across all projects in this organization, and by clicking right of the month you want to expect, you can expand it to view the resource usage of all projects seperately. 
 

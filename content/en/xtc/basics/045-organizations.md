@@ -27,10 +27,10 @@ The _Integrations_ tab allows you to integrate XTC with your Slack Workspace to 
 As an organization member, a user account can have one of the following roles:
 * as a **guest**, you can only view the organization's dashboard,
 * a **member** is basically the default role for any new project user and is allowed to view organization settings and view and work on projects,
-* a **billing administrator** has permission to view and evaluate [resource usage]({{< relref "../loadtesting/400-resource-usage" >}}) of the organization, and
+* a **billing manager** has permission to view and evaluate [resource usage]({{< relref "../loadtesting/400-resource-usage" >}}) of the organization, and
 * as an **organization administrator** you have complete permissions to change the organization's projects, members and configuration.
 
-(Permissions increase in order of the list, i.e. a billing administrator has the same permissions as a member plus some in addition to that.)
+(Permissions increase in order of the list, i.e. a billing manager has the same permissions as a member plus some in addition to that.)
 
 If you are logged in and are currently viewing an organization, your role will be displayed at the bottom right in the footer:
 
