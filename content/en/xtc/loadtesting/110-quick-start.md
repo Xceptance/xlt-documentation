@@ -12,13 +12,15 @@ description: >
 
 ## How to Run a Predefined Load Test
 
-As a tester, XTC enables you to start, stop and review load tests very easily. We will give you a quick overview on how to do this - if you need more information, we have a more detailed documentation for every step.
+As a tester, XTC enables you to start, stop and review predefined load tests (which have been already prepared and configured) very easily. We will give you a quick overview on how to do this - if you need more information, we have a more detailed documentation for every step.
 
 ### Navigate to the Load Test
-(TODO navigieren die Kunden sich selbst wohin oder schicken wir ihnen direkte Testlinks?) Navigate to the [load tests overview]({{<relref "160-start-lt">}}) by selecting **Load Tests** in the menu on the left and find the load test you want to start (its status should be _New_ as it has not run yet). Alternatively, you may have got a link to directly access the test you want to start. Clicking its _Status_ tab should display the information "This load test was not started yet."
+Navigate to the [load tests overview]({{<relref "140-overview">}}) by selecting **Load Tests** in the menu on the left and find the load test you want to start (its status should be _New_ as it has not run yet). Click the name of the test to view test details. 
+
+Alternatively, you may have got a link to directly access the test you want to start. Clicking its _Status_ tab should display the information "This load test was not started yet."
 
 ### Start the Load Test
-To start the load test, click the _Start_ context menu item in the load test table or the _Start_ button on the load test details page:
+To start the prepared and configured load test, click the _Start_ context menu item in the load test table or the _Start_ button on the load test details page:
 
 {{< image src="xtc/loadtest_start1.png" >}}
 Start or schedule the configured load test via context menu.
@@ -58,10 +60,12 @@ Abort the load test.
 
 XTC will automatically [create a report]({{< relref "/xlt/load-testing/manual/320-test-evaluation" >}}) at the end of the load test. You can find the generated report in the _Reports_ tab. All generated reports will be available inside XTC to browse and evaluate them, and also as compressed archive ready for download if you need them on your local machine.
 
-While the test is still running you can also generate [intermediate reports]({{< relref "/xlt/load-testing/manual/320-test-evaluation#intermediate-results" >}}) by clicking _Generate Intermediate Report_ on top of the load test contents. The Intermediate Report will always be created for the complete runtime of the test up to the point of report creation, including the ramp up. Clicking _Accept_ will start the report creation (which may take several minutes).
-
-After the load test has finished, you can create as many [custom reports]({{< relref "180-reports#custom-reports" >}}) with adjusted report settings as you need.
-
 ### Rerun the Same Load Test
 
-To rerun a test, XTC allows you to duplicate tests. 
+To rerun a test, XTC allows you to duplicate tests. This copies the complete configuration to a new load test run. To duplicate a load test, navigate to the _Load Tests_ overview of your load test project, then select _Duplicate_ in the test's context menu:
+
+{{< image src="xtc/loadtest_duplicate.png" >}}
+Duplicate an existing load test.
+{{< /image >}}
+
+You can then start, monitor and finish the load test like described [above](#start-the-load-test).
