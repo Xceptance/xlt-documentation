@@ -24,7 +24,7 @@ By selecting **Load Tests** in the menu on the left of any load testing project 
 * _Aborted_ for tests that were aborted by a user, or 
 * _Error_ for tests that did not run to completion because of a technical error.
 
-Also, the table contains the start date of the test run (if it has been started yet), a summary and rating for finished tests that already have been evaluated in XTC, and a menu toggle. 
+Also, the table contains the start date of the test run (if it has been started yet), the duration (of finished load tests), a summary and rating for finished tests that already have been evaluated in XTC, and a menu toggle. 
 
 {{< image src="xtc/loadtests_table.png" >}}
 The load tests overview of a project.

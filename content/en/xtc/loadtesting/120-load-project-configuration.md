@@ -10,6 +10,30 @@ description: >
 
 The _Configuration_ of a load test project is very similar to the basic [project configuration]({{< relref "../basics/060-project-configuration" >}}), but there are a few special settings for this project type:
 
+## Repository
+
+{{% permission type="project" least="true" role="tester" action="view repository settings" %}}
+{{% permission type="project" least="true" role="test manager" action="edit repository settings" %}}
+
+In addition to the [basic repository settings]({{< relref "../basics/060-project-configuration#repository" >}}) which can be defined for load test projects and monitoring projects alike, there are a few additional options for load test projects concerning the compiling of the test suite:
+
+### Build Tool
+
+Before a load test can be started, XTC needs to compile your load test suite. If you don’t configure a build tool, **Maven** will be used by default, but XTC also supports **Gradle** as an alternative. In any case, please make sure that your load test project contains the respective build files and verify locally that the build produces the expected results.
+
+To configure your preferred build tool, click the editing button, select a build tool and enter additional arguments for this tool if needed. Click _Save Changes_ to confirm.
+
+{{< image src="xtc/loadtest_selectBuildTool.png" >}}
+{{< /image >}} 
+
+### Build Dependency Cache
+
+Building the load test suite before the actual start of the test may take several minutes to complete. Most of that time can be attributed to the download of dependencies (XLT and other required libraries). 
+
+XTC caches the downloaded dependencies of a load test project so subsequent builds should run much faster. The cache expires automatically 14 days after the last load test was run. 
+
+If you need to discard the cache (for example due to currupted or compromised artifacts), you can do so by going to this section and clicking _Discard Cache_.
+
 ## Default Sharing Settings
 
 {{% permission type="project" least="true" role="tester" action="view default sharing settings" %}}
