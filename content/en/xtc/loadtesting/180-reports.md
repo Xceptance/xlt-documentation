@@ -133,3 +133,7 @@ Finally, if you don't need a generated report any longer, you may want to delete
 {{% warning notitle %}}
 Please note that when deleting load test reports from XTC, they are truly deleted from the backing file storage, so this process **cannot be undone**.
 {{% /warning %}}
+
+## Errors on Report Creation
+
+Creating a load test report may fail for several reasons, for example because of invalid report generator settings in your test suite. The _Error_ link next to a failed report will open the console log of the report generator. This way you should get an idea what the actual reason for that failure was.
