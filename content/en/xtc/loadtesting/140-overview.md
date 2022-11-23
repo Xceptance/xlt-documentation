@@ -24,7 +24,7 @@ By selecting **Load Tests** in the menu on the left of any load testing project 
 * _Aborted_ for tests that were aborted by a user, or 
 * _Error_ for tests that did not run to completion because of a technical error.
 
-Also, the table contains the start date of the test run (if it has been started yet), a summary and rating for finished tests that already have been evaluated in XTC, and a menu toggle. 
+Also, the table contains the start date of the test run (if it has been started yet), the duration (of finished load tests), a summary and rating for finished tests that already have been evaluated in XTC, and a menu toggle. 
 
 {{< image src="xtc/loadtests_table.png" >}}
 The load tests overview of a project.
@@ -38,3 +38,28 @@ By clicking a test name in the table, you will be taken to the details of this t
 * The **Results** tab contains the [test results]({{< relref "175-results" >}}) which are automatically downloaded at the end of the test, and also intermediate results you may have downloaded manually during the test run. Results can be downloaded or deleted in the menu on the right.
 * The **Reports** tab contains all test reports (final and intermediate) that were created for the test. Reports can be edited (to enter a new name or description), downloaded, shared or deleted in the menu on the right. By clicking the **+** Button you can [add new reports]({{< relref "180-reports" >}}) (e.g. to change report settings or merge rules used for report creation).
 * In **Evaluation** you can add a short summary, a rating and a more detailed [evaluation]({{< relref "190-evaluation" >}}) to the test. 
+
+### Color Groups
+
+Load tests may have a custom background color in the load test table. Use this feature to "visually group" load tests that belong together or simply mark certain load tests so that they stand out and can be found again easily. 
+
+{{< image src="xtc/loadtest_colors1.png" >}}
+{{< /image >}} 
+
+To assign a color, open the _Edit Description_ dialog from the test's context menu and select the desired color. 
+
+To return to the default background, deselect the currently selected color.
+
+{{< image src="xtc/loadtest_colors2.png" >}}
+{{< /image >}} 
+
+### Deleting Load Tests
+
+Each test in the load test table can be deleted by opening its context menu and clicking _Delete_ there.
+
+To delete several load tests at once, select the load tests in question using the respective check boxes in the left column of the load test table, then click _DELETE_ at the top of the table. 
+
+{{< image src="xtc/loadtest_bulkDelete.png" >}}
+{{< /image >}} 
+
+This action cannot be undone. It will permanently delete all data that was collected by the tests. To prevent an accidental deletion, you will be prompted to check the list of selected tests and confirm.

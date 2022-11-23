@@ -8,7 +8,7 @@ description: >
   How test reports for load tests can be created.
 ---
 
-## Creating a Report
+## Default Report
 
 {{% permission type="project" least="true" role="reviewer" action="view a test report" %}}
 
@@ -47,6 +47,8 @@ Creating an intermediate report also generates an intermediate [test result]({{<
 {{% permission type="project" least="true" role="tester" %}}
 
 After the load test has finished, you can create as many custom reports with adjusted report settings as you need. 
+
+This can be done either by going to the [_Results_ tab]({{< relref "175-results#creating-a-report-from-results" >}}), opening the context menu of any result set and selecting _Create Report_, or by clicking the **+** button in the _Reports_ overview. In the latter case, the report will be created from the latest available result. When determining the latest result, XTC skips pending or failed results as these typically don’t have result data attached (yet).
 
 On creating a custom report, there will be a popup to configure the report settings: you will be prompted to enter a _label_ and _description_ for the report, and may choose a _time range_ to create the report for (intermediate and final reports always cover the fulfilled testing time). The default time range is always the complete test duration, but you may determine the start time and end time by several options, similar to the [report creation]({{< relref "/xlt/load-testing/manual/540-report-options#defining-a-reporting-timeframe" >}}) in XLT. To check whether your settings are correct, the effective report time range will be displayed at the end of this section:
 
@@ -131,3 +133,7 @@ Finally, if you don't need a generated report any longer, you may want to delete
 {{% warning notitle %}}
 Please note that when deleting load test reports from XTC, they are truly deleted from the backing file storage, so this process **cannot be undone**.
 {{% /warning %}}
+
+## Errors on Report Creation
+
+Creating a load test report may fail for several reasons, for example because of invalid report generator settings in your test suite. The _Error_ link next to a failed report will open the console log of the report generator. This way you should get an idea what the actual reason for that failure was.
