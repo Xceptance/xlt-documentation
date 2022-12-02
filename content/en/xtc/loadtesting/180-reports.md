@@ -94,7 +94,7 @@ XTC simplifies sharing your reports with XTC users as well as people outside the
 
 If your [role within the load test project]({{< relref "../basics/050-projects#user-roles-within-a-project" >}}) is at least that of a **reviewer**, you may view all information about a load test, including every report that was created for any test run. If you are a **project administrator**, you can add XTC users as reviewers to the project if you want them to have access to all reports.
 
-To share reports with people outside XTC, you can create a **Sharing Link** for each report. By clicking _Share_ in the context menu of the report to be shared in the reports tab, a prompt will open and you may select whether to use the [default sharing settings]({{< relref "120-load-project-configuration#default-sharing-settings" >}}) or define an expiration time specifically for this report link. 
+To share reports with people outside XTC, you can create a **Sharing Link** for each report. By clicking _Share_ in the context menu of the report to be shared in the reports tab, a prompt will open and you may select whether to use the [default sharing settings]({{< relref "120-load-project-configuration#default-sharing-settings" >}}) or define an expiration time specifically for this report link. The maximum lifetime of shares is limited to 180 days. 
 
 {{< image src="xtc/loadtest_sharingLink_share.png" >}}
 Creating a public sharing link
