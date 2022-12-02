@@ -38,7 +38,7 @@ Once a load test has been scheduled, its settings can no longer be edited. If yo
 
 ## Stopping a Load Test
 
-XLT simplifies finishing load tests for you, as load tests will be stopped automatically after the run is complete. XLT will take care to deprovision the agents that were used for the test run and it will automatically download [results]({{< relref "175-results" >}}) and [create a report]({{< relref "180-reports" >}}).
+XTC simplifies finishing load tests for you, as load tests will be stopped automatically after the run is complete. XTC will take care to deprovision the agents that were used for the test run and it will automatically download [results]({{< relref "175-results" >}}) and [create a report]({{< relref "180-reports" >}}).
 
 {{% note notitle %}}
 Please note that only [Google Machines]({{< relref "155-lt-settings#machine-configuration" >}}) provisioned by XTC itself will be deprovisioned automatically after the test is finished. You will need to shut down any Custom Machines you added yourself.

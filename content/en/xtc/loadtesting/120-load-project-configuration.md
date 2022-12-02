@@ -44,6 +44,8 @@ In _Sharing_, you can define a default for the share expiration time of [load te
 
 We recommend using the default because if the share expiration time needs to be adjusted/prolonged, you can set the new default and it will apply to all existing shares alike. This also includes disabling these shares.
 
+The maximum lifetime of shares is limited to 180 days.
+
 {{% note notitle %}}
 Please note that default expiration dates for results and reports are two independently set values.
 {{% /note %}}
