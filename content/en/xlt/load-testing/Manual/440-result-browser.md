@@ -28,6 +28,12 @@ When running test cases, you can save the page output to disk. The relevant prop
 com.xceptance.xlt.output2disk = always
 ```
 
+If you have saved the page output to disk and want links from the error entries in the load test report to the corresponding result browsers in the results directory in your [report]({{< relref "320-test-evaluation" >}}), make sure the property is set accordingly in `reportgenerator.properties`:
+
+```bash
+com.xceptance.xlt.reportgenerator.linkToResultBrowsers = true
+```
+
 By enabling page output to disk, a lot of data will be aggregated. To minimize this in load test mode, the property may be set to `onError` so that only the page output that resulted in an error is saved to disk. Since this single page on its own is not always enough to determine what generated the error, we can also set the number of actions previous to the error that should be kept as part of the record (this is set to 3 by default and to `all` in development mode):
 
 ```bash
@@ -44,29 +50,62 @@ com.xceptance.xlt.output2disk.onError.dumpMode = finalPagesOnly
 
 So if an error occurs during a transaction in a load test, `output2disk` is set to `onError` and the size is set to `3`, a result browser with the last 3 pages is written to disk. If the error condition is permanent (or present for a longer period of time), we might end up with thousands of (rather similar) result browsers. This tremendously increases the volume of data to be downloaded after the test, but does not provide any new information. That’s why you can limit the number of result browsers per type of error and agent.
 
-For each type of error, which is identified by its message and stacktrace, XLT tracks the current number of stored result browsers and stops writing down any new result browser once the configured maximum number is reached. However, you may also configure a time period to periodically clear the counter. Use this setting to limit the maximum number of result browsers for a given time period instead of the whole test runtime.
+
+### How does the XLT Error Limiter work?
+
+When an error (exception) stops the test execution of a scenario, XLT will take the username (name of the test scenario such as `TBrowse` or `TOrder`) and a meaningful part of the stacktrace (message and some of the first lines) and calculate a hash. This hash forms the key to the storage map that counts if this error has been seen before. 
+
+For each type of error, XLT tracks the current number of stored result browsers and stops writing down any new result browser once the configured maximum number is reached. However, you may also configure a time period to periodically clear the counter.
+
+In case we limit the number of errors, the error limiter logic works like that:
+* If the error is not known, check if we still have room for this error (`maxDifferentErrors`), if so, add it to the map and start to count the number of occurrences (if `maxDumps` > 0).
+* If the error is known, check whether we also want to limit the `maxDumps` per error, if so, dump it only if we still have room and increase the counter.
+* If the max dump limit is reached or the size limit for the map of hashes is reached, drop the dump request but still count the error normally (it won't be suppressed from error charts and such).
+* When an error is counted for the first time, a timer is started (for `resetInterval` > 0). After the given interval, the hash is removed from the map and allows new errors to arrive and be counted.
+
+If the `resetInterval` is 0, once the map with error hashes is full, it will never be cleared and hence the test stops to accept new error messages for dumping.
+
+{{% warning title="Important" %}}
+Don't put dynamic data into your stacktrace message such as unique product numbers, or timestamps. This will always create a new key to the counter and hence exhaust it quickly. In the worst case you don't have a limiter in place, and you will run out of disk space quickly when you have a high error situation.
+{{% /warning %}}
+
+#### Settings
 
 ```bash
-# maximum number of different error types per agent
-com.xceptance.xlt.output2disk.onError.limiter.maxDifferentErrors = 1000
+## Amount of different errors handled by the dump limiter.
+## If not specified it is 0 and we allow an unlimited amount of different errors.
+com.xceptance.xlt.output2disk.onError.limiter.maxDifferentErrors = 500
 
-# number of result browsers per agent and type of error
+## Limit the number of dumped results per agent and error stack trace. This
+## requires, that maxDifferentErrors is > 0. You can set it to -1 to dump
+## all occurrences of an error (not recommended).
 com.xceptance.xlt.output2disk.onError.limiter.maxDumps = 10
 
-# period after which the result dump counter is reset to 0
-com.xceptance.xlt.output2disk.onError.limiter.resetInterval = 1h 30m
+## Period before we remove the entry for a certain error from the tracking list
+## to make room for new errors or, of course, the same again. This does not clear
+## out the entire table. This is the time from the first occurrence of single problem.
+##
+## If the interval is 0 or not set the reset mechanism is turned off.
+## The time period value can be specified in one of the following formats:
+##   - total number of seconds
+##     examples: '1234s' or '1234'
+##   - natural style
+##     examples: '0h 12m 0s', '0h 12m', '12m 0s' or '12m'
+##   - digit style
+##     examples: '1:23', '01:23', '0:1:23' or '0:01:23'
+com.xceptance.xlt.output2disk.onError.limiter.resetInterval = 60m
 ```
+
+{{% note title="Please note:" %}}
+These settings are per running agent process! Hence, when you run ten machines with one agent each (the usual recommended default with JDK 11 and higher as well as G1 or Shenandoah as GC), you get about 500 (`maxDifferentErrors`) times 10 (agents) possible different errors. Assuming that each agent runs about the same test cases and (usually) encounters the similar error situations, it might not be far off under normal circumstances. 
+{{% /note %}}
+
+---
 
 When saving request data to disk for the result browser, the request body of POST requests is currently limited to 8K by default and will be cropped when exceeding this value. If this is still too low for your most complex requests, for instance Web service requests with large JSON bodies, you can also tailor this limit to your needs (in bytes):
 
 ```bash
 com.xceptance.xlt.output2disk.maxRequestBodySize = 12345
-```
-
-If you have saved the page output to disk and want links from the error entries in the load test report to the corresponding result browsers in the results directory in your [report]({{< relref "320-test-evaluation" >}}), make sure the property is set accordingly in `reportgenerator.properties`:
-
-```bash
-com.xceptance.xlt.reportgenerator.linkToResultBrowsers = true
 ```
 
 ## Using the Result Browser
