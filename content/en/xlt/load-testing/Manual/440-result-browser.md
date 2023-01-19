@@ -51,7 +51,7 @@ com.xceptance.xlt.output2disk.onError.dumpMode = finalPagesOnly
 So if an error occurs during a transaction in a load test, `output2disk` is set to `onError` and the size is set to `3`, a result browser with the last 3 pages is written to disk. If the error condition is permanent (or present for a longer period of time), we might end up with thousands of (rather similar) result browsers. This tremendously increases the volume of data to be downloaded after the test, but does not provide any new information. That’s why you can limit the number of result browsers per type of error and agent.
 
 
-### How does the XLT Error Limiter work?
+### How does the error limiter work?
 
 When an error (exception) stops the test execution of a scenario, XLT will take the username (name of the test scenario such as `TBrowse` or `TOrder`) and a meaningful part of the stacktrace (message and some of the first lines) and calculate a hash. This hash forms the key to the storage map that counts if this error has been seen before. 
 
@@ -99,8 +99,6 @@ com.xceptance.xlt.output2disk.onError.limiter.resetInterval = 60m
 {{% note title="Please note:" %}}
 These settings are per running agent process! Hence, when you run ten machines with one agent each (the usual recommended default with JDK 11 and higher as well as G1 or Shenandoah as GC), you get about 500 (`maxDifferentErrors`) times 10 (agents) possible different errors. Assuming that each agent runs about the same test cases and (usually) encounters the similar error situations, it might not be far off under normal circumstances. 
 {{% /note %}}
-
----
 
 When saving request data to disk for the result browser, the request body of POST requests is currently limited to 8K by default and will be cropped when exceeding this value. If this is still too low for your most complex requests, for instance Web service requests with large JSON bodies, you can also tailor this limit to your needs (in bytes):
 
