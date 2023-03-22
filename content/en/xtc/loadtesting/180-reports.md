@@ -48,7 +48,11 @@ Creating an intermediate report also generates an intermediate [test result]({{<
 
 After the load test has finished, you can create as many custom reports with adjusted report settings as you need. 
 
-This can be done either by going to the [_Results_ tab]({{< relref "175-results#creating-a-report-from-results" >}}), opening the context menu of any result set and selecting _Create Report_, or by clicking the **+** button in the _Reports_ overview. In the latter case, the report will be created from the latest available result. When determining the latest result, XTC skips pending or failed results as these typically don’t have result data attached (yet).
+This can be done either by going to the [_Results_ tab]({{< relref "175-results#creating-a-report-from-results" >}}), opening the context menu of any result set and selecting _Create Report_, or by clicking the **NEW** button in the _Reports_ overview. In the latter case, the report will be created from the latest available result. When determining the latest result, XTC skips pending or failed results as these typically don’t have result data attached (yet).
+
+{{% note notitle %}}
+The **NEW** button is enabled only if there are indeed valid load test results available to create a report from. Empty results don’t count as valid and will be ignored.
+{{% /note %}}
 
 On creating a custom report, there will be a popup to configure the report settings: you will be prompted to enter a _label_ and _description_ for the report, and may choose a _time range_ to create the report for (intermediate and final reports always cover the fulfilled testing time). The default time range is always the complete test duration, but you may determine the start time and end time by several options, similar to the [report creation]({{< relref "/xlt/load-testing/manual/540-report-options#defining-a-reporting-timeframe" >}}) in XLT. To check whether your settings are correct, the effective report time range will be displayed at the end of this section:
 
