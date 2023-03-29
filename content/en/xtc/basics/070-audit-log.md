@@ -12,6 +12,10 @@ XTC comes with an Audit Log. Use this feature to learn which activity has been p
 
 The _Audit Log_ page in your **organization** shows just organization-related activities while the _Audit Log_ page in a **project** lists activities for that project only. 
 
+{{< TODO / >}} Which activities are currently logged?
+
+{{< TODO / >}} Build screenshot with neutral usernames etc.
+
 Use the search/filter controls available at the audit log tables to narrow down the list of activities. Entries in the audit log expire automatically after 180 days.
 
 {{% note notitle %}}
