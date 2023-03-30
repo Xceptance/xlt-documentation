@@ -12,6 +12,12 @@ description: >
 
 To use Xceptance Test Center, you need a user account. You can easily sign up on https://xtc.xceptance.com/. You will be prompted to enter your name, mail address and password. Alternatively, [you can sign up using your Google or Microsoft account]({{< relref "#sign-up-using-an-external-provider" >}}).
 
+{{% note title="Password Guidelines" %}}
+1. Your password for XTC has to be at least 12 characters long. 
+1. A password must not start or end with spaces. 
+1. If the password is shorter than 15 characters, it must contain at least one of each: lowercase and uppercase characters, digits, and special characters (e.g. punctuation).
+{{% /note %}}
+
 After the successful registration, XTC will send you an email to the given address, asking you to confirm the registration. You will be able to log in to XTC as soon as you confirmed.
 
 Currently, your role and projects will be assigned by Xceptance. This will change in the future.
