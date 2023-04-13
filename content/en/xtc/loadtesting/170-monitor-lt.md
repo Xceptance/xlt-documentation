@@ -32,9 +32,9 @@ The scenario status view for a running load test.
 
 #### Live Metrics
 
-The graph on top of the scenario status table is updated live while the load test is running and displays information on the number of currently active users for each test scenario as well as total users. Hovering over the graph displays a popup with the values for this point in time.
+The graph on top of the scenario status table is updated live while the load test is running and displays information on the number of currently active users for each test scenario. Hovering over the graph displays a popup with the values for this point in time (number of total users in brackets).
 
-Since there might be a lot of information, you can filter in the dropdown for single or several test scenarios or just display total values. 
+Since there might be a lot of information, you can **filter** in the dropdown for single or several test scenarios or just display total values. If you want more granularity in the metrics, selecting a higher **scaling factor** will make the chart taller. 
 
 Red vertical bars are displayed when scenario errors occurred. These are bound to the respective scenarios, i.e. if you select a single scenario only the errors for this scenario will be visible in the graph. If you select _Totals_, the sum of all scenario errors will be displayed.
 
