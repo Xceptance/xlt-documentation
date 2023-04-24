@@ -19,3 +19,9 @@ After the test has finished, you can add a short summary, a rating and a more de
 {{< image src="xtc/loadtest_summary.png" >}}
 The evaluation for a finished load test.
 {{< /image >}}
+
+To quickly add a summary and rating to any finished test in the load test overview table, simply click _Edit Details_ in the test's context menu and switch to the _Quick Rating_ tab:
+
+{{< image src="xtc/loadtest_quickRating.png" >}}
+Adding a quick rating for a finished load test.
+{{< /image >}}

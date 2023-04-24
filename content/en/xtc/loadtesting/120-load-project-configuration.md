@@ -17,6 +17,8 @@ The _Configuration_ of a load test project is very similar to the basic [project
 
 In addition to the [basic repository settings]({{< relref "../basics/060-project-configuration#repository" >}}) which can be defined for load test projects and monitoring projects alike, there are a few additional options for load test projects concerning the compiling of the test suite:
 
+## Build
+
 ### Build Tool
 
 Before a load test can be started, XTC needs to compile your load test suite. If you don’t configure a build tool, **Maven** will be used by default, but XTC also supports **Gradle** as an alternative. In any case, please make sure that your load test project contains the respective build files and verify locally that the build produces the expected results.
