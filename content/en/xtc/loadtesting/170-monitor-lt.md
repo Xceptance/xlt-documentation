@@ -36,7 +36,7 @@ The graph on top of the scenario status table is updated live while the load tes
 
 Since there might be a lot of information, you can **filter** in the dropdown for single or several test scenarios or just display total values. If you want more granularity in the metrics, selecting a higher **scaling factor** will make the chart taller. 
 
-Red vertical bars are displayed when scenario errors occurred. These are bound to the respective scenarios, i.e. if you select a single scenario only the errors for this scenario will be visible in the graph. If you select _Totals_, the sum of all scenario errors will be displayed.
+Red vertical bars are displayed when scenario errors occurred. These are bound to the respective scenarios, i.e. when you select a single scenario only the errors for this scenario will be visible in the graph. When you select _Total_, the sum of all scenario errors will be displayed.
 
 {{% note notitle %}}
 Please note that there may be gaps in the live metrics even though the test was running fine during that time - this might happen due to a restart or relocation of the status updater (which regularly fetches the test status from the agents). Also, if the status updater does not receive any status from the agents for whatever reason, the charts will contain a gap for that period. 
