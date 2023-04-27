@@ -4,8 +4,6 @@ title: "Audit Log"
 weight: 70
 type: docs
 
-draft: true
-
 description: >
     Information about which user did what in a project.
 ---
