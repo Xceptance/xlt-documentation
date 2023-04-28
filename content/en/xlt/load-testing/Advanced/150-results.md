@@ -73,7 +73,7 @@ The lines have a different number of columns as they represent different types o
 
 [^fn3]: The list of IP addresses reported by DNS for the host name used when making the request. If there is more than one IP address, they will be stored separated by a '|' character. Will not be set if the request did not trigger a DNS address resolution, for example, in case of keep-alive connections. This value is only present if the property `xlt.dns.recordAddresses` is set to true, otherwise it is blank.
 
-[^fn4]: The target IP address of the system under test that was used when making the request. This info is useful only if the target system has multiple IP addresses, e.g. if it is located behind a CDN. This value is only present if the property `xlt.dns.TBD` is set to true, otherwise it is blank.
+[^fn4]: The target IP address of the system under test that was used when making the request. This info is useful only if the target system has multiple IP addresses, e.g. if it is located behind a CDN. This value is only present if the property `com.xceptance.xlt.results.data.request.collectUsedIpAddress` is set to true, otherwise it is blank.
 
 {{% note notitle %}}
 Note that the file format might change or be extended in future XLT releases. We strive to keep the format compatible with older versions by only adding information, but cannot guarantee it.
