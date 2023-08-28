@@ -8,25 +8,42 @@ description: >
   How to get and run Posters, the demo application.
 ---
 
-All XLT releases are shipped with the "Posters" demo application. Posters is a small e-commerce store and is used to learn and demo XLT. It can be found in the directory `<XLT>/samples`.
+Xceptance provides a demo application called *Posters Demo Store* or just *Posters*, which is a small e-commerce store that can be used for learning and demoing load testing as well as test automation. 
 
-*Posters* is a shop software written in Java. Being small and easy to deploy, it is well suited to demonstrate testing with XLT.
+*Posters* is a shop software written in Java, so you will need Java 17 on your machine to run it. Being small and easy to deploy, it is well suited to demonstrate testing with XLT.
 
-To start the demo application open a terminal (or command prompt window) and type the following command sequence:
+## Getting the Posters Application
 
-```bash
-cd <XLT>/samples/app-server/bin
-./start.sh
+The latest version of Posters can be downloaded from [Github](https://github.com/Xceptance/posters-demo-store/releases). Place the JAR file `posters-demo-store-<version>.jar` anywhere on your local disk.
+
+
+## Building Posters
+
+As an alternative to downloading a prepackaged JAR file, you can build the JAR yourself. Posters Demo Store is a regular Maven project, so you will need to have Maven installed on your machine. To build the project yourself, clone the [Github repository](https://github.com/Xceptance/posters-demo-store) to your local disk and run:
+
+```
+mvn clean package
 ```
 
+If all went well, you will find several build artifacts in the `target` subdirectory, but the most important one is `posters-demo-store-<version>.jar`. This file contains the Posters code and all required libraries (including a Web application server) in a single, ready-to-run JAR file.
+
+## Running Posters as a Console Application
+
+If you have successfully downloaded or built the Posters JAR file, you can now run Posters with the default settings as follows:  
+
+```
+java -jar posters-demo-store-<version>.jar          # downloaded
+java -jar target/posters-demo-store-<version>.jar   # built yourself
+```
+
+By default, the shop is available at [http://localhost:8080/](http://localhost:8080/) and [https://localhost:8443/](https://localhost:8443/). When opening the homepage via HTTPS, expect your browser to complain about the certificate since Posters comes with a self-signed certificate.
+
 {{% note notitle %}}
-Windows users have to use the appropriate `.cmd` file located in the same directory by entering `start.cmd` into the command prompt.
+For more information about how to customize the application, e.g. changing the default http/https port or adding a custom server certificate, please check the [readme](https://github.com/Xceptance/posters-demo-store#customizing-posters).
 {{% /note %}}
 
-This starts an application server containing the *Posters* application. To access it, open a browser with this URL: [http://localhost:8080/posters/](http://localhost:8080/posters/). Please take some time to become familiar with *Posters*.
+Posters stores its database and log files to the subdirectories `db` and `log`in the current directory.
 
-{{% note title="Changing the default ports" %}}
-The demo application uses ports 8080 (http) and 8443 (https) per default. If you need to change this, you can do so by opening the file `<XLT>/samples/app-server/start.ini` and changing the settings for `jetty.http.port` and `jetty.ssl.port`.
-{{% /note %}}
+When Posters is started for the first time, it will populate its database with a basic product catalog and a default customer (email: `john@doe.com` / password: `topsecret`). With more and more customers registering with the shop and placing orders, the database will grow over time.
 
-There is also a [Posters demo store](https://posters.xceptance.io:8443/posters/) available. Please note: **this setup is for testing purposes only and does not handle a lot of load**. We do not guarantee that the posters store is available at all times. Please setup your own copy of the Posters demo store if you want to experiment with executions of higher load factors and more complex test configurations. The Posters store source code is also available on [Github](https://github.com/Xceptance/posters-demo-store).
+If you want to start over with a clean database, simply stop the app and delete the subdirectory `db`. On the next start, Posters will recreate the directory and the database.
