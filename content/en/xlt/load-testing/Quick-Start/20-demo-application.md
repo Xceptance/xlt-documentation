@@ -14,7 +14,7 @@ Xceptance provides a demo application called *Posters Demo Store* or just *Poste
 
 ## Getting the Posters Application
 
-The latest version of Posters can be downloaded from [Maven Central](https://search.maven.org/artifact/com.xceptance/posters-demo-store). Place the JAR file `posters-demo-store-<version>.jar` anywhere on your local disk.
+The latest version of Posters can be downloaded from [Github](https://github.com/Xceptance/posters-demo-store/releases). Place the JAR file `posters-demo-store-<version>.jar` anywhere on your local disk.
 
 
 ## Building Posters
