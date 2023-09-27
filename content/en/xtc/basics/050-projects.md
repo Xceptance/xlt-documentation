@@ -130,9 +130,9 @@ Note that the new project states do not influence the base fee for a project. Th
 
 Every XTC project has a documentation page (accessible via side navigation). Use this page to share general information about the project with other project members, such as test goals and success criteria, test windows, contact information, news, etc. The content of the page can be nicely formatted using Markdown.
 
-{{% permission type="project" role="reviewer" action="view the documentation page" %}}
+{{% permission type="project" role="reviewer" least="true" action="view the documentation page" %}}
 
-{{% permission type="project" role="test manager" action="edit the documentation" %}}
+{{% permission type="project" role="test manager" least="true" action="edit the documentation" %}}
 
 {{% warning notitle %}}
 Since almost everyone in your project can view the documentation page, make sure you don’t share sensitive information such as login credentials.
