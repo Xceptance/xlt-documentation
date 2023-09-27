@@ -105,6 +105,27 @@ Previously unregistered users invited this way will receive an email with a link
 
 Users who have once been invited to join an org/project, but have _not completed_ the registration process, will be automatically deleted after 90 days.
 
+## Project States
+
+Projects may have three different states that influence not only what can be done with them, but also whether the project is visible at all.
+
+* **Active** – The project is visible to all project members. They can interact with the project as allowed by their roles. This is the normal state while people work actively on the project.
+* **Inactive** – The project is visible to all project members, but the project is effectively read-only. No object can be created or modified. In monitoring projects, scenario execution is halted, while in load testing projects, no load tests can be started. Resources shared with other people stay shared. Set a project to inactive if the work is done but you still want members to be able to recap what has been done and review the results.
+* **Archived** – The project is effectively invisible. It will be displayed neither on your dashboard, nor in the project drop-down in the page header. Shared resources (reports as well as results) will be unshared, so share links will become invalid. No data will be deleted. Set a project to archived if the project is complete and members won’t need to look into it any longer. When a project is archived, XTC will notify all project members via email and, if set up, Slack as well.
+Archived projects are no longer shown on the main dashboard or in the project selector in the page header.
+
+The state of a project can be altered as follows:
+
+* A [project administrator]({{< relref "#user-roles-within-a-project" >}}) may toggle the state of the project between active and inactive. In the project, go to _Configuration > General > Project State_ and edit the state as needed.
+* An [organization administrator]({{< relref "045-organizations/#user-roles-within-an-organization" >}}) may set all three project states. In the organization, go to _Projects_, click the _Change State_ menu item in the 3-dot menu of the project in question, and set the state as needed.
+
+You can change the state of a project at any time. For example, if a project needs more work, it can be set to active again, no matter whether it’s inactive or even archived.
+
+{{% note notitle %}}
+Note that the new project states do not influence the base fee for a project. This fee will apply to any state.
+{{% /note %}}
+
+
 ## Project Documentation
 
 Every XTC project has a documentation page (accessible via side navigation). Use this page to share general information about the project with other project members, such as test goals and success criteria, test windows, contact information, news, etc. The content of the page can be nicely formatted using Markdown.
