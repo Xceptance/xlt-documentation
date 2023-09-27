@@ -104,3 +104,16 @@ As a project admin you may invite users who do not have an XTC account or are no
 Previously unregistered users invited this way will receive an email with a link to complete their registration (provide name, password, etc.). These invitations are valid for 30 days. Once this is done, they will be automatically added to the project's organization as _Guest_ members (just like previously registered users), and are then all set and ready to participate in the project.
 
 Users who have once been invited to join an org/project, but have _not completed_ the registration process, will be automatically deleted after 90 days.
+
+## Project Documentation
+
+Every XTC project has a documentation page (accessible via side navigation). Use this page to share general information about the project with other project members, such as test goals and success criteria, test windows, contact information, news, etc. The content of the page can be nicely formatted using Markdown.
+
+{{% permission type="project" role="reviewer" action="view the documentation page" %}}
+
+{{% permission type="project" role="test manager" action="edit the documentation" %}}
+
+{{% warning notitle %}}
+Since almost everyone in your project can view the documentation page, make sure you don’t share sensitive information such as login credentials.
+{{% /warning %}}
+
