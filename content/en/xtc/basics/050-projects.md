@@ -101,4 +101,6 @@ Please note that after removing members from the project, they are not automatic
 
 As a project admin you may invite users who do not have an XTC account or are not part of the project's organization yet to join your project in XTC (if this feature is [enabled]({{< relref "#organization-configuration" >}}) for the organization). Simply [add these users to your project]({{< relref "#adding-and-removing-project-members" >}}) as usual, but make sure you activate the _Invite Users_ toggle.
 
-Previously unregistered users invited this way will receive an email with a link to complete their registration (provide name, password, etc.). Once this is done, they will be automatically added to the project's organization as _Guest_ members (just like previously registered users), and are then all set and ready to participate in the project.
+Previously unregistered users invited this way will receive an email with a link to complete their registration (provide name, password, etc.). These invitations are valid for 30 days. Once this is done, they will be automatically added to the project's organization as _Guest_ members (just like previously registered users), and are then all set and ready to participate in the project.
+
+Users who have once been invited to join an org/project, but have _not completed_ the registration process, will be automatically deleted after 90 days.

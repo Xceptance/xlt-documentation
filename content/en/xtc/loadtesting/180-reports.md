@@ -60,11 +60,13 @@ On creating a custom report, there will be a popup to configure the report setti
 Basic settings for creating a new load test report: adjusting the time range.
 {{< /image >}}
 
-By clicking **Show Advanced Settings** four more sections will appear:
-* _Include/Exclude Patterns_ can be defined either for [test cases]({{< relref "/xlt/load-testing/manual/540-report-options#excluding-test-scenarios" >}}) or [agents]({{< relref "/xlt/load-testing/manual/540-report-options#report-for-a-subset-of-agents" >}}),
-* in _Report Generator Properties_ you can define completely a [custom report configuration]({{< relref "/xlt/load-testing/manual/550-report-configuration" >}}),
-* in _Merge Rules_ you can override the project's [merge rules]({{< relref "/xlt/load-testing/advanced/010-merge-rules" >}}) (to avoid unexpected side effects we recommend to paste your complete set of merge rules here, even the ones that may have been already defined in the project), and 
-* you can even add _Additional Command Line Arguments_ for report generation (learn more about [report generation by command line]({{< relref "/xlt/load-testing/manual/540-report-options" >}})).
+By clicking **Show Advanced Settings** five more sections will appear:
+* in _Merge Rules_ you can override the project's [merge rules]({{< relref "/xlt/load-testing/advanced/010-merge-rules" >}}) (to avoid unexpected side effects we recommend to paste your complete set of merge rules here, even the ones that may have been already defined in the project),
+* in _Agent Includes/Excludes_ you can define include and exclude patterns for [agents]({{< relref "/xlt/load-testing/manual/540-report-options#report-for-a-subset-of-agents" >}}),
+* in _Test Scenario Includes/Excludes_ those for 
+[test cases]({{< relref "/xlt/load-testing/manual/540-report-options#excluding-test-scenarios" >}}), 
+* in _Report Generator Properties_ you can define completely a [custom report configuration]({{< relref "/xlt/load-testing/manual/550-report-configuration" >}}), and 
+* in _Misc Settings_ you currently have the option to specify the time zone to be used, e.g. "CET" or "EDT" (this affects all time values shown in the report, especially in the charts - if no time zone is given, XTC will use UTC by default).
 
 These advanced settings are not trivial, so make sure you know what you're doing. 
 
