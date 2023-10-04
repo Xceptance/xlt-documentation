@@ -21,7 +21,7 @@
     "kind-of": ">=6.0.3",
     "mem": ">=4.0.0",
     "minimist": ">=1.2.6",
-    "postcss": "^8.2.13",
+    "postcss": "^8.4.31",
     "postcss-cli": "^8.3.0",
     "yargs-parser": ">=13.1.2"
   }
