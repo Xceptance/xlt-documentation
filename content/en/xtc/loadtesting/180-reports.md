@@ -92,6 +92,20 @@ Show settings used for creating for a custom test report.
 Settings from an example report
 {{< /image >}}
 
+## Comparison Reports
+
+{{% permission type="project" least="true" role="tester" action="create comparison reports" %}}
+
+{{% permission type="project" least="true" role="reviewer" action="read or download available comparison reports" %}}
+
+Improving the performance of a Web application is an iterative process. Typically, changes to the application will be followed by load tests to prove the changes had the desired effect. However, manually comparing the reports of two load test runs to spot the differences can be a tedious task. To this end, XLT provides [Comparison Reports]({{< relref "/xlt/load-testing/manual/530-reports#comparison-report" >}}), which use color-coding to highlight the differences. Such comparison reports can now be created right from XTC.
+
+Since comparison reports are the result of comparing two independent load test runs, such reports don't belong to a certain load test, but live in a separate space in your load testing project: see the *Comparison* menu item in the navigation to the left.
+
+This page shows two tabs: *Reports* and *Comparison Reports*. On the *Reports* tab, all valid reports of all load test runs executed so far are listed. To create a comparison report, select the two source reports and click the button *Compare* above the table. Name the report, provide a description as needed, and submit the dialog. After a short while, the new comparison report will be available on the *Comparison Reports* tab. Click the link to view the report.
+
+Comparison reports are in no way different from regular load test reports. So they can be renamed, [deleted]({{< relref "#deleting-a-report" >}}), [downloaded]({{< relref "#downloading-reports" >}}) as an archive, and also [shared]({{< relref "#sharing-a-report" >}}) publicly.
+
 ## Sharing a Report
 
 {{% permission type="project" least="true" role="test manager" %}}
@@ -122,7 +136,7 @@ You can **change the expiration time** of an already shared report later if need
 Editing the expiration time of a public sharing link or unsharing
 {{< /image >}}
 
-### Downloading Reports
+## Downloading Reports
 
 {{% permission type="project" least="true" role="reviewer" %}}
 
