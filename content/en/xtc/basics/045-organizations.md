@@ -62,6 +62,8 @@ As an org admin you may invite users who do not have an XTC account yet to join 
 
 Users invited this way will receive an email with a link to complete their registration (provide name, password, etc.). Once this is done, these users are all set and ready to participate in the organization.
 
+Invitations are valid for 30 days. Organization administrators may resend the invitation for an invited user from the _Members_ page at any time. Users who have once been invited to join an organization, but have _not completed_ the registration process, will be automatically deleted after 90 days.
+
 ## Editing and Removing Org Members
 
 {{% permission role="organization administrator" %}}

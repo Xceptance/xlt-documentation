@@ -103,7 +103,7 @@ As a project admin you may invite users who do not have an XTC account or are no
 
 Previously unregistered users invited this way will receive an email with a link to complete their registration (provide name, password, etc.). Once this is done, they will be automatically added to the project's organization as _Guest_ members (just like previously registered users), and are then all set and ready to participate in the project.
 
-Invitations are valid for 30 days. Org/project administrators may resend the invitation for an invited user from the _Members_ page at any time. Users who have once been invited to join an org/project, but have _not completed_ the registration process, will be automatically deleted after 90 days.
+Invitations are valid for 30 days. Project administrators may resend the invitation for an invited user from the _Members_ page at any time. Users who have once been invited to join a project, but have _not completed_ the registration process, will be automatically deleted after 90 days.
 
 ## Project States
 
