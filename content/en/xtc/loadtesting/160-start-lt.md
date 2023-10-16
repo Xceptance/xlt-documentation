@@ -26,7 +26,11 @@ Start or schedule the configured load test via context menu.
 Start or schedule the configured load test on the test page.
 {{< /image >}}
 
-You will be prompted to confirm that you want to start the load test with the given settings now. If you click _Start Load Test_ XTC will start the load test by downloading the current state of the test suite project from the repository, building the project, provisioning the requested agents and, if this was successful, run the provided test scenarios for the configured time.
+You will be prompted to confirm that you want to start the load test with the given settings now. If you click _Start Load Test_ XTC will start the load test by 
+ * downloading the current state of the test suite project from the repository
+ * building the project (in case a technical error occurred when building the load test suite, the whole build process, including any preparative steps, is being retried),
+ * provisioning the requested agents and, if this was successful, 
+ * run the provided test scenarios for the configured time.
 
 ### Scheduling a Load Test
 

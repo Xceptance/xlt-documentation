@@ -62,6 +62,8 @@ As an org admin you may invite users who do not have an XTC account yet to join 
 
 Users invited this way will receive an email with a link to complete their registration (provide name, password, etc.). Once this is done, these users are all set and ready to participate in the organization.
 
+Invitations are valid for 30 days. Organization administrators may resend the invitation for an invited user from the _Members_ page at any time. Users who have once been invited to join an organization, but have _not completed_ the registration process, will be automatically deleted after 90 days.
+
 ## Editing and Removing Org Members
 
 {{% permission role="organization administrator" %}}
@@ -85,13 +87,13 @@ To lock out a user manually, open the _Members_ page, locate the user in questio
 Organization admins may impose mandatory login requirements on users of their organization. They may require users to be authenticated using specific [login providers]({{< relref "040-user-accounts/#connecting-existing-xtc-accounts-to-an-external-login-provider" >}}) or [2FA]({{< relref "040-user-accounts/#two-factor-authentication-2fa" >}}).
 
 {{% note notitle %}}
-The configuration **DOES NOT** force users to actually configure the required login procedure to be able to log into XTC. It merely prevents them from accessing the organization. Users will still be able to see the organization in their dashboard and organization dropdown, but will see an appropriate error screen informing them about the need to comply with the login requirement when trying to access the organization details. Oganization admins **SHOULD** inform users via appropriate means to ensure that they are up-to-date on any login changes.
+The configuration ***does not*** force users to actually configure the required login procedure to be able to log into XTC. It merely prevents them from accessing the organization. Users will still be able to see the organization in their dashboard and organization dropdown, but will see an appropriate error screen informing them about the need to comply with the login requirement when trying to access the organization details. Organization admins ***should*** inform users via appropriate means to ensure that they are up-to-date on any login changes.
 {{% /note %}}
 
-When accessing an organization, the system will check whether the login requirements are fulfilled **in the current session**. Users that have an external login provider **and** 2FA configured will need to use the appropriate login flow to access a specific organization. This can mean having to log out and log in again using a different authentication method in order to switch organizations.
+When accessing an organization, the system will check whether the login requirements are fulfilled ***in the current session***. Users that have an external login provider ***and*** 2FA configured will need to use the appropriate login flow to access a specific organization. This can mean having to log out and log in again using a different authentication method in order to switch organizations.
 
 {{% warning notitle %}}
-Changes to the login requirement take effect immediately. Users that are already logged in will get the appropriate lock-out message on their next access to any of the organization's data. This includes saving any changes they may have made in the meantime. Admins **SHOULD** therefore try to schedule changes in a way to minimize user impact (e.g. outside of business hours or during an announced maintenance window).
+Changes to the login requirement take effect immediately. Users that are already logged in will get the appropriate lock-out message on their next access to any of the organization's data. This includes saving any changes they may have made in the meantime. Admins ***should*** therefore try to schedule changes in a way to minimize user impact (e.g. outside of business hours or during an announced maintenance window).
 {{% /warning %}}
 
 {{% note notitle %}}
@@ -123,5 +125,5 @@ Admins can allow a specific set of login providers by putting their issuer URLs 
 {{% warning title="Accidental Lockout" %}}
 If you are not currently logged in via an external provider the system will warn you about **locking yourself out of the organization**. Take this warning seriously as you will not be able to access the organization (and therefore change the login requirement) after saving the configuration!
 
-Admins **SHOULD** be logged in via the login provider they intend their users to use, if possible. The system checks your current issuer against the entries in the list while entering them and therefore provides immediate feedback regarding any typos in the URL.
+Admins **should** be logged in via the login provider they intend their users to use, if possible. The system checks your current issuer against the entries in the list while entering them and therefore provides immediate feedback regarding any typos in the URL.
 {{% /warning %}}
