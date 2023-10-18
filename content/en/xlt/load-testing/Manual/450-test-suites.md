@@ -36,7 +36,7 @@ The directory of any [sample test suite]({{< relref "../test-suites/" >}}), and 
     * `./build/classes/kotlin/main` and `./build/classes/kotlin/test`
 
 {{% note notitle %}}
-The list of supported locations for Java classes might be extended in future releases; however we recommend you configure your build tool to use one of the locations above. 
+The list of supported locations for compiled classes might be extended in future releases; however we recommend you configure your build tool to use one of the locations above. 
 {{%/ note %}}
 
 * **results** is a container for XLT to write all results data (logs, measurements, result browsers) into. The default location is `./results`, but this may be overridden by the property `com.xceptance.xlt.result-dir` (location is required to be within the test suite).
