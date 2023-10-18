@@ -4,84 +4,41 @@ title: "Audit Log"
 weight: 70
 type: docs
 
-draft: true
-
 description: >
     Information about which user did what in a project.
 ---
 
-{{< TODO / >}} Permissions needed to view system/org/project audit log?
+{{% permission type="organization" least="true" role="organization administrator" action="view the audit log for an organization" %}}
 
-XTC comes with an Audit Log. Use this feature to learn which activity has been performed by which user at which time. 
+{{% permission type="project" least="true" role="project administrator" action="view the audit log for a project" %}}
+
+XTC comes with an Audit Log. Use this feature to learn which activity has been performed by which user at which time. This can be useful to check whether another user or the system triggered a change, and what exactly has been changed.
 
 The _Audit Log_ page in your **organization** shows just organization-related activities while the _Audit Log_ page in a **project** lists activities for that project only. 
 
-{{< TODO / >}} Which activities are currently logged? Are we documenting this here or are these too many?
-```
-        // System Audit Log
-        // User-specific codes
-        USER_CREATE,
-        USER_UPDATE,
-        USER_SIGNUP_COMPLETE,
-        USER_REMOVE,
-        USER_PASSWORD_CHANGE,
-        USER_PASSWORD_RESET,
-        USER_2FA_ENABLE,
-        USER_2FA_DISABLE,
-        USER_2FA_REGENERATE,
-        USER_2FA_RECOVERY_USE,
-        USER_AUTO_LOCK,
-        USER_MANUAL_LOCK,
-        USER_MANUAL_UNLOCK,
-        USER_SSO_ENABLE,
-        USER_SSO_DISABLE,
-        // Organization-specific codes
-        ORG_CREATE,
-        ORG_DELETE,
+{{< image src="xtc/auditlog.png" >}}
+The audit log table of a load testing project.
+{{< /image >}}
 
-        // Organization Audit Log
-        ORG_UPDATE,
-        ORG_MEMBER_ADD,
-        ORG_MEMBER_REMOVE,
-        ORG_MEMBER_LOCK,
-        ORG_MEMBER_UNLOCK,
-        ORG_MEMBER_INVITE,
-        ORG_ROLE_CHANGE,
-        PROJECT_CREATE,
-        PROJECT_DELETE,
+Entries in the audit log expire automatically after 180 days.
 
-        // Project Audit Log
-        PROJECT_UPDATE,
-        PROJECT_MEMBER_ADD,
-        PROJECT_MEMBER_REMOVE,
-        PROJECT_MEMBER_INVITE,
-        PROJECT_ROLE_CHANGE,
-        // Load-test-specific codes
-        LOADTEST_CREATE,
-        LOADTEST_UPDATE,
-        LOADTEST_START_MANUAL,
-        LOADTEST_ABORT,
-        LOADTEST_DELETE,
-        // Result-specific codes
-        RESULT_DELETE,
-        RESULT_SHARE,
-        RESULT_SHARE_UPDATE,
-        RESULT_UNSHARE,
-        // Report-specific codes
-        REPORT_CREATE_MANUAL,
-        REPORT_DELETE,
-        REPORT_SHARE,
-        REPORT_SHARE_UPDATE,
-        REPORT_UNSHARE
-```
+### Filtering the Audit Log
 
-{{< TODO / >}} Build screenshot with neutral usernames etc.
+Use the search/filter controls available at the audit log tables to narrow down the list of activities. The search bar allows to filter events by user name or email address.
 
-Use the search/filter controls available at the audit log tables to narrow down the list of activities. Entries in the audit log expire automatically after 180 days.
+{{< image src="xtc/auditlog_search.png" >}}
+Filtering the audit log by email address.
+{{< /image >}}
+
+In the filter popup you can define a time range in which to look for events as well as the event types you are interested in (you can select one or more from a dropdown list).
+
+{{< image src="xtc/auditlog_filter.png" >}}
+Filtering the audit log for a time range and event type.
+{{< /image >}}
+
+Search and filter can also be combined.
 
 {{% note notitle %}}
-Note that the audit log feature is not complete yet. The activity names and details will be fine-tuned over the next weeks and more activity types will be added.
+Note that the audit log feature is not complete yet. The events which are logged and the data that is added to each event will be fine-tuned over the next releases and more activity types might be added. We will add a comprehensive list here in the future.
 {{% /note %}}
-
-
 
