@@ -25,13 +25,15 @@ You can find more about creating and evaluating load test reports in the section
 
 ## Comparison Report
 
-(Also known as: difference report) The Comparison Report gives you a quick overview on performance improvements (green color tones) and performance declines (red color tones) between two test runs. The initial test run is labeled _baseline_. The test run being compared to the baseline is labeled _measurement run_. 
+_(also known as: Difference Report)_
+
+The Comparison Report gives you a quick overview on performance improvements (green color tones) and performance declines (red color tones) between two test runs. The initial test run is labeled _baseline_. The test run being compared to the baseline is labeled _measurement run_. 
 
 The XLT comparison report feature helps you identify differences between test runs and derive the right actions from it. It visualizes differences on all measurement levels (transactions, actions, requests, and custom timers). A color code helps you to find the biggest difference quickly. Therefore you can easily combine it with the setup of your test and derive the next actions from it.
 
-For instance, you increased the memory limits of your server’s Java virtual machine and you ran the same test again. By comparing the results before and after the server configuration change, you can easily determine how much improvement you got. Of course, the results might have an error margin of 5-10%, in this case, you should question your test and asked yourself, if you measure the right things over the right time period.
+For instance you increased the memory limits of your server’s Java virtual machine and you ran the same test again. By comparing the results before and after the server configuration change, you can easily determine how much improvement you got. Of course, the results might have an error margin of 5-10% – in this case, you should question your test and ask yourself if you measure the right things over the right time period.
 
-Interpreting a comparison report is simple, because its colors indicate the performance development and make it easy to see any development. Green cells indicate an improvement, red cells a performance degradation. The intensity of the color corresponds to the percentage value of the difference. The more the darker. Color values in the range of –10% to +10% are close to neutral white, because changes in that range are often measurement errors or normal fluctuations.
+Interpreting a comparison report is simple, because its colors indicate the performance development and make it easy to see any development. Green cells indicate an improvement, red cells a performance degradation. The intensity of the color corresponds to the percentage value of the difference: the darker the color, the bigger the difference. Color values in the range of –10% to +10% are close to neutral white, because changes in that range are often measurement errors or normal fluctuations.
 
 All data is relative and differences are reported in percentages. Hover the cursor over cells to see the measurement values of both reports. These details allow you evaluate the performance difference further by seeing the real values and hence the real difference. This means, a 100% difference can be OK, when the measurement values are small enough in the first place, such as 10 msec for instance. The second measurement reported 20 msec and therefore the performance dropped significantly in percent but not in milliseconds. A difference of 10 msec can be caused by a small network latency and might be normal white noise during testing.
 
@@ -41,7 +43,7 @@ Every section of the comparison report displays a table with performance changes
 - **Errors**: Positive numbers indicate an increase in the number of errors, negative numbers a decrease. An infinite sign indicates the occurrence of errors in comparison to an error-free baseline.
 - **Runtime**: Positive values indicate a poorer performance, negative values an improvement (smaller runtime values) over the baseline.
 
-When you hover the mouse over the columns of the report table, you can see the actual measurement results, which lets you determine whether or not the reported percentage change is significant.
+When you hover the mouse over the columns of the report table, you can see the actual measurement results, which let you determine whether or not the reported percentage change is significant.
 
 {{< image src="user-manual/comparison_report_1-small.png" large="user-manual/comparison_report_1.png" >}}
 Performance Comparison Report - Overview
