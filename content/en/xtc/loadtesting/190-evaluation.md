@@ -14,7 +14,7 @@ description: >
 
 {{% permission type="project" least="true" role="tester" action="add or update an evaluation" %}}
 
-After the test has finished, you can add a short summary, a rating and a more detailed evaluation to the test in the _Evaluation_ tab. Summary and rating will show up in the load tests overview table then. To enter or edit an evaluation, click the pencil button:
+After the test has finished, you can add a short summary, a rating and a more detailed evaluation to the test in the _Evaluation_ tab. Summary and rating will show up in the load tests overview table then. The content of the evaluation can be nicely formatted using Markdown. To enter or edit an evaluation, click the pencil button:
 
 {{< image src="xtc/loadtest_summary.png" >}}
 The evaluation for a finished load test.
