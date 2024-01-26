@@ -125,6 +125,13 @@ You can change the state of a project at any time. For example, if a project nee
 Note that the new project states do not influence the base fee for a project. This fee will apply to any state.
 {{% /note %}}
 
+## Deleting a Project
+
+{{% permission role="organization administrator" action="delete a project" %}}
+
+You can delete a project by going to the _Projects_ overview of the organization, then click the 3-dot menu of the project in question and select _Delete_. You will be asked to confirm this action by typing the project name. 
+
+Please note that deleting is only possible for [active or inactive]({{< relref "#project-states" >}}) projects on the organization page. [Archived]({{< relref "#project-states" >}}) projects can not be deleted. 
 
 ## Project Documentation
 

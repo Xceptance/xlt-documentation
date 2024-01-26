@@ -20,17 +20,29 @@ XTC User Accounts as Members of Orgs which Contain Projects that Run Tests
 
 To use Xceptance Test Center, you need an account. You can easily sign up on https://xtc.xceptance.com/. XTC allows you to either select a password for your account, or use an external login provider (Google or Microsoft) for SSO. For more information, see [user accounts]({{< relref "040-user-accounts" >}}).
 
-## Selecting an Organization and a Project
+## Home Dashboard
 
-When you log in to XTC you will first see a dashboard containing the organizations and projects you are a member of. You can select both via dashboard links or by using the two select boxes in the header next to the _XTC_ logo. If you are a member of many organizations and projects, the organization and project selectors in the page header feature a useful search input field to filter the list of displayed entries by substring and ignoring case. (Click the _XTC_ logo to return to your main dashboard.)
+When you log in to XTC you will first see a dashboard page. 
+
+{{< image src="xtc/home_dashboard.png" >}}
+The XTC home dashboard. 
+{{< /image >}}
+
+This dashboard contains all organizations and projects you are a member of, or your favorite/starred organizations and projects. You can toggle between your favorites and the full list by clicking _Show All/Show Starred_. On the bottom (or right, if you select _Column Layout_) it displays your _Last Accessed Projects_ (six of the most recently visited projects - archived projects will not appear in the list).
+
+You can navigate to a project or organization both via dashboard links or by using the two select boxes in the header next to the _XTC_ logo. If you are a member of many organizations and projects, the organization and project selectors in the page header feature a useful search input field to filter the list of displayed entries by substring and ignoring case. (Click the _XTC_ logo to return to your home dashboard.)
 
 {{< image src="xtc/topmenu.png" >}}
 The XTC top menu allows you to select organization and project directly. 
 {{< /image >}}
 
-{{% note title="Favorite Projects and Organizations" %}}
-In case you are a member of many organizations, navigating between them on the dashboard may get tedious. XTC helps you to focus on your current "working set" of orgs and projects: simply **star an org or project** using the star icon to mark it as favorite. By default, only the starred orgs/projects will be shown on the dashboard page. You can toggle between your favorites and the full list by clicking _Show All/Show Starred_. Alternatively, use the project dropdown in the page header to quickly navigate to projects that are not listed by default.
-{{% /note %}}
+To set up any kind of test, either for load testing or monitoring, you need to navigate to the right project. 
+
+### Favorite Projects and Organizations
+
+In case you are a member of many organizations, navigating between them on the dashboard may get tedious. XTC helps you to focus on your current "working set" of orgs and projects: simply **star an org or project** using the star icon to mark it as favorite. By default, only the starred orgs/projects will be shown on the dashboard page. If you need to navigate to a project that is not listed by default, you can always use the project dropdown in the page header.
+
+## Navigation
 
 The navigation links to the sub pages of an organization or project can be found in the sidebar to the left. Click the hamburger menu button to minimize/expand the sidebar.
 
@@ -38,12 +50,12 @@ The navigation links to the sub pages of an organization or project can be found
 Please note that the menu on the left offers different options depending on whether you are currently viewing the dashboard, an organization, or a load testing or monitoring project.
 {{% /note %}}
 
-To set up any kind of test, either for load testing or monitoring, you need to navigate to the right project. 
-
-On the right side of the footer XTC is always displaying your role in the organization or project you are currently viewing. You can also find the current XTC version and the Contact/Privacy/Changelog links in the footer.
-
-In order to **quickly navigate from a project back to its organization**, use the link in the left sidebar:
+In order to **quickly navigate from a project back to its organization**, use the link at the bottom of the navigation in the left sidebar:
 
 {{< image src="xtc/ui_backToOrg.png" >}}
 Clicking the link in the sidebar will take you back to a project's organization. 
 {{< /image >}}
+
+## Footer Information
+
+On the right side of the footer XTC is always displaying your role in the organization or project you are currently viewing. You can also find the current XTC version and the Contact/Privacy/Changelog links in the footer.
