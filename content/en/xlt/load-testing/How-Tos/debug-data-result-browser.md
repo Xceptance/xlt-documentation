@@ -6,7 +6,7 @@ weight: 260
 type: docs
 
 description: >
-  A helpful feature for reconstructing testcase failures.
+  A helpful feature for reproducing testcase failures.
 ---
 
 To aid in error analysis, XTC provides a feature that allows you to add your custom debug data to the result browser: the session's **value log** is a storage for session-specific test parameters and result data. Any value you add to this log will later be available in the result browser. 
@@ -15,7 +15,7 @@ To aid in error analysis, XTC provides a feature that allows you to add your cus
 Result browser containing custom debug data.
 {{< /image >}}
 
-Note that the log will be cleared with each new iteration of the test scenario.This data may help you to reconstruct and rerun a failed test case iteration without having to dig into log files. This is especially useful if your test case uses random or randomly chosen test parameters.
+Note that the log will be cleared with each new iteration of the test scenario. The data may help to reproduce test failures by rerunning test scenario with the same data more easily, or simply present contextual data for recreation of error situations, either manually or automatically. This is especially useful if your test case uses random or randomly chosen test parameters.
 
 You can add data to the value log at any point in your test scenario:
 
