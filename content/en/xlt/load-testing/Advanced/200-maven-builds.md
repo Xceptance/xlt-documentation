@@ -37,3 +37,32 @@ For versions before XLT 5.0.x, Xceptance offers a public repository hosting all 
 {{% note title="Version update" %}}
 When configuring your test project to use a newer XLT version, do not forget to update XLT on your load machines as well. The version you’ve used to develop your test scripts must match the execution version of your load test environment.
 {{% /note %}}
+
+### Copying Maven Dependencies
+
+If your test suite is using external dependencies/libs, it is required that these are copied into the suite when the project is compiled, because XLT uploads everything to the agent machine but does not compile and resolve there anymore. To automatically copy all non-provided dependencies to `target/dependency` when compiling, add the following snippet to your `pom.xml`:
+
+```xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>copy-dependencies</id>
+                    <phase>compile</phase>
+                    <goals>
+                        <goal>copy-dependencies</goal>
+                    </goals>
+                    <configuration>
+                        <excludeScope>provided</excludeScope>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+```
+
+This ensures that all dependencies are present when the test suite is about to be uploaded to the agent machines.
