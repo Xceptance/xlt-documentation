@@ -40,7 +40,9 @@ When configuring your test project to use a newer XLT version, do not forget to 
 
 ### Copying Maven Dependencies
 
-If your test suite is using external dependencies/libs, it is required that these are copied into the suite when the project is compiled, because XLT uploads everything to the agent machine but does not compile and resolve there anymore. To automatically copy all non-provided dependencies to `target/dependency` when compiling, add the following snippet to your `pom.xml`:
+If your test suite is uses external dependencies or libraries, they must be copied into the test suite as part of the compile or package step. XLT does not build the project on the agent machines and therefore does not resolve dependencies there. It simply uploads the test suite to the agent, including the contents of the `target` directory.
+
+To automatically copy all non-provided dependencies to `target/dependency` at compile time, add the following snippet to your `pom.xml`:
 
 ```xml
 <build>
