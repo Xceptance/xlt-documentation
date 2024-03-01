@@ -71,3 +71,18 @@ When editing an existing secret property in the UI, its current value will be sh
 
 Properties configured at project level apply to all new load tests alike, while [properties defined at a certain load test]({{< relref "155-lt-settings" >}}) apply to that load test only. Load-test-level properties will overwrite project-level properties. Properties that are not set in XTC will be read from the project data. 
 
+## Environment
+
+Load tests are executed with XLT, Xceptance’s tool to drive load and performance tests. XLT is developed independently from XTC. New releases may come with improvements and also new features. New features may introduce incompatible changes, so from time to time we will need to release a new major version of XLT.
+
+Incompatible changes in XLT may break your existing load test suites so XTC lets you choose between the previous and the new XLT execution environment. However, this choice is available for a limited time only.
+
+The XLT support and deprecation policy is as follows: whenever a new major version of XLT is available, **the previous major version** is marked as deprecated, but **remains available for another 8 weeks**. This means while you can continue your current load testing activities uninterrupted, you should also plan and perform the migration of your test suite to the new XLT version in time. **After the migration period of 8 weeks, the previous XLT version will be removed** and the new version will be the only one available.
+
+XTC helps to manage that transition. Project admins can define in the project settings which version of XLT should be the default one. Go to _Project > Configuration > Execution > Execution Environment_ and choose an XLT version. You will want to adjust this setting when you start a new project or when you are done migrating your test suite. The default version will be effective when creating a new load test, but not when duplicating an existing one.
+
+Testers may override this default for a particular load test in the settings of that load test. Open _Load Test > Settings > Common Machine Configuration_ and choose the wanted version of the execution environment. Use this to test your migrated code (probably on another Git repository branch) with the new version, before switching to this version in general.
+
+{{% note title="What about minor version changes?" %}}
+Minor changes, such as 6.0.1 or 6.1.0, are backward-compatible. This means two things: first, there is nothing for you to do. Second, XTC may be updated with a new minor XLT version without prior notice. However, we will always list the current version in our release notes.
+{{% /note %}}
