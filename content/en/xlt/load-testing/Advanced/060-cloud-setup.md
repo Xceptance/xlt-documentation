@@ -24,19 +24,30 @@ Distributed Load Generation Environment
 
 One machine runs your [master controller]({{< relref "../manual/010-basics#mcmaster-controller" >}}), which controls several machines that run the [agent controllers]({{< relref "../manual/010-basics#acagent-controller" >}}) and [agents]({{< relref "../manual/010-basics#agents" >}}). 
 
-Xceptance offers public images for AWS machines (AMIs). You can also use [XLT Packer](https://github.com/Xceptance/XLT-Packer) to build your own images for GCP and AWS. 
+#### XLT Images 
 
-XLT ships with two small scripts that simplify the process of setting up and managing load test instances: **[gce_admin]({{< relref "#google-cloud-gc" >}})** (for Google Cloud) and **[ec2_admin]({{< relref "#amazon-web-services-aws" >}})** (for Amazon Web Services).
+Xceptance provides ready-to-use **public XLT images** for AWS machines (AMIs) and Docker. These images are based on Debian, include the latest XLT and JDK (see release notes for current version info) and are tuned for load testing. For real browser load testing, they also include the latest Chromium and Firefox (ESR) browsers with matching web driver binaries, `chromedriver` and `geckodriver`.
 
-#### Add Machines to the MC Configuration
+If you are looking for XLT images for other clouds or just want to build your own image, visit XLT's sister project, **[XLT Packer](https://github.com/Xceptance/XLT-Packer/)**. This project not only contains scripts to install and set up the contents of an XLT image, but also provides Packer templates to actually create such images for the following clouds:
 
-The scripts will set up a cluster of test machines quickly. After the setup, you just have to add the machines to the master controller configuration: navigate to `<XLT>/config/mastercontroller.properties` on your MC machine, then enter the AC data the tools give you when you list the created instances. Now you are ready for load testing.
+* AWS
+* DigitalOcean
+* Google
+* Hetzner
+
+Follow the instructions in the project's README file to create an XLT image for one of the supported clouds yourself.
+
+#### Setting Up and Managing Load Test Instances
+
+XLT ships with two small scripts that simplify the process of **setting up** and **managing** load test instances: **[gce_admin]({{< relref "#google-cloud-gc" >}})** (for Google Cloud) and **[ec2_admin]({{< relref "#amazon-web-services-aws" >}})** (for Amazon Web Services).
+
+The scripts will set up a cluster of test machines quickly. After the setup, you just have to **add the machines to the master controller configuration**: navigate to `<XLT>/config/mastercontroller.properties` on your MC machine, then enter the AC data the tools give you when you list the created instances. Now you are ready for load testing.
 
 {{% note title="How many machines do I need?" %}}
 It can be hard to determine the number and size of load testing machines you'll need for your setup. Here's [a small guide about test sizing]({{< relref "../how-tos/test-sizing" >}}).
 {{% /note %}}
 
-After your test finished and the mastercontroller has downloaded all the data required for report generation, gce_admin/ec2_admin can also help you to easily terminate all of your test machines.
+After your test finished and the mastercontroller has downloaded all the data required for report generation, gce_admin/ec2_admin can also help you to easily **terminate** all of your test machines.
 
 ## Google Cloud (GCP)
 
