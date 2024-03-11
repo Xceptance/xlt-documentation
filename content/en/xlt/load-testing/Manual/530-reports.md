@@ -45,12 +45,12 @@ Every section of the comparison report displays a table with performance changes
 
 When you hover the mouse over the columns of the report table, you can see the actual measurement results, which let you determine whether or not the reported percentage change is significant.
 
-{{< image src="user-manual/comparison_report_1-small.png" large="user-manual/comparison_report_1.png" >}}
+{{< image max-width="60%" src="user-manual/comparison_report_1.png" >}}
 Performance Comparison Report - Overview
 {{< /image >}}
 
-{{< image src="user-manual/comparison_report_2-small.png" large="user-manual/comparison_report_2.png" >}}
-Performance Comparison Report
+{{< image max-width="60%" src="user-manual/comparison_report_2.png" >}}
+Performance Comparison Report - Actions
 {{< /image >}}
 
 ### Sections
