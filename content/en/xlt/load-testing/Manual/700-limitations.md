@@ -1,9 +1,10 @@
 ---
 title: "Restrictions and Tuning"
-linkTitle: "Restrictions and Tuning"
 
 weight: 700
 type: docs
+
+draft: true
 
 description: >
   Important things to know in regards to the development model, library use, performance, and tuning.
