@@ -53,7 +53,7 @@ sourceSets {
 ```  
 
 ### Adding XLT to your Project
-We can then add xlt as a provided dependency:
+Now that Gradle knows the configuration named `provided`, we can add XLT as provided dependency:
 
 ```groovy
 dependencies {
