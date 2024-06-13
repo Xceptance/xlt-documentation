@@ -53,7 +53,7 @@ sourceSets {
 }
 ``` 
 
-(In case your testsuite's code is organized in a different way, for example when your XLT tests resides in src/test/java, you may have to update the compile classpath of the proper source set, e.g. `test`, as well.) 
+(In case your testsuite's code is organized in a different way, for example when your XLT tests reside in src/test/java, you may have to update the compile classpath of the proper source set, e.g. `test`, as well.) 
 
 ### Adding XLT to your Project
 Now that Gradle knows the configuration named `provided`, we can add XLT as provided dependency:
