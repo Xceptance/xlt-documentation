@@ -79,4 +79,4 @@ If you run a load test for your Maven test suite in [**XTC**]({{< relref "../../
 
 `mvn process-classes process-test-classes dependency:copy-dependencies -DexcludeScope=provided`
 
-We recommend running these same steps on your local machine to check if your test suite builds correctly and all necessary dependencies are copied into the target directory.
+We recommend running the same steps on your local machine to check if your test suite builds correctly and all necessary dependencies are copied into the target directory.
