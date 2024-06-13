@@ -13,7 +13,7 @@ XLT supports using Gradle as a build tool for your test suite. You need the foll
 ## Integrating XLT into a Gradle project
 
 ### Plugins
-Include the following in your `build.gradle` file to use Gradle's Java plugin and its provided build steps:
+Include the following in your `build.gradle` file to use Gradle's Java plugin that adds basic compilation, testing and bundling capabilities for Java projects:
 
 ```groovy
 plugins {
