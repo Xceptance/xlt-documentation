@@ -35,7 +35,9 @@ repositories {
 ```
 
 ### Dependency Scopes
-XLT is provided at runtime by the container, so it does not need to be packaged with your project build, thus reducing the upload size when starting a load test. Maven has the `provided` scope for dependencies that are needed in your classpath at compile time but not at runtime; however since there is no such scope defined in Gradle you have to define it yourself in your `build.gradle` file: 
+XLT is provided at runtime by the container, so it does not need to be packaged with your project build, thus reducing the upload size when starting a load test.
+
+Maven knows the `provided` scope for dependencies that need to be present on your classpath at compile time but don't need to be packaged as they are already provided at runtime (e.g. by the JDK or web container). However, since there is no such equivalent in Gradle you'll have to define it by yourself in your `build.gradle` file as follows: 
 
 ```groovy
 configurations {
