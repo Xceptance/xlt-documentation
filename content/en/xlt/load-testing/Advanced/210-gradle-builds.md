@@ -96,4 +96,4 @@ If you run a load test for your Gradle test suite in [**XTC**]({{< relref "../..
 
 `gradle classes testClasses`
 
-We recommend running the same steps on your local machine to check if your test suite builds correctly and all necessary dependencies are copied into the target directory.
+We recommend running the same steps on your local machine to check if your test suite builds correctly and all necessary dependencies are copied into the build directory.
