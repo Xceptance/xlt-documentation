@@ -23,6 +23,10 @@ Starting with XLT 5.0.x, XLT is published to [Maven Central](https://search.mave
 </dependencies>
 ```
 
+{{% note title="Dependency Scopes" %}}
+When adding **xlt** as a project dependency, you should always use the `provided` scope, which means XLT is provided at runtime by the container. This reduces the upload size when starting a load test, thus speeding up the process.  
+{{% /note %}}
+
 For versions before XLT 5.0.x, Xceptance offers a public repository hosting all XLT releases, including their corresponding _POM_ files. To configure your test project to use the Xceptance repository, add the following code to your test project's `pom.xml`:
 
 ```xml
@@ -34,7 +38,7 @@ For versions before XLT 5.0.x, Xceptance offers a public repository hosting all 
 </repositories>
 ```
 
-{{% note title="Version update" %}}
+{{% note title="Version Update" %}}
 When configuring your test project to use a newer XLT version, do not forget to update XLT on your load machines as well. The version you’ve used to develop your test scripts must match the execution version of your load test environment.
 {{% /note %}}
 
@@ -68,3 +72,11 @@ To automatically copy all non-provided dependencies to `target/dependency` at co
 ```
 
 This ensures that all dependencies are present when the test suite is about to be uploaded to the agent machines.
+
+### Maven Build Steps
+
+If you run a load test for your Maven test suite in [**XTC**]({{< relref "../../../xtc/loadtesting/120-load-project-configuration/#build" >}}), the following build steps will be executed:
+
+`mvn process-classes process-test-classes dependency:copy-dependencies -DexcludeScope=provided`
+
+We recommend running the same steps on your local machine to check if your test suite builds correctly and all necessary dependencies are copied into the target directory.
