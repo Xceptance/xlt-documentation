@@ -183,6 +183,10 @@ To ensure that a test scenario runs to completion even if the measurement period
 
 The **ramp-up period** (`rampUpPeriod`, as defined above as part of the load profile) is commonly put into the warm-up period to ensure the system under test is working at an optimal level before any measurements are taken. That's up to you though - it might as well be interesting to measure the system performance during the ramp-up phase. In that case, a warm-up period mustn't be defined.
 
+{{% warning title="Ramp-Up is Overwritten by Load Functions" %}}
+If a load test scenario defines a function instead of a constant value for either users, arrival rate, or load factor, that function alone defines the shape of the load curve. Any ramp-up parameters specified for this scenario are ignored in this case, and the ramp-up period will not be displayed in the _Load Profile_ section of the test report created for a run with this setting.
+{{% /warning %}}
+
 The following figure displays the phases in relation to the total test time:
 
 {{< image src="user-manual/chart_testprofile.svg" max-width="80%" >}}Load Test Profile Configuration

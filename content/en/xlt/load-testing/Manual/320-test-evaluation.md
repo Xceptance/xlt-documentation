@@ -151,6 +151,10 @@ The Page Load Timings section offers deeper insight into the page loading perfor
 
 The custom timers includes all timers that have been placed individually within the test code. The chart and data description is identical to the request section. In case custom samplers have been run during the test, the collected data is shown in the *Custom Values* section.
 
+### Web Vitals 
+
+If the load test was run as an [automated client performance test]({{< relref "600-client-performance/#measuring-client-performance-with-xlt" >}}) with Chromium browsers, this page displays the scores for all supported Web Vitals for each action in your scenarios. The score value is the 75th percentile of all observations and is rated as _good_, _needs improvement_, and _poor_ using the colors green, yellow, and red according to Web Vital-specific thresholds.
+
 ### External Data
 
 All external data gathered by other tools during the test run is shown here according to the configuration. See [Custom Data]({{< relref "../advanced/050-custom-data/" >}}) for details on how to include external data in the report.
