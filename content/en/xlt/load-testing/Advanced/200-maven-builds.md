@@ -73,7 +73,7 @@ To automatically copy all non-provided dependencies to `target/dependency` at co
 
 This ensures that all dependencies are present when the test suite is about to be uploaded to the agent machines.
 
-### Maven Build Steps
+## Maven Build Steps
 
 If you run a load test for your Maven test suite in [**XTC**]({{< relref "../../../xtc/loadtesting/120-load-project-configuration/#build" >}}), the following build steps will be executed:
 
