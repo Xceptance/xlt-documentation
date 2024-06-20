@@ -165,6 +165,8 @@ This section consists of a table that contains all errors thrown by the test cas
 
 The Overview section lists the error message and the count. It ignores the stack trace to sum up common problems without relating them to the test case. The Details section beneath lists the full stack trace next to the test case and the directory in which you can find the data dump for further analysis.
 
+(The maximum number of paths to result browser directories for each different error entry is limited to 10 by default. Also, the number of errors for which stack traces are displayed is limited in order to prevent the report generator from running out of memory if there are numerous errors with different stack traces or exception messages. By default, a maximum of 500 stack traces are kept in memory. Both limits can be reconfigured in the report generator settings.)
+
 ### Events
 
 Events are used to indicate that the test has encountered a special situation that is not an error but too important to ignore or simply to write to the log. This section consists of a single table that lists all events that occurred during the test run including their name, amount, detail message and the name of the test case that produced this event.
