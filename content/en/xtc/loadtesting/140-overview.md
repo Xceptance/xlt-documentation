@@ -62,4 +62,6 @@ To delete several load tests at once, select the load tests in question using th
 {{< image src="xtc/loadtest_bulkDelete.png" >}}
 {{< /image >}} 
 
-This action cannot be undone. It will permanently delete all data that was collected by the tests. To prevent an accidental deletion, you will be prompted to check the list of selected tests and confirm.
+To prevent an accidental deletion, you will be prompted to check the list of selected tests and confirm. 
+
+In case you still accidentally deleted a load test, XTC allows you to **restore** it within 30 days after deletion. Click the _Show Deleted Items_ entry in the 3-dot load tests table menu to list the tests that can be restored. To restore a particular test, click _Undo Deletion_ in the context menu of that test. To switch the view back to the live items, click _Hide Deleted Items_ in the table menu.

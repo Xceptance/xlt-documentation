@@ -164,9 +164,7 @@ Even if a load test report can already be viewed, the corresponding report archi
 
 Finally, if you don't need a generated report any longer, you may want to delete it to save storage space. To do this, just click _Delete_ in the report's context menu. You will be prompted to confirm that you really want to delete the report. 
 
-{{% warning notitle %}}
-Please note that when deleting load test reports from XTC, they are truly deleted from the backing file storage, so this process **cannot be undone**.
-{{% /warning %}}
+In case you accidentally deleted some test report, XTC allows you to **restore** it within 30 days after deletion. Click the _Show Deleted Items_ entry in the 3-dot reports table menu to list the items that can be restored. To restore a particular item, click _Undo Deletion_ in the context menu of that item. To switch the view back to the live items, click _Hide Deleted Items_ in the table menu. Please note that load test reports that were publicly shared must be re-shared after restoring.
 
 ## Errors on Report Creation
 
