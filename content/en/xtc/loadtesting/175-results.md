@@ -58,4 +58,5 @@ In fact, creating a new custom report in the _Reports_ tab does the same thing a
 
 Finally, if you don't need a generated result set any longer, you may want to delete it to save storage space. To do this, just click _Delete_ in the result set's context menu. You will be prompted to confirm that you really want to delete the results. 
 
-In case you accidentally deleted some test results, XTC allows you to **restore** them within 30 days after deletion. Click the _Show Deleted Items_ entry in the 3-dot results table menu to list the items that can be restored. To restore a particular item, click _Undo Deletion_ in the context menu of that item. To switch the view back to the live items, click _Hide Deleted Items_ in the table menu.
+In case you accidentally deleted some test results, XTC allows you to **restore** them within 30 days after deletion. Click the _Show Deleted Items_ entry in the 3-dot results table menu to list the items that can be restored. To restore a particular item, click _Undo Deletion_ in the context menu of that item. To switch the view back to the live items, click _Hide Deleted Items_ in the table menu. Please note that load test results that were publicly shared must be re-shared after restoring.
+

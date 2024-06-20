@@ -133,6 +133,8 @@ You can delete a project by going to the _Projects_ overview of the organization
 
 Please note that deleting is only possible for [active or inactive]({{< relref "#project-states" >}}) projects on the organization page. [Archived]({{< relref "#project-states" >}}) projects can not be deleted. 
 
+In case you accidentally deleted a project, XTC allows you to **restore** it within 30 days after deletion. Click the _Show Deleted Items_ entry in the 3-dot project table menu to list the items that can be restored. To restore a particular item, click _Undo Deletion_ in the context menu of that item. To switch the view back to the live items, click _Hide Deleted Items_ in the table menu.
+
 ## Project Documentation
 
 Every XTC project has a documentation page (accessible via side navigation). Use this page to share general information about the project with other project members, such as test goals and success criteria, test windows, contact information, news, etc. The content of the page can be nicely formatted using Markdown.
