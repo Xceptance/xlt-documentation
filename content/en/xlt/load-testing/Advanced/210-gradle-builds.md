@@ -8,9 +8,9 @@ description: >
     How to build and run using Gradle.
 ---
 
-XLT supports using Gradle as a build tool for your test suite. You need the following entries in your `build.gradle` file:
-
 ## Integrating XLT into a Gradle project
+
+XLT supports using Gradle as a build tool for your test suite. You need the following entries in your `build.gradle` file:
 
 ### Plugins
 Include the following in your `build.gradle` file to use Gradle's Java plugin that adds basic compilation, testing and bundling capabilities for Java projects:
@@ -91,7 +91,7 @@ tasks.withType(JavaCompile) {
 
 This ensures that all dependencies are present when the test suite is about to be uploaded to the agent machines.
 
-### Gradle Build Steps
+## Gradle Build Steps
 If you run a load test for your Gradle test suite in [**XTC**]({{< relref "../../../xtc/loadtesting/120-load-project-configuration/#build" >}}), the following build steps will be executed:
 
 `gradle classes testClasses`

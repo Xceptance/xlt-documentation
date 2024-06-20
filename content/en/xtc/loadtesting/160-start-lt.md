@@ -28,7 +28,7 @@ Start or schedule the configured load test on the test page.
 
 You will be prompted to confirm that you want to start the load test with the given settings now. If you click _Start Load Test_ XTC will start the load test by 
  * downloading the current state of the test suite project from the repository
- * building the project (in case a technical error occurred when building the load test suite, the whole build process, including any preparative steps, is being retried),
+ * building the project (in case a technical error occurred when building the load test suite, the whole build process, including any preparative steps, is being retried - this also applies when XTC detects an integrity issue for the cached local Maven repository of the load testing project, so the build will fetch all required dependencies anew and update the cache such that subsequent builds can profit from it again),
  * provisioning the requested agents and, if this was successful, 
  * run the provided test scenarios for the configured time.
 

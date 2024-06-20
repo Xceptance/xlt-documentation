@@ -65,12 +65,29 @@ The overview section shows general information about both load tests. It lets yo
 * Errors
 * Events
 * Runtime
+* Runtime Percentiles
 
 #### Actions, Requests, Custom Timers
 
 * Count
 * Errors
 * Runtime
+* Runtime Percentiles
+
+#### Web Vitals
+
+* First Contentful Paint
+* Largest Contentful Paint
+* Cumulative Layout Shift
+* First Input Delay
+* Interaction to Next Paint
+* Time to First Byte
+
+#### Custom Values 
+
+* Count
+* Stats 
+* Percentiles
 
 ### Create a Performance Comparison Report
 

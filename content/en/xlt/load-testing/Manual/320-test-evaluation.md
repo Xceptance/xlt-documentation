@@ -151,6 +151,10 @@ The Page Load Timings section offers deeper insight into the page loading perfor
 
 The custom timers includes all timers that have been placed individually within the test code. The chart and data description is identical to the request section. In case custom samplers have been run during the test, the collected data is shown in the *Custom Values* section.
 
+### Web Vitals 
+
+If the load test was run as an [automated client performance test]({{< relref "600-client-performance/#measuring-client-performance-with-xlt" >}}) with Chromium browsers, this page displays the scores for all supported Web Vitals for each action in your scenarios. The score value is the 75th percentile of all observations and is rated as _good_, _needs improvement_, and _poor_ using the colors green, yellow, and red according to Web Vital-specific thresholds.
+
 ### External Data
 
 All external data gathered by other tools during the test run is shown here according to the configuration. See [Custom Data]({{< relref "../advanced/050-custom-data/" >}}) for details on how to include external data in the report.
@@ -160,6 +164,8 @@ All external data gathered by other tools during the test run is shown here acco
 This section consists of a table that contains all errors thrown by the test cases along with an overview of all error types.
 
 The Overview section lists the error message and the count. It ignores the stack trace to sum up common problems without relating them to the test case. The Details section beneath lists the full stack trace next to the test case and the directory in which you can find the data dump for further analysis.
+
+(The maximum number of paths to result browser directories for each different error entry is limited to 10 by default. Also, the number of errors for which stack traces are displayed is limited in order to prevent the report generator from running out of memory if there are numerous errors with different stack traces or exception messages. By default, a maximum of 500 stack traces are kept in memory. Both limits can be reconfigured in the report generator settings.)
 
 ### Events
 

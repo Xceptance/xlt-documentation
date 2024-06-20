@@ -284,7 +284,7 @@ com.xceptance.xlt.reportgenerator.maskPropertiesRegex = (?i)(password|passphrase
 By default, any property with the substring *password* in the name will
 be masked.
 
-## Limiting Error Charts
+## Limiting Error Charts and Information
 
 When analyzing and communicating the results of a load test, the
 *Errors* section is always of special interest. It does not only list
@@ -325,6 +325,21 @@ com.xceptance.xlt.reportgenerator.errors.transactionErrorDetailChartsLimit = 10
 With these settings the report generator will create as many transaction
 error overview charts as needed, but only 10 transaction error detail
 charts and no request error charts at all.
+
+The _Errors_ page lists some paths to result browser directories for each different error entry. The maximum number of paths now limited to 10 by default, but this can be reconfigured as follows: 
+
+```bash
+com.xceptance.xlt.reportgenerator.errors.directoryLimitPerError = 10
+com.xceptance.xlt.reportgenerator.errors.directoryReplacementChance = 0.1
+```
+
+The latter setting defines the chance to replace directories when the maximum number of directories is reached ([0..1], default: 0.1, i.e. 10%). This ensures that directories processed earlier might also be replaced with directories processed later, resulting in a better sampling of directories across both agents and load test duration in the report.
+
+The report generator limits the number of errors for which stack traces are displayed in the load test report. This is to prevent the report generator from running out of memory if there are numerous errors with different stack traces or exception messages. By default, only 500 stack traces are kept in memory, but this limit can be reconfigured with this report generator property:
+
+```bash
+com.xceptance.xlt.reportgenerator.errors.stackTracesLimit = 500
+```
 
 ## Turning off Event Grouping by Test Case
 
