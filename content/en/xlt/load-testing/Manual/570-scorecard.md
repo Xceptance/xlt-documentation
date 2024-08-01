@@ -86,7 +86,6 @@ Each check is a selector against the XML tree of the testreport.xml using XPath.
 Here are a few examples for checks:
 
 ```json
-
 "checks" : [
     {
         // Fetch a number
@@ -109,7 +108,7 @@ Here are a few examples for checks:
 
 It is often helpful to define a set of reusable expressions to query the test result document. These are selectors, which are defined as follows:
 
-```javascript
+```json
 {
     "selectors" : [
         {
