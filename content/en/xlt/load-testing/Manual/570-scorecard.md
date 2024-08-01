@@ -32,13 +32,12 @@ bin $ ./update_scorecard.sh ../reports/20240731_0224_1h100p
 ## Evaluation Configuration
 
 ### Version
-{{< TODO  >}}do we need this?{{</ TODO >}}
+
+The schema may change in the future, resulting in multiple supported versions. To specify the schema version used in your configuration, please use the `version` property (as long as we have released only one version, this is optional). The current version is **2**.
 
 ### Rules
 
 A rule captures values and compares them. It can succeed or fail, based on one or several conditions (**[checks]({{< relref "#checks" >}})**). The evaluation of a rule will return either `PASSED`, `NOTPASSED`, `SKIPPED` or `ERROR` as the rule's **status**. 
-
-{{< TODO  >}}is it FAILED or NOTPASSED really?{{</ TODO >}}
 
 By default, all rule checks have to pass in order to have the rule evaluate to passed/success (you can change this by setting the `negateResult` attribute to `true`, which will switch the `PASSED` and `NOTPASSED` status but not change `SKIPPED` or `ERROR` status). Rules that do not contain any enabled check will always pass (unless `negateResult` is `true` which causes the rule to never pass).
 
@@ -103,15 +102,8 @@ Here are a few examples for checks:
         // Compare Against a Number
         "selector": "count(//agents//totalCpuUsage/mean[number() > 90])",
         "condition": "= 0"
-    },
-    {
-        // Compare Against a Number
-        "selector": "//agents//totalCpuUsage/mean[number() > 90]",
-        "condition": "= 0"
     }
 ```
-
-{{< TODO  >}}does all of this actually work?{{</ TODO >}}
 
 ### Selectors
 
