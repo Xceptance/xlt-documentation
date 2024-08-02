@@ -47,7 +47,7 @@ By setting the `failsTest` attribute to `true`, you define that if this rule fai
 
 If a rule has 0 achievable points, it is an informational rule (unless `failsTest` is `true`), so its result will be part of the scorecard but not of the overall rating. This can be used for anything that is good to know but might not fit the points schema.
 
-```json
+```javascript
 {
     "id": "homepageResponseTimeC", // the ID for reference by the group and listing in the report - required and unique
     "name": "Homepage C", // the name of the rule - optional
@@ -85,7 +85,7 @@ Each check is a selector against the XML tree of the testreport.xml using XPath.
 
 Here are a few examples for checks:
 
-```json
+```javascript
 "checks" : [
     {
         // Fetch a number
@@ -108,7 +108,7 @@ Here are a few examples for checks:
 
 It is often helpful to define a set of reusable expressions to query the test result document. These are selectors, which are defined as follows:
 
-```json
+```javascript
 {
     "selectors" : [
         {
@@ -122,7 +122,7 @@ It is often helpful to define a set of reusable expressions to query the test re
 
 You can then use the selector in any rule check by referencing its selector id:
 
-```json
+```javascript
 "checks" : [
     {
         "selectorId": "agentsWithCPULarger60p", //predefined selector
@@ -137,7 +137,7 @@ To model more complex criteria and to allow re-use of rules (and thus to avoid r
 
 At least one enabled group having at least one enabled rule assigned must be specified in `groups` as follows:
 
-```json
+```javascript
  "groups":[
     {
         "id": "homepageGroup", // the ID of the group for reference and listing in the report - required and unique
@@ -168,7 +168,7 @@ The number of achievable points as well as the computed number of achieved point
 
 You can define a final rating for the entire test including the ability to mark it failed, following this pattern:
 
-```json
+```javascript
 {
     "id": "poor", // the ID of the rating for reference and listing in the report (used as fallback when no name is given) - required and unique
     "name": "Poor", // the name of the rating for reference and listing in the report - optional
@@ -184,7 +184,7 @@ To determine the test rating, all points from all rule groups will be summed up 
 
 So if we got a total of 30 achievable points and the passing rules evaluate to a total of 20, we have 66.7% as a final result, which would amount to the rating "Ok" in the example below: 
 
-```json
+```javascript
 "ratings" : [
     {
         "id": "poor",
