@@ -19,17 +19,17 @@ In order to add an automatic evaluation to the report, add a JSON file containin
 
 The rules will then be applied at report creation, and the test report will contain a tab **Scorecard** that contains information about the evaluation result of each [rule]({{< relref "#rules" >}}) and [rule group]({{< relref "#groups" >}}), the resulting [test rating]({{< relref "#rating" >}}) and the overall [scorecard result]({{< relref "#scorecard-result" >}}). 
 
-XLT will try to run as many rules as possible (unless the JSON is broken or does not validate). If any rule breaks (XPath or condition is wrong), the entire test result will be `ERROR`. This way, you always have debugging feedback and can fix the problem at once. Failures or errors in the evaluation will not disrupt report creation.
+XLT will evaluate as many rules as possible (unless the JSON is broken or does not validate). If any rule breaks (XPath or condition is wrong), the entire test result will be `ERROR`. This way, you always have debugging feedback and can fix the problem at once. Failures or errors in the evaluation will never disrupt report creation.
 
 ## Scorecard Update
 
-To easily update the scorecard of an existing report after updating the ruleset directly in the report's `config` folder, you can use the script `<XLT>/bin/update_scorecard.sh`:
+To update the scorecard of an existing report, run the script `<XLT>/bin/update_scorecard.sh` once you've modified the Scorecard's configuration file located in the report's `config` folder:
 
 ```bash
 bin $ ./update_scorecard.sh ../reports/20240731_0224_1h100p
 ```
 
-## Evaluation Configuration
+## Scorecard Configuration
 
 ### Version
 
@@ -37,13 +37,13 @@ The schema may change in the future, resulting in multiple supported versions. T
 
 ### Rules
 
-A rule captures values and compares them. It can succeed or fail, based on one or several conditions (**[checks]({{< relref "#checks" >}})**). The evaluation of a rule will return either `PASSED`, `NOTPASSED`, `SKIPPED` or `ERROR` as the rule's **status**. 
+A rule captures values and compares them. It can succeed or fail, based on conditions (**[checks]({{< relref "#rule-checks" >}})**). The evaluation of a rule will return either `PASSED`, `NOTPASSED`, `SKIPPED` or `ERROR` as the rule's **status**. 
 
-By default, all rule checks have to pass in order to have the rule evaluate to passed/success (you can change this by setting the `negateResult` attribute to `true`, which will switch the `PASSED` and `NOTPASSED` status but not change `SKIPPED` or `ERROR` status). Rules that do not contain any enabled check will always pass (unless `negateResult` is `true` which causes the rule to never pass).
+By default, all rule checks have to pass in order to have the rule evaluate to `PASSED` (you can change this by setting the `negateResult` attribute to `true`, which will negate the result, turning `PASSED` into 'NOTPASSED' and vice versa, but not change `SKIPPED` or `ERROR` status). Rules that do not contain any enabled check will always pass (unless `negateResult` is `true` which causes the rule to never pass).
 
 For a quick rating, rules can define a number of achievable **points** that are summarized at the end to get a final score whose value determines the [rating]({{< relref "#rating" >}}) to apply. Rules that do not pass do not contribute any point to the final score, and in case they do pass they contribute all their points.
 
-By setting the `failsTest` attribute to `true`, you define that if this rule fails, the entire test will be marked failed. This will not stop the rest of the evaluation or point calculation.
+By setting the `failsTest` property to `true`, you define that if this rule fails, the entire test will be marked failed. This will not stop the rest of the evaluation or point calculation.
 
 If a rule has 0 achievable points, it is an informational rule (unless `failsTest` is `true`), so its result will be part of the scorecard but not of the overall rating. This can be used for anything that is good to know but might not fit the points schema.
 
@@ -79,11 +79,11 @@ If a rule has 0 achievable points, it is an informational rule (unless `failsTes
 }
 ```
 
-### Checks
+### Rule Checks
 
-Each check is a selector against the XML tree of the testreport.xml using XPath. Rule checks can only have a `selector` or a `selectorId`, not both. Everything selected must be either true or false, a number or a text, or a list of text nodes that later can match a regular expression.
+Each rule check is a selector against the XML tree of the report's `testreport.xml` file using an *XPath* expression. Rule checks can either have a `selector` or a `selectorId` property, not both. All that is selected by the XPath expression must be either a boolean value (`true` or `false`), a number or some text.
 
-Here are a few examples for checks:
+Here are a few examples for rule checks:
 
 ```javascript
 "checks" : [
@@ -106,7 +106,7 @@ Here are a few examples for checks:
 
 ### Selectors
 
-It is often helpful to define a set of reusable expressions to query the test result document. These are selectors, which are defined as follows:
+It is often helpful to define a set of reusable expressions to query the test report's XML document. This is what the `selectors` property is used for:
 
 ```javascript
 {
@@ -120,7 +120,7 @@ It is often helpful to define a set of reusable expressions to query the test re
 }
 ```
 
-You can then use the selector in any rule check by referencing its selector id:
+You can then use the selector in any rule check by referencing its `selectorId` as follows:
 
 ```javascript
 "checks" : [
@@ -180,9 +180,9 @@ You can define a final rating for the entire test including the ability to mark 
 } 
 ```
 
-To determine the test rating, all points from all rule groups will be summed up to calculate a percentage. Depending on the overall percentage of points achieved, a final rating is chosen from the list of ratings specified by the user and applied to the test. The ratings are ordered by value and have to cover 0 to 100%. The list of ratings is processed in the same order as specified and the first applicable rating defines the final rating. A rating is applicable when its value is greater than or equal to the overall percentage of achieved points.
+To determine the test rating, all points from all rule groups will be summed up to calculate a percentage. Depending on the overall percentage of points achieved, a final rating is chosen from the list of ratings specified by the user and applied to the test. The list of ratings is processed in the same order as specified and the first applicable rating defines the final rating. A rating is applicable when its value is greater than or equal to the overall percentage of achieved points.
 
-So if we got a total of 30 achievable points and the passing rules evaluate to a total of 20, we have 66.7% as a final result, which would amount to the rating "Ok" in the example below: 
+So if we got a total of 30 achievable points and the passed rules evaluate to a total of 20 points, we have a final score of  66.7%. In the example below this score would be rated as "Ok": 
 
 ```javascript
 "ratings" : [
@@ -209,7 +209,7 @@ So if we got a total of 30 achievable points and the passing rules evaluate to a
 ]
 ```
 
-A load test can be marked as FAILED based on a rule or group failure that has the `failsTest`attribute set to `true` (hard fail by rule/group) or a rating that is configured accordingly. If neither a rule/group nor a rating is configured to mark the load test as failed, it is seen as PASSED regardless of the final score.
+A load test can be marked as FAILED based on a rule or group failure that has the `failsTest` property set to `true` (hard fail by rule/group) or a rating that is configured accordingly. If neither a rule/group nor a rating is configured to mark the load test as failed, it is seen as PASSED regardless of the final score.
 
 Note: A rule in state "ERROR" (due to one of its checks became erroneous, e.g. selector does not match any item or more than one item) **will not** mark the test as failed.
 
