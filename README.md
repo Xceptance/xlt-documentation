@@ -6,7 +6,7 @@ XLT Documentation is based on Docsy. Docsy is a [Hugo](https://gohugo.io/) theme
 
 The following are basic prerequisites:
 
-- Install a recent release of the Hugo "extended" version (we recommend version 0.74 or later). 
+- Install a recent release of the Hugo "extended" version (we recommend version 0.131.0 or later). 
 If you install from the [release page](https://github.com/gohugoio/hugo/releases), make sure you download the `_extended` version which supports SCSS.
 
 - [Install the current Node environment](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) (version > 14.x).
