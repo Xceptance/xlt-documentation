@@ -39,7 +39,7 @@ The schema may change in the future, resulting in multiple supported versions. T
 
 A rule captures values and compares them. It can succeed or fail, based on conditions (**[checks]({{< relref "#rule-checks" >}})**). The evaluation of a rule will return either `PASSED`, `NOTPASSED`, `SKIPPED` or `ERROR` as the rule's **status**. 
 
-By default, all rule checks have to pass in order to have the rule evaluate to `PASSED` (you can change this by setting the `negateResult` attribute to `true`, which will negate the result, turning `PASSED` into 'NOTPASSED' and vice versa, but not change `SKIPPED` or `ERROR` status). Rules that do not contain any enabled check will always pass (unless `negateResult` is `true` which causes the rule to never pass).
+By default, all rule checks have to pass in order to have the rule evaluate to `PASSED` (you can change this by setting the `negateResult` attribute to `true`, which will negate the result, turning `PASSED` into `NOTPASSED` and vice versa, but won't change `SKIPPED` or `ERROR` status). Rules that do not contain any enabled check will always pass (unless `negateResult` is `true` which causes the rule to never pass).
 
 For a quick rating, rules can define a number of achievable **points** that are summarized at the end to get a final score whose value determines the [rating]({{< relref "#rating" >}}) to apply. Rules that do not pass do not contribute any point to the final score, and in case they do pass they contribute all their points.
 
