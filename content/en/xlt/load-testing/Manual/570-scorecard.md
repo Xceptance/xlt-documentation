@@ -15,7 +15,7 @@ In order to ease evaluation of load test results, XLT provides the possibility t
 
 ## Quick Start
 
-In order to add an automatic evaluation to the report, add a JSON file containing your evaluation rules to the test suite (see attached [schema](https://github.com/user-attachments/files/16095777/evaluation-schema.json) and [example config](https://github.com/user-attachments/files/15532415/evaluation-config.json)). The path to this file has to be set as the value of the property `com.xceptance.xlt.scorecard.config` in the test suite (relative to test suite's `config` directory). 
+In order to add an automatic evaluation to the report, add a JSON file containing your evaluation rules to the test suite (see attached [schema](https://github.com/Xceptance/XLT/blob/develop/src/main/resources/com/xceptance/xlt/report/scorecard/configuration-schema.json) and [example config](https://github.com/Xceptance/XLT/blob/develop/samples/testsuite-posters/config/scorecard-config.json)). The path to this file has to be set as the value of the property `com.xceptance.xlt.scorecard.config` in the test suite (relative to test suite's `config` directory). 
 
 The rules will then be applied at report creation, and the test report will contain a tab **Scorecard** that contains information about the evaluation result of each [rule]({{< relref "#rules" >}}) and [rule group]({{< relref "#groups" >}}), the resulting [test rating]({{< relref "#rating" >}}) and the overall [scorecard result]({{< relref "#scorecard-result" >}}). 
 
@@ -23,7 +23,7 @@ XLT will evaluate as many rules as possible (unless the JSON is broken or does n
 
 ## Scorecard Update
 
-To update the scorecard of an existing report, run the script `<XLT>/bin/update_scorecard.sh` once you've modified the Scorecard's configuration file located in the report's `config` folder:
+To update the scorecard of an existing report, run the script `<XLT>/bin/update_scorecard.sh` once you've modified the scorecard's configuration file located in the report's `config` folder:
 
 ```bash
 bin $ ./update_scorecard.sh ../reports/20240731_0224_1h100p
@@ -59,16 +59,7 @@ If a rule has 0 achievable points, it is an informational rule (unless `failsTes
     "testFailTrigger": "NOTPASSED", // rule evaluation status used as trigger when to mark test as failed (has no effect unless "failsTest" is "true") - optional, default = NOTPASSED
     // the checks to run - optional
     "checks" : [
-        {
-            "selector": "//requests/request[name[text() = 'Homepage']]/percentiles/p95", //XPath
-            "condition": "<= 1000", //XPath
-            "displayValue" : true, // whether the item matching the selector should be displayed in the report - optional, default = true
-            "enabled": true // helps to disable a check easily, if desired - optional, default = true
-        },
-        {
-            "selectorId": "homepageRuntimeP99", //predefined selector
-            "condition": "<= 3000"
-        }
+        // see chapter "Rule Checks" below for how to define checks
     ],
     // message to display in report when rule does pass/fail - optional, no default value, allowed properties: "success" and "fail"
     "messages": { 
@@ -83,12 +74,29 @@ If a rule has 0 achievable points, it is an informational rule (unless `failsTes
 
 Each rule check is a selector against the XML tree of the report's `testreport.xml` file using an *XPath* expression. Rule checks can either have a `selector` or a `selectorId` property, not both. All that is selected by the XPath expression must be either a boolean value (`true` or `false`), a number or some text.
 
+Rule checks are defined as follows:
+
+```javascript
+"checks" : [
+    {
+        "selector": "//requests/request[name[text() = 'Homepage']]/percentiles/p95", //XPath
+        "condition": "<= 1000", //XPath
+        "displayValue" : true, // whether the item matching the selector should be displayed in the report - optional, default = true
+        "enabled": true // helps to disable a check easily, if desired - optional, default = true
+    },
+    {
+        "selectorId": "homepageRuntimeP99", //predefined selector - see chapter "Selectors" below
+        "condition": "<= 3000"
+    }
+]
+```
+
 Here are a few examples for rule checks:
 
 ```javascript
 "checks" : [
     {
-        // Fetch a number
+        // Fetch a Number
         "selector": "//requests/request[name[text() = 'Homepage']]/percentiles/p95",
         "condition": "<= 1000"
     },
@@ -133,7 +141,7 @@ You can then use the selector in any rule check by referencing its `selectorId` 
 
 ### Groups
 
-To model more complex criteria and to allow re-use of rules (and thus to avoid repetiitve definitions), rules are assigned to groups. A rule can be assigned to multiple groups. Rules must be assigned to a least one (enabled) group to become effective.
+To model more complex criteria and to allow re-use of rules (and thus to avoid repetitive definitions), rules are assigned to groups. A rule can be assigned to multiple groups. Rules must be assigned to at least one (enabled) group to become effective.
 
 At least one enabled group having at least one enabled rule assigned must be specified in `groups` as follows:
 
