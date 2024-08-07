@@ -34,7 +34,7 @@ We need at least a few numbers to derive our calculation from, such as:
 * Peak page views/h: for example 250,000 page views
 * Peak orders/h: for example 200 orders
 
-[^1]: [What are visits?]({{< relref "/glossary#visit" >}})
+[^1]: [What are visits?]({{< relref "../glossary#visit" >}})
 
 Based on these assumptions, we can put together a fairly simple but sufficiently accurate load mix. Of course, we can also analyze the current log files and try to come up with something more precise, but that will be only a snapshot. Traffic is very volatile and hence we can be very generous when setting up this mix.
 
@@ -42,7 +42,7 @@ Since we do not take any daily averages as base but the peaks, we will calculate
 
 ## Arrival Rate Calculation
 
-There are [two different approaches]({{< relref "/load-model" >}}) (load models) available to define a load test setup: the user count model and the arrival rate model. 
+There are [two different approaches]({{< relref "load-model" >}}) (load models) available to define a load test setup: the user count model and the arrival rate model. 
 
 For the user count model, you define a certain number of concurrent users the system will have to handle, whereas with the arrival rate model, your criteria is the number of transactions per hour. As the latter is better fit for real world load, we will go with the arrival rate model.
 

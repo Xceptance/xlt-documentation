@@ -8,7 +8,7 @@ description: >
   All infos that are available on the Load Tests Overview.
 ---
 
-A load test project in XTC may contain a number of [XLT load and performance tests]({{< relref "/load-testing" >}}). In XTC, you can easily keep track of which tests have been run for a project and have all the data (e.g. which settings were used, how much load was applied, how did the test go) available in one place.
+A load test project in XTC may contain a number of [XLT load and performance tests]({{< relref "xlt/load-testing" >}}). In XTC, you can easily keep track of which tests have been run for a project and have all the data (e.g. which settings were used, how much load was applied, how did the test go) available in one place.
 
 ## Load Tests Overview
 
