@@ -56,7 +56,7 @@ If a rule has 0 achievable points, it is an informational rule (unless `failsTes
     "description" : "Homepage C rating", // the descriptive text to display in the report
     "failsTest": true, // when true, can make the load test be marked as failed independent of a rating fail - optional, default = false
     "negateResult": false, // when this is 'true' the rule will fail when all checks do pass and the rule will succeed when at least one check fails - optional, default = false
-    "testFailTrigger": "NOTPASSED", // rule evaluation status used as trigger when to mark test as failed (has no effect unless "failsTest" is "true") - optional, default = NOTPASSED
+    "failsOn": "NOTPASSED", // rule evaluation status used as trigger when to mark test as failed (has no effect unless "failsTest" is "true") - optional, default = NOTPASSED
     // the checks to run - optional
     "checks" : [
         // see chapter "Rule Checks" below for how to define checks
