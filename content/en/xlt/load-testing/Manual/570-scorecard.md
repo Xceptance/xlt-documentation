@@ -15,7 +15,7 @@ In order to ease evaluation of load test results, XLT provides the possibility t
 
 ## Quick Start
 
-In order to add an automatic evaluation to the report, add a JSON file containing your evaluation rules to the test suite (see attached [schema](https://github.com/Xceptance/XLT/blob/develop/src/main/resources/com/xceptance/xlt/report/scorecard/configuration-schema.json) and [example config](https://github.com/Xceptance/XLT/blob/develop/samples/testsuite-posters/config/scorecard-config.json)). The path to this file has to be set as the value of the property `com.xceptance.xlt.scorecard.config` in the test suite (relative to test suite's `config` directory). 
+In order to add an automatic evaluation to the report, add a JSON file containing your evaluation rules to the test suite (see attached [schema](https://github.com/Xceptance/XLT/blob/develop/src/main/resources/com/xceptance/xlt/report/scorecard/configuration-schema.json) and [example config](https://github.com/Xceptance/XLT/blob/develop/samples/testsuite-posters/config/scorecard-config.json)). The path to this file has to be set as the value of the property `com.xceptance.xlt.scorecard.config` in the test suite (relative to test suite's `config` directory). Subdirectories are not supported. The rule file must be placed directly in the `config` directory.
 
 The rules will then be applied at report creation, and the test report will contain a tab **Scorecard** that contains information about the evaluation result of each [rule]({{< relref "#rules" >}}) and [rule group]({{< relref "#groups" >}}), the resulting [test rating]({{< relref "#rating" >}}) and the overall [scorecard result]({{< relref "#scorecard-result" >}}). 
 
