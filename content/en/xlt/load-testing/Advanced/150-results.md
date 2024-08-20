@@ -40,32 +40,32 @@ T,TVisit,1537368091385,3456,false,,
 
 The lines have a different number of columns as they represent different types of information. The following table describes the meaning of every column depending on the data record type:
 
-| Column | Transaction | Action | Request | Page Load Timing | Custom Timer | Event | Agent Resource Usage | Custom Value |
-| ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
-|**1**|T|A|R|P|C|E|J|V|
-|**2**|name|name|name|name|name|name|agent name|name|
-|**3**|start time|start time|start time|start time|start time|time|time|time|
-|**4**|run time [ms]|run time [ms]|run time [ms]|run time [ms]|run time [ms]|transaction name|current CPU usage (agent only) [%]|value|
-|**5**|failed flag|failed flag|failed flag|failed flag|failed flag|event message|used main memory (absolute)| - |
-|**6**|exception stack trace[^fn1]| - |bytes sent| - | - | - |current main memory usage (relative) [%]| - |
-|**7**|name of last action[^fn1]| - |bytes received| - | - | - |used heap memory (absolute)| - |
-|**8**|user index[^fn1]| - |response code| - | - | - |total heap memory (absolute)| - |
-|**9**|dump dir name[^fn1]| - |request URL| - | - | - |current heap memory usage (relative) [%]| - |
-|**10**| - | - |response content type| - | - | - |threads in state "runnable"| - |
-|**11**| - | - |connect time [ms]| - | - | - |threads in state "blocked"| - |
-|**12**| - | - |send time [ms]| - | - | - |threads in state "waiting" or "timed waiting"| - |
-|**13**| - | - |server busy time [ms]| - | - | - |minor GC cycles since start| - |
-|**14**| - | - |receive time [ms]| - | - | - |minor GC time since start [ms]| - |
-|**15**| - | - |time to first bytes [ms]| - | - | - |current minor GC CPU usage [%]| - |
-|**16**| - | - |time to last bytes [ms]| - | - | - |full GC cycles since start| - |
-|**17**| - | - |request ID| - | - | - |full GC time since start [ms]| - |
-|**18**| - | - |HTTP method[^fn2]| - | - | - |current full GC CPU usage [%]| - |
-|**19**| - | - |form data encoding[^fn2]| - | - | - |minor GC time since last update [ms]| - |
-|**20**| - | - |form data[^fn2]| - | - | - |full GC time since last update [ms]| - |
-|**21**| - | - |domain lookup time [ms]| - | - | - |minor GC cycles since last update| - |
-|**22**| - | - |resolved IP address(es)[^fn3]| - | - | - |full GC cycles since last update| - |
-|**23**| - | - |response ID| - | - | - |current CPU usage (total) [%]| - |
-|**24**| - | - |IP address used for the request [^fn4]| - | - | - | - | - |
+| Column | Transaction | Action | Request | Page Load Timing | Web Vital | Custom Timer | Event | Agent Resource Usage | Custom Value |
+| ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+|**1**|T|A|R|P|W|C|E|J|V|
+|**2**|name|name|name|name|name|name|name|agent name|name|
+|**3**|start time|start time|start time|start time|start time|start time|time|time|time|
+|**4**|run time [ms]|run time [ms]|run time [ms]|run time [ms]|run time [ms]|run time [ms]|transaction name|current CPU usage (agent only) [%]|value|
+|**5**|failed flag|failed flag|failed flag|failed flag| - |failed flag|event message|used main memory (absolute)| - |
+|**6**|exception stack trace[^fn1]| - |bytes sent| - | - | - | - |current main memory usage (relative) [%]| - |
+|**7**|name of last action[^fn1]| - |bytes received| - | - | - | - |used heap memory (absolute)| - |
+|**8**|user index[^fn1]| - |response code| - | - | - | - |total heap memory (absolute)| - |
+|**9**|dump dir name[^fn1]| - |request URL| - | - | - | - |current heap memory usage (relative) [%]| - |
+|**10**| - | - |response content type| - | - | - | - |threads in state "runnable"| - |
+|**11**| - | - |connect time [ms]| - | - | - | - |threads in state "blocked"| - |
+|**12**| - | - |send time [ms]| - | - | - | - |threads in state "waiting" or "timed waiting"| - |
+|**13**| - | - |server busy time [ms]| - | - | - | - |minor GC cycles since start| - |
+|**14**| - | - |receive time [ms]| - | - | - | - |minor GC time since start [ms]| - |
+|**15**| - | - |time to first bytes [ms]| - | - | - | - |current minor GC CPU usage [%]| - |
+|**16**| - | - |time to last bytes [ms]| - | - | - | - |full GC cycles since start| - |
+|**17**| - | - |request ID| - | - | - | - |full GC time since start [ms]| - |
+|**18**| - | - |HTTP method[^fn2]| - | - | - | - |current full GC CPU usage [%]| - |
+|**19**| - | - |form data encoding[^fn2]| - | - | - | - |minor GC time since last update [ms]| - |
+|**20**| - | - |form data[^fn2]| - | - | - | - |full GC time since last update [ms]| - |
+|**21**| - | - |domain lookup time [ms]| - | - | - | - |minor GC cycles since last update| - |
+|**22**| - | - |resolved IP address(es)[^fn3]| - | - | - | - |full GC cycles since last update| - |
+|**23**| - | - |response ID| - | - | - | - |current CPU usage (total) [%]| - |
+|**24**| - | - |IP address used for the request [^fn4]| - | - | - | - | - | - |
 
 [^fn1]: These values are only present if the transaction has failed, otherwise they are blank.
 
