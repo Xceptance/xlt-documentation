@@ -82,7 +82,7 @@ weight = 1
 
 [params]
 copyright = "https://xceptance.com"
-privacy_policy = "https://www.xceptance.com/en/contact/privacy.html"
+privacy_policy = "https://www.xceptance.com/en/privacy/"
 doc_license = "https://www.apache.org/licenses/LICENSE-2.0"
 host = "docs.xceptance.com"
 
