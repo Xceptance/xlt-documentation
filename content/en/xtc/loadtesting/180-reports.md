@@ -166,6 +166,17 @@ Finally, if you don't need a generated report any longer, you may want to delete
 
 In case you accidentally deleted some test report, XTC allows you to **restore** it within 30 days after deletion. Click the _Show Deleted Items_ entry in the 3-dot reports table menu to list the items that can be restored. To restore a particular item, click _Undo Deletion_ in the context menu of that item. To switch the view back to the live items, click _Hide Deleted Items_ in the table menu. Please note that load test reports that were publicly shared must be re-shared after restoring.
 
+## Report Retiring
+
+XTC stores all these reports in two forms:
+
+1. As a folder containing HTML pages, chart images, and supporting files. In this unpacked form, the report is ready for you to browse.
+1. As a single archive file containing all of the above files. This form is used when you download the report to your local hard drive.
+
+XTC **automatically retires** reports 180 days after creation to save storage space. This means that the report is marked as retired and all *unpacked* report files are deleted. Consequently, the report can no longer be viewed.
+
+If you need to **view a retired report** again, you must first restore the unpacked report files from the report archive. To do this, open the context menu of the report and click *Extract Archived Report*. After a few minutes, the unpacked report is available and can be viewed for another 180 days.
+
 ## Errors on Report Creation
 
 Creating a load test report may fail for several reasons, for example because of invalid report generator settings in your test suite. The _Error_ link next to a failed report will open the console log of the report generator. This way you should get an idea what the actual reason for that failure was.

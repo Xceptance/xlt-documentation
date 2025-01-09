@@ -139,7 +139,11 @@ The **Bandwidth** tab displays information about the used incoming and outgoing 
 
 ### Network
 
-The network section covers the areas of incoming and outgoing traffic during the load test. Sent Bytes is an estimated number based on the data given to the network layer. Cookies, for instance, are not included. Received Bytes is an accurate number because it’s based on the data received and includes HTTP header information. Depending on the test runtime, the numbers per hour and per day might be estimations based on a linear projection of the available data. If the test run included web activities or other activities returning an HTTP response code, it can be found here as well. Furthermore, all hosts that participated in the test run are listed in a separate table along with the appropriate number of requests that hit this host. Last but not least, this section contains a table that breaks down the received content to their announced type.
+The network section covers the areas of incoming and outgoing traffic during the load test. **Bytes Sent** is an estimated number based on the data given to the network layer. Cookies, for instance, are not included. **Bytes Received** is an accurate number because it’s based on the received data and includes HTTP header information. Depending on the test runtime, the numbers per hour and per day might be estimations based on a linear projection of the available data. 
+
+All **hosts** that participated in the test run are listed in a table along with the appropriate number of requests that hit this host. A seperate table lists the **IP addresses** that have been contacted during the test and how often. This data is only useful if the host name of the system under test resolves to multiple IP addresses, and it is only present if the property `com.xceptance.xlt.results.data.request.collectUsedIpAddress` is set to `true` for the test run. Use this information to learn if the distribution of traffic to these multiple target addresses during the test was as expected.
+
+If the test run included web activities or other activities returning an **HTTP response code**, it can be found here as well, including a chart that visualizes the number and distribution of HTTP response codes over time. There is a seperate table for all **HTTP request methods** that have been used during the test. Last but not least, this section contains a table that breaks down the received content to its announced **content type**.
 
 ### Page Load Timings
 
