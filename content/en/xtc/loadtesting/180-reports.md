@@ -12,7 +12,7 @@ description: >
 
 {{% permission type="project" least="true" role="reviewer" action="view a test report" %}}
 
-XTC will automatically [create a report]({{< relref "/xlt/load-testing/manual/320-test-evaluation" >}}) from the [results]({{< relref "175-results" >}}) downloaded at the end of the load test. You can find the generated report in the _Reports_ tab, where it will be available as compressed archive ready for download if you need it on your local machine. 
+XTC will automatically [create a report]({{< relref "/xlt/load-testing/manual/320-test-evaluation" >}}) from the [results]({{< relref "175-results" >}}) downloaded at the end of the load test. You can find the generated report in the _Reports_ section on the _Results_ tab, where it will be available as compressed archive ready for download if you need it on your local machine. 
 
 All generated reports will be available inside XTC to browse and evaluate them, and XTC can also generate a link for [public sharing]({{< relref "#sharing-a-report" >}}).
 
@@ -48,7 +48,11 @@ Creating an intermediate report also generates an intermediate [test result]({{<
 
 After the load test has finished, you can create as many custom reports with adjusted report settings as you need. 
 
-This can be done either by going to the [_Results_ tab]({{< relref "175-results#creating-a-report-from-results" >}}), opening the context menu of any result set and selecting _Create Report_, or by clicking the **NEW** button in the _Reports_ overview. In the latter case, the report will be created from the latest available result. When determining the latest result, XTC skips pending or failed results as these typically don’t have result data attached (yet).
+This can be done on to the _Results_ tab, either by opening the context menu of any result set and selecting [_Create Report_]({{< relref "175-results#creating-a-report-from-results" >}}), or by clicking the **NEW** button on top of the _Reports_ section. In the latter case, the report will be created from the latest available result. When determining the latest result, XTC skips pending or failed results as these typically don’t have result data attached (yet).
+
+{{< image src="xtc/loadtest_createReport.png" >}}
+Ways to create a custom test report
+{{< /image >}}
 
 {{% note notitle %}}
 The **NEW** button is enabled only if there are indeed valid load test results available to create a report from. Empty results don’t count as valid and will be ignored.
