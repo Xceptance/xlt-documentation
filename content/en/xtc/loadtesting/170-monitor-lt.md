@@ -50,6 +50,10 @@ XTC displays error and event information from your load test while it is running
 
 To view errors and events, open the *Error Reporting* tab on the details page of your load test. Specify the time period you are interested in and use the search and filter controls to narrow down the list of entries. Error entries include a stack trace, which can be viewed by expanding the entry.
 
+{{< image src="xtc/loadtest_error_reporting.png" >}}
+Live error reporting during a test run.
+{{< /image >}}
+
 Note that error and event data is stored for **24 hours only**.
 
 {{% note notitle %}}
