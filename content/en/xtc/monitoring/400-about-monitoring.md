@@ -1,0 +1,34 @@
+---
+title: "About"
+
+weight: 400
+type: docs
+
+description: >
+  What a monitoring project is and how XTC can help you monitor your applications.
+---
+
+## Monitoring Basics
+
+XTC can be used up to monitor your application's performance and availability by regularly running test cases, providing valuable data and insights over time. It can also notify specified recipients as soon as something unexpected happens, thus minimizing downtimes by addressing any issue as soon as possible.
+
+All of this can be achieved in [**XTC monitoring projects**]({{< relref "../basics/050-projects/#xtc-project-types" >}}).  
+
+## Prerequisites
+
+To monitor your application in XTC, we assume you have at least one Java class containing one or more JUnit testcases that interact with your application available in the repository of your choice. You might want to use one of our [sample test suites]({{< relref "../../xlt/load-testing/test-suites/" >}}) to get started. 
+{{< TODO >}}Is this correct? How does XTC know which Java version to use? Where does the testing hardware come from?{{< /TODO >}}
+
+## XTC Monitoring Features
+
+This is a rough overview of the features XTC offers for monitoring your application:
+
+* [Configuration]({{< relref "420-monitoring-configuration" >}}) allows you to adjust your settings for the whole monitoring project, including the definition of [Scenario Defaults]({{< relref "420-monitoring-configuration/#defining-scenario-defaults" >}}), and [Quiet Periods]({{< relref "420-monitoring-configuration/#quiet-periods" >}}) allows you to pause notifications for the whole project or even pause running any scenario,
+* in [Scenarios]({{< relref "430-scenario-setup" >}}) you can define and configure your monitoring scenarios, including the setup of [Notifications]({{< relref "440-notifications" >}}) for specified recipients,
+* the [Dashboard]({{< relref "410-dashboard" >}}) of a monitoring project provides a rough overview of the scenarios that are currently set up and their recent performance,
+* [Metrics]({{< relref "450-metrics" >}}),
+* [History]({{< relref "460-history" >}}),
+* [Exports]({{< relref "480-exports" >}}).
+{{< TODO / >}}
+
+To learn more about each feature, please check out the linked resources. If you can't wait to dive into XTC monitoring, there is also a [Quick Start]({{< relref "404-quick-start" >}}) guide.
