@@ -36,7 +36,7 @@ XTC enables you to manage your account information. After logging in, click your
 
 The _My Account_ view contains two tabs: _Profile_ and _Security_. 
 
-In **Profile** you may update your profile information such as your first and last name, your phone number (which may be useful for receiving [monitoring notifications]({{< relref "../monitoring/440-scenario-setup#notifications" >}})), and you can also upload an avatar/profile picture.
+In **Profile** you may update your profile information such as your first and last name, your phone number (which may be useful for receiving [monitoring notifications]({{< relref "../monitoring/440-notifications" >}})), and you can also upload an avatar/profile picture.
 
 In **Security** you can update your login data: to set a new e-mail address or password for your account, you need to enter the new data twice and confirm this with your current password. (If you are using an external provider for authentication and have not set up an additional XTC password for your account, entering the password will not be necessary, and you will only be able to update your account's e-mail address.)
 
