@@ -11,7 +11,51 @@ description: >
 
 While a load test is running, the master controller only shows basic information about the load test status. In interactive mode, you could at least download [intermediate results]({{< relref "../manual/320-test-evaluation#intermediate-results" >}}) and generate a report to see how the test is going. In automated environments, however, you would have to wait until the test run is finished before you can actually do so.
 
-Wouldn’t it be great if you could watch the results in real time and see how the performance varies over time while the test is still running? To this end, we have added the support of Graphite, a well-known data collection and graphing tool. During a load test, XLT could push selected metrics to Graphite. Using Graphite’s graphing capabilities or another graphing/dashboard tool on top of Graphite, you can watch the most important performance data instantly:
+XLT supports several ways that enable you to watch the results in real time and see how the performance varies over time while the test is still running:
+
+## Real-Time Reporting of Errors and Events via OpenTelemetry
+
+XLT can be configured to report error and event data to an external system while the load test is still running. This allows you to analyze errors and events as they occur without having to download the full result data and to create a load test report.
+
+XLT uses [OpenTelemetry](https://opentelemetry.io/) to report this data, specifically via OpenTelemetry's *Logs* interface. As the receiving system, we recommend using an [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/). Configure this collector as needed to further process and export the data to your actual log storage, such as Google Cloud Logs.
+
+If you want to use this feature, see below for what you need to configure in your load test suite:
+
+```properties
+### Whether OpenTelemetry real-time reporting is enabled.
+xlt.reporting.otel.enabled = true
+
+### Log Record Exporter
+otel.logs.exporter = otlp
+otel.exporter.otlp.endpoint = http://localhost:4318
+otel.exporter.otlp.protocol = http/protobuf
+## Custom headers
+otel.exporter.otlp.headers =
+
+### Batch Log Record Processor
+#otel.blrp.schedule.delay = 2000
+#otel.blrp.max.queue.size = 2048
+#otel.blrp.max.export.batch.size = 512
+
+## Resource attributes
+otel.resource.attributes = project=MyShop,loadTest=42
+```
+
+After enabling the feature, you need to configure how to reach your OpenTelemetry collector. You can then define custom headers, e.g. with authorization information, etc. Optionally, you can also reconfigure the OpenTelemetry batch log record processor.
+
+Finally, define a set of custom attributes to be attached to all sent log entries. Attributes are OpenTelemetry's equivalent of metadata. They are specified as a list of key/value pairs.
+
+Use attributes to categorize the log entries in your log storage backend, for example, to separate the log entries emitted by one load test from the log entries emitted by other load tests.
+
+See the [OpenTelemetry for Java Configuration](https://opentelemetry.io/docs/languages/java/configuration/) page for all available configuration options.
+
+{{% note notitle %}}
+Please note that this feature is currently considered experimental. However, we have released it publicly to allow a wider audience to try it out and provide feedback. So if you use this feature, be prepared for possible changes.
+{{% /note %}}
+
+## Performance Graphing via Graphite
+
+Another possibility for real-time monitoring is Graphite, a well-known data collection and graphing tool. During a load test, XLT could push selected metrics to Graphite. Using Graphite’s graphing capabilities or another graphing/dashboard tool on top of Graphite, you can watch the most important performance data instantly:
 
 {{< image src="how-to/graphite/realtime-reporting.png" large="how-to/graphite/realtime-reporting.png" >}}
 Load Testing Dashboard
