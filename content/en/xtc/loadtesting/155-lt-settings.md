@@ -36,7 +36,9 @@ Overwriting the Load Profile with a Load Function
 Learn more in our _Load Testing_ section about [configuring load profiles]({{< relref "/xlt/load-testing/manual/470-load-configuration" >}}) for your test run.
 
 ### Properties
-In _Properties_ and _Secret Properties_ you may overwrite [properties]({{< relref "/xlt/load-testing/manual/480-test-suite-configuration" >}}) for test execution. If nothing is set here, the properties from the project repository will be used. Properties may also be overwritten globally for all load tests of this project in the [project configuration]({{< relref "120-load-project-configuration#properties" >}}).
+In _Properties_ and _Secret Properties_ you may overwrite [properties]({{< relref "/xlt/load-testing/manual/480-test-suite-configuration" >}}) for test execution. Values set here take precedence over the values from the project repository, which are always used as default.
+
+Properties may also be overwritten globally for all load tests of this project in the [project configuration]({{< relref "120-load-project-configuration#properties" >}}).
 
 ### Repository
 
