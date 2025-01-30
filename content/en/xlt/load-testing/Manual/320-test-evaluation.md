@@ -46,7 +46,9 @@ To check whether the load setup was correct, you can review these points on the 
 Load Profile
 {{< /image >}}
 
-{{% note notitle %}}The arrival rate setting does not actually guarantee an exact user arrival rate, and so it should not be used to verify whether or not the load test ran as expected.{{% /note %}}
+{{% note notitle %}}
+The arrival rate setting does not actually guarantee an exact user arrival rate, and so it should not be used to verify whether or not the load test ran as expected. 
+{{% /note %}}
 
 #### Concurrent User Chart
 
@@ -145,11 +147,17 @@ All **hosts** that participated in the test run are listed in a table along with
 
 If the test run included web activities or other activities returning an **HTTP response code**, it can be found here as well, including a chart that visualizes the number and distribution of HTTP response codes over time. There is a seperate table for all **HTTP request methods** that have been used during the test. Last but not least, this section contains a table that breaks down the received content to its announced **content type**.
 
+{{< image src="user-manual/report_responsecode-chart.png" >}}
+Example for an HTTP response code chart in the report's network section
+{{< /image >}}
+
 ### Page Load Timings
 
 The Page Load Timings section offers deeper insight into the page loading performance of real browsers. During a page load, a browser typically goes through different phases and reaches different states. This section outlines the time it took to reach a certain state. The timings listed here include primarily page load timings, but since the _perceived_ page loading performance is often influenced by how fast something is displayed on the page, paint timings are listed here as well.
 
-{{% note notitle %}}These timings will be recorded only when using `XltChromeDriver` or `XltFirefoxDriver` to run the browser. These are special WebDriver implementations that install an extension into the browser which is able to gather all the timings and report them to XLT.{{% /note %}}
+{{% note notitle %}}
+These timings will be recorded only when using `XltChromeDriver` or `XltFirefoxDriver` to run the browser. These are special WebDriver implementations that install an extension into the browser which is able to gather all the timings and report them to XLT.
+{{% /note %}}
 
 ### Custom Timers & Values
 
