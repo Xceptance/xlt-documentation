@@ -46,7 +46,9 @@ To check whether the load setup was correct, you can review these points on the 
 Load Profile
 {{< /image >}}
 
-{{% note notitle %}}The arrival rate setting does not actually guarantee an exact user arrival rate, and so it should not be used to verify whether or not the load test ran as expected.{{% /note %}}
+{{% note notitle %}}
+The arrival rate setting does not actually guarantee an exact user arrival rate, and so it should not be used to verify whether or not the load test ran as expected. 
+{{% /note %}}
 
 #### Concurrent User Chart
 
@@ -139,13 +141,23 @@ The **Bandwidth** tab displays information about the used incoming and outgoing 
 
 ### Network
 
-The network section covers the areas of incoming and outgoing traffic during the load test. Sent Bytes is an estimated number based on the data given to the network layer. Cookies, for instance, are not included. Received Bytes is an accurate number because it’s based on the data received and includes HTTP header information. Depending on the test runtime, the numbers per hour and per day might be estimations based on a linear projection of the available data. If the test run included web activities or other activities returning an HTTP response code, it can be found here as well. Furthermore, all hosts that participated in the test run are listed in a separate table along with the appropriate number of requests that hit this host. Last but not least, this section contains a table that breaks down the received content to their announced type.
+The network section covers the areas of incoming and outgoing traffic during the load test. **Bytes Sent** is an estimated number based on the data given to the network layer. Cookies, for instance, are not included. **Bytes Received** is an accurate number because it’s based on the received data and includes HTTP header information. Depending on the test runtime, the numbers per hour and per day might be estimations based on a linear projection of the available data. 
+
+All **hosts** that participated in the test run are listed in a table along with the appropriate number of requests that hit this host. A separate table lists the **IP addresses** that have been contacted during the test and how often. This data is only useful if the host name of the system under test resolves to multiple IP addresses, and it is only present if the property `com.xceptance.xlt.results.data.request.collectUsedIpAddress` is set to `true` for the test run. Use this information to learn if the distribution of traffic to these multiple target addresses during the test was as expected.
+
+If the test run included web activities or other activities returning an **HTTP response code**, it can be found here as well, including a chart that visualizes the number and distribution of HTTP response codes over time. There is a separate table for all **HTTP request methods** that have been used during the test. Last but not least, this section contains a table that breaks down the received content to its announced **content type**.
+
+{{< image src="user-manual/report_responsecode-chart.png" >}}
+Example for an HTTP response code chart in the report's network section
+{{< /image >}}
 
 ### Page Load Timings
 
 The Page Load Timings section offers deeper insight into the page loading performance of real browsers. During a page load, a browser typically goes through different phases and reaches different states. This section outlines the time it took to reach a certain state. The timings listed here include primarily page load timings, but since the _perceived_ page loading performance is often influenced by how fast something is displayed on the page, paint timings are listed here as well.
 
-{{% note notitle %}}These timings will be recorded only when using `XltChromeDriver` or `XltFirefoxDriver` to run the browser. These are special WebDriver implementations that install an extension into the browser which is able to gather all the timings and report them to XLT.{{% /note %}}
+{{% note notitle %}}
+These timings will be recorded only when using `XltChromeDriver` or `XltFirefoxDriver` to run the browser. These are special WebDriver implementations that install an extension into the browser which is able to gather all the timings and report them to XLT.
+{{% /note %}}
 
 ### Custom Timers & Values
 

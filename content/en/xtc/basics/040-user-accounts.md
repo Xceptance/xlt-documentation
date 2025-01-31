@@ -22,13 +22,6 @@ After the successful registration, XTC will send you an email to the given addre
 
 Currently, your role and projects will be assigned by Xceptance. This will change in the future.
 
-## Notifications
-
-XTC users will get notified by email whenever their membership in a project or organization has changed:
-
-* when they have been added to or removed from an [org]({{< relref "045-organizations#adding-members-to-an-organization" >}}) or [project]({{< relref "050-projects#adding-and-removing-project-members" >}}),
-* when their [org]({{< relref "045-organizations#user-roles-within-an-organization" >}}) or [project]({{< relref "050-projects#user-roles-within-a-project" >}}) role has been changed, or
-* when they have actively been [locked or unlocked]({{< relref "045-organizations#locking-members-of-an-organization" >}}) by an org admin.
 
 ## Account Management
 
@@ -36,7 +29,7 @@ XTC enables you to manage your account information. After logging in, click your
 
 The _My Account_ view contains two tabs: _Profile_ and _Security_. 
 
-In **Profile** you may update your profile information such as your first and last name, your phone number (which may be useful for receiving [monitoring notifications]({{< relref "../monitoring/440-scenario-setup#notifications" >}})), and you can also upload an avatar/profile picture.
+In **Profile** you may update your profile information such as your first and last name, your phone number (which may be useful for receiving [monitoring notifications]({{< relref "../monitoring/440-scenario-setup#notifications" >}})), and you can upload an avatar/profile picture. This section also allows you to [pause notifications]({{< relref "#pausing-notifications" >}}). 
 
 In **Security** you can update your login data: to set a new e-mail address or password for your account, you need to enter the new data twice and confirm this with your current password. (If you are using an external provider for authentication and have not set up an additional XTC password for your account, entering the password will not be necessary, and you will only be able to update your account's e-mail address.)
 
@@ -45,6 +38,38 @@ In addition to securing your account with a regular password, you may set up _ti
 External login providers for this account will be listed here and if you want to switch from internal authentication to using an external provider, you can [connect your XTC account to an external login provider]({{< relref "#connecting-existing-xtc-accounts-to-an-external-login-provider" >}}) here.
 
 Organization admins may impose **mandatory login requirements** on users of their organization. They may require users to be authenticated using specific login providers or 2FA. Read more about this [here]({{< relref "045-organizations/#mandatory-login-requirements" >}}).
+
+## Notifications
+
+XTC users will get notified by email whenever their membership in a project or organization has changed:
+
+* when they have been added to or removed from an [org]({{< relref "045-organizations#adding-members-to-an-organization" >}}) or [project]({{< relref "050-projects#adding-and-removing-project-members" >}}),
+* when their [org]({{< relref "045-organizations#user-roles-within-an-organization" >}}) or [project]({{< relref "050-projects#user-roles-within-a-project" >}}) role has been changed, or
+* when they have actively been [locked or unlocked]({{< relref "045-organizations#locking-members-of-an-organization" >}}) by an org admin.
+
+### Pausing Notifications
+
+If you want to take a break from work, you can pause certain notifications sent to you for a specified amount of time. Currently this includes:
+
+* Emails about changes in project membership.
+* Emails and text messages about [monitoring alerts]({{< relref "../monitoring/440-scenario-setup#notifications" >}})).
+
+This list may be expanded in the future, but notifications related to your account will never be muted.
+
+To pause notifications, browse to your account settings (click on your avatar and select *My Account* from the menu), click the pencil button next to _Notifications_ and select the period of time you want notifications to be muted for and confirm by clicking _Set_. Typically, you will do this for a period of time in the future. After the successful setup, the selected pause will be displayed in this section:
+
+{{< image src="xtc/notifications_paused.png" >}}
+{{< /image >}}
+
+To delete the pause, simply click the *Delete* button next to the *Edit* button.
+
+When the pause starts, XTC will stop sending you notifications. When the pause ends, XTC will automatically resume sending notifications, but note that muted notifications will not be resent. There is no need to delete a pause once it has expired.
+
+Note that you may still receive monitoring alerts in these situations:
+
+* If alerts are sent via Slack. You will need to mute the appropriate channel in Slack.
+* If you are on a mailing list. Either temporarily unsubscribe from the mailing list or configure email processing rules with your email provider to mute alert emails.
+* If your email address has been added as a custom subscriber. Change it to an XTC user subscriber.
 
 ## Two-Factor Authentication (2FA)
 

@@ -12,7 +12,7 @@ description: >
 
 {{% permission type="project" least="true" role="reviewer" action="view a test report" %}}
 
-XTC will automatically [create a report]({{< relref "/xlt/load-testing/manual/320-test-evaluation" >}}) from the [results]({{< relref "175-results" >}}) downloaded at the end of the load test. You can find the generated report in the _Reports_ tab, where it will be available as compressed archive ready for download if you need it on your local machine. 
+XTC will automatically [create a report]({{< relref "/xlt/load-testing/manual/320-test-evaluation" >}}) from the [results]({{< relref "175-results" >}}) downloaded at the end of the load test. You can find the generated report in the _Reports_ section on the _Results_ tab, where it will be available as compressed archive ready for download if you need it on your local machine. 
 
 All generated reports will be available inside XTC to browse and evaluate them, and XTC can also generate a link for [public sharing]({{< relref "#sharing-a-report" >}}).
 
@@ -48,7 +48,11 @@ Creating an intermediate report also generates an intermediate [test result]({{<
 
 After the load test has finished, you can create as many custom reports with adjusted report settings as you need. 
 
-This can be done either by going to the [_Results_ tab]({{< relref "175-results#creating-a-report-from-results" >}}), opening the context menu of any result set and selecting _Create Report_, or by clicking the **NEW** button in the _Reports_ overview. In the latter case, the report will be created from the latest available result. When determining the latest result, XTC skips pending or failed results as these typically don’t have result data attached (yet).
+This can be done on to the _Results_ tab, either by opening the context menu of any result set and selecting [_Create Report_]({{< relref "175-results#creating-a-report-from-results" >}}), or by clicking the **NEW** button on top of the _Reports_ section. In the latter case, the report will be created from the latest available result. When determining the latest result, XTC skips pending or failed results as these typically don’t have result data attached (yet).
+
+{{< image src="xtc/loadtest_createReport.png" >}}
+Ways to create a custom test report
+{{< /image >}}
 
 {{% note notitle %}}
 The **NEW** button is enabled only if there are indeed valid load test results available to create a report from. Empty results don’t count as valid and will be ignored.
@@ -165,6 +169,17 @@ Even if a load test report can already be viewed, the corresponding report archi
 Finally, if you don't need a generated report any longer, you may want to delete it to save storage space. To do this, just click _Delete_ in the report's context menu. You will be prompted to confirm that you really want to delete the report. 
 
 In case you accidentally deleted some test report, XTC allows you to **restore** it within 30 days after deletion. Click the _Show Deleted Items_ entry in the 3-dot reports table menu to list the items that can be restored. To restore a particular item, click _Undo Deletion_ in the context menu of that item. To switch the view back to the live items, click _Hide Deleted Items_ in the table menu. Please note that load test reports that were publicly shared must be re-shared after restoring.
+
+## Report Retiring
+
+XTC stores all these reports in two forms:
+
+1. As a folder containing HTML pages, chart images, and supporting files. In this unpacked form, the report is ready for you to browse.
+1. As a single archive file containing all of the above files. This form is used when you download the report to your local hard drive.
+
+XTC **automatically retires** reports 180 days after creation to save storage space. This means that the report is marked as retired and all *unpacked* report files are deleted. Consequently, the report can no longer be viewed.
+
+If you need to **view a retired report** again, you must first restore the unpacked report files from the report archive. To do this, open the context menu of the report and click *Extract Archived Report*. After a few minutes, the unpacked report is available and can be viewed for another 180 days.
 
 ## Errors on Report Creation
 

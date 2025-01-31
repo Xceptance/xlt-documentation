@@ -8,11 +8,11 @@ description: >
   How to monitor a load test in XTC.
 ---
 
-## Monitoring the Load Test 
+XTC provides several ways to monitor load tests. Although comprehensive data is collected during the test and compiled into a final report, real-time information is also available, giving users immediate insights into the ongoing execution.
 
 {{% permission type="project" least="true" role="reviewer" action="view the load test and scenario status" %}}
 
-### Test Status
+## Test Status
 
 The _Status_ tab contains an overview of the test status. This is a list of the steps carried out in the load test phases _Preparation_, _Execution_,  and _Results and Clean Up_ which will be marked done while the test progresses. 
 
@@ -22,7 +22,7 @@ The status view for a running load test.
 
 Steps that failed due to errors (like timeouts or failed authentication) will be marked as failed here, so you can see why and at which step the test does not progress or was aborted.
 
-### Scenario Status
+## Scenario Status
 
 The _Scenario Status_ tab only contains information while the test is actually running or finished. After the [live metrics]({{< relref "#live-metrics" >}}) follows an overview of all test scenarios that are executed in this load test, containing scenario name and state and other useful information such as currently running users, average scenario runtime and especially the number of events and errors that occurred in this scenario:
 
@@ -30,7 +30,7 @@ The _Scenario Status_ tab only contains information while the test is actually r
 The scenario status view for a running load test.
 {{< /image >}}
 
-#### Live Metrics
+### Live Metrics
 
 The graph on top of the scenario status table is updated while the load test is running. It displays information on the number of currently active users as well as the user limit for each test scenario. Hovering over the graph displays a popup with the values for this point in time (user limit in parentheses).
 
@@ -44,3 +44,18 @@ Please note that there may be gaps in the live metrics even though the test was 
 
 The data for the scenario status chart is available for a limited period of time only (7 days after the load test has ended). After that time the chart will no longer be displayed as it would be empty anyway.
 
+## Error Reporting
+
+XTC displays error and event information from your load test while it is running. This allows you to analyze errors and events as they occur without having to create an interim load test report.
+
+To view errors and events, open the *Error Reporting* tab on the details page of your load test. Specify the time period you are interested in and use the search and filter controls to narrow down the list of entries. Error entries include a stack trace, which can be viewed by expanding the entry.
+
+{{< image src="xtc/loadtest_error_reporting.png" >}}
+Live error reporting during a test run.
+{{< /image >}}
+
+Note that error and event data is stored for **24 hours only**.
+
+{{% note notitle %}}
+This feature is currently considered experimental. Therefore, it is available to certain organizations only. After further testing, we will gradually roll it out to all organizations.
+{{% /note %}}
