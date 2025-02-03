@@ -48,7 +48,7 @@ Creating an intermediate report also generates an intermediate [test result]({{<
 
 After the load test has finished, you can create as many custom reports with adjusted report settings as you need. 
 
-This can be done on to the _Results_ tab, either by opening the context menu of any result set and selecting [_Create Report_]({{< relref "175-results#creating-a-report-from-results" >}}), or by clicking the **NEW** button on top of the _Reports_ section. In the latter case, the report will be created from the latest available result. When determining the latest result, XTC skips pending or failed results as these typically don’t have result data attached (yet).
+This can be done on the _Results_ tab, either by opening the context menu of any result set and selecting [_Create Report_]({{< relref "175-results#creating-a-report-from-results" >}}), or by clicking the **NEW** button at the top of the _Reports_ section. In the latter case, the report will be created from the latest available result. When determining the latest result, XTC skips pending or failed results as these typically don’t have result data attached (yet).
 
 {{< image src="xtc/loadtest_createReport.png" >}}
 Ways to create a custom test report
@@ -170,9 +170,9 @@ Finally, if you don't need a generated report any longer, you may want to delete
 
 In case you accidentally deleted some test report, XTC allows you to **restore** it within 30 days after deletion. Click the _Show Deleted Items_ entry in the 3-dot reports table menu to list the items that can be restored. To restore a particular item, click _Undo Deletion_ in the context menu of that item. To switch the view back to the live items, click _Hide Deleted Items_ in the table menu. Please note that load test reports that were publicly shared must be re-shared after restoring.
 
-## Report Retiring
+## Restoring an Automatically Retired Report
 
-XTC stores all these reports in two forms:
+XTC stores load test reports and performance comparison reports in two forms:
 
 1. As a folder containing HTML pages, chart images, and supporting files. In this unpacked form, the report is ready for you to browse.
 1. As a single archive file containing all of the above files. This form is used when you download the report to your local hard drive.
