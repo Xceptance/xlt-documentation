@@ -11,16 +11,42 @@ description: >
 
 To aid in error analysis, XTC provides a feature that allows you to add your custom debug data to the result browser: the session's **value log** is a storage for session-specific test parameters and result data. Any value you add to this log will later be available in the result browser. 
 
-{{< image src="how-to/custom_result_browser_data.png" >}}
-Result browser containing custom debug data.
+{{< image src="user-manual/resultbrowser_value_log.png" >}}
+Value Log in the Result Browser
 {{< /image >}}
 
-Note that the log will be cleared with each new iteration of the test scenario. The data may help to reproduce test failures by rerunning test scenario with the same data more easily, or simply present contextual data for recreation of error situations, either manually or automatically. This is especially useful if your test case uses random or randomly chosen test parameters.
+This feature is primarily intended to aid in error analysis. The data in
+the result browser may help you to reconstruct and rerun a failed test
+case iteration without having to dig into log files, etc. Simply add any
+value of special interest and it will be available in the result
+browser. This is especially useful if your test case uses random or
+randomly chosen test parameters.
 
-You can add data to the value log at any point in your test scenario:
+To address the problem with random test parameters, XLT adopts this
+feature to make the seed value of `XltRandom` - used for the current
+test iteration/session - available in the result browser. To rerun a
+test case with this seed value (i.e. with the “same randomness”), copy
+the seed value from the result browser, add the following line to your
+`dev.properties` file, and re-execute the test as usual from your
+favorite IDE:
 
-```java
-Session.getCurrent().getValueLog().put("data.I.want.to.keep", "This is essential data for reconstructing the test case I just ran."); 
+```bash
+com.xceptance.xlt.random.initValue = <copied seed value>
 ```
 
-Data is stored as name/value pairs. Even though the log accepts any Object as the value, the value will later be converted to a string using `Object.toString()` for proper display in the result browser. So make sure your value classes implement this method appropriately.
+You may also add your own arbitrary values to the session’s value log.
+See below on how to access the value log and add values to it:
+
+```java
+Map<String, Object> valueLog = Session.getCurrent().getValueLog();  
+valueLog.put(“account.email”, randomEmail);  
+valueLog.put(“cart.total”, currentCartTotal);
+```
+
+Your data will be stored as simple name/value pairs. Even though the log
+accepts any `Object` as value, it still needs to be converted to a
+string for proper display in the result browser, so make sure that your
+value classes provide a sensible `toString()` method.
+
+{{% note notitle %}} In a load test the value log will be cleared automatically
+between two iterations of your test scenario. {{% /note %}}

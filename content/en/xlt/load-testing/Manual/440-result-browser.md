@@ -224,6 +224,19 @@ As described earlier, the output of an action shows the state of the page after 
 XLT Result Browser - Inspect Element
 {{< /image >}}
 
+### General Value Log
+
+Any XLT session provides a general value log. Any value added to
+this log will be made available in the result browser. To view the value
+log, click the link with the transaction’s name that is located
+above the action list.
+
+{{< image src="user-manual/resultbrowser_value_log.png" >}}
+Value Log in the Result Browser
+{{< /image >}}
+
+To learn how this feature may aid in error analysis and allows you to reconstruct and rerun a failed test case iteration without having to dig into log files, see [How to Add Debug Data to the Result Browser]({{< relref "../how-tos/debug-data-result-browser" >}}). 
+
 ## Request timeline
 In order to let you inspect the temporal sequence
 and duration of requests in a graphical timeline view, XLT may
