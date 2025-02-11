@@ -2,7 +2,7 @@
 title: "Notifications and Quiet Periods"
 linkTitle: "Notifications"
 
-weight: 440
+weight: 425
 type: docs
 
 description: >
