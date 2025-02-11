@@ -226,7 +226,7 @@ XLT Result Browser - Inspect Element
 
 ### General Value Log
 
-Any XLT session provides a general value log. Any value you add to
+Any XLT session provides a general value log. Any value added to
 this log will be made available in the result browser. To view the value
 log, click the link with the transaction’s name that is located
 above the action list.
@@ -235,41 +235,7 @@ above the action list.
 Value Log in the Result Browser
 {{< /image >}}
 
-This feature is primarily intended to aid in error analysis. The data in
-the result browser may help you to reconstruct and rerun a failed test
-case iteration without having to dig into log files, etc. Simply add any
-value of special interest and it will be available in the result
-browser. This is especially useful if your test case uses random or
-randomly chosen test parameters.
-
-To address the problem with random test parameters, XLT adopts this
-feature to make the seed value of `XltRandom` - used for the current
-test iteration/session - available in the result browser. To rerun a
-test case with this seed value (i.e. with the “same randomness”), copy
-the seed value from the result browser, add the following line to your
-`dev.properties` file, and re-execute the test as usual from your
-favorite IDE:
-
-```bash
-com.xceptance.xlt.random.initValue = <copied seed value>
-```
-
-You may also add your own arbitrary values to the session’s value log.
-See below on how to access the value log and add values to it:
-
-```java
-Map<String, Object> valueLog = Session.getCurrent().getValueLog();  
-valueLog.put(“user”, randomEmail);  
-valueLog.put(“password”, randomPassword);
-```
-
-Your data will be stored as simple name/value pairs. Even though the log
-accepts any `Object` as value, it still needs to be converted to a
-string for proper display in the result browser, so make sure that your
-value classes provide a sensible `toString()` method.
-
-{{% note notitle %}} In a load test the value log will be cleared automatically
-between two iterations of your test scenario. {{% /note %}}
+To learn how this feature may aid in error analysis and allows you to reconstruct and rerun a failed test case iteration without having to dig into log files, see [How to Add Debug Data to the Result Browser]({{< relref "../how-tos/debug-data-result-browser" >}}). 
 
 ## Request timeline
 In order to let you inspect the temporal sequence
