@@ -33,19 +33,12 @@ On the _Scenario Defaults_ tab in _Configuration_ you can define [default settin
 The scenario defaults tab with expand toggle and editing button.
 {{< /image >}}
 
-## Notification Lists and Quality Sensors
+## Notification Lists, Quality Sensors and Quiet Periods
 
-{{% permission type="project" least="true" role="test manager" action="edit the repository configuration" %}}
+{{% permission type="project" least="true" role="test manager" action="configure notification lists, quality sensors and quiet periods" %}}
 
 XTC uses a flexible approach to configuring when an alert is triggered and to whom notifications are sent. Instead of having a single list of recipients where all recipients are notified in every case, you can define your own lists of who gets notified and how (**notification lists**) and under which circumstances these alerts should be sent (**quality sensors**). For example, scenario failures should only alert the on-call team, while performance degradations should only be sent to the application development team. 
 
-Both notification lists and quality sensors are managed globally for a project, in the project configuration's respective tabs. To learn more, see [Notification Lists]({{< relref "425-notifications" >}}) and [Quality Sensors]({{< relref "428-quality-sensors" >}}).
+Both notification lists and quality sensors are managed globally for a project, in the project configuration's respective tabs. To learn more, see [**Notification Lists**]({{< relref "425-notifications" >}}) and [**Quality Sensors**]({{< relref "428-quality-sensors" >}}).
 
-## Quiet Periods
-
-{{% permission type="project" least="true" role="test manager" action="configure the quiet periods" %}}
-
-You can define _Quiet Periods_ for your monitoring projects. These are time spans in which no [notifications]({{< relref "425-notifications" >}}) will be sent (and, if you configure this, no scenarios will run). 
-
-To add a new quiet period, click the `+` symbol at the top of the Quiet Periods list. You may then define a label, a start time and an end time, and configure whether or not scenarios should be executed in this period. The newly created quiet period will then show up in the list. All periods in the list can be edited, disabled or removed, no matter whether they are in the future, in the past or currently active. 
-
+To pause notifications altogether (and, if you configure this, pause scenario execution) you may configure [**Quiet Periods**]({{< relref "425-notifications/#quiet-periods" >}}).
