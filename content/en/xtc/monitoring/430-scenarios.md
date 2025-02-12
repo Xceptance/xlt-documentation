@@ -10,7 +10,7 @@ description: >
 
 {{% permission type="project" least="true" role="tester" action="view monitoring scenarios" %}}
 
-{{% permission type="project" least="true" role="test manager" action="create, edit and delete monitoring scenarios and scenario defaults" %}}
+{{% permission type="project" least="true" role="test manager" action="create, edit and delete monitoring scenarios" %}}
 
 ## Setting Up Monitoring Scenarios
 
