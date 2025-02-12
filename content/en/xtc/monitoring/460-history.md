@@ -5,7 +5,7 @@ weight: 460
 type: docs
 
 description: >
-  Monitoring History
+  The insights provided by scenario execution history.
 ---
 
 ## Overview
@@ -53,5 +53,5 @@ Detail view of a successful scenario run with more information.
 {{< /image >}}
 
 {{% note notitle %}}
-Note that not meeting one of the success metrics does not necessarily cause the scenario execution to fail. Learn more in [quality sensors]({{< relref "428-quality-sensors" >}}).
+Note that not meeting one of the success metrics does not necessarily cause the scenario execution to fail. Learn more in [quality sensors]({{< relref "420-monitoring-configuration/#quality-sensors" >}})).
 {{% /note %}}

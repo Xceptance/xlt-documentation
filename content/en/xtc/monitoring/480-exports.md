@@ -5,7 +5,7 @@ weight: 480
 type: docs
 
 description: >
-  Export of Scenario Execution Data
+  How to export scenario execution data.
 ---
 
 {{% permission type="project" least="true" role="reviewer" %}}

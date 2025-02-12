@@ -1,11 +1,11 @@
 ---
-title: "Scenario Setup"
+title: "Scenarios"
 
 weight: 430
 type: docs
 
 description: >
-  How to set up monitoring scenarios in XTC.
+  How to set up and manage monitoring scenarios in XTC.
 ---
 
 {{% permission type="project" least="true" role="tester" action="view monitoring scenarios" %}}
@@ -41,7 +41,7 @@ Overview of all existing scenarios in the project.
 {{< /image >}}
 
 You can open the detail view of a scenario by clicking the scenario name. There you 
-can adjust the [scenario settings]({{< relref "#scenario-settings" >}}) and [notifications]({{< relref "#notifications" >}}) as needed. Otherwise the [scenario defaults]({{< relref "420-monitoring-configuration/#defining-scenario-defaults" >}}) will be used. 
+can adjust the [scenario settings]({{< relref "#scenario-settings" >}}) and [notifications]({{< relref "#notifications" >}}) as needed. Otherwise the [scenario defaults]({{< relref "420-monitoring-configuration/#scenario-defaults" >}}) will be used. 
 
 You can reset any overwritten default setting by simply removing it via this setting's context menu or by deleting all overwritten 
 
@@ -81,11 +81,11 @@ In _Properties_ you may add test properties to use for scenario execution. These
 
 On the **Notifications** tab you can enable or disable notifications entirely for the current scenario if desired, and set a default reply-to address for email notifications. 
 
-When an alert is triggered and to whom notifications are sent is defined by the scenario's [**quality sensors**]({{< relref "#quality-sensors" >}}) and the [**notification lists**]({{< relref "425-notifications" >}}) these sensors are linked to. Learn more on their respective doc pages.
+When an alert is triggered and to whom notifications are sent is defined by the scenario's [**quality sensors**]({{< relref "#quality-sensors" >}}) and the [**notification lists**]({{< relref "420-monitoring-configuration/#notification-lists" >}})) these sensors are linked to. Learn more on their respective doc pages.
 
 ## Quality Sensors
 
-The most crucial part of the settings is to define **success metrics** which will be validated during the scenario execution. Violations cause the scenario to be treated as failed. Success metrics are defined as [quality sensors]({{< relref "428-quality-sensors" >}}) in the monitoring project's configuration. 
+The most crucial part of the settings is to define **success metrics** which will be validated during the scenario execution. Violations cause the scenario to be treated as failed. Success metrics are defined as [quality sensors]({{< relref "420-monitoring-configuration/#quality-sensors" >}})) in the monitoring project's configuration. 
 
 Multiple quality sensors can be assigned to a scenario. You can add them by clicking the `+` symbol at the top of the _Quality Sensors_ tab and picking one of the sensors you have defined in your project configuration.
 
