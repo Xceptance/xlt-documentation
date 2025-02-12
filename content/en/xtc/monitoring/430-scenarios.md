@@ -26,7 +26,7 @@ To add a new monitoring scenario to your project, just click the `+` button at t
 Creating a new monitoring scenario.
 {{< /image >}}  
 
-The new scenario will now show up in the list. It will be enabled by default and it will automatically use the [scenario default settings]({{< relref "#defining-scenario-defaults" >}}). You can now adjust these settings as needed by [editing the scenario]({{< relref "#managing-existing-scenarios" >}}). 
+The new scenario will now show up in the list. It will be enabled by default and it will automatically use the [scenario default settings]({{< relref "420-monitoring-configuration/#scenario-defaults" >}}). You can now adjust these settings as needed by [editing the scenario]({{< relref "#managing-existing-scenarios" >}}). 
 
 {{% note notitle %}}
 New scenarios are disabled by default to give you time to finish customizing the scenario settings. Don't forget to enable the scenario when done.
@@ -34,26 +34,25 @@ New scenarios are disabled by default to give you time to finish customizing the
 
 ## Managing Existing Scenarios
 
-In the _Scenarios_ tab you may manage the monitoring scenarios of your project, add new scenarios, edit settings for the existing ones, quickly enable or disable scenarios or delete them if they are no longer needed.
+In the _Scenarios_ table you may manage the monitoring scenarios of your project, add new scenarios, **edit settings** for the existing ones, quickly **enable or disable scenarios** or their **notifications**, **pause and unpause** the execution or **delete** scenarios that are no longer needed by choosing these actions from the scenario's context menu.
 
 {{< image src="xtc/monitoring_scenarios_overview.png" >}}
 Overview of all existing scenarios in the project.
 {{< /image >}}
 
-You can open the detail view of a scenario by clicking the scenario name. There you 
-can adjust the [scenario settings]({{< relref "#scenario-settings" >}}) and [notifications]({{< relref "#notifications" >}}) as needed. Otherwise the [scenario defaults]({{< relref "420-monitoring-configuration/#scenario-defaults" >}}) will be used. 
-
-You can reset any overwritten default setting by simply removing it via this setting's context menu or by deleting all overwritten 
-
-{{< image src="xtc/monitoring_drop_overwritten_settings.png" >}}
-Deleting the overwritten criteria settings for a scenario to use default again.
-{{< /image >}}
-
-If you do not need a scenario you can **disable** it temporarily or **delete** it entirely by choosing these actions from the scenario's context menu.
-
 ## Scenario Details
 
+You can open the detail view of a scenario by clicking the scenario name. There you can adjust the [scenario settings]({{< relref "#scenario-settings" >}}) and [quality sensors]({{< relref "#quality-sensors" >}}) as needed, and update basic [notification settings]({{< relref "#notifications" >}}). Otherwise the [scenario defaults]({{< relref "420-monitoring-configuration/#scenario-defaults" >}}) will be used. 
+
 ### Scenario Settings
+
+On the _Settings_ tab, you may adjust how your scenario is run. 
+
+You can simply switch between the default and your overwritten values for any setting by checking _Use Default_ in any settings section. You will be asked to confirm your decision.
+
+{{< image src="xtc/monitoring_scenario_useDefault.png" >}}
+Switch between default and custom values by using the _Use Default_ checkbox.
+{{< /image >}}
 
 #### General 
 
@@ -61,29 +60,34 @@ In _General_ you set the scenario name and description, and the Java class conta
 
 #### Execution
 
-In _Execution_ you define where and how the scenarios should be executed: 
-* you define an interval (how often a scenario should be started, e.g. every minute), 
-* the retry behavior (retry can be active/inactive, and if it is active you can define the interval, i.e. after which time period the scenario shall be retried, and a count, i.e. how many retries are allowed before the scenario counts as failed),
-* what the maximum runtime for a scenario is (if this time is exceeded, the scenario will be aborted), and
-* the locations to run the scenario from (available locations will depend on the location of the machines that were provisioned for your monitoring project) - you may show or hide locations of unprovisioned machines here).
+In _Execution_ you define how the scenarios should be executed: 
+* you define an **interval** (how often a scenario should be started, e.g. every minute) between 1 second and 24 hours, and
+* what the **maximum runtime** for a scenario is (if this time is exceeded, the scenario will be aborted).
 
-### Retry
+#### Retry
 
-### Locations
+In _Retry_ you define the retry behavior of this scenario:
+* retry can be active/inactive, and
+* if it is active you can define the **interval**, i.e. after which time period the scenario shall be retried, and 
+* a **count**, i.e. how many retries are allowed before the scenario counts as failed).
 
-### Properties
+#### Locations
+
+In _Locations_ you define where to run the scenario from (available locations will depend on the location of the machines that were provisioned for your monitoring project) - you may show or hide locations of unprovisioned machines here).
+
+#### Properties
 
 In _Properties_ you may add test properties to use for scenario execution. These properties may be entered as free text, so make sure your input is valid!
 
-## Notifications
+### Notifications
 
 {{% permission type="project" least="true" role="test manager" action="enable or disable scenario notifications" %}}
 
-On the **Notifications** tab you can enable or disable notifications entirely for the current scenario if desired, and set a default reply-to address for email notifications. 
+On the _Notifications_ tab you can enable or disable notifications entirely for the current scenario if desired, and set a default reply-to address for email notifications. 
 
 When an alert is triggered and to whom notifications are sent is defined by the scenario's [**quality sensors**]({{< relref "#quality-sensors" >}}) and the [**notification lists**]({{< relref "420-monitoring-configuration/#notification-lists" >}})) these sensors are linked to. Learn more on their respective doc pages.
 
-## Quality Sensors
+### Quality Sensors
 
 The most crucial part of the settings is to define **success metrics** which will be validated during the scenario execution. Violations cause the scenario to be treated as failed. Success metrics are defined as [quality sensors]({{< relref "420-monitoring-configuration/#quality-sensors" >}})) in the monitoring project's configuration. 
 
