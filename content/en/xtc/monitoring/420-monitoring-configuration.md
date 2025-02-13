@@ -50,31 +50,7 @@ In _Notifications_ you can manage the notification recipients or temporary disab
 * a _Reply-To Address_ (the default reply address for received notification mails - if none is set this is a no-reply service address, so we recommend using any sensible contact in your project for this), and
 * a _Subscription List_, which consists of one or more recipients for your monitoring notifications, which may be added as a user (project member with predefined mail address) or a custom entry (custom mail address or phone number). For each subscriber you may choose whether to send notifications via e-mail or text message (or both). The subscriber data can be edited anytime, subscribers can also be deactivated or removed entirely.
 
-## Quality Sensors 
-
-{{< TODO >}}Text copied from releasenotes. Put notification infos on notifications page, improve that and this page by detailed instructions and screenshots.{{< /TODO >}}
-
-A **quality sensor** defines the circumstances under which an alert is to be sent and which user groups are alerted. The configuration includes:
-
-* A set of conditions that must all be met or the scenario will fail. Select criteria from these groups:
-    * General: Check for execution errors or scenario failures.
-    * Event: Check the timing of page load events.
-    * Web Vitals: Check user experience criteria.
-    * XLT: Check for basic runtime limits and request errors.
-* The number of consecutive scenario executions that should be evaluated before an alert is raised (for example, on every failure or only if the scenario fails 3 times in a row).
-* A set of notification lists to be notified in the event of an alert.
-
-Similar to notification lists, multiple quality sensors can exist in a project. To manage quality sensors, see the new *Quality Sensors* tab on the *Configuration* page of your monitoring project.
-
-When you are finished configuring quality sensors, you can assign them to your scenarios as needed. See the new *Quality Sensors* tab on a scenario's detail page. Note that the quality sensors of a scenario are evaluated in the order listed, and failing sensors can optionally cause the following sensors to be ignored. Use this feature, for example, to avoid alerting anyone about performance issues if the scenario fails at all.
-
-#### Migration
-
-The configuration of existing monitoring projects is automatically migrated. For each scenario, you will get a separate quality sensor and a separate notification list (both named like their scenario). Together they will reproduce exactly the same alerting behavior that the scenario had before.
-
-#### Cleanup
-
-To reduce the number of sensors and lists, go through them and try to extract a reasonable set of sensors and lists. Typically there will be only a few. In a simple project, this might look like this:
+In a simple project, this might look like this:
 
 Notification Lists
 
@@ -82,11 +58,48 @@ Notification Lists
 * **Monitoring Dev Team**: Maintains the monitoring scenarios.
 * **App Dev Team**: Addresses performance issues in the monitored application.
 
-Quality Sensors
+## Quality Sensors 
 
-* **Preparation**: Verifies that the scenario is ready to run and notifies the Monitoring Dev Team list if necessary. Blocks the execution of the following quality sensors.
-* **Stability**: Verifies that the scenario has run successfully and otherwise notifies the On-Call Team list and possibly the Monitoring Dev Team list. Blocks the execution of the following quality sensors.
-* **Performance**: Verifies that selected performance parameters are within specified limits. If not, notifies the App Dev Team.
+A **quality sensor** defines the circumstances under which an alert is to be sent and which user groups are alerted. Because these metrics are applicable to multiple scenarios, they are configured project-wide, and then applied to test scenarios as needed. Multiple quality sensors can exist in a project, and multiple quality sensors can be assigned to any scenario.
+
+### Defining a Quality Sensor
+
+To add a new quality sensor, go to the _Quality Sensors_ tab in _Configuration_ and click _New_ at the top right. You can define a name, description, and a number of failed executions for a number of consecutive executions (for example, 1/1 raises an alert on every failure, 3/3 raises an alert if the the scenario fails 3 times in a row, 3/10 raises an alert if 3 out of 10 consecutive executions failed).
+
+{{< image src="xtc/monitoring_qualitySensors_add.png" >}}
+Adding a new quality sensor to the project.
+{{< /image >}}
+
+{{< image src="xtc/monitoring_qualitySensors_overview.png" >}}
+Quality sensors overview.
+{{< /image >}}
+
+The quality sensor will then appear in the overview table. By clicking its context menu you may **edit** the basic quality sensor data defined before, **duplicate** it in order to create another sensor with similar settings, or **delete** it (you will be asked for confirmation). To view and edit the quality sensor details (e.g. the success metrics or notification list to be alerted on failure), either click the quality sensor's name or select **view** from the context menu. 
+
+{{< image src="xtc/monitoring_qualitySensors_details.png" >}}
+Quality sensor detail view.
+{{< /image >}}
+
+In the quality sensor's details' _Configuration_ tab, you can add **metrics**, which are basically a set of conditions that must all be met or the scenario will fail. Select criteria from these groups:
+
+* **General**: Check for execution errors or scenario failures.
+* **Event**: Check the timing of [page load events]({{< relref "../../xlt/load-testing/manual/600-client-performance/#metrics-for-perceived-performance" >}}) (_DomContentLoaded_, _First Contentful Paint_, _First Paint_, _Load Event_).
+* **Web Vitals**: Check [user experience criteria](https://web.dev/articles/vitals) (_Cumulative Layout Shift_, _First Contentful Paint_, _First Input Delay_, _Interaction to Next Paint_, _Largest Contentful Paint_, _Time to First Byte_).
+* **XLT**: Check for basic runtime limits (for transactions, actions or requests) and request errors.
+
+Depending on the selected metric, the threshold you will be asked to select will be just "on occurrence", a time in milliseconds or some more specific parameter. All defined metrics can be edited or deleted afterwards using their context menu. 
+
+Not meeting one of the defined thresholds may cause an alert to be raised (remember that this happens only after the number of consecutive failures you set before), which is then sent to the set of [**notification lists**]({{< relref "#notification-lists" >}}) defined below.  
+
+### Quality Sensor Assignments
+
+When you are finished configuring quality sensors, you can [assign them to your scenarios]({{< relref "430-scenarios/#quality-sensors" >}}) as needed. You can check which scenarios the quality sensor is assigned to in the quality sensor's details page on the _Assignments_ tab. You can use this to check which scenarios' executions you might affect by changing any quality sensor.
+
+In a simple project, the quality sensors might look like this:
+
+* **Preparation**: Verifies that the scenario is ready to run and notifies the Monitoring Dev Team list if necessary. Blocks the execution of the following quality sensors. (e.g. execution errors)
+* **Stability**: Verifies that the scenario has run successfully and otherwise notifies the On-Call Team list and possibly the Monitoring Dev Team list. Blocks the execution of the following quality sensors. (e.g. test failures)
+* **Performance**: Verifies that selected performance parameters are within specified limits. If not, notifies the App Dev Team. (e.g. runtime thresholds) {{< TODO >}}Example metrics??{{< /TODO >}}
 
 All of these quality sensors are then assigned to each scenario in this order.
 
