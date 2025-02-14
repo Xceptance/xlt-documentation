@@ -35,28 +35,53 @@ The scenario defaults tab with expand toggle and editing button.
 
 ## Notification Lists
 
-{{% TODO / %}}
+XTC uses a flexible approach to configuring when an alert is triggered and to whom notifications are sent. Instead of having a single list of recipients where all recipients are notified in every case, you can define your own lists of who gets notified and how (**notification lists**) and under which circumstances these alerts should be sent (**quality sensors**). 
 
-XTC uses a flexible approach to configuring when an alert is triggered and to whom notifications are sent. Instead of having a single list of recipients where all recipients are notified in every case, you can define your own lists of who gets notified and how (**notification lists**) and under which circumstances these alerts should be sent (**quality sensors**). For example, scenario failures should only alert the on-call team, while performance degradations should only be sent to the application development team. 
+Notification lists are managed globally for a project, on the project configuration's _Notification Lists_ tab. 
 
-Both notification lists and quality sensors are managed globally for a project, in the project configuration's respective tabs. 
-
-To pause notifications altogether (and, if you configure this, pause scenario execution) you may configure [**Quiet Periods**]({{< relref "#quiet-periods" >}}).
-
-{{< TODO >}}Below is the old text from Scenario Setup:{{< /TODO >}}
-
-In _Notifications_ you can manage the notification recipients or temporary disable notifications. You will find a toggle to deactivate notifications completely (this can be overwritten in each individual scenario). For active notifications you may define
-* a _Send Threshold_, i.e. a fail count (how many executions must fail to send a notification) and the number of considered executions (how many of the last executions should be considered to validate the fail count against, e.g. if the fail count is 2 and you consider 2 executions, a notification will be sent if two consecutive executions fail, but if you consider 5 executions for the same fail count, a notification will be already sent as soon as two out of five consecutive executions fail), 
-* a _Reply-To Address_ (the default reply address for received notification mails - if none is set this is a no-reply service address, so we recommend using any sensible contact in your project for this), and
-* a _Subscription List_, which consists of one or more recipients for your monitoring notifications, which may be added as a user (project member with predefined mail address) or a custom entry (custom mail address or phone number). For each subscriber you may choose whether to send notifications via e-mail or text message (or both). The subscriber data can be edited anytime, subscribers can also be deactivated or removed entirely.
-
-In a simple project, this might look like this:
-
-Notification Lists
+In a simple project, the setup of notification lists might look like this:
 
 * **On-Call Team**: Evaluates scenario failures and takes necessary actions (perhaps alerting other people).
 * **Monitoring Dev Team**: Maintains the monitoring scenarios.
 * **App Dev Team**: Addresses performance issues in the monitored application.
+
+The default **Reply-To Address** for all notification e-mails can be defined in the _General_ settings on the _Notification Lists_ tab. If none is set this will be a no-reply service address, so we recommend using any sensible contact in your project for this.
+
+### Defining a Notification List
+
+To add a new notification list, go to the _Quality Sensors_ tab in _Configuration_ and click _New_ at the top right. You will be asked to set a name for your list and, if needed, add a description.
+
+The newly created notification list will then show up in the overview table. 
+
+{{< image src="xtc/monitoring_notificationLists_overview.png" >}}
+Notification lists overview table.
+{{< /image >}}
+
+By clicking its context menu you may **edit** the name and description defined before, **duplicate** it in order to create another similar list or **delete** it (you will be asked for confirmation). You can also [**pause or disable**]({{< relref "#pausing-or-disabling-notifications" >}}) notifications for a single list here. 
+
+To view and edit the subscribers and check assignments of a notification list, either click the list's name or select **view** from the context menu. 
+
+{{< image src="xtc/monitoring_notificationLists_details.png" >}}
+Notification list detail view.
+{{< /image >}}
+
+To add new subscribers to a notification list, got to the _Subscribers_ tab in the list detail view and click _Add_. You may add **XTC user subscribers** (existing XTC account with predefined contact data) or **custom subscribers** (custom mail address or phone number). For each subscriber you may choose whether to send notifications via e-mail or text message (or both). You can also add a [**slack channel**]({{< relref "../integrations/510-slack/" >}}) to the subscribers list. The subscriber data can be edited anytime, subscribers can also be deactivated or removed entirely.
+
+### Notification List Assignments
+
+When you are finished configuring a notification list, you can [use it in quality sensors]({{< relref "#defining-a-quality-sensor" >}}). You can check which quality sensors the notification list is assigned to in the notification list's details page on the _Assignments_ tab. You can use this to check which alerts you might affect by changing any notification list.
+
+### Pausing or Disabling Notifications
+
+On the project configuration's _Notification Lists_ tab, you can globally **disable** and enable notifications for the whole project. 
+
+To **pause** notifications (and, if you configure this, pause scenario execution) for a predefined period in time you may configure [**Quiet Periods**]({{< relref "#quiet-periods" >}}).
+
+To enable or disable notifications or define notification pauses for any **single notification list** you can use this list's context menu in the notification lists overview. The list's notification state will be indicated by a symbol in the overview table.
+
+{{< image src="xtc/monitoring_notificationLists_pausedDisabled.png" >}}
+Notification lists that (temporarily) won't receive notifications.
+{{< /image >}}
 
 ## Quality Sensors 
 

@@ -110,4 +110,4 @@ Additionally XTC will also send notifications when intermediate reports become a
 
 ### Monitoring
 
-If a scenario is configured to notify via Slack, XTC will send notifications the same way it would send e-mails or text messages.
+If a scenario is configured to [notify via Slack]({{< relref "../monitoring/420-monitoring-configuration/#defining-a-notification-list" >}}), XTC will send notifications the same way it would send e-mails or text messages.
