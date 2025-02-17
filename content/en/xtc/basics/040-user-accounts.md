@@ -69,7 +69,7 @@ Note that you may still receive monitoring alerts in these situations:
 
 * If alerts are sent via Slack. You will need to mute the appropriate channel in Slack.
 * If you are on a mailing list. Either temporarily unsubscribe from the mailing list or configure email processing rules with your email provider to mute alert emails.
-* If your email address has been added as a custom subscriber. Change it to an XTC user subscriber.
+* If your email address has been added as a [custom subscriber]({{< relref "../monitoring/420-monitoring-configuration/#defining-a-notification-list" >}}). Change it to an [XTC user subscriber]({{< relref "../monitoring/420-monitoring-configuration/#defining-a-notification-list" >}}).
 
 ## Two-Factor Authentication (2FA)
 

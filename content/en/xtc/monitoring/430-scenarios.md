@@ -40,6 +40,12 @@ In the _Scenarios_ table you may manage the monitoring scenarios of your project
 Overview of all existing scenarios in the project.
 {{< /image >}}
 
+### Disabling vs. Pausing
+
+To stop running a scenario for any reason (e.g. it is currently broken and needs a fix to be deployed, or the data is not needed for some other reason), you can **disable** it in its context menu. But you can also **pause** it for a specified time, which means the scenario is temporarily disabled, but is automatically reactivated after the configured time. Use this feature to investigate and fix scenario errors without being distracted by alerts. If you forget to reactivate the scenario, XTC will do it for you.
+
+To pause a scenario, open the context menu for the scenario, and click *Pause*. You will be prompted to enter the date/time until which you want to pause the scenario. Alternatively, you can pause a scenario directly from the monitoring project's [*Dashboard*]({{< relref "410-dashboard/#" >}}) page. To unpause a scenario, click *Continue* in the context menu.
+
 ## Scenario Details
 
 You can open the detail view of a scenario by clicking the scenario name. There you can adjust the [scenario settings]({{< relref "#scenario-settings" >}}) and [quality sensors]({{< relref "#quality-sensors" >}}) as needed, and update basic [notification settings]({{< relref "#notifications" >}}). Otherwise the [scenario defaults]({{< relref "420-monitoring-configuration/#scenario-defaults" >}}) will be used. 
