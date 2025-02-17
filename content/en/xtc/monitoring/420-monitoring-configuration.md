@@ -21,8 +21,6 @@ The _Configuration_ of a monitoring project is very similar to the basic [projec
 
 ## Dynamic Repository Branch
 
-{{% permission type="project" least="true" role="test manager" action="edit the repository configuration" %}}
-
 Another specialty for _Repository_ configuration is that you can define the branch to use by either specifying its name (static branch) or by defining a URL of a resource from which the branch name can be extracted dynamically using a regular expression. (This may be useful if you want to make the used test scenario code dependent on your currently deployed app version.)
 
 ## Scenario Defaults
@@ -35,7 +33,7 @@ The scenario defaults tab with expand toggle and editing button.
 
 ## Notification Lists
 
-XTC uses a flexible approach to configuring when an alert is triggered and to whom notifications are sent. Instead of having a single list of recipients where all recipients are notified in every case, you can define your own lists of who gets notified and how (**notification lists**) and under which circumstances these alerts should be sent (**quality sensors**). 
+XTC uses a flexible approach to configuring when an alert is triggered and to whom notifications are sent. Instead of having a single list of recipients where all recipients are notified in every case, you can define your own lists of who gets notified and how (**notification lists**) and under which circumstances these alerts should be sent ([**quality sensors**]({{< relref "#quality-sensors" >}})). 
 
 Notification lists are managed globally for a project, on the project configuration's _Notification Lists_ tab. 
 
@@ -85,7 +83,7 @@ Notification lists that (temporarily) won't receive notifications.
 
 ## Quality Sensors 
 
-A **quality sensor** defines the circumstances under which an alert is to be sent and which user groups are alerted. Because these metrics are applicable to multiple scenarios, they are configured project-wide, and then applied to test scenarios as needed. Multiple quality sensors can exist in a project, and multiple quality sensors can be assigned to any scenario.
+A **quality sensor** defines the circumstances under which an alert is to be sent and [which user groups]({{< relref "#notification-lists" >}}) are alerted. Because these metrics are applicable to multiple scenarios, they are configured project-wide, and then applied to test scenarios as needed. Multiple quality sensors can exist in a project, and multiple quality sensors can be assigned to any scenario.
 
 ### Defining a Quality Sensor
 
@@ -124,7 +122,7 @@ In a simple project, the quality sensors might look like this:
 
 * **Preparation**: Verifies that the scenario is ready to run and notifies the Monitoring Dev Team list if necessary. Blocks the execution of the following quality sensors. (e.g. execution errors)
 * **Stability**: Verifies that the scenario has run successfully and otherwise notifies the On-Call Team list and possibly the Monitoring Dev Team list. Blocks the execution of the following quality sensors. (e.g. test failures)
-* **Performance**: Verifies that selected performance parameters are within specified limits. If not, notifies the App Dev Team. (e.g. runtime thresholds) {{< TODO >}}Example metrics??{{< /TODO >}}
+* **Performance**: Verifies that selected performance parameters are within specified limits. If not, notifies the App Dev Team. (e.g. runtime thresholds) {{< TODO >}}Are these good example metrics or what is meant instead??{{< /TODO >}}
 
 All of these quality sensors are then assigned to each scenario in this order.
 

@@ -31,7 +31,7 @@ The histogram in the history view. You can select a time range to display and wh
 {{< /image >}}
 
 {{% note notitle %}}
-The histogram will only contain entries that also appear in the table below, so make sure the data you want to view (e.g. successful scenario executions) are also visible below.
+The histogram will only contain entries that also appear in the table, so make sure the data you want to view (e.g. successful scenario executions) are also visible below.
 {{% /note %}}
 
 In the **table** below the histogram you can search directly for scenario names, enable or disable the different execution statuses, or filter by scenarios or server locations. 
@@ -53,5 +53,5 @@ Detail view of a successful scenario run with more information.
 {{< /image >}}
 
 {{% note notitle %}}
-Note that not meeting one of the success metrics does not necessarily cause the scenario execution to fail. Learn more in [quality sensors]({{< relref "420-monitoring-configuration/#quality-sensors" >}})).
+Note that not meeting one of the success metrics does not necessarily cause the scenario execution to fail. Learn more in [quality sensors]({{< relref "420-monitoring-configuration/#quality-sensors" >}}).
 {{% /note %}}
