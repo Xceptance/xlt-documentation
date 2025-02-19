@@ -8,7 +8,7 @@ description: >
   Monitoring Metrics
 ---
 
-### Metrics
+## Overview
 
 In addition to the data provided in _History_, in **Metrics** you will find a graphical dashboard for your monitoring project.
 

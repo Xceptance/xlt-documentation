@@ -14,7 +14,7 @@ description: >
 
 {{% permission type="project" least="true" role="tester" action="view execution logs and measurements" %}}
 
-**History** provides more information about the latest scenario executions. Define the time range to view (maximum: the time range shown in _Configuration > Data Persistence > History_) in the top right and you will find a histogram visualizing the proportions of all execution results during this timespan, followed by a table of all scenarios including further information, including start date, server location and details about the execution result. By using the context menu of each scenario, you can directly access [scenario details] or view the scenario's execution log or result browser.
+**History** provides more information about the latest scenario executions. Define the time range to view (maximum: the time range shown in _Configuration > Data Persistence > History_) in the top right and you will find a histogram visualizing the proportions of all execution results during this timespan, followed by a table of all scenario executions with further information, including start date, server location and details about the execution result. By using the context menu of a scenario, you can directly access [scenario details] or view the scenario's execution log or result browser.
 
 {{< image src="xtc/monitoring_history.png" >}}
 The history view of a monitoring project. The context menu allows you to view details for each scenario execution.
@@ -22,7 +22,7 @@ The history view of a monitoring project. The context menu allows you to view de
 
 ### Filtering
 
-In addition to the time range you select at the top, the histogram and the scenarios table can be filtered for several criteria. 
+In addition to the time range you select at the top, the histogram and the scenario executions table can be filtered for several criteria. 
 
 In the **histogram**, you can enable or disable scenario executions that were successful, failed, returned an error, were aborted or are currently running by clicking the buttons at the top left. By hovering the histogram entries, you will see more details about the timespan covered by a given entry and the actual number of executions for each selected status during this timespan.
 
@@ -34,10 +34,10 @@ The histogram in the history view. You can select a time range to display and wh
 The histogram will only contain entries that also appear in the table, so make sure the data you want to view (e.g. successful scenario executions) are also visible below.
 {{% /note %}}
 
-In the **table** below the histogram you can search directly for scenario names, enable or disable the different execution statuses, or filter by scenarios or server locations. 
+In the **table** below the histogram you can search directly for scenario names and filter by execution statuses, scenarios, or monitoring locations.
 
 {{< image src="xtc/monitoring_history_table.png" >}}
-The scenarios table in the history view. At the top of the table you have different possibilities for filtering.
+The scenario executions table in the history view. At the top of the table you have different possibilities for filtering.
 {{< /image >}}
 
 ## Scenario Details

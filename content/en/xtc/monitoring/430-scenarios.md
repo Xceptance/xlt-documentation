@@ -26,7 +26,7 @@ To add a new monitoring scenario to your project, just click the `+` button at t
 Creating a new monitoring scenario.
 {{< /image >}}  
 
-The new scenario will now show up in the list. It will be enabled by default and it will automatically use the [scenario default settings]({{< relref "420-monitoring-configuration/#scenario-defaults" >}}). You can now adjust these settings as needed by [editing the scenario]({{< relref "#managing-existing-scenarios" >}}). 
+The new scenario will now show up in the list. It will be disabled by default and it will automatically use the [scenario default settings]({{< relref "420-monitoring-configuration/#scenario-defaults" >}}). You can now adjust these settings as needed by [editing the scenario]({{< relref "#managing-existing-scenarios" >}}). 
 
 {{% note notitle %}}
 New scenarios are disabled by default to give you time to finish customizing the scenario settings. Don't forget to enable the scenario when done.
@@ -75,11 +75,11 @@ In _Execution_ you define how the scenarios should be executed:
 In _Retry_ you define the retry behavior of this scenario:
 * retry can be active/inactive, and
 * if it is active you can define the **interval**, i.e. after which time period the scenario shall be retried, and 
-* a **count**, i.e. how many retries are allowed before the scenario counts as failed).
+* a **count**, i.e. how many retries are allowed before the scenario counts as failed.
 
 #### Locations
 
-In _Locations_ you define where to run the scenario from (available locations will depend on the location of the machines that were provisioned for your monitoring project) - you may show or hide locations of unprovisioned machines here).
+In _Locations_ you define where to run the scenario from. Available locations will depend on the location of the machines that were provisioned for your monitoring project. You may also show or hide the locations where machines have not yet been provisioned.
 
 #### Properties
 

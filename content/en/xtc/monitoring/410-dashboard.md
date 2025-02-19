@@ -12,9 +12,9 @@ On entering an XTC monitoring project, you will be presented the **Dashboard**, 
 
 
 {{< image src="xtc/monitoring_dashboard.png" >}}
-The overview on the dashboard of a monitoring project.
+The dashboard of a monitoring project.
 {{< /image >}}
 
-You can use the _Bell_ icon to quickly enable or disable notifications for each scenario. To pause a scenario for a specified time, click the _Clock_ icon on the scenario tile, or the _Paused_ icon to finish the pause. 
+On a scenario tile, you can use the _Bell_ icon to quickly enable or disable notifications for this scenario. To pause a scenario for a specified time, click the _Clock_ icon, or the _Paused_ icon to finish the pause.
 
 {{% permission type="project" least="true" role="test manager" action="enable or disable scenario notifications and pause or unpause scenarios on the monitoring project dashboard" %}}
