@@ -47,7 +47,7 @@ The default **Reply-To Address** for all notification e-mails can be defined in 
 
 ### Defining a Notification List
 
-To add a new notification list, go to the _Quality Sensors_ tab in _Configuration_ and click _New_ at the top right. You will be asked to set a name for your list and, if needed, add a description.
+To add a new notification list, go to the _Notification Lists_ tab in _Configuration_ and click _New_ at the top right. You will be asked to set a name for your list and, if needed, add a description.
 
 The newly created notification list will then show up in the overview table. 
 
@@ -63,7 +63,7 @@ To view and edit the subscribers and check assignments of a notification list, e
 Notification list detail view.
 {{< /image >}}
 
-To add new subscribers to a notification list, got to the _Subscribers_ tab in the list detail view and click _Add_. You may add **XTC user subscribers** (existing XTC account with predefined contact data) or **custom subscribers** (custom mail address or phone number). For each subscriber you may choose whether to send notifications via e-mail or text message (or both). You can also add a [**slack channel**]({{< relref "../integrations/510-slack/" >}}) to the subscribers list. The subscriber data can be edited anytime, subscribers can also be deactivated or removed entirely.
+To add new subscribers to a notification list, go to the _Subscribers_ tab in the list detail view and click _Add_. You may add **XTC user subscribers** (existing XTC account with predefined contact data) or **custom subscribers** (custom mail address or phone number). For each subscriber you may choose whether to send notifications via e-mail or text message (or both). You can also add a [**slack channel**]({{< relref "../integrations/510-slack/" >}}) to the subscribers list. The subscriber data can be edited anytime, subscribers can also be deactivated or removed entirely.
 
 ### Notification List Assignments
 
@@ -71,7 +71,7 @@ When you are finished configuring a notification list, you can [use it in qualit
 
 ### Pausing or Disabling Notifications
 
-On the project configuration's _Notification Lists_ tab, you can globally **disable** and enable notifications for the whole project. 
+On the project configuration's _Notification Lists_ tab, you can **globally disable and enable** notifications for the whole project. 
 
 To **pause** notifications (and, if you configure this, pause scenario execution) for a predefined period in time you may configure [**Quiet Periods**]({{< relref "#quiet-periods" >}}).
 
@@ -87,7 +87,7 @@ A **quality sensor** defines the circumstances under which an alert is to be sen
 
 ### Defining a Quality Sensor
 
-To add a new quality sensor, go to the _Quality Sensors_ tab in _Configuration_ and click _New_ at the top right. You can define a name, description, and a number of failed executions for a number of consecutive executions (for example, 1/1 raises an alert on every failure, 3/3 raises an alert if the the scenario fails 3 times in a row, 3/10 raises an alert if 3 out of 10 consecutive executions failed).
+To add a new quality sensor, go to the _Quality Sensors_ tab in _Configuration_ and click _New_ at the top right. You can define a name, description, and a number of failed executions for a number of consecutive executions (for example, 1/1 raises an alert on every failure, 3/3 raises an alert if the scenario fails 3 times in a row, 3/10 raises an alert if 3 out of 10 consecutive executions failed).
 
 {{< image src="xtc/monitoring_qualitySensors_add.png" >}}
 Adding a new quality sensor to the project.
