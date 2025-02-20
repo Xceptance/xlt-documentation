@@ -23,8 +23,12 @@ To monitor your application in XTC, we assume you have at least one Java class c
 
 This is a rough overview of the features XTC offers for monitoring your application:
 
-* [Configuration]({{< relref "420-monitoring-configuration" >}}) allows you to adjust your settings for the whole monitoring project, including the definition of [Scenario Defaults]({{< relref "420-monitoring-configuration/#defining-scenario-defaults" >}}), and [Quiet Periods]({{< relref "420-monitoring-configuration/#quiet-periods" >}}) allows you to pause notifications for the whole project or even pause running any scenario,
-* in [Scenarios]({{< relref "430-scenarios" >}}) you can define and configure your monitoring scenarios, including the setup of [Notification Lists]({{< relref "../monitoring/420-monitoring-configuration/#notification-lists" >}})) for specified recipients and [Quality Sensors]({{< relref "../monitoring/420-monitoring-configuration/#quality-sensors" >}})) that define success metrics for your scenarios,
+* [Configuration]({{< relref "420-monitoring-configuration" >}}) allows you to adjust your settings for the whole monitoring project, including the definition of 
+  * [Scenario Defaults]({{< relref "420-monitoring-configuration/#scenario-defaults" >}}),
+  * [Notification Lists]({{< relref "../monitoring/420-monitoring-configuration/#notification-lists" >}}) for specified recipients, and
+  * [Quality Sensors]({{< relref "../monitoring/420-monitoring-configuration/#quality-sensors" >}}) that define success metrics for your scenarios,
+* [Quiet Periods]({{< relref "425-quiet-periods" >}}) allows you to pause notifications for the whole project or even pause running any scenario,
+* in [Scenarios]({{< relref "430-scenarios" >}}) you can define and configure your monitoring scenarios including the quality sensors to be applied,
 * the [Dashboard]({{< relref "410-dashboard" >}}) of a monitoring project provides a rough overview of the scenarios that are currently set up and their recent performance,
 * [Metrics]({{< relref "450-metrics" >}}) are offering graphical live data for different parameters,
 * the [History]({{< relref "460-history" >}}) view contains details about all recent scenario executions, and
