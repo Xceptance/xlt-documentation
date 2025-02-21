@@ -16,8 +16,7 @@ All of this can be achieved in [**XTC monitoring projects**]({{< relref "../basi
 
 ## Prerequisites
 
-To monitor your application in XTC, we assume you have at least one Java class containing one or more JUnit testcases that interact with your application available in the repository of your choice. You might want to use one of our [sample test suites]({{< relref "../../xlt/load-testing/test-suites/" >}}) to get started. 
-{{< TODO >}}Is this correct? How does XTC know which Java version to use? Where does the testing hardware come from?{{< /TODO >}}
+To monitor your application in XTC, we assume you have a **Maven project** that defines at least one **Java class** containing one or more **JUnit testcases** that interact with your application available in the repository of your choice. You might want to use one of our [**sample test suites**]({{< relref "../../xlt/load-testing/test-suites/" >}}) to get started. The necessary **hardware** will be assigned to your project by Xceptance.
 
 ## XTC Monitoring Features
 
