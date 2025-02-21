@@ -67,7 +67,7 @@ To add new subscribers to a notification list, go to the _Subscribers_ tab in th
 
 ### Notification List Assignments
 
-When you are finished configuring a notification list, you can [use it in quality sensors]({{< relref "#defining-a-quality-sensor" >}}). You can check which quality sensors the notification list is assigned to in the notification list's details page on the _Assignments_ tab. You can use this to check which alerts you might affect by changing any notification list.
+When you are finished configuring a notification list, you can [use it in quality sensors]({{< relref "#managing-notification-lists-of-a-quality-sensor" >}}). You can check which quality sensors the notification list is assigned to in the notification list's details page on the _Assignments_ tab. You can use this to check which alerts you might affect by changing any notification list.
 
 ### Pausing or Disabling Notifications
 
@@ -103,7 +103,11 @@ The quality sensor will then appear in the overview table. By clicking its conte
 Quality sensor detail view.
 {{< /image >}}
 
-In the quality sensor's details' _Configuration_ tab, you can add **metrics**, which are basically a set of conditions that must all be met or the scenario will fail. Select criteria from these groups:
+#### Adding Metrics to a Quality Sensor
+
+In the quality sensor's details' _Configuration_ tab, you can add **metrics**, which are basically a set of conditions that must all be met or the scenario will fail. 
+
+To add metrics, go to the quality sensor detail view's _Configuration_ tab and click _Add_ in the _Metrics_ section. You will be asked to select criteria from these groups:
 
 * **General**: Check for execution errors or scenario failures.
 * **Event**: Check the timing of [page load events]({{< relref "../../xlt/load-testing/manual/600-client-performance/#metrics-for-perceived-performance" >}}) (_DomContentLoaded_, _First Contentful Paint_, _First Paint_, _Load Event_).
@@ -113,6 +117,14 @@ In the quality sensor's details' _Configuration_ tab, you can add **metrics**, w
 Depending on the selected metric, the threshold you will be asked to select will be just "on occurrence", a time in milliseconds or some more specific parameter. All defined metrics can be edited or deleted afterwards using their context menu. 
 
 Not meeting one of the defined thresholds may cause an alert to be raised (remember that this happens only after the number of consecutive failures you set before), which is then sent to the set of [**notification lists**]({{< relref "#notification-lists" >}}) defined below.  
+
+#### Managing Notification Lists of a Quality Sensor
+
+The set of [**notification lists**]({{< relref "#notification-lists" >}}) of a quality sensor defines who will be alerted when the given quality sensor fails.
+
+To **add** one of the [previously configured]({{< relref "#defining-a-notification-list" >}}) notification lists to the quality sensor, go to the quality sensor detail view's _Configuration_ tab and click _Add_ in the _Notification Lists_ section. You will be asked to select one of the configured notifications lists.
+
+To **remove** a notification list from a quality sensor, go to the quality sensor detail view's _Configuration_ tab, and click _Remove_ in the notification list's context menu. Note that this only causes the quality sensor to stop sending alerts to this list - to actually **delete** the notification list, [go to the _Notification Lists_ tab of the configuration]({{< relref "#defining-a-notification-list" >}}). 
 
 ### Quality Sensor Assignments
 
