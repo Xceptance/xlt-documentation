@@ -29,7 +29,7 @@ XTC enables you to manage your account information. After logging in, click your
 
 The _My Account_ view contains two tabs: _Profile_ and _Security_. 
 
-In **Profile** you may update your profile information such as your first and last name, your phone number (which may be useful for receiving [monitoring notifications]({{< relref "../monitoring/440-scenario-setup#notifications" >}})), and you can upload an avatar/profile picture. This section also allows you to [pause notifications]({{< relref "#pausing-notifications" >}}). 
+In **Profile** you may update your profile information such as your first and last name, your phone number (which may be useful for receiving [monitoring notifications]({{< relref "../monitoring/430-scenarios/#notifications" >}})), and you can upload an avatar/profile picture. This section also allows you to [pause notifications]({{< relref "#pausing-notifications" >}}). 
 
 In **Security** you can update your login data: to set a new e-mail address or password for your account, you need to enter the new data twice and confirm this with your current password. (If you are using an external provider for authentication and have not set up an additional XTC password for your account, entering the password will not be necessary, and you will only be able to update your account's e-mail address.)
 
@@ -52,7 +52,7 @@ XTC users will get notified by email whenever their membership in a project or o
 If you want to take a break from work, you can pause certain notifications sent to you for a specified amount of time. Currently this includes:
 
 * Emails about changes in project membership.
-* Emails and text messages about [monitoring alerts]({{< relref "../monitoring/440-scenario-setup#notifications" >}})).
+* Emails and text messages about [monitoring alerts]({{< relref "../monitoring/430-scenarios/#notifications" >}})).
 
 This list may be expanded in the future, but notifications related to your account will never be muted.
 
@@ -69,7 +69,7 @@ Note that you may still receive monitoring alerts in these situations:
 
 * If alerts are sent via Slack. You will need to mute the appropriate channel in Slack.
 * If you are on a mailing list. Either temporarily unsubscribe from the mailing list or configure email processing rules with your email provider to mute alert emails.
-* If your email address has been added as a custom subscriber. Change it to an XTC user subscriber.
+* If your email address has been added as a [custom subscriber]({{< relref "../monitoring/420-monitoring-configuration/#defining-a-notification-list" >}}). Change it to an [XTC user subscriber]({{< relref "../monitoring/420-monitoring-configuration/#defining-a-notification-list" >}}).
 
 ## Two-Factor Authentication (2FA)
 
