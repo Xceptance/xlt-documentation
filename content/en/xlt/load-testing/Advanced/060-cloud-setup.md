@@ -245,7 +245,7 @@ Usually the last major and minor versions of XLT AMIs are provided by Xceptance.
 
 Before you can use the tool, you have to **configure** it appropriately. There is a configuration file for this: `<xlt>/config/ec2_admin.properties`. 
 
-The most important settings are your _AWS credentials_. These are needed to authorize AWS operation, which are executed on your behalf. 
+The most important settings are your _AWS credentials_. These are needed to authorize AWS operations, which are executed on your behalf. You can configure your credentials directly in the `ec2_admin.properties` or store them in other formats supported by the AWS CLI (e.g. as environment variables or in a credential file). You can use long-term credentials (access key and secret key) as well as temporary credentials (access key, secret key and session token).
 
 In addition to this, it is possible to configure the names of the _AWS key pair_ used for each region in the properties, but if there is none defined, the tool will also prompt you for a key pair to use during instance setup.
 
@@ -255,15 +255,14 @@ You may also configure a _proxy_ if one is required to be used in your environme
 ## Your AWS credentials.  
 aws.accessKey = <enter your access key>  
 aws.secretKey = <enter your secret key>
+aws.sessionToken = <enter your session token>
 
 ## The AWS key pair names (as listed in AWS console / EC2 / KeyPairs)
 #aws.keypair.eu-central-1 = 
 aws.keypair.us-east-1 = key-us-east-1
 
-## The protocol to use (defaults to https).  
-#aws.protocol = https
-
-## HTTP proxy settings.  
+## HTTP proxy settings. The protocol setting currently only supports "http".
+#aws.proxy.protocol = http
 #aws.proxy.host = localhost  
 #aws.proxy.port = 8888  
 #aws.proxy.userName =  
