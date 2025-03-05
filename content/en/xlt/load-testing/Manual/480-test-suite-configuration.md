@@ -191,10 +191,10 @@ Project name in the page header
 
 ### Test Class Mapping
 
-Specifies which test IDs should be used by XLT and, more specifically, which test ID uses which test case implementation. That's why you have to specify the fully qualified class names of your tests here. Note that you can map the same class to multiple load test names if needed. This is extremely useful when you want to run the same test case in different configurations.
+You can specify which test case uses which test case implementation by providing the fully qualified class names of your tests. Note that you can map the same class to multiple load test names if needed. This is extremely useful when you want to run the same test case in different configurations.
 
 ```bash
-com.xceptance.xlt.loadtests.<name>.class = <fully qualified class name>
+com.xceptance.xlt.loadtests.<testCaseName>.class = <fully qualified class name>
 ```
 
 A test class mapping might look like this:
@@ -203,6 +203,8 @@ A test class mapping might look like this:
 com.xceptance.xlt.loadtests.TVisitor.class = com.xceptance.xlt.samples.tests.TVisitor_US
 com.xceptance.xlt.loadtests.TJSVisitor.class = com.xceptance.xlt.samples.tests.TJSVisitor_US
 ```
+
+If no test class mapping is specified for a test case, the test suite directory will be scanned for classes whose simple class name matches the test case name. If exactly one matching class was found, it will be automatically mapped to the test case for the current test run.
 
 ### Test Class-Specific Settings
 
@@ -227,17 +229,17 @@ The settings required to configure a particular load test profile are collected 
 
 The default name of this file is `test.properties`. However, it’s variable and several files with different load test profile configurations may exist such as `test-target-load.properties` and `test-2x-target-load.properties`. This way, many configurations can be defined and prepared in advance and used as needed. You switch between these files by changing the property `com.xceptance.xlt.testPropertiesFile` in the `project.properties` file.
 
-Load test profile configurations are done inside your test property file, which is named `test.properties` by default. Using the syntax below, you can define test ID, the number of virtual users, and all other load test-specific settings of tests meant to run in parallel agents:
+Load test profile configurations are done inside your test property file, which is named `test.properties` by default. Using the syntax below, you can define the test case name, the number of virtual users, and all other load test-specific settings of tests meant to run in parallel agents:
 
 ```bash
-com.xceptance.xlt.loadtests.<testID>.<setting> = <value>
+com.xceptance.xlt.loadtests.<testCaseName>.<setting> = <value>
 ```
 
-For `<testID>`, use any appropriate name. The following table lists all supported values for `<setting>` - required settings are displayed in bold face:
+For `<testCaseName>`, use any appropriate name. The following table lists all supported values for `<setting>` - required settings are displayed in bold face:
 
-| Setting  | Description |
-| ------- | ------ |
-| **class** | Fully qualified class name of the test case (REQUIRED if not specified in project.properties) |
+| Setting | Description |
+| ----- | ------ |
+| class |Fully qualified class name of the test case|
 | **users** |Number of threads that run the test in parallel (REQUIRED), may be a load function |
 |iterations|Number of iterations per thread|
 |arrivalRate|Number of transactions per hour, may be a load function|
