@@ -16,11 +16,11 @@ All of this can be achieved in [**XTC monitoring projects**]({{< relref "../basi
 
 ## Prerequisites
 
-To monitor your application in XTC, we assume you have a **Maven project** that defines at least one **Java class** containing one or more **JUnit testcases** that interact with your application available in the repository of your choice. You might want to use one of our [**sample test suites**]({{< relref "../../xlt/load-testing/test-suites/" >}}) to get started. The necessary **hardware** will be assigned to your project by Xceptance.
+To monitor your application in XTC, we assume you have a **Maven project** that defines at least one **Java class** containing one or more **JUnit testcases** that interact with your application available in the repository of your choice. Please take a look at our [monitoring template](https://github.com/Xceptance/xtc-monitoring-template).
 
-## XTC Monitoring Features
+## Features
 
-This is a rough overview of the features XTC offers for monitoring your application:
+This is a high-level overview of the features XTC offers to monitor your web application:
 
 * [Configuration]({{< relref "420-monitoring-configuration" >}}) allows you to adjust your settings for the whole monitoring project, including the definition of 
   * [Scenario Defaults]({{< relref "420-monitoring-configuration/#scenario-defaults" >}}),
