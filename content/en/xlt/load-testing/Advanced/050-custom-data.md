@@ -13,10 +13,11 @@ description: >
 
 XLT [captures a lot of data]({{< relref "150-results" >}}) out of the box, and since it's using open data formats (xml/csv) it is well fitted for custom analytics and reporting. In addition to the recorded information about transactions, actions, and requests being executed as well as event information you can also get
 
-* custom events,
-* custom timers,
-* custom values and
-* external data. 
+* [custom events]({{< relref "#custom-events" >}}),
+* [custom timers]({{< relref "#custom-timers" >}}),
+* [custom values]({{< relref "#custom-values" >}}),
+* [custom data logs]({{< relref "#custom-data-logs" >}}) and
+* [external data]({{< relref "#external-data" >}}). 
 
 This page shows you how to add the different kinds of custom information to your test scenarios. To learn more about the format and contents of the recorded csv data and the meaning of every column depending on the data record type, see [Result Data]({{< relref "150-results" >}}). 
 
@@ -203,6 +204,44 @@ XLT will then take care to execute your sampler regularly. It will show up in th
 {{< image src="user-manual/custom_samplers.png">}}
 Custom Samplers in the Test Report
 {{< /image >}}
+
+## Custom Data Logs
+
+When load testing, we often need to pass test data such as usernames, SKUs, coupon codes, or the like. Sometimes we want to know in retrospect which data items were actually used during a load test. Typically, this is solved by having the test scenario write the values to the logs or to a custom file. If we wanted to analyze the data used, we would first have to download the test result dataset and somehow extract the data from the log or data files.
+
+XLT offers the *Custom Data Logger* feature for this, which can replace any custom solution in most cases. This feature allows you to log custom data lines in different scopes using a simple API. A scope is a custom string that describes the data to log, for example "users" or "skus". All data lines logged in a given scope are grouped together.
+
+A data line must be a string, but the format of the line is unspecified. It can be a single value, a structured data record such as CSV, or any other custom format. You can specify the extension of the resulting data files to reflect the format used (`*.log` by default). You can also specify a file header. See below for an example of how to set up the data logger for the "users" scope to use a CSV file:
+
+```java
+// one-time setup before first use
+DataLogger logger = Session.getCurrent().getDataManager().dataLogger("users");
+logger.setExtension("csv");
+logger.setHeader("username,password,email");
+```
+
+Logging a corresponding user data line in the "users" scope is done in this way:
+
+```java
+Session.getCurrent().getDataManager().dataLogger("users").log("tmayer,9sadfasdf28a,thomas.mayer@example.com");
+
+// same as above, but less boilerplate
+Session.logData("users", "tmayer,9sadfasdf28a,thomas.mayer@example.com");
+```
+
+Data lines are written to separate files in the `results` directory, grouped by test user and scope. For example:
+
+```
+ac0001_us-central1_00/TCheckout/45/custom_log_users.csv
+ac0001_us-central1_00/TCheckout/45/custom_log_skus.log
+```
+
+Custom data is also made available in the load test report, in the *Custom Data Logs* section on the *Custom Data* report page. Since the number of logged data lines can be huge, they are not directly viewable, but the report provides links to download the data as a ZIP archive file, one for each scope. The archive files are located in the `custom_data_logs` directory in the report. For example:
+
+```
+custom_data_logs/users.zip
+custom_data_logs/skus.zip
+```
 
 ## External Data
 
