@@ -8,7 +8,7 @@ description: >
   The starting point and overview for any monitoring project.
 ---
 
-On entering an XTC monitoring project, you will be presented the **Dashboard**, containing a first overview of your application's recent performance: here you will find a histogram visualizing the proportions of all execution results over the last 1-48 hours (in addition to the time window you can filter for successful, failed and aborted runs and runs with errors), the current status for each test scenario, and a quick link to the last issue for each scenario within the last 24 hours. 
+On entering an XTC monitoring project, you will be presented the **Dashboard**, containing a first overview of your application's recent performance: here you will find a histogram visualizing the proportions of all execution results over the last 1-48 hours (in addition to the time window you can filter for execution status: _successful_, _fail_, _error_, _fatal_, or _aborted_), the current status for each test scenario, and a quick link to the last issue for each scenario within the last 24 hours. 
 
 
 {{< image src="xtc/monitoring_dashboard.png" >}}
