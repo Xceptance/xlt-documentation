@@ -48,7 +48,7 @@ Every scenario execution has a status, which can be one of the following:
 * **Failed**: The scenario ran to completion but additional [quality criteria]({{< relref "430-scenarios/#quality-sensors" >}}) were not met (e.g. Web vital thresholds were exceeded).
 * **Error**: The scenario was executed but terminated prematurely with an error (for example, an assertion error).
 * **Fatal**: The monitoring scenario could not be executed at all (e.g. due to compilation errors in the test suite).
-* **Aborted**: The monitoring scenario was aborted before the execution terminated.
+* **Aborted**: The monitoring scenario was aborted before the execution terminated, e.g. because the [maximum runtime]({{< relref "430-scenarios/#execution" >}}) was exceeded.
 * **Running**: The scenario execution is still in progress; the state will change as soon as it terminates.
 
 ### Quality Sensor States
@@ -57,8 +57,8 @@ In addition to the state of the scenario execution status, the quality sensors a
 
 * **Passed**: All success metrics defined in the scenario's quality sensor(s) were met.
 * **Failed**: One or more success metrics were not met.
-* **None**: {{< TODO comment="No sensor defined?" / >}}
-* **Unknown**: {{< TODO comment="Huh? For fatal or what?" / >}}
+* **None**: No success metrics are defined.
+* **Unknown**: The success metrics for the scenario have not been evaluated, either because the scenario is still running or because it could not run at all (fatal).
 
 ## Scenario Details
 
