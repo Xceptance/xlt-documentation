@@ -132,9 +132,9 @@ When you are finished configuring quality sensors, you can [assign them to your 
 
 In a simple project, the quality sensors might look like this:
 
-* **Preparation**: Verifies that the scenario is ready to run and notifies the Monitoring Dev Team list if necessary. Blocks the execution of the following quality sensors. (e.g. execution errors)
-* **Stability**: Verifies that the scenario has run successfully and otherwise notifies the On-Call Team list and possibly the Monitoring Dev Team list. Blocks the execution of the following quality sensors. (e.g. test failures)
-* **Performance**: Verifies that selected performance parameters are within specified limits. If not, notifies the App Dev Team. (e.g. runtime thresholds) {{< TODO >}}Are these good example metrics or what is meant instead??{{< /TODO >}}
+* **Preparation**: Verifies that the scenario is ready to run and notifies the Monitoring Dev Team list if necessary. Blocks the execution of the following quality sensors. (e.g. git download failures, compile issues and other [fatal errors]({{< relref "460-history/#execution-statuses" >}}))
+* **Stability**: Verifies that the scenario has run successfully and otherwise notifies the On-Call Team list and possibly the Monitoring Dev Team list. Blocks the execution of the following quality sensors. (e.g. [errors and failed tests]({{< relref "460-history/#execution-statuses" >}}))
+* **Performance**: Verifies that selected performance parameters are within specified limits. If not, notifies the App Dev Team. (e.g. thresholds for request runtimes, web vitals, DOM events) 
 
 All of these quality sensors are then assigned to each scenario in this order.
 
