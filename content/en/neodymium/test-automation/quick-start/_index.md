@@ -487,8 +487,8 @@ public class SearchData
 
 Neodymium automatically runs tests for each data set. This can be controlled by using `@SuppressDataSets` and
 `@DataSet()`. `@SuppressDataSets` disables test data usage for the annotated function or test class. `@DataSet()` allows
-you to specify which data set to use, either by index (e.g., `@DataSet(1)`) starting at 1, ID (e.g.,
-`@DataSet("dataSetId")`), or by selecting a random subset (e.g., `@DataSet(randomSets = 4)`).
+you to specify which data set to use, either by index (e.g., `@DataSet(<index>)`) starting at 1, ID (e.g.,
+`@DataSet("<dataSetId>")`), or by selecting a random subset (e.g., `@DataSet(randomSets = 4)`).
 
 So let's add another data set to the test data.
 
@@ -845,9 +845,9 @@ an include and exclude list.
 | neodymium.url.excludeList | &lt;none&gt;  | list of URLs that the test is forbidden to visit. Separated by whitespaces |
 
 When properly configured, `Neodymium.configuration().url()` will return the test system's URL within a test. The URL can
-be dynamically built using properties like n
-`eodymium.url = ${neodymium.url.protocol}://${neodymium.url.host}${neodymium.url.path}`, where other property values are
-automatically inserted. Alternatively, you can directly define the URL, such as
+be dynamically built using properties like
+`neodymium.url = ${neodymium.url.protocol}://${neodymium.url.host}${neodymium.url.path}`, where other property values
+are automatically inserted. Alternatively, you can directly define the URL, such as
 `neodymium.url = https://posters.xceptance.io:8443/`.
 
 #### Localization
@@ -1069,8 +1069,8 @@ neodymium.lighthouse.assert.thresholdScore.bestPractices=0.5
 neodymium.lighthouse.assert.thresholdScore.seo=0.5
 ```
 
-Acceptable values range from 0 to 1, with 0.5 as the default. Additionally, specific audits, such as `uses-http2`, can be
-asserted by listing them in the property, separated by spaces. Multiple audits can be validated simultaneously.
+Acceptable values range from 0 to 1, with 0.5 as the default. Additionally, specific audits, such as `uses-http2`, can
+be asserted by listing them in the property, separated by spaces. Multiple audits can be validated simultaneously.
 
 ```properties
 neodymium.lighthouse.assert.audits=link-text uses-http2 robots-txt
