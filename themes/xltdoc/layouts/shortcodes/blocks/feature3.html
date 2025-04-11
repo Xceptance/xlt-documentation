@@ -2,9 +2,13 @@
 
 <div class="col-xc col-lg-4 mb-5 mb-lg-0 text-center col-xc">
     {{ with .Get "url" }}<a href="{{ . }}">{{ end }}
-  <div class="mb-4 h1">
-    <i class="{{ if not (or (hasPrefix $icon "fas ") (hasPrefix $icon "fab ")) }}fas {{ end }}{{ $icon }}"></i>
-  </div>
+    {{ if .Get "image" }}
+<img src='/images/{{ .Get "image" }}' style="max-width:200px; margin-top:10px; margin-bottom:20px" />
+    {{ else }}
+<div class="mb-4 h1">
+<i class="{{ if not (or (hasPrefix $icon "fas ") (hasPrefix $icon "fab ")) }}fas {{ end }}{{ $icon }}"></i>
+</div>
+    {{ end }}  
   <h4 class="h3">{{ .Get "title" | markdownify }}</h4>
   <p class="mb-0">{{ .Inner }}</p>
 </a>
