@@ -207,9 +207,7 @@ Custom Samplers in the Test Report
 
 ## Custom Data Logs
 
-When load testing, we often need to pass test data such as usernames, SKUs, coupon codes, or the like. Sometimes we want to know in retrospect which data items were actually used during a load test. Typically, this is solved by having the test scenario write the values to the logs or to a custom file. If we wanted to analyze the data used, we would first have to download the test result dataset and somehow extract the data from the log or data files.
-
-XLT offers the *Custom Data Logger* feature for this, which can replace any custom solution in most cases. This feature allows you to log custom data lines in different scopes using a simple API. A scope is a custom string that describes the data to log, for example "users" or "skus". All data lines logged in a given scope are grouped together.
+When load testing, we often need to pass test data such as usernames, SKUs, coupon codes, or the like. Sometimes we want to know in retrospect which data items were actually used during a load test. For this purpose, XLT offers the *Custom Data Logger*. This feature allows you to log custom data lines in different scopes using a simple API. A scope is a custom string that describes the data to be logged, for example "users" or "skus". All data lines logged in a given scope are grouped together.
 
 A data line must be a string, but the format of the line is unspecified. It can be a single value, a structured data record such as CSV, or any other custom format. You can specify the extension of the resulting data files to reflect the format used (`*.log` by default). You can also specify a file header. See below for an example of how to set up the data logger for the "users" scope to use a CSV file:
 
