@@ -161,11 +161,11 @@ These timings will be recorded only when using `XltChromeDriver` or `XltFirefoxD
 
 ### Custom Timers
 
-The _Custom Timers_ page includes all [timers]({{< relref "../advanced/050-custom-data/#custom-timers" >}}) that have been placed individually within the test code. The chart and data description is identical to the _Actions_ section. 
+The _Custom Timers_ page includes all [timers]({{< relref "../advanced/050-custom-data/#custom-timers" >}}) that have been placed individually within the test code. The chart and data description is identical to the _Actions_ section.
 
 ### Custom Data
 
-The _Custom Data_ page contains two sections: in case [custom samplers]({{< relref "../advanced/050-custom-data/#custom-values" >}}) have been run during the test, the collected data is shown in the *Custom Values* section. If the test scripts have also been collecting [custom data logs]({{< relref "../advanced/050-custom-data/#custom-data-logs" >}}), they will be available for download in the _Custom Data Logs_ section.
+The _Custom Data_ page contains two sections: in case [custom samplers]({{< relref "../advanced/050-custom-data/#custom-values" >}}) have been run during the test, or if your test scenarios are instrumented to log custom values, the collected data is shown in the *Custom Values* section. If the test scripts have also been collecting [custom data logs]({{< relref "../advanced/050-custom-data/#custom-data-logs" >}}), they will be available for download in the _Custom Data Logs_ section.
 
 ### Web Vitals 
 
