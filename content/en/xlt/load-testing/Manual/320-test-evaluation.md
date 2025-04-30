@@ -159,9 +159,13 @@ The Page Load Timings section offers deeper insight into the page loading perfor
 These timings will be recorded only when using `XltChromeDriver` or `XltFirefoxDriver` to run the browser. These are special WebDriver implementations that install an extension into the browser which is able to gather all the timings and report them to XLT.
 {{% /note %}}
 
-### Custom Timers & Values
+### Custom Timers
 
-The custom timers includes all timers that have been placed individually within the test code. The chart and data description is identical to the request section. In case custom samplers have been run during the test, the collected data is shown in the *Custom Values* section.
+The _Custom Timers_ page includes all [timers]({{< relref "../advanced/050-custom-data/#custom-timers" >}}) that have been placed individually within the test code. The chart and data description is identical to the _Actions_ section.
+
+### Custom Data
+
+The _Custom Data_ page contains two sections. In case [custom samplers]({{< relref "../advanced/050-custom-data/#custom-values" >}}) have been run during the test, or if your test scenarios are instrumented to log custom values, the collected data is shown in the *Custom Values* section. If the test scripts have also been collecting [custom data logs]({{< relref "../advanced/050-custom-data/#custom-data-logs" >}}), they will be available for download in the _Custom Data Logs_ section.
 
 ### Web Vitals 
 
@@ -169,7 +173,7 @@ If the load test was run as an [automated client performance test]({{< relref "6
 
 ### External Data
 
-All external data gathered by other tools during the test run is shown here according to the configuration. See [Custom Data]({{< relref "../advanced/050-custom-data/" >}}) for details on how to include external data in the report.
+All [external data]({{< relref "../advanced/050-custom-data/#external-data" >}}) gathered by other tools during the test run is shown here according to the configuration. 
 
 ### Errors
 
