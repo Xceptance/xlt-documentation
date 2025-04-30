@@ -165,7 +165,7 @@ The _Custom Timers_ page includes all [timers]({{< relref "../advanced/050-custo
 
 ### Custom Data
 
-The _Custom Data_ page contains two sections: in case [custom samplers]({{< relref "../advanced/050-custom-data/#custom-values" >}}) have been run during the test, or if your test scenarios are instrumented to log custom values, the collected data is shown in the *Custom Values* section. If the test scripts have also been collecting [custom data logs]({{< relref "../advanced/050-custom-data/#custom-data-logs" >}}), they will be available for download in the _Custom Data Logs_ section.
+The _Custom Data_ page contains two sections. In case [custom samplers]({{< relref "../advanced/050-custom-data/#custom-values" >}}) have been run during the test, or if your test scenarios are instrumented to log custom values, the collected data is shown in the *Custom Values* section. If the test scripts have also been collecting [custom data logs]({{< relref "../advanced/050-custom-data/#custom-data-logs" >}}), they will be available for download in the _Custom Data Logs_ section.
 
 ### Web Vitals 
 
