@@ -15,6 +15,7 @@ description: >
 #### JUnit5
 
 ```java
+@Browser
 public class SomeTest
 {
     @NeodymiumTest
@@ -28,8 +29,8 @@ public class SomeTest
 #### JUnit4
 
 ```java
-
 @RunWith(NeodymiumRunner.class)
+@Browser
 public class SomeTest
 {
     @Test
@@ -122,6 +123,7 @@ public class SomeTest
 
 ### Browser
 
+* `@Browser` - use default browser
 * `@Browser("<browserId>")` - set browser to use
 * `@RandomBrowser()` - use random browser
 * `@SuppressBrowser()` - suppress all browser - necessary for tests that should not use browser. Otherwise, a browser is
@@ -287,7 +289,8 @@ browserprofile.Chrome_1600x1200.browserResolution=1600x1200
 ```
 
 * select browser with `@Browser("<browserId>")`
-* prevent browser start with `@SuppressBrowsers`, otherwise a browser is opened anyway
+* use default browser with `@Browser`
+* prevent browser start with `@SuppressBrowsers`
 
 | Property                   | Mandatory             | Description                                                                                                                                                                                                                                                                     |
 |----------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

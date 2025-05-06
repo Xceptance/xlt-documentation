@@ -75,12 +75,17 @@ in the [neodymium-template project](https://github.com/Xceptance/neodymium-templ
 ### Example Test
 
 This example showcases a fundamental Neodymium test. It illustrates how to open a website, perform actions on it, and
-verify the state of elements. The code uses only the essential `@NeodymiumTest` annotation, demonstrating the minimal
+verify the state of elements. The code uses only the essential `@NeodymiumTest` and `@Browser` annotation, demonstrating
+the minimal
 setup necessary for Neodymium testing.
+`@NeodymiumTest` is necessary to execute the test with Neodymium.
+`@Browser` assigns the default browser to the test. This is annotation is necessary for all tests using a browser
+because otherwise the browser isn't handled by Neodymium causing advanced features, like video recording, to break.
 
 ```java
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.common.browser.Browser;
 import com.xceptance.neodymium.junit5.NeodymiumTest;
 
 import static com.codeborne.selenide.Condition.text;
@@ -88,6 +93,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+@Browser
 public class FirstTest
 {
     @NeodymiumTest
@@ -157,11 +163,13 @@ ProductDetailPage (PDP), leading to this updated test code.
 
 ```java
 import com.codeborne.selenide.Selenide;
+import com.xceptance.neodymium.common.browser.Browser;
 import com.xceptance.neodymium.junit5.NeodymiumTest;
 import org.example.pageobjects.HomePage;
 import org.example.pageobjects.ProductDetailPage;
 import org.example.pageobjects.ProductListingPage;
 
+@Browser
 public class FirstTest
 {
     @NeodymiumTest
@@ -193,6 +201,7 @@ failures. However, it should be focused and efficient.
 
 ```java
 import com.codeborne.selenide.SelenideElement;
+import org.example.pageobjects.AbstractPageObject;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -268,6 +277,9 @@ descriptive function naming and improved report structure. Simply apply them dir
 document. For example, the `HomePage` from our previous example would be modified as follows.
 
 ```java
+import io.qameta.allure.Step;
+...
+
 public class HomePage
 {
     ...
@@ -359,12 +371,14 @@ The test below illustrates searching for a product using data-driven search term
 
 ```java
 import com.codeborne.selenide.Selenide;
+import com.xceptance.neodymium.common.browser.Browser;
 import com.xceptance.neodymium.junit5.NeodymiumTest;
 import com.xceptance.neodymium.util.Neodymium;
 import org.example.pageobjects.pages.HomePage;
 import org.example.pageobjects.pages.ProductDetailPage;
 import org.example.pageobjects.pages.ProductListingPage;
 
+@Browser
 public class TestDataTest
 {
     @NeodymiumTest
@@ -407,6 +421,7 @@ can use multiple data objects within a single test.
 We will now expand the `TestDataTest` to include test data objects.
 
 ```java
+@Browser
 public class TestDataTest
 {
     @DataItem
@@ -563,6 +578,10 @@ in the `HomePage` class, with a similar approach for the `ProductListingPage`. T
 function uses `Neodymium.localizedText("webElements.hotProductsLabel")` to get the appropriate localized label text.
 
 ```java
+import com.xceptance.neodymium.util.Neodymium;
+import static com.codeborne.selenide.Condition.text;
+...
+
 public class HomePage extends AbstractPageObject
 {
     ...
@@ -584,6 +603,7 @@ The `TestDataTest` remains largely unchanged, with the only additions being the 
 localized labels.
 
 ```java
+@Browser
 public class TestDataTest extends AbstractTest
 {
     @DataItem
@@ -769,8 +789,10 @@ suppressed using `@SuppressBrowsers`.
 
 ```java
 import com.xceptance.neodymium.common.browser.Browser;
-...
+import com.xceptance.neodymium.util.Neodymium;
+import org.junit.jupiter.api.BeforeEach;
 
+@Browser
 @Browser("Chrome_1200x768")
 @Browser("Firefox_1200x768")
 public abstract class AbstractTest
