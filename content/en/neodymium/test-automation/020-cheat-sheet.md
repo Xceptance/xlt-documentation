@@ -125,9 +125,8 @@ public class SomeTest
 
 * `@Browser` - use default browser
 * `@Browser("<browserId>")` - set browser to use
-* `@RandomBrowser()` - use random browser
-* `@SuppressBrowser()` - suppress all browser - necessary for tests that should not use browser. Otherwise, a browser is
-  opened anyway
+* `@RandomBrowser(<number of browsers to use>)` - use random browser
+* `@SuppressBrowser()` - suppress all browser
 * `@StartNewBrowserForSetUp` - new fresh browser for `@Before` and `@BeforeAll`
 * `@StartNewBrowserForCleanUp` - new fresh browser for `@After` and `@AfterAll`
 
@@ -137,7 +136,7 @@ Methods can have multiple `@DataSet()` annotations
 
 * `@DataSet("<dataSetId>")` - limit method to data set with defined id
 * `@DataSet(<index>)` - limit method to dataset with defined index
-* `@DataSet(randomSets = 4)` - use 4 random data sets
+* `@@RandomDataSets(4)` - use 4 random data sets
 * `@SuppressDataSets` - don’t use any data set
 * `@DataFile("<path/to/file>")` - define path to test data if default should not be used
 * `@DataItem` - annotate POJO representing the test data to automatically inject the data into it
@@ -280,7 +279,7 @@ All remaining aspects of `neodymium.properties` will be covered in the full prop
 ### Browser
 
 * in `.config/browser.properties`
-* with format `browserprofile.<browserId>.<attribute> = <parameter>`
+* with format `browserprofile.<browserId>.<property> = <value>`
 
 ```properties
 browserprofile.Chrome_1600x1200.name=Chrome 1600x1200
@@ -343,7 +342,7 @@ All test methods will be executed with all data sets of the test data file if no
 
 * `@DataSet("<dataSetId>")` - limit method to data set with defined id
 * `@DataSet(<index>)` - limit method to dataset with defined index
-* `@DataSet(randomSets = 4)` - use 4 random data sets
+* `@@RandomDataSets(4)` - use 4 random data sets
 * `@SuppressDataSets` - don’t use any data set
 * `@DataFile("<path/to/file>")` - define path to test data if default should not be used
 * `@DataItem` - annotate POJO representing the test data to automatically inject the data into it
@@ -410,7 +409,7 @@ public abstract class AbstractTest
 ## Multibrowser
 
 * prerequisites `browser.properties` file located in `./config/browser.properties` defining the browsers with format
-  `browserprofile.<browserId>.<attribute> = <parameter>`
+  `browserprofile.<browserId>.<property> = <value>`
 
 ```properties
 browserprofile.Chrome_1200x768.name=Chrome 1200x768
