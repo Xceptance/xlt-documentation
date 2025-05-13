@@ -136,7 +136,7 @@ Methods can have multiple `@DataSet()` annotations
 
 * `@DataSet("<dataSetId>")` - limit method to data set with defined id
 * `@DataSet(<index>)` - limit method to dataset with defined index
-* `@@RandomDataSets(4)` - use 4 random data sets
+* `@RandomDataSets(4)` - use 4 random data sets
 * `@SuppressDataSets` - don’t use any data set
 * `@DataFile("<path/to/file>")` - define path to test data if default should not be used
 * `@DataItem` - annotate POJO representing the test data to automatically inject the data into it
@@ -342,7 +342,7 @@ All test methods will be executed with all data sets of the test data file if no
 
 * `@DataSet("<dataSetId>")` - limit method to data set with defined id
 * `@DataSet(<index>)` - limit method to dataset with defined index
-* `@@RandomDataSets(4)` - use 4 random data sets
+* `@RandomDataSets(4)` - use 4 random data sets
 * `@SuppressDataSets` - don’t use any data set
 * `@DataFile("<path/to/file>")` - define path to test data if default should not be used
 * `@DataItem` - annotate POJO representing the test data to automatically inject the data into it

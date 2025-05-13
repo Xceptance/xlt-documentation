@@ -503,7 +503,7 @@ public class SearchData
 Neodymium automatically runs tests for each data set. This can be controlled by using `@SuppressDataSets` and
 `@DataSet()`. `@SuppressDataSets` disables test data usage for the annotated function or test class. `@DataSet()` allows
 you to specify which data set to use, either by index (e.g., `@DataSet(<index>)`) starting at 1, ID (e.g.,
-`@DataSet("<dataSetId>")`), or by selecting random subsets (e.g., `@@RandomDataSets(4)` selects 4 random sets).
+`@DataSet("<dataSetId>")`), or by selecting random subsets (e.g., `@RandomDataSets(4)` selects 4 random sets).
 
 So let's add another data set to the test data.
 
