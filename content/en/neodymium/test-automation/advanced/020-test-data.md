@@ -332,6 +332,8 @@ In larger test projects you often find the need to work with more complex test o
 test objects. If you forward an arbitrary class to the following function `TestData.get(Class<T> clazz)` Neodymium will
 parse the available data structure and map the corresponding fields.
 
+In case you don't need a field for a certain test case leave it out it will result in a `null` for this field.
+
 If you just need a specific part of the data Neodymium provides a second function:
 `TestData.get(String jsonPath, Class<T> clazz)` using a [JsonPath](https://github.com/json-path/JsonPath) to locate the
 requested element.
