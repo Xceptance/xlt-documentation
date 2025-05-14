@@ -72,7 +72,7 @@ The next sections contain all properties which can be configured in Neodymium.
 
 {{< TODO >}} add missing descriptions {{< /TODO >}}<br>
 
-### URL 
+### URL
 
 | Property                  | Default value | Description                                                                 |
 |---------------------------|---------------|-----------------------------------------------------------------------------|
@@ -84,7 +84,7 @@ The next sections contain all properties which can be configured in Neodymium.
 | neodymium.url.includeList | &lt;none&gt;  | A list of URLs that the test is allowed to visit separated by whitespaces   |
 | neodymium.url.excludeList | &lt;none&gt;  | A list of URLs that the test is forbidden to visit separated by whitespaces |
 
-### Localization 
+### Localization
 
 | Property                    | Default value            | Description                                                                            |
 |-----------------------------|--------------------------|----------------------------------------------------------------------------------------|
@@ -119,13 +119,13 @@ The next sections contain all properties which can be configured in Neodymium.
 Responsive design breakpoints. Determines at which page width a site is considered to be displayed on a small, medium,
 large oder extra large device.
 
-| Property                                   | Default value | Description                                             |
-|--------------------------------------------|---------------|---------------------------------------------------------|
-| neodymium.context.device.breakpoint.small  | 576 pixel     | Maximum browser width for extra small devices (0 - 576) |
-| neodymium.context.device.breakpoint.medium | 768 pixel     | Maximum browser width for small devices (577 - 768)     |
-| neodymium.context.device.breakpoint.large  | 992 pixel     | Maximum browser width for medium devices (769 - 992)    |
-| neodymium.context.device.breakpoint.xlarge | 1200 pixel    | Maximum browser width for large devices (993 - 1200)    |
-| neodymium.context.random.initialValue      | &lt;none&gt;  |                                                         |
+| Property                                   | Default value | Description                                                                    |
+|--------------------------------------------|---------------|--------------------------------------------------------------------------------|
+| neodymium.context.device.breakpoint.small  | 576 pixel     | Maximum browser width for extra small devices (0 - 576)                        |
+| neodymium.context.device.breakpoint.medium | 768 pixel     | Maximum browser width for small devices (577 - 768)                            |
+| neodymium.context.device.breakpoint.large  | 992 pixel     | Maximum browser width for medium devices (769 - 992)                           |
+| neodymium.context.device.breakpoint.xlarge | 1200 pixel    | Maximum browser width for large devices (993 - 1200)                           |
+| neodymium.context.random.initialValue      | &lt;none&gt;  | Initial random seed which will be use to initialize Neodymiums Random instance |
 
 ### JavaScriptUtils
 
@@ -154,7 +154,7 @@ environments.
 | neodymium.proxy.socket.userName | &lt;none&gt;  | The socket username of the proxy      |
 | neodymium.proxy.socket.password | &lt;none&gt;  | The socket password of the proxy      |
 | neodymium.proxy.socket.version  | &lt;none&gt;  | The socket version of the proxy       |
-| neodymium.selenideProxy         | false         |                                       |
+| neodymium.selenideProxy         | false         | Enables Selenide Network Mock         |
 
 ### Local proxy
 
@@ -179,25 +179,23 @@ you can use to alter that.
 
 | Property                                       | Default value | Description                                                                                                                                                                                                |
 |------------------------------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| neodymium.webDriver.reuseDriver                | false         | a `boolean` property indicating whether to use a single driver instance for all tests                                                                                                                      |
+| neodymium.webDriver.reuseDriver                | false         | A `boolean` property indicating whether to use a single driver instance for all tests                                                                                                                      |
 | neodymium.webDriver.maxReuse                   | -1            | The number of reuses. If not specified or set below 1 the driver will be reused unlimited times. Setting the property to 1 means that the driver is reused once, so the web driver is used twice in total. |
-| neodymium.webDriver.keepBrowserOpen            | false         | a `boolean` property indicating whether to keep browser open after test has finished<br>**ATTENTION:** The WebDriver process might stay alive even if you close the browser afterwards                     |
-| neodymium.webDriver.keepBrowserOpenOnFailure   | false         | a `boolean` property indicating whether to keep the browser instance open only if the test fails<br>**ATTENTION:** The WebDriver process might stay alive even if you close the browser afterwards         |
-| neodymium.webDriver.window.width               | -1            |                                                                                                                                                                                                            |
-| neodymium.webDriver.window.height              | -1            |                                                                                                                                                                                                            |
-| neodymium.webDriver.startNewBrowserForSetUp    | true          |                                                                                                                                                                                                            |
-| neodymium.webDriver.startNewBrowserForCleanUp  | true          |                                                                                                                                                                                                            |
-| neodymium.webDriver.chrome.pathToDriverServer  | &lt;none&gt;  |                                                                                                                                                                                                            |
-| neodymium.webDriver.chrome.pathToBrowser       | &lt;none&gt;  |                                                                                                                                                                                                            |
-| neodymium.webDriver.chrome.driverArguments     | ""            |                                                                                                                                                                                                            |
-| neodymium.webDriver.firefox.pathToDriverServer | &lt;none&gt;  |                                                                                                                                                                                                            |
-| neodymium.webDriver.firefox.pathToBrowser      | &lt;none&gt;  |                                                                                                                                                                                                            |
-| neodymium.webDriver.firefox.driverArguments    | ""            |                                                                                                                                                                                                            |
-| neodymium.webDriver.ie.pathToDriverServer      | &lt;none&gt;  |                                                                                                                                                                                                            |
-| neodymium.webDriver.ie.driverArguments         | ""            |                                                                                                                                                                                                            |
-| neodymium.webDriver.edge.pathToDriverServer    | &lt;none&gt;  |                                                                                                                                                                                                            |
-| neodymium.webDriver.edge.driverArguments       | ""            |                                                                                                                                                                                                            |
-| neodymium.webDriver.safari.driverArguments     | ""            |                                                                                                                                                                                                            |
+| neodymium.webDriver.keepBrowserOpen            | false         | A `boolean` property indicating whether to keep browser open after test has finished<br>**ATTENTION:** The WebDriver process might stay alive even if you close the browser afterwards                     |
+| neodymium.webDriver.keepBrowserOpenOnFailure   | false         | A `boolean` property indicating whether to keep the browser instance open only if the test fails<br>**ATTENTION:** The WebDriver process might stay alive even if you close the browser afterwards         |
+| neodymium.webDriver.startNewBrowserForSetUp    | true          | A `boolean` property indicating whether to start a new browser for the setup                                                                                                                               |
+| neodymium.webDriver.startNewBrowserForCleanUp  | true          | A `boolean` property indicating whether to start a new browser for the cleanup                                                                                                                             |
+| neodymium.webDriver.chrome.pathToDriverServer  | &lt;none&gt;  | The path to the chromedriver e.g. `neodymium.webDriver.chrome.pathToDriverServer =  C:/dev/webdriver/chromedriver.exe`                                                                                     |
+| neodymium.webDriver.chrome.pathToBrowser       | &lt;none&gt;  | The path to the chrome browser                                                                                                                                                                             |
+| neodymium.webDriver.chrome.driverArguments     | ""            | The chromedriver arguments as a semicolon separated list e.g. `--allowed-origins=localhost, xceptance.com; --log-level=INFO;`                                                                              |
+| neodymium.webDriver.firefox.pathToDriverServer | &lt;none&gt;  | The path to the geckodriver                                                                                                                                                                                |
+| neodymium.webDriver.firefox.pathToBrowser      | &lt;none&gt;  | The path to the firefox browser                                                                                                                                                                            |
+| neodymium.webDriver.firefox.driverArguments    | ""            | The geckodriver arguments as a semicolon separated list                                                                                                                                                    |
+| neodymium.webDriver.ie.pathToDriverServer      | &lt;none&gt;  | The path to the ie-driver                                                                                                                                                                                  |
+| neodymium.webDriver.ie.driverArguments         | ""            | The ie-driver arguments as a semicolon separated list                                                                                                                                                      |
+| neodymium.webDriver.edge.pathToDriverServer    | &lt;none&gt;  | The path to the edge-driver                                                                                                                                                                                |
+| neodymium.webDriver.edge.driverArguments       | ""            | The edge-driver arguments as a semicolon separated list                                                                                                                                                    |
+| neodymium.webDriver.safari.driverArguments     | ""            | The safari-driver arguments as a semicolon separated list                                                                                                                                                  |
 
 ### Test filtering
 
@@ -207,92 +205,94 @@ To do so, you have to define **neodymium.testNameFilter** inside of `config/neod
 
 ### SelenideAddons
 
-| Property                                                 | Default value | Description |
-|----------------------------------------------------------|---------------|-------------|
-| neodymium.selenideAddons.staleElement.retry.count        | 3             |             |
-| neodymium.selenideAddons.staleElement.retry.timeout      | 500 ms        |             |
-| neodymium.selenideAddons.optional.retry.pollingIntervall | 3 s           |             |
-| neodymium.selenideAddons.optional.retry.timeout          | 30 s          |             |
+| Property                                                 | Default value | Description                                                                                          |
+|----------------------------------------------------------|---------------|------------------------------------------------------------------------------------------------------|
+| neodymium.selenideAddons.staleElement.retry.count        | 3             | How often should the $safe function try to match a condition if the element is affected by staleness |
+| neodymium.selenideAddons.staleElement.retry.timeout      | 500 ms        | How long should the $safe function wait between retries in case of element staleness                 |
+| neodymium.selenideAddons.optional.retry.pollingIntervall | 3 s           | How long should the optionalWait(While/Until)Condition functions wait until it retries the condition |
+| neodymium.selenideAddons.optional.retry.timeout          | 30 s          | After which times should the optionalWait(While/Until)Condition functions stop retrying              |
 
 ### AllureAddons
 
-| Property                                          | Default value         | Description |
-|---------------------------------------------------|-----------------------|-------------|
-| neodymium.allureAddons.screenshots.perstep.always | false                 |             |
-| neodymium.allureAddons.reports.path               | /build/reports/tests/ |             |
+| Property                                          | Default value         | Description                                   |
+|---------------------------------------------------|-----------------------|-----------------------------------------------|
+| neodymium.allureAddons.screenshots.perstep.always | false                 | Whether a screenshot should be taken per step |
+| neodymium.allureAddons.reports.path               | /build/reports/tests/ | Path to the allure report                     |
 
 ### TestData
 
-| Property                                        | Default value | Description |
-|-------------------------------------------------|---------------|-------------|
-| neodymium.testData.email.domain                 | varmail.de    |             |
-| neodymium.testData.email.local.prefix           | test          |             |
-| neodymium.testData.email.randomCharsAmount      | 12            |             |
-| neodymium.testData.password.uppercaseCharAmount | 2             |             |
-| neodymium.testData.password.lowercaseCharAmount | 5             |             |
-| neodymium.testData.password.digitAmount         | 2             |             |
-| neodymium.testData.password.specialCharAmount   | 2             |             |
-| neodymium.testData.password.specialChars        | +-#$%&.;,_    |             |
+| Property                                        | Default value | Description                                                            |
+|-------------------------------------------------|---------------|------------------------------------------------------------------------|
+| neodymium.testData.email.domain                 | varmail.de    | The domain used for the generated email address                        |
+| neodymium.testData.email.local.prefix           | test          | The prefix used in email address generation `prefix<generated>@domain` |
+| neodymium.testData.email.randomCharsAmount      | 12            | The amount of random chars of the email [a-z0-9]                       |
+| neodymium.testData.password.uppercaseCharAmount | 2             | The amount of capital letters                                          |
+| neodymium.testData.password.lowercaseCharAmount | 5             | The amount of small letters                                            |
+| neodymium.testData.password.digitAmount         | 2             | The amount of digits                                                   |
+| neodymium.testData.password.specialCharAmount   | 2             | The amount of special characters                                       |
+| neodymium.testData.password.specialChars        | +-#$%&.;,_    | The special characters that should be used                             |
 
 ### Work in progress
 
-| Property                 | Default value | Description |
-|--------------------------|---------------|-------------|
-| neodymium.workInProgress | false         |             |
-
-### Screenshot
-
-| Property                              | Default value | Description |
-|---------------------------------------|---------------|-------------|
-| neodymium.screenshots.enableOnSuccess | false         |             |
+| Property                 | Default value | Description                                                                                                                    |
+|--------------------------|---------------|--------------------------------------------------------------------------------------------------------------------------------|
+| neodymium.workInProgress | false         | If true: only tests of a test class annotated with the @WorkInProgress annotation are executed, otherwise all will be executed |
 
 ### Advanced screenshot
 
-| Property                                                | Default value | Description |
-|---------------------------------------------------------|---------------|-------------|
-| neodymium.screenshots.enableAdvancedScreenshots         | false         |             |
-| neodymium.screenshots.fullpagecapture.enable            | false         |             |
-| neodymium.screenshots.fullpagecapture.highlightViewport | false         |             |
-| neodymium.screenshots.fullpagecapture.highlightColor    | #FF0000       |             |
-| neodymium.screenshots.blurFullPageScreenshot            | false         |             |
-| neodymium.screenshots.highlightLastElement              | false         |             |
-| neodymium.screenshots.element.highlightColor            | #FF00FF       |             |
-| neodymium.screenshots.highlightLineThickness            | 4             |             |
-| neodymium.screenshots.enableTreeDirectoryStructure      | false         |             |
+| Property                                                | Default value | Description                                                                                                                                   |
+|---------------------------------------------------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| neodymium.screenshots.enableAdvancedScreenshots         | false         | Enables advanced screenshot capabilities with additional features                                                                             |
+| neodymium.screenshots.enableOnSuccess                   | false         | Controls whether screenshots are taken for successful test scenarios                                                                          |
+| neodymium.screenshots.fullpagecapture.enable            | false         | Enables full-page screenshot capture, capturing entire page content beyond visible viewport                                                   |
+| neodymium.screenshots.fullpagecapture.highlightViewport | false         | Determines if the current viewport should be visually highlighted during full-page capture                                                    |
+| neodymium.screenshots.fullpagecapture.highlightColor    | #FF0000       | Sets the highlight color for the viewport during full-page capture                                                                            |
+| neodymium.screenshots.blurFullPageScreenshot            | false         | Blurs the part outside the viewport of full-page screenshots                                                                                  |
+| neodymium.screenshots.highlightLastElement              | false         | Enables highlighting of the last interacted or focused element in the screenshot                                                              |
+| neodymium.screenshots.element.highlightColor            | #FF00FF       | Sets the highlight color for the last element                                                                                                 |
+| neodymium.screenshots.highlightLineThickness            | 4             | Defines the thickness of highlight lines when elements are marked                                                                             |
+| neodymium.screenshots.enableTreeDirectoryStructure      | false         | Controls the directory structure for storing screenshots. When false, uses a flat directory structure instead of a nested tree-like structure |
 
 ### Accessibility / Lighthouse
 
-| Property                                                 | Default value | Description |
-|----------------------------------------------------------|---------------|-------------|
-| neodymium.lighthouse.binaryPath                          | "lighthouse"  |             |
-| neodymium.lighthouse.assert.thresholdScore.performance   | 0.5           |             |
-| neodymium.lighthouse.assert.thresholdScore.accessibility | 0.5           |             |
-| neodymium.lighthouse.assert.thresholdScore.bestPractices | 0.5           |             |
-| neodymium.lighthouse.assert.thresholdScore.seo           | 0.5           |             |
-| neodymium.lighthouse.assert.audits                       | &lt;none&gt;  |             |
+The Lighthouse thresholdScore properties define minimal values the tests need to achieve to pass, otherwise they will
+fail.
+Each value rages from 0.0 - 1.0 representing 0% to 100%.
+
+| Property                                                 | Default value | Description                                                                                                                                                                                                                                                                                          |
+|----------------------------------------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| neodymium.lighthouse.binaryPath                          | "lighthouse"  | Specifies the path to the Lighthouse executable<ul><li>If Lighthouse is globally installed and available in PATH, use only the name of the Lighthouse binary</li><li>If Lighthouse is not globally installed and available in PATH, use the absolute/relative path to the Lighthouse binary<li></ul> |
+| neodymium.lighthouse.assert.thresholdScore.performance   | 0.5           | Specifies the minimum acceptable score for the performance category in Lighthouse reports. The actual value for the performance score varies a lot, so consider using a lower threshold to avoid a lot of false alerts.                                                                              |
+| neodymium.lighthouse.assert.thresholdScore.accessibility | 0.5           | Specifies the minimum acceptable score for the accessibility category in Lighthouse reports.                                                                                                                                                                                                         |
+| neodymium.lighthouse.assert.thresholdScore.bestPractices | 0.5           | Specifies the minimum acceptable score for the best practices category in Lighthouse reports.                                                                                                                                                                                                        |
+| neodymium.lighthouse.assert.thresholdScore.seo           | 0.5           | Specifies the minimum acceptable score for the seo category in Lighthouse reports.                                                                                                                                                                                                                   |
+| neodymium.lighthouse.assert.audits                       | &lt;none&gt;  | A comma separated list of audits to assert. If one fails, the test also fails. A full list of all audit id's and their corresponding titles can be found [here](https://github.com/Xceptance/neodymium/wiki/Accessibility#lighthouse-audit-validation).                                              |
 
 ### Report
 
-| Property                                       | Default value | Description |
-|------------------------------------------------|---------------|-------------|
-| neodymium.report.showSelenideErrorDetails      | false         |             |
-| neodymium.report.enableTestDataInReport        | true          |             |
-| neodymium.report.environment.enableCustomData  | true          |             |
-| neodymium.report.environment.enableBrowserData | true          |             |
-| neodymium.report.enableStepLinks               | true          |             |
+| Property                                       | Default value | Description                                                       |
+|------------------------------------------------|---------------|-------------------------------------------------------------------|
+| neodymium.report.showSelenideErrorDetails      | false         | Enable the saving of links of called pages in the report          |
+| neodymium.report.enableTestDataInReport        | true          | Whether the test data for each test should be added to the report |
+| neodymium.report.environment.enableCustomData  | true          | Whether custom environment data can be added to the report        |
+| neodymium.report.environment.enableBrowserData | true          | Whether the used browser profile should be added to the report    |
+| neodymium.report.enableStepLinks               | true          | Enable the saving of links of called pages in the report          |
 
 ### Selenium log level
 
-| Property                   | Default value | Description |
-|----------------------------|---------------|-------------|
-| neodymium.seleniumLogLevel | SEVERE        |             |
+| Property                   | Default value | Description                    |
+|----------------------------|---------------|--------------------------------|
+| neodymium.seleniumLogLevel | SEVERE        | Set the log level for Selenium |
 
 ### Popup blocker
 
-| Property                     | Default value | Description |
-|------------------------------|---------------|-------------|
-| neodymium.popup.<popup name> | &lt;none&gt;  |             |
-| neodymium.popupInterval      | 1000 ms       |             |
+We introduced a simple popup blocker to get rid of test affecting popups on a webpage. To use it just configure add a
+CSS selector which targets the close button of the popup.
+
+| Property                     | Default value | Description                                                                                                      |
+|------------------------------|---------------|------------------------------------------------------------------------------------------------------------------|
+| neodymium.popup.<popup name> | &lt;none&gt;  | Define a pop up and the selector to close it. e.g. `neodymium.popup.newsletter = #newsletterbox > button.close ` |
+| neodymium.popupInterval      | 1000 ms       | The delay between two checks for a popup in milliseconds                                                         |
 
 ## Credentials properties
 
