@@ -13,7 +13,7 @@ automatically download the latest one.
 
 Within the file `config/browser.properties` you can set up the browsers used throughout testing.
 More details on configuring the browser properties can be found in the
-[browser handling chapter]({{< relref "010-multi-browser" >}}).
+[browser handling chapter]({{< relref "010-browser" >}}).
 
 The next three sections describe how to set up specific WebDriver and browsers.
 
