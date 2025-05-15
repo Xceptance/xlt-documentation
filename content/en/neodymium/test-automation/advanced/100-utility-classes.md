@@ -62,21 +62,31 @@ code example shows the basic function to execute a slider movement. The amount o
 the movements can be set by the user.
 
 ```java
-  SelenideAddons.dragAndDropUntilCondition((
-                                           SelenideElement) elementToMove, (SelenideElement)elementToCheck,(int)horizontalMovement,(int)verticalMovement,(int)pauseBetweenMovements,(int)retryMovements,(Condition)condition));
+  SelenideAddons.dragAndDropUntilCondition((SelenideElement) elementToMove,
+                                           (SelenideElement)elementToCheck,
+                                           (int)horizontalMovement,
+                                           (int)verticalMovement,
+                                           (int)pauseBetweenMovements,
+                                           (int)retryMovements,
+                                           (Condition)condition));
 ```
 
 If needed the user can add more special functions based on the basic function. The code example shows a horizontal
 movement until a given text.
 
 ```java
-  private void leftHorizontalDragAndDropUntilText((
-                                                  SelenideElement) elementToMove, (SelenideElement)elementToCheck,(int)horizontalMovement,(String)sliderValueAttributeName,(String)moveUntil)
+  private void leftHorizontalDragAndDropUntilText((SelenideElement) elementToMove,
+                                                  (SelenideElement)elementToCheck,
+                                                  (int)horizontalMovement,
+                                                  (String)sliderValueAttributeName,
+                                                  (String)moveUntil)
     {
-    SelenideAddons.
-
-dragAndDropUntilCondition(elementToMove, elementToCheck, horizontalMovement, 0,3000,10,
-                          Condition.attribute(sliderValueAttributeName, moveUntil));
+    SelenideAddons.dragAndDropUntilCondition(elementToMove,
+                                             elementToCheck, 
+                                             horizontalMovement, 
+                                             0,3000,10,
+                                             Condition.attribute(sliderValueAttributeName, 
+                                             moveUntil));
     }
 ```
 

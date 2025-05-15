@@ -1,11 +1,11 @@
 ---
-title: "Browser handling, configuration and multi browser handling"
+title: "Browser configuration and handling"
 
 weight: 10
 type: docs
 
 description: >
-  Everything about browser handling.
+  Everything about browser configuration, handling and multi browser.
 ---
 
 This chapter is about browser handling, setting up browsers and defining their properties and multi browser handling.
