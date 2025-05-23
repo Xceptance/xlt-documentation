@@ -7,18 +7,18 @@ type: docs
 weight: 40
 
 description: >
-    All about the XLT test approaches. 
+    An overview of XLT test approaches.
 
 draft: true
 ---
 
-* Full DOM mode
-* JavaScript
-* DOM mode
-* No JavaScript
-* Request Level
-* Automatic or manual static content handling
+* Full DOM mode (with JavaScript execution)
+* JavaScript-enabled testing
+* DOM mode (without JavaScript execution)
+* No JavaScript mode
+* Request-level testing (API testing)
+* Static content handling (automatic or manual)
 
-## Test suites for that
+## Example test suites for these approaches:
 
 {{< TODO >}}This page is still a work in progress.{{< /TODO >}}

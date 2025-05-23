@@ -7,14 +7,14 @@ type: docs
 weight: 5
 
 description: >
-    More about for which markets and audiences XLT has been written. 
+    Learn about the target markets and audiences for XLT.
 ---
 
-XLT has been written by a testing company to have a tool available that provides greater flexibility, better reports, and also enhances trust in the results. The power it delivers might be its biggest downside, because it is not the typical all-purpose easy-peasy load testing tool.
+XLT was developed by a testing company to provide a tool with greater flexibility, better reporting, and enhanced trust in test results. Its power might also be its biggest challenge, as it's not a typical, easy-to-use load testing tool.
 
 ## XLT is for you if...
 * you are a Software Engineer or a Software Engineer in Test,
-* you love detailed data and the ability to post-process it,
+* you need detailed data and the ability to post-process it,
 * you need strong validation,
 * you want to combine performance testing and understanding the application,
 * you are looking for a solution you can use in your preferred IDE,
@@ -24,14 +24,14 @@ XLT has been written by a testing company to have a tool available that provides
 ## XLT might not fit if...
 * you need Capture & Replay,
 * property files, source code, and version control scare you,
-* the command line isn't your cup of tea,
-* programming a test suite is a no-go, you rather only configure a test.
+* you are not comfortable with the command line,
+* you prefer configuring tests rather than programming a test suite.
 
 ## XLT is suitable for... 
-* any kind of load and performance test, preferably over HTTP, but XLT already has been used for WebSocket, FTP, and [WebDAV testing]({{< relref "40-webdav-test-suite" >}}),
-* tests that require a lot of machines and locations,
-* your very own CI/CD setup,
-* extensive data processing of results, because XLT does not hide anything and permits you to add data sources as well as capture more data at any time,
-* frameworks and setups that are not just plain url tests, but require custom data, custom processing, flexible logic based flows and much more...
+* any kind of load and performance test, preferably over HTTP. XLT has also been used for WebSocket, FTP, and [WebDAV testing]({{< relref "40-webdav-test-suite" >}}),
+* tests that require many machines and locations,
+* your CI/CD setup,
+* extensive data processing of results. XLT provides transparency and allows you to add data sources and capture more data at any time,
+* frameworks and setups that go beyond simple URL tests, requiring custom data, custom processing, flexible logic-based flows, and more.
 
-This manual will mention and demo some of these not really straight forward load and performance test setups alongside the usual business tests.
+This manual will mention and demonstrate some of these complex load and performance test setups, alongside typical business tests.
