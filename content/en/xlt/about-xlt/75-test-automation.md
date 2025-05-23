@@ -6,9 +6,9 @@ type: docs
 weight: 75
 
 description: >
-    All about test automation with XLT. 
+    An overview of test automation with XLT.
 
 draft: true
 ---
 
-What is test automation with XLT and what can you do with it, where does it differ from plain WebDriver or other projects and how does it relate to Neodymium
+This section explains test automation with XLT, its capabilities, how it differs from plain WebDriver or other projects, and its relationship with Neodymium.

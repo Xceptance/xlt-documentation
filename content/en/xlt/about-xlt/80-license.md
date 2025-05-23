@@ -6,7 +6,7 @@ type: docs
 weight: 80
 
 description: >
-    XLT is licensed under Apache License 2.0. 
+    Details about the XLT software license (Apache License 2.0).
 
 ---
 

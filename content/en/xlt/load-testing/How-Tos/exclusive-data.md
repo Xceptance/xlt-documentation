@@ -7,5 +7,5 @@ type: docs
 draft: true
 
 description: >
-  How to provide data exclusively to a user.
+  Learn how to provide data exclusively to a user.
 ---

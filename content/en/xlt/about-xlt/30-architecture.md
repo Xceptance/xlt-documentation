@@ -7,31 +7,31 @@ type: docs
 weight: 30
 
 description: >
-    All about the XLT architecture. 
+    An overview of the XLT architecture.
 ---
 
 ## Architecture
 
-All about mastercontroller, agents, suites, and monitoring if relevant.
+This section covers the master controller, agents, test suites, and monitoring.
 
 * Test Suite Code and configuration
 * Mastercontroller (MC)
-* Agents -The test executors
+* Agents: The test executors
 * Deployments
-* Grafana for realtime test information
+* Grafana for real-time test information
  
-* MC is loosely coupled
-* Use another one to interact or continue
+* The Master Controller (MC) is loosely coupled.
+* You can use another MC to interact or continue a test.
 
 
-* No reason to stay connected
-* Reattach later to MC and continue work
-* Hand over to colleagues
-* Get intermediate results anytime
-* Run multiple test from one machine
-* Have the test machine somewhere else (Remote MC)
-* No database, results and reports easily archiveable
-* Create reports any time from results
-* Results/reports preserve test setups, repeat test easily
+* There is no need to stay connected to the MC.
+* You can reattach to the MC later and continue your work.
+* Tests can be handed over to colleagues.
+* Intermediate results can be retrieved at any time.
+* Run multiple tests from one machine.
+* The test machine can be located elsewhere (Remote MC).
+* XLT does not require a database; results and reports are easily archivable.
+* Reports can be generated from results at any time.
+* Results and reports preserve test setups, making it easy to repeat tests.
 
 {{< TODO >}}This page is still a work in progress.{{< /TODO >}}

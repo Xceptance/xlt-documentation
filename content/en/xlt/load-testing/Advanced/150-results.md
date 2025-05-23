@@ -5,15 +5,14 @@ weight: 150
 type: docs
 
 description: >
-  All about the XLT result data which is captured during a performance test and stored in CSV files
-  for further processing.
+  An overview of the XLT result data captured during a performance test and stored in CSV files for further processing.
 ---
 
 ## Collected Values
 
-During a load test, the XLT framework automatically collects a lot of information about transactions, actions, and requests being executed as well as event information. Additional custom timers can be added programmatically using the XLT API. Last but not least, each agent process monitors its resource usage and logs these values.
+During a load test, the XLT framework automatically collects extensive information about transactions, actions, executed requests, and event information. Additional custom timers can be added programmatically using the XLT API. Finally, each agent process monitors its resource usage and logs these values.
 
-These values are stored separately for each test case and each virtual user in files named `results/<TestCaseName>/<UserNo>/timers.csv`. Agent resource usage data is written to `results/Agent-JVM-Monitor/0/timers.csv`. As the name already suggests, the file format is CSV. See the following example:
+These values are stored separately for each test case and virtual user in files named `results/<TestCaseName>/<UserNo>/timers.csv`. Agent resource usage data is written to `results/Agent-JVM-Monitor/0/timers.csv`. As the name suggests, the file format is CSV. See the following example:
 
 ```csv
 R,Homepage.1,1537368092399,1506,false,767,6248,200,https://localhost:8443/posters/,text/html,0,145,0,670,215,885,,,,,4,,,
@@ -38,7 +37,7 @@ A,Homepage,1537368092381,2380,false
 T,TVisit,1537368091385,3456,false,,
 ```
 
-The lines have a different number of columns as they represent different types of information. The following table describes the meaning of every column depending on the data record type:
+The lines have a different number of columns, as they represent different types of information. The following table describes the meaning of each column, depending on the data record type:
 
 | Column | Transaction | Action | Request | Page Load Timing | Web Vital | Custom Timer | Event | Agent Resource Usage | Custom Value |
 | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
@@ -67,17 +66,17 @@ The lines have a different number of columns as they represent different types o
 |**23**| - | - |response ID| - | - | - | - |current CPU usage (total) [%]| - |
 |**24**| - | - |IP address used for the request [^fn4]| - | - | - | - | - | - |
 
-[^fn1]: These values are only present if the transaction has failed, otherwise they are blank.
+[^fn1]: These values are present only if the transaction has failed; otherwise, they are blank.
 
-[^fn2]: These values are only present if the property `com.xceptance.xlt.results.data.request.collect.formData` is enabled, otherwise they are blank.
+[^fn2]: These values are present only if the property `com.xceptance.xlt.results.data.request.collect.formData` is enabled; otherwise, they are blank.
 
-[^fn3]: The list of IP addresses reported by DNS for the host name used when making the request. If there is more than one IP address, they will be stored separated by a '|' character. Will not be set if the request did not trigger a DNS address resolution, for example, in case of keep-alive connections. This value is only present if the property `xlt.dns.recordAddresses` is set to true, otherwise it is blank.
+[^fn3]: The list of IP addresses reported by DNS for the hostname used when making the request. If there is more than one IP address, they will be stored separated by a '|' character. This will not be set if the request did not trigger a DNS address resolution (e.g., in the case of keep-alive connections). This value is present only if the property `xlt.dns.recordAddresses` is set to `true`; otherwise, it is blank.
 
-[^fn4]: The target IP address of the system under test that was used when making the request. This info is useful only if the target system has multiple IP addresses, e.g. if it is located behind a CDN. This value is only present if the property `com.xceptance.xlt.results.data.request.collectUsedIpAddress` is set to true, otherwise it is blank.
+[^fn4]: The target IP address of the system under test that was used when making the request. This information is useful only if the target system has multiple IP addresses (e.g., if it is located behind a CDN). This value is present only if the property `com.xceptance.xlt.results.data.request.collectUsedIpAddress` is set to `true`; otherwise, it is blank.
 
 [^fn5]: Typically, the value represents a duration (measured in milliseconds). For CLS, however, the value is a unitless fractional number that expresses the degree of cumulative layout shift.
 
 {{% note notitle %}}
-Note that the file format might change or be extended in future XLT releases. We strive to keep the format compatible with older versions by only adding information, but cannot guarantee it.
+Note that the file format might change or be extended in future XLT releases. We strive to keep the format compatible with older versions by only adding information but cannot guarantee it.
 {{% /note %}}
 
