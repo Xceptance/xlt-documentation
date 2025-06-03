@@ -160,11 +160,6 @@ enable = false
 	icon = "fab fa-github"
         desc = "Development takes place here!"
 [[params.links.developer]]
-	name = "Twitter"
-	url = "https://twitter.com/Xceptance"
-	icon = "fab fa-twitter"
-        desc = "Follow Xceptance on Twitter for more updates"
-[[params.links.developer]]
 	name = "Blog"
 	url = "https://blog.xceptance.com/"
 	icon = "fa fa-newspaper"
