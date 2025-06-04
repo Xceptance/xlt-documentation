@@ -1,5 +1,5 @@
 ---
-title: "How to Use `create_report` Command Options (Cheat Sheet)"
+title: "How to Use create_report Command Options (Cheat Sheet)"
 linkTitle: "`create_report` Cheat Sheet"
 
 weight: 400
@@ -27,31 +27,31 @@ cd <XLT>/bin
 ```
 
 ## List of Command Options
-- `-ae --exclude-agents <agents>` Can be used for [excluding a comma-separated list of agents]({{< relref "../manual/540-report-options#report-for-a-subset-of-agents" >}}).
+- `-ae --exclude-agents <agents>` can be used for [excluding a comma-separated list of agents]({{< relref "../manual/540-report-options#report-for-a-subset-of-agents" >}}).
 
-- `-ai --include-agents <agents>` Used for [including a comma-separated list of agents]({{< relref "../manual/540-report-options#report-for-a-subset-of-agents" >}}). 
+- `-ai --include-agents <agents>` is used for [including a comma-separated list of agents]({{< relref "../manual/540-report-options#report-for-a-subset-of-agents" >}}). 
 
--  `-D <property=value>` Overrides a property from a file.
+-  `-D <property=value>` overrides a property from a file.
 
-- `-e,--exclude-testcases <test cases>` [Excludes a comma-separated list of test cases]({{< relref "../manual/540-report-options#excluding-test-scenarios" >}}).
+- `-e,--exclude-testcases <test cases>` [excludes a comma-separated list of test cases]({{< relref "../manual/540-report-options#excluding-test-scenarios" >}}).
 
-- `-from <time>` Ignores results generated before the given time. It can also be combined with `-l` and `-to` for [defining a reporting timeframe]({{< relref "../manual/540-report-options#defining-a-reporting-timeframe" >}}).
+- `-from <time>` ignores results generated before the given time. It can also be combined with `-l` and `-to` for [defining a reporting timeframe]({{< relref "../manual/540-report-options#defining-a-reporting-timeframe" >}}).
 
-- `-i,--include-testcases <test cases>` Can be used to [include a comma-separated list of test cases]({{< relref "../manual/540-report-options#excluding-test-scenarios" >}}).
-- `-l <duration>` Utilizes results generated within the [specified duration]({{< relref "../manual/540-report-options#defining-a-reporting-timeframe" >}}); must be used with the `-from` or `-to` option.
+- `-i,--include-testcases <test cases>` can be used to [include a comma-separated list of test cases]({{< relref "../manual/540-report-options#excluding-test-scenarios" >}}).
+- `-l <duration>` utilizes results generated within the [specified duration]({{< relref "../manual/540-report-options#defining-a-reporting-timeframe" >}}); must be used with the `-from` or `-to` option.
 
-- `-linkToResults <yes|no>` Controls whether to link to the result browsers.
+- `-linkToResults <yes|no>` controls whether to link to the result browsers.
 
-- `-noAgentCharts,--no-agent-charts` Disables the generation of agent charts.
+- `-noAgentCharts,--no-agent-charts` disables the generation of agent charts.
 
-- `-noCharts,--no-charts` Disables the generation of all charts. It is also used for [faster generation]({{< relref "../manual/540-report-options#speeding-it-up" >}}) of reports.
+- `-noCharts,--no-charts` disables the generation of all charts. It is also used for [faster generation]({{< relref "../manual/540-report-options#speeding-it-up" >}}) of reports.
 
-- `-noRampUp` Allows deciding whether to [exclude the ramp-up phase]({{< relref "../manual/540-report-options#excluding-the-ramp-up-phase" >}}).
+- `-noRampUp` allows deciding whether to [exclude the ramp-up phase]({{< relref "../manual/540-report-options#excluding-the-ramp-up-phase" >}}).
 
-- `-o <dir>` Can be used for [setting a custom output directory]({{< relref "../manual/540-report-options#setting-a-custom-output-directory" >}}).
+- `-o <dir>` can be used for [setting a custom output directory]({{< relref "../manual/540-report-options#setting-a-custom-output-directory" >}}).
 
-- `-pf <property file>` Specifies a [property file]({{< relref "../manual/550-report-configuration#using-custom-report-generator-settings" >}}) that overrides basic properties.
+- `-pf <property file>` specifies a [property file]({{< relref "../manual/550-report-configuration#using-custom-report-generator-settings" >}}) that overrides basic properties.
 
-- `-timezone <timezoneID>` [Overrides the user's default timezone]({{< relref "../manual/540-report-options#setting-a-custom-time-zone" >}}) while generating a test report.
+- `-timezone <timezoneID>` [overrides the user's default timezone]({{< relref "../manual/540-report-options#setting-a-custom-time-zone" >}}) while generating a test report.
 
-- `-to <time>` Ignores results generated [after the given time]({{< relref "../manual/540-report-options#defining-a-reporting-timeframe" >}}).
+- `-to <time>` ignores results generated [after the given time]({{< relref "../manual/540-report-options#defining-a-reporting-timeframe" >}}).

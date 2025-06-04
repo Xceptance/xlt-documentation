@@ -45,7 +45,7 @@ valueLog.put(“cart.total”, currentCartTotal);
 
 Your data will be stored as simple name/value pairs. Even though the log
 accepts any `Object` as a value, it still needs to be converted to a
-string for proper display in the result browser, so ensure that your
+string for proper display in the result browser, so make sure that your
 value classes provide a sensible `toString()` method.
 
 {{% note notitle %}} In a load test, the value log is automatically cleared

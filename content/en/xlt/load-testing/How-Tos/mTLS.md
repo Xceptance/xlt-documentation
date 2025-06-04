@@ -14,7 +14,7 @@ In a zero-trust environment, not only must the client verify the server's identi
 
 XLT has always supported mTLS. Starting with XLT 8.2.0, it provides configuration options to set this up more conveniently and, notably, independently of your scenarios.
 
-To run tests with XLT in such environments, the underlying HtmlUnit `WebClient` must be configured with:
+To run tests with XLT in such environments, the underlying HtmlUnit WebClient must be configured with:
 
 * A key store containing the client's private key, and
 * A trust store containing the certificate of the CA that signed the server key.

@@ -16,21 +16,21 @@ description: >
 Many factors motivated us to start another load test tool project, some of which are still valid today.
 
 * *Platform independence*: We needed a tool that runs on any stack, especially Linux, as cloud computing was emerging.
-* *Licensing*: Popular commercial tools at the time had poor licensing schemes that prohibited consulting use. Customers were hesitant to buy a tool for a one-time testing gig.
+* *Licensing*: Popular commercial tools at the time had poor licensing schemes that prohibited the use in consulting: customers were hesitant to buy a tool for a one-time testing gig.
 * *Request level*: Most tools operated only at the request level, making it difficult to track DOM-level changes. Adding and removing form fields often went unnoticed.
 * *UIs*: UIs were difficult to handle and made it challenging to change configurations quickly.
-* *Scaling*: Scaling tests and the underlying deployment was not easy.
+* *Scaling*: Scaling tests and the deployment behind it was not easy.
 * *Reporting*: Reports weren't ready-to-use or as detailed as we required. Simply reporting averages and smoothing charts was insufficient.
 * *Languages*: Tools were either configuration-driven or used proprietary languages and their own IDEs.
-* *Postprocessing of data*: Data was often stored in databases or not at all, making post-run analysis difficult.
+* *Postprocessing of data*: Data was stored in databases or not at all, making post-run analysis difficult.
 * *Debugging*: When you don't know the stack and you don't see the code, it is often hard to debug a problem.
 * *Features*: Commercial tools had too many features we would pay for but never use, and we couldn't influence their development direction.
-* *Trust*: Load testing and result communication require trust. When identifying a problem, you must be certain your tool isn't the cause.
+* *Trust*: Load testing and result communication require trust: when identifying a problem, you must be certain your tool is not the cause.
 
 ## 2005 - Early Prototype
 As a young startup with limited funds, working for another startup that also had budget constraints and a preference against Windows servers, we needed a quick and trustworthy load test tool. This led us to develop a new approach to load testing. Commercially available tools were too expensive, JMeter was cumbersome and didn't scale sufficiently, and all existing tools had reporting issues. Reporting was either difficult to set up or lacked detail. Sharing reports was also challenging.
 
-With founders who had five years of experience in load and performance testing tools and working with large international customers, the requirements were clear. We needed a Java-based tool that could run on any OS, support complex test logic, simplify DOM interactions, and provide ready-to-use reports out-of-the-box.
+With founders who had five years of experience in load and performance testing tools and working with large international customers, the requirements were clear. We needed a Java-based tool that could run on any OS, support complex test logic, simplify working with the DOM, and provide nice and ready-to-use reports out-of-the-box.
 
 ## 2007 - First Product Offer
 After successful internal use, we released the tool as a licensed product. The base edition was free and included five virtual users. No licensing costs were incurred for test automation.

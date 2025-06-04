@@ -13,7 +13,7 @@ description: >
 Supporting only MS Windows was never an option when XLT was developed. We aimed for a tool that runs everywhere, with a preference for Linux. XLT load tests can be developed and executed on any platform with a supported JDK. Of course, you can easily run your load tests on a [distributed cloud infrastructure]({{< relref "../load-testing/advanced/060-cloud-setup" >}}). Releases include [pre-built Amazon Webservice AMIs]({{< relref "../load-testing/advanced/060-cloud-setup#image-templates-for-aws" >}}). Images for other cloud providers and containers can be built easily (see [XLT-Packer](https://github.com/Xceptance/XLT-Packer).
 
 ## Java 
-XLT utilizes a Java application stack: XLT itself and the tests are written in Java. This allows you to apply your existing knowledge and use your preferred tool chain and IDE. Of course, recommendations for optimal setups are available.
+XLT runs a Java application stack: XLT itself and the tests are written in Java. This allows you to apply your existing knowledge and use your preferred tool chain and IDE. Of course, there are recommendations for what works best.
 
 ## Open Source
 XLT uses trusted open-source components like Apache HttpClient, HtmlUnit, JUnit, WebDriver, Apache Commons, and many more.
@@ -23,7 +23,7 @@ XLT load tests are typically run from the command line (on your local machine or
 
 If you're not comfortable with the command line, the [XLT Jenkins plugin]({{< relref "#cicd-ready---jenkins-module" >}}) provides a UI for managing tests. 
 
-Xceptance is developing a SaaS offering to simplify scheduling, running, storing, and sharing testing work and results.
+Xceptance is also offering an [SaaS solution]({{< relref "/xtc" >}}) to simplify scheduling, running, storing, and sharing testing work and results.
 
 ## Test Suites
 XLT tests are organized into test suites that contain the code (essentially JUnit tests), data, and configuration. This makes test projects easily manageable. The code can be developed in any IDE and stored in any version control system, enabling concurrent work, providing a history, and simplifying code sharing and deployment of test suites from different machines. Test suites are completely independent of the execution engine, allowing the same code to run on multiple machines or one machine to run several test suites.
@@ -35,7 +35,7 @@ There are several approaches to writing and designing XLT tests, for example:
 * Real browser: Use a WebDriver-style test approach and scale up load testing using real browsers (Chrome, Firefox). XLT also captures page rendering times. 
 * Request level: For API testing, plain HttpRequests can be created and executed
 
-Xceptance offers [example test suites]({{< relref "../load-testing/test-suites" >}}) for most of these concepts, allowing you to determine what best suits your needs. This includes a test suite that uses YAML for test configuration, almost entirely skipping programming. 
+Xceptance offers [example test suites]({{< relref "../load-testing/test-suites" >}}) for most of these concepts, so you can get a feeling what suits your needs. This includes a test suite that uses YAML for test configuration, almost entirely skipping programming. 
 
 ## Load Profiles
 The [load profiles]({{< relref "../load-testing/manual/470-load-configuration" >}}) offered by XLT are configurable, like everything else, and therefore completely flexible. Whether you need a constant user number or arrival rate is just one of many possible approaches. Additionally, you can define a ramp-up or warm-up phase for your tests or even create a fully variable load profile for any test profile you want to create. The load is freely and independently configurable for every test scenario. To simplify test run configuration, you can increase or decrease the load using the load factor feature. 
@@ -52,7 +52,7 @@ XLT Performance Test Report
 {{< /image >}}
 
 ## Open Data Formats
-XLT uses open data formats to support custom analytics and reporting. All measured data is stored in [CSV files]({{< relref "../load-testing/advanced/150-results" >}}). Intermediate data is stored in XML format (using XSLT for HTML transformation and CSS for styling).
+XLT uses open data formats to support custom analytics and reporting. All measured data is stored in [csv files]({{< relref "../load-testing/advanced/150-results" >}}). Intermediate data is stored in XML format (using XSLT for HTML transformation and CSS for styling).
 
 ## CI/CD Ready - Jenkins Module
 XLT provides the tools to make continuous load testing an engineering habit. By offering a [Jenkins plug-in]({{< relref "../load-testing/advanced/080-ci-cd" >}}), you can run your XLT tests with every build. You don't have to deal with XLT tools directly, meaning you don't need to write shell scripts to drive the load test. Instead, you simply configure basic settings via the Jenkins UI, and the plug-in handles the necessary steps with your provided parameters. Furthermore, the plug-in automatically stores results, creates load test reports, and updates trend reports. By defining success criteria (e.g., no errors and maximum runtime below 10 seconds), you can automate the evaluation of load test results. The XLT Jenkins plug-in can also visualize long-term trends across multiple builds. Simply define the values you want to monitor over time.
@@ -72,4 +72,4 @@ You might recall Script Developer, an IDE integrated into Firefox for recording,
 
 If you still need Script Developer, you can find it in older XLT versions (4.13.X and earlier). XLT can still execute exported XML test case definition files, but we strongly suggest taking the pure programming route.
 
-To replace the test automation concept in XLT, another project was started: [Neodymium](https://github.com/Xceptance/neodymium-library), an open-source test automation project that includes popular libraries for test automation and integrates them effectively. 
+To replace the test automation concept in XLT, another project was started: [Neodymium](https://github.com/Xceptance/neodymium-library), an open-source test automation project that includes popular libraries for test automation and glues them nicely together. 

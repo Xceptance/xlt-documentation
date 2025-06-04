@@ -31,7 +31,7 @@ When updating XLT to a newer version, it is recommended to update the `default.p
 
 {{< note notitle >}}
 Even though this file is not read-only, it should be treated as such. You can use it as documentation for available XLT framework properties that also defines the default values for these properties.
-{{% /note >}}
+{{< /note >}}
 
 The properties listed in `default.properties` are separated into the following groups (look into the file itself for more details):
 

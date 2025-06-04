@@ -10,7 +10,7 @@ description: >
     Learn about the target markets and audiences for XLT.
 ---
 
-XLT was developed by a testing company to provide a tool with greater flexibility, better reporting, and enhanced trust in test results. Its power might also be its biggest challenge, as it's not a typical, easy-to-use load testing tool.
+XLT was developed by a testing company to provide a tool with greater flexibility and better reporting that enhances the trust in test results. Its power might also be its biggest challenge, as it's not a typical, easy-to-use load testing tool.
 
 ## XLT is for you if...
 * you are a Software Engineer or a Software Engineer in Test,
@@ -31,7 +31,7 @@ XLT was developed by a testing company to provide a tool with greater flexibilit
 * any kind of load and performance test, preferably over HTTP. XLT has also been used for WebSocket, FTP, and [WebDAV testing]({{< relref "40-webdav-test-suite" >}}),
 * tests that require many machines and locations,
 * your CI/CD setup,
-* extensive data processing of results. XLT provides transparency and allows you to add data sources and capture more data at any time,
+* extensive data processing of results, as XLT provides transparency and allows you to add data sources and capture more data at any time,
 * frameworks and setups that go beyond simple URL tests, requiring custom data, custom processing, flexible logic-based flows, and more.
 
 This manual will mention and demonstrate some of these complex load and performance test setups, alongside typical business tests.
