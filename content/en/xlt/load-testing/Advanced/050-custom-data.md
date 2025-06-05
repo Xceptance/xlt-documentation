@@ -11,7 +11,7 @@ description: >
 
 ## Introduction
 
-XLT [captures a lot of data]({{< relref "150-results" >}}) out-of-the-box. Since it uses open data formats (XML/CSV), it is well-suited for custom analytics and reporting. In addition to recorded information about transactions, actions, executed requests, and event information, you can also get:
+XLT [captures a lot of data]({{< relref "150-results" >}}) out of the box. Since it uses open data formats (XML/CSV), it is well-suited for custom analytics and reporting. In addition to recorded information about executed transactions, actions, and requests, and registered events, you can also get:
 
 * [custom events]({{< relref "#custom-events" >}}),
 * [custom timers]({{< relref "#custom-timers" >}}),
@@ -50,7 +50,7 @@ E,ProductHasNoPrice,1456928543182,TOrder,PID: 12345
 
 ## Custom Timers
 
-The recorded data will be shown in the [Custom Timers]({{< relref "../manual/320-test-evaluation#custom-timers--values" >}}) section of the load test report. This rendering will show the same level of detail as other timers in the report.
+Custom timers are used to record measurements of elapsed time in your test scenarios. The logged data contains the runtime in ms as well as a failed flag for the measured action. The recorded data will be shown in the [Custom Timers]({{< relref "../manual/320-test-evaluation#custom-timers--values" >}}) section of the load test report. This rendering will show the same level of detail as other timers in the report.
 
 {{< image src="user-manual/custom_timers.png">}}
 Custom Timers in the Test Report
@@ -82,7 +82,7 @@ C,Foo,1456928543182,1234,true
 ```
 
 ## Custom Values
-Custom values are used to record measurements of arbitrary double-precision floating-point values. They will appear in the [Custom Values]({{< relref "../manual/320-test-evaluation#custom-timers--values" >}}) section of the load test report with almost the same level of detail as timers.
+Custom values are used to record measurements of arbitrary double values. They will appear in the [Custom Values]({{< relref "../manual/320-test-evaluation#custom-timers--values" >}}) section of the load test report with almost the same level of detail as timers.
 
 {{< image src="user-manual/custom_values.png">}}
 Custom Values in the Test Report
@@ -110,11 +110,11 @@ Custom samplers use custom values to regularly record measurements during a load
 
 To do this, provide a custom sampler class extending `com.xceptance.xlt.api.engine.AbstractCustomSampler`. The sampler is configured in the test suite configuration files (the recommended location is `project.properties`).
 
-The sampler must override the `execute()` method that is called after each interval time (see configuration). Furthermore, the sampler might override the `initialize()` or `shutdown()` methods, which are called once for the sampler (before the first call to `execute()` or on shutdown).
+The sampler must override the `execute()` method that is called after each interval time (see configuration). Furthermore, the sampler might override the `initialize()` or `shutdown()` methods, which are called just once for the sampler (before the first call of `execute()` or on shutdown).
 
 The logged custom value is the return value of the `execute()` method.
 
-The `AbstractCustomSampler` can store any `double` (double-precision floating-point) value. The stored value indicates the absolute value at a certain point in time. The corresponding report chart directly shows the logged value.
+The `AbstractCustomSampler` can store any double value. The stored value indicates the absolute value at a certain point in time. The corresponding report chart directly shows the logged value.
 
 #### Example Implementation
 
@@ -147,7 +147,7 @@ public class ValueSamplerDemo extends AbstractCustomSampler
         final String upperLimitProp = getProperties().
                     getProperty("generatedValueUpperLimit");
 
-        // convert to int
+        // convert to integer
         try
         {
             final int lowerLimit = Integer.valueOf(lowerLimitProp);
@@ -264,7 +264,7 @@ XLT supports two different types of external data.
 
 * _Example: A file that contains the total number of requests per application tier, with a tier/requests pair per line._
 
-External data files can use CSV format (which works out-of-the-box) or other formats (which can be read using custom parsers).
+External data files can use CSV format (which works out of the box) or other formats (which can be read using custom parsers).
 
 ### Data Parsers and Value Sets
 
@@ -336,20 +336,20 @@ As you can see, the configuration is centered around the various data files you 
 
 The basic data fields are used as follows:
 * `file`: Defines what file is to be processed and in which way.
-    * `source`: The path to the data file. If the path is relative, it will be resolved against the root directory of the current result set. [Required]
-    * `parserClass`: The full class name of the parser class to use for parsing the data file. [Required]
-    * `encoding`: The character encoding to use when reading the data file. [Optional, defaults to “UTF-8”]
+    * `source`: The path to the data file. If the path is relative, it will be resolved against the root directory of the current result set. [required]
+    * `parserClass`: The full class name of the parser class to use for parsing the data file. [required]
+    * `encoding`: The character encoding to use when reading the data file. [optional, defaults to “UTF-8”]
 * `headline` / `description`: Provide the text to show as the section header and section description.
 
 **Properties** define additional configuration options. Currently, these are parser settings only and are used as follows:
 * `property`: additional configuration option, consisting of
-    * `key`: The property name. [Required]
-    * `value`: The property value. [Required]
+    * `key`: The property name. [required]
+    * `value`: The property value. [required]
 
 The following property names are predefined by XLT, but note that your custom parser classes may define additional properties:
-* `parser.dateFormat.pattern`: The date/time pattern to parse a time value. See `SimpleDateFormat` for more information on date/time patterns. [Optional; the time value is expected to be a Java timestamp]
-* `parser.dateFormat.timeZone`: The time zone to use when interpreting time values. [Optional, defaults to GMT/UTC]
-* `parser.csv.separator`: The field separator character for CSV files. [Optional, defaults to comma]
+* `parser.dateFormat.pattern`: The date/time pattern to parse a time value. See `SimpleDateFormat` for more information on date/time patterns. [optional; the time value is expected to be a Java timestamp]
+* `parser.dateFormat.timeZone`: The time zone to use when interpreting time values. [optional, defaults to GMT/UTC]
+* `parser.csv.separator`: The field separator character for CSV files. [optional, defaults to comma]
 
 {{% note notitle %}}
 For tab-separated CSV files, use `&#x9;` as the value of parser.csv.separator.
@@ -375,12 +375,12 @@ For tab-separated CSV files, use `&#x9;` as the value of parser.csv.separator.
 ```
 
 * `table` defines the properties of a data table. Each table is defined with its own row or column definition.
-    * `title`: The title of the table. [Required]
-    * `type`: The type of the table, either `minmaxavg` or `plain`. Use `minmaxavg` for sampled data only, in which case the table will show the mean, minimum, and maximum of the sampled values. Similarly, use `plain` for precomputed data only. [Optional, defaults to `minmaxavg`]
+    * `title`: The title of the table. [required]
+    * `type`: The type of the table, either `minmaxavg` or `plain`. Use `minmaxavg` for sampled data only, in which case the table will show the mean, minimum, and maximum of the sampled values. Similarly, use `plain` for precomputed data only. [optional, defaults to `minmaxavg`]
 * `row` / `col`: Defines the layout of a data table. Tables can be laid out either row-wise or column-wise. If you use rows, the selected values will each be shown in a new table row; otherwise, in a new table column. Choose the method that better fits your needs. Both elements provide the same set of configuration options:
-    * `valueName`: The name/index of the value to show. [Required]
-    * `title`: The title of the series. [Optional, defaults to the value name]
-    * `unit`: The unit of measurement. [Optional, defaults to none]
+    * `valueName`: The name/index of the value to show. [required]
+    * `title`: The title of the series. [optional, defaults to the value name]
+    * `unit`: The unit of measurement. [optional, defaults to none]
 
 {{< image src="user-manual/externalData_tables.png">}}
 Data Tables in the _External Data_ section of the Test Report
@@ -406,18 +406,18 @@ Data Tables in the _External Data_ section of the Test Report
 ```
 
 * `chart` defines the chart title and the axes titles:
-    * `title`: The title of the chart. [Required, unique]
-    * `xAxisTitle`: The title of the x-axis. [Optional, defaults to “Time”]
-    * `yAxisTitle`: The title of the first/left y-axis. [Optional, defaults to “Values”]
-    * `yAxisTitle2`: The title of the second/right y-axis. [Optional, defaults to empty, in which case the axis is not shown]
+    * `title`: The title of the chart. [required, unique]
+    * `xAxisTitle`: The title of the x-axis. [optional, defaults to “Time”]
+    * `yAxisTitle`: The title of the first/left y-axis. [optional, defaults to “Values”]
+    * `yAxisTitle2`: The title of the second/right y-axis. [optional, defaults to empty, in which case the axis is not shown]
 
 * Each chart contains a collection of series (`seriesCollection`). A `series` defines which value will be shown as a graph in the chart and how the graph will be styled:
     * `valueName`: The name/index of the value to graph.
-    * `title`: The title of the series. [Optional, defaults to value name]
-    * `color`: The color of the graph. [Optional, by default, a color from a predefined color set is chosen]
-    * `axis`: The axis to use for this series, either “1” for the first/left axis or “2” for the second/right axis. [Optional, defaults to “1”]
-    * `average`: The percentage of values to use to calculate the moving average. [Optional, defaults to empty, in which case no moving average graph will be shown]
-    * `averageColor`: The color to use for the automatically added moving average graph. [Optional, by default, a color from a predefined color set is chosen]
+    * `title`: The title of the series. [optional, defaults to value name]
+    * `color`: The color of the graph. [optional, by default, a color from a predefined color set is chosen]
+    * `axis`: The axis to use for this series, either “1” for the first/left axis or “2” for the second/right axis. [optional, defaults to “1”]
+    * `average`: The percentage of values to use to calculate the moving average. [optional, defaults to empty, in which case no moving average graph will be shown]
+    * `averageColor`: The color to use for the automatically added moving average graph. [optional, by default, a color from a predefined color set is chosen]
 
 {{< image src="user-manual/externalData_charts.png">}}
 Charts in the _External Data_ section of the Test Report

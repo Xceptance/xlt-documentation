@@ -167,7 +167,7 @@ Let's start the explanation with a couple of terms to help you understand what w
 
 We defined a set of typical test scenarios above. Most of the time, we consider a scenario an isolated visit, repeating the steps of the test case and thus using defined data (note that random data is also defined data). Every visit or scenario consists of one or more page views with think times in between.
 
-Let's look at the `TBrowse` scenario. We might have four page views here:
+Let's look at the _TBrowse_ scenario. We might have four page views here:
 
 1. Open homepage
 1. Select a category

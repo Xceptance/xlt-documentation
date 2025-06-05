@@ -12,23 +12,15 @@ description: >
 
 ## Action (XLT)
 
-An “Action” in the XLT programming model represents a single, enclosed
-step in a test case. Actions are blocks of code that can be reused in
-multiple test cases. An important action for testing a web search engine
-could be to enter a search phrase and then click the search button to
-display the results. An action can trigger one or more requests.
+An "Action" in the XLT programming model represents a single, enclosed step in a test case. Actions are blocks of code that can be reused in multiple test cases. An important action for testing a web search engine could be to enter a search phrase and then click the search button to display the results. An action can trigger one or more requests.
 
 ## Agent (XLT)
 
-An agent simulates a number of virtual users repeatedly running specific
-test cases against the system under test.
+An agent simulates a number of virtual users repeatedly running specific test cases against the system under test. 
 
 ## Agent Controller / Agentcontroller (XLT)
 
-On every load-generating system, at least one `agentcontroller`
-is running, which receives commands from the master controller and sends back
-test results. The agentcontrollers (often abbreviated as "AC" or "ACs") 
-control local agent processes that generate the load.
+On every load generating system, at least one `agentcontroller` is running, which receives commands from the master controller and sends back test results. The agentcontrollers (often abbreviated as "AC" or "ACs") control local agent processes that generate the load.
 
 {{% note title="Spelling" %}}
 To better highlight that an `agentcontroller` is a shipped XLT component, we prefer the spelling `agentcontroller` over `agent controller`, but you might see both spellings used.
@@ -36,12 +28,12 @@ To better highlight that an `agentcontroller` is a shipped XLT component, we pre
 
 ## API
 
-An “Application Programming Interface” is a programming interface
+An "Application Programming Interface" is a programming interface
 provided by a software system. It enables developers to use or extend
 the available functionality of the software system with their own software
 programs.
 
-## Arithmetic Mean (also “Mean Value” or “Average”)
+## Arithmetic Mean (also "Mean Value" or "Average")
 
 The arithmetic mean can be calculated by dividing the sum of all values
 by the number of values. When analyzing load test results (e.g., response
@@ -66,7 +58,7 @@ with more resources will increase the performance of the complete system. No
 bottleneck exists if all components are evenly busy and contribute to the
 response behavior of the complete system.
 
-## Capture & Replay Tool (also called “Capture & Playback Tool”)
+## Capture & Replay Tool (also called "Capture & Playback Tool")
 
 This category of testing records interactions with the
 system under test that are manually performed by a tester. The recorded
@@ -78,7 +70,7 @@ to create robust and reusable test cases.
 
 Main problems with pure recorded test scripts are:
 
--   Lack of dynamism - e.g., in an online shop, the same product pages are
+-   Lack of dynamics - e.g., in an online shop, the same product pages are
     accessed repeatedly instead of selecting from a list randomly
     or crawling dynamically.
 -   Low robustness against changing test data - e.g., missing ability to
@@ -103,9 +95,9 @@ test, virtual users with headless browsers.
 
 ## Concurrent Users
 
-Concurrent Users are multiple real or simulated users, who are using the 
-system simultaneously during a load test. The terms “Parallel Sessions” or
-“Parallel visits” are also used.
+Concurrent Users are multiple real or simulated users, that are using the 
+system simultaneously during a load test. The terms "Parallel Sessions" or
+"Parallel visits" are also used.
 
 For web applications, the number of concurrent users is calculated as
 follows: Each user sends single requests, gets a response, and then
@@ -235,7 +227,7 @@ during this scenario (failover) can then be checked.
 
 ## Favicon
 
-“Favicon” is an abbreviation for “Favorite Icon”. It is a graphic in the
+"Favicon" is an abbreviation for "Favorite Icon". It is a graphic in the
 Windows icon format that can be displayed in the web browser's address
 bar or next to a browser bookmark (also called a favorite). The favicon
 file must be available in the root directory of the domain:
@@ -257,7 +249,7 @@ See [Local Shared Object]({{< relref "#local-shared-object" >}}).
 When creating XLT test cases sometimes you may want to reuse blocks of
 code that contain more than a single action.  
 For this purpose, you can create its own class with one method that
-combines a sequence of several XLT actions as a so-called “flow”.
+combines a sequence of several XLT actions as a so-called "flow".
 Different test cases can call this method to reuse the flow. This can be
 implemented if needed, but there is no explicit support available or
 necessary in the XLT framework.
@@ -300,8 +292,8 @@ the loaded HTML file and automatically requests for the embedded
 image URLs to load and display the images. Image loading can also be
 defined by CSS rules. In XLT, image loading can be configured with
 the property  
-`com.xceptance.xlt.css.download.images`. Sometimes, the term “image
-loading” is also used for other static content like CSS or JavaScript.
+`com.xceptance.xlt.css.download.images`. Sometimes, the term "image
+loading" is also used for other static content like CSS or JavaScript.
 See also [Static Content Loading]({{< relref "#static-content-loading" >}}).
 
 ## Initial Delay (XLT)
@@ -344,8 +336,8 @@ main memory usage, or processing performance are thereby determined.
 
 Load tests can focus on different system aspects. Different load
 profiles and test scenarios are necessary for the different aspects,
-often named with a special term like “stress test,” “endurance test,” or
-“scalability test.” Load test is the generic term for all these
+often named with a special term like "stress test," "endurance test," or
+"scalability test." Load test is the generic term for all these
 tests.
 
 ## Load Test Mode (XLT)
@@ -358,10 +350,10 @@ additional property files for development mode are ignored.
 
 ## Local Shared Object
 
-In the web development environment, a “Local Shared Object” is a file
+In the web development environment, a "Local Shared Object" is a file
 that is stored on a user's local computer with the help of Adobe Flash
 Player when the user visits a web page with relevant Flash content.
-Therefore these files are also called “Flash cookies”.
+Therefore these files are also called "Flash cookies".
 
 Local Shared Objects are used for the same purpose as HTTP cookies and
 follow the same rules. They can only be read by the website that
@@ -380,7 +372,7 @@ stops the test. At the end, the mastercontroller gathers
 test results and stores them on the file system.
 
 {{% note title="Spelling" %}}
-To better highlight that a `mastercontroller` is a shipped XLT component, we prefer the spelling `mastercontroller` over `master controller`, but you might see both spellings used.
+To better highlight that a mastercontroller is a shipped XLT component, we prefer the spelling _mastercontroller_ over _master controller_, but you might see both spellings used.
 {{% /note %}}
 
 
@@ -441,7 +433,7 @@ to load static content like images.
 
 ## Performance Test
 
-The term “performance test” is not always used uniformly. It
+The term "performance test" is not always used uniformly. It
 often describes a test to check compliance with given load
 requirements by simulating the defined load and comparing the system's
 behavior with requirements regarding response time, throughput, etc.
@@ -482,7 +474,7 @@ line, each with a name and a value.
 
 ## QA
 
-QA is an abbreviation for “Quality Assurance”. It covers all actions and
+QA is an abbreviation for "Quality Assurance". It covers all actions and
 methods to achieve and control a desired quality. Sometimes, the involved
 organizational units are called QA (e.g., test teams).
 
@@ -556,13 +548,13 @@ further changes to the application.
 Ideally, the processable workload of a scalable application increases
 linearly with the amount of available resources. E.g., such an
 application could respond to twice the number of requests per time by
-doubling the available resources. This is called “linear scalability”.
+doubling the available resources. This is called "linear scalability".
 A necessary prerequisite for linear scalability is that all resources can
 work at high capacity simultaneously.
 
 In real life, synchronization, communication, and administration overhead
 mean that added resources cannot be fully used by the application.
-This results in “sub-linear scalability,” where doubling
+This results in "sub-linear scalability," where doubling
 resources increases the processable workload by less than 100%.
 
 ## Scalability Test
@@ -570,7 +562,7 @@ resources increases the processable workload by less than 100%.
 A scalability test evaluates how a system's response behavior and
 resource consumption change with increasing load. Ideally,
 response time increases linearly with the load. In this operating range,
-we talk about a “scaling system.” In real-world systems, this ratio
+we talk about a "scaling system." In real-world systems, this ratio
 worsens with increasing load. From a certain point, response time
 increases disproportionately with increasing load. This is the
 limit of scalability. The scalability test evaluates how much the load
@@ -579,8 +571,8 @@ can be increased for a given system until this point is reached.
 Furthermore, the scalability test checks whether and how far this limit
 can be pushed by adding additional hardware and software resources.
 As long as the maximum processable workload increases approximately
-linearly with the available components, we talk about a system “scaling
-over the hardware and software.”
+linearly with the available components, we talk about a system "scaling
+over the hardware and software."
 
 ## Scenario
 
@@ -595,7 +587,7 @@ pages and other content as a response.
 
 ## Service Level Agreement (SLA)
 
-A “Service Level Agreement” (SLA) is a binding agreement between a service
+A "Service Level Agreement" (SLA) is a binding agreement between a service
 provider (contractor) and a service user (principal) regarding certain
 performance characteristics (e.g., availability or maximum response time).
 
@@ -674,7 +666,7 @@ must always be considered in relation to the arithmetic mean. A
 comparatively high standard deviation indicates a high variation in
 values.
 
-Values are called “normally distributed” if the distance from the
+Values are called "normally distributed" if the distance from the
 arithmetic mean does not exceed the standard deviation for 68% of the
 measured values and, furthermore, if the distance from the arithmetic mean
 does not exceed double the standard deviation for 95% of the measured
@@ -738,7 +730,7 @@ See [Local Shared Object]({{< relref "#local-shared-object" >}}).
 ## System Under Test (SUT)
 
 The hardware and software of the tested system (e.g., the demo
-application “Posters,” distributed with XLT, installed on a
+application "Posters," distributed with XLT, installed on a
 specific computer).
 
 ## Test Case (XLT)
@@ -807,7 +799,7 @@ test cases independently.
 A visit is a sequence of a user's page views on a website that are temporally
 interrelated.
 
-A visit to an online shop is comparable to a visit to a real-world retail
+A visit to an online shop is comparable to a visit to a real world retail
 shop. The user enters the shop (first request), possibly searches for some
 products, views single products in detail, puts them into the shopping cart,
 and eventually buys these products.
@@ -821,13 +813,13 @@ server. Depending on the application, the server saves internal status
 with the session ID (e.g., the basket of an online shop, login
 information, or the selected language for multi-language sites).
 
-The term “visit” is often used for statistical evaluations; in contrast,
-the term “session” is often used in the technical environment. Both
+The term "visit" is often used for statistical evaluations; in contrast,
+the term "session" is often used in the technical environment. Both
 terms are also often used synonymously.
 
 From a technical point of view, there is no defined end to a visit
 because it cannot be predicted whether the user will send a further
-request. Therefore, a session is often finished on the server-side after a
+request. Therefore, a session is often finished on the server side after a
 certain time if no further request has arrived (session timeout). In
 this case, the session data will be deleted or marked on the server-side.
 Depending on the web service, this timeout is often in the range of 30
@@ -861,7 +853,7 @@ Besides the original HTML file, today, further files like CSS, images,
 and JavaScript for the page's presentation are loaded and processed by the
 web browser.
 
-## Web Site
+## Website
 
 A website is one complete, interrelated web presence. Generally, a
 website designates all web pages and available services of a company or
@@ -884,19 +876,19 @@ WebDriver-compatible test driver.
 
 ## XPath
 
-XPath is an abbreviation for “XML Path Language”. XPath is a query
+XPath is an abbreviation for "XML Path Language". XPath is a query
 language for addressing elements of an XML document. In XLT, XPath can be used
 to address elements of a loaded HTML page.
 
 ## XPI
 
-The file extension “XPI” (Cross-Platform Install) was developed by
+The file extension "XPI" (Cross-Platform Install) was developed by
 the Mozilla Foundation. XPI files are ZIP-compressed installation files.
 They contain installation scripts and other added files.
 
 ## XSL
 
-The “Extensible Stylesheet Language” (XSL) is a set of transformation
+The "Extensible Stylesheet Language" (XSL) is a set of transformation
 languages for transforming or presenting XML
 documents. Members of this language family are XSL-FO (XSL Formatting
 Objects) for formatting instructions to export XML documents, XSLT (XSL

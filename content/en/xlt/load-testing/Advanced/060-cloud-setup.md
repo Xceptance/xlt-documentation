@@ -26,7 +26,7 @@ One machine runs your [master controller]({{< relref "../manual/010-basics#mcmas
 
 #### XLT Images 
 
-Xceptance provides ready-to-use **public XLT images** for AWS machines (AMIs) and Docker. These images are based on Debian, include the latest XLT and JDK (see release notes for current version information), and are tuned for load testing. For real-browser load testing, they also include the latest Chromium and Firefox (ESR) browsers with matching WebDriver binaries: `chromedriver` and `geckodriver`.
+Xceptance provides ready-to-use **public XLT images** for AWS machines (AMIs) and Docker. These images are based on Debian, include the latest XLT and JDK (see release notes for current version information), and are tuned for load testing. For real-browser load testing, they also include the latest Chromium and Firefox (ESR) browsers with matching web driver binaries: `chromedriver` and `geckodriver`.
 
 If you are looking for XLT images for other clouds or want to build your own image, visit XLT's sister project: **[XLT Packer](https://github.com/Xceptance/XLT-Packer/)**. This project contains scripts to install and set up the contents of an XLT image and provides Packer templates to create such images for the following clouds:
 
@@ -55,7 +55,7 @@ After your test has finished and the master controller has downloaded all the da
 
 To use the XLT **gce_admin** tool to manage load test machines, you first need to set up GCP access using Google's **gcloud command-line tool**. To do this, download and install the Google Cloud SDK for your platform. Follow the directions to [set up the SDK](https://cloud.google.com/sdk/docs/downloads-interactive). 
 
-Add the Cloud SDK command-line tools to your PATH and enable command completion if desired. In any case, restart your shell after installation and run `gcloud init` to initialize the gcloud environment. This will prompt you to log in using your Google user account. Log in (in your browser) and click _Allow_ to grant permission to access Google Cloud resources.
+Add the Cloud SDK command line tools to your PATH and enable command completion if desired. In any case, restart your shell after installation and run `gcloud init` to initialize the gcloud environment. This will prompt you to log in using your Google user account. Log in (in your browser) and click _Allow_ to grant permission to access Google Cloud resources.
 
 At the command prompt, select a Google Cloud project from the list where you have _Owner_, _Editor_, or _Viewer_ permissions:
 
@@ -177,7 +177,7 @@ Filter instances by:
 => 
 ```
 
-Select {{< kbd >}}g{{</ kbd >}}, and **gce_admin** will search for instance groups. If instance groups are found, you will be prompted to pick one, multiple, or all instance groups. **gce_admin** will then show you the machine list in a ready-to-use property format.
+Select {{< kbd >}}g{{</ kbd >}}, and **gce_admin** will search for instance groups. If instance groups are found, you will be prompted to pick one, multiple, or all instance groups. **gce_admin** will then show you the machine list in a ready to use property format.
 
 ```text
 --- Master controller configuration ---
@@ -381,7 +381,7 @@ Do you want to run the instance(s) with the above configuration? [y/n] =>
 If your AWS EC2 instances need custom configuration data (*user data*, in Amazon terminology), e.g., for setting a custom agent controller password or adding content to `/etc/hosts`, you can also specify this data during `ec2_admin` startup. There are three supported ways to pass the user data:
 
 1.  Store the data in a file and pass its name as a command-line argument (`-hf <file>` or `--hostDataFile <file>` for host data, `-pf <file>` or `--passwordFile <file>` for the agent controller password).
-2.  Pass the data as a command-line argument (`-h "..."` or `--hostData "..."` for host data, `-p "..."` or `--password "..."` for the agent controller password)). 
+2.  Pass the data as a command line argument (`-h "..."` or `--hostData "..."` for host data, `-p "..."` or `--password "..."` for the agent controller password)). 
 3.  When prompted by `ec2_admin`, enter the data. 
 
 {{< TODO >}}Is "user data" parameter still valid?{{< /TODO >}}

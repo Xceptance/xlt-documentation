@@ -194,7 +194,7 @@ A faster, optimized rule looks like this:
 
 ### Step 4: Capture a Part of the URL
 
-Remaining requests follow the pattern _'-Site/locale/Action'_. We now sort requests by the action part, appending it to the bucket name (ensuring we do not capture any URL parameters starting with _'?'_):
+Remaining requests follow the pattern _'-Site/locale/Action'_. We now sort requests by the action part, appending it to the bucket name (ensuring we do not capture any URL parameters starting at _'?'_):
 
 ```txt
 # Do a split by action name
@@ -226,7 +226,7 @@ We discussed this earlier, but here is the example again to show where you can s
 
 ```txt
 ...requestMergeRules.60.newName = {n:0} [{s:0}]
-...requestMergeRules.60.namePattern = .*
+...requestMergeRules.60.namePattern = .+
 ...requestMergeRules.60.statusCodePattern = (30[0-9])
 ``` 
 

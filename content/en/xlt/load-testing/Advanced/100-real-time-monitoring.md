@@ -82,15 +82,15 @@ xlt.reporting.graphite.port = 2003
 ```
 If enabled, XLT reports the following metrics to Graphite:
 
-- Runtime statistics (total and per name), errors (total and per name), and counts (total) for:
-	- Transactions,
-	- Actions,
-	- Requests, and
-	- Custom timers,
-- Arrival rates (total and per transaction name),
-- Bytes sent/received (total and per request name),
-- Event count (total), and
-- Agent metrics, such as total CPU usage and heap usage.
+- runtime statistics (total and per name), errors (total and per name), and counts (total) for:
+	- transactions,
+	- actions,
+	- requests, and
+	- custom timers,
+- arrival rates (total and per transaction name),
+- bytes sent/received (total and per request name),
+- event count (total), and
+- agent metrics, such as total CPU usage and heap usage.
 
 Since not all performance details are sent to Graphite, you will only get a first impression of the application’s behavior. For detailed analysis, the load test report is still the tool of choice.
 

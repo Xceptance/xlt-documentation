@@ -50,7 +50,7 @@ When the code is complete, prepare the test configurations for which you want to
 
 #### Create a Load Test Build Project
 
-An automated load test suite requires a separate build project. The reason is that the test suite itself needs to be retrieved from a version control system, and the code needs to be compiled. This is best accomplished in its own build project, so let's create one now. In Jenkins, create the load test project and give it a meaningful name and description. Choose "Freestyle project" as the project type. Now, the project needs to be configured.
+An automated load test suite requires a separate build project. The reason is that the test suite itself needs to be retrieved from a version control system, and the code needs to be compiled. This is best accomplished in its own build project, so let's create one now. In Jenkins, create the load test project and give it a meaningful name and description. Choose "free-style project" as the project type. Now, the project needs to be configured.
 
 **Step 1 - Connect to your version control system**
 
@@ -71,9 +71,9 @@ Now add the XLT plug-in as a new build step to your project and configure it as 
 
 {{% note notitle %}}Note that with the default configuration, the load test will be driven from the Jenkins machine, so the configured load profile should not be too demanding. See below for an overview of what else can be configured.{{% /note %}}
 
-To generate higher load, running one XLT agent controller from the Jenkins machine might not be enough. Dedicated load-generating machines are recommended. When configuring the XLT plug-in, the agent controller section offers several options, one of them being "Start agent machines in Amazon's EC2". This allows automatically starting Amazon Machine Images (AMIs) in Amazon's Elastic Compute Cloud (EC2) that can be used to generate load. Typically, you will use one of the machine images with XLT already installed. For the current list of AMI IDs, see the [Xceptance Homepage](https://www.xceptance.com/en/xlt/download.html).
+To generate higher load, running one XLT agent controller from the Jenkins machine might not be enough. Dedicated load generating machines are recommended. When configuring the XLT plug-in, the agent controller section offers several options, one of them being "Start agent machines in Amazon's EC2". This allows automatically starting Amazon machine images (AMIs) in Amazon's Elastic Compute Cloud (EC2) that can be used to generate load. Typically, you will use one of the machine images with XLT already installed. For the current list of AMI IDs, see the [Xceptance Homepage](https://www.xceptance.com/en/xlt/download.html).
 
-{{% note notitle %}}Note that when using the option "Start agent machines in Amazon's EC2," the XLT master controller has to wait for the remote agent controller EC2 machines to come up. This can take several minutes. Therefore, you should adjust the XLT property `com.xceptance.xlt.mastercontroller.initialResponseTimeout` to a value suitable for the described scenario.{{% /note %}}
+{{% note notitle %}}When using the option "Start agent machines in Amazon's EC2," the XLT master controller has to wait for the remote agent controller EC2 machines to come up. This can take several minutes. Therefore, you should adjust the XLT property `com.xceptance.xlt.mastercontroller.initialResponseTimeout` to a value suitable for the described scenario.{{% /note %}}
 
 **Step 4 - Other project settings**
 
@@ -132,22 +132,22 @@ Since XLT 4.11.0, the Jenkins XLT plug-in fully supports this new concept. It pr
 Parameters and their values can be easily obtained using Jenkins' Snippet Generator. You can use the UI to configure the plug-in as usual and get the corresponding pipeline script snippet by clicking the 'Generate Pipeline Script' button.
 
 Furthermore, the _xlt_ pipeline step returns a result object that can be queried for details if desired. The result object has the following fields:
-* `runFailed` - (boolean) Indicates whether the build status is FAILED.
-* `conditionFailed` - (boolean) Indicates whether a criterion is not met.
-* `conditionError` - (boolean) Indicates whether a criterion caused an error.
-* `conditionCritical` - (boolean) Indicates whether the build is marked as critical according to the given 'markCritical' option.
-* `conditionMessage` - (string) Summary message of all failed and erroneous criteria.
-* `reportUrl` - (string) XLT Report URL.
-* `diffReportUrl` - (string) XLT Difference Report URL.
-* `testFailures` - (list) Information about failed tests. Each object in the list has the following fields:
-	* `testCaseName` - (string) Name of the test.
-	* `actionName` - (string) Name of the action where the error occurred.
-	* `message` - (string) Error message.
-* `criteriaFailures` - (list) Information about criteria whose condition is not met. Each object in this list has the following fields:
-	* `id` - (string) The criterion's ID.
-	* `condition` - (string) The criterion's condition.
-	* `message` - (string) Failure/error message.
-* `criteriaErrors` - (list) Information about criteria whose evaluation caused an error. The objects have the same fields as `criteriaFailures`.
+* **runFailed** - (boolean) Indicates whether the build status is FAILED.
+* **conditionFailed** - (boolean) Indicates whether a criterion is not met.
+* **conditionError** - (boolean) Indicates whether a criterion caused an error.
+* **conditionCritical** - (boolean) Indicates whether the build is marked as critical according to the given 'markCritical' option.
+* **conditionMessage** - (string) Summary message of all failed and erroneous criteria.
+* **reportUrl** - (string) XLT Report URL.
+* **diffReportUrlv - (string) XLT Difference Report URL.
+* **testFailures** - (list) Information about failed tests. Each object in the list has the following fields:
+	* **testCaseName** - (string) Name of the test.
+	* **actionName** - (string) Name of the action where the error occurred.
+	* **message** - (string) Error message.
+* **criteriaFailures** - (list) Information about criteria whose condition is not met. Each object in this list has the following fields:
+	* **id** - (string) The criterion's ID.
+	* **condition** - (string) The criterion's condition.
+	* **message** - (string) Failure/error message.
+* **criteriaErrors** - (list) Information about criteria whose evaluation caused an error. The objects have the same fields as `criteriaFailures`.
 
 Example:
 
