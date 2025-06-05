@@ -9,9 +9,9 @@ description: >
 ---
 
 ## What is XLT?
-XLT (Xceptance LoadTest) is a regression and performance testing tool. The first prototype was released in 2005, and it has been improving ever since. The tool is used daily at [Xceptance](https://xceptance.com), so our developers understand the needs of our load testers.
+XLT (Xceptance Load Test) is a regression and performance testing tool. The first prototype was released in 2005, and it has been improving ever since. The tool is used daily at [Xceptance](https://xceptance.com), so our developers understand the needs of our load testers.
 
-XLT is platform-independent (you can develop and run your tests on any platform with a JDK) and open source, available under the Apache License 2.0 since February 2020. It is simple to deploy and highly scalable, provides ready-to-use reports (for single or multiple test runs, allowing you to compare runs or see trends), and offers real-time test monitoring. Nothing about XLT is proprietary; no custom IDE is needed. You can use your existing toolchain and knowledge.
+XLT is platform independent (you can develop and run your tests on any platform with a JDK) and open source, available under the Apache License 2.0 since February 2020. It is simple to deploy and highly scalable, provides ready to use reports (for single or multiple test runs, allowing you to compare runs or see trends), and offers real time test monitoring. Nothing about XLT is proprietary; no custom IDE is needed. You can use your existing toolchain and knowledge.
 
 ## How does it work?
 To use XLT, you will model the expected user actions on your application as a set of JUnit tests. You can develop and check these on your own machine in your preferred IDE (see [Workflow]({{< relref "050-workflow" >}}) for details on how this is usually done), using XLT libraries or even starting with one of our [sample test suites]({{< relref "../test-suites" >}}). To consolidate your test cases, XLT builds a [result browser]({{< relref "440-result-browser" >}}) for every test run (regardless of whether it was run from your IDE or in a load test environment). This provides further insights into what happened, in addition to the information output to the console or logs. 
@@ -42,7 +42,7 @@ The MC communicates with the AC. The AC waits for, receives, and distributes the
 The agents are the workhorses of the load test, as they actually execute the test suite against the system under test. Basically, an agent is a JVM that runs the users. Each user is a thread with subthreads (inactive threads are possible). The MC is responsible for calculating user distribution across agents, but the agents are still a component to watch, as memory tuning and sizing (total and relative to the box) are important for good and consistent test results. Still, a stalled agent does not block other agents.
 
 ### Grafana
-Graphite/Grafana can be used to display real-time test information. It shows response times, errors, machine utilization, transaction and action runtimes, and can also be paired with infrastructure monitoring. For more details, see [Real-Time Reporting with Graphite]({{< relref "../advanced/100-real-time-monitoring" >}}).
+Graphite/Grafana can be used to display real time test information. It shows response times, errors, machine utilization, transaction and action runtimes, and can also be paired with infrastructure monitoring. For more details, see [Real Time Reporting with Graphite]({{< relref "../advanced/100-real-time-monitoring" >}}).
 
 ## How to start using XLT
 
@@ -55,7 +55,7 @@ While you develop your test cases, the app you want to test should be in a stabl
 
 ### What to install
 To run XLT, you will need the following:
-* Latest JDK 8 (or 11).
+* Latest JDK 21.
 * Java IDE of your choice.
 * Latest [Apache Ant](https://ant.apache.org/).
 * [Maven](https://maven.apache.org/).

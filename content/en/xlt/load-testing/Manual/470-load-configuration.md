@@ -14,8 +14,8 @@ Before running your test suite as a performance test, you need to configure the 
 
 A load model defines the attributes you may influence to achieve a specific load and performance behavior. XLT supports two load models:
 
-* A user count model, and
-* An arrival rate model.
+* a user count model, and
+* an arrival rate model.
 
 Both have different characteristics and use cases, as illustrated below.
 
@@ -27,9 +27,9 @@ When you use it, the load is determined by the number of concurrent users. For i
 
 This model is best suited for:
 
-* A simple baseline test (single-user test) to assess the base performance of the system under almost no load.
-* A real load or performance test to assess performance under a high but _predictable_ load.
-* A test that should be easily repeatable and whose load is not influenced by the system under test.
+* a simple baseline test (single-user test) to assess the base performance of the system under almost no load,
+* a real load or performance test to assess performance under a high but _predictable_ load, or
+* a test that should be easily repeatable and whose load is not influenced by the system under test.
 
 ### Arrival Rate Model
 
@@ -74,9 +74,9 @@ Applying a load factor always involves some kind of rounding. Computed values wi
 
 While the load model defines what you can modify to achieve a certain load, load profiles define how you apply these values over time. XLT supports three different load profiles:
 
-- Static,
-- Ramp-up, and
-- Variable load.
+- static,
+- ramp-up, and
+- variable load.
 
 See below for their detailed explanation.
 
@@ -95,11 +95,11 @@ The load parameter is steadily increased. This allows the target system to warm 
 
 The ramp-up behavior of the load parameter can be controlled by the following settings:
 
-- `rampUpPeriod`: The length of the ramp-up phase before the target load is reached.
-- `rampUpInitialValue`: The load parameter value to start with.
-- `loadFactor`: The final load parameter once the ramp-up period has finished.
-- `rampUpSteadyPeriod`: The period to keep the current parameter value until the next ramp-up step (i.e., the time to keep a certain load level).
-- `rampUpStepSize`: The increment added to the load parameter after each ramp-up step.
+- `rampUpPeriod`: the length of the ramp-up phase before the target load is reached.
+- `rampUpInitialValue`: the load parameter value to start with.
+- `loadFactor`: the final load parameter once the ramp-up period has finished.
+- `rampUpSteadyPeriod`: the period to keep the current parameter value until the next ramp-up step (i.e., the time to keep a certain load level).
+- `rampUpStepSize`: the increment added to the load parameter after each ramp-up step.
 
 {{% note notitle%}}
 The **rampUpPeriod** and the **rampUpSteadyPeriod** are mutually exclusive (i.e., they cannot both be defined in the same load configuration).

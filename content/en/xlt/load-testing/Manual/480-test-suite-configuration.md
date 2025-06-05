@@ -40,11 +40,11 @@ The properties listed in `default.properties` are separated into the following g
 * JavaScript Settings
 * CSS Settings
 * Test Data Management Settings
-* Result Settings (enabling and configuring page output to disk).
-* Test Execution Settings (configuring think time, test abortion criteria).
+* Result Settings (enabling and configuring page output to disk)
+* Test Execution Settings (configuring think time, test abortion criteria)
 * Script Engine Settings
-* Real-Time Reporting Settings (Graphite configuration).
-* Miscellaneous Settings.
+* Real-Time Reporting Settings (Graphite configuration)
+* Miscellaneous Settings
 
 ### Result Directory Location
 
@@ -71,15 +71,25 @@ com.xceptance.xlt.proxy.password = myPassword
 
 Specifies the framework behavior in case of an error (i.e., whether the framework should abort a transaction if any of the following occurs):
 
-* While loading a page: If an HTTP error occurred while loading a page.
-* Page resource unavailable: If an HTTP error occurred while loading a resource embedded in a page.
-* JavaScript error: If a JavaScript error occurred.
-* Agent termination in case of server errors: Maximum number of errors allowed before an agent terminates. This helps automatically stop unobserved, long-running test cases in the event of severe error conditions, such as the unavailability of the system under test. The number of errors specified here is the error count per running agent controller.
+* If an HTTP error occurred while loading a page.
+* If an HTTP error occurred while loading a resource embedded in a page.
+* If a JavaScript error occurred.
+* If a maximum number of server errors occurred (in this case, not only the transaction is aborted but the whole agent terminates). This helps automatically stop unobserved, long-running test cases in the event of severe error conditions, such as the unavailability of the system under test. The number of errors specified here is the error count per running agent controller.
 
 ```bash
+# Whether the framework should abort a transaction if an HTTP error occurred
+# while loading a page.
 com.xceptance.xlt.stopTestOnHttpErrors.page = <true/false>
+
+# Whether the framework should abort a transaction if an HTTP error occurred
+# while loading a resource that is embedded in a page.
 com.xceptance.xlt.stopTestOnHttpErrors.embedded = <true/false>
+
+# Whether the framework should abort a transaction if a JavaScript error
+# occurred.
 com.xceptance.xlt.stopTestOnJavaScriptErrors = <true/false>
+
+# The maximum number of errors allowed before an agent terminates.
 com.xceptance.xlt.maxErrors = <number of errors per agent controller>
 ```
 
@@ -169,7 +179,7 @@ XLT permits preparing and using multiple `test.properties` files for easy mainte
 com.xceptance.xlt.testPropertiesFile = <filename>.properties
 ```
 
-Alternatively, it is also possible to pass the name of the test-specific configuration file on the `mastercontroller`’s command line:
+Alternatively, it is also possible to pass the name of the test-specific configuration file on the mastercontroller’s command line:
 
 ```bash
 mastercontroller.sh -auto -testPropertiesFile <filename>.properties
@@ -249,7 +259,7 @@ For `<testID>`, use any appropriate name. The following table lists all supporte
 |rampUpStepSize|Value to stepwise increase the configured load parameter during ramp-up.|
 |rampUpSteadyPeriod|Number of seconds between ramp-up steps.|
 |rampUpInitialValue|Initial load when starting ramp-up.|
-|loadFactor|A factor to be applied to users (and `arrivalRate` if defined). Use this value to scale the load up/down.|
+|loadFactor|A factor to be applied to users (and arrival rate if defined). Use this value to scale the load up/down.|
 
 A sample load profile configuration is given below:
 
@@ -280,7 +290,7 @@ com.xceptance.xlt.loadtests.TCrawler.users = 4
 
 ### Sample Configurations
 
-_User Count Model With Constant Load Profile_
+#### User Count Model With Constant Load Profile
 
 ```bash
 com.xceptance.xlt.loadtests.TAuthor.users = 5
@@ -289,7 +299,7 @@ com.xceptance.xlt.loadtests.TAuthor.users = 5
 Runs exactly 5 users right from the beginning.
 
 
-_User Count Model With Ramp-Up Load Profile_
+#### User Count Model With Ramp-Up Load Profile
 
 ```bash
 com.xceptance.xlt.loadtests.TAuthor.users = 50
@@ -300,26 +310,26 @@ com.xceptance.xlt.loadtests.TAuthor.rampUpPeriod = 5m
 Runs exactly 50 users, but ramps up the user count from 10 to 50 over 5 minutes.
 
 
-_User Count Model With Variable Load Profile_
+#### User Count Model With Variable Load Profile
 
 ```bash
 com.xceptance.xlt.loadtests.TAuthor.users = 0/5, 1h/50, 2h/50, 2h/100, 3h/20
 ```
 
-Runs the `TAuthor` scenario with a variable number of concurrent users (5&nbsp;&rarr;&nbsp;50&nbsp;&rarr;&nbsp;100&nbsp;&rarr;&nbsp;20).
+Runs the _TAuthor_ scenario with a variable number of concurrent users (5&nbsp;&rarr;&nbsp;50&nbsp;&rarr;&nbsp;100&nbsp;&rarr;&nbsp;20).
 
 
-_Arrival Rate Model With Constant Load Profile_
+#### Arrival Rate Model With Constant Load Profile
 
 ```bash
 com.xceptance.xlt.loadtests.TAuthor.users = 5
 com.xceptance.xlt.loadtests.TAuthor.arrivalRate = 100
 ```
 
-Runs the `TAuthor` scenario exactly 100 times per hour with at most 5 concurrent users.
+Runs the _TAuthor_ scenario exactly 100 times per hour with at most 5 concurrent users.
 
 
-_Arrival Rate Model With Ramp-Up Load Profile_
+#### Arrival Rate Model With Ramp-Up Load Profile
 
 ```bash
 com.xceptance.xlt.loadtests.TAuthor.users = 5
@@ -329,20 +339,20 @@ com.xceptance.xlt.loadtests.TAuthor.rampUpSteadyPeriod = 1m
 com.xceptance.xlt.loadtests.TAuthor.rampUpStepSize = 10
 ```
 
-Runs the `TAuthor` scenario exactly 100 times per hour with at most 5 concurrent users, but starts with an arrival rate of 50 per hour and increases it by 10 every minute until the target level of 100 is reached.
+Runs the _TAuthor_ scenario exactly 100 times per hour with at most 5 concurrent users, but starts with an arrival rate of 50 per hour and increases it by 10 every minute until the target level of 100 is reached.
 
 
-_Arrival Rate Model With Variable Load Profile_
+#### Arrival Rate Model With Variable Load Profile
 
 ```bash
 com.xceptance.xlt.loadtests.TAuthor.users = 5
 com.xceptance.xlt.loadtests.TAuthor.arrivalRate = 0/50, 1h/100, 2h/200, 3h/150
 ```
 
-Runs the `TAuthor` scenario with a variable arrival rate (50&nbsp;&rarr;&nbsp;100&nbsp;&rarr;&nbsp;200&nbsp;&rarr;&nbsp;150) and at most 5 concurrent users.
+Runs the _TAuthor_ scenario with a variable arrival rate (50&nbsp;&rarr;&nbsp;100&nbsp;&rarr;&nbsp;200&nbsp;&rarr;&nbsp;150) and at most 5 concurrent users.
 
 
-_Arrival Rate Model With Ramp-Up Load Profile and Load Factor_
+#### Arrival Rate Model With Ramp-Up Load Profile and Load Factor
 
 ```bash
 com.xceptance.xlt.loadtests.TAuthor.users = 5
@@ -351,7 +361,7 @@ com.xceptance.xlt.loadtests.TAuthor.rampUpPeriod = 5m
 com.xceptance.xlt.loadtests.TAuthor.loadFactor = 2.4
 ```
 
-Runs the `TAuthor` scenario exactly 240 times per hour with at most 12 concurrent users, but ramps up the arrival rate from 1/h to 240/h over 5 minutes.
+Runs the _TAuthor_ scenario exactly 240 times per hour with at most 12 concurrent users, but ramps up the arrival rate from 1/h to 240/h over 5 minutes.
 
 ## Development Environment Configuration
 
@@ -391,7 +401,7 @@ The usual lookup rules for project, test class, or user-specific property names 
 {{% /note %}}
 
 {{% danger %}}
-XLT *CANNOT* prevent test code from leaking secret properties. *DO NOT* output the values of secret properties in any form available to the user from your own test code (e.g., as debug messages)!
+XLT **cannot** prevent test code from leaking secret properties. **Do not** output the values of secret properties in any form available to the user from your own test code (e.g., as debug messages)!
 {{% /danger %}}
 
 ### Requesting secret properties
@@ -402,8 +412,8 @@ Test cases may wish to ensure that certain properties are used only if configure
 
 When dealing with different test environments, load profiles, and/or test data simultaneously, managing various combinations of configuration settings can be challenging. To make this easier and less error-prone, properties can be included as a set. This allows you to:
 
-* Predefine the configuration of certain aspects with specific values in separate files, and
-* Reuse and combine the predefined settings as needed with a single statement.
+* predefine the configuration of certain aspects with specific values in separate files, and
+* reuse and combine the predefined settings as needed with a single statement.
 
 To do this, the files `default.properties`, `project.properties`, `test.properties` (regardless of whether it has been renamed), and `dev.properties` can include further property files. Each of these additional property files must be placed within your test suite, and the name of all these files must end with `.properties`. Any included file may also define includes itself.
 
@@ -433,7 +443,7 @@ Include properties are treated like normal properties. Thus, if there are two in
 1. `project.properties`, followed by its includes.
 1. `test.properties` (or any other test-run-specific properties file), followed by its includes.
 1. `dev.properties`, followed by its includes (in development mode only).
-2. `secret.properties`, followed by its includes.
+1. `secret.properties`, followed by its includes.
 
 Includes are resolved according to these rules:
 
@@ -538,7 +548,7 @@ TOrder_DE.com.xceptance.xlt.thinktime.action = 10000
 posters.loadtest.tests.TRestApi.com.xceptance.xlt.thinktime.action = 0
 ```
 
-In this case, the general think time is 5,000ms but will be 10,000ms for `TOrder_DE` and 0ms for `TRestApi`.
+In this case, the general think time is 5,000ms but will be 10,000ms for _TOrder_DE_ and 0ms for _TRestApi_.
 
 When looking up a property value for a scenario, XLT tries the following alternatives in this order:
 
@@ -564,20 +574,20 @@ secret.TOrder_DE.credentials.user = secretOrderUser
 
 Depending on which property key is requested in which context, different values may be accessed:
 
-Test classes *OTHER THAN* `TOrder_DE`:
+Test classes *OTHER THAN* _TOrder_DE:_
 
-* `credentials.user` -> `admin`.
-* `secret.credentials.user` -> `admin`.
+* `credentials.user` -> `admin`
+* `secret.credentials.user` -> `admin`
 
-Test class `TOrder_DE`:
+Test class _TOrder_DE:_
 
-* `credentials.user` -> `secretOrderUser`.
-* `secret.credentials.user` -> `secretOrderUser`.
-* `TOrder_DE.credentials.user` -> `secretOrderUser`.
-* `secret.TOrder_DE.credentials.user` -> `secretOrderUser`.
+* `credentials.user` -> `secretOrderUser`
+* `secret.credentials.user` -> `secretOrderUser`
+* `TOrder_DE.credentials.user` -> `secretOrderUser`
+* `secret.TOrder_DE.credentials.user` -> `secretOrderUser`
 
 {{% note title="Best Practice" %}}
-Newly developed test code *SHOULD* always request the `secret.property` form for properties likely to carry secrets. This ensures the property value will only ever be available as a secret property, whether from framework or scenario-specific properties (i.e., a public scenario-specific property *WILL NEVER* override a secret global property if the code requests the secret value).
+Newly developed test code **should** always request the `secret.property` form for properties likely to carry secrets. This ensures the property value will only ever be available as a secret property, whether from framework or scenario-specific properties (i.e., a public scenario-specific property **will never** override a secret global property if the code requests the secret value).
 
-Configuration for existing scenarios *SHOULD* be moved to secret properties where appropriate. Due to the override rules, changes in the test code are not necessary.
+Configuration for existing scenarios **should** be moved to secret properties where appropriate. Due to the override rules, changes in the test code are not necessary.
 {{% /note %}}
