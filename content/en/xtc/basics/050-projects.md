@@ -105,6 +105,14 @@ Previously unregistered users invited this way will receive an email with a link
 
 Invitations are valid for 30 days. Project administrators may resend the invitation for an invited user from the _Members_ page at any time. Users who have once been invited to join a project, but have _not completed_ the registration process, will be automatically deleted after 90 days.
 
+### Adding Administrators to a Project
+
+{{% permission role="organization administrator" %}}
+
+Projects are typically managed by [project administrators]({{< relref "#user-roles-within-a-project" >}}). If no project administrator is currently available, the organization administrator can add new users as project administrators to the project or grant the _Project Administrator_ role to existing project members. 
+
+On the _Projects_ screen of the organization, click the _Add Project Admins_ option in the context menu of the project. Then, enter the email addresses of the users you want to add or promote as project administrators.
+
 ## Project States
 
 Projects may have three different states that influence not only what can be done with them, but also whether the project is visible at all.
@@ -117,7 +125,7 @@ Archived projects are no longer shown on the main dashboard or in the project se
 The state of a project can be altered as follows:
 
 * A [project administrator]({{< relref "#user-roles-within-a-project" >}}) may toggle the state of the project between active and inactive. In the project, go to _Configuration > General > Project State_ and edit the state as needed.
-* An [organization administrator]({{< relref "045-organizations/#user-roles-within-an-organization" >}}) may set all three project states. In the organization, go to _Projects_, click the _Change State_ menu item in the 3-dot menu of the project in question, and set the state as needed.
+* An [organization administrator]({{< relref "045-organizations/#user-roles-within-an-organization" >}}) may set all three project states. In the organization, go to _Projects_, click the _Change State_ menu item in the context menu of the project in question, and set the state as needed.
 
 You can change the state of a project at any time. For example, if a project needs more work, it can be set to active again, no matter whether it’s inactive or even archived.
 
