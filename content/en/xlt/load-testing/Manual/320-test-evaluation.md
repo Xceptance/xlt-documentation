@@ -42,6 +42,8 @@ To check whether the load setup was correct, you can review these points on the 
 - Does the **measurement period** match your configuration?
 - Was the **thinktime** duration as long as you expected?
 
+This section also displays each scenario’s share of the total load, both as a percentage and as a bar graph, for a quick overview.
+
 {{< image src="quickstart/load-profile.png" >}}
 Load Profile
 {{< /image >}}
@@ -138,6 +140,28 @@ The **Bandwidth** tab displays information about the used incoming and outgoing 
     request runtime in comparison contains the network runtime and the
     application time needed to process header and protocol information
     and transfer the data from socket level to the application level.
+
+#### Slowest Requests
+
+Starting with XLT 9.0.x, the report features a _Slowest Requests_ page that lists the top slowest requests in your load test with many details. To open this page, click on the corresponding entry in the _Requests_ submenu of the navigation bar.
+
+By default, the _Slowest Requests_ page lists up to 500 requests, with a limit of 20 requests per request name. To be counted as a slow request, the runtime of a request must be between 3 seconds and 10 minutes. All of these default limits can be reconfigured in the report generator configuration using the following properties:
+
+```bash
+## The maximum number of slow requests to remember per request name
+com.xceptance.xlt.reportgenerator.slowestRequests.requestsPerBucket = 20
+
+## The maximum number of slow requests to show in the report
+com.xceptance.xlt.reportgenerator.slowestRequests.totalRequests = 500
+
+## The minimum runtime (in ms) a request must reach to be remembered as a slow request
+com.xceptance.xlt.reportgenerator.slowestRequests.minRuntime = 3000
+
+## The maximum runtime (in ms) a request can reach to be remembered as a slow request
+com.xceptance.xlt.reportgenerator.slowestRequests.maxRuntime = 600000
+```
+
+Unlike on the _Requests_ page, the recorded data is not grouped by request name but every single recorded slow request is listed here.
 
 ### Network
 
