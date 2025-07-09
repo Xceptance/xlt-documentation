@@ -5,7 +5,7 @@ weight: 20
 type: docs
 
 description: >
-  Quick overview on what you need to Know to solve 90% of your working tasks
+  Quick overview on what you need to know to solve 90% of your test automation tasks
 ---
 
 ## Setup and Run / Quick Start
@@ -51,6 +51,7 @@ public class SomeTest
 
 ### Generate Reports
 
+* `mvn allure:report` to generate the report
 * `mvn allure:serve` to generate and show the report
 
 ### Recommended pom.xml
@@ -136,12 +137,12 @@ public class SomeTest
 
 Methods can have multiple `@DataSet()` annotations
 
+* `@DataItem` - annotate POJO representing the test data to automatically inject the data into it
 * `@DataSet("<dataSetId>")` - limit method to data set with defined id
 * `@DataSet(<index>)` - limit method to dataset with defined index
 * `@RandomDataSets(4)` - use 4 random data sets
 * `@SuppressDataSets` - don’t use any data set
 * `@DataFile("<path/to/file>")` - define path to test data if default should not be used
-* `@DataItem` - annotate POJO representing the test data to automatically inject the data into it
 
 ### General
 
@@ -149,39 +150,56 @@ Methods can have multiple `@DataSet()` annotations
 
 ## Selenide Basics
 
-{{< TODO >}}refer to Selenide Doku{{< /TODO >}}
+For more details on Selenide please refer to the official [documentation](https://selenide.org/documentation.html)
 
-* `$()` - select single element
-* `$$()` - select collection of elements
+* Navigation
+    * `Selenide.open(<url>)` - opens a URL inside the configured Browser
+    * `Selenide.open(Neodymium.configuration().url())` - open the configured URL from the neodymium.properties
+    * `Selenide.open(AuthenticationType.BASIC,new BasicAuthCredentials(Neodymium.configuration().basicAuthUsername(), Neodymium.configuration().basicAuthPassword())` - open the configured URL with the configured credentials
 
-* handle sliders:
-    * using the custom implementation in SelenideAddons:
-      `SelenideAddons.dragAndDropUntilCondition(<ElementForMovement>, <ElementForValidation>, <OffsetHorizontalMovement>, <OffsetForVerticalMovement>, <PauseBetweenMovements>, <MaxRetries>,<ConditionUntilTheMovementIsPerformed>);`
-    * e.g.
-      `SelenideAddons.dragAndDropUntilCondition($(".balSlider [role=slider]"), $(".balSlider [role=slider]"), 40, 0, INTERACTION_PAUSE, MAX_RETRIES,attribute("aria-valuenow", "8"));`
+* Element Selection
+    * `$(<CSS locator>)` - select single element via CSS
+    * `$$(<CSS locator>)` - select collection of elements via CSS
+    * `$x(<xPath>)` - select single element via xPath
+    * `$$x(<xPath>)` - select collection of elements via xPath
+    * `$$(<locator>).findBy(exactText("some text"))` - find an element inside a list with a specific text
+
+* Interaction
+    * `$(<locator>).click()` - clicks an element (scrolls the element into view upfront)
+    * `$(<locator>).scrollTo()` - scrolls to the element
+    * `$(<locator>).hover()` - hovers over an element
+    * `$(<locator>).setValue(<value>)` - sets the value attribute of an element
+    * `$(<locator>).sendKeys(Keys.ENTER)` - sends the enter key to the element
+
+* Validations
+    * `$(<locator>).shouldBe(visible)` - validates that the element is visible
+    * `$(<locator>).should(exist)` - validates that the element exists
+    * `$(<locator>).should(not(exist))` - validates that the does not exist
+    * `$(<locator>).shouldHave()` - validates that the does not exist
+
+* to handle sliders, you can use Neodymiums SelenideAddons as the following example shows.
+    
     ```java
     // the slider element that will be used for the test
-    SelenideElement elementUnderTest = $(".balSlider [role=slider]").scrollIntoView("{block:'center'}");
-    
-    // Interaction: move the slider to the right
-    //
-    // element for movement: elementUnderTest
-    // element for validation: elementUnderTest
-    // offset for the horizontal movement: 40
-    // offset for the vertical movement: 0
-    // pause between movements: 3000ms
-    // retries: 5
-    // condition until the movement is performed: aria-valuenow = 8
-    SelenideAddons.
-    
-    dragAndDropUntilCondition($(".balSlider [role=slider]"),$(".balSlider [role=slider]"),40,0,INTERACTION_PAUSE,MAX_RETRIES,
-    
-    attribute("aria-valuenow","8"));
+    SelenideElement sliderMove = $(<locator of the moveable part of the slider>);
+    SelenideElement sliderValue = $(<locator of the value part of the slider>);
+
+    // The following methid call will move the slider element 40px to the right and check for [aria-valuenow=8],
+    // and will retry this movement 3 times with a 2000 seconds delay in between two tries.
+    SelenideAddons.dragAndDropUntilCondition(
+                          sliderMove,  // the element that will be moved
+                          sliderValue, // the element that will be checked for the attribute
+                          40,          // pixel to move (horizontal)
+                          0,           // pixel to move (vertical)
+                          2000,        // pause in ms between two tries
+                          3,           // max number of retries
+                          attribute("aria-valuenow","8") // the attribute that should be gained
+                       );
     ```
-* shadow dom
+* find elements inside a shadow dom
     * `$(Selectors.shadowCss("#target-element", "#shadowhost-element")).click()`
 
-* iframes
+* switch to an iframe (and back)
     * `switchTo().frame($("#frame"));` - switch into iFrame
     * `switchTo().defaultContent();` - switch back
 
@@ -201,10 +219,10 @@ properties files must reside in the `./config/*.properties` directory at the pro
 
 The loading order for these properties is as follows:
 
-1. System properties
+1. system properties
 2. temporary config file
 3. `config/dev-neodymium.properties`
-4. System environment variables
+4. system environment variables
 5. `config/credentials.properties`
 6. `config/neodymium.properties`
 
@@ -272,9 +290,9 @@ All remaining aspects of `neodymium.properties` will be covered in the full prop
 
 * Neodymium context properties
 * JavaScriptUtils properties
-* Proxy configuration properties
-* Local proxy configuration properties
-* Browser behavior configuration
+* proxy configuration properties
+* local proxy configuration properties
+* browser behavior configuration
 
 ### Browser
 
@@ -327,7 +345,7 @@ supported file formats ordered by priority
 * CSV
 * JSON
 * XML
-* Properties
+* properties
 
 {{% warning notitle %}}
 **Attention:** only JSON is currently supported for complex test data with nested objects! Simple key/value pairs can be
@@ -349,7 +367,7 @@ Test data access:
 * `Neodymium.dataValue("<dataKey>")`
 * `Neodymium.getData().asString("<key>")` - `as...()` function for all primitive types
 * `DataItem` POJO - usual object access
-* `Neodymium.getData().get(<testDataClass.class>)` - pars manually into POJO instead of using @DataItem
+* `Neodymium.getData().get(<testDataClass.class>)` - parses data manually into POJO instead of using @DataItem
 
 Package test data to share common data among tests within the same package and its sub-packages in a file named
 `package_testdata`
@@ -409,12 +427,12 @@ How to use different localization inside data driven tests:
   browserprofile.Chrome_1200x768.browser=chrome
   browserprofile.Chrome_1200x768.browserResolution=1200x768
   ```
-* Attach all browsers to base test class to test everything with all browsers using `@Browser("<browserId>")`
+* attach desired brwoser annotation to the test class `@Browser("<browserId>")`
   ```java
   
   @Browser("Chrome_1200x768")
   @Browser("Firefox_1200x768")
-  public abstract class AbstractTest
+  public class MyTest
   {
       ...
   }
@@ -423,7 +441,7 @@ How to use different localization inside data driven tests:
 ## Accessibility
 
 * requires lighthouse independently installed using `npm install -g lighthouse`
-* Create a report at any point during test: `LighthouseUtils.createLightHouseReport("Homepage");`
+* create a report at any point during test: `LighthouseUtils.createLightHouseReport("Homepage");`
 * Accessibility properties with values in range 0 < _Value_ <= 1:
   ```properties
   neodymium.lighthouse.assert.thresholdScore.performance
@@ -438,6 +456,7 @@ How to use different localization inside data driven tests:
 
 ## Reports
 
+* `mvn allure:report` to generate and the report based on the last test execution
 * `mvn allure:serve` to generate and show the report
 * `@Step("description with {parameter}")` add description with parameter to function
   ```java
@@ -469,7 +488,7 @@ How to use different localization inside data driven tests:
       });
   }
   ```
-* Links will automatically be added to steps where the URL changes
+* links will automatically be added to steps where the URL changes
 * test data will automatically be attached if `@DataItem`, `Neodymium.getData().as…("<key>")` or
   `Neodymium.getData().get(<testDataClass.class>)` is used
 * json compare
@@ -490,9 +509,11 @@ How to use different localization inside data driven tests:
   ```
 * can be customized using the following properties:
   ```properties
+  neodymium.screenshots.fullpagecapture.enable=true
+  neodymium.screenshots.highlightViewport=false
   neodymium.screenshots.highlightLastElement=true
   neodymium.screenshots.highlightColor=#0000FF
-  Neodymium.screenshots.fullpagecapture.enable=true
+  neodymium.screenshots.enableOnSuccess=false
   ```
 
 ## Recording
@@ -516,22 +537,12 @@ How to use different localization inside data driven tests:
   ```java
   FilmTestExecution.startVideoRecording(String<fileName>);
   // do stuff
-  FilmTestExecution.
-  
-  finishVideoFilming(String<fileName>, boolean <testFailed>);
-  ```
-
-## PopUp Blocker
-
-* Will close non-deterministic pop-ups automatically if the selector to the close button is configured in the
-  `neodymium.properties`:
-  ```properties
-  neodymium.popup.customPopUp=#myWindow
+  FilmTestExecution.finishVideoFilming(String<fileName>, boolean <testFailed>);
   ```
 
 ## PageObjects and Components
 
-* use Page Object Model is to wrap all elements and functionality of a web page into an object
+* recommendation: use Page Object Model is to wrap all elements and functionality of a web page into an object
 * reduce duplicate code, support reusability and maintainability
   ```java
   import com.codeborne.selenide.SelenideElement;
@@ -556,7 +567,7 @@ How to use different localization inside data driven tests:
       }
   }
   ```
-* `assertExpectedPage()` for Post-validation after navigating to the `HomePage`
+* `assertExpectedPage()` for post-validation after navigating to the `HomePage`
 
 {{< TODO >}}add further reading to out wiki page and also external pages{{< /TODO >}}
 
@@ -616,6 +627,7 @@ How to use different localization inside data driven tests:
     * therefore the default Neodymium Log4j configuration can be overwritten
 * Selenium has its own logging
     * in some cases it logs a lot, so the default log level is set to `SEVERE`
+    * use the property `neodymium.seleniumLogLevel` to confiure the selenium logger
     * possible log levels are `SEVERE`, `WARNING`, `INFO`, `CONFIG`, `FINE`, `FINER`, and `FINEST`
 
 ## WebDriver
@@ -626,9 +638,7 @@ How to use different localization inside data driven tests:
 * `Neodymium.getBrowserProfileName()` - get used browser profile name
 * `Neodymium.getBrowserName()` - get used browser name
 * `Neodymium.getLocalProxy()` - get embedded local proxy
-* `Neodymium.getWebDriverStateContainer()` - get state and the objects belonging to the current execution of the
-  browser. Contains the current WebDriver, the embedded local BrowserUpProxy if used
-  and a counter that state how often the current execution setup was used
+* `Neodymium.getWebDriverStateContainer()` - get state and the objects belonging to the current execution of the   browser. Contains the current WebDriver, the mbedded local BrowserUpProxy if used and a counter that state how often the current execution setup was used
 
 ## Test Environments
 
