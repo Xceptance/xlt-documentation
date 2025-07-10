@@ -200,7 +200,7 @@ For more details on Selenide please refer to the official [documentation](https:
     * `$(Selectors.shadowCss("#target-element", "#shadowhost-element")).click()`
 
 * switch to an iframe (and back)
-    * `switchTo().frame($("#frame"));` - switch into iFrame
+    * `switchTo().frame($("<locator>"));` - switch into iFrame
     * `switchTo().defaultContent();` - switch back
 
 ## Configuration

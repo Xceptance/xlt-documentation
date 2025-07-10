@@ -10,7 +10,7 @@ description: >
 
 This chapter contains all information about the Neodymium properties.
 
-## Configuration via properties files
+## Configuration via Properties Files
 
 Neodymium combines a couple of frameworks that all have their own configuration needs which also effects test execution.
 Most of these properties can be defined/overwritten with environment variables. However since this is an awkward way of
@@ -24,7 +24,7 @@ We use [Owner](https://matteobaccan.github.io/owner/docs/usage/) a framework to 
 in order to avoid writing all the boilerplate code. If you are in need of your own set of global properties we encourage
 you to give Owner a try.
 
-## Neodymium properties
+## Neodymium Properties
 
 The following properties can be configured in the `config/neodymium.properties` file and can be accessed via
 `Neodymium.configuration().[propertyGetterMethod]()`.

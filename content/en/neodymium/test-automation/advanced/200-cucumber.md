@@ -29,7 +29,7 @@ We prepared a demo project: [Neodymium Cucumber Example](https://github.com/Xcep
 gives an idea how Cucumber could be used in a test automation suite. Further information can be obtained directly from
 the project.
 
-### Structural elements:
+### Structural Elements:
 
 * **_Feature_** is equivalent to a JUnit test class
 * **_Scenario_** is equivalent a JUnit test method

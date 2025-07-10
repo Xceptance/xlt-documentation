@@ -27,7 +27,7 @@ SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
 [ERROR] SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
 ```
 
-## Setup logging with Log4j
+## Setup Logging with Log4j
 
 If you are not sure, what framework to take for logging, we
 recommend [Apache Log4j 2](https://logging.apache.org/log4j/2.x/).

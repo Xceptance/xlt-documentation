@@ -78,7 +78,7 @@ Test data location example in Eclipse.
 Simple, key/value like data sets can be used with CSV, XML or JSON.
 {{% /warning %}}
 
-## Data sets
+## Data Sets
 
 Each data set automatically causes a separate run of each function, of a class, it is defined for.
 So for example: If you execute a test case and have a data set file with three data sets, it will be

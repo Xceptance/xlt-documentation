@@ -21,7 +21,7 @@ The [SelenideAddons](https://github.com/Xceptance/neodymium-library/blob/master/
 class contains several methods that we think are missing in the Selenide API. We provide new Conditions or shortcuts to
 functions that are hard to use if you don't have deeper knowledge of Selenide.
 
-### Regex matching attributes
+### Regex Matching Attributes
 
 We extended Selenide with regex to match values and attributes.
 
@@ -32,7 +32,7 @@ $("#search-container .search-field").
 should(SelenideAddons.matchValue("\\D+"));
 ```
 
-### StaleElementReferenceException handling
+### StaleElementReferenceException Handling
 
 In case of elements that tend to cause `StaleElementReferenceException` `$safe(final Runnable code)` can be used to
 catch them and perform retries.
@@ -55,7 +55,7 @@ SelenideElement someElement = SelenideAddons.$safe(() -> {
 });
 ```
 
-### Slider handling
+### Slider Handling
 
 Drag and drop webpage sliders until a given condition. Use the following function to execute linear 2d movements. The
 code example shows the basic function to execute a slider movement. The amount of retries and the time to wait between
