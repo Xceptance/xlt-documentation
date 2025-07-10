@@ -94,7 +94,7 @@ state that is not easy to clear or free up resources within the test environment
 
 In such cases we provide three ways how such a behaviour can be achieved.
 
-#### Tear down a specific WebDriver to prevent its reuse
+#### Tear Down a Specific WebDriver to Prevent Its Reuse
 
 This function can be used in a `@After` annotated function within a JUnit test case. You can define a specific condition
 that decides whether a WebDriver should be closed or not.
@@ -111,7 +111,7 @@ public void after()
 }
 ```
 
-#### Clear the cache of a WebDriver available for reuse
+#### Clear the Cache of a WebDriver Available for Reuse
 
 This function can be used within a function of a JUnit test case that is annotated with `@AfterClass` to clear the
 WebDriverCache of the WebDrivers ready for reuse. When no matching WebDriver can be found in the cache, a new one will
@@ -131,7 +131,7 @@ public void afterClass()
 (e.g. longer test duration) in a parallel execution environment.
 {{% /note %}}
 
-#### Configuring the max reuse setting
+#### Configuring the Max Reuse Setting
 
 The following two settings need to be configured within the Neodymium configuration e.g. `config/neodymium.properties`.
 Activate the reuse in general and configure the number of reuses. If not specified or set below 1 the driver will be
