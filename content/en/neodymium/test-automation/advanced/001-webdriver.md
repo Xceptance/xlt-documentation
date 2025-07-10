@@ -17,35 +17,24 @@ More details on configuring the browser properties can be found in the
 
 The next three sections describe how to set up specific WebDriver and browsers.
 
-## Set up a specific WebDriver
+## Set Up a Specific WebDriver
 
 For that, you have to download and provide a
 specific [Selenium WebDriver](http://www.seleniumhq.org/projects/webdriver/).
 
-You can download the common ones here:
+You can download the common WebDriver here:
 
-* [ChromeDriver](https://googlechromelabs.github.io/chrome-for-testing/)
-* [GeckoDriver (Firefox)](https://github.com/mozilla/geckodriver/releases)
-* [InternetExplorerDriver](https://www.microsoft.com/en-us/download/details.aspx?id=44069)
+* [Chrome](https://googlechromelabs.github.io/chrome-for-testing/)
+* [Gecko (Firefox)](https://github.com/mozilla/geckodriver/releases)
+* [Edge](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)
 
 After downloading you can configure them in the `config/neodymium.properties` file. Find the line that matches the
 WebDriver of your choice e.g. `neodymium.webDriver.chrome.pathToDriverServer =  C:/dev/webdriver/chromedriver.exe` or
 add them to the PATH of your system.
 
-## Set up a specific browser
+If you need to set the path of the browser executable as well, you can also easily set it in the properties as described [here]({{< relref "010-browser#set-up-a-specific-browser-executable" >}}).
 
-Sometimes the browser of your choice is not configured in your system PATH and the WebDriver is not able to find it. Or
-you would like to test a certain browser like a developer edition or an extended service release. You need to configure
-the path to the browser in the `config/neodymium.properties` file.
-
-e.g. `neodymium.webDriver.firefox.pathToBrowser =  C:/Program Files (x86)/Mozilla Firefox/firefox.exe`
-
-{{< TODO >}}update link{{< /TODO >}}
-
-More documentation on the settings within the `config/neodymium.properties` can be found on
-the [Neodymium configuration properties](Neodymium-configuration-properties) page.
-
-## Safari WebDriver setup
+## Safari WebDriver Setup
 
 Please follow the required steps
 from [Testing with WebDriver in Safari](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari)
@@ -60,17 +49,24 @@ browserprofile.Safari_1024x768.browser=safari
 browserprofile.Safari_1024x768.screenResolution=1024x768
 ```
 
-## Tear down
+## Tear Down
 
 Normally Neodymium takes care of quitting the WebDriver instances and there is nothing else to do or to worry about.
 Nevertheless, there may be some use and edge cases you need to handle yourself or know what you can do.
 
 ### KeepBrowserOpen and KeepBrowserOpenOnFailure
 
-{{< TODO >}}update link{{< /TODO >}}
+{{< TODO >}}update link - link to anchor directly{{< /TODO >}}
 
-Those settings are configured via the [Neodymium configuration properties](Neodymium-configuration-properties). We
-recommend that you only activate these properties for local test development to avoid resource issues within your CI
+Usually the browser and the according webdriver are closed automatically once a test finishes. However there are 
+ways to prevent this. 
+
+To keep the browser open you can either:
+- set the configuration values `neodymium.webDriver.keepBrowserOpen=true` or `neodymium.webDriver.keepBrowserOpenOnFailure=true` or
+- use the annotation `@KeepBrowserOpen(onlyOnFailure = false)`
+
+More details about properties can be found in the [Neodymium configuration properties](Neodymium-configuration-properties).
+We recommend that you only activate these properties for local test development to avoid resource issues within your CI
 environment.
 
 If those options are activated, the WebDrivers that opened the browsers can't be terminated since this would also result
@@ -80,17 +76,17 @@ interface provided by your operating system. If you restart your system regularl
 those WebDriver zombie processes will be closed during the normal shutdown routine.
 
 {{% warning notitle %}}
-**Attention:**  use `@KeepBrowserOpen` and `@KeepBrowserOpenOnFailure` with care. The WebDriver won't be close when
-closing the browser and need to be clause manually via some kind of task manager or interface provided by your operating
+**Attention:** use the `KeepBrowserOpen` logic with care. The WebDriver won't be shut down by
+closing the browser and need to be closed manually via some kind of task manager or interface provided by your operating
 system.
 {{% /warning %}}
 
 ### Reuse of WebDrivers
 
-{{< TODO >}}update link{{< /TODO >}}
+{{< TODO >}}update link - link to anchor directly{{< /TODO >}}
 
 Another edge case can be the reuse of WebDrivers. The start routine of a browser can take some time especially if they
-are started in a remote test environment. Therefore, it is a good idea to reuse an already instantiated WebDriver. This
+are started in a remote test environment. Therefore, it might a good idea to reuse an already instantiated WebDriver. This
 setting can be configured via the [Neodymium configuration properties](Neodymium-configuration-properties).
 
 Nevertheless, you may want to quit specific WebDrivers for some reason, e.g. prevent side effects from some browser

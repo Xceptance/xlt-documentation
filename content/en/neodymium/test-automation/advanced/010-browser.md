@@ -10,7 +10,7 @@ description: >
 
 This chapter is about browser handling, setting up browsers and defining their properties and multi browser handling.
 
-## Browser handling
+## Browser Handling
 
 To handle and control browsers in Neodymium the following annotations are used.
 
@@ -36,7 +36,7 @@ configurations in the `config/browser.properties` explained [here](#browser-conf
 in the child class.
 {{% /note %}}
 
-## Browser configuration
+## Browser Configuration
 
 Browser configurations are stored in the file `config/browser.properties`. Since it is a property file a special format
 is needed to define a configuration.
@@ -72,7 +72,7 @@ The following table lists all possible properties.
 | downloadDirectory          |                               NO | You might want to alter the standard download folder. NOTE: this is only supported by Firefox and Chrome                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | driverArgs                 |                               NO | Most WebDrivers offer to pass arguments to reduce/increase WebDriver logs, redirect them to separate file, change port, limit allowed origins, etc. To see what are offered by the WebDriver of your choice, please execute <path to WebDriver> --help command in terminal. These arguments you can now pass to the WebDriver via `driverArgs` property of browser profile.                                                                                                                                                                                                                                                                               |
 
-### Global browser profile configuration
+### Global Browser Profile Configuration
 
 The following properties can be configured on a global level. A specific configuration on browser profile level will
 override the global value.
@@ -84,7 +84,7 @@ browserprofile.global.acceptInsecureCertificates=true|false
 browserprofile.global.browserResolution=1200x900
 ```
 
-### Browser preference configuration
+### Browser Preference Configuration
 
 For Chrome and Firefox it's possible to configure a list of preferences stored in `config/browser.properties`.
 The list for Chrome can be
@@ -98,7 +98,22 @@ Please be aware that different browsers use different preference keys.
 preferences. If both are set, the `browserprofile.<browserId>.downloadDirectory` property is used.
 {{% /note %}}
 
-## Multi browser handling
+
+### Set Up a Specific Browser Executable
+
+Sometimes the browser of your choice is not configured in your system PATH and the WebDriver is not able to find it. Or
+you would like to test a certain browser like a developer edition or an extended service release. You need to configure
+the path to the browser in the `config/neodymium.properties` file.
+
+e.g. `neodymium.webDriver.firefox.pathToBrowser =  C:/Program Files (x86)/Mozilla Firefox/firefox.exe`
+
+{{< TODO >}}update link{{< /TODO >}}
+
+More documentation on the settings within the `config/neodymium.properties` can be found on
+the [Neodymium configuration properties](Neodymium-configuration-properties) page.
+
+
+## Multi Browser Handling
 
 Running tests with multiple browsers is fairly easy, only multiple `@Browser` annotations with all desired browsers need
 to be added to the test class or method. Thanks to the multi browser support you can execute your test with different
