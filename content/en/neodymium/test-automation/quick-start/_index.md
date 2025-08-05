@@ -9,26 +9,22 @@ description: >
   A full tutorial in several steps
 ---
 
-{{< TODO >}}short info box after each chapter with the most important stuff learned in each?{{< /TODO >}}<br>
-
 {{< TODO >}}test everything with the updated posters version with localization when it is online and update the
-necessary things{{<
-/TODO >}}<br>
+necessary things{{</TODO >}}<br>
 
 {{< TODO >}}take the screenshots again to have them all in the same size{{< /TODO >}}
 
 ## Your first testcase
 
-This guide provides instructions on how to utilize Neodymium from the beginning or integrate it into an existing
-project. To expedite setup, you can use
+This tutorial will show, how to write browser based test automation with Neodymium from scratch.
+
+A more complex test suite setup can be found at
 the [neodymium-template project](https://github.com/Xceptance/neodymium-template), which includes the necessary
-dependencies, configuration files, and a basic test utilizing the Page Object Model pattern. Additionally, cucumber is
-included but can be easily removed if not required.
+dependencies, configuration files, and a basic test utilizing the Page Object Model pattern, cucumber and more.
 
-Throughout this guides basic tests for the Xceptance Poster Demo Store will be created. Instead of setting up the store
-locally, the [hosted online version](https://posters.xceptance.io:8443/) is used.
-
-{{< TODO >}}add link to posters repo or wiki or both?{{< /TODO >}}
+Throughout this guides basic tests for the [Xceptance Poster Demo Store](https://posters.xceptance.io:8443/) will be
+created. Instead of setting up the store locally, the [hosted online version](https://posters.xceptance.io:8443/) is
+used.
 
 ### Adding Neodymium
 
@@ -44,25 +40,7 @@ To add Neodymium to your project, you need to add the following dependency to th
 </dependencies>
 ```
 
-Once this dependency is included, you can begin writing Neodymium tests. To leverage all advanced Neodymium
-functionalities and produce rich reports, Allure integration is strongly encouraged. Incorporate the following lines
-into your project's `pom.xml` to configure Allure.
-
-```
-<build>
-    <plugins>
-        <plugin>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-maven</artifactId>
-            <version>2.12.0</version>
-            <configuration>
-                <reportVersion>2.27.0</reportVersion>
-                <resultsDirectory>${project.basedir}/allure-results</resultsDirectory>
-            </configuration>
-        </plugin>
-    </plugins>
-</build>
-```
+Once this dependency is included, you can begin writing Neodymium tests.
 
 {{% warning notitle %}}
 **Attention:** The Allure results will be collected into the project base directory and are not removed by `mvn clean`.
@@ -76,8 +54,7 @@ in the [neodymium-template project](https://github.com/Xceptance/neodymium-templ
 
 This example showcases a fundamental Neodymium test. It illustrates how to open a website, perform actions on it, and
 verify the state of elements. The code uses only the essential `@NeodymiumTest` and `@Browser` annotation, demonstrating
-the minimal
-setup necessary for Neodymium testing.
+the minimal setup necessary for Neodymium browser testing.
 `@NeodymiumTest` is necessary to execute the test with Neodymium.
 `@Browser` assigns the default browser to the test. This is annotation is necessary for all tests using a browser
 because otherwise the browser isn't handled by Neodymium causing advanced features, like video recording, to break.
@@ -123,33 +100,81 @@ public class FirstTest
 
 ### Executing Tests
 
-To execute the tests in your IDE, run them as JUnit test.
-It is also possible to run them via maven. To do so, the command `mvn clean test` is used. This will execute all tests
-in the project. `mvn clean test -Dtest=<NameOfTestClass>` can be used to execute single tests.
+To execute the tests in your IDE, run can just execute as any other JUnit test. Besides that it is also possible to run
+them via maven:
 
-{{< TODO >}}or shorter like the following:{{< /TODO >}}
-
-The tests can be executed via:
-
-* IDE as JUnit test
 * `mvn clean test` to execute all tests
 * `mvn clean test -Dtest=<NameOfTestClass>` to execute specific tests
+* `mvn clean test -Dtest=<NameOfTestClass>#<NameOfTestMethod>` to execute a specific test method
 
-### Reports
+### Reporting
 
 Neodymium generates HTML reports using Allure. These reports offer detailed insights into test execution, including all
-test steps, error screenshots, page source HTML, and test-specific data. If configured, the reports also include GIF or
-video recordings of each test. To generate a report, simply run `mvn allure:serve`. For detailed information, consult
-the Allure documentation and the
+test steps, error screenshots, page source HTML, and test-specific data. We extended the basic Allure reports with new
+features like test data as JSON added to the test, steps containing the new URL if it changes and If configured, the
+reports also include GIF or video recordings of each test and some more. To generate a report, simply run
+`mvn allure:serve`. For detailed information, consult he Allure documentation and the
 provided [example report](https://allure-framework.github.io/allure-demo/10/index.html#).
 
 {{< image max-width="60%" src="neodymium/quickstart/first_test_report.png" >}}
 Example report for the example test `FirstTest`.
 {{< /image >}}
 
+Incorporate the following lines into your project's `pom.xml` to add Allure.
+
+```
+<build>
+    <plugins>
+        <plugin>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>2.12.0</version>
+            <configuration>
+                <reportVersion>2.27.0</reportVersion>
+                <resultsDirectory>${project.basedir}/allure-results</resultsDirectory>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
+
+To enable all Allure report features, including `@Step()` annotations, the following configuration must be added to the
+plugins section of your `pom.xml` file.
+
+```
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>${surefire.version}</version>
+    <configuration>
+        <forkCount>1</forkCount><!-- parallel test execution -->
+        <testFailureIgnore>true</testFailureIgnore>
+        <argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+        </argLine>
+        <systemPropertyVariables>
+            <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+            <selenide.reports>${project.build.directory}/selenide-results</selenide.reports>
+        </systemPropertyVariables>
+    </configuration>
+    <dependencies>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+    </dependencies>
+</plugin>
+```
+
+{{% warning notitle %}}
+**Attention:** without adding the dependencies above to the `pom.xml`, `@Step()` annotations **won't** work.
+{{% /warning %}}
+
 ## Test Structure
 
-This guide focuses on enhancing test project maintainability and code reusability. We achieve this by implementing the
+The next chapters focus on code readability, maintainability and reusability. Those steps are not mandatory for
+Neodymium test development, but we believe the best way to achieve these goals can be reached by implementing the
 Page Object Model and leveraging Allure's `@Step()` annotations to improve report clarity.
 
 ### Page Object Model
@@ -309,39 +334,6 @@ annotations.
 Improved report for the example test `FirstTest` with additional `Step` annotations.
 {{< /image >}}
 
-To enable all Allure report features, including `@Step()` annotations, the following configuration must be added to the
-plugins section of your `pom.xml` file.
-
-```
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-surefire-plugin</artifactId>
-    <version>${surefire.version}</version>
-    <configuration>
-        <forkCount>1</forkCount><!-- parallel test execution -->
-        <testFailureIgnore>true</testFailureIgnore>
-        <argLine>
-            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-        </argLine>
-        <systemPropertyVariables>
-            <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
-            <selenide.reports>${project.build.directory}/selenide-results</selenide.reports>
-        </systemPropertyVariables>
-    </configuration>
-    <dependencies>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>${aspectj.version}</version>
-        </dependency>
-    </dependencies>
-</plugin>
-```
-
-{{% warning notitle %}}
-**Attention:** without adding the dependencies above to the `pom.xml`, `@Step()` annotations **won't** work.
-{{% /warning %}}
-
 {{< TODO >}}add further reading to out wiki page and also external pages{{< /TODO >}}
 
 ## Data Driven Tests
@@ -364,8 +356,7 @@ path
 from the resource folder, including the file extension.
 
 Neodymium offers various methods for accessing test data. The simplest approach is using
-`Neodymium.getData().asString("<key>")`. The `TestData` class, accessed through `Neodymium`, provides `as...("<key>")`
-functions for all primitive data types, automatically adding the data to the Allure report.
+`Neodymium.getData().asString("<key>")`. Other primitive data types can be retrieved the same way.
 
 The test below illustrates searching for a product using data-driven search term.
 
@@ -421,6 +412,7 @@ can use multiple data objects within a single test.
 We will now expand the `TestDataTest` to include test data objects.
 
 ```java
+
 @Browser
 public class TestDataTest
 {
@@ -472,7 +464,7 @@ been extended.
 ]
 ```
 
-To map the JSON data to Java objects, we need to create POJOs. The `SearchData` class is shown as an example; the
+To map complex JSON data to Java objects, we need to create POJOs. The `SearchData` class is shown as an example; the
 `Product` class will follow a similar structure.
 
 ```java
@@ -501,9 +493,7 @@ public class SearchData
 ```
 
 Neodymium automatically runs tests for each data set. This can be controlled by using `@SuppressDataSets` and
-`@DataSet()`. `@SuppressDataSets` disables test data usage for the annotated function or test class. `@DataSet()` allows
-you to specify which data set to use, either by index (e.g., `@DataSet(<index>)`) starting at 1, ID (e.g.,
-`@DataSet("<dataSetId>")`), or by selecting random subsets (e.g., `@RandomDataSets(4)` selects 4 random sets).
+`@DataSet()`. More information can be found in the [test data chapter]({{< relref "020-test-data" >}})
 
 So let's add another data set to the test data.
 
@@ -545,13 +535,15 @@ result in multiple test method executions.
 ## Localization
 
 Neodymium offers localization to enable the reuse of test code across multiple websites and locales. To utilize this
-feature, you should change the locale property within the Neodymium configuration to the desired one and create a
-`localization.yaml` file, stored in the `config` directory at the project's root, containing key-value pairs for each
-locale. Localized text can be retrieved using `Neodymium.localizedText("<key>")`, which returns the value for the
-currently configured locale, or `Neodymium.localizedText("<key>", "<locale>")`, which returns the value for a specified
-locale. If a key is missing for the requested locale, Neodymium automatically falls back to the default locale's values.
-If the key is absent in the default locale as well, an error is thrown. The default locale is `en_US`, but it can be
-changed during runtime using `Neodymium.configuration().setProperty("neodymium.locale", <locale>)` or by modifying the
+feature, you should set the `neodymium.locale` property within the Neodymium configuration to the desired one and create
+a `localization.yaml` file, stored in the `config` directory at the project's root, containing key-value pairs for each
+locale.
+
+Localized text can be retrieved using `Neodymium.localizedText("<key>")`, which returns the value for the currently
+configured locale, or `Neodymium.localizedText("<key>", "<locale>")`, which returns the value for a specified locale. If
+a key is missing for the requested locale, Neodymium automatically falls back to the default locale's values. If the key
+is absent in the default locale as well, an error is thrown. The default locale is `en_US`, but it can be changed during
+runtime using `Neodymium.configuration().setProperty("neodymium.locale", <locale>)` or by modifying the
 `neodymium.properties` configuration file with `neodymium.locale=<locale>`. Further details on configurations are
 provided in the [Configurations](#configurations) chapter later.
 
@@ -579,6 +571,7 @@ function uses `Neodymium.localizedText("webElements.hotProductsLabel")` to get t
 
 ```java
 import com.xceptance.neodymium.util.Neodymium;
+
 import static com.codeborne.selenide.Condition.text;
 ...
 
@@ -603,6 +596,7 @@ The `TestDataTest` remains largely unchanged, with the only additions being the 
 localized labels.
 
 ```java
+
 @Browser
 public class TestDataTest extends AbstractTest
 {
@@ -616,7 +610,7 @@ public class TestDataTest extends AbstractTest
     public void testDataTest()
     {
         // open the test website
-        Selenide.open("http://localhost:8080/" + Neodymium.configuration().locale().replace("_", "-"));
+        Selenide.open("https://posters.xceptance.io:8443/" + Neodymium.configuration().locale().replace("_", "-"));
 
         HomePage homePage = new HomePage().assertExpectedPage();
         homePage.validateHotProductsLabelText();
@@ -784,15 +778,13 @@ browserprofile.browserId.headless=... - defines if the browser should run in hea
 To utilize the browsers defined in browser.properties, the `@Browser("<browserId>")` annotation is used. Currently, no
 tests are annotated, so the Neodymium default browser is used. To execute all tests with every configured browser,
 we annotate the AbstractTest class with `@Browser("<browserId>")` for each browser. Individual test methods within a
-class can also be run with different browsers by annotating them with `@Browser("<browserId>")` or all browsers can be
-suppressed using `@SuppressBrowsers`.
+class can also be run with different browsers by annotating them with `@Browser("<browserId>")`.
 
 ```java
 import com.xceptance.neodymium.common.browser.Browser;
 import com.xceptance.neodymium.util.Neodymium;
 import org.junit.jupiter.api.BeforeEach;
 
-@Browser
 @Browser("Chrome_1200x768")
 @Browser("Firefox_1200x768")
 public abstract class AbstractTest
@@ -1003,7 +995,7 @@ Use `FilmTestExecution.startVideoRecording(String fileName);` to start recording
 recording is added to the Allure report. Otherwise, it's only added if appendAllRecordingsToAllureReport is set to
 `true`.
 
-## Accessibility
+## Accessibility Testing
 
 Accessibility is vital, ensuring websites are usable by everyone. To address and test accessibility, Neodymium has
 integrated Google [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview).

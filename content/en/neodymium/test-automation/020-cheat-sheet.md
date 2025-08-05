@@ -48,11 +48,13 @@ public class SomeTest
 * as JUnit test via IDE
 * `mvn clean test` for all tests
 * `mvn clean test -Dtest=<NameOfTestClass>` for specific tests
+* `mvn clean test -Dtest=<NameOfTestClass>#<NameOfTestMethod>` for specific test method
 
 ### Generate Reports
 
 * `mvn allure:report` to generate the report
 * `mvn allure:serve` to generate and show the report
+* `mvn clean test allure:report` to run all tests and generate the report
 
 ### Recommended pom.xml
 
@@ -138,7 +140,7 @@ public class SomeTest
 Methods can have multiple `@DataSet()` annotations
 
 * `@DataItem` - annotate POJO representing the test data to automatically inject the data into it
-* `@DataSet("<dataSetId>")` - limit method to data set with defined id
+* `@DataSet(id="<dataSetId>")` - limit method to data set with defined id
 * `@DataSet(<index>)` - limit method to dataset with defined index
 * `@RandomDataSets(4)` - use 4 random data sets
 * `@SuppressDataSets` - don’t use any data set
@@ -538,6 +540,14 @@ How to use different localization inside data driven tests:
   FilmTestExecution.startVideoRecording(String<fileName>);
   // do stuff
   FilmTestExecution.finishVideoFilming(String<fileName>, boolean <testFailed>);
+  ```
+
+## PopUp Blocker
+
+* Will close non-deterministic pop-ups automatically if the selector to the close button is configured in the
+  `neodymium.properties`:
+  ```properties
+  neodymium.popup.customPopUp=#myWindow
   ```
 
 ## PageObjects and Components
