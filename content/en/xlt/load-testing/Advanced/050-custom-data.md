@@ -93,7 +93,10 @@ Recording custom values during your test scenario is done as follows:
 ```java
 double value = 0.1234; // determine the value
 
-CustomValue data = new CustomValue("CacheHitRatio"); // also sets timestamp
+CustomValue data = new CustomValue("CacheHitRatio");
+// set timestamp
+data.setTime(System.currentTimeMillis());
+// set value
 data.setValue(value);
 
 Session.getCurrent().getDataManager().logDataRecord(data);
