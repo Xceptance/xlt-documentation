@@ -95,6 +95,14 @@ To **remove members** from a project, go to the project members list and click t
 Please note that after removing members from the project, they are not automatically deleted from the organization as well, but will remain there until you explicitly remove them from the organization.
 {{% /note %}}
 
+### Adding User Groups to a Project
+
+{{% permission type="project" role="project administrator" %}}
+
+Instead of adding single users to a new project, you may want to add an exisiting **[User Group]({{< relref "045-organizations/#user-groups" >}})** of your organization. 
+
+To do so, browse to the project's *Members* page, switch to the *User Groups* tab, and add each group with the proper project role. When new users are then added to this user group, they will automatically be members of the project as well.
+
 ### Inviting Users to Join a Project
 
 {{% permission type="project" role="project administrator" %}}
