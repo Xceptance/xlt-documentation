@@ -67,4 +67,4 @@ XTC can notify users whenever a load test changes its state.
 Here's how you can set up notifications:
 
 * Via **Slack**: To receive Slack notifications, configure the [Slack Integration]({{< relref "../integrations/510-slack" >}}) for your project. XTC will then send updates about the [load test's state]({{< relref "../integrations/510-slack/#load-tests" >}}) (start, finish, error, report available, etc.) directly to the Slack channel you've specified.
-* Via **Email**: If you prefer email notifications, go to the _Notifications_ tab on the load test's details page. You can then add a custom list of email addresses that XTC will notify when the load test finishes.
+* Via **Email**: If you prefer email notifications, go to the _Notifications_ section of the _Settings_ tab on the load test's details page. You can then add a custom list of email addresses that XTC will notify when the load test finishes. To disable notifications again, just clear the address list.
