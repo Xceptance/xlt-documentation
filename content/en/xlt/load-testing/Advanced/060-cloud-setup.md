@@ -235,22 +235,11 @@ Note that this tool is not intended to replace the [AWS console](http://aws.amaz
 
 Xceptance provides ready-to-go AMIs (Amazon Machine Images) with XLT. These AMIs are pre-packaged systems optimized for load testing with XLT already installed. For real browser load testing, they also include the latest Chromium and Firefox (ESR) browsers with matching web driver binaries, `chromedriver` and `geckodriver`.
 
-Using one of these AMIs may save you the work of creating and maintaining your own AMIs but may also impose additional costs. Amazon will charge you for the infrastructure usage. Ensure that your security group permits communication on port 8500. This is the XLT agent port on these machines. A list of current AWS AMI IDs can be found next to the release information on [Github](https://github.com/Xceptance/XLT/releases).
+Using one of these AMIs may save you the work of creating and maintaining your own AMIs. There is no additional cost for the image, but Amazon will charge you for infrastructure usage. Ensure that your security group permits communication on port 8500. This is the XLT agent port on these machines. A list of current AWS AMI IDs can be found next to the release information on [Github](https://github.com/Xceptance/XLT/releases).
 
 {{%warning title="Older AMIs"%}}
 Usually, the last major and minor versions of XLT AMIs are provided by Xceptance. There is no guarantee that older versions will be kept available. Ensure you either have your own AMIs set up or upgrade to a more current one frequently.
 {{%/warning%}}
-
-#### Images for Other Cloud Vendors
-
-In addition to the [Amazon Machine Images]({{< relref "#amis-for-aws" >}}) provided with XLT releases, you can build your own images using our public [XLT Packer](https://github.com/Xceptance/XLT-Packer) project. This project not only contains scripts to install and set up the contents of an XLT image, but also provides Packer templates to actually create such images for the following clouds:
-
-* AWS
-* DigitalOcean
-* Google
-* Hetzner
-
-Follow the instructions in the README file to create an XLT image for one of the supported clouds yourself.
 
 ### Setting up ec2_admin
 
