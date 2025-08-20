@@ -36,9 +36,15 @@ You will be prompted to confirm that you want to start the load test with the gi
 
 Instead of starting the load test manually you can schedule it for an automated start. If you use this feature, make sure you have all settings properly configured. The scheduling does not validate the setup. You can remove a schedule at any time or start the test manually if desired. 
 
-To create, update or delete a test schedule, click the _Schedule_ context menu item in the load test table or the _Schedule_ button on the load test details page to open the scheduling dialog, then pick a date and time (UTC). 
+To create, update or delete a test schedule, click the _Schedule_ context menu item in the load test table or the _Schedule_ button on the load test details page to open the scheduling dialog, then pick a date and time. The default time zone is UTC, but to make your planning easier, you have the option to choose any other time zone from the available list. Additionally, XTC provides convenient quick-select links within the dialog for setting times like "NOW,"  or "+1H."
 
-Once a load test has been scheduled, its settings can no longer be edited. If you want to change anything, you’ll first need to delete the schedule using the scheduling dialog, make the required changes, and afterward schedule the load test once again.
+{{< image src="xtc/loadtest_schedule.png" >}}
+Scheduling a load test.
+{{< /image >}}
+
+{{% note notitle %}}
+Once a load test has been scheduled, the **test settings can no longer be edited**. If you want to change anything, you’ll first need to delete the schedule using the scheduling dialog, make the required changes, and afterward schedule the load test once again.
+{{% /note %}}
 
 ## Stopping a Load Test
 

@@ -52,6 +52,8 @@ You can open the detail view of a scenario by clicking the scenario name. There 
 
 ### Scenario Settings
 
+{{% permission type="project" least="true" role="test manager" action="edit scenario settings" %}}
+
 On the _Settings_ tab, you may adjust how your scenario is run. 
 
 You can simply switch between the default and your overwritten values for any setting by checking _Use Default_ in any settings section. You will be asked to confirm your decision.
@@ -85,11 +87,9 @@ In _Locations_ you define where to run the scenario from. Available locations wi
 
 In _Properties_ you may add test properties to use for scenario execution. These properties may be entered as free text, so make sure your input is valid!
 
-### Notifications
+#### Notifications
 
-{{% permission type="project" least="true" role="test manager" action="enable or disable scenario notifications" %}}
-
-On the _Notifications_ tab you can enable or disable notifications entirely for the current scenario if desired, and set a default reply-to address for email notifications. 
+Under _Notifications_ you can enable or disable notifications entirely for the current scenario if desired, and set a default reply-to address for email notifications. 
 
 **When** an alert is triggered and **to whom** notifications are sent is defined by the scenario's [**quality sensors**]({{< relref "#quality-sensors" >}}) and the [**notification lists**]({{< relref "420-monitoring-configuration/#notification-lists" >}}) these sensors are linked to. 
 

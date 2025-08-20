@@ -35,7 +35,7 @@ The scenario defaults tab with expand toggle and editing button.
 
 XTC uses a flexible approach to configuring when an alert is triggered and to whom notifications are sent. Instead of having a single list of recipients where all recipients are notified in every case, you can define your own lists of who gets notified and how (**notification lists**) and under which circumstances these alerts should be sent ([**quality sensors**]({{< relref "#quality-sensors" >}})). 
 
-Notification lists are managed globally for a project, on the project configuration's _Notification Lists_ tab. 
+Notification lists are managed globally for a project, on the project configuration's _Notifications_ tab. 
 
 In a simple project, the setup of notification lists might look like this:
 
@@ -43,11 +43,11 @@ In a simple project, the setup of notification lists might look like this:
 * **Monitoring Dev Team**: Maintains the monitoring scenarios.
 * **App Dev Team**: Addresses performance issues in the monitored application.
 
-The default **Reply-To Address** for all notification e-mails can be defined in the _General_ settings on the _Notification Lists_ tab. If none is set this will be a no-reply service address, so we recommend using any sensible contact in your project for this.
+The default **Reply-To Address** for all notification e-mails can be defined in the _General_ settings on the _Notifications_ tab. If none is set this will be a no-reply service address, so we recommend using any sensible contact in your project for this.
 
 ### Defining a Notification List
 
-To add a new notification list, go to the _Notification Lists_ tab in _Configuration_ and click _New_ at the top right. You will be asked to set a name for your list and, if needed, add a description.
+To add a new notification list, go to the _Notifications_ tab in _Configuration_ and click _New_ at the top right. You will be asked to set a name for your list and, if needed, add a description.
 
 The newly created notification list will then show up in the overview table. 
 
@@ -69,9 +69,27 @@ To add new subscribers to a notification list, go to the _Subscribers_ tab in th
 
 When you are finished configuring a notification list, you can [use it in quality sensors]({{< relref "#managing-notification-lists-of-a-quality-sensor" >}}). You can check which quality sensors the notification list is assigned to in the notification list's details page on the _Assignments_ tab. You can use this to check which alerts you might affect by changing any notification list.
 
+### Activation Times
+
+Per default, monitoring alerts are sent out 24/7 on any weekday. While this is appropriate for functional issues, less important issues do not need to be reported around the clock. For example, performance issues could be reported only during business hours.
+
+You can manage the time periods when a notification list is active: an activation time defines a recurring time window during which notifications are sent to subscribers. For instance, notifications could be sent Monday through Friday from 9 a.m. to 5 p.m. You can add up to 20 different activation times per notification list. No notifications will be sent outside of these times.
+
+A newly created activation list is, per default, active around the clock.
+
+To limit the active time, go to the notification list and switch to the *Activation Times* tab. There, you can either edit the default activation time, or create a new activation time (in that case, don't forget to disable or delete the default activation time) by specifying the following:
+
+* Name and description.
+* The days the activation time window is valid.
+* The start time of the window.
+* The end time of the window (including additional 59 seconds, so 23:59 becomes 23:59:59).
+* The time zone for the start and end times.
+
+You can define multiple activation times to allow for different time periods on the same or different weekdays. Time windows may overlap. Notifications are sent as long as at least one time window is active.
+
 ### Pausing or Disabling Notifications
 
-On the project configuration's _Notification Lists_ tab, you can **globally disable and enable** notifications for the whole project. 
+On the project configuration's _Notifications_ tab, you can **globally disable and enable** notifications for the whole project. 
 
 To **pause** notifications (and, if you configure this, pause scenario execution) for a predefined period in time you may configure [**Quiet Periods**]({{< relref "425-quiet-periods" >}}).
 

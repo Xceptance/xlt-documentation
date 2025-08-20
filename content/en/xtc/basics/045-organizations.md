@@ -72,6 +72,36 @@ To **update a user’s role** within an organization, go to the _Members_ page a
 
 To **remove members** from an organization, go to the _Members_ page and click the context menu right of the user name, then select _Remove_ (you will be prompted to confirm the deletion).
 
+## User Groups
+
+{{% permission action="create, update and delete user groups" role="organization administrator" %}}
+
+Managing a large organization with many projects and users can be challenging. This is especially difficult when all users should have access to the same projects and have the same role in each project. Whenever user assignments or roles change, these changes must be applied to each project.
+
+To simplify this process, XTC supports the concept of user groups. A user group is a collection of organization members managed at the organization level. Similar to regular organization members, user groups can be assigned to a project with a specific role later on. All users in the group become indirect members of the project and have the same role. This intermediate layer significantly simplifies project member management.
+
+For example, you could create user groups such as "Admins", "Test Managers", "Testers", and "Reviewers". Go to the *Members* page in your organization and switch to the *User Groups* tab. Click "New" to create a new user group. You can check _Add Org Members to Group_ to add all current org members to the newly created group. To add or remove members, click on the newly created group's name. In the user group detail view, you can then add and remove group members as appropriate (user invitations are not possible here, you can only add existing org members).
+
+Then, assign these groups to all projects as desired. To do so, browse to the project's *Members* page, switch to the *User Groups* tab, and add each group with the proper project role. Note that this only needs to be done once.
+
+Now, when adding a new user to the organization, simply assign them to the appropriate user group, for example, the "Testers" group. This automatically makes them a tester in all projects with the "Testers" user group assigned. To make a user a project administrator in all projects, remove them from their current group and add them to the "Admins" group.
+
+Note that you can mix regular project members and user groups. This allows for project setups with special needs.
+
+### Effective Role 
+
+Now that users can be both direct and indirect project members, the question arises as to what their effective role will be.
+
+* If a user is a direct member, they will get the role defined at their direct membership.
+* Otherwise, the user is only an indirect member through one or more user groups, in which case the user will have the highest role of any of the user groups.
+
+### Known Limitations
+
+Some features are currently not available to indirect project members. This includes:
+
+* Remembering the last visited projects.
+* The ability to star a project.
+
 ## Locking Members of an Organization
 
 {{% permission role="organization administrator" %}}

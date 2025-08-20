@@ -233,9 +233,9 @@ Note that this tool is not intended to replace the [AWS console](http://aws.amaz
 
 ### AMIs for AWS 
 
-Xceptance provides ready-to-go AMIs (Amazon Machine Images) with XLT. These AMIs are pre-packaged systems optimized for load testing with XLT already installed. Using one of these AMIs may save you the work of creating and maintaining your own AMIs but may also impose additional costs. Amazon will charge you for the infrastructure usage. Ensure that your security group permits communication on port 8500. This is the XLT agent port on these machines. A list of current AWS AMI IDs can be found next to the release information on [Github](https://github.com/Xceptance/XLT/releases).
+Xceptance provides ready-to-go AMIs (Amazon Machine Images) with XLT. These AMIs are pre-packaged systems optimized for load testing with XLT already installed. For real browser load testing, they also include the latest Chromium and Firefox (ESR) browsers with matching web driver binaries, `chromedriver` and `geckodriver`.
 
-Additionally, you can build your own images using our public [XLT-Packer project](https://github.com/Xceptance/XLT-Packer). It contains a README explaining how to use it to create images set up for running XLT for the cloud vendor of your choice.
+Using one of these AMIs may save you the work of creating and maintaining your own AMIs. There is no additional cost for the image, but Amazon will charge you for infrastructure usage. Ensure that your security group permits communication on port 8500. This is the XLT agent port on these machines. A list of current AWS AMI IDs can be found next to the release information on [Github](https://github.com/Xceptance/XLT/releases).
 
 {{%warning title="Older AMIs"%}}
 Usually, the last major and minor versions of XLT AMIs are provided by Xceptance. There is no guarantee that older versions will be kept available. Ensure you either have your own AMIs set up or upgrade to a more current one frequently.
