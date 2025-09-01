@@ -167,7 +167,32 @@ This sequence of time/value pairs defines a function that keeps the load paramet
 {{< image src="user-manual/chart_variable_load_factor.svg" max-width="80%" >}}
 {{< /image >}}
 
-Note that the time/value pairs must be sorted by their time in ascending order. You can also specify two pairs for a specific time span, which is useful when you want the load parameter to change immediately. If no pair is given for time 0, a pair "0/1" is automatically inserted (implicitly causing ramp-up behavior). Finally, if the load test runs longer than the last pair, the last known load parameter value is kept stable.
+Note that the time/value pairs must be sorted by their time in ascending order. You can also specify two pairs for a specific time span, which is useful when you want the load parameter to change immediately. If no pair is given for time "0", a starting point with the smallest possible non-zero value will be automatically inserted ("0/1" for user count and arrival rate, "0/0.001" for load factor), implicitly causing ramp-up behavior. Finally, if the load test runs longer than the last pair, the last known load parameter value is kept stable.
+
+#### Relative Load Function Definition
+
+The times and values in a load function can also be provided relative to the previous data point by adding a plus or minus sign:
+
+```bash
+## This load function is equivalent to "0/1.0, 1h/1.5, 1h30m/0.5"
+com.xceptance.xlt.loadtests.default.loadFactor = 0/1.0, +1h/+0.5, +30m/-1.0
+```
+
+It is possible to use both, absolute and relative pairs, in the same load function. Time/value pairs with a relative time but an absolute value or vice versa are also allowed:
+
+```bash
+## This load function is equivalent to "0/1.0, 1h/1.0, 1h20m/2.0, 1h40m/2.0, 2h/1.0"
+com.xceptance.xlt.loadtests.default.loadFactor = 0/1.0, 1h/+0, +20m/2.0, +20m/+0, +20m/1.0
+```
+
+Note that the time/value pairs must still be sorted by time in ascending order, so relative times cannot be negative.
+
+If the first time/value pair in a load function has a relative time or value, a starting point with the smallest possible non-zero value will be automatically inserted ("0/1" for user count and arrival rate, "0/0.001" for load factor) and acts as the reference point for the relative time or value:
+
+```bash
+## This load function results in "0/0.001, +1h/+1.0", +1h/+0.5", i.e. "0/0.001, 1h/1.001, 2h/1.501"
+com.xceptance.xlt.loadtests.default.loadFactor = +1h/+1.0 +1h/+0.5
+```
 
 ## Load Test Phases
 
