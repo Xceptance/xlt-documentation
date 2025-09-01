@@ -7,12 +7,12 @@ weight: 160
 draft: true
 
 description: >
-    About the basic data concepts of XLT, also mention archiving of reports and results
+    An overview of XLT's basic data concepts, including archiving of reports and results.
 ---
 
-## FILTER AND JOIN RESULTS
-Results can be further worked on.
+## Filtering and Joining Results
+Results can be further processed.
 
-- Join test results together
-- Split up tests by agents or test cases
-- Use manual rules to combine things
+- Join test results.
+- Split tests by agents or test cases.
+- Use manual rules to combine data.

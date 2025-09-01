@@ -5,7 +5,7 @@ weight: 100
 type: docs
 
 description: >
-  How-Tos guide you through specific topics or explain concepts of XLT more in detail. Feel free to suggest and contribute.
+  How-to guides walk you through specific topics or explain XLT concepts in more detail. Feel free to suggest and contribute.
 ---
 
 

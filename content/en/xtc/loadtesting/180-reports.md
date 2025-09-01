@@ -179,7 +179,9 @@ XTC stores load test reports and performance comparison reports in two forms:
 
 XTC **automatically retires** reports 180 days after creation to save storage space. This means that the report is marked as retired and all *unpacked* report files are deleted. Consequently, the report can no longer be viewed.
 
-If you need to **view a retired report** again, you must first restore the unpacked report files from the report archive. To do this, open the context menu of the report and click *Extract Archived Report*. After a few minutes, the unpacked report is available and can be viewed for another 180 days.
+If you need to **view a retired report** again, you must first restore the unpacked report files from the report archive. To do this, the corresponding project must be active. Open the context menu of the report and click *Extract Archived Report*. After a few minutes, the unpacked report is available and can be viewed for another 180 days.
+
+{{% permission type="project" least="true" role="tester" action="unarchive a retired report" %}}
 
 ## Errors on Report Creation
 

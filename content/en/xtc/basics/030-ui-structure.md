@@ -56,6 +56,19 @@ In order to **quickly navigate from a project back to its organization**, use th
 Clicking the link in the sidebar will take you back to a project's organization. 
 {{< /image >}}
 
+## Keyboard Shortcuts
+
+XTC provides a number of useful keyboard shortcuts. Press the <kbd>?</kbd> key to display a list of all available hotkeys:
+
+* Press <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>H</kbd> to return to the *User Dashboard* from anywhere in XTC.
+* Press <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>O</kbd> or <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>P</kbd> to activate the organization or project selection box. Use the <kbd>↑</kbd>/<kbd>↓</kbd> arrow keys to highlight the desired item in the drop-down list item and press <kbd>Enter</kbd> to select it.
+* Most dialogs and forms can be accepted with the <kbd>Alt</kbd>+<kbd>Enter</kbd> shortcut. <kbd>Enter</kbd> alone is not supported, as it is often needed to interact with the currently focused input element. Use the <kbd>Esc</kbd> key to cancel a dialog.
+
+On the details page of a load test the following keyboard shortcuts are available:
+    
+* Press <kbd>Ctrl</kbd>+<kbd>Left</kbd> or <kbd>Ctrl</kbd>+<kbd>Right</kbd> to navigate to the previous or next load test.
+* Press <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>S</kbd> to start the current load test.
+
 ## Footer Information
 
 On the right side of the footer XTC is always displaying your role in the organization or project you are currently viewing. You can also find the current XTC version and the Contact/Privacy/Changelog links in the footer.

@@ -42,6 +42,8 @@ To check whether the load setup was correct, you can review these points on the 
 - Does the **measurement period** match your configuration?
 - Was the **thinktime** duration as long as you expected?
 
+This section also displays each scenario’s share of the total load, both as a percentage and as a bar graph, for a quick overview.
+
 {{< image src="quickstart/load-profile.png" >}}
 Load Profile
 {{< /image >}}
@@ -139,6 +141,28 @@ The **Bandwidth** tab displays information about the used incoming and outgoing 
     application time needed to process header and protocol information
     and transfer the data from socket level to the application level.
 
+#### Slowest Requests
+
+Starting with XLT 9.0.x, the report features a _Slowest Requests_ page that lists the top slowest requests in your load test with many details. To open this page, click on the corresponding entry in the _Requests_ submenu of the navigation bar.
+
+By default, the _Slowest Requests_ page lists up to 500 requests, with a limit of 20 requests per request name. To be counted as a slow request, the runtime of a request must be between 3 seconds and 10 minutes. All of these default limits can be reconfigured in the report generator configuration using the following properties:
+
+```bash
+## The maximum number of slow requests to remember per request name
+com.xceptance.xlt.reportgenerator.slowestRequests.requestsPerBucket = 20
+
+## The maximum number of slow requests to show in the report
+com.xceptance.xlt.reportgenerator.slowestRequests.totalRequests = 500
+
+## The minimum runtime (in ms) a request must reach to be remembered as a slow request
+com.xceptance.xlt.reportgenerator.slowestRequests.minRuntime = 3000
+
+## The maximum runtime (in ms) a request can reach to be remembered as a slow request
+com.xceptance.xlt.reportgenerator.slowestRequests.maxRuntime = 600000
+```
+
+Unlike on the _Requests_ page, the recorded data is not grouped by request name but every single recorded slow request is listed here.
+
 ### Network
 
 The network section covers the areas of incoming and outgoing traffic during the load test. **Bytes Sent** is an estimated number based on the data given to the network layer. Cookies, for instance, are not included. **Bytes Received** is an accurate number because it’s based on the received data and includes HTTP header information. Depending on the test runtime, the numbers per hour and per day might be estimations based on a linear projection of the available data. 
@@ -159,9 +183,13 @@ The Page Load Timings section offers deeper insight into the page loading perfor
 These timings will be recorded only when using `XltChromeDriver` or `XltFirefoxDriver` to run the browser. These are special WebDriver implementations that install an extension into the browser which is able to gather all the timings and report them to XLT.
 {{% /note %}}
 
-### Custom Timers & Values
+### Custom Timers
 
-The custom timers includes all timers that have been placed individually within the test code. The chart and data description is identical to the request section. In case custom samplers have been run during the test, the collected data is shown in the *Custom Values* section.
+The _Custom Timers_ page includes all [timers]({{< relref "../advanced/050-custom-data/#custom-timers" >}}) that have been placed individually within the test code. The chart and data description is identical to the _Actions_ section.
+
+### Custom Data
+
+The _Custom Data_ page contains two sections. In case [custom samplers]({{< relref "../advanced/050-custom-data/#custom-values" >}}) have been run during the test, or if your test scenarios are instrumented to log custom values, the collected data is shown in the *Custom Values* section. If the test scripts have also been collecting [custom data logs]({{< relref "../advanced/050-custom-data/#custom-data-logs" >}}), they will be available for download in the _Custom Data Logs_ section.
 
 ### Web Vitals 
 
@@ -169,7 +197,7 @@ If the load test was run as an [automated client performance test]({{< relref "6
 
 ### External Data
 
-All external data gathered by other tools during the test run is shown here according to the configuration. See [Custom Data]({{< relref "../advanced/050-custom-data/" >}}) for details on how to include external data in the report.
+All [external data]({{< relref "../advanced/050-custom-data/#external-data" >}}) gathered by other tools during the test run is shown here according to the configuration. 
 
 ### Errors
 

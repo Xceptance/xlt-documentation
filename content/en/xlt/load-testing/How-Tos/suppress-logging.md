@@ -7,7 +7,7 @@ type: docs
 
 
 description: >
-  How to suppress logging of performance data.
+  Learn how to suppress the logging of performance data.
 ---
 ```java
 try 

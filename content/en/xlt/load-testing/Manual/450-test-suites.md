@@ -28,7 +28,7 @@ The directory of any [sample test suite]({{< relref "../test-suites/" >}}), and 
 * test data lives in **data** - this is the default location for data files that are used by the DataProvider classes, but it can be overridden by the property `com.xceptance.xlt.data.directory`.
 * **lib** contains custom jars if needed. Make sure that everything you need is part of your suite - what is not in your suite is not uploaded, and neither the MC nor the AC run any dependency checks. If a Maven setup is used, make sure all libs are pulled into this folder of your suite during the build process. (XLT will also find libraries in `<test-suite>/target/dependency`.)
 * **src** contains the Java source code aka the JUnit tests cases. The location of these files inside your testsuite is basically up to you and might depend on the used build tool. Read on below to learn more about recommended code structure.
-* XLT supports several locations for compiled classes, as the location might be dependent on the used build tool and programming language (Java or Kotlin):
+* XLT supports several locations for **compiled classes**, as the location might be dependent on the used build tool and programming language (Java or Kotlin):
     * `./classes`
     * `./bin`
     * `./target/classes` and `./target/test-classes`
@@ -40,6 +40,13 @@ The list of supported locations for compiled classes might be extended in future
 {{%/ note %}}
 
 * **results** is a container for XLT to write all results data (logs, measurements, result browsers) into. The default location is `./results`, but this may be overridden by the property `com.xceptance.xlt.result-dir` (location is required to be within the test suite).
+
+### Code Patches
+
+You have the possibility to override XLT code for test executions with patches that are part of your test suite. To do so, just place the needed libs or classes in your test suite in
+
+* `./patches/lib` or
+* `./patches/classes`.
 
 ## Code Structuring Recommendations
 
