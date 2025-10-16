@@ -98,7 +98,6 @@ Please be aware that different browsers use different preference keys.
 preferences. If both are set, the `browserprofile.<browserId>.downloadDirectory` property is used.
 {{% /note %}}
 
-
 ### Set Up a Specific Browser Executable
 
 Sometimes the browser of your choice is not configured in your system PATH and the WebDriver is not able to find it. Or
@@ -111,7 +110,6 @@ e.g. `neodymium.webDriver.firefox.pathToBrowser =  C:/Program Files (x86)/Mozill
 
 More documentation on the settings within the `config/neodymium.properties` can be found on
 the [Neodymium configuration properties](Neodymium-configuration-properties) page.
-
 
 ## Multi Browser Handling
 
@@ -151,6 +149,18 @@ This can be seen in the image below.
 {{< image max-width="60%" src="neodymium/advanced/multibrowser.png" >}}
 Multi browser test execution.
 {{< /image >}}
+
+{{< TODO >}}double-check the following part. it depends on a Neo PR for issue 400.{{< /TODO >}}
+
+Furthermore, you can filter which browser should be used for testing with the property
+`neodymium.webDriver.browserFilter`. This property allows you to provide a list of specific browsers to use for your
+tests. As a result, only tests that are explicitly annotated for a particular browser will be executed with that
+browser.
+For the example above `neodymium.webDriver.browserFilter = Firefox_large, Chrome_large`, would only execute the test
+with Firefox and Chrome.
+If you take the example above, and you were to set the property to
+`neodymium.webDriver.browserFilter = Firefox_large, Chrome_large`, the test would only run on Firefox and Chrome. The
+Internet Explorer would be ignored.
 
 ## Separate Browser Sessions for Test Setup and Cleanup
 

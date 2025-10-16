@@ -174,8 +174,8 @@ plugins section of your `pom.xml` file.
 ## Test Structure
 
 The next chapters focus on code readability, maintainability and reusability. Those steps are not mandatory for
-Neodymium test development, but we believe the best way to achieve these goals can be reached by implementing the
-Page Object Model and leveraging Allure's `@Step()` annotations to improve report clarity.
+Neodymium test development, but we believe these goals are best achieved by implementing the Page Object Model and
+leveraging Allure’s `@Step()` annotations to improve report clarity.
 
 ### Page Object Model
 
@@ -493,7 +493,7 @@ public class SearchData
 ```
 
 Neodymium automatically runs tests for each data set. This can be controlled by using `@SuppressDataSets` and
-`@DataSet()`. More information can be found in the [test data chapter]({{< relref "020-test-data" >}})
+`@DataSet()`. More information can be found in the [test data chapter]({{< relref "020-test-data" >}}).
 
 So let's add another data set to the test data.
 

@@ -1,7 +1,7 @@
 ---
 title: "Accessibility Testing with Google Lighthouse"
 
-weight: 30
+weight: 110
 type: docs
 
 description: >

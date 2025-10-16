@@ -637,7 +637,7 @@ How to use different localization inside data driven tests:
     * therefore the default Neodymium Log4j configuration can be overwritten
 * Selenium has its own logging
     * in some cases it logs a lot, so the default log level is set to `SEVERE`
-    * use the property `neodymium.seleniumLogLevel` to confiure the selenium logger
+    * use the property `neodymium.seleniumLogLevel` to configure the selenium logger
     * possible log levels are `SEVERE`, `WARNING`, `INFO`, `CONFIG`, `FINE`, `FINER`, and `FINEST`
 
 ## WebDriver
@@ -648,7 +648,7 @@ How to use different localization inside data driven tests:
 * `Neodymium.getBrowserProfileName()` - get used browser profile name
 * `Neodymium.getBrowserName()` - get used browser name
 * `Neodymium.getLocalProxy()` - get embedded local proxy
-* `Neodymium.getWebDriverStateContainer()` - get state and the objects belonging to the current execution of the   browser. Contains the current WebDriver, the mbedded local BrowserUpProxy if used and a counter that state how often the current execution setup was used
+* `Neodymium.getWebDriverStateContainer()` - get state and the objects belonging to the current execution of the   browser. Contains the current WebDriver, the embedded local BrowserUpProxy if used and a counter that state how often the current execution setup was used
 
 ## Test Environments
 
