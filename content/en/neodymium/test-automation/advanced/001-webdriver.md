@@ -32,7 +32,8 @@ After downloading you can configure them in the `config/neodymium.properties` fi
 WebDriver of your choice e.g. `neodymium.webDriver.chrome.pathToDriverServer =  C:/dev/webdriver/chromedriver.exe` or
 add them to the PATH of your system.
 
-If you need to set the path of the browser executable as well, you can also easily set it in the properties as described [here]({{< relref "010-browser#set-up-a-specific-browser-executable" >}}).
+If you need to set the path of the browser executable as well, you can also easily set it in the properties as
+described [here]({{< relref "010-browser#set-up-a-specific-browser-executable" >}}).
 
 ## Safari WebDriver Setup
 
@@ -56,16 +57,17 @@ Nevertheless, there may be some use and edge cases you need to handle yourself o
 
 ### KeepBrowserOpen and KeepBrowserOpenOnFailure
 
-{{< TODO >}}update link - link to anchor directly{{< /TODO >}}
-
-Usually the browser and the according webdriver are closed automatically once a test finishes. However there are 
-ways to prevent this. 
+Usually the browser and the according webdriver are closed automatically once a test finishes. However, there are
+ways to prevent this.
 
 To keep the browser open you can either:
-- set the configuration values `neodymium.webDriver.keepBrowserOpen=true` or `neodymium.webDriver.keepBrowserOpenOnFailure=true` or
+
+- set the configuration values `neodymium.webDriver.keepBrowserOpen=true` or
+  `neodymium.webDriver.keepBrowserOpenOnFailure=true` or
 - use the annotation `@KeepBrowserOpen(onlyOnFailure = false)`
 
-More details about properties can be found in the [Neodymium configuration properties](Neodymium-configuration-properties).
+More details about properties can be found in
+the [Neodymium configuration properties]({{< relref "090-neodymium-properties#browser-behavior" >}}).
 We recommend that you only activate these properties for local test development to avoid resource issues within your CI
 environment.
 
@@ -83,11 +85,10 @@ system.
 
 ### Reuse of WebDrivers
 
-{{< TODO >}}update link - link to anchor directly{{< /TODO >}}
-
 Another edge case can be the reuse of WebDrivers. The start routine of a browser can take some time especially if they
-are started in a remote test environment. Therefore, it might a good idea to reuse an already instantiated WebDriver. This
-setting can be configured via the [Neodymium configuration properties](Neodymium-configuration-properties).
+are started in a remote test environment. Therefore, it might a good idea to reuse an already instantiated WebDriver.
+This
+setting can be configured via the [Neodymium configuration properties]({{< relref "090-neodymium-properties#browser-behavior" >}}).
 
 Nevertheless, you may want to quit specific WebDrivers for some reason, e.g. prevent side effects from some browser
 state that is not easy to clear or free up resources within the test environment.

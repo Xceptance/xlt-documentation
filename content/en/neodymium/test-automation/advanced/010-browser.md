@@ -106,10 +106,8 @@ the path to the browser in the `config/neodymium.properties` file.
 
 e.g. `neodymium.webDriver.firefox.pathToBrowser =  C:/Program Files (x86)/Mozilla Firefox/firefox.exe`
 
-{{< TODO >}}update link{{< /TODO >}}
-
 More documentation on the settings within the `config/neodymium.properties` can be found on
-the [Neodymium configuration properties](Neodymium-configuration-properties) page.
+the [Neodymium configuration properties]({{< relref "090-neodymium-properties" >}}) page.
 
 ## Multi Browser Handling
 

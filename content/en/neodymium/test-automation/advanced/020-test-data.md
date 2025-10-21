@@ -230,14 +230,11 @@ the validity scope will be increased.
 
 ## How to use test data
 
-{{< TODO >}}swap DataUtils with TestData class when the PR is merged and the link exists{{< /TODO >}}<br>
-
 Test data and data sets are automatically processed on test execution. The `NeodymiumRunner` looks for package test data
-files and data set files. To access the data from your test case you can
-use [
-`DataUtils`](https://github.com/Xceptance/neodymium-library/blob/master/src/main/java/com/xceptance/neodymium/util/DataUtils.java)
-class, or you can access the underlying hash map directly by using `Neodymium.dataValue("<key>")` from
-the [
+files and data set files.
+To access the data from your test case you canuse the functions provided by [
+`TestData`](https://github.com/Xceptance/neodymium/blob/master/src/main/java/com/xceptance/neodymium/common/testdata/TestData.java)
+class, which is returned by calling `Neodymium.getData()` from the [
 `Neodymium`](https://github.com/Xceptance/neodymium-library/blob/master/src/main/java/com/xceptance/neodymium/util/Neodymium.java)
 context class.
 
@@ -534,6 +531,7 @@ public class TestPerson
 The test data can now be used like this:
 
 ```Java
+
 @NeodymiumTest
 @DataSet(id = "asObject")
 public void testGetClass() throws Exception
@@ -623,6 +621,7 @@ String description = DataUtils.get("$.description", String.class);
 it is also possible to create attributes, in which Neodymium will automatically insert the given values:
 
 ```java
+
 @DataItem("$.description")
 public string description;
 
@@ -637,6 +636,7 @@ public void testGetClass() throws Exception
 To parse the whole object use:
 
 ```java
+
 @DataItem
 public TestCompoundClass testCompound;
 

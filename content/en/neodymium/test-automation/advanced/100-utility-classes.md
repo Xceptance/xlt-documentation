@@ -64,11 +64,11 @@ the movements can be set by the user.
 ```java
   SelenideAddons.dragAndDropUntilCondition((SelenideElement) elementToMove,
                                            (SelenideElement)elementToCheck,
-                                           (int)horizontalMovement,
-                                           (int)verticalMovement,
-                                           (int)pauseBetweenMovements,
-                                           (int)retryMovements,
-                                           (Condition)condition));
+    (int)horizontalMovement,
+    (int)verticalMovement,
+    (int)pauseBetweenMovements,
+    (int)retryMovements,
+    (Condition)condition));
 ```
 
 If needed the user can add more special functions based on the basic function. The code example shows a horizontal
@@ -77,16 +77,18 @@ movement until a given text.
 ```java
   private void leftHorizontalDragAndDropUntilText((SelenideElement) elementToMove,
                                                   (SelenideElement)elementToCheck,
-                                                  (int)horizontalMovement,
-                                                  (String)sliderValueAttributeName,
-                                                  (String)moveUntil)
+    (int)horizontalMovement,
+    (String)sliderValueAttributeName,
+    (String)moveUntil)
     {
-    SelenideAddons.dragAndDropUntilCondition(elementToMove,
-                                             elementToCheck, 
-                                             horizontalMovement, 
+    SelenideAddons.
+
+dragAndDropUntilCondition(elementToMove,
+                          elementToCheck,
+                          horizontalMovement, 
                                              0,3000,10,
-                                             Condition.attribute(sliderValueAttributeName, 
-                                             moveUntil));
+                          Condition.attribute(sliderValueAttributeName,
+                          moveUntil));
     }
 ```
 
@@ -189,21 +191,19 @@ popups defined in the `neodymium.properties`. It will actually be called automat
 
 ## TestData
 
-{{< TODO >}} update to TestData and link when PR is merged {{< /TODO >}}<br>
-
-The [DataUtils](https://github.com/Xceptance/neodymium-library/blob/master/src/main/java/com/xceptance/neodymium/util/DataUtils.java)
+The [
+`TestData`](https://github.com/Xceptance/neodymium/blob/master/src/main/java/com/xceptance/neodymium/common/testdata/TestData.java)
 class contains methods to handle your test data easily.
 
-We used the basic access method `Neodymium.getData().dataValue(key)` to provide conversions for some basic types (
-boolean, double,
-float, int, long, String). We provide two methods for each type. The first one is `as<Type>(String key)` which raises an
-`IllegalArgumentException` if the data field can't be found. The second method is `as<Type>(String key, <Type> default)`
-and it returns the given default value if the data field can't be found. If you need to check if a certain key exists
-you
-can use `exists(String key)`.
+To access the test data you can use `Neodymium.getData().get(key)` to read the value from the map directly or use the
+conversion methods provided by the `TestData` class for some basic types (boolean, double, float, int, long, String). We
+provide two methods for each type. The first one is `as<Type>(String key)` which raises an `IllegalArgumentException` if
+the data field can't be found. The second method is `as<Type>(String key, <Type> default)` which returns the given
+default value if the data field can't be found. If you need to check if a certain key exists you can use
+`exists(String key)`.
 
 Furthermore, we provide a function that can instantiate POJO models via reflection. Please see the following example to
-understand how to use it. Please visit also our [Test data provider]({{< relref "020-test-data" >}}) wiki page for mor
+understand how to use it. Please visit also our [Test data provider]({{< relref "020-test-data" >}}) wiki page for more
 examples on this.
 
 <h4>Example</h4>

@@ -151,7 +151,42 @@ public void mySimpleActionWithParameter(Object parameter)
 }
 ```
 
-{{< TODO >}}add the class example with the screenshot{{< /TODO >}}<br>
+Here is a basic example of a test and the report it produces.
+
+```Java
+public class SampleTest
+{
+    @NeodymiumTest
+    public void testMethod()
+    {
+        step1();
+        step2();
+    }
+
+    @Step
+    public void step1()
+    {
+        step2();
+    }
+
+    @Step
+    public void step2()
+    {
+        step3();
+    }
+
+    @Step
+    public void step3()
+    {
+    }
+}
+```
+
+This code will be displayed in the report as in the following screenshot.
+
+{{< image max-width="80%" src="neodymium/advanced/step_example.png" >}}
+The test steps of the example code above.
+{{< /image >}}
 
 ### Using `AllureAddons` for Dynamic Steps
 
@@ -189,23 +224,57 @@ You can utilize methods provided by the `AllureAddons` class for dynamic step de
 
 ## Describing Test Cases with Metadata Annotations
 
-Allure provides annotations that are applied to the test case class to enhance test metadata and documentation.
+Allure provides annotations that are applied to the test case class or method to enhance test metadata and
+documentation.
 
 ### Core Metadata
 
 These annotations provide key information about the test itself:
 
-```
+```java
+
 @Owner("Lisa Smith")
-@Severity(SeverityLevel.BLOCKER)
-@Tag("smoke")
-@Tag("registered")
-@Description("Place an order as a registered shop user")
-public class RegisteredOrderTest extends AbstractTest
+public class OrderTest extends AbstractTest
 {
-    // ... test methods
+    @Tag("smoke")
+    @Tag("registered")
+    @DisplayName("Place Order Test Method")
+    @Description("Place an order as a registered shop user")
+    @Severity(SeverityLevel.BLOCKER)
+    public void placeRegisteredOrder()
+    {
+        // perform the test steps
+    }
+
+    // more test methods ...
 }
 
+```
+
+### Behaviour Annotations
+
+**Epics, features, and user stories** are commonly used terms for describing software requirements and organizing the
+associated tests.
+
+Allure provides specific annotations to assign these organizational concepts to your tests, either at the class or
+method level. These annotations directly define the hierarchical structure displayed in the **Behaviour tab** of the
+Allure report, allowing users to drill down from broad themes (Epics) to specific scenarios (User Stories).
+
+See the following example, where the annotations are applied to a test method:
+
+```java
+public class OrderTest extends AbstractTest
+{
+    @Epic("Shop User Flows")
+    @Feature("Ordering")
+    @Story("Registered Order")
+    public void placeRegisteredOrder()
+    {
+        // perform the test steps
+    }
+
+    // more test methods ...
+}
 ```
 
 ### Linking to External Systems
@@ -258,7 +327,7 @@ test data in **JSON format** as an attachment to each test in the Allure report.
 
 * **Activation:** This feature is **activated by default**.
 * **Deactivation:** It can be deactivated by setting the `neodymium.report.enableTestDataInReport` property to `false`.
-* **Note:** This only applies to test data initialized using `DataUtils` or `DataItem` (Neodymium classes). The
+* **Note:** This only applies to test data initialized using `Neodymium.getData()` or `DataItem` (Neodymium classes). The
   attachment name always starts with "Testdata".
 
 If the test data is modified during the test run, you can add those changes as an additional attachment using the helper
@@ -275,7 +344,7 @@ Test Data Display in Allure Report.
 ### Capturing JSON Comparison Details
 
 To prevent confusion from cryptic assertion errors during JSON comparisons, the dedicated `JsonAssert` class (built upon
-JSONAssert) is utilized.
+[JSONAssert](https://github.com/skyscreamer/JSONassert)) is utilized.
 
 * If `assertEquals` fails, an attachment named **"Json Compare"** is added, containing the exact differences between the
   expected and actual JSON data.
