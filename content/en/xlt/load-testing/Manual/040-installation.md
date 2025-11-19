@@ -13,17 +13,19 @@ description: >
 ### Hardware
 
 -   CPU at 1.5GHz or higher
--   1.0 GB RAM
+-   4.0 GB RAM
 -   1.0 GB available in the hard disk (default installation requires
     about 150 MB, but test results might need additional capacity)
 
 ### Software
 #### Operating System 
-Microsoft Windows, Linux, Oracle Solaris, HP-UX, or macOS. Which essentially means it will work on any operating system for which a JVM 8 (or higher) is available.
+Microsoft Windows, Linux, Oracle Solaris, HP-UX, or macOS. Which essentially means it will work on any operating system for which a JVM 21 (or higher) is available.
+
 #### JVM 
-It’s recommended to use Oracle’s JVM, but XLT also runs on OpenJDK. JVMs provided by vendors such as OpenJDK BEA, HP, or IBM have not been tested extensively and may or may not work.
+It’s recommended to use OpenJDK, Oracle JDK, or any other OpenJDK based derivatiove. Eclipse OpenJ9 has not been tested extensively and may or may not work.
+
 #### Browser 
-Firefox, Chrome, Internet Explorer 10, or Safari 6 for the HTML load reports. Note that JavaScript has to be enabled to utilize all functionality.
+Firefox, Chrome, or Safari for the HTML load reports. Note that JavaScript has to be enabled to utilize all functionality.
 
 ## Installation
 
@@ -46,15 +48,13 @@ Please make sure the executable directory of your Java installation is listed in
     <dependency>
         <groupId>com.xceptance</groupId>
         <artifactId>xlt</artifactId>
-        <version>5.0.1</version>
+        <version>9.2.1</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
 ```
 {{% warning title="Version" %}}
 The version above might not be the latest. Please adjust the version information accordingly.
-
-For versions below XLT 5.0.x you need to [configure the Xceptance repository]({{< relref "../advanced/200-maven-builds" >}}).
 {{% /warning %}}
 
 ## Updating
