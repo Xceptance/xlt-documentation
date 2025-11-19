@@ -27,7 +27,6 @@ This is a rough overview of the components:
 {{< image src="user-manual/suite-controller-agents.png" >}}
 High Level Overview
 {{< /image >}}
-{{< TODO comment="Better and more stylish image... work in progress?" / >}}
 
 ### Test Suite
 A test suite contains your test code, data, and configuration. Developed on your own machine, it can reside in your preferred version control tool and be shared easily.
@@ -57,7 +56,6 @@ While you develop your test cases, the app you want to test should be in a stabl
 To run XLT, you will need the following:
 * Latest JDK 21.
 * Java IDE of your choice.
-* Latest [Apache Ant](https://ant.apache.org/).
 * [Maven](https://maven.apache.org/).
 
 Installing XLT is described in more detail [here]({{< relref "040-installation" >}}).
