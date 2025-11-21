@@ -10,15 +10,18 @@ description: >
 
 ## Setup a Test Execution
 
-Ok, so now you have the [demo shop running on your machine]({{< relref "20-demo-application" >}}) and you have [set up the demo testsuite]({{< relref "30-demo-test-suite" >}}). To run a test, first tell your setup (`<posters-simple-loadtest-suite>/config/project.properties`) which test configuration to use and where to find your Posters demo shop instance:
+Ok, so now you have the [demo shop running on your machine]({{< relref "20-demo-application" >}}) and you have [set up the demo testsuite]({{< relref "30-demo-test-suite" >}}). To run a test, first tell XLT in `<posters-simple-loadtest-suite>/config/project.properties` which test configuration to use and where to find your Posters demo shop instance:
 
 ```bash
+# Point to the test setup for XLT, this is an XLT setting
 com.xceptance.xlt.testPropertiesFile = my-test.properties
 
+# Specify data for the test suite
+# This is a test suite setting
 store-url = https://localhost:8443/posters/
 ```
 
-Then you can configure the basic properties of the test suite and the load profile (in `<posters-simple-loadtest-suite>/config/my-test.properties`). Our demo test suite comes with basic test.properties which you can use as a starting point for whatever you are planning.
+Next, you configure the basic properties of the test suite and the load profile in `<posters-simple-loadtest-suite>/config/my-test.properties`. The demo test suite comes with basic `test.properties` which you can use as a starting point for whatever you are planning.
 
 ```bash
 com.xceptance.xlt.loadtests = TVisit
