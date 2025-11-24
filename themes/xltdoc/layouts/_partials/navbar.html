@@ -26,26 +26,37 @@
     <ul class="navbar-nav">
       {{ $p := . -}}
       {{ range .Site.Menus.main -}}
-      <li class="nav-item">
-        {{ $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) -}}
-        {{ $href := "" -}}
-        {{ with .Page -}}
-          {{ $active = or $active ( $.IsDescendant .) -}}
-          {{ $href = .RelPermalink -}}
-        {{ else -}}
-          {{ $href = .URL | relLangURL -}}
-        {{ end -}}
-        {{ $isExternal := ne $baseURL.Host (urls.Parse .URL).Host -}}
-        <a {{/**/ -}}
-          class="nav-link {{- if $active }} active {{- end }}" {{/**/ -}}
-          href="{{ $href }}"
-          {{- if $isExternal }} target="_blank" rel="noopener" {{- end -}}
-        >
-            {{- .Pre -}}
-            <span>{{ .Name }}</span>
-            {{- .Post -}}
-        </a>
-      </li>
+        {{ if .HasChildren }}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown{{ .Name }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ .Name }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown{{ .Name }}">
+              {{ range .Children }}
+                {{ $child_active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) -}}
+                {{ with .Page }}{{ $child_active = or $child_active ( $.IsDescendant .) }}{{ end }}
+                <li><a class="dropdown-item{{ if $child_active }} active{{ end }}" href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
+              {{ end }}
+            </ul>
+          </li>
+        {{ else }}
+          <li class="nav-item">
+            {{ $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) -}}
+            {{ $href := "" -}}
+            {{ with .Page -}}
+              {{ $active = or $active ( $.IsDescendant .) -}}
+              {{ $href = .RelPermalink -}}
+            {{ else -}}
+              {{ $href = .URL | relLangURL -}}
+            {{ end -}}
+            {{ $isExternal := ne $baseURL.Host (urls.Parse .URL).Host -}}
+            <a class="nav-link {{- if $active }} active {{- end }}" href="{{ $href }}" {{- if $isExternal }} target="_blank" rel="noopener" {{- end }}>
+                {{- .Pre -}}
+                <span>{{ .Name }}</span>
+                {{- .Post -}}
+            </a>
+          </li>
+        {{ end }}
       {{ end -}}
       {{ if .Site.Params.versions -}}
       <li class="nav-item dropdown d-none d-lg-block">
