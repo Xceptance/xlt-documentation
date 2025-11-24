@@ -337,3 +337,13 @@ footer {
         padding-left: 0.5rem;
     }
 }
+
+// Remove default link underlines from Bootstrap 5.
+// Using !important to diagnose specificity issues.
+a {
+    text-decoration: none !important;
+}
+
+a:hover {
+    text-decoration: underline !important;
+}
