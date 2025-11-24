@@ -3,15 +3,18 @@ name: Deploy documentation
 on:
   push:
     branches: [ master ] # Set a branch to deploy
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   deploy:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository and submodules
+        uses: actions/checkout@v4
         with:
-          submodules: true  # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+          submodules: 'recursive'
+          fetch-depth: 0
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
@@ -19,27 +22,25 @@ jobs:
           hugo-version: '0.131.0'
           extended: true
 
-      - name: Setup Node
-        uses: actions/setup-node@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '16.x'
+          node-version: '22.x'
+          cache: 'npm'
 
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install Node dependencies
+      - name: Install root dependencies
         run: npm ci
+
+      - name: Install theme dependencies
+        run: npm install
+        working-directory: ./themes/docsy
 
       - name: Build the documentation
         run: hugo
 
-      - name: Install 
+      - name: Install lftp
         run: sudo apt-get install lftp
 
-      - name: Mirror the documentation on the FTP 
+      - name: Mirror the documentation on the FTP
+        if: github.ref == 'refs/heads/master'
         run: .github/workflows/scripts/mirrorftp ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }}
