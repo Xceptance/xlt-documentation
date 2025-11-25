@@ -4,7 +4,7 @@ title = "Xceptance Documentation Hub"
 enableRobotsTXT = true
 
 # Hugo allows theme composition (and inheritance). The precedence is from left to right.
-theme = ["xltdoc", "docsy"]
+theme = ["xltdoc", "github.com/google/docsy"]
 
 # Will give values to .Lastmod etc.
 enableGitInfo = true
@@ -213,7 +213,7 @@ enable = false
     url = "/xlt/release-notes"
     parent = "xlt"
 
-    
+
 [[menu.main]]
     identifier = "xtc"
     name = "XTC"
