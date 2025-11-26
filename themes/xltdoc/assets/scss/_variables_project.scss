@@ -13,10 +13,11 @@ $font-family-monospace: "Ubuntu Mono", monospace;
 $font-family-sidebar: "Roboto Condensed";
 
 /* Text */
-$font-family-sans-serif: "Roboto";
+$font-family-base: "Roboto";
 
 /* Headlines */
-$font-family-headlines: "Roboto Condensed";
+$font-family-sans-serif: "Roboto Condensed";
+$headings-font-family: "Roboto Condensed";
 
 $link-color: $primary;
 $link-hover-color: darken($link-color, 15%) !default;
@@ -37,13 +38,13 @@ $main-text-color: #333;
 $text-color-light: #444;
 
 /**
- * Croma Tango 
+ * Croma Tango
  */
- 
+
  /* Background */ .chroma {
     line-height: 1rem !important;
-    * { 
-        background-color: transparent !important; 
+    * {
+        background-color: transparent !important;
     }
 }
 /* Other */ .chroma .x { color: #000000 }

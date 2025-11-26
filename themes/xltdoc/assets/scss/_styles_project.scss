@@ -1,3 +1,10 @@
+a {
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 /*
     Overwritten to make the inner section of the doc wider for better
     code block visibility
@@ -12,49 +19,17 @@
 footer {
     a {
         color: scale-color($link-color, $saturation: -20%, $lightness: 50%);
-        
+
         &:hover {
             color: scale-color($link-hover-color, $saturation: 0%, $lightness: 50%);
         }
     }
-    
+
 }
 
 .td-content {
     /* give the content less of a hard contrast */
     color: $main-text-color !important;
-    
-    h1, h2, h3, h4, h5, h6 {
-        font-family: $font-family-headlines;
-        margin-bottom: 0.5rem;
-    }
-    h1, h2 {
-        font-weight: 700;
-        margin-top: 2rem;
-    }
-    h3 {
-        font-weight: 700;
-        margin-top: 2rem;
-        font-size:1.8rem;
-    }
-    h4, h5, h6 {
-        font-weight: 400;
-    }
-    
-    h2 {
-        border-bottom: 1px solid $gray-400;
-        padding-bottom: 0.25rem;
-        font-size: 2.3rem;
-    }
-
-    h4 {
-        font-size:1.35rem;
-    }
-}
-
-.breadcrumb {
-    font-family: $font-family-sidebar;
-    font-size: 100%;
 }
 
 .td-cover-block {
@@ -74,91 +49,49 @@ footer {
     /* avoid that the text wraps */
     white-space: nowrap;
     /* use narrow font */
-    font-family: $font-family-sidebar;
 }
 
 .td-sidebar-nav {
     font-family: $font-family-sidebar;
-    font-size: 100%;
-    
+
     ul {
         line-height: 1; /* ensure that when we wrap, the text does not look like a next logical line */
-        
+
         .td-sidebar-link {
-            padding-bottom: 0.7rem; /* give the links space in between to make wraped lines easier distinguishable from new lines*/
-            padding-left: 0rem;
-            
-            &:hover {
-                color: $link-hover-color; /* this is hardcoded to blue in docsy */
-            }
-            
-            &.active {
-                font-weight: 600;
-            }
+            padding-bottom: 0.5rem; /* give the links space in between to make wraped lines easier distinguishable from new lines*/
+
         }
-    }    
+    }
 }
 
-.td-sidebar-nav > .td-sidebar-nav__section {
-    padding-top: 1.75rem;
-    padding-left: 1rem;
+/* less indentation for menu ins less nav */
+@media (min-width: 768px) {
+    .td-sidebar-nav__section .ul-1 ul {
+        padding-left: 1em;
+    }
 }
 
 .pr-md-3 {
     padding-right:0rem !important;
 }
 
+/* Dim the edit links on the TOC bar */
+.td-page-meta {
+    a {
+        font-weight: normal;
+        font-family: $font-family-sidebar;
+
+    }
+}
+
 .td-toc {
     font-family: $font-family-sidebar;
-    font-size: 100%;
-    
-    padding-top: 1.5rem;
-    padding-left: 0.7rem;
-
-    border-left:0px;
-    
-    #TableOfContents {
-        //padding: 1rem;
-        //border: 1px solid $gray-400;
-        //border-radius: 4px;
-        //background-color: $gray-200;
-        a {
-            color: $text-color-light;
-            
-            &:hover {
-                color: $link-hover-color;
-            }
-        }
-        ul {
-            line-height: 1; /* wrap should be different than a new line aka bullet point*/
-            
-            li {
-                padding-bottom: 0.4rem;
-                
-                
-                li {
-                    padding-left: 0.6rem;
-                }
-            }
-            ul {
-                padding-top: 0.4rem;
-            }
-        }
-    }
-
-    /* Dim the edit links on the TOC bar */
-    .td-page-meta {
-        a {
-            color: $link-light-color;
-            font-size: 90%;
-        }
-    }
 }
 
 /* just to display our TODO */
 .todo {
     background-color: Yellow;
- 
+
     &:before {
         content: "TODO";
         margin-right: 0.5rem;
@@ -176,6 +109,10 @@ footer {
     padding: 0px 2px;
 }
 
+.td-content p code {
+    font-size: 1rem;
+}
+
 .td-content li > a > code {
     color: inherit;
     padding: 0.2em 0.4em;
@@ -186,62 +123,24 @@ footer {
     border-radius: 0.25rem;
 }
 
+.highlight code {
+    font-size: 1rem !important;
+}
+
 .highlight, .td-content > pre {
     border: $card-border-width solid $card-border-color;
     @include border-radius($card-border-radius);
 }
 
 .image-description {
-    color:#999; 
+    color:#999;
     padding-top: 5px;
-    font-family: $font-family-headlines;
 }
 
 .imagebox {
     width: 95%;
     text-align: center;
     margin: 50px 0px;
-}
-
-/* Search-Consent Styles: */
-
-#consent-banner {
-    position: fixed;
-    top: 30px;
-    right: 30px;
-    width: 300px;
-    z-index: 100;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: space-between;
-    background-color: #eee;
-    border-radius: 5px;
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
-}
-
-#agree p, #cancel p {
-    margin-top: 4px;
-}
-
-#agree, #cancel {
-    height: 35px;
-    background-color: $dark;
-    border: none;
-    color: white;
-    border-radius: 2px;
-    cursor: pointer;
-    text-align: center;
-    padding: 1px;
-}
-
-#agree:hover, #cancel:hover {
-    background-color: $primary;
-}
-
-#cancel {
-    margin-top: 10px;
 }
 
 /* Documentation Homepages Styles: */
@@ -278,7 +177,7 @@ footer {
 }
 
 .col-xc:hover {
-    background-color: rgba(64, 63, 76, 0.8); 
+    background-color: rgba(64, 63, 76, 0.8);
 }
 
 .col-xc > a {

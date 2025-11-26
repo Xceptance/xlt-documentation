@@ -53,7 +53,7 @@ So if an error occurs during a transaction in a load test, `output2disk` is set 
 
 ### How does the error limiter work?
 
-When an error (exception) stops the test execution of a scenario, XLT will take the username (name of the test scenario such as `TBrowse` or `TOrder`) and a meaningful part of the stacktrace (message and some of the first lines) and calculate a hash. This hash forms the key to the storage map that counts if this error has been seen before. 
+When an error (exception) stops the test execution of a scenario, XLT will take the username (name of the test scenario such as `TBrowse` or `TOrder`) and a meaningful part of the stacktrace (message and some of the first lines) and calculate a hash. This hash forms the key to the storage map that counts if this error has been seen before.
 
 For each type of error, XLT tracks the current number of stored result browsers and stops writing down any new result browser once the configured maximum number is reached. However, you may also configure a time period to periodically clear the counter.
 
@@ -96,8 +96,8 @@ com.xceptance.xlt.output2disk.onError.limiter.maxDumps = 10
 com.xceptance.xlt.output2disk.onError.limiter.resetInterval = 60m
 ```
 
-{{% note title="Please note:" %}}
-These settings are per running agent process! Hence, when you run ten machines with one agent each (the usual recommended default with JDK 11 and higher as well as G1 or Shenandoah as GC), you get about 500 (`maxDifferentErrors`) times 10 (agents) possible different errors. Assuming that each agent runs about the same test cases and (usually) encounters the similar error situations, it might not be far off under normal circumstances. 
+{{% note title="Note" %}}
+These settings are per running agent process! Hence, when you run ten machines with one agent each (the recommended default), you get about 500 (`maxDifferentErrors`) times 10 (agents) possible different errors. Assuming that each agent runs about the same test cases and (usually) encounters the similar error situations, it might not be far off under normal circumstances.
 {{% /note %}}
 
 When saving request data to disk for the result browser, the request body of POST requests is currently limited to 8K by default and will be cropped when exceeding this value. If this is still too low for your most complex requests, for instance Web service requests with large JSON bodies, you can also tailor this limit to your needs (in bytes):
@@ -235,7 +235,7 @@ above the action list.
 Value Log in the Result Browser
 {{< /image >}}
 
-To learn how this feature may aid in error analysis and allows you to reconstruct and rerun a failed test case iteration without having to dig into log files, see [How to Add Debug Data to the Result Browser]({{< relref "../how-tos/debug-data-result-browser" >}}). 
+To learn how this feature may aid in error analysis and allows you to reconstruct and rerun a failed test case iteration without having to dig into log files, see [How to Add Debug Data to the Result Browser]({{< relref "../how-tos/debug-data-result-browser" >}}).
 
 ## Request timeline
 In order to let you inspect the temporal sequence
