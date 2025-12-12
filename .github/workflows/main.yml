@@ -2,7 +2,7 @@ name: Deploy documentation
 
 on:
   push:
-    branches: [ master ] # Set a branch to deploy
+    branches: [ main ] # Set a branch to deploy
 
 jobs:
   deploy:
