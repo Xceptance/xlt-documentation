@@ -15,7 +15,7 @@ The _Configuration_ of a load test project is very similar to the basic [project
 {{% permission type="project" least="true" role="tester" action="view repository settings" %}}
 {{% permission type="project" least="true" role="test manager" action="edit repository settings" %}}
 
-In addition to the [basic repository settings]({{< relref "../basics/060-project-configuration#repository" >}}) which can be defined for load test projects and monitoring projects alike, there are a few additional options for load test projects concerning the compiling of the test suite:
+In addition to the [basic repository settings]({{< relref "060-project-configuration#repository" >}}) which can be defined for load test projects and monitoring projects alike, there are a few additional options for load test projects concerning the compiling of the test suite:
 
 ## Build
 
@@ -26,13 +26,13 @@ Before a load test can be started, XTC needs to compile your load test suite. If
 To configure your preferred build tool, click the editing button, select a build tool and enter additional arguments for this tool if needed. Click _Save Changes_ to confirm.
 
 {{< image src="xtc/loadtest_selectBuildTool.png" >}}
-{{< /image >}} 
+{{< /image >}}
 
 ### Build Dependency Cache
 
-Building the load test suite before the actual start of the test may take several minutes to complete. Most of that time can be attributed to the download of dependencies (XLT and other required libraries). 
+Building the load test suite before the actual start of the test may take several minutes to complete. Most of that time can be attributed to the download of dependencies (XLT and other required libraries).
 
-XTC caches the downloaded dependencies of a load test project so subsequent builds should run much faster. The cache expires automatically 14 days after the last load test was run. 
+XTC caches the downloaded dependencies of a load test project so subsequent builds should run much faster. The cache expires automatically 14 days after the last load test was run.
 
 If you need to discard the cache (for example due to currupted or compromised artifacts), you can do so by going to this section and clicking _Discard Cache_.
 
@@ -42,7 +42,7 @@ If you need to discard the cache (for example due to currupted or compromised ar
 
 {{% permission type="project" least="true" role="test manager" action="edit default sharing settings" %}}
 
-In _Sharing_, you can define a default for the share expiration time of [load test results]({{< relref "175-results#sharing-results" >}}) and [load test reports]({{< relref "180-reports#sharing-a-report" >}}) for easier project management. Each result or report sharing will offer this time as a default (but individual expiration times may still be configured if needed). Later on, all shares that use these defaults can be either deactivated, extended, or reactivated at once when required. 
+In _Sharing_, you can define a default for the share expiration time of [load test results]({{< relref "results#sharing-results" >}}) and [load test reports]({{< relref "reports#sharing-a-report" >}}) for easier project management. Each result or report sharing will offer this time as a default (but individual expiration times may still be configured if needed). Later on, all shares that use these defaults can be either deactivated, extended, or reactivated at once when required.
 
 We recommend using the default because if the share expiration time needs to be adjusted/prolonged, you can set the new default and it will apply to all existing shares alike. This also includes disabling these shares.
 
@@ -56,7 +56,7 @@ Please note that default expiration dates for results and reports are two indepe
 
 {{% permission type="project" least="true" role="test manager" %}}
 
-It is still possible to set individual expiration times per result and reports instead of referring to the global preset. These shares won't be affected in any way when changing/disabling the [project-wide default expiration date]({{< relref "#default-sharing-settings" >}}). To remove all custom links to reports or results, you can use the buttons _Remove Custom Report Shares_ and _Remove Custom Result Shares_ which you find below the default sharing settings. Both will prompt you to confirm this action, as it cannot be undone. 
+It is still possible to set individual expiration times per result and reports instead of referring to the global preset. These shares won't be affected in any way when changing/disabling the [project-wide default expiration date]({{< relref "#default-sharing-settings" >}}). To remove all custom links to reports or results, you can use the buttons _Remove Custom Report Shares_ and _Remove Custom Result Shares_ which you find below the default sharing settings. Both will prompt you to confirm this action, as it cannot be undone.
 
 ## Properties
 
@@ -64,12 +64,12 @@ It is still possible to set individual expiration times per result and reports i
 
 {{% permission type="project" least="true" role="test manager" action="edit properties" %}}
 
-In _Properties_, you can globally define [properties]({{< relref "/xlt/load-testing/manual/480-test-suite-configuration" >}}) or [secret properties]({{< relref "/xlt/load-testing/manual/480-test-suite-configuration#secret-properties" >}}) to use for test execution. 
+In _Properties_, you can globally define [properties]({{< relref "test-suite-configuration" >}}) or [secret properties]({{< relref "test-suite-configuration#secret-properties" >}}) to use for test execution.
 
-[Secret properties]({{< relref "/xlt/load-testing/manual/480-test-suite-configuration#secret-properties" >}}) behave the same as [regular properties]({{< relref "/xlt/load-testing/manual/480-test-suite-configuration" >}}). However, their values will be masked with ****** both in the load test report and in the result data set.
+[Secret properties]({{< relref "test-suite-configuration#secret-properties" >}}) behave the same as [regular properties]({{< relref "test-suite-configuration" >}}). However, their values will be masked with ****** both in the load test report and in the result data set.
 When editing an existing secret property in the UI, its current value will be shown as \*\*\*. To redefine that setting, simply overwrite \*\*\* with the new value.
 
-Properties configured at project level apply to all new load tests alike, while [properties defined at a certain load test]({{< relref "155-lt-settings" >}}) apply to that load test only. Load-test-level properties will overwrite project-level properties. Properties that are not set in XTC will be read from the project data. 
+Properties configured at project level apply to all new load tests alike, while [properties defined at a certain load test]({{< relref "155-lt-settings" >}}) apply to that load test only. Load-test-level properties will overwrite project-level properties. Properties that are not set in XTC will be read from the project data.
 
 ## Environment
 

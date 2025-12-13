@@ -81,7 +81,6 @@ weight = 1
 # Everything below this are Site Params
 
 [params]
-copyright = "https://xceptance.com"
 privacy_policy = "https://www.xceptance.com/en/privacy/"
 doc_license = "https://www.apache.org/licenses/LICENSE-2.0"
 host = "docs.xceptance.com"
@@ -138,6 +137,11 @@ enable = false
 #yes = 'Glad to hear it! Please <a href="https://github.com/USERNAME/REPOSITORY/issues/new">tell us how we can improve</a>.'
 #no = 'Sorry to hear that. Please <a href="https://github.com/USERNAME/REPOSITORY/issues/new">tell us how we can improve</a>.'
 
+[params.copyright]
+    authors =  "Xceptance GmbH | [Apache License](https://www.apache.org/licenses/LICENSE-2.0) |"
+    from_year = "2015"
+    privacy_policy = "https://www.xceptance.com/en/privacy/"
+
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 #[[params.links.user]]
@@ -171,79 +175,79 @@ enable = false
 [[menu.main]]
     identifier = "xlt"
     name = "XLT"
-    weight = 5
+    weight = 0
     url = "/xlt"
 [[menu.main]]
-    name = "About XLT"
-    weight = 1
-    url = "/xlt/about-xlt"
+    identifier = "about-xlt"
+    name = "About"
+    weight = 11
+    url = "/xlt/about/"
     parent = "xlt"
 [[menu.main]]
     name = "Quick Start"
-    weight = 2
-    url = "/xlt/load-testing/quick-start"
+    weight = 12
+    url = "/xlt/quick-start"
     parent = "xlt"
 [[menu.main]]
     name = "Base Manual"
-    weight = 3
-    url = "/xlt/load-testing/manual"
+    weight = 13
+    url = "/xlt/manual"
     parent = "xlt"
 [[menu.main]]
-    name = "Advanced Load Testing"
-    weight = 4
-    url = "/xlt/load-testing/advanced"
+    name = "Advanced"
+    weight = 14
+    url = "/xlt/advanced"
     parent = "xlt"
 [[menu.main]]
     name = "Test Suites"
-    weight = 5
-    url = "/xlt/load-testing/test-suites"
+    weight = 15
+    url = "/xlt/test-suites"
     parent = "xlt"
 [[menu.main]]
     name = "How-Tos"
-    weight = 6
-    url = "/xlt/load-testing/how-tos"
+    weight = 16
+    url = "/xlt/how-tos"
     parent = "xlt"
 [[menu.main]]
     name = "Glossary"
-    weight = 7
-    url = "/xlt/load-testing/glossary"
+    weight = 17
+    url = "/xlt/about/glossary"
     parent = "xlt"
 [[menu.main]]
-    identifier = "xlt-RN"
     name = "Release Notes"
-    weight = 8
+    identifier = "xlt-release-notes"
+    weight = 18
     url = "/xlt/release-notes"
     parent = "xlt"
-
 
 [[menu.main]]
     identifier = "xtc"
     name = "XTC"
-    weight = 10
+    weight = 0
     url = "/xtc"
 [[menu.main]]
     name = "Basics"
-    weight = 1
+    weight = 12
     url = "/xtc/basics"
     parent = "xtc"
 [[menu.main]]
     name = "Load Testing"
-    weight = 2
+    weight = 13
     url = "/xtc/loadtesting"
     parent = "xtc"
 [[menu.main]]
     name = "Monitoring"
-    weight = 3
+    weight = 14
     url = "/xtc/monitoring"
     parent = "xtc"
 [[menu.main]]
     name = "Integrations"
-    weight = 4
+    weight = 15
     url = "/xtc/integrations"
     parent = "xtc"
 [[menu.main]]
-    identifier = "xtc-RN"
     name = "Release Notes"
-    weight = 5
+    identifier = "xtc-release-notes"
+    weight = 16
     url = "/xtc/xtc-release-notes"
     parent = "xtc"

@@ -26,15 +26,16 @@ Start or schedule the configured load test via context menu.
 Start or schedule the configured load test on the test page.
 {{< /image >}}
 
-You will be prompted to confirm that you want to start the load test with the given settings now. If you click _Start Load Test_ XTC will start the load test by 
- * downloading the current state of the test suite project from the repository
- * building the project (in case a technical error occurred when building the load test suite, the whole build process, including any preparative steps, is being retried - this also applies when XTC detects an integrity issue for the cached local Maven repository of the load testing project, so the build will fetch all required dependencies anew and update the cache such that subsequent builds can profit from it again),
- * provisioning the requested agents and, if this was successful, 
- * run the provided test scenarios for the configured time.
+You will be prompted to confirm that you want to start the load test with the given settings now. If you click _Start Load Test_ XTC will start the load test by
+
+* downloading the current state of the test suite project from the repository
+* building the project (in case a technical error occurred when building the load test suite, the whole build process, including any preparative steps, is being retried - this also applies when XTC detects an integrity issue for the cached local Maven repository of the load testing project, so the build will fetch all required dependencies anew and update the cache such that subsequent builds can profit from it again),
+* provisioning the requested agents and, if this was successful,
+* run the provided test scenarios for the configured time.
 
 ### Scheduling a Load Test
 
-Instead of starting the load test manually you can schedule it for an automated start. If you use this feature, make sure you have all settings properly configured. The scheduling does not validate the setup. You can remove a schedule at any time or start the test manually if desired. 
+Instead of starting the load test manually you can schedule it for an automated start. If you use this feature, make sure you have all settings properly configured. The scheduling does not validate the setup. You can remove a schedule at any time or start the test manually if desired.
 
 To create, update or delete a test schedule, click the _Schedule_ context menu item in the load test table or the _Schedule_ button on the load test details page to open the scheduling dialog, then pick a date and time. The default time zone is UTC, but to make your planning easier, you have the option to choose any other time zone from the available list. Additionally, XTC provides convenient quick-select links within the dialog for setting times like "NOW,"  or "+1H."
 
@@ -48,7 +49,7 @@ Once a load test has been scheduled, the **test settings can no longer be edited
 
 ## Stopping a Load Test
 
-XTC simplifies finishing load tests for you, as load tests will be stopped automatically after the run is complete. XTC will take care to deprovision the agents that were used for the test run and it will automatically download [results]({{< relref "175-results" >}}) and [create a report]({{< relref "180-reports" >}}).
+XTC simplifies finishing load tests for you, as load tests will be stopped automatically after the run is complete. XTC will take care to deprovision the agents that were used for the test run and it will automatically download [results]({{< relref "results" >}}) and [create a report]({{< relref "reports" >}}).
 
 {{% note notitle %}}
 Please note that only [Google Machines]({{< relref "155-lt-settings#machine-configuration" >}}) provisioned by XTC itself will be deprovisioned automatically after the test is finished. You will need to shut down any Custom Machines you added yourself.
@@ -58,7 +59,7 @@ If XTC fails to terminate an agent machine, it will mark the _Terminate Agents_ 
 
 ### Aborting a Load Test
 
-However there might be several reasons why you'd want to abort a load test before it has finished: maybe you noticed too late that you missed some [configuration setting]({{< relref "155-lt-settings" >}}), or you notice a lot of unexpected errors popping up on the [scenario overview]({{< relref "170-monitor-lt#scenario-overview" >}}) or your app server is already collapsing halfway through the run, to just name a few. In these situations, you can just abort the test run by clicking _Abort Load Test_ on the top right. 
+However there might be several reasons why you'd want to abort a load test before it has finished: maybe you noticed too late that you missed some [configuration setting]({{< relref "155-lt-settings" >}}), or you notice a lot of unexpected errors popping up on the [scenario overview]({{< relref "170-monitor-lt#scenario-overview" >}}) or your app server is already collapsing halfway through the run, to just name a few. In these situations, you can just abort the test run by clicking _Abort Load Test_ on the top right.
 
 {{< image src="xtc/loadtest_abort_click.png" >}}
 Abort the load test.
@@ -79,4 +80,3 @@ Please note that only [Google Machines]({{< relref "155-lt-settings#machine-conf
 {{% /note %}}
 
 If XTC fails to terminate an agent machine, it will mark the _Terminate Agents_ step on the _Status_ tab of the load test as failed.
-

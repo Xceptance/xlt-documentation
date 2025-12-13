@@ -22,7 +22,7 @@ The history view of a monitoring project. The context menu allows you to view de
 
 ### Filtering
 
-In addition to the time range you select at the top, the histogram and the scenario executions table can be filtered for several criteria. 
+In addition to the time range you select at the top, the histogram and the scenario executions table can be filtered for several criteria.
 
 In the **histogram**, you can enable or disable scenario executions with the [status]({{< relref "#execution-statuses" >}}) _successful_, _fail_, _error_, _fatal_, _aborted_ or _running_ by clicking the buttons at the top left. By hovering the histogram entries, you will see more details about the timespan covered by a given entry and the actual number of executions for each selected status during this timespan.
 
@@ -69,5 +69,5 @@ Detail view of a scenario that finished with errors. You will get the complete s
 {{< /image >}}
 
 {{< image src="xtc/monitoring_history_detailsS.png" >}}
-Detail view of a successful scenario run with more information. 
+Detail view of a successful scenario run with more information.
 {{< /image >}}

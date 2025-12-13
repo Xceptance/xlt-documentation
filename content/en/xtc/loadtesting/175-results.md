@@ -10,20 +10,21 @@ description: >
 
 ## Test Results
 
-XTC will automatically download the test results at the end of the load test. These will be available in the _Results_ tab. 
+XTC will automatically download the test results at the end of the load test. These will be available in the _Results_ tab.
 
 {{% permission type="project" least="true" role="reviewer" action="view test results" %}}
 
-You may download all results as compressed archives if you need them on your local machine, and XTC can also generate a link for [public sharing]({{< relref "#sharing-results" >}}). In addition to that, XTC allows you to [generate reports]({{< relref "#creating-a-report-from-results" >}}) from every available result set, be it final or intermediate. 
+You may download all results as compressed archives if you need them on your local machine, and XTC can also generate a link for [public sharing]({{< relref "#sharing-results" >}}). In addition to that, XTC allows you to [generate reports]({{< relref "#creating-a-report-from-results" >}}) from every available result set, be it final or intermediate.
 
 {{< image src="xtc/loadtest_results.png" >}}
 Results tab and results context menu
 {{< /image >}}
 
-Results are basically the [raw data recorded during a test]({{< relref "/xlt/load-testing/advanced/150-results" >}}). They are hard to read and usually you will only need them if you are looking for very specific information that is not contained in the [test report]({{< relref "/xlt/load-testing/manual/320-test-evaluation#reading-a-test-report" >}}). 
+Results are basically the [raw data recorded during a test]({{< relref "results" >}}). They are hard to read and usually you will only need them if you are looking for very specific information that is not contained in the [test report]({{< relref "test-evaluation#reading-a-test-report" >}}).
 
 ### Downloading Results
-To download a set of test results, click _Download_ in the result set's context menu. You will get a .tar.gz archive containing nested archives for all [_timers.csv_ files]({{< relref "/xlt/load-testing/advanced/150-results#collected-values" >}}).
+
+To download a set of test results, click _Download_ in the result set's context menu. You will get a .tar.gz archive containing nested archives for all [_timers.csv_ files]({{< relref "results#collected-values" >}}).
 
 {{% permission type="project" least="true" role="reviewer" %}}
 
@@ -31,7 +32,7 @@ To download a set of test results, click _Download_ in the result set's context 
 
 {{% permission type="project" least="true" role="test manager" %}}
 
-Sharing results in XTC is very similar to [sharing reports]({{< relref "180-reports/#sharing-a-report" >}}), in that all results are available to any project member who has at least the [project role]({{< relref "../basics/050-projects#user-roles-within-a-project" >}}) of a **reviewer**. As a **project administrator**, you can add XTC users as reviewers to the project if you want them to have access to all results.
+Sharing results in XTC is very similar to [sharing reports]({{< relref "reports/#sharing-a-report" >}}), in that all results are available to any project member who has at least the [project role]({{< relref "../basics/050-projects#user-roles-within-a-project" >}}) of a **reviewer**. As a **project administrator**, you can add XTC users as reviewers to the project if you want them to have access to all results.
 
 To share results outside XTC, you can create a **public sharing link** by clicking _Share_ in the context menu of the result to be shared. A prompt will open and you may select whether to use the [default sharing settings]({{< relref "120-load-project-configuration#default-sharing-settings" >}}) or define an expiration time specifically for this result link. The maximum lifetime of shares is limited to 180 days.
 
@@ -48,7 +49,7 @@ To remove all custom shared links at once, use the option to _delete existing cu
 
 {{% permission type="project" least="true" role="tester" %}}
 
-XTC allows you to generate as many [custom reports]({{< relref "180-reports#custom-reports" >}}) as you like from any available result set. Just click _Create Report_ in the result set's context menu: there will be a popup to configure the report settings, just like on [creating a new custom report from the _Reports_ tab]({{< relref "180-reports#custom-reports" >}}). 
+XTC allows you to generate as many [custom reports]({{< relref "reports#custom-reports" >}}) as you like from any available result set. Just click _Create Report_ in the result set's context menu: there will be a popup to configure the report settings, just like on [creating a new custom report from the _Reports_ tab]({{< relref "reports#custom-reports" >}}).
 
 In fact, creating a new custom report in the _Reports_ tab does the same thing as creating a new report from the final results, however this option is useful for **creating custom reports from intermediate test results**.
 
@@ -56,7 +57,6 @@ In fact, creating a new custom report in the _Reports_ tab does the same thing a
 
 {{% permission type="project" least="true" role="tester" %}}
 
-Finally, if you don't need a generated result set any longer, you may want to delete it to save storage space. To do this, just click _Delete_ in the result set's context menu. You will be prompted to confirm that you really want to delete the results. 
+Finally, if you don't need a generated result set any longer, you may want to delete it to save storage space. To do this, just click _Delete_ in the result set's context menu. You will be prompted to confirm that you really want to delete the results.
 
 In case you accidentally deleted some test results, XTC allows you to **restore** them within 30 days after deletion. Click the _Show Deleted Items_ entry in the 3-dot results table menu to list the items that can be restored. To restore a particular item, click _Undo Deletion_ in the context menu of that item. To switch the view back to the live items, click _Hide Deleted Items_ in the table menu. Please note that load test results that were publicly shared must be re-shared after restoring.
-
