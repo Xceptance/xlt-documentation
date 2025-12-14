@@ -71,11 +71,11 @@ When you are finished configuring a notification list, you can [use it in qualit
 
 ### Activation Times
 
-Per default, monitoring alerts are sent out 24/7 on any weekday. While this is appropriate for functional issues, less important issues do not need to be reported around the clock. For example, performance issues could be reported only during business hours.
+By default, monitoring alerts are sent out 24/7 on any weekday. While this is appropriate for functional issues, less important issues do not need to be reported around the clock. For example, performance issues could be reported only during business hours.
 
 You can manage the time periods when a notification list is active: an activation time defines a recurring time window during which notifications are sent to subscribers. For instance, notifications could be sent Monday through Friday from 9 a.m. to 5 p.m. You can add up to 20 different activation times per notification list. No notifications will be sent outside of these times.
 
-A newly created activation list is, per default, active around the clock.
+A newly created activation list is, by default, active around the clock.
 
 To limit the active time, go to the notification list and switch to the _Activation Times_ tab. There, you can either edit the default activation time, or create a new activation time (in that case, don't forget to disable or delete the default activation time) by specifying the following:
 

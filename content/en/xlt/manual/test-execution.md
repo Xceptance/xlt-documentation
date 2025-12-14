@@ -290,7 +290,7 @@ Starting with [XLT 6.2.0]({{< relref "/xlt/release-notes/6_2_x#run-start-command
 
 #### Downloads in Non-Interactive Mode
 
-Per default, the command `download` always downloads the results completely. However, sometimes you might want to skip certain artifacts, to save disk space and download time. In the interactive mode, you are able to select what artifacts are to be downloaded by prompt. This is possible in non-interactive mode as well: use the command-line option `--only-download=...` with which you can specify the wanted artifacts.
+By default, the command `download` always downloads the results completely. However, sometimes you might want to skip certain artifacts, to save disk space and download time. In the interactive mode, you are able to select what artifacts are to be downloaded by prompt. This is possible in non-interactive mode as well: use the command-line option `--only-download=...` with which you can specify the wanted artifacts.
 
 Supported artifact types are:
 

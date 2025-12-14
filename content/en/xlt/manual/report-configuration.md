@@ -20,7 +20,7 @@ optional properties file that is passed on the command line. This file
 can contain customized settings that override those made in
 `<xlt>/config/reportgenerator.properties` and
 `<testsuite>/config/project.properties`. This
-allows to *predefine* different configurations and use them as
+allows you to *predefine* different configurations and use them as
 necessary:
 
 ```bash
@@ -64,7 +64,7 @@ browsers, so the resulting link might look like this:
 `http://myhost/results/20121106-111751/ac01_00/TSearch/126/output/1352194484275/index.html`
 
 By using a base URI you do not need to reconfigure the report generator
-when creating the report for another load test, unless you choose the
+when creating the report for another load test, unless you choose to
 publish the results at a totally different location. To configure the
 base URI, set the property
 `com.xceptance.xlt.reportgenerator.resultsBaseUri` to the appropriate value.
@@ -110,7 +110,7 @@ com.xceptance.xlt.reportgenerator.charts.height = 300
 
 ### Scale
 
-You can also adjust the scale used for the y-axis in the run time charts. Valid values are “linear" (which is the default) and "logarithmic". This, for example, is how you can still see the runtime differences in your “normal” requests when there are some timeouts that would otherwise completely mess up your scale and make everything below a minute indistinguishable noise.
+You can also adjust the scale used for the y-axis in the run time charts. Valid values are “linear" (which is the default) and "logarithmic". This, for example, is how you can still see the runtime differences in your “normal” requests when there are some timeouts that would otherwise completely distort the scale and make everything below a minute indistinguishable noise.
 
 ```bash
 com.xceptance.xlt.reportgenerator.charts.scale = logarithmic
@@ -173,7 +173,7 @@ com.xceptance.xlt.reportgenerator.charts.cappingValue = 5000
 All requests, capped at 5.000 ms.
 {{< /image >}}
 
-Now some of the requests still take about 3.000 ms, but most are still a grey something at the bottom of the chart - it's hard to spot interesting details in the lower part of the chart, that still contains most requests. So this time, let's just cap the chart at five times the request meantime, which is about 200 ms:
+Now some of the requests still take about 3.000 ms, but most appear as an indistinct grey area at the bottom of the chart - it's hard to spot interesting details in the lower part of the chart, that still contains most requests. So this time, let's just cap the chart at five times the request meantime, which is about 200 ms:
 
 ```bash
 com.xceptance.xlt.reportgenerator.charts.cappingFactor = 5

@@ -34,7 +34,7 @@ Building the load test suite before the actual start of the test may take severa
 
 XTC caches the downloaded dependencies of a load test project so subsequent builds should run much faster. The cache expires automatically 14 days after the last load test was run.
 
-If you need to discard the cache (for example due to currupted or compromised artifacts), you can do so by going to this section and clicking _Discard Cache_.
+If you need to discard the cache (for example due to corrupted or compromised artifacts), you can do so by going to this section and clicking _Discard Cache_.
 
 ## Default Sharing Settings
 
@@ -79,7 +79,7 @@ Incompatible changes in XLT may break your existing load test suites so XTC lets
 
 The XLT support and deprecation policy is as follows: whenever a new major version of XLT is available, **the previous major version** is marked as deprecated, but **remains available for another 8 weeks**. This means while you can continue your current load testing activities uninterrupted, you should also plan and perform the migration of your test suite to the new XLT version in time. **After the migration period of 8 weeks, the previous XLT version will be removed** and the new version will be the only one available.
 
-XTC helps to manage that transition. Project admins can define in the project settings which version of XLT should be the default one. Go to _Project > Configuration > Execution > Execution Environment_ and choose an XLT version. You will want to adjust this setting when you start a new project or when you are done migrating your test suite. The default version will be effective when creating a new load test, but not when duplicating an existing one.
+XTC helps to manage that transition. Project admins can define in the project settings which version of XLT should be the default one. Go to _Project > Configuration > Execution > Execution Environment_ and choose an XLT version. Adjust this setting when you start a new project or when you are done migrating your test suite. The default version will be effective when creating a new load test, but not when duplicating an existing one.
 
 Testers may override this default for a particular load test in the settings of that load test. Open _Load Test > Settings > Common Machine Configuration_ and choose the wanted version of the execution environment. Use this to test your migrated code (probably on another Git repository branch) with the new version, before switching to this version in general.
 

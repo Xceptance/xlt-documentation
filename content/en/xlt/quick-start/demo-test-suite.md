@@ -56,4 +56,4 @@ Users of other IDEs may have to follow similar steps and can check out the guide
 
 ### Executing Java Test Cases in Eclipse
 
-Any Java test case can be directly run in Eclipse in headless browser mode. Go to package `com.xceptance.xlt.samples.tests`, select the test case class (e.g. `TSearch`), and run it as JUnit test via the Eclipse class file context menu. Per default, the test cases will run against the [demo application]({{< relref "demo-application" >}}) you started already (if you modified the ports there, you might have to change them in `<project>/config/project.properties` accordingly, just look for the property `store-url`).
+Any Java test case can be directly run in Eclipse in headless browser mode. Go to package `com.xceptance.xlt.samples.tests`, select the test case class (e.g. `TSearch`), and run it as JUnit test via the Eclipse class file context menu. By default, the test cases will run against the [demo application]({{< relref "demo-application" >}}) you started already (if you modified the ports there, you might have to change them in `<project>/config/project.properties` accordingly, just look for the property `store-url`).
