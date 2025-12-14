@@ -16,7 +16,7 @@ Execution of a bunch of tests in parallel is currently only supported with Maven
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.20.1</version>
+            <version>3.5.2</version>
             <configuration>
                 <forkCount>4</forkCount>
                 <reuseForks>true</reuseForks>

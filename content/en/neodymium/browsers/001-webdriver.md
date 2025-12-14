@@ -1,7 +1,7 @@
 ---
 title: "WebDriver Handling"
 
-weight: 01
+weight: 1
 type: docs
 
 description: >
@@ -62,9 +62,9 @@ ways to prevent this.
 
 To keep the browser open you can either:
 
-- set the configuration values `neodymium.webDriver.keepBrowserOpen=true` or
+* set the configuration values `neodymium.webDriver.keepBrowserOpen=true` or
   `neodymium.webDriver.keepBrowserOpenOnFailure=true` or
-- use the annotation `@KeepBrowserOpen(onlyOnFailure = false)`
+* use the annotation `@KeepBrowserOpen(onlyOnFailure = false)`
 
 More details about properties can be found in
 the [Neodymium configuration properties]({{< relref "090-neodymium-properties#browser-behavior" >}}).
