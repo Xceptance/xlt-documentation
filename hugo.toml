@@ -104,7 +104,7 @@ github_project_repo = "https://github.com/Xceptance/XLT"
 
 # Enable Algolia DocSearch
 # (if this is enabled, sidebar_search_disable needs to be true as well, Algolia does not support sidebar search)
-algolia_docsearch = false
+params.search.algolia = false
 
 # Enable local search
 offlineSearch = true
