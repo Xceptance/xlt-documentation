@@ -72,4 +72,4 @@ Installing XLT is described in more detail [here]({{< relref "installation" >}})
 
 ### How to proceed
 
-The [Quick Start]({{< relref "quick-start" >}}) section offers guidance on how to start using XLT, from installation to your first local load test. For further information, you might want to return to this [User Manual]({{< relref "workflow" >}}), where you can learn all the details about developing and configuring your tests, setting up remote machines to generate load, and everything in between. Happy testing!
+The [Quick Start]({{< relref "xlt/quick-start" >}}) section offers guidance on how to start using XLT, from installation to your first local load test. For further information, you might want to return to this [User Manual]({{< relref "workflow" >}}), where you can learn all the details about developing and configuring your tests, setting up remote machines to generate load, and everything in between. Happy testing!
