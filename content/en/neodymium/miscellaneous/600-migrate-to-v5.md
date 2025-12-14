@@ -6,15 +6,15 @@ type: docs
 description: "Migration guide for Neodymium 5."
 ---
 
-We are thrilled to announce the release of Neodymium 5. It's a big milestone that brings support for JUnit 5 and Selenium 4 / Selenide 6 or above. Due to these major changes there is some additional effort required to migrate your project to Neodymium 5.
+We are thrilled to announce the release of Neodymium 5. It is a significant milestone that brings support for JUnit 5 and Selenium 4 / Selenide 6 or above. Upgrading to Neodymium 5 involves a few necessary steps to ensure compatibility with your existing projects.
 
 ## 1. Requirements
 
-Please note that Neodymium 5 needs a higher JDK version. Please update your system to JDK 17.
+Please note that Neodymium 5 requires **Java 17** (JDK 17). Ensure your development environment is updated accordingly.
 
 ## 2. General changes in POM
 
-If you took our [neodymium-template](https://github.com/Xceptance/neodymium-template) project as basis you need to change the properties in your `pom.xml` to the following:
+If you based your project on our [neodymium-template](https://github.com/Xceptance/neodymium-template), update the properties in your `pom.xml` as follows:
 
 ```
   <properties>
@@ -30,11 +30,11 @@ If you took our [neodymium-template](https://github.com/Xceptance/neodymium-temp
 
 In case you have your own project structure, here are some instructions for what you need to do:
 
-1. Update Neodymium dependency version to 5.0.0
-2. Update Maven Compiler version to 17 as Neodymium now requires Java 17
-3. Update Maven Surefire Plugin version above 3.0.0-M5 (recommended 3.2.5 version as the latest version by the time of release)
-4. Update Aspectj Weaver to the version above 1.9.19 (recommended 1.9.21 version)
-5. Update Allure version to 2.12.0 version
+1. Update Neodymium dependency to version `5.0.0`.
+2. Update Maven Compiler to version `17` as Neodymium now requires Java 17.
+3. Update Maven Surefire Plugin to version `3.2.5` (or higher; anything above 3.0.0-M5 is required).
+4. Update AspectJ Weaver to version `1.9.21` (or higher; anything above 1.9.19 is required).
+5. Update Allure to version `2.12.0`.
 
 **Important: allure version and allure report version don't have to match! You can use the latest (2.27.0 for now) report version to have good-looking reports** To use different allure report version adjust allure plugin to:
 
@@ -53,29 +53,29 @@ In case you have your own project structure, here are some instructions for what
 
 The now used Selenide version contains the following changes that may have impact on your project:
 
-* The `waitUntil` and `waitWhile` methods were replaced with extended `should`/`shouldNot`/`shouldBe`/`shouldHave`/etc. methods, which now accept different implicit waiting time in form of `java.time.Duration` object. This means that e.g. your `waitUntil(visible, 9000)` has to be replaced with `shouldBe(visible, Duration.ofMilis(9000))`
+* The `waitUntil` and `waitWhile` methods were replaced with extended `should`/`shouldNot`/`shouldBe`/`shouldHave`/etc. methods, which now accept a different implicit waiting time as a `java.time.Duration` object. For example, `waitUntil(visible, 9000)` must be replaced with `shouldBe(visible, Duration.ofMillis(9000))`.
 
-* The `shouldHaveSize` method for collection was removed as it can be replaced with more general `shouldHave` method (`shouldHave(size(n))`)
+* The `shouldHaveSize` method for collections was removed. It can be replaced with the more general `shouldHave` method (e.g., `shouldHave(CollectionCondition.size(n))`).
 
-* The `getSelectedText()` method is renamed to `getSelectedOptionText()`
+* The `getSelectedText()` method has been renamed to `getSelectedOptionText()`.
 
 ## 4. Changes that might be required for your CI/CD (esp. Jenkins)
 
-The Allure version that is now used in Neodymium is incompatible with Allure Commandline Tools versions below 27th. Therefore, if you use the Allure Commandline tool to generate Allure Reports, you will need to update it to be able to generate the report.
+The Allure version used in Neodymium is incompatible with Allure Commandline Tools versions below **2.27.0**. If you use the Allure Commandline tool to generate reports, you must update it.
 
-If you use the Allure Report plugin in Jenkins to generate and store the report after the test run, please mind that the plugin uses the commandline tool to produce the report. It's not only required to update the plugin version, but you also need to increase the commandline version in tools, like the image below shows:
+If you use the Allure Report plugin in Jenkins to generate and store reports, please note that the plugin uses the commandline tool. You not only need to update the plugin but also configure the commandline version in the global tool configuration, as shown below:
 
 ![Allure Commandline tools configuration in Jenkins](/images/neodymium/allure-commandline-installations-jenkins.png)
 
 ## 5. Changes required if you want to stay with JUnit 4 but with Neodymium 5
 
-Although JUnit5 introduced a lot of useful features, we don't want to force you using it in your project. The reasons for staying with JUnit4 may be different, from being compatible with other dependencies to just going old school ;)
+While JUnit 5 introduces many useful features, we do not force you to migrate your tests. Whether due to compatibility or preference, you can continue using JUnit 4.
 
-Nevertheless, it's still required to introduce some changes in project even in this case.
+However, some changes to your project configuration are still required.
 
 ### 5.1 Changes in POM
 
-Include JUnit4 vintage engine as dependency for Maven Surefire Plugin into the `pom.xml` (if you use neodymium-template as basis, it would be right after the Aspectjs dependency)
+Include the **JUnit 4 Vintage Engine** as a dependency for the Maven Surefire Plugin in your `pom.xml`. If you are using the `neodymium-template`, this should be placed right after the AspectJ dependency.
 
 ```
       <plugin>
@@ -130,7 +130,7 @@ As Neodymium 5 now supports both JUnit4 and JUnit5 but the offered sugar is mutu
 * `com.xceptance.neodymium.module.statement.testdata.SuppressDataSet` moved to `com.xceptance.neodymium.common.testdata.SuppressDataSet`
 * `com.xceptance.neodymium.NeodymiumRunner` moved to `com.xceptance.neodymium.junit4.NeodymiumRunner` (for JUnit4 version only)
 
-Please be aware of these changes and update your imports to make your project compile properly. This step is also required if you want to switch to JUnit 5
+Please update your imports to ensure your project compiles correctly. This step is also required if you plan to switch to JUnit 5.
 
 ### 5.3 Example test with JUnit4
 
@@ -156,18 +156,20 @@ public class HomePageTest
 
 ## 6. Steps to update to JUnit5
 
-If you decided to go for JUnit5, you are definitely on the right way to make your tests modern and powerful. The JUnit5 is no more just a framework to execute tests, as with introduced `Extendtion`s it's now much easier to customize the test execution to exact needs of your project. Our aim was also to make your customizations compatible with the Neodymium sugar. Here are things you need to know to be able to use Neodymium with JUnit5 in your project and to customize the execution process if needed:
+If you decide to migrate to JUnit 5, you can take advantage of its modern features. JUnit 5 uses `Extension`s, making it easier to customize test execution. Neodymium's features have been adapted to work seamlessly with this new model.
 
-* JUnit5 went more method-level and introduced a lot of new annotations for the test methods. Apart from `@Test` there are now `@TestTemplate`, `@ParameterizedTest`, `@RepeatedTest`, etc. We followed the trend and introduced the `@NeodymiumTest` annotation for all tests that should be driven by Neodymium. So, in contrast to the Neodymium with JUnit4, where you had to annotate the whole test class with `@RunWith(NeodymiumRunner.class)` to mark that the tests should be executed with Neodymium, it's now enough to simply annotate a single method that is supposed to be a Neodymium test with `@NeodymiumTest` annotation. This makes you more flexible and enables to have both Neodymium and other "plain" JUnit tests in the same class.
+Here are the key things you need to know:
 
-* JUnit5 got rid of all `Rule`s, which are now replaced with `@ExtendWith` and `Extension`. If you want to use one, just annotate the method or class (depending on Extension) and it will be combined with Neodymium sugar as far as possible. For example, if you want your test to use soft assertions, you need to annotate the class where it's located with `@ExtendWith(SoftAssertsExtension.class)` and turn the soft mode on, when it's needed (with `Configuration.assertionMode = AssertionMode.SOFT;`, the same as in JUnit4)
+* **Annotations**: JUnit 5 focuses on method-level annotations. New annotations include `@TestTemplate`, `@ParameterizedTest`, and `@RepeatedTest`. We introduced `@NeodymiumTest` for tests driven by Neodymium. Unlike JUnit 4, where you annotated the class with `@RunWith(NeodymiumRunner.class)`, you now simply annotate the test method with `@NeodymiumTest`. This allows you to mix Neodymium tests and standard JUnit tests in the same class.
 
-* Replace
-  * `@Before` with `@BeforeEach`
-  * `@After` with `@AfterEach`
-  * `@BeforeClass` with `@BeforeAll`
-  * `@AfterClass` with `@AfterAll`
-  * `@Ignore` with `@Disabled`
+* **Extensions**: JUnit 5 replaces `Rule`s with `@ExtendWith` and the `Extension` API. If you need to use a Neodymium feature that was previously a rule, simply annotate the class or method. For example, to use soft assertions, annotate the class with `@ExtendWith(SoftAssertsExtension.class)` and enable soft mode as needed (`Configuration.assertionMode = AssertionMode.SOFT;`).
+
+* **Annotation Replacements**:
+  * `@Before` -> `@BeforeEach`
+  * `@After` -> `@AfterEach`
+  * `@BeforeClass` -> `@BeforeAll`
+  * `@AfterClass` -> `@AfterAll`
+  * `@Ignore` -> `@Disabled`
 
 ### 6.1 Example test with JUnit5
 
