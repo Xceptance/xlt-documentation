@@ -175,7 +175,7 @@ enable = false
 [[menu.main]]
     identifier = "xlt"
     name = "XLT"
-    weight = 0
+    weight = 1
     url = "#"
 [[menu.main]]
     identifier = "xlt-overview"
@@ -229,7 +229,7 @@ enable = false
 [[menu.main]]
     identifier = "xtc"
     name = "XTC"
-    weight = 0
+    weight = 2
     url = "#"
 [[menu.main]]
     identifier = "xtc-overview"
@@ -263,3 +263,31 @@ enable = false
     weight = 16
     url = "/xtc/xtc-release-notes"
     parent = "xtc"
+
+[[menu.main]]
+    identifier = "neodymium"
+    name = "Neodymium"
+    weight = 3
+    url = "#"
+[[menu.main]]
+    identifier = "neodymium-overview"
+    name = "Overview"
+    weight = 11
+    parent = "neodymium"
+    url = "/neodymium/"
+[[menu.main]]
+    name = "Quick Start"
+    weight = 12
+    url = "/neodymium/quick-start"
+    parent = "neodymium"
+[[menu.main]]
+    name = "Advanced"
+    weight = 13
+    url = "/neodymium/advanced"
+    parent = "neodymium"
+[[menu.main]]
+    name = "Release Notes"
+    identifier = "neodymium-release-notes"
+    weight = 16
+    url = "/neodymium/release-notes"
+    parent = "neodymium"
