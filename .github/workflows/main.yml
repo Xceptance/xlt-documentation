@@ -2,43 +2,44 @@ name: Deploy documentation
 
 on:
   push:
-    branches: [ main ] # Set a branch to deploy
-
+    branches: 
+      - main # Set a branch to deploy
+  workflow_dispatch:
+    
 jobs:
   deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
-          submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+          submodules: true # Fetch Hugo themes/modules
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.131.0'
+          hugo-version: '0.152.2'
           extended: true
 
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '16.x'
-
-      - name: Cache dependencies
+      - name: Cache Hugo modules
         uses: actions/cache@v4
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          path: /tmp/hugo_cache
+          key: ${{ runner.os }}-hugo-${{ hashFiles('**/go.sum') }}
           restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install Node dependencies
-        run: npm ci
+            ${{ runner.os }}-hugo-
 
       - name: Build the documentation
-        run: hugo
+        env:
+            HUGO_CACHEDIR: /tmp/hugo_cache
+        run: hugo --gc --minify
 
-      - name: Install 
+      - name: Install lftp
         run: sudo apt-get install lftp
 
       - name: Mirror the documentation on the FTP 
