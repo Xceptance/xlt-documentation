@@ -1,0 +1,3 @@
+
+{{ $bs := resources.Get "js/bootstrap.bundle.min.js" | resources.Fingerprint }}
+<script src="{{ $bs.RelPermalink }}" integrity="{{ $bs.Data.Integrity }}" crossorigin="anonymous"></script>

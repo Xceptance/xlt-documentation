@@ -176,7 +176,7 @@ enable = false
     identifier = "xlt"
     name = "XLT"
     weight = 0
-    url = "/xlt"
+    url = "#"
 [[menu.main]]
     identifier = "about-xlt"
     name = "About"
@@ -224,7 +224,7 @@ enable = false
     identifier = "xtc"
     name = "XTC"
     weight = 0
-    url = "/xtc"
+    url = "#"
 [[menu.main]]
     name = "Basics"
     weight = 12
