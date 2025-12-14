@@ -25,6 +25,7 @@ The _Integrations_ tab allows you to integrate XTC with your Slack Workspace to 
 ## User Roles Within an Organization
 
 As an organization member, a user account can have one of the following roles:
+
 * as a **guest**, you can only view the organization's dashboard,
 * a **member** is basically the default role for any new project user and is allowed to view organization settings and view and work on projects,
 * a **billing manager** has permission to view and evaluate [resource usage]({{< relref "../loadtesting/400-resource-usage" >}}) of the organization, and
@@ -80,15 +81,15 @@ Managing a large organization with many projects and users can be challenging. T
 
 To simplify this process, XTC supports the concept of user groups. A user group is a collection of organization members managed at the organization level. Similar to regular organization members, user groups can be assigned to a project with a specific role later on. All users in the group become indirect members of the project and have the same role. This intermediate layer significantly simplifies project member management.
 
-For example, you could create user groups such as "Admins", "Test Managers", "Testers", and "Reviewers". Go to the *Members* page in your organization and switch to the *User Groups* tab. Click "New" to create a new user group. You can check _Add Org Members to Group_ to add all current org members to the newly created group. To add or remove members, click on the newly created group's name. In the user group detail view, you can then add and remove group members as appropriate (user invitations are not possible here, you can only add existing org members).
+For example, you could create user groups such as "Admins", "Test Managers", "Testers", and "Reviewers". Go to the _Members_ page in your organization and switch to the _User Groups_ tab. Click "New" to create a new user group. You can check _Add Org Members to Group_ to add all current org members to the newly created group. To add or remove members, click on the newly created group's name. In the user group detail view, you can then add and remove group members as appropriate (user invitations are not possible here, you can only add existing org members).
 
-Then, assign these groups to all projects as desired. To do so, browse to the project's *Members* page, switch to the *User Groups* tab, and add each group with the proper project role. Note that this only needs to be done once.
+Then, assign these groups to all projects as desired. To do so, browse to the project's _Members_ page, switch to the _User Groups_ tab, and add each group with the proper project role. Note that this only needs to be done once.
 
 Now, when adding a new user to the organization, simply assign them to the appropriate user group, for example, the "Testers" group. This automatically makes them a tester in all projects with the "Testers" user group assigned. To make a user a project administrator in all projects, remove them from their current group and add them to the "Admins" group.
 
 Note that you can mix regular project members and user groups. This allows for project setups with special needs.
 
-### Effective Role 
+### Effective Role
 
 Now that users can be both direct and indirect project members, the question arises as to what their effective role will be.
 
@@ -117,13 +118,13 @@ To lock out a user manually, open the _Members_ page, locate the user in questio
 Organization admins may impose mandatory login requirements on users of their organization. They may require users to be authenticated using specific [login providers]({{< relref "040-user-accounts/#connecting-existing-xtc-accounts-to-an-external-login-provider" >}}) or [2FA]({{< relref "040-user-accounts/#two-factor-authentication-2fa" >}}).
 
 {{% note notitle %}}
-The configuration ***does not*** force users to actually configure the required login procedure to be able to log into XTC. It merely prevents them from accessing the organization. Users will still be able to see the organization in their dashboard and organization dropdown, but will see an appropriate error screen informing them about the need to comply with the login requirement when trying to access the organization details. Organization admins ***should*** inform users via appropriate means to ensure that they are up-to-date on any login changes.
+The configuration _**does not**_ force users to actually configure the required login procedure to be able to log into XTC. It merely prevents them from accessing the organization. Users will still be able to see the organization in their dashboard and organization dropdown, but will see an appropriate error screen informing them about the need to comply with the login requirement when trying to access the organization details. Organization admins _**should**_ inform users via appropriate means to ensure that they are up-to-date on any login changes.
 {{% /note %}}
 
-When accessing an organization, the system will check whether the login requirements are fulfilled ***in the current session***. Users that have an external login provider ***and*** 2FA configured will need to use the appropriate login flow to access a specific organization. This can mean having to log out and log in again using a different authentication method in order to switch organizations.
+When accessing an organization, the system will check whether the login requirements are fulfilled _**in the current session**_. Users that have an external login provider _**and**_ 2FA configured will need to use the appropriate login flow to access a specific organization. This can mean having to log out and log in again using a different authentication method in order to switch organizations.
 
 {{% warning notitle %}}
-Changes to the login requirement take effect immediately. Users that are already logged in will get the appropriate lock-out message on their next access to any of the organization's data. This includes saving any changes they may have made in the meantime. Admins ***should*** therefore try to schedule changes in a way to minimize user impact (e.g. outside of business hours or during an announced maintenance window).
+Changes to the login requirement take effect immediately. Users that are already logged in will get the appropriate lock-out message on their next access to any of the organization's data. This includes saving any changes they may have made in the meantime. Admins _**should**_ therefore try to schedule changes in a way to minimize user impact (e.g. outside of business hours or during an announced maintenance window).
 {{% /warning %}}
 
 {{% note notitle %}}

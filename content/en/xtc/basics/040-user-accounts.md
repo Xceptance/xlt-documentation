@@ -10,11 +10,12 @@ description: >
 
 ## Creating a User Account
 
-To use Xceptance Test Center, you need a user account. You can easily sign up on https://xtc.xceptance.com/. You will be prompted to enter your name, mail address and password. Alternatively, [you can sign up using your Google or Microsoft account]({{< relref "#sign-up-using-an-external-provider" >}}).
+To use Xceptance Test Center, you need a user account. You can easily sign up on <https://xtc.xceptance.com/>. You will be prompted to enter your name, mail address and password. Alternatively, [you can sign up using your Google or Microsoft account]({{< relref "#sign-up-using-an-external-provider" >}}).
 
 {{% note title="Password Guidelines" %}}
-1. Your password for XTC has to be at least 12 characters long. 
-1. A password must not start or end with spaces. 
+
+1. Your password for XTC has to be at least 12 characters long.
+1. A password must not start or end with spaces.
 1. If the password is shorter than 15 characters, it must contain at least one of each: lowercase and uppercase characters, digits, and special characters (e.g. punctuation).
 {{% /note %}}
 
@@ -22,14 +23,13 @@ After the successful registration, XTC will send you an email to the given addre
 
 Currently, your role and projects will be assigned by Xceptance. This will change in the future.
 
-
 ## Account Management
 
-XTC enables you to manage your account information. After logging in, click your avatar on the right side of the header and go to _My Account_. 
+XTC enables you to manage your account information. After logging in, click your avatar on the right side of the header and go to _My Account_.
 
-The _My Account_ view contains two tabs: _Profile_ and _Security_. 
+The _My Account_ view contains two tabs: _Profile_ and _Security_.
 
-In **Profile** you may update your profile information such as your first and last name, your phone number (which may be useful for receiving [monitoring notifications]({{< relref "../monitoring/430-scenarios/#notifications" >}})), and you can upload an avatar/profile picture. This section also allows you to [pause notifications]({{< relref "#pausing-notifications" >}}). 
+In **Profile** you may update your profile information such as your first and last name, your phone number (which may be useful for receiving [monitoring notifications]({{< relref "../monitoring/430-scenarios/#notifications" >}})), and you can upload an avatar/profile picture. This section also allows you to [pause notifications]({{< relref "#pausing-notifications" >}}).
 
 In **Security** you can update your login data: to set a new e-mail address or password for your account, you need to enter the new data twice and confirm this with your current password. (If you are using an external provider for authentication and have not set up an additional XTC password for your account, entering the password will not be necessary, and you will only be able to update your account's e-mail address.)
 
@@ -52,16 +52,16 @@ XTC users will get notified by email whenever their membership in a project or o
 If you want to take a break from work, you can pause certain notifications sent to you for a specified amount of time. Currently this includes:
 
 * Emails about changes in project membership.
-* Emails and text messages about [monitoring alerts]({{< relref "../monitoring/430-scenarios/#notifications" >}})).
+* Emails and text messages about [monitoring alerts]({{< relref "430-scenarios#notifications" >}})).
 
 This list may be expanded in the future, but notifications related to your account will never be muted.
 
-To pause notifications, browse to your account settings (click on your avatar and select *My Account* from the menu), click the pencil button next to _Notifications_ and select the period of time you want notifications to be muted for and confirm by clicking _Set_. Typically, you will do this for a period of time in the future. After the successful setup, the selected pause will be displayed in this section:
+To pause notifications, browse to your account settings (click on your avatar and select _My Account_ from the menu), click the pencil button next to _Notifications_ and select the period of time you want notifications to be muted for and confirm by clicking _Set_. Typically, you will do this for a period of time in the future. After the successful setup, the selected pause will be displayed in this section:
 
 {{< image src="xtc/notifications_paused.png" >}}
 {{< /image >}}
 
-To delete the pause, simply click the *Delete* button next to the *Edit* button.
+To delete the pause, simply click the _Delete_ button next to the _Edit_ button.
 
 When the pause starts, XTC will stop sending you notifications. When the pause ends, XTC will automatically resume sending notifications, but note that muted notifications will not be resent. There is no need to delete a pause once it has expired.
 
@@ -87,7 +87,7 @@ XTC system administrators are **required** to have 2FA enabled for their local X
 
 ### 2FA Recovery Codes
 
-XTC allows you to **create new 2FA recovery codes** at any time. Use this feature if you lost your recovery codes or used them all up. To create new codes, go to *My Account > Security > Two-Factor Authentication*, click the button *Reset Recovery Codes* and follow the instructions. The 2FA setup on your authentication device will not be affected.
+XTC allows you to **create new 2FA recovery codes** at any time. Use this feature if you lost your recovery codes or used them all up. To create new codes, go to _My Account > Security > Two-Factor Authentication_, click the button _Reset Recovery Codes_ and follow the instructions. The 2FA setup on your authentication device will not be affected.
 
 ## External Login Providers (SSO)
 
@@ -157,14 +157,14 @@ Depending on whether you are already logged into your Google or Microsoft accoun
 
 ### Removing the Binding to an External Login Provider
 
-XTC allows you to remove the binding of your account to an external login provider and go back to authentication by username/password. To do this, your account needs a **password** first. 
+XTC allows you to remove the binding of your account to an external login provider and go back to authentication by username/password. To do this, your account needs a **password** first.
 
 {{% note notitle %}}
 Users that signed up with an SSO account typically don’t have an XTC password yet and therefore need to set up one first by using the _Forgot Your Password?_ mechanism on the login page.
 {{% /note %}}
 
-To then unbind your SSO account and only use the newly created password for future logins, 
+To then unbind your SSO account and only use the newly created password for future logins,
 
-1. Click on your avatar in the top right corner and go to "My Account" > "Security". 
+1. Click on your avatar in the top right corner and go to "My Account" > "Security".
 1. Edit the "Single Sign-On" section by clicking on the pen icon.
 1. Click _Remove External Login Provider_. You will be prompted to enter your password to confirm this action.

@@ -33,9 +33,9 @@ The scenario defaults tab with expand toggle and editing button.
 
 ## Notification Lists
 
-XTC uses a flexible approach to configuring when an alert is triggered and to whom notifications are sent. Instead of having a single list of recipients where all recipients are notified in every case, you can define your own lists of who gets notified and how (**notification lists**) and under which circumstances these alerts should be sent ([**quality sensors**]({{< relref "#quality-sensors" >}})). 
+XTC uses a flexible approach to configuring when an alert is triggered and to whom notifications are sent. Instead of having a single list of recipients where all recipients are notified in every case, you can define your own lists of who gets notified and how (**notification lists**) and under which circumstances these alerts should be sent ([**quality sensors**]({{< relref "#quality-sensors" >}})).
 
-Notification lists are managed globally for a project, on the project configuration's _Notifications_ tab. 
+Notification lists are managed globally for a project, on the project configuration's _Notifications_ tab.
 
 In a simple project, the setup of notification lists might look like this:
 
@@ -49,15 +49,15 @@ The default **Reply-To Address** for all notification e-mails can be defined in 
 
 To add a new notification list, go to the _Notifications_ tab in _Configuration_ and click _New_ at the top right. You will be asked to set a name for your list and, if needed, add a description.
 
-The newly created notification list will then show up in the overview table. 
+The newly created notification list will then show up in the overview table.
 
 {{< image src="xtc/monitoring_notificationLists_overview.png" >}}
 Notification lists overview table.
 {{< /image >}}
 
-By clicking its context menu you may **edit** the name and description defined before, **duplicate** it in order to create another similar list or **delete** it (you will be asked for confirmation). You can also [**pause or disable**]({{< relref "#pausing-or-disabling-notifications" >}}) notifications for a single list here. 
+By clicking its context menu you may **edit** the name and description defined before, **duplicate** it in order to create another similar list or **delete** it (you will be asked for confirmation). You can also [**pause or disable**]({{< relref "#pausing-or-disabling-notifications" >}}) notifications for a single list here.
 
-To view and edit the subscribers and check assignments of a notification list, either click the list's name or select **view** from the context menu. 
+To view and edit the subscribers and check assignments of a notification list, either click the list's name or select **view** from the context menu.
 
 {{< image src="xtc/monitoring_notificationLists_details.png" >}}
 Notification list detail view.
@@ -71,13 +71,13 @@ When you are finished configuring a notification list, you can [use it in qualit
 
 ### Activation Times
 
-Per default, monitoring alerts are sent out 24/7 on any weekday. While this is appropriate for functional issues, less important issues do not need to be reported around the clock. For example, performance issues could be reported only during business hours.
+By default, monitoring alerts are sent out 24/7 on any weekday. While this is appropriate for functional issues, less important issues do not need to be reported around the clock. For example, performance issues could be reported only during business hours.
 
 You can manage the time periods when a notification list is active: an activation time defines a recurring time window during which notifications are sent to subscribers. For instance, notifications could be sent Monday through Friday from 9 a.m. to 5 p.m. You can add up to 20 different activation times per notification list. No notifications will be sent outside of these times.
 
-A newly created activation list is, per default, active around the clock.
+A newly created activation list is, by default, active around the clock.
 
-To limit the active time, go to the notification list and switch to the *Activation Times* tab. There, you can either edit the default activation time, or create a new activation time (in that case, don't forget to disable or delete the default activation time) by specifying the following:
+To limit the active time, go to the notification list and switch to the _Activation Times_ tab. There, you can either edit the default activation time, or create a new activation time (in that case, don't forget to disable or delete the default activation time) by specifying the following:
 
 * Name and description.
 * The days the activation time window is valid.
@@ -89,7 +89,7 @@ You can define multiple activation times to allow for different time periods on 
 
 ### Pausing or Disabling Notifications
 
-On the project configuration's _Notifications_ tab, you can **globally disable and enable** notifications for the whole project. 
+On the project configuration's _Notifications_ tab, you can **globally disable and enable** notifications for the whole project.
 
 To **pause** notifications (and, if you configure this, pause scenario execution) for a predefined period in time you may configure [**Quiet Periods**]({{< relref "425-quiet-periods" >}}).
 
@@ -99,7 +99,7 @@ To enable or disable notifications or define notification pauses for any **singl
 Notification lists that (temporarily) won't receive notifications.
 {{< /image >}}
 
-## Quality Sensors 
+## Quality Sensors
 
 A **quality sensor** defines the circumstances under which an alert is to be sent and [which user groups]({{< relref "#notification-lists" >}}) are alerted. Because these metrics are applicable to multiple scenarios, they are configured project-wide, and then applied to test scenarios as needed. Multiple quality sensors can exist in a project, and multiple quality sensors can be assigned to any scenario.
 
@@ -115,7 +115,7 @@ Adding a new quality sensor to the project.
 Quality sensors overview.
 {{< /image >}}
 
-The quality sensor will then appear in the overview table. By clicking its context menu you may **edit** the basic quality sensor data defined before, **duplicate** it in order to create another sensor with similar settings, or **delete** it (you will be asked for confirmation). To view and edit the quality sensor details (e.g. the success metrics or notification list to be alerted on failure), either click the quality sensor's name or select **view** from the context menu. 
+The quality sensor will then appear in the overview table. By clicking its context menu you may **edit** the basic quality sensor data defined before, **duplicate** it in order to create another sensor with similar settings, or **delete** it (you will be asked for confirmation). To view and edit the quality sensor details (e.g. the success metrics or notification list to be alerted on failure), either click the quality sensor's name or select **view** from the context menu.
 
 {{< image src="xtc/monitoring_qualitySensors_details.png" >}}
 Quality sensor detail view.
@@ -123,16 +123,16 @@ Quality sensor detail view.
 
 #### Adding Metrics to a Quality Sensor
 
-In the quality sensor's details' _Configuration_ tab, you can add **metrics**, which are basically a set of conditions that must all be met or the scenario will fail. 
+In the quality sensor's details' _Configuration_ tab, you can add **metrics**, which are basically a set of conditions that must all be met or the scenario will fail.
 
 To add metrics, go to the quality sensor detail view's _Configuration_ tab and click _Add_ in the _Metrics_ section. You will be asked to select criteria from these groups:
 
 * **General**: Check for execution errors or scenario failures.
-* **Event**: Check the timing of [page load events]({{< relref "../../xlt/load-testing/manual/600-client-performance/#metrics-for-perceived-performance" >}}) (_DomContentLoaded_, _First Contentful Paint_, _First Paint_, _Load Event_).
+* **Event**: Check the timing of [page load events]({{< relref "client-performance#metrics-for-perceived-performance" >}}) (_DomContentLoaded_, _First Contentful Paint_, _First Paint_, _Load Event_).
 * **Web Vitals**: Check [user experience criteria](https://web.dev/articles/vitals) (_Cumulative Layout Shift_, _First Contentful Paint_, _First Input Delay_, _Interaction to Next Paint_, _Largest Contentful Paint_, _Time to First Byte_).
 * **XLT**: Check for basic runtime limits (for transactions, actions or requests) and request errors.
 
-Depending on the selected metric, the threshold you will be asked to select will be just "on occurrence", a time in milliseconds or some more specific parameter. All defined metrics can be edited or deleted afterwards using their context menu. 
+Depending on the selected metric, the threshold you will be asked to select will be just "on occurrence", a time in milliseconds or some more specific parameter. All defined metrics can be edited or deleted afterwards using their context menu.
 
 Not meeting one of the defined thresholds may cause an alert to be raised (remember that this happens only after the number of consecutive failures you set before), which is then sent to the set of [**notification lists**]({{< relref "#notification-lists" >}}) defined below.  
 
@@ -142,7 +142,7 @@ The set of [**notification lists**]({{< relref "#notification-lists" >}}) of a q
 
 To **add** one of the [previously configured]({{< relref "#defining-a-notification-list" >}}) notification lists to the quality sensor, go to the quality sensor detail view's _Configuration_ tab and click _Add_ in the _Notification Lists_ section. You will be asked to select one of the configured notifications lists.
 
-To **remove** a notification list from a quality sensor, go to the quality sensor detail view's _Configuration_ tab, and click _Remove_ in the notification list's context menu. Note that this only causes the quality sensor to stop sending alerts to this list - to actually **delete** the notification list, [go to the _Notification Lists_ tab of the configuration]({{< relref "#defining-a-notification-list" >}}). 
+To **remove** a notification list from a quality sensor, go to the quality sensor detail view's _Configuration_ tab, and click _Remove_ in the notification list's context menu. Note that this only causes the quality sensor to stop sending alerts to this list - to actually **delete** the notification list, [go to the _Notification Lists_ tab of the configuration]({{< relref "#defining-a-notification-list" >}}).
 
 ### Quality Sensor Assignments
 
@@ -150,9 +150,9 @@ When you are finished configuring quality sensors, you can [assign them to your 
 
 In a simple project, the quality sensors might look like this:
 
-* **Preparation**: Verifies that the scenario is ready to run and notifies the Monitoring Dev Team list if necessary. Blocks the execution of the following quality sensors. (e.g. git download failures, compile issues and other [fatal errors]({{< relref "460-history/#execution-statuses" >}}))
-* **Stability**: Verifies that the scenario has run successfully and otherwise notifies the On-Call Team list and possibly the Monitoring Dev Team list. Blocks the execution of the following quality sensors. (e.g. [scenario errors]({{< relref "460-history/#execution-statuses" >}}))
-* **Performance**: Verifies that selected performance parameters are within specified limits. If not, notifies the App Dev Team. (e.g. scenario failures, such as exceeding thresholds for request runtimes, web vitals, DOM events) 
+* **Preparation**: Verifies that the scenario is ready to run and notifies the Monitoring Dev Team list if necessary. Blocks the execution of the following quality sensors. (e.g. git download failures, compile issues and other [fatal errors]({{< relref "history/#execution-statuses" >}}))
+* **Stability**: Verifies that the scenario has run successfully and otherwise notifies the On-Call Team list and possibly the Monitoring Dev Team list. Blocks the execution of the following quality sensors. (e.g. [scenario errors]({{< relref "history/#execution-statuses" >}}))
+* **Performance**: Verifies that selected performance parameters are within specified limits. If not, notifies the App Dev Team. (e.g. scenario failures, such as exceeding thresholds for request runtimes, web vitals, DOM events)
 
 All of these quality sensors are then assigned to each scenario in this order.
 

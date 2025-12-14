@@ -1,5 +1,5 @@
 ---
-title: "Xceptance Test Center"
+title: "Basics"
 linktitle: "Basics"
 
 type: docs

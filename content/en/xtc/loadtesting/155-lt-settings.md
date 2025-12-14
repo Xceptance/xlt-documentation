@@ -20,10 +20,9 @@ Please note that none of the test settings can be edited after the test was star
 
 {{% permission type="project" least="true" role="reviewer" action="view test settings" %}}
 
-
 ### Load Profile
 
-Under _Load Profile_ you can override the settings in your test suite for the [test properties file to be used]({{< relref "/xlt/load-testing/manual/480-test-suite-configuration#test-properties-file" >}}). In addition to that, you can override the settings for test duration and [load factor]({{< relref "/xlt/load-testing/manual/470-load-configuration#load-factor" >}}). All other settings, for example, [ramp-up times]({{< relref "/xlt/load-testing/manual/470-load-configuration#ramp-up-load-profile" >}}), are not directly configurable in the UI yet, but are still read from the properties files in your test suite.
+Under _Load Profile_ you can override the settings in your test suite for the [test properties file to be used]({{< relref "test-suite-configuration#test-properties-file" >}}). In addition to that, you can override the settings for test duration and [load factor]({{< relref "load-configuration#load-factor" >}}). All other settings, for example, [ramp-up times]({{< relref "load-configuration#ramp-up-load-profile" >}}), are not directly configurable in the UI yet, but are still read from the properties files in your test suite.
 
 The load profile settings are only needed if you want to override your test suite settings for some reason, e.g. quickly changing the test duration or load factor without pushing changes to the repository, or switching between your prepared test property files. If the fields are left empty, the settings in the test suite will be used.
 
@@ -33,10 +32,11 @@ When overriding the load profile settings for a particular load test, you must s
 Overwriting the Load Profile with a Load Function
 {{< /image >}}
 
-Learn more in our _Load Testing_ section about [configuring load profiles]({{< relref "/xlt/load-testing/manual/470-load-configuration" >}}) for your test run.
+Learn more in our _Load Testing_ section about [configuring load profiles]({{< relref "load-configuration" >}}) for your test run.
 
 ### Properties
-In _Properties_ and _Secret Properties_ you may overwrite [properties]({{< relref "/xlt/load-testing/manual/480-test-suite-configuration" >}}) for test execution. Values set here take precedence over the values from the project repository, which are always used as default.
+
+In _Properties_ and _Secret Properties_ you may overwrite [properties]({{< relref "test-suite-configuration" >}}) for test execution. Values set here take precedence over the values from the project repository, which are always used as default.
 
 Properties may also be overwritten globally for all load tests of this project in the [project configuration]({{< relref "120-load-project-configuration#properties" >}}).
 
@@ -46,19 +46,20 @@ Under _Repository_ you can enter a branch of the project repository to be used f
 
 ## Machine Configuration
 
-The most important (and mandatory) part of the test setup is the configuration of the test machines to be used. The machines and machine settings to use for a load test can be found in the ***Machines*** tab.
+The most important (and mandatory) part of the test setup is the configuration of the test machines to be used. The machines and machine settings to use for a load test can be found in the _**Machines**_ tab.
 
-The machines to be used can be selected from _Amazon Cloud Machines_, _Google Cloud Machines_ or _Hetzner Cloud Machines_ (or you use a combination of these). 
+The machines to be used can be selected from _Amazon Cloud Machines_, _Google Cloud Machines_ or _Hetzner Cloud Machines_ (or you use a combination of these).
 
-If you want to use machines in the ***Amazon/Google/Hetzner Cloud***, you just enter configuration details and the selected machines will automatically be started prior to the load test and terminated afterwards by XTC. To edit the cloud machine configuration, click the editing button next to the headline. There you can
-* specify which _regions_ the machines should run in (you can pick several, the machines will be spread over the selected regions as evenly as possible), 
+If you want to use machines in the _**Amazon/Google/Hetzner Cloud**_, you just enter configuration details and the selected machines will automatically be started prior to the load test and terminated afterwards by XTC. To edit the cloud machine configuration, click the editing button next to the headline. There you can
+
+* specify which _regions_ the machines should run in (you can pick several, the machines will be spread over the selected regions as evenly as possible),
 * pick an _instance template_ for your machines, depending on how much computing power you think you'll need,
 * select the number of machine instances to start (_instance count_), and
 * select the number of _agents per instance_.
 
-As **[test sizing]({{< relref "/xlt/load-testing/how-tos/test-sizing" >}})** is a whole topic in itself, you might want to check the CPU usage after your test and maybe adjust the number of machines for the next test run.
+As **[test sizing]({{< relref "test-sizing" >}})** is a whole topic in itself, you might want to check the CPU usage after your test and maybe adjust the number of machines for the next test run.
 
-In ***Common Machine Configuration*** you can enter a password for the communication between the master and all agent machines (a random password will be generated by default). You can also [override the default XLT execution environment version]({{< relref "120-load-project-configuration/#environment" >}}) in this section.
+In _**Common Machine Configuration**_ you can enter a password for the communication between the master and all agent machines (a random password will be generated by default). You can also [override the default XLT execution environment version]({{< relref "120-load-project-configuration/#environment" >}}) in this section.
 
 ## Notifications
 
