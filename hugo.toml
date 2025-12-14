@@ -178,6 +178,12 @@ enable = false
     weight = 0
     url = "#"
 [[menu.main]]
+    identifier = "xlt-overview"
+    name = "Overview"
+    weight = 10
+    parent = "xlt"
+    url = "/xlt/"    
+[[menu.main]]
     identifier = "about-xlt"
     name = "About"
     weight = 11
@@ -225,6 +231,12 @@ enable = false
     name = "XTC"
     weight = 0
     url = "#"
+[[menu.main]]
+    identifier = "xtc-overview"
+    name = "Overview"
+    weight = 11
+    parent = "xtc"
+    url = "/xtc/"
 [[menu.main]]
     name = "Basics"
     weight = 12
