@@ -3,96 +3,84 @@ title: "Configuration"
 linkTitle: "Configuration"
 weight: 80
 type: docs
-
 description: >
   Overview of key configuration files and properties in Neodymium.
 ---
 
 Neodymium utilizes various properties files to establish default settings and customize specific behaviors.
 
+> [!TIP]
+> This is a quick summary. For the complete list of all properties and detailed explanations, please visit the [Configuration]({{< relref "configuration/090-neodymium-properties" >}}) page.
+> For browser-specific configurations, see [Browsers]({{< relref "browsers/010-browser" >}}).
+
+## Key Configuration Files
+
 The most important configuration files are:
 
-* `neodymium.properties`
-* `browser.properties`
-* `credentials.properties`
-* `gif-recording.properties`
-* `video-recording.properties`
+* `neodymium.properties`: General framework settings (URL, timeouts, etc.).
+* `browser.properties`: Browser profiles and capabilities.
+* `credentials.properties`: Sensitive data like SauceLabs keys (do not commit!).
+* `gif-recording.properties` / `video-recording.properties`: Media recording settings.
 
-Neodymium's properties files must reside in the `./config/*.properties` directory at the project root. For test-specific configurations, `dev-*.properties` files can be used to override or add values. It is crucial to exclude these `dev-*` files from version control to avoid unintended consequences for CI/CD and committing secrets.
+Neodymium's properties files must reside in the `./config/*.properties` directory at the project root.
 
-Temporary property files can also be created during test execution using:
-`ConfigFactory.setProperty(Neodymium.TEMPORARY_CONFIG_FILE_PROPERTY_NAME, "file:" + fileLocation);` within a `@BeforeAll` or `@Before` method.
+For test-specific configurations, `dev-*.properties` files can be used to override values locally. **Always exclude `dev-*` and `credentials.properties` from version control.**
 
-The loading order for these properties is (highest priority first):
+## Property Loading Order
 
-1. System properties
-2. Temporary config file
+Properties are loaded in the following order (highest priority first):
+
+1. System properties (e.g., `-Dneodymium.url=...`)
+2. Temporary config file (set in code)
 3. `config/dev-neodymium.properties`
 4. System environment variables
 5. `config/credentials.properties`
 6. `config/neodymium.properties`
 
-## Neodymium Properties
+## Common Properties
 
-The `neodymium.properties` file is the most comprehensive, defining a wide range of properties and behaviors. Below are essential properties from key areas.
+### URL
 
-### URL Properties
+Manage the test system's URL and access.
 
-The URL properties manage the test system's URL and can limit test automation to approved sites.
+| Property | Description |
+|---|---|
+| `neodymium.url` | URL of the website to test. |
+| `neodymium.url.protocol` | Protocol (http/https). |
+| `neodymium.url.host` | Hostname. |
 
-| Property | Default | Description |
-|---|:-:|---|
-| `neodymium.url` | - | URL of the website to test. |
-| `neodymium.url.protocol` | - | Protocol used to access the site. |
-| `neodymium.url.host` | - | Host encoded in the URL. |
-| `neodymium.url.path` | / | Path used as test entry point. |
-| `neodymium.url.includeList` | - | List of allowed URLs (whitespace separated). |
-| `neodymium.url.excludeList` | - | List of forbidden URLs (whitespace separated). |
+### Selenide
 
-When properly configured, `Neodymium.configuration().url()` returns the test system's URL. The URL can be dynamically built using properties (e.g., `neodymium.url = ${neodymium.url.protocol}://${neodymium.url.host}`).
-
-### Selenide Properties
-
-These properties modify Selenide's behavior.
+Control Selenide's behavior.
 
 | Property | Default | Description |
 |---|:-:|---|
-| `neodymium.selenide.timeout` | 3000 | Timeout (ms) for Selenide to match a condition. |
-| `neodymium.selenide.fastSetValue` | false | Set input values via JavaScript. |
-| `neodymium.selenide.clickViaJs` | false | Execute clicks via JavaScript. |
+| `neodymium.selenide.timeout` | 3000 | Timeout (ms) for conditions. |
+| `neodymium.selenide.fastSetValue` | false | Set values via JS (faster but less realistic). |
+| `neodymium.selenide.clickViaJs` | false | Click via JS (use when elements are covered). |
 
-### Popup Blocker
+### Browser Profiles (`browser.properties`)
 
-Neodymium can automatically handle unpredictable pop-ups. Configure the close button selector:
-
-```properties
-neodymium.popup.customPopUp=#myWindow
-```
-
-For predictable pop-ups, manual handling in the test is preferred.
-
-## Browser
-
-Browsers are defined in `browser.properties`. Tests use `@Browser("<browserId>")` to select a profile.
+Define browser profiles referenced by `@Browser("<profileName>")`.
 
 | Property | Mandatory | Description |
 |---|---|---|
-| `name` | YES | Display name for reporting. |
+| `name` | YES | Display name in reports. |
 | `browser` | YES | Browser type (`chrome`, `firefox`, etc.). |
 | `browserResolution` | NO | Window size (e.g., `1200x900`). |
-| `headless` | NO | Run in headless mode (true/false). |
-| `arguments` | NO | Command line arguments (chained by `;`). |
+| `headless` | NO | Run without UI (true/false). |
 
-Global browser configurations can be set using `browserprofile.global.<property>`.
+Example:
 
 ```properties
-browserprofile.global.headless=true
-browserprofile.global.browserResolution=1200x900
+browserprofile.Chrome_Headless.name=Chrome Headless
+browserprofile.Chrome_Headless.browser=chrome
+browserprofile.Chrome_Headless.headless=true
 ```
 
-## Credentials
+## Credentials (`credentials.properties`)
 
-Authentication information, such as for SauceLabs or BrowserStack, is stored in `credentials.properties`.
+Store secrets here. This file is often used for grid providers.
 
 ```properties
 browserprofile.testEnvironment.saucelabs.url=https://ondemand.saucelabs.com:443/wd/hub
@@ -100,23 +88,18 @@ browserprofile.testEnvironment.saucelabs.username=MyAccount
 browserprofile.testEnvironment.saucelabs.password=secret
 ```
 
-This allows you to reference the environment in your browser profile:
+Referenced in `browser.properties`:
 
 ```properties
-browserprofile.FF_1024x768.testEnvironment=saucelabs
+browserprofile.MyProfile.testEnvironment=saucelabs
 ```
 
 ## Recording
 
-Recording properties configure GIF and MP4 recording behavior.
+Configure if and when to record execution.
 
-| Property | Type | Description |
-|---|---|---|
-| `enableFilming` | bool | Master switch for recording. |
-| `filmAutomatically` | bool | Start recording automatically on browser open. |
-| `appendAllRecordingsToAllureReport` | bool | Add all recordings to report (default: only failures). |
-
-Manual recording control in tests:
-
-* `FilmTestExecution.startVideoRecording(String fileName);`
-* `FilmTestExecution.finishVideoFilming(String fileName, boolean testFailed);`
+| Property | Description |
+|---|---|
+| `enableFilming` | Master switch for recording. |
+| `filmAutomatically` | Start recording automatically. |
+| `appendAllRecordingsToAllureReport` | Add all recordings to report (default: failures only). |
