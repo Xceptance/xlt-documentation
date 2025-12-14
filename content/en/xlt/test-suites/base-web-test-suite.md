@@ -10,4 +10,10 @@ description: >
 
 ## Introduction
 
-The _[Posters simple load test suite](https://github.com/Xceptance/posters-simple-loadtest-suite)_ is our most minimal approach at building a test suite to help you get started with XLT, get used to the concepts and understand the fundamental concepts of XLT. It works on our real-world demo application, the _[Posters shop]({{< relref "../quick-start/demo-application" >}})_, which you can also find on [Github](https://github.com/Xceptance/posters-demo-store) (or in the _samples_ of your official XLT release). It is a good starting point for beginners, but for real-world problems you'll probably want to move on to a more complex sample. Learn more in the [Quickstart section]({{< relref "../quick-start/demo-test-suite" >}}).
+The **[Posters Simple Load Test Suite](https://github.com/Xceptance/posters-simple-loadtest-suite)** is designed as a minimal entry point to help you get started with XLT. It provides a straightforward way to learn the fundamental concepts of XLT and load testing without the complexity of a full-scale framework.
+
+This suite targets our demo application, the **[Posters Shop]({{< relref "../quick-start/demo-application" >}})**, available on [GitHub](https://github.com/Xceptance/posters-demo-store) and included in the `samples` directory of the XLT distribution.
+
+While this suite is an excellent starting point for beginners, real-world projects often benefit from more advanced structures. Once you assume confidence with the basics, we recommend exploring our more complex options.
+
+For a guided introduction, visit the [Quick Start]({{< relref "../quick-start/demo-test-suite" >}}) section.

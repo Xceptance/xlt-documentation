@@ -10,37 +10,34 @@ description: >
 
 ## Introduction
 
-One is often faced with the requirement to just fire a couple of simple URLs, to verify the performance or functionality of a single feature, to create load in order to stress environments and monitor certain things, or simply to create load in addition to another load test.
+The **No Coding Test Suite** enables you to define and run load tests using simple YAML configuration files, eliminating the need for Java programming.
 
-TestSuite-NoCoding  is a test suite for XLT and delivers an easy way to define and fire HTTP requests and offers various tools to validate the responses. Additionally it is possible to filter, select, and store data from the response with the view of inserting it into the next request or its validation. This is a fast and likewise easy way to define test cases, since **no programming** is needed!
+It is ideal for:
 
-The test suite relies on the library [xlt-nocoding](https://github.com/Xceptance/xlt-nocoding) in order to interpret and execute the no-coding test definitions. Since the source of that library is open and licensed under the Apache License V2.0, feel free to extend and customize it.
+* Verifying single URLs or API endpoints
+* Creating background load to stress environments
+* Validating functional correctness without complex logic
+
+This suite relies on the open-source **[xlt-nocoding](https://github.com/Xceptance/xlt-nocoding)** library.
 
 ### Features
 
-* Reads test definitions from files. Supported file types:
-    * YAML
-    * CSV
-* Supports the validation of:
-    * Cookies
-    * HTTP response headers
-    * HTTP response content
-* Offers various validation methods in order to validate data.
-* Supports three modes to run the test-cases:
-    * DOM: the responses are parsed into the DOM, which allows to select elements by XPath for validation purpose
-    * LIGHT: there exists no DOM, which makes the test case fast to execute.
-    * REQUEST: Only plain HTTP requests are sent and HTTP responses received, which makes this the fastest mode.
-* Cookie handling is automatic
-* JavaScript and Static Content can be handled automatically and also be switched off.
-* ...
+Key features include:
+
+* **Flexible Input**: Supports test definitions in YAML and CSV formats.
+* **Validation Tools**: Built-in validation for cookies, response headers, and content.
+* **Execution Modes**:
+  * **DOM**: Full parsing for XPath-based validation.
+  * **LIGHT**: Fast execution without DOM overhead.
+  * **REQUEST**: Maximum performance, sending only plain HTTP requests.
+* **Automatic Handling**: Smart management of cookies, static content, and flexible data filtering for test flows.
 
 ## Getting Started
 
-The NoCoding test suite is available on [Github](https://github.com/Xceptance/testsuite-nocoding).
+The **No Coding Test Suite** source code is available on [GitHub](https://github.com/Xceptance/testsuite-nocoding).
 
-To learn more, try one of the following links.
+For comprehensive documentation, visit the repository Wiki:
 
-* [Overview](https://github.com/Xceptance/testsuite-nocoding/wiki): In order to get an overview.
-* [Quickstart](https://github.com/Xceptance/testsuite-nocoding/wiki/Quickstart): To get started.
-* [Examples](https://github.com/Xceptance/testsuite-nocoding/wiki/Examples): To see some examples.
-
+* [Overview](https://github.com/Xceptance/testsuite-nocoding/wiki)
+* [Quickstart Guide](https://github.com/Xceptance/testsuite-nocoding/wiki/Quickstart)
+* [Usage Examples](https://github.com/Xceptance/testsuite-nocoding/wiki/Examples)

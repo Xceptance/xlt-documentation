@@ -8,8 +8,6 @@ description: >
   All about our different test suites from simple to advanced.
 ---
 
-XLT supports the concept of a test suite and due to that, you can also see a base test suite as a framework for how to setup your testing. This means you can change the way tests are designed and written because you can add your own API on top of what XLT provides.
+XLT leverages the concept of a **Test Suite** as a structured framework for your testing efforts. It provides the foundation for designing and writing tests, allowing you to extend the core XLT capabilities with your own domain-specific API.
 
-We provide a bunch of open sample test suites on [Github](https://github.com/Xceptance?q=test+suite&type=&language=), to offer you starting points for the most common usecases. Just check them out and start building. If you want to know more about how they work and what they can do for you, here we'll introduce our most popular kids:
-
-
+We provide a collection of open-source sample test suites on [GitHub](https://github.com/Xceptance?q=test+suite&type=&language=) to serve as starting points for common use cases. You can use these as templates to accelerate your development. Below, we introduce our most popular test suites:

@@ -10,7 +10,11 @@ description: >
 
 ## Introduction
 
-Because there are many things that could be easier to handle, we built a more comprehensive version of a web test suite which combines many concepts to provide easier data and state management as well as improved set up capabilities. Like the basic web test suite, it is built for load testing a website with XLT. In comparison to our simple Posters loadtest suite which demonstrates basic XLT test suite design, this test suite goes the extra mile and implements universal concepts for easier handling of data, configuration, and test composition. It shows what is possible thanks to Java as scripting language on top of the XLT base feature set. The advanced Posters test suite demostrates the following features and functionalities:
+The **Advanced Web Test Suite** is a comprehensive framework designed to handle complex testing requirements. It builds upon the concepts of the basic suite but introduces advanced features for easier data management, state handling, and test composition.
+
+Unlike the simple [Posters Simple Load Test Suite](https://github.com/Xceptance/posters-simple-loadtest-suite), this suite implements universal concepts such as a page object model, centralized configuration, and component-based modeling. It is the recommended starting point for real-world load testing projects that require scalability and maintainability.
+
+The advanced suite demonstrates the following capabilities:
 
 ### Base XLT Features
 
@@ -39,6 +43,10 @@ The installation is for testing purposes and might not feature its own valid cer
 
 ## Getting Started
 
-The Advanced Web Test Suite is available on [Github](https://github.com/Xceptance/posters-advanced-loadtest-suite).
+The **Advanced Web Test Suite** source code is available on [GitHub](https://github.com/Xceptance/posters-advanced-loadtest-suite).
 
-The **README** contains many useful information on XLT and how to work with this test suite, running your own load tests.
+The repository **README** provides detailed instructions on:
+
+* Setting up the project
+* Configuring your test environment
+* Running load tests

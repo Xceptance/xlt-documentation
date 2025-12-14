@@ -10,8 +10,9 @@ description: >
 
 ## Introduction
 
-This test suite provides an example for load testing a REST service with XLT. It shows some samples and universal concepts for easier handling of data, configuration, and test composition. It shows what is possible thanks to Java as scripting language on top of the XLT base feature set.
-The test suite demonstrates the following features and functionalities:
+The **Base REST Test Suite** demonstrates how to effectively load test REST services using XLT. It showcases universal concepts for data handling, configuration management, and modular test composition by leveraging Java as a scripting language.
+
+This suite illustrates the following key features:
 
 ### Base XLT Features
 
@@ -33,19 +34,25 @@ The test suite demonstrates the following features and functionalities:
 
 ### Provided Test Cases
 
-We provide different test cases, displaying different use cases and approaches. 
+We provide different test cases, displaying different use cases and approaches.
 
-* Postman Echo Service Test (com.xceptance.loadtest.rest.tests.postman): This package contains some test showing different approaches on action handling as well as different REST specific examples including POST, GET, Basic Auth, validation and value extraction. 
+* Postman Echo Service Test (com.xceptance.loadtest.rest.tests.postman): This package contains some test showing different approaches on action handling as well as different REST specific examples including POST, GET, Basic Auth, validation and value extraction.
 * Wikipedia Tests (com.xceptance.loadtest.rest.tests.wikipedia): This package contains some more complex tests using the Wikimedia API, data storage and validation.
 * Postcode Test (com.xceptance.loadtest.rest.tests.postcode): This package contains a test case showing an example for postcodes.io.
 
 ## System Under Test
 
-This example test suite is targeting some example hosts, like the _Wikipedia API_, the _Postman Echo_ service, the _postcodes.io API_ and others. 
-**Please be aware that none of these services designed or prepared to withstand a real load test.** Use these test cases ONLY for single experiments, as a base to script against your own API, or to generally learn about XLT in a REST context.
+This suite targets public example services such as the **Wikipedia API**, **Postman Echo**, and **postcodes.io**.
+
+> [!WARNING]
+> These services are **NOT** designed to withstand actual load tests. Use these test cases **ONLY** for functional verification, as templates for your own API tests, or to learn XLT concepts. **Do not run heavy load tests against these public services.**
 
 ## Getting Started
 
-The REST based Performance Test Suite is available on [Github](https://github.com/Xceptance/rest-load-test-suite).
+The **Base REST Test Suite** source code is available on [GitHub](https://github.com/Xceptance/rest-load-test-suite).
 
-The **README** contains many useful infos on XLT and how to work with this test suite, running your own load tests. 
+The repository **README** provides essential information on:
+
+* Framework architecture
+* Test execution instructions
+* Configuration details
