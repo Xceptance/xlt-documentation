@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Xceptance/xlt-documentation#readme",
   "devDependencies": {
+    "autoprefixer": "^10.4.22",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1"
   }
