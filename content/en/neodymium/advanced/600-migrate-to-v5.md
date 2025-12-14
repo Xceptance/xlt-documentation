@@ -1,7 +1,7 @@
 ---
 title: "Migrate to Neodymium 5"
 linkTitle: "Migrate to Neodymium 5"
-weight: 50
+weight: 600
 type: docs
 description: "Migration guide for Neodymium 5."
 ---
