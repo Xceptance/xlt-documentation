@@ -1,3 +1,12 @@
-
 {{ $bs := resources.Get "js/bootstrap.bundle.min.js" | resources.Fingerprint }}
 <script src="{{ $bs.RelPermalink }}" integrity="{{ $bs.Data.Integrity }}" crossorigin="anonymous"></script>
+
+{{ $jquery := resources.Get "js/jquery-3.7.1.min.js" | resources.Fingerprint }}
+<script src="{{ $jquery.RelPermalink }}" integrity="{{ $jquery.Data.Integrity }}" crossorigin="anonymous"></script>
+
+{{ if .Site.Params.offlineSearch }}
+{{ $lunr := resources.Get "js/lunr.min.js" | resources.Fingerprint }}
+<script src="{{ $lunr.RelPermalink }}" integrity="{{ $lunr.Data.Integrity }}" crossorigin="anonymous"></script>
+{{ $search := resources.Get "js/offline-search.js" | resources.Fingerprint }}
+<script src="{{ $search.RelPermalink }}" integrity="{{ $search.Data.Integrity }}" crossorigin="anonymous"></script>
+{{ end }}
