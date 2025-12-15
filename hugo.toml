@@ -29,6 +29,9 @@ lastmod = [":git", "lastmod", "date", "publishDate", ":fileModTime"]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+[outputs]
+home = [ "HTML", "RSS", "JSON" ]
   [markup.highlight]
       codeFences = true
       guessSyntax = false
@@ -141,6 +144,7 @@ enable = false
     authors =  "Xceptance GmbH | [Apache License](https://www.apache.org/licenses/LICENSE-2.0) |"
     from_year = "2015"
     privacy_policy = "https://www.xceptance.com/en/privacy/"
+    offlineSearch = true
 
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
