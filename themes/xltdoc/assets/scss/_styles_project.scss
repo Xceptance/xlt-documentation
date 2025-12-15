@@ -113,8 +113,71 @@ footer {
 
 .td-navbar {
     /* avoid that the text wraps */
-    white-space: nowrap;
+    /* white-space: nowrap; - Removed to fix mobile collapse */
     /* use narrow font */
+}
+
+/* Force standard Bootstrap behavior for responsive navbar if partially overridden */
+@include media-breakpoint-down(lg) {
+    .td-navbar {
+        flex-wrap: wrap !important;
+    }
+
+    .navbar-expand-lg .navbar-toggler {
+        display: block !important;
+    }
+
+    .navbar-expand-lg .navbar-collapse {
+        display: none !important;
+        flex-basis: 100%;
+        /* Force full width to break line */
+        width: 100%;
+    }
+
+    .navbar-expand-lg .navbar-collapse.show {
+        display: block !important;
+        max-height: calc(100vh - 60px);
+        /* Use almost full available height */
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+    }
+
+    .navbar-nav {
+        flex-direction: column !important;
+        /* Ensure items stack vertically */
+        padding-bottom: 20px;
+        /* Add some padding at the bottom */
+    }
+
+    /* Fix mobile dropdowns to open inline */
+    .navbar-collapse .dropdown-menu {
+        position: static !important;
+        float: none !important;
+        display: none;
+        /* Hide by default, show on toggle */
+        width: auto !important;
+        margin-top: 0;
+        background-color: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        padding-left: 20px;
+        /* Indent submenu items */
+    }
+
+    .navbar-collapse .dropdown-menu.show {
+        display: block !important;
+    }
+
+    .navbar-collapse .dropdown-item {
+        color: rgba(255, 255, 255, 0.7) !important;
+        /* Light text for dark background */
+    }
+
+    .navbar-collapse .dropdown-item:hover,
+    .navbar-collapse .dropdown-item:focus {
+        color: #fff !important;
+        background-color: transparent !important;
+    }
 }
 
 .td-sidebar-nav {
