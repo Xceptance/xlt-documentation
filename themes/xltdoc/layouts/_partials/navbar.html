@@ -1,16 +1,16 @@
 {{ $cover := .HasShortcode "blocks/cover" }}
 <nav class="js-navbar-scroll navbar navbar-expand-lg navbar-dark {{ if $cover }} td-navbar-cover {{ end }}td-navbar">
+	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_navbar"
+		aria-controls="main_navbar" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
 	<a class="navbar-brand" href="{{ .Site.Home.RelPermalink }}">
 		<span class="navbar-logo">{{ if .Site.Params.ui.navbar_logo }}{{ with resources.Get "icons/logo.svg" }}{{ ( . |
 			minify).Content | safeHTML }}{{ end }}{{ end }}</span><span class="text-uppercase font-weight-bold">{{
 			.Site.Title }}</span>
 	</a>
-	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_navbar"
-		aria-controls="main_navbar" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse ms-md-auto" id="main_navbar">
-		<ul class="navbar-nav mt-2 mt-lg-0">
+	<div class="collapse navbar-collapse ms-end" id="main_navbar">
+		<ul class="navbar-nav mt-2 mt-lg-0 ms-auto">
 			{{ $p := . }}
 			{{ range .Site.Menus.main }}
 			{{ if .HasChildren }}
