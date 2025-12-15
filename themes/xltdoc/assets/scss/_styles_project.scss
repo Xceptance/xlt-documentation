@@ -195,6 +195,15 @@ footer {
     }
 }
 
+/* Hide the top navbar search input specifically on small screens */
+@media (max-width: 991.98px) {
+
+    /* Corresponds to Bootstrap's 'lg' breakpoint (up to 992px) */
+    .td-sidebar__search {
+        display: none !important;
+    }
+}
+
 /* less indentation for menu ins less nav */
 @media (min-width: 768px) {
     .td-sidebar-nav__section .ul-1 ul {
