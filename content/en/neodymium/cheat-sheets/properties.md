@@ -79,7 +79,7 @@ neodymium.popup.customPopUp=#myWindow
 
 **Further properties:**
 
-See [Neodymium Properties]({{< relref "../../configuration/090-neodymium-properties.md" >}}).
+See [Neodymium Properties]({{< relref "../configuration/090-neodymium-properties.md" >}}).
 
 ### Browser Properties
 
