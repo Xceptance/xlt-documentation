@@ -1,7 +1,6 @@
 ---
 title: "Release Notes"
-url: /xtc/release-notes/
-
+url: "/xtc/release-notes/"
 type: docs
 
 weight: 600

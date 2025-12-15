@@ -32,4 +32,4 @@ XTC helps you to speed up the more tedious tasks of load testing:
 * It automatically starts and stops a test, collects all results, and creates a report.
 * It allows to share a test result quickly either as a secret public link or within your project setup.
 
-XTC is getting better while you are reading this. Checkout the release notes [to see what's new]({{< relref "/xtc/release-notes/" >}})!
+XTC is getting better while you are reading this. Checkout the release notes [to see what's new]({{< relref "/xtc/xtc-release-notes/" >}})!

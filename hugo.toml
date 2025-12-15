@@ -259,9 +259,8 @@ enable = false
     parent = "xtc"
 [[menu.main]]
     name = "Release Notes"
-    identifier = "xtc-release-notes"
     weight = 16
-    url = "/xtc/xtc-release-notes"
+    url = "/xtc/release-notes"
     parent = "xtc"
 
 [[menu.main]]
