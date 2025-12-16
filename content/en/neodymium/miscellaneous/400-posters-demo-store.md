@@ -14,7 +14,7 @@ testing.
 
 To run the Posters store, you need to download and extract a copy of XLT or clone the [GitHub](https://github.com/Xceptance/posters-demo-store) project.
 
-{{< image max-width="80%" src="neodymium/advanced/posters.png" >}}
+{{< image max-width="80%" src="neodymium/posters.png" >}}
 A look at the homepage for the Posters Demo Store, as it appears in its current version.
 {{< /image >}}
 

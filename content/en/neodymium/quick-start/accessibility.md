@@ -66,7 +66,7 @@ public class FirstTest
 
 The generated Lighthouse reports are stored in the project's target directory and attached to the Allure report:
 
-{{< image max-width="60%" src="neodymium/quickstart/lighthouse_report.png" >}}
+{{< image max-width="60%" src="neodymium/lighthouse_report.png" >}}
 The Lighthouse report inside the Allure report.
 {{< /image >}}
 

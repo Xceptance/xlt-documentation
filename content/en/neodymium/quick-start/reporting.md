@@ -24,7 +24,7 @@ mvn allure:serve
 
 For detailed information, consult the [Allure documentation](https://allure.qameta.io/) and the provided [example report](https://allure-framework.github.io/allure-demo/10/index.html#).
 
-{{< image max-width="60%" src="neodymium/quickstart/first_test_report.png" >}}
+{{< image max-width="60%" src="neodymium/first_test_report.png" >}}
 Example report for the example test `FirstTest`.
 {{< /image >}}
 

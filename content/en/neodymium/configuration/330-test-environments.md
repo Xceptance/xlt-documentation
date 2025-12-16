@@ -110,7 +110,7 @@ Always keep your access key secret.
 Your personal access key can be found in your SauceLabs account settings. Click the "show" button to view the key
 required for programmatic access.
 
-{{< image max-width="60%" src="neodymium/advanced/saucelabs_accesskey.png" >}}
+{{< image max-width="60%" src="neodymium/saucelabs_accesskey.png" >}}
 SauceLabs access key.
 {{< /image >}}
 
@@ -118,7 +118,7 @@ SauceLabs access key.
 
 Your personal access key and secret key are available in your TestingBot account settings for programmatic access.
 
-{{< image max-width="60%" src="neodymium/advanced/testingbot_accesskey.png" >}}
+{{< image max-width="60%" src="neodymium/testingbot_accesskey.png" >}}
 TestingBot personal access key and secret.
 {{< /image >}}
 
@@ -127,7 +127,7 @@ TestingBot personal access key and secret.
 Access your account settings via [this link](https://www.browserstack.com/accounts/settings). Your username and access
 key are located on the "Automate" card.
 
-{{< image max-width="60%" src="neodymium/advanced/browserstack_accesskey.png" >}}
+{{< image max-width="60%" src="neodymium/browserstack_accesskey.png" >}}
 Browserstack access key username.
 {{< /image >}}
 

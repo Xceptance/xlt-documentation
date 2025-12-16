@@ -73,6 +73,6 @@ Individual test methods within a class can also be run with different browsers b
 
 Running all tests will now result in the following report, showing execution across the configured browsers.
 
-{{< image max-width="60%" src="neodymium/quickstart/multibrowser_report.png" >}}
+{{< image max-width="60%" src="neodymium/multibrowser_report.png" >}}
 Multibrowser report.
 {{< /image >}}

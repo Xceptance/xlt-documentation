@@ -153,6 +153,6 @@ The flexibility of `@Step()` annotations allows us to parameterize them, enrichi
 
 Here is what the `FirstTest` report looks like after integrating the Page Object Model and Allure's `@Step()` annotations:
 
-{{< image max-width="60%" src="neodymium/quickstart/report_with_steps.png" >}}
+{{< image max-width="60%" src="neodymium/report_with_steps.png" >}}
 Improved report for the example test `FirstTest` with additional `Step` annotations.
 {{< /image >}}

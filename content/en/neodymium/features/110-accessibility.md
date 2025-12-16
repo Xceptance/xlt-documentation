@@ -81,7 +81,7 @@ which contains the next button the scripts wants to click).
 The generated Lighthouse reports can be found in the `target` directory of the user's repository and in the Allure
 report as an attachment, visualized in the following image.
 
-{{< image max-width="60%" src="neodymium/advanced/allure_report_lighthouse_report_attachment.png" >}}
+{{< image max-width="60%" src="neodymium/allure_report_lighthouse_report_attachment.png" >}}
 Lighthouse report inside an Allure report.
 {{< /image >}}
 

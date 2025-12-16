@@ -144,7 +144,7 @@ The example above is annotated with three different browsers and one method is s
 `testMethod()` will be executed with all browsers while `noBrowserTest()` will also be executed but without any browser.
 This can be seen in the image below.
 
-{{< image max-width="60%" src="neodymium/advanced/multibrowser.png" >}}
+{{< image max-width="60%" src="neodymium/multibrowser.png" >}}
 Multi browser test execution.
 {{< /image >}}
 
