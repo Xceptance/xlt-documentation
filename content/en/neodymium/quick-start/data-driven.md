@@ -182,7 +182,7 @@ Let's add another data set to the test data file:
 
 After executing the test with both data sets, we get the following report:
 
-{{< image max-width="60%" src="neodymium/quickstart/test_data_report.png" >}}
+{{< image max-width="60%" src="neodymium/test_data_report.png" >}}
 Report of the data driven test `TestDataTest` with two data sets.
 {{< /image >}}
 

@@ -69,7 +69,7 @@ you can augment your data sets while having the possibility to override it at th
 can't be found.
 {{% /warning %}}
 
-{{< image max-width="100%" src="neodymium/advanced/eclipse_testdata_example.png" >}}
+{{< image max-width="100%" src="neodymium/eclipse_testdata_example.png" >}}
 Test data location example in Eclipse.
 {{< /image >}}
 
@@ -142,7 +142,7 @@ public class MyTest
 
 On execution of the code above Eclipse's JUnit view will display the following output:
 
-{{< image max-width="100%" src="neodymium/advanced/eclipse_junit_view_example_1.png" >}}
+{{< image max-width="100%" src="neodymium/eclipse_junit_view_example_1.png" >}}
 Execution results of `MyTest` from _Example 1_.
 {{< /image >}}
 
@@ -180,7 +180,7 @@ public class MyTest
 
 Executing the extended test will result in the following executions:
 
-{{< image max-width="100%" src="neodymium/advanced/eclipse_junit_view_example_2.png" >}}
+{{< image max-width="100%" src="neodymium/eclipse_junit_view_example_2.png" >}}
 Execution results of `MyTest` from _Example 2_.
 {{< /image >}}
 

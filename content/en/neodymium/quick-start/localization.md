@@ -169,6 +169,6 @@ With localization implemented, the next step involves adding test data for the a
 
 The test report generated after running the tests with the new data clearly shows three separate test executions, each corresponding to a data set.
 
-{{< image max-width="60%" src="neodymium/quickstart/localized_report.png" >}}
+{{< image max-width="60%" src="neodymium/localized_report.png" >}}
 Report of the data driven test `TestDataTest` with localization.
 {{< /image >}}

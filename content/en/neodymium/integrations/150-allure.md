@@ -9,7 +9,7 @@ description: >
 ---
 
 
-{{< image max-width="80%" src="neodymium/advanced/allure_demo_report_overview.png" >}}
+{{< image max-width="80%" src="neodymium/allure_demo_report_overview.png" >}}
 Example Allure report.
 {{< /image >}}
 
@@ -108,7 +108,7 @@ The primary command for generating the report is:
 
 ## Report History
 
-{{< image max-width="80%" src="neodymium/advanced/allure_report_trend.png" >}}
+{{< image max-width="80%" src="neodymium/allure_report_trend.png" >}}
 Example of an Allure history.
 {{< /image >}}
 
@@ -184,7 +184,7 @@ public class SampleTest
 
 This code will be displayed in the report as in the following screenshot.
 
-{{< image max-width="80%" src="neodymium/advanced/step_example.png" >}}
+{{< image max-width="80%" src="neodymium/step_example.png" >}}
 The test steps of the example code above.
 {{< /image >}}
 
@@ -337,7 +337,7 @@ function:
 AllureAddons.addDataAsJsonToReport(String name, Object data)
 ```
 
-{{< image max-width="80%" src="neodymium/advanced/allure_report_testdata_display.png" >}}
+{{< image max-width="80%" src="neodymium/allure_report_testdata_display.png" >}}
 Test Data Display in Allure Report.
 {{< /image >}}
 
