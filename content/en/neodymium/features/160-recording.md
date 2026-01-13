@@ -43,8 +43,8 @@ the execution machine. **GIF recording** works out of the box without external t
 Recordings are added to the Allure report automatically. This can be disabled by setting the following properties to
 `false`:
 
-* `video.appendAllRecordingsToAllureReport=false`
-* `gif.appendAllRecordingsToAllureReport=false`
+* `video.appendAllRecordingsToAllureReport = false`
+* `gif.appendAllRecordingsToAllureReport = false`
 
 With those settings only the recordings of failed tests will be added.
 

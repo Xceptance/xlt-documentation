@@ -27,7 +27,7 @@ Use this as a foundation to build your own test automation project.
 * **Repository:** [neodymium-example](https://github.com/Xceptance/neodymium-example)
 * **Best for:** Learning patterns for standard Java-based tests.
 
-This project demonstrates a complete test suite for the [Xceptance Posters](https://posters.xceptance.io) demo store. It uses:
+This project demonstrates a complete test suite for the [Xceptance Posters]({{< relref "400-posters-demo-store" >}}) demo store. It uses:
 
 * **Page Object Model (POM)** for maintainability.
 * **Pure Java** (Standard JUnit/Selenide) without Cucumber.
@@ -51,16 +51,15 @@ If you prefer Gherkin syntax and BDD, this example demonstrates:
 
 The Showcase is a collection of specific "how-to" examples. It covers advanced topics that aren't always in the basic templates, such as:
 
-* Visual Regression Testing (Applitools).
 * PDF content validation.
 * Email testing (XcMailr).
 * Shadow DOM interaction.
 * Working with iframes.
 * File downloads.
 
-## Neodymium Library
+## Neodymium
 
-* **Repository:** [neodymium-library](https://github.com/Xceptance/neodymium-library)
+* **Repository:** [neodymium](https://github.com/Xceptance/neodymium)
 * **Best for:** Contributors and deep divers.
 
 The core library itself. Check this out if you want to understand the internal mechanics, contribute to the framework, or browse the latest source code.

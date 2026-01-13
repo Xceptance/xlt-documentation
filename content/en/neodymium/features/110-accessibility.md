@@ -9,14 +9,13 @@ description: >
 ---
 
 Accessibility reports are crucial when testing web pages because they help to ensure that a site is usable for people of
-all abilities. That is why we introduced
-Google [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview?hl=de) to Neodymium, an open-source tool to
-improve the quality of web pages.
+all abilities. That is why we introduced [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/overview) to
+Neodymium, an open-source tool to improve the quality of web pages.
 
 ## Install Lighthouse CLI
 
 First of all we recommend installing a package manager like [npm](https://www.npmjs.com/), which we are also going to
-use in order to install [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) CLI. After you went through
+use in order to [install Lighthouse CLI](https://www.npmjs.com/package/lighthouse). After you went through
 the installation process of npm, open a terminal and enter the command below.
 
 ```
@@ -135,160 +134,241 @@ audits that should be validated as the property itself. For example:
 `neodymium.lighthouse.assert.audits = aria-roles aria-text` validates that no error occurs in the Lighthouse audits
 `aria-roles` and `aria-text`. All existing audit ID's and their corresponding titles are visualized in the table below.
 
-| id                               | title                                                                                                                              |
-|:---------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------|
-| is-on-https                      | Uses HTTPS                                                                                                                         |
-| redirects-http                   | Redirects HTTP traffic to HTTPS                                                                                                    |
-| viewport                         | Has a `<meta name="viewport">` tag with `width` or `initial-scale`                                                                 |
-| first-contentful-paint           | First Contentful Paint                                                                                                             |
-| largest-contentful-paint         | Largest Contentful Paint                                                                                                           |
-| first-meaningful-paint           | First Meaningful Paint                                                                                                             |
-| speed-index                      | Speed Index                                                                                                                        |
-| screenshot-thumbnails            | Screenshot Thumbnails                                                                                                              |
-| final-screenshot                 | Final Screenshot                                                                                                                   |
-| total-blocking-time              | Total Blocking Time                                                                                                                |
-| max-potential-fid                | Max Potential First Input Delay                                                                                                    |
-| cumulative-layout-shift          | Cumulative Layout Shift                                                                                                            |
-| errors-in-console                | No browser errors logged to the console                                                                                            |
-| server-response-time             | Initial server response time was short                                                                                             |
-| interactive                      | Time to Interactive                                                                                                                |
-| user-timings                     | User Timing marks and measures                                                                                                     |
-| critical-request-chains          | Avoid chaining critical requests                                                                                                   |
-| redirects                        | Avoid multiple page redirects                                                                                                      |
-| image-aspect-ratio               | Displays images with correct aspect ratio                                                                                          |
-| image-size-responsive            | Serves images with appropriate resolution                                                                                          |
-| deprecations                     | Avoids deprecated APIs                                                                                                             |
-| third-party-cookies              | Avoids third-party cookies                                                                                                         |
-| mainthread-work-breakdown        | Minimizes main-thread work                                                                                                         |
-| bootup-time                      | JavaScript execution time                                                                                                          |
-| uses-rel-preconnect              | Preconnect to required origins                                                                                                     |
-| font-display                     | Ensure text remains visible during webfont load                                                                                    |
-| diagnostics                      | Diagnostics                                                                                                                        |
-| network-requests                 | Network Requests                                                                                                                   |
-| network-rtt                      | Network Round Trip Times                                                                                                           |
-| network-server-latency           | Server Backend Latencies                                                                                                           |
-| main-thread-tasks                | Tasks                                                                                                                              |
-| metrics                          | Metrics                                                                                                                            |
-| resource-summary                 | Resources Summary                                                                                                                  |
-| third-party-summary              | Minimize third-party usage                                                                                                         |
-| third-party-facades              | Lazy load third-party resources with facades                                                                                       |
-| largest-contentful-paint-element | Largest Contentful Paint element                                                                                                   |
-| lcp-lazy-loaded                  | Largest Contentful Paint image was not lazily loaded                                                                               |
-| layout-shifts                    | Avoid large layout shifts                                                                                                          |
-| long-tasks                       | Avoid long main-thread tasks                                                                                                       |
-| non-composited-animations        | Avoid non-composited animations                                                                                                    |
-| unsized-images                   | Image elements do not have explicit `width` and `height`                                                                           |
-| valid-source-maps                | Page has valid source maps                                                                                                         |
-| prioritize-lcp-image             | Preload Largest Contentful Paint image                                                                                             |
-| csp-xss                          | Ensure CSP is effective against XSS attacks                                                                                        |
-| script-treemap-data              | Script Treemap Data                                                                                                                |
-| accesskeys                       | `[accesskey]` values are unique                                                                                                    |
-| aria-allowed-attr                | `[aria-*]` attributes match their roles                                                                                            |
-| aria-allowed-role                | Uses ARIA roles only on compatible elements                                                                                        |
-| aria-command-name                | `button`, `link`, and `menuitem` elements have accessible names                                                                    |
-| aria-conditional-attr            | ARIA attributes are used as specified for the element's role                                                                       |
-| aria-deprecated-role             | Deprecated ARIA roles were not used                                                                                                |
-| aria-dialog-name                 | Elements with `role="dialog"` or `role="alertdialog"` have accessible names.                                                       |
-| aria-hidden-body                 | `[aria-hidden="true"]` is not present on the document `<body>`                                                                     |
-| aria-hidden-focus                | `[aria-hidden="true"]` elements do not contain focusable descendents                                                               |
-| aria-input-field-name            | ARIA input fields have accessible names                                                                                            |
-| aria-meter-name                  | ARIA `meter` elements have accessible names                                                                                        |
-| aria-progressbar-name            | ARIA `progressbar` elements have accessible names                                                                                  |
-| aria-prohibited-attr             | Elements use only permitted ARIA attributes                                                                                        |
-| aria-required-attr               | `[role]`s have all required `[aria-*]` attributes                                                                                  |
-| aria-required-children           | Elements with an ARIA `[role]` that require children to contain a specific `[role]` have all required children.                    |
-| aria-required-parent             | `[role]`s are contained by their required parent element                                                                           |
-| aria-roles                       | `[role]` values are valid                                                                                                          |
-| aria-text                        | Elements with the `role=text` attribute do not have focusable descendents.                                                         |
-| aria-toggle-field-name           | ARIA toggle fields have accessible names                                                                                           |
-| aria-tooltip-name                | ARIA `tooltip` elements have accessible names                                                                                      |
-| aria-treeitem-name               | ARIA `treeitem` elements have accessible names                                                                                     |
-| aria-valid-attr-value            | `[aria-*]` attributes have valid values                                                                                            |
-| aria-valid-attr                  | `[aria-*]` attributes are valid and not misspelled                                                                                 |
-| button-name                      | Buttons do not have an accessible name                                                                                             |
-| bypass                           | The page contains a heading, skip link, or landmark region                                                                         |
-| color-contrast                   | Background and foreground colors have a sufficient contrast ratio                                                                  |
-| definition-list                  | `<dl>`'s contain only properly-ordered `<dt>` and `<dd>` groups, `<script>`, `<template>` or `<div>` elements.                     |
-| dlitem                           | Definition list items are wrapped in `<dl>` elements                                                                               |
-| document-title                   | Document has a `<title>` element                                                                                                   |
-| duplicate-id-aria                | ARIA IDs are unique                                                                                                                |
-| empty-heading                    | All heading elements contain content.                                                                                              |
-| form-field-multiple-labels       | No form fields have multiple labels                                                                                                |
-| frame-title                      | `<frame>` or `<iframe>` elements have a title                                                                                      |
-| heading-order                    | Heading elements are not in a sequentially-descending order                                                                        |
-| html-has-lang                    | `<html>` element has a `[lang]` attribute                                                                                          |
-| html-lang-valid                  | `<html>` element has a valid value for its `[lang]` attribute                                                                      |
-| html-xml-lang-mismatch           | `<html>` element has an `[xml:lang]` attribute with the same base language as the `[lang]` attribute.                              |
-| identical-links-same-purpose     | Identical links have the same purpose.                                                                                             |
-| image-alt                        | Image elements have `[alt]` attributes                                                                                             |
-| image-redundant-alt              | Image elements do not have `[alt]` attributes that are redundant text.                                                             |
-| input-button-name                | Input buttons have discernible text.                                                                                               |
-| input-image-alt                  | `<input type="image">` elements have `[alt]` text                                                                                  |
-| label-content-name-mismatch      | Elements with visible text labels have matching accessible names.                                                                  |
-| label                            | Form elements have associated labels                                                                                               |
-| landmark-one-main                | Document has a main landmark.                                                                                                      |
-| link-name                        | Links do not have a discernible name                                                                                               |
-| link-in-text-block               | Links are distinguishable without relying on color.                                                                                |
-| list                             | Lists contain only `<li>` elements and script supporting elements (`<script>` and `<template>`).                                   |
-| listitem                         | List items (`<li>`) are contained within `<ul>`, `<ol>` or `<menu>` parent elements                                                |
-| meta-refresh                     | The document does not use `<meta http-equiv="refresh">`                                                                            |
-| meta-viewport                    | `[user-scalable="no"]` is not used in the `<meta name="viewport">` element and the `[maximum-scale]` attribute is not less than 5. |
-| object-alt                       | `<object>` elements have alternate text                                                                                            |
-| select-name                      | Select elements have associated label elements.                                                                                    |
-| skip-link                        | Skip links are focusable.                                                                                                          |
-| tabindex                         | No element has a `[tabindex]` value greater than 0                                                                                 |
-| table-duplicate-name             | Tables have different content in the summary attribute and `<caption>`.                                                            |
-| table-fake-caption               | Tables use `<caption>` instead of cells with the `[colspan]` attribute to indicate a caption.                                      |
-| target-size                      | Touch targets do not have sufficient size or spacing.                                                                              |
-| td-has-header                    | `<td>` elements in a large `<table>` have one or more table headers.                                                               |
-| td-headers-attr                  | Cells in a `<table>` element that use the `[headers]` attribute refer to table cells within the same table.                        |
-| th-has-data-cells                | `<th>` elements and elements with `[role="columnheader"/"rowheader"]` have data cells they describe.                               |
-| valid-lang                       | `[lang]` attributes have a valid value                                                                                             |
-| video-caption                    | `<video>` elements contain a `<track>` element with `[kind="captions"]`                                                            |
-| custom-controls-labels           | Custom controls have associated labels                                                                                             |
-| custom-controls-roles            | Custom controls have ARIA roles                                                                                                    |
-| focus-traps                      | User focus is not accidentally trapped in a region                                                                                 |
-| focusable-controls               | Interactive controls are keyboard focusable                                                                                        |
-| interactive-element-affordance   | Interactive elements indicate their purpose and state                                                                              |
-| logical-tab-order                | The page has a logical tab order                                                                                                   |
-| managed-focus                    | The user's focus is directed to new content added to the page                                                                      |
-| offscreen-content-hidden         | Offscreen content is hidden from assistive technology                                                                              |
-| use-landmarks                    | HTML5 landmark elements are used to improve navigation                                                                             |
-| visual-order-follows-dom         | Visual order on the page follows DOM order                                                                                         |
-| uses-long-cache-ttl              | Serve static assets with an efficient cache policy                                                                                 |
-| total-byte-weight                | Avoids enormous network payloads                                                                                                   |
-| offscreen-images                 | Defer offscreen images                                                                                                             |
-| render-blocking-resources        | Eliminate render-blocking resources                                                                                                |
-| unminified-css                   | Minify CSS                                                                                                                         |
-| unminified-javascript            | Minify JavaScript                                                                                                                  |
-| unused-css-rules                 | Reduce unused CSS                                                                                                                  |
-| unused-javascript                | Reduce unused JavaScript                                                                                                           |
-| modern-image-formats             | Serve images in next-gen formats                                                                                                   |
-| uses-optimized-images            | Efficiently encode images                                                                                                          |
-| uses-text-compression            | Enable text compression                                                                                                            |
-| uses-responsive-images           | Properly size images                                                                                                               |
-| efficient-animated-content       | Use video formats for animated content                                                                                             |
-| duplicated-javascript            | Remove duplicate modules in JavaScript bundles                                                                                     |
-| legacy-javascript                | Avoid serving legacy JavaScript to modern browsers                                                                                 |
-| doctype                          | Page has the HTML doctype                                                                                                          |
-| charset                          | Properly defines charset                                                                                                           |
-| dom-size                         | Avoids an excessive DOM size                                                                                                       |
-| geolocation-on-start             | Avoids requesting the geolocation permission on page load                                                                          |
-| inspector-issues                 | No issues in the `Issues` panel in Chrome Devtools                                                                                 |
-| no-document-write                | Avoids `document.write()`                                                                                                          |
-| js-libraries                     | Detected JavaScript libraries                                                                                                      |
-| notification-on-start            | Avoids requesting the notification permission on page load                                                                         |
-| paste-preventing-inputs          | Allows users to paste into input fields                                                                                            |
-| uses-http2                       | Use HTTP/2                                                                                                                         |
-| uses-passive-event-listeners     | Uses passive listeners to improve scrolling performance                                                                            |
-| meta-description                 | Document does not have a meta description                                                                                          |
-| http-status-code                 | Page has successful HTTP status code                                                                                               |
-| font-size                        | Document uses legible font sizes                                                                                                   |
-| link-text                        | Links have descriptive text                                                                                                        |
-| crawlable-anchors                | Links are crawlable                                                                                                                |
-| is-crawlable                     | Page isn’t blocked from indexing                                                                                                   |
-| robots-txt                       | robots.txt is not valid                                                                                                            |
-| hreflang                         | Document has a valid `hreflang`                                                                                                    |
-| canonical                        | Document has a valid `rel=canonical`                                                                                               |
-| structured-data                  | Structured data is valid                                                                                                           |
-| bf-cache                         | Page prevented back/forward cache restoration                                                                                      |
+The following sections list all available audits in a Lighthouse report. The type column values are defined as the
+following:
+
+1. Metric
+    - What it is: These are the heavy hitters of performance monitoring (often called "Core Web Vitals"). Unlike a
+      simple "Pass/Fail" check, a Metric measures a specific value (usually time in milliseconds or a layout shift
+      score).
+    - Data Provided: It provides a raw numericValue (e.g., 1200 ms) and maps it to a score (0–1) based on a log-normal
+      curve.
+    - Examples: first-contentful-paint (FCP), cumulative-layout-shift (CLS), total-blocking-time (TBT).
+2. Audit (Standard/Binary)
+    - What it is: These are automated checks that verify if a specific best practice is followed.
+    - Data Provided: Usually a binary score. 1 = Pass or 0 = Fail.
+    - Examples: doctype, is-on-https, image-alt.
+3. Manual
+    - What it is: These are items that Lighthouse cannot test automatically. It detects that the element exists (e.g., "
+      You have a custom button") but cannot verify if it works correctly for a screen reader user.
+    - Data Provided: The score is usually null or 0 in the raw JSON report because the computer cannot "pass" it for
+      you.
+    - Examples: visual-order-follows-dom, focusable-controls, custom-controls-labels.
+4. Diagnostic
+    - What it is: These items do not "pass" or "fail." They are purely informational buckets of data used to help you
+      debug why a Metric might be low.
+    - Data Provided: They return a score of null (or sometimes 1 just to show they ran), but the real value is in the
+      details object (lists of URLs, nodes, or request chains).
+    - Examples: network-requests (List of every file downloaded), critical-request-chains (Tree of resources blocking
+      the render), main-thread-tasks (Breakdown of CPU time).
+
+#### Performance Audits
+
+These audits measure metrics and suggest optimizations to improve page speed and user experience
+
+| ID                                  | Title                                                              | Type       |
+|:------------------------------------|:-------------------------------------------------------------------|:-----------|
+| bootup-time                         | JavaScript execution time                                          | Audit      |
+| critical-request-chains             | Minimize Critical Requests Depth                                   | Diagnostic |
+| cumulative-layout-shift             | Cumulative Layout Shift (CLS)                                      | Metric     |
+| diagnostics                         | Diagnostics                                                        | Diagnostic |
+| dom-size                            | Avoids an excessive DOM size                                       | Audit      |
+| duplicated-javascript               | Remove duplicate modules in JavaScript bundles                     | Audit      |
+| efficient-animated-content          | Use video formats for animated content                             | Audit      |
+| eliminate-render-blocking-resources | Eliminate render-blocking resources                                | Audit      |
+| final-screenshot                    | Final Screenshot                                                   | Diagnostic |
+| first-contentful-paint              | First Contentful Paint (FCP)                                       | Metric     |
+| first-meaningful-paint              | First Meaningful Paint                                             | Metric     |
+| font-display                        | Ensure text remains visible during webfont load                    | Audit      |
+| interactive                         | Time to Interactive (TTI)                                          | Metric     |
+| largest-contentful-paint            | Largest Contentful Paint (LCP)                                     | Metric     |
+| largest-contentful-paint-element    | Largest Contentful Paint Element                                   | Diagnostic |
+| layout-shifts                       | Layout Shifts                                                      | Diagnostic |
+| lcp-lazy-loaded                     | LCP image was lazy-loaded                                          | Audit      |
+| legacy-javascript                   | Avoid serving legacy JavaScript to modern browsers                 | Audit      |
+| long-tasks                          | Minimize Main-Thread Work                                          | Diagnostic |
+| main-thread-tasks                   | Main Thread Tasks                                                  | Diagnostic |
+| mainthread-work-breakdown           | Minimize main-thread work                                          | Diagnostic |
+| max-potential-fid                   | Max Potential First Input Delay                                    | Metric     |
+| metrics                             | Metrics                                                            | Diagnostic |
+| modern-image-formats                | Serve images in next-gen formats                                   | Audit      |
+| network-requests                    | Network Requests                                                   | Diagnostic |
+| network-rtt                         | Network Round Trip Time                                            | Diagnostic |
+| network-server-latency              | Server Backend Latencies                                           | Diagnostic |
+| no-document-write                   | Avoids document.write()                                            | Audit      |
+| non-composited-animations           | Avoid non-composited animations                                    | Audit      |
+| offscreen-images                    | Defer offscreen images                                             | Audit      |
+| performance-budget                  | Performance budget                                                 | Diagnostic |
+| preload-lcp-image                   | Preload Largest Contentful Paint image                             | Audit      |
+| redirects                           | Avoid multiple page redirects                                      | Audit      |
+| render-blocking-resources           | Eliminate render-blocking resources                                | Audit      |
+| resource-summary                    | Keep request counts low and transfer sizes small                   | Diagnostic |
+| screenshot-thumbnails               | Screenshot Thumbnails                                              | Diagnostic |
+| script-treemap-data                 | Script Treemap Data                                                | Diagnostic |
+| server-response-time                | Reduce initial server response time (TTFB)                         | Audit      |
+| speed-index                         | Speed Index                                                        | Metric     |
+| third-party-facades                 | Lazy load third-party resources with facades                       | Audit      |
+| third-party-summary                 | Reduce the impact of third-party code                              | Audit      |
+| timing-budget                       | Timing budget                                                      | Diagnostic |
+| total-blocking-time                 | Total Blocking Time (TBT)                                          | Metric     |
+| total-byte-weight                   | Avoid enormous network payloads                                    | Audit      |
+| unminified-css                      | Minify CSS                                                         | Audit      |
+| unminified-javascript               | Minify JavaScript                                                  | Audit      |
+| unsized-images                      | Image elements do not have explicit width and height               | Audit      |
+| unused-css-rules                    | Reduce unused CSS                                                  | Audit      |
+| unused-javascript                   | Reduce unused JavaScript                                           | Audit      |
+| user-timings                        | User Timing marks and measures                                     | Audit      |
+| uses-long-cache-ttl                 | Serve static assets with an efficient cache policy                 | Audit      |
+| uses-optimized-images               | Efficiently encode images                                          | Audit      |
+| uses-passive-event-listeners        | Uses passive listeners to improve scrolling performance            | Audit      |
+| uses-rel-preconnect                 | Preconnect to required origins                                     | Audit      |
+| uses-rel-preload                    | Preload key requests                                               | Audit      |
+| uses-responsive-images              | Properly size images                                               | Audit      |
+| uses-text-compression               | Enable text compression                                            | Audit      |
+| viewport                            | "Has a `<meta name=""viewport"">` tag with width or initial-scale" | Audit      |
+
+#### Accessibility Audits
+
+Lighthouse uses the axe-core library for most of these checks. These ensure your site is usable by people with
+disabilities.
+
+| ID                             | Title                                                                                                      | Type   |
+|:-------------------------------|:-----------------------------------------------------------------------------------------------------------|:-------|
+| accesskeys                     | [accesskey] values are unique                                                                              | Audit  |
+| aria-allowed-attr              | [aria-*] attributes match their roles                                                                      | Audit  |
+| aria-allowed-role              | [role]s are valid for the element                                                                          | Audit  |
+| aria-command-name              | "button, link, and menuitem elements have accessible names"                                                | Audit  |
+| aria-conditional-attr          | Conditional [aria-*] attributes are valid                                                                  | Audit  |
+| aria-deprecated-role           | No deprecated [role]s are used                                                                             | Audit  |
+| aria-dialog-name               | ARIA dialog and alertdialog nodes have an accessible name                                                  | Audit  |
+| aria-hidden-body               | "[aria-hidden=""true""] is not present on the document `<body>`"                                           | Audit  |
+| aria-hidden-focus              | "[aria-hidden=""true""] elements do not contain focusable descendants"                                     | Audit  |
+| aria-input-field-name          | ARIA input fields have accessible names                                                                    | Audit  |
+| aria-meter-name                | ARIA meter elements have accessible names                                                                  | Audit  |
+| aria-progressbar-name          | ARIA progressbar elements have accessible names                                                            | Audit  |
+| aria-prohibited-attr           | Elements do not use prohibited ARIA attributes                                                             | Audit  |
+| aria-required-attr             | [role]s have all required [aria-*] attributes                                                              | Audit  |
+| aria-required-children         | Elements with an ARIA [role] that require children to contain a specific [role] have all required children | Audit  |
+| aria-required-parent           | [role]s are contained by their required parent element                                                     | Audit  |
+| aria-roles                     | [role] values are valid                                                                                    | Audit  |
+| aria-text                      | Elements with the role=text attribute do not have focusable descendants                                    | Audit  |
+| aria-toggle-field-name         | ARIA toggle fields have accessible names                                                                   | Audit  |
+| aria-tooltip-name              | ARIA tooltip elements have accessible names                                                                | Audit  |
+| aria-treeitem-name             | ARIA treeitem elements have accessible names                                                               | Audit  |
+| aria-valid-attr                | [aria-*] attributes have valid values                                                                      | Audit  |
+| aria-valid-attr-value          | [aria-*] attributes have valid values                                                                      | Audit  |
+| button-name                    | Buttons have an accessible name                                                                            | Audit  |
+| bypass                         | "The page contains a heading, skip link, or landmark region"                                               | Audit  |
+| color-contrast                 | Background and foreground colors have a sufficient contrast ratio                                          | Audit  |
+| custom-controls-labels         | Custom controls have associated labels                                                                     | Manual |
+| custom-controls-roles          | Custom controls have ARIA roles                                                                            | Manual |
+| definition-list                | `<dl>`'s contain only properly-ordered `<dt>` and `<dd>` groups                                            | Audit  |
+| dlitem                         | Definition list items are wrapped in `<dl>` elements                                                       | Audit  |
+| document-title                 | Document has a `<title>` element                                                                           | Audit  |
+| duplicate-id-active            | "[id] attributes on active, focusable elements are unique"                                                 | Audit  |
+| duplicate-id-aria              | ARIA IDs are unique                                                                                        | Audit  |
+| empty-heading                  | Headings are not empty                                                                                     | Audit  |
+| focus-traps                    | User focus is not accidentally trapped in a region                                                         | Manual |
+| focusable-controls             | Interactive controls are keyboard focusable                                                                | Manual |
+| form-field-multiple-labels     | No form fields have multiple labels                                                                        | Audit  |
+| frame-title                    | `<frame>` or `<iframe>` elements have a title                                                              | Audit  |
+| heading-order                  | Heading elements appear in a sequentially-descending order                                                 | Audit  |
+| html-has-lang                  | `<html>` element has a [lang] attribute                                                                    | Audit  |
+| html-lang-valid                | `<html>` element has a valid value for its [lang] attribute                                                | Audit  |
+| html-xml-lang-mismatch         | `<html>` element does not have an [xml:lang] attribute with the same base language as the [lang] attribute | Audit  |
+| identical-links-same-purpose   | Links with the same name have a similar purpose                                                            | Audit  |
+| image-alt                      | Image elements have [alt] attributes                                                                       | Audit  |
+| image-redundant-alt            | Image elements do not have redundant [alt] attributes                                                      | Audit  |
+| input-button-name              | Input buttons have discernible text                                                                        | Audit  |
+| input-image-alt                | "`<input type=""image"">` elements have [alt] text"                                                        | Audit  |
+| interactive-element-affordance | Interactive elements indicate their purpose and state                                                      | Manual |
+| label                          | Form elements have associated labels                                                                       | Audit  |
+| label-content-name-mismatch    | Elements' visible text is part of their accessible name                                                    | Audit  |
+| landmark-one-main              | Document has one main landmark                                                                             | Audit  |
+| link-in-text-block             | Links are distinguishable from surrounding text                                                            | Audit  |
+| link-name                      | Links have a discernible name                                                                              | Audit  |
+| list                           | Lists contain only `<li>` elements and script supporting elements                                          | Audit  |
+| listitem                       | "List items (`<li>`) are contained within `<ul>`, `<ol>` or `<menu>` parent elements"                      | Audit  |
+| logical-tab-order              | The page has a logical tab order                                                                           | Manual |
+| managed-focus                  | The user's focus is directed to new content added to the page                                              | Manual |
+| meta-refresh                   | "The document does not use `<meta http-equiv=""refresh"">`"                                                | Audit  |
+| meta-viewport                  | "[user-scalable=""no""] is not used in the `<meta name=""viewport"">` element"                             | Audit  |
+| object-alt                     | `<object>` elements have alternate text                                                                    | Audit  |
+| offscreen-content-hidden       | Offscreen content is hidden from assistive technology                                                      | Manual |
+| select-name                    | Select elements have associated label elements                                                             | Audit  |
+| skip-link                      | Skip links are focusable                                                                                   | Audit  |
+| tabindex                       | No element has a [tabindex] value greater than 0                                                           | Audit  |
+| table-duplicate-name           | `<caption>` elements do not contain the same text as the summary attribute                                 | Audit  |
+| table-fake-caption             | Tables use `<caption>` instead of cells with the [colspan] attribute                                       | Audit  |
+| target-size                    | Tap targets are sized appropriately                                                                        | Audit  |
+| td-has-header                  | `<td>` elements in a large `<table>` have one or more table headers                                        | Audit  |
+| td-headers-attr                | Cells in a `<table>` element that use the [headers] attribute refer to table cells within the same table   | Audit  |
+| th-has-data-cells              | "`<th>` elements and elements with [role=""columnheader""/""rowheader""] have data cells they describe"    | Audit  |
+| use-landmarks                  | HTML landmarks are used to identify page regions                                                           | Manual |
+| valid-lang                     | [lang] attributes have a valid value                                                                       | Audit  |
+| video-caption                  | "`<video>` elements contain a `<track>` element with [kind=""captions""]"                                  | Audit  |
+| visual-order-follows-dom       | Visual order on the page follows DOM order                                                                 | Manual |
+
+#### Best Practices Audits
+
+These audits check for general code health and modern web standards.
+
+| ID                                 | Title                                                                     | Type       |
+|:-----------------------------------|:--------------------------------------------------------------------------|:-----------|
+| appcache-manifest                  | Avoids Application Cache                                                  | Audit      |
+| bf-cache                           | Page is eligible for Back/Forward Cache                                   | Audit      |
+| csp-xss                            | Content Security Policy (CSP) protects against XSS                        | Audit      |
+| deprecations                       | Avoids deprecated APIs                                                    | Audit      |
+| doctype                            | Page has the HTML doctype                                                 | Audit      |
+| errors-in-console                  | No browser errors logged to the console                                   | Audit      |
+| external-anchors-use-rel-noopener  | Links to cross-origin destinations are safe                               | Audit      |
+| geolocation-on-start               | Avoids requesting the geolocation permission on page load                 | Audit      |
+| image-aspect-ratio                 | Displays images with correct aspect ratio                                 | Audit      |
+| image-size-responsive              | Serves images with appropriate resolution                                 | Audit      |
+| inspector-issues                   | No issues in the Issues panel in Chrome Devtools                          | Audit      |
+| is-on-https                        | Uses HTTPS                                                                | Audit      |
+| js-libraries                       | Detected JavaScript libraries                                             | Diagnostic |
+| no-vulnerable-libraries            | Avoids front-end JavaScript libraries with known security vulnerabilities | Audit      |
+| notification-on-start              | Avoids requesting the notification permission on page load                | Audit      |
+| password-inputs-can-be-pasted-into | Allows users to paste into password fields                                | Audit      |
+| third-party-cookies                | Third-party cookies                                                       | Diagnostic |
+| uses-http2                         | Use HTTP/2                                                                | Audit      |
+| valid-source-maps                  | Page has valid source maps                                                | Diagnostic |
+
+#### SEO Audits
+
+Checks that ensure your page is discoverable and optimized for search engine crawlers.
+
+| ID                | Title                                         | Type  |
+|:------------------|:----------------------------------------------|:------|
+| canonical         | Document has a valid rel=canonical            | Audit |
+| crawlable-anchors | Links are crawlable                           | Audit |
+| document-title    | Document has a `<title>` element              | Audit |
+| font-size         | Document uses legible font sizes              | Audit |
+| hreflang          | Document has a valid hreflang                 | Audit |
+| http-status-code  | Page has successful HTTP status code          | Audit |
+| is-crawlable      | Page is not blocked from indexing             | Audit |
+| link-text         | Links have descriptive text                   | Audit |
+| meta-description  | Document has a meta description               | Audit |
+| plugins           | "Document avoids plugins (e.g., Flash, Java)" | Audit |
+| robots-txt        | robots.txt is valid                           | Audit |
+| structured-data   | Structured data is valid                      | Audit |
+| tap-targets       | Tap targets are sized appropriately           | Audit |
+
+#### PWA (Progressive Web App) Audits
+
+Checks for PWA validation, including installability and offline capabilities.
+
+| ID                    | Title                                                       | Type   |
+|:----------------------|:------------------------------------------------------------|:-------|
+| apple-touch-icon      | Provides a valid apple-touch-icon                           | Audit  |
+| content-width         | Content is sized correctly for the viewport                 | Audit  |
+| installable-manifest  | Web app manifest meets the installability requirements      | Audit  |
+| maskable-icon         | Manifest has a maskable icon                                | Audit  |
+| pwa-cross-browser     | Site works cross-browser                                    | Audit  |
+| pwa-each-page-has-url | Each page has a URL                                         | Audit  |
+| pwa-page-transitions  | Page transitions don't feel like they block on the network  | Manual |
+| redirects-http        | Redirects HTTP traffic to HTTPS                             | Audit  |
+| service-worker        | Registers a service worker that controls page and start_url | Audit  |
+| splash-screen         | Configured for a custom splash screen                       | Audit  |
+| themed-omnibox        | Sets a theme color for the address bar                      | Audit  |

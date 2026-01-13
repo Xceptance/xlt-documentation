@@ -127,3 +127,9 @@ browserprofile.testEnvironment.saucelabs.url=https://ondemand.saucelabs.com:443/
 browserprofile.testEnvironment.saucelabs.username=MyAccount
 browserprofile.testEnvironment.saucelabs.password=secret
 ```
+
+## More Cheat Sheets
+
+* [Setup & Run]({{< relref "setup-and-run.md" >}}) - Define, run tests, and generate reports.
+* [Selenide & WebDriver]({{< relref "selenide-webdriver.md" >}}) - Element selection, interaction, and validation.
+* [Features & Annotations]({{< relref "neodymium-features.md" >}}) - Test data, reports, accessibility, and more.

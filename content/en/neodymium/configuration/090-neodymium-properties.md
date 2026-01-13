@@ -8,14 +8,12 @@ description: >
   Everything you can configure in the Neodymium properties.
 ---
 
-This chapter contains all information about the Neodymium properties.
-
 ## Configuration via Properties Files
 
 Neodymium combines a couple of frameworks that all have their own configuration needs which also effects test execution.
 Most of these properties can be defined/overwritten with environment variables. However since this is an awkward way of
-configuration we introduced the file: `config/neodymium.properties`
-The file contains a collection of properties that is used to configure some aspects of the used frameworks. It doesn't
+configuration we introduced the file: `config/neodymium.properties`.
+The file contains a collection of properties that are used to configure some aspects of the used frameworks. It doesn't
 cover all the possible configurations for all the frameworks we've integrated.
 Have a look at this [file](https://github.com/Xceptance/neodymium-library/blob/master/config/neodymium.properties) since
 it lists all supported properties as well as their default values and its purpose.
@@ -27,7 +25,7 @@ you to give Owner a try.
 ## Neodymium Properties
 
 The following properties can be configured in the `config/neodymium.properties` file and can be accessed via
-`Neodymium.configuration().[propertyGetterMethod]()`.
+`Neodymium.configuration().[propertyGetterMethod]()` e.g. `Neodymium.configuration().getChromeBrowserPath()`.
 
 Those properties can be overwritten in the following way (The system environment overwrites everything):
 
@@ -64,6 +62,8 @@ The Order in which the properties are loaded is as follows:
 6. `config/neodymium.properties`
 
 If one property exists in multiple of those places. The value of the higher ranking file is taken.
+This makes it possible to define `config/dev-neodymium.properties` for local testing without changing the setup for
+CI/CD, which is quite useful.
 {{% /note %}}
 
 The next sections contain all properties which can be configured in Neodymium.
@@ -83,6 +83,16 @@ The next sections contain all properties which can be configured in Neodymium.
 | neodymium.url.site        | &lt;none&gt;  | The site/channel part of the url                                            |
 | neodymium.url.includeList | &lt;none&gt;  | A list of URLs that the test is allowed to visit separated by whitespaces   |
 | neodymium.url.excludeList | &lt;none&gt;  | A list of URLs that the test is forbidden to visit separated by whitespaces |
+
+{{% note notitle %}}
+When defining url.protocol, url.host, url.path and url.site the final URL is constructed as follows:
+
+```properties
+neodymium.url=${neodymium.url.protocol}://${neodymium.url.host}${neodymium.url.path}
+neodymium.url.path=${neodymium.url.port}/
+```
+
+{{% /note %}}
 
 ### Localization
 
@@ -110,7 +120,7 @@ The next sections contain all properties which can be configured in Neodymium.
 
 | Property                                | Default value | Description                                                                                                                                           |
 |-----------------------------------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| neodymium.debugUtils.highlight          | false         | Should elements highlighted that are selected by Selenide                                                                                             |
+| neodymium.debugUtils.highlight          | false         | Should elements be highlighted that are selected by Selenide                                                                                          |
 | neodymium.debugUtils.highlight.duration | 100 ms        | How long should an element be highlighted                                                                                                             |
 | neodymium.junit.viewmode                | tree          | How to display test execution in Eclipse JUnit view. <ul><li>**tree**: a hierarchical representation</li><li>**flat**: a flat list of tests</li></ul> |
 
@@ -142,7 +152,7 @@ HTTP proxy settings. Specify host and port of the proxy server and whether it sh
 requires user authentication, make sure to provide the credentials needed. You may also configure a comma separated list
 of hosts that can be used directly, thus bypassing the proxy. Note that the host definitions are interpreted as regular
 expressions so ensure proper use of escape characters. Beside the `config/neodymium.properties` file the proxy
-configuration can be also be configured within a `config/proxy.properties` file. In case you need a separate file for CI
+configuration can also be configured within a `config/proxy.properties` file. In case you need a separate file for CI
 environments.
 
 | Property                        | Default value | Description                           |
@@ -221,22 +231,22 @@ To do so, you have to define **neodymium.testNameFilter** inside of `config/neod
 
 ### TestData
 
-| Property                                        | Default value | Description                                                            |
-|-------------------------------------------------|---------------|------------------------------------------------------------------------|
-| neodymium.testData.email.domain                 | varmail.de    | The domain used for the generated email address                        |
-| neodymium.testData.email.local.prefix           | test          | The prefix used in email address generation `prefix<generated>@domain` |
-| neodymium.testData.email.randomCharsAmount      | 12            | The amount of random chars of the email [a-z0-9]                       |
-| neodymium.testData.password.uppercaseCharAmount | 2             | The amount of capital letters                                          |
-| neodymium.testData.password.lowercaseCharAmount | 5             | The amount of small letters                                            |
-| neodymium.testData.password.digitAmount         | 2             | The amount of digits                                                   |
-| neodymium.testData.password.specialCharAmount   | 2             | The amount of special characters                                       |
-| neodymium.testData.password.specialChars        | +-#$%&.;,_    | The special characters that should be used                             |
+| Property                                        | Default value | Description                                                              |
+|-------------------------------------------------|---------------|--------------------------------------------------------------------------|
+| neodymium.testData.email.domain                 | varmail.de    | The domain used for the generated email address                          |
+| neodymium.testData.email.local.prefix           | test          | The prefix used in email address generation `<prefix><generated>@domain` |
+| neodymium.testData.email.randomCharsAmount      | 12            | The amount of random chars of the email [a-z0-9]                         |
+| neodymium.testData.password.uppercaseCharAmount | 2             | The amount of capital letters                                            |
+| neodymium.testData.password.lowercaseCharAmount | 5             | The amount of small letters                                              |
+| neodymium.testData.password.digitAmount         | 2             | The amount of digits                                                     |
+| neodymium.testData.password.specialCharAmount   | 2             | The amount of special characters                                         |
+| neodymium.testData.password.specialChars        | +-#$%&.;,_    | The special characters that should be used                               |
 
 ### Work in progress
 
-| Property                 | Default value | Description                                                                                                                    |
-|--------------------------|---------------|--------------------------------------------------------------------------------------------------------------------------------|
-| neodymium.workInProgress | false         | If true: only tests of a test class annotated with the @WorkInProgress annotation are executed, otherwise all will be executed |
+| Property                 | Default value | Description                                                                                                                      |
+|--------------------------|---------------|----------------------------------------------------------------------------------------------------------------------------------|
+| neodymium.workInProgress | false         | If true: only tests of a test class annotated with the `@WorkInProgress` annotation are executed, otherwise all will be executed |
 
 ### Advanced screenshot
 
@@ -266,7 +276,7 @@ Each value rages from 0.0 - 1.0 representing 0% to 100%.
 | neodymium.lighthouse.assert.thresholdScore.accessibility | 0.5           | Specifies the minimum acceptable score for the accessibility category in Lighthouse reports.                                                                                                                                                                                                          |
 | neodymium.lighthouse.assert.thresholdScore.bestPractices | 0.5           | Specifies the minimum acceptable score for the best practices category in Lighthouse reports.                                                                                                                                                                                                         |
 | neodymium.lighthouse.assert.thresholdScore.seo           | 0.5           | Specifies the minimum acceptable score for the seo category in Lighthouse reports.                                                                                                                                                                                                                    |
-| neodymium.lighthouse.assert.audits                       | &lt;none&gt;  | A comma separated list of audits to assert. If one fails, the test also fails. A full list of all audit id's and their corresponding titles can be found [here](https://github.com/Xceptance/neodymium/wiki/Accessibility#lighthouse-audit-validation).                                               |
+| neodymium.lighthouse.assert.audits                       | &lt;none&gt;  | A comma separated list of audits to assert. If one fails, the test also fails. A full list of all audit ID's and their corresponding titles can be found [here]({{< relref "110-accessibility#lighthouse-audit-validation">}}).                                                                       |
 
 ### Report
 
@@ -286,13 +296,13 @@ Each value rages from 0.0 - 1.0 representing 0% to 100%.
 
 ### Popup blocker
 
-We introduced a simple popup blocker to get rid of test affecting popups on a webpage. To use it just configure add a
+We introduced a simple popup blocker to get rid of test affecting popups on a webpage. To use it just configure a
 CSS selector which targets the close button of the popup.
 
-| Property                     | Default value | Description                                                                                                      |
-|------------------------------|---------------|------------------------------------------------------------------------------------------------------------------|
-| neodymium.popup.<popup name> | &lt;none&gt;  | Define a pop up and the selector to close it. e.g. `neodymium.popup.newsletter = #newsletterbox > button.close ` |
-| neodymium.popupInterval      | 1000 ms       | The delay between two checks for a popup in milliseconds                                                         |
+| Property                           | Default value | Description                                                                                                      |
+|------------------------------------|---------------|------------------------------------------------------------------------------------------------------------------|
+| neodymium.popup.&lt;popup name&gt; | &lt;none&gt;  | Define a pop up and the selector to close it. e.g. `neodymium.popup.newsletter = #newsletterbox > button.close ` |
+| neodymium.popupInterval            | 1000 ms       | The delay between two checks for a popup in milliseconds                                                         |
 
 ## Credentials properties
 

@@ -43,7 +43,7 @@ In that case the browser itself runs on a different host and will be remote cont
 
 ### Local web driver
 
-Web driver and browser can be installed on the Jenkins machine locally just like on any other machine that you use e.g. for tests development. Please read more about it [here]({{< ref "505-webdriver-setup" >}}).
+Web driver and browser can be installed on the Jenkins machine locally just like on any other machine that you use e.g. for tests development. Please read more about it [here]({{< ref "001-webdriver" >}}).
 
 **Note**: if you need your tests to be executed in non-headless mode, you will need the Xvfb plugin mentioned above. In case headless mode is enough for your purposes, this plugin is not required.
 

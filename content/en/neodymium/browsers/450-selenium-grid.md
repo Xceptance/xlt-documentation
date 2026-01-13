@@ -101,6 +101,7 @@ In `config/browser.properties`, define a browser that uses this environment.
 browserprofile.FF_Grid.name = Firefox Grid
 browserprofile.FF_Grid.browser = firefox
 browserprofile.FF_Grid.browserResolution = 1600x1200
+browserprofile.FF_Grid.headless = true
 browserprofile.FF_Grid.testEnvironment = myGrid
 ```
 

@@ -168,12 +168,24 @@ tag to the hook and the test case to avoid interferences. Probably you won't nee
 
 ### Tear down
 
-To tear down the WebDriver you just need to add a general hook. Be aware that you need to pass an order number below
-10000 to run it after all other `After` hooks. Doing so, you make sure that the browser will be torn down once all
-standard `After` steps have been executed.
+To tear down the WebDriver you just need to add a general hook.
+
+{{% note notitle %}}
+**NOTE:** Cucumber hooks allow you to specify an `order` to control the execution sequence:
+
+* **`@Before`** hooks are executed in **ascending** order (e.g., 0, 1, 2...).
+* **`@After`** hooks are executed in **descending** order (e.g., 2, 1, 0...).
+  {{% /note %}}
+
+Because `@After` hooks run in reverse (descending) order, a **lower** order number means it will be executed **later**.
+By providing an order number below 10000 (which is often used as a baseline or default in many frameworks), you ensure
+that the browser teardown is one of the last actions performed. You should choose an order number for the browser
+teardown that is sufficiently low (e.g., 100) to ensure it runs after any browser-dependent hooks, such as taking
+screenshots on failure. However, you can still perform final cleanup tasks that do not rely on the browser — such as
+clearing a database — by assigning those hooks an even lower order number (e.g., 10) so they execute after the browser
+has successfully closed.
 
 ```java
-
 @After(order = 100)
 public void tearDown(Scenario scenario)
 {
@@ -220,7 +232,6 @@ projects when we update the Cucumber version.
 3. Now you can set the GlobalStorage with the passed data from the scenario.
 
    ```Java
-   
    @Given("^user setup: \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
    public void setUpUser(String firstName, String lastName, String eMail, String password)
    {

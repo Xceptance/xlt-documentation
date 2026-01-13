@@ -1,6 +1,6 @@
 ---
 title: "Features & Annotations"
-weight: 3
+weight: 4
 type: docs
 description: "Cheat sheet for Neodymium features and annotations."
 ---
@@ -48,22 +48,25 @@ Methods can have multiple `@DataSet()` annotations
 4. properties
 
 {{% warning notitle %}}
-**Attention:** only JSON is currently supported for complex test data with nested objects! Simple key/value pairs can be used in all formats.
+**Attention:** only JSON is currently supported for complex test data with nested objects! Simple key/value pairs can be
+used in all formats.
 {{% /warning %}}
 
 **Test data access:**
 
 * `Neodymium.dataValue("<dataKey>")`
 * `Neodymium.getData().asString("<key>")` - `as...()` function for all primitive types
-* `DataItem` POJO - usual object access
-* `Neodymium.getData().get(<testDataClass.class>)` - parses data manually into POJO instead of using @DataItem
+* `@DataItem` POJO - usual object access
+* `Neodymium.getData().get(<testDataClass.class>)` - parses data manually into POJO instead of using `@DataItem`
 
-Package test data to share common data among tests within the same package and its sub-packages in a file named `package_testdata`.
+Package test data to share common data among tests within the same package and its sub-packages in a file named
+`package_testdata`.
 
 ## Localization
 
 * `localization.yaml` stored in `./config/localization.yaml` containing key value pairs of translations.
-* locale defined in `neodymium.properties` as  `neodymium.locale=<locale>` or changed during tests using `Neodymium.configuration().setProperty("neodymium.locale", <locale>)`.
+* locale defined in `neodymium.properties` as  `neodymium.locale=<locale>` or changed during tests using
+  `Neodymium.configuration().setProperty("neodymium.locale", <locale>)`.
 
 **Get localized texts during tests:**
 
@@ -113,14 +116,14 @@ Package test data to share common data among tests within the same package and i
 * `@Step("description with {parameter}")` add description with parameter to function
 
   ```java
-  @Step("assert this is a HomePage")
-  public HomePage assertExpectedPage()
+  @Step("click on a product by product name '{productName}'")
+  public ProductDetailPage clickProductByName(String productName)
   {
       // ...
   }
   ```
 
-* add custom info to report using `AllureAddons.addToReport("first part");`
+* add custom info to report using `AllureAddons.addToReport("<message>");`
 
   ```java
   @NeodymiumTest
@@ -145,8 +148,11 @@ Package test data to share common data among tests within the same package and i
 
 * **Links**: Automatically added to steps where the URL changes.
 * **Test Data**: Automatically attached if `@DataItem` or `Neodymium.getData()` is used.
-* **JSON Compare**: Using `JsonAssert.assertEquals(expected, actual, mode)` adds comparison with difference highlighting.
-* **Environment**: Automatically contains Neodymium version and browsers. Extend with `neodymium.report.environment.custom.customData=customValue` (requires `neodymium.report.environment.enableCustomData=true`).
+* **JSON Compare**: Using `JsonAssert.assertEquals(expected, actual, mode)` adds comparison with difference
+  highlighting.
+* **Environment**: Automatically contains Neodymium version and browsers. Extend with
+  `neodymium.report.environment.custom.customData=customValue` (requires
+  `neodymium.report.environment.enableCustomData=true`).
 
 ## Advanced Screenshots
 
@@ -155,24 +161,25 @@ Must be enabled in `neodymium.properties`: `neodymium.screenshots.enableAdvanced
 Customization properties:
 
 ```properties
-neodymium.screenshots.fullpagecapture.enable=true
-neodymium.screenshots.highlightViewport=false
-neodymium.screenshots.highlightLastElement=true
-neodymium.screenshots.highlightColor=#0000FF
-neodymium.screenshots.enableOnSuccess=false
+neodymium.screenshots.fullpagecapture.enable = true
+neodymium.screenshots.highlightViewport = false
+neodymium.screenshots.highlightLastElement = true
+neodymium.screenshots.highlightColor = #0000FF
+neodymium.screenshots.enableOnSuccess = false
 ```
 
 ## Recording
 
-Configuration in `config/gif-recording.properties` and `config/video-recording.properties`. Must have `<type>.enableFilming = true`.
+Configuration in `config/gif-recording.properties` and `config/video-recording.properties`. Must have
+`<gif|video>.enableFilming = true`.
 
-| Property | Format | Description |
-|---|---|---|
-| enableFilming | bool | Enable recording |
-| filmAutomatically | bool | Start recording automatically |
-| deleteRecordingsAfterAddingToAllureReport | bool | Deletes recording file after adding to report |
-| appendAllRecordingsToAllureReport | bool | If false, only failures are added |
-| imageQuality | double | Image quality percentage (0.0 - 1.0) |
+| Property                                  | Format | Description                                   |
+|-------------------------------------------|--------|-----------------------------------------------|
+| enableFilming                             | bool   | Enable recording                              |
+| filmAutomatically                         | bool   | Start recording automatically                 |
+| deleteRecordingsAfterAddingToAllureReport | bool   | Deletes recording file after adding to report |
+| appendAllRecordingsToAllureReport         | bool   | If false, only failures are added             |
+| imageQuality                              | double | Image quality percentage (0.0 - 1.0)          |
 
 Manual recording:
 
@@ -189,10 +196,10 @@ FilmTestExecution.finishVideoFilming(String<fileName>, boolean <testFailed>);
 * Assertions in properties:
 
   ```properties
-  neodymium.lighthouse.assert.thresholdScore.performance
-  neodymium.lighthouse.assert.thresholdScore.accessiblity
-  neodymium.lighthouse.assert.thresholdScore.bestPractices
-  neodymium.lighthouse.assert.thresholdScore.seo
+  neodymium.lighthouse.assert.thresholdScore.performance = 0.5
+  neodymium.lighthouse.assert.thresholdScore.accessibility = 0.5
+  neodymium.lighthouse.assert.thresholdScore.bestPractices = 0.5
+  neodymium.lighthouse.assert.thresholdScore.seo = 0.5
   neodymium.lighthouse.assert.audits=audit1 audit2
   ```
 
@@ -201,16 +208,18 @@ FilmTestExecution.finishVideoFilming(String<fileName>, boolean <testFailed>);
 Will close non-deterministic pop-ups automatically if configured:
 
 ```properties
-neodymium.popup.customPopUp=#myWindow
+neodymium.popup.customPopUp=#myWindowCloseButton
 ```
 
 ## PageObjects and Components
 
-The [Page Object Model (POM)]({{< relref "../quick-start/page-objects.md" >}}) wraps all elements and functionality of a web page into an object.
+The [Page Object Model (POM)]({{< relref "../quick-start/page-objects.md" >}}) wraps all elements and functionality of a
+web page into an object.
 
 ```java
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -250,3 +259,9 @@ See [Utility Classes]({{< relref "../configuration/100-utility-classes.md" >}}).
 ## Cucumber
 
 See [Cucumber]({{< relref "../framework/200-cucumber.md" >}}).
+
+## More Cheat Sheets
+
+* [Setup & Run]({{< relref "setup-and-run.md" >}}) - Define, run tests, and generate reports.
+* [Selenide & WebDriver]({{< relref "selenide-webdriver.md" >}}) - Element selection, interaction, and validation.
+* [Properties]({{< relref "properties.md" >}}) - Configuration files and browser setups.

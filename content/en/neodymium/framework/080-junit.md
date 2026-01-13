@@ -77,7 +77,7 @@ Please check the [test data]({{< relref "020-test-data" >}}) page for detailed i
 
 In general, Neodymium adheres to JUnit's test execution order. For more information, please refer to the
 documentation [for JUnit4](https://github.com/junit-team/junit4/wiki/Test-execution-order)
-and [for JUnit5](https://junit.org/junit5/docs/current/user-guide/#writing-tests-test-execution-order). This means that
+and [for JUnit5](https://docs.junit.org/current/writing-tests/test-execution-order.html). This means that
 by default there is no fixed order within the methods annotated with `@Test` or `@NeodymiumTest`.
 
 Test methods are retrieved as an unordered list. However, during computation, the collective tests generated from a
@@ -294,12 +294,12 @@ Neodymium also offers the option to create test suites. To do so, you need to cr
 annotate it as follows:
 
 ```Java
-
 @RunWith(Suite.class)
-@Suite.SuiteClasses(
-    {
-        RegisterFromUserMenuTest.class, RegisterTest.class, LoginTest.class
-    })
+@Suite.SuiteClasses({
+    RegisterFromUserMenuTest.class, 
+    RegisterTest.class, 
+    LoginTest.class
+})
 public class UserTestSuite
 {
     @BeforeClass
@@ -340,7 +340,6 @@ suites. With JUnit5, you create a dedicated runner class for the test suite and 
 Here's an example of a JUnit5 test suite:
 
 ```java
-
 @Suite
 @SelectClasses({
     RegisterFromUserMenuTest.class,
@@ -510,7 +509,7 @@ maintenance effort.
 
 {{% note notitle %}}
 **Important:** JUnit5 also supports tag expressions, which allow more flexible grouping of tests. Please read
-more [here](https://junit.org/junit5/docs/current/user-guide/#running-tests-tags).
+more [here](https://docs.junit.org/current/running-tests/tags.html).
 {{% /note %}}
 
 ## Avoiding test collisions with Maven Surefire
@@ -521,7 +520,6 @@ Plugin to execute all non-colliding tests in parallel first, and then run the te
 This configuration is shown below:
 
 ```Xml
-
 <build>
     <executions>
         <execution>
@@ -540,7 +538,7 @@ This configuration is shown below:
             </configuration>
         </execution>
         <execution>
-            <id>run-tests-serial</id>
+            <id>run-tests-sequentially</id>
             <phase>test</phase>
             <goals>
                 <goal>test</goal>

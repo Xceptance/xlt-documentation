@@ -12,7 +12,7 @@ This tutorial shows you how to write browser-based test automation with Neodymiu
 
 A more complex test suite setup can be found in the [neodymium-template project](https://github.com/Xceptance/neodymium-template), which includes necessary dependencies, configuration files, and a basic test utilizing the Page Object Model pattern, Cucumber, and more.
 
-Throughout this guide, we will create basic tests for the [Xceptance Poster Demo Store](https://posters.xceptance.io:8443/). Instead of setting up the store locally, we will use the [hosted online version](https://posters.xceptance.io:8443/).
+Throughout this guide, we will create basic tests for the [Xceptance Poster Demo Store](https://github.com/Xceptance/posters-demo-store). Instead of setting up the store locally, we will use the [hosted online version](https://posters.xceptance.io:8443/).
 
 ## Example Test
 

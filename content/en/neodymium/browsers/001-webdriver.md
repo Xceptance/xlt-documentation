@@ -13,14 +13,14 @@ automatically download the latest one.
 
 Within the file `config/browser.properties` you can set up the browsers used throughout testing.
 More details on configuring the browser properties can be found in the
-[browser handling chapter]({{< relref "010-browser" >}}).
+[browser configuration and handling chapter]({{< relref "010-browser" >}}).
 
 The next three sections describe how to set up specific WebDriver and browsers.
 
 ## Set Up a Specific WebDriver
 
 For that, you have to download and provide a
-specific [Selenium WebDriver](http://www.seleniumhq.org/projects/webdriver/).
+specific [Selenium WebDriver](https://www.selenium.dev/documentation/webdriver/).
 
 You can download the common WebDriver here:
 
@@ -29,7 +29,7 @@ You can download the common WebDriver here:
 * [Edge](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)
 
 After downloading you can configure them in the `config/neodymium.properties` file. Find the line that matches the
-WebDriver of your choice e.g. `neodymium.webDriver.chrome.pathToDriverServer =  C:/dev/webdriver/chromedriver.exe` or
+WebDriver of your choice e.g. `neodymium.webDriver.chrome.pathToDriverServer = /path/to/chromedriver` or
 add them to the PATH of your system.
 
 If you need to set the path of the browser executable as well, you can also easily set it in the properties as
@@ -86,7 +86,7 @@ system.
 ### Reuse of WebDrivers
 
 Another edge case can be the reuse of WebDrivers. The start routine of a browser can take some time especially if they
-are started in a remote test environment. Therefore, it might a good idea to reuse an already instantiated WebDriver.
+are started in a remote test environment. Therefore, it might be a good idea to reuse an already instantiated WebDriver.
 This
 setting can be configured via the [Neodymium configuration properties]({{< relref "090-neodymium-properties#browser-behavior" >}}).
 

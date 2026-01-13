@@ -14,7 +14,7 @@ To access the elements within a shadow DOM we need to have a look at the tree wi
 
 #### Accessing the Shadow DOM
 
-Selenide provides the `shadowCss`-function with which we can access the Shadow DOM elements. For this we need a CSSSelector identifying the parent, under which the Shadow DOM is located, and one which identifies the element we want to access. Below is an example how to use it.
+Selenide provides the `shadowCss`-function with which we can access the Shadow DOM elements. For this we need a CSS Selector identifying the parent, under which the Shadow DOM is located, and one which identifies the element we want to access. Below is an example how to use it.
 
 ```Java
 $(Selectors.shadowCss("#target-element", "#shadowhost-element")).click()

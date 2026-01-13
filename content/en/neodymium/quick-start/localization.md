@@ -47,7 +47,7 @@ Localized text can be retrieved using:
 
 If a key is missing for the requested locale, Neodymium automatically falls back to the `default` locale's values. If the key is absent in the default locale as well, an error is thrown.
 
-The default locale is `en_US`, but it can be changed during runtime using `Neodymium.configuration().setProperty("neodymium.locale", <locale>)` or by modifying the `neodymium.properties` configuration file with `neodymium.locale=<locale>`.
+The initial locale is `en_US`, but it can be changed during runtime using `Neodymium.configuration().setProperty("neodymium.locale", <locale>)` or by modifying the `neodymium.properties` configuration file with `neodymium.locale=<locale>`.
 
 ## Example
 

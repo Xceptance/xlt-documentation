@@ -17,7 +17,7 @@ If you have ever used jQuery the syntax will look familiar to you. Furthermore, 
 <u>**Used Versions**</u>:
 
 * Selenium: 4.26.0
-* Selenide: 7.6.0
+* Selenide: 7.11.1
 
 All changes and new introduced features are found [here](https://selenide.org/blog.html)
 

@@ -81,9 +81,9 @@ Simple, key/value like data sets can be used with CSV, XML or JSON.
 ## Data Sets
 
 Each data set automatically causes a separate run of each function, of a class, it is defined for.
-So for example: If you execute a test case and have a data set file with three data sets, it will be
-automatically executed for each and every defined data set unless told otherwise. You can control that behaviour with
-annotations: `@DataSet`, `@RandomDataSets` and `@SuppressDataSets`
+For example: If you execute a test case using a data set file with three data sets, the test will automatically run for
+each defined data set unless configured otherwise. This results in a total of three executions. You can control that
+behaviour with annotations: `@DataSet`, `@RandomDataSets` and `@SuppressDataSets`
 
 * **@SuppressDataSets**: Can be annotated to a method and/or class. On a class it prevents all methods from being
   executed multiple times for data sets. On a method it is the same behaviour but just for that method, and it will
@@ -91,11 +91,12 @@ annotations: `@DataSet`, `@RandomDataSets` and `@SuppressDataSets`
 * **@DataSet**: Can be annotated to a method and/or class. This annotation can be used to limit a method to certain data
   sets regardless if there is an SuppressDataSets annotation on the class. If the class has an SuppressDataSets
   annotation the DataSet annotation can be used on a method to re-enable execution for all or individual data sets.
-  DataSet annotation can be parameterized to reference a specific data set. One could refer them by using an integer (
-  value) or by using a string (id)
-    * value: `@DataSet(2)` an integer referencing a specific data set (first data set would be referenced by 1)
+  DataSet annotation can be parameterized to reference a specific data set. One could refer them by using an integer
+  (index) or by using a string (id)
+    * index: `@DataSet(2)` an integer referencing a specific data set (first data set would be referenced by 1)
     * id: `@DataSet(id = "Jebediah's data set")` a string value that refers to a data set which has the same value for
-      attribute `testId` (see Example 1). This allows you to name your data sets which will come handy at some point.
+      attribute `testId` (see [Example 1]({{<ref "#example1" >}}) ). This allows you to name your data sets which will
+      come handy at some point.
 * **@RandomDataSets**: Can be annotated to a method and/or class. This annotation allows to run test with certain amount
   of random data sets. The random data sets will be chosen from test data list. In case the annotated test also contains
   `@DataSet` annotation, the random sets will be selected among the sets selected by the latter.
@@ -111,7 +112,7 @@ from package test data.
 
 We support data set in the following file formats: CSV, XML and JSON. Please find an example for each format below.
 
-<h4>Example 1</h4>
+<h4 id=example1>Example 1</h4>
 
 Let the test data be the file `MyTest.csv` with the following content:
 
@@ -194,9 +195,9 @@ reachable under the same path as the test with only difference that the test is 
 the data set file in the `resources` folder. Is this the case, the test data is associated with the test and the test
 automatically executed with the data sets.
 
-In case it's required to place the data set file in another location, the `@Datafile` annotation can be useful.
-Neodymium provides the `@Datafile` annotation to override the data sets file location. By using this feature you are
-able to reuse the same data set for multiple test cases.
+In case it's required to place the data set file in another location, the `@Datafile` annotation can be useful to
+override the data sets file location. By using this feature you are able to reuse the same data set for multiple test
+cases.
 
 The file referred to by this annotation needs to reside within the resource path. You need to provide the full path to
 the file relative to the resource folder, including the file extension.
@@ -232,9 +233,11 @@ the validity scope will be increased.
 
 Test data and data sets are automatically processed on test execution. The `NeodymiumRunner` looks for package test data
 files and data set files.
-To access the data from your test case you canuse the functions provided by [
+To access the data from your test case you can use the functions provided by
+[
 `TestData`](https://github.com/Xceptance/neodymium/blob/master/src/main/java/com/xceptance/neodymium/common/testdata/TestData.java)
-class, which is returned by calling `Neodymium.getData()` from the [
+class, which is returned by calling `Neodymium.getData()` from the
+[
 `Neodymium`](https://github.com/Xceptance/neodymium-library/blob/master/src/main/java/com/xceptance/neodymium/util/Neodymium.java)
 context class.
 
@@ -270,6 +273,12 @@ exception. `asString(String key, String defaultValue)` can be used to fall back 
 
 The test data files should follow a specific key value pattern. We showcase the format for each type below.
 
+{{% note notitle %}}
+**NOTE:** The `testId` field in your data set is optional. However, if specified, it can be used to run test methods
+with a specific data set by using the annotation `@DataSet(id = "<testId>")`. This allows you to target and execute
+tests with named data sets.
+{{% /note %}}
+
 ### CSV
 
 The first line of the *.csv file defines the names for the available data fields. Each of the following lines defines a
@@ -284,18 +293,20 @@ value1-set2,value2-set2,value3-set2
 
 ### XML
 
-Our XML format has a `datafile` root element. This can hold as `dataset` element which results in an execution of the
-test method using the `data` elements as available parameters for that execution.
+The XML format uses a `datafile` root element. This element contains `dataset` entries, where each `dataset` triggers a
+test execution using the nested `data` elements as input parameters.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <datafile>
     <dataset>
+        <data key="testId">dataset1</data>
         <data key="name1">value1-set1</data>
         <data key="name2">value2-set1</data>
         <data key="name3">value3-set1</data>
     </dataset>
     <dataset>
+        <data key="testId">dataset2</data>
         <data key="name1">value1-set2</data>
         <data key="name2">value2-set2</data>
         <data key="name3">value3-set2</data>
@@ -311,11 +322,13 @@ data it holds.
 ```json
 [
   {
+    "testId": "dataset1",
     "name1": "value1-set1",
     "name2": "value2-set1",
     "name3": "value3-set1"
   },
   {
+    "testId": "dataset2",
     "name1": "value1-set2",
     "name2": "value2-set2",
     "name3": "value3-set2"
@@ -329,7 +342,8 @@ In larger test projects you often find the need to work with more complex test o
 test objects. If you forward an arbitrary class to the following function `TestData.get(Class<T> clazz)` Neodymium will
 parse the available data structure and map the corresponding fields.
 
-In case you don't need a field for a certain test case leave it out it will result in a `null` for this field.
+If a field is not required for a specific test case, you can simply omit it. This will result in a `null` value for that
+field.
 
 If you just need a specific part of the data Neodymium provides a second function:
 `TestData.get(String jsonPath, Class<T> clazz)` using a [JsonPath](https://github.com/json-path/JsonPath) to locate the

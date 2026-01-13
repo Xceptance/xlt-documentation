@@ -16,7 +16,7 @@ to enhance screenshot utility and organization.
 To enable the use of advanced screenshots, set the following property:
 
 ```properties
-neodymium.screenshots.enableAdvancedScreenshots=true
+neodymium.screenshots.enableAdvancedScreenshots = true
 ```
 
 By default, this captures normal viewport screenshots at the moment of failure, but with enhanced organization:
@@ -72,10 +72,10 @@ When the viewport alone doesn't capture the entire context of a failure, you can
   Full-page screenshot example, highlighting the viewport with blur applied to the surrounding area.
   {{< /image >}}
 
-## Full Page Customization
+## Full Page Screenshot Customization
 
 * **Highlight Color:** The highlight color for the viewport can be changed using the
-  `neodymium.screenshots.fullpagecapture.highlightColor` property (any RGB color).
+  `neodymium.screenshots.fullpagecapture.highlightColor` property (any RGB color, specified in hexadecimal format).
 * **Blurring:** Parts of the page outside the current viewport can be blurred to focus attention on the visible area (as
   shown in the example above). Blurring is off by default, but can be activated with:
     ```properties
@@ -99,5 +99,5 @@ The following table lists all available properties for configuring Neodymium's s
 | `neodymium.screenshots.element.highlightColor`            | `#FF00FF` | Sets the hexadecimal color code (e.g., `#FF00FF` for magenta) used to highlight the last interacted element.                                                    |
 | `neodymium.screenshots.fullpagecapture.enable`            | `true`    | Enables **full-page capture**, taking a screenshot of the entire page content, not just the visible viewport.                                                   |
 | `neodymium.screenshots.blurFullPageScreenshot`            | `false`   | If full-page capture is enabled, setting this to `true` blurs the content outside the visible viewport to focus analysis.                                       |
-| `neodymium.screenshots.fullpagecapture.highlightViewport` | `true`    | Visually highlights the area corresponding to the initial viewport during full-page capture for context.                                                        |
+| `neodymium.screenshots.fullpagecapture.highlightViewport` | `false`   | Visually highlights the area corresponding to the initial viewport during full-page capture for context.                                                        |
 | `neodymium.screenshots.fullpagecapture.highlightColor`    | `#FF0000` | Sets the hexadecimal color code (e.g., `#FF0000` for red) used to highlight the viewport during full-page capture.                                              |

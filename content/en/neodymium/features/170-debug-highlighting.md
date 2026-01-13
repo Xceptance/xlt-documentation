@@ -24,7 +24,7 @@ The highlight is displayed for a configured duration, after which it is automati
 interfere with the next action. The default duration is **100 milliseconds** if no value is specified.
 
 {{% warning notitle %}}
-The highlighting is disabled by default and when enabling it, the test runtime will increase.
+**Note:** The highlighting is disabled by default and when enabling it, the test runtime will increase.
 {{% /warning %}}
 
 ### Configuration
@@ -39,6 +39,6 @@ These configurations are managed in the `config/neodymium.properties` file:
 ### Example
 
 ```properties
-neodymium.debugUtils.highlight=true
-neodymium.debugUtils.highlight.duration=100
+neodymium.debugUtils.highlight = true
+neodymium.debugUtils.highlight.duration = 100
 ```

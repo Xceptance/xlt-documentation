@@ -10,8 +10,6 @@ description: >
 
 {{< TODO >}}add description{{< /TODO >}}
 
-## Pop-up Blocker Utility
-
 Pop-ups are a common feature in web applications. During test execution, it is often necessary to automatically close
 certain pop-ups to ensure a smooth test flow. For this purpose, we have implemented a JavaScript-based, in-page Pop-up
 Blocker.
@@ -29,7 +27,7 @@ To enable this utility, you must provide the **CSS selector** of the element tha
 button or an 'X' icon). Store this selector in your properties file using a custom key:
 
 ```properties
-neodymium.popup.customPopUp=#myWindowCloseButton
+neodymium.popup.customPopUp = #myWindowCloseButton
 ```
 
 The system will then automatically search for this specific element. As soon as the element is found, a click action
