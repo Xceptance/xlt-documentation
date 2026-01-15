@@ -9,5 +9,5 @@ description: >
 --- 
 
 {{% note title="Documentation Migration" %}}
-We are in the process of migrating the documentation from [GitHub](https://github.com/Xceptance/neodymium) into this format here. Please be patient and we appeciate any feedback, pull requests, etc.
+We are in the process of migrating the documentation from [GitHub](https://github.com/Xceptance/neodymium) into this format here. Please be patient and we appreciate your feedback, pull requests, etc.
 {{% /note %}}
