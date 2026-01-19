@@ -4,7 +4,7 @@
 {{ else }}
 <a href="/images/{{ .Get `src` }}" data-lightbox="{{ .Page.Title }}" {{ with .Inner }}data-title="{{ . | markdownify}}"{{ end }}>
 {{ end }}
-	<img style="box-shadow: 1px 1px 5px 1px #ccc;{{ if .Get `max-width`}} max-width:{{ .Get `max-width` }}{{ end }}" src="/images/{{ .Get `src` }}" alt="">
+	<img style="{{ if ne (.Get "shadow") "false" }}box-shadow: 1px 1px 5px 1px #ccc;{{ end }}{{ if .Get `max-width`}} max-width:{{ .Get `max-width` }}{{ end }}" src="/images/{{ .Get `src` }}" alt="">
 </a>
 
 {{ with .Inner }}

@@ -20,6 +20,7 @@ description: >
 The following chapters show important pieces how to use this Hugo template for writing the XLT documentation. Please refer always back to the source code and check how each component is written.
 
 ## Info Boxes
+
 {{% note %}}
 A Note with a standard header/title
 {{% /note %}}
@@ -59,12 +60,15 @@ A Danger section without a title
 > Just a blockquote. You can still use them. They are kinda boring.
 
 ## Keyboard
+
 You can reference keyboard keys in text, using the {{< kbd >}}kbd{{< /kbd >}} shortcode.
 
 ---
+
 ## Code
 
 ### Java Code
+
 #### Plain
 
 ```java
@@ -76,11 +80,13 @@ public class Foo
 ```
 
 ### Bash Code
+
 ```bash
 foo@picard $./start.sh
 ```
 
 ----
+
 ## Footnotes
 
 ```markdown
@@ -88,18 +94,18 @@ That's some text with a footnote.[^1]
 
 [^1]: And that's the footnote.
 ```
+
 That's some text with a footnote.[^1]
 
 [^1]: And that's the footnote.
 
-
 ## Links
 
-### Any link that is up or down the hierarchy
+To build links that are up or down the hierarchy, use the `relref` shortcode.
 
-Go to [Manual]({{< relref "manual" >}}).
-Go to [XTC]({{< relref "xtc" >}}).
-Go to [Release Notes]({{< relref "xlt/release-notes" >}}). 
+* Go to [Manual]({{< relref "manual" >}}).
+* Go to [XTC]({{< relref "xtc" >}}).
+* Go to [Release Notes]({{< relref "xlt/release-notes" >}}).
 
 ```markdown
 Go to [Load Testing]({{</* relref "load-testing" */>}}).
@@ -122,11 +128,13 @@ Please note that Hugo will _not_ validate anchors used in references (i.e. a lin
 {{% /note %}}
 
 ### External links
+
 You can build external links by using the [link markdown with complete URLs](https://github.com/Xceptance), Hugo will [take care](https://gohugo.io/getting-started/configuration-markup/#link-with-title-markdown-example "Shortcode for building external links") to add `target="_blank"` to all outgoing links (starting with http\*).
 
 ## Images
+
 {{< image src="releasenotes/agent-cpu-usage-chart-small.jpg" large="releasenotes/agent-cpu-usage-chart-large.png" >}}
-An `image` that gets its source from *src* and is linked to *large* if this is given. Paths are relative to **static/images/**. The *.Inner* part is the caption.
+An `image` that gets its source from _src_ and is linked to _large_ if this is given. Paths are relative to **static/images/**. The _.Inner_ part is the caption.
 {{< /image >}}
 
 {{< image src="releasenotes/agent-cpu-usage-chart-large.png" >}}
@@ -141,11 +149,20 @@ To just use CSS scaling like above for your large image, but think it looks nice
 Yet another image. Note how neatly you can navigate between the large versions of all images of this page.
 {{< /image >}}
 
+{{< image src="user-manual/chart_variable_load_factor.svg" shadow="false">}}
+If you don't want a shadow around your image, you can pass the parameter `shadow="false"`.
+{{< /image >}}
+
 {{< imageres src="test.png" >}}
-Another image using the `imageres` shortcode, which will resize images to a smaller preview using hugo's image processing. For this, the source image must be part of the page resources (pages are in a folder as index.md, images in same folder). The *.Inner* part is the caption.
+Another image using the `imageres` shortcode, which will resize images to a smaller preview using hugo's image processing. For this, the source image must be part of the page resources (pages are in a folder as index.md, images in same folder). The _.Inner_ part is the caption.
+{{< /imageres >}}
+
+{{< imageres src="test.png" shadow="false" >}}
+The `imageres` shortcode also supports the `shadow="false"` parameter to disable the shadow.
 {{< /imageres >}}
 
 ## Colored Text
+
 Should you need colored text, use {{< ctext color="green" >}}ctext in green{{< /ctext >}} or any other html compatible color code. If none is given, this defaults to {{< ctext >}}grey{{< /ctext >}}.
 
 ## XTC Permissions
@@ -166,22 +183,26 @@ There is no inner part required for this shortcode. The parameters "type" and "a
 
 {{% permission role="reader"%}}
 
-
 ## TODO
+
 ### To-Do Marker
+
 {{< TODO / >}}To remind us that something needs to be done, it introduces a marked TODO at the position of the shortcode `{{</* TODO / */>}}`. TODO markers right now assume to be in the beginning because they make a little room on the right side - "{{< TODO / >}}".
 
 {{< TODO comment="I am more useful!" / >}}Optionally you can pass the parameter comment and provide some more information such as `{{</* TODO comment="More information in the title" / */>}}`.
 
 ### Marked Text
+
 ```
 {{</* TODO */>}}To mark some text use this.{{</* /TODO */>}}
 ```
+
 {{< TODO >}}To mark some text use this.{{< /TODO >}}
 
-
 ### Markdown in a To-Do
+
 ```
 {{%/* TODO */%}}To use **markdown** in the to-do, use this.{{%/* /TODO */%}}
 ```
+
 {{% TODO %}}To use **markdown** in the to-do, use this.{{% /TODO %}}
