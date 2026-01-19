@@ -31,7 +31,7 @@ lastmod = [":git", "lastmod", "date", "publishDate", ":fileModTime"]
       unsafe = true
 
 [outputs]
-home = [ "HTML", "RSS", "JSON" ]
+home = [ "HTML", "RSS" ]
   [markup.highlight]
       codeFences = true
       guessSyntax = false
