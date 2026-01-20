@@ -150,6 +150,8 @@ This is the fundamental flaw of the user count model: the load on the system is 
 
 **The solution? The arrival rate model.** By defining a target of 10,000 visits per hour, the test runs exactly the same way regardless of response time changes. This ensures your benchmarks remain comparable over time.
 
+You can find more information in our article [Concurrent Users - The Art of Calculation](concurrent-users-the-art-of-calculation).
+
 ## Does This Approach Work for You?
 
 Hopefully, this gives you a clear path to building a realistic user mix even when data is scarce. Focus on the outcomes (orders and visits) and the arrival rate, rather than getting bogged down in concurrent user numbers.
