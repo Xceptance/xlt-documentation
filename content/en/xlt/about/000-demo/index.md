@@ -1,7 +1,8 @@
 ---
-title: "Doc Helpers ✍️"
+title: "How To Write Documentation ✍️"
+linkTitle: "How To Write ✍️"
 
-# Just so yoou know how an alias works
+# Just so you know how an alias works
 aliases:
   - /documentation-helpers
   - relative-documentation-helpers
@@ -15,9 +16,16 @@ slug: "this is just an overwritten url"
 
 description: >
   This page demos several important pieces for the documentation and is meant to support
-  anyone who wants to update or extend the documentation. This is not material for XLT.
+  anyone who wants to update or extend the documentation.
 ---
-The following chapters show important pieces how to use this Hugo template for writing the XLT documentation. Please refer always back to the source code and check how each component is written.
+
+The Xceptance Documentation is based on [Docsy](https://github.com/google/docsy). Docsy is a [Hugo](https://gohugo.io/) theme for technical documentation sets, providing simple navigation, site structure, and more. For details on software requirements and build instructions, please refer to the [README](https://github.com/Xceptance/xlt-documentation).
+
+The following chapters demonstrate the key components and best practices for writing XLT documentation with this Hugo template. We recommend always referring back to the source code to see how each component is implemented. While Xceptance has enhanced the Docsy theme with specialized features for XLT, your existing knowledge of Docsy and Hugo will provide a solid foundation.
+
+## Contributing
+
+We welcome your help in improving the XLT documentation. For a step-by-step guide on how to fork the repository, run a local build, and submit a pull request, please refer to the [How to Contribute](https://github.com/Xceptance/xlt-documentation#how-to-contribute) section in our README.
 
 ## Info Boxes
 
@@ -103,9 +111,9 @@ That's some text with a footnote.[^1]
 
 To build links that are up or down the hierarchy, use the `relref` shortcode.
 
-* Go to [Manual]({{< relref "manual" >}}).
-* Go to [XTC]({{< relref "xtc" >}}).
-* Go to [Release Notes]({{< relref "xlt/release-notes" >}}).
+- Go to [Manual]({{< relref "manual" >}}).
+- Go to [XTC]({{< relref "xtc" >}}).
+- Go to [Release Notes]({{< relref "xlt/release-notes" >}}).
 
 ```markdown
 Go to [Load Testing]({{</* relref "load-testing" */>}}).
@@ -187,9 +195,9 @@ There is no inner part required for this shortcode. The parameters "type" and "a
 
 ### To-Do Marker
 
-{{< TODO / >}}To remind us that something needs to be done, it introduces a marked TODO at the position of the shortcode `{{</* TODO / */>}}`. TODO markers right now assume to be in the beginning because they make a little room on the right side - "{{< TODO / >}}".
+{{< TODO / >}}To remind us that something needs to be done, it introduces a marked TODO at the position of the shortcode `{{</* TODO / */>}}`. TODO markers currently should be placed at the beginning of a line or paragraph as they include extra spacing on the right - "{{< TODO / >}}".
 
-{{< TODO comment="I am more useful!" / >}}Optionally you can pass the parameter comment and provide some more information such as `{{</* TODO comment="More information in the title" / */>}}`.
+{{< TODO comment="I am more useful!" / >}}Optionally, you can pass the `comment` parameter to provide more information, such as: `{{</* TODO comment="More information in the title" / */>}}`.
 
 ### Marked Text
 

@@ -141,18 +141,18 @@ enable = false
 #no = 'Sorry to hear that. Please <a href="https://github.com/USERNAME/REPOSITORY/issues/new">tell us how we can improve</a>.'
 
 [params.copyright]
-    authors =  "Xceptance GmbH | [Apache License](https://www.apache.org/licenses/LICENSE-2.0) |"
+    authors =  "Xceptance GmbH<br>[Apache License](https://www.apache.org/licenses/LICENSE-2.0) | "
     from_year = "2015"
     privacy_policy = "https://www.xceptance.com/en/privacy/"
     offlineSearch = true
 
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
-#[[params.links.user]]
-#	name = "User mailing list"
-#	url = "https://example.org/mail"
-#	icon = "fa fa-envelope"
-#        desc = "Discussion and help from your fellow users"
+[[params.links.user]]
+	name = "User mailing list"
+	url = "/writing-documentation"
+	icon = "fa fa-pencil-square"
+    desc = "How To Write This Documentation"
 #[[params.links.user]]
 #	name ="Twitter"
 #	url = "https://example.org/twitter"
