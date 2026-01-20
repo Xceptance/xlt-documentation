@@ -5,6 +5,7 @@ linkTitle: "How To Write ✍️"
 # Just so you know how an alias works
 aliases:
   - /documentation-helpers
+  - /writing-documentation
   - relative-documentation-helpers
 
 weight: 10000
