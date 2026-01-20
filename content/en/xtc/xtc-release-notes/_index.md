@@ -11,5 +11,5 @@ type: docs
 weight: 600
 
 description: >
-    Find the most important fixes, improvements, and features listed in the release notes. For additional information as well as a full list of changes, please refer to each individual release.
+    Explore the key fixes, improvements, and features in XTC. For a full list of changes and detailed information, please refer to the individual release notes.
 ---
