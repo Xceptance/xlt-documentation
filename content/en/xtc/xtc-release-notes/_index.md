@@ -1,5 +1,5 @@
 ---
-title: "Release Notes"
+title: "Release Notes 📢"
 url: "/xtc/release-notes/"
 
 # This is for the link in XTC

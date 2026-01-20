@@ -219,14 +219,19 @@ enable = false
     url = "/xlt/how-tos"
     parent = "xlt"
 [[menu.main]]
-    name = "Glossary"
+    name = "Knowledge Base"
     weight = 17
+    url = "/xlt/knowledgebase/"
+    parent = "xlt"    
+[[menu.main]]
+    name = "Glossary"
+    weight = 18
     url = "/xlt/about/glossary"
     parent = "xlt"
 [[menu.main]]
-    name = "Release Notes"
+    name = "Release Notes 📢"
     identifier = "xlt-release-notes"
-    weight = 18
+    weight = 19
     url = "/xlt/release-notes"
     parent = "xlt"
 
@@ -262,7 +267,7 @@ enable = false
     url = "/xtc/integrations"
     parent = "xtc"
 [[menu.main]]
-    name = "Release Notes"
+    name = "Release Notes 📢"
     weight = 16
     url = "/xtc/release-notes"
     parent = "xtc"
@@ -284,12 +289,7 @@ enable = false
     url = "/neodymium/quick-start"
     parent = "neodymium"
 [[menu.main]]
-    name = "Advanced"
-    weight = 13
-    url = "/neodymium/advanced"
-    parent = "neodymium"
-[[menu.main]]
-    name = "Release Notes"
+    name = "Release Notes 📢"
     identifier = "neodymium-release-notes"
     weight = 16
     url = "/neodymium/release-notes"
