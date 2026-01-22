@@ -203,6 +203,8 @@ In some projects, it's required to execute only the test, the class name, method
 specific regex.
 To do so, you have to define **neodymium.testNameFilter** inside of `config/neodymium.properties` .
 
+If it's only required to filter tests by browser profiles, you can use `browserdefinition` system property or `neodymium.webDriver.browserFilter` neodymium property. Simply list the browser profiles you **want to be included** in the execution, e.g.  `neodymium.webDriver.browserFilter=Chrome_headless,FF_headless`
+
 ### SelenideAddons
 
 | Property                                                 | Default value | Description                                                                                          |
