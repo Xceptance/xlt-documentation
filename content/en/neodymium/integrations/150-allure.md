@@ -327,7 +327,7 @@ test data in **JSON format** as an attachment to each test in the Allure report.
 
 * **Activation:** This feature is **activated by default**.
 * **Deactivation:** It can be deactivated by setting the `neodymium.report.enableTestDataInReport` property to `false`.
-* **Note:** This only applies to test data initialized using `Neodymium.getData()` or `DataItem` (Neodymium classes). The
+* **Note:** This is applied for all ways you can access test data during the test (`Neodymium.getData()` or `DataItem` (Neodymium classes), `Neodymium.dataValue()`, `TestData` and `DataUtils` classes methods). To keep it easy, the whole data set is logged on the method call. The
   attachment name always starts with "Testdata".
 
 If the test data is modified during the test run, you can add those changes as an additional attachment using the helper
