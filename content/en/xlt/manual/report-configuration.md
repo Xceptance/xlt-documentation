@@ -8,7 +8,7 @@ description: >
     How to customize the reports via configuration file.
 ---
 
-By [adjusting the report options]({{< relref "report-options" >}}) you can already adjust the focus of your generated reports very well, but there are even more possibilities by configuring the file `<xlt>/config/reportgenerator.properties`.
+By [adjusting the report options]({{< relref "report-options" >}}) you can already adjust the focus of your generated reports very well, but there are even more possibilities by configuring the file `<xlt>/config/reportgenerator.properties`. See the [Properties Reference]({{< relref "properties" >}}) for a full list of available reporting properties.
 
 ## Using Custom Report Generator Settings
 

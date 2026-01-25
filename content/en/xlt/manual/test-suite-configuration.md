@@ -8,7 +8,7 @@ description: >
   An overview of all properties to control the load and performance test suite, and how to use them.
 ---
 
-XLT uses Java properties files to configure the main components of the [load generation environment]({{< relref "environment-configuration" >}}) and your load test suite. The basic characteristics and syntax of this format are also valid for XLT properties files.
+XLT uses Java properties files to configure the main components of the [load generation environment]({{< relref "environment-configuration" >}}) and your load test suite. The basic characteristics and syntax of this format are also valid for XLT properties files. For a complete list of all supported properties and their descriptions, please refer to the [Properties Reference]({{< relref "properties" >}}).
 
 When reading properties, XLT distinguishes between _load test mode_ and _development mode_. As its name implies, _load test mode_ is active when test cases are executed as load tests by the XLT master controller/agent controller. When test cases are executed as JUnit tests in Eclipse or any other JUnit test runner, they run in _development mode_. Even though _development mode_ is mainly used for test case development, it will also be active if your test suite is meant to perform an automated functional test triggered manually from time to time or integrated into a build process.
 
