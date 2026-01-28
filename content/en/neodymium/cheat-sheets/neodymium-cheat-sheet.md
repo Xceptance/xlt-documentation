@@ -478,6 +478,32 @@ neodymium.workInProgress = false                                            # On
 ---
 For more details and code examples, see the full documentation or the referenced example projects.
 
+### Parallel Execution
+
+Parallel execution is supported via Maven Surefire Plugin. It works on **class level** (each class in its own JVM).
+
+```xml
+<plugin>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <configuration>
+        <forkCount>4</forkCount>
+        <reuseForks>true</reuseForks>
+    </configuration>
+</plugin>
+```
+
+See [Parallel Execution]({{< relref "../framework/540-parallel-execution.md" >}}).
+
+### Debug Highlighting
+
+Highlights elements during test execution for better visual debugging.
+
+```properties
+neodymium.debug.highlight = true                            # Enable highlighting
+neodymium.debug.highlight.duration = 100                    # Highlight duration in ms
+neodymium.debug.highlight.color = #FF0000                   # Highlight color
+```
+
 ### Advanced Screenshots
 
 Must be enabled in `neodymium.properties`: `neodymium.screenshots.enableAdvancedScreenshots=true`.

@@ -8,8 +8,6 @@ description: >
   Everything about the custom classes extending Selenide and Allure. Also covering the TestData handling class and Cucumber WebDriverUtils. 
 ---
 
-{{< TODO >}} fix the code formatting when done {{< /TODO >}}<br>
-
 We added several utility classes in order to address problems that most test automation project face.
 We won't cover every function at this place, but we want to bring the classes to your awareness in order to have a look
 if the needed functionality is already implemented.
@@ -26,10 +24,8 @@ functions that are hard to use if you don't have deeper knowledge of Selenide.
 We extended Selenide with regex to match values and attributes.
 
 ```java
-  // validate that the value attribute contains non digit characters using a regex
-$("#search-container .search-field").
-
-should(SelenideAddons.matchValue("\\D+"));
+// validate that the value attribute contains non digit characters using a regex
+$("#search-container .search-field").should(SelenideAddons.matchValue("\\D+"));
 ```
 
 ### StaleElementReferenceException Handling
@@ -38,16 +34,11 @@ In case of elements that tend to cause `StaleElementReferenceException` `$safe(f
 catch them and perform retries.
 
 ```java
-  // use the following function to execute a whole code block that results in a StaleElementReferenceException from time to time 
+// use the following function to execute a whole code block that results in a StaleElementReferenceException from time to time 
 // it will result in an automatic retry in case of error
-  SelenideAddons.$safe(() ->{
-
-$("selectorOne").
-
-find("selectorTwo").
-
-shouldBe(visible);
-  });
+SelenideAddons.$safe(() -> {
+    $("selectorOne").find("selectorTwo").shouldBe(visible);
+});
 
 // or also with returning value
 SelenideElement someElement = SelenideAddons.$safe(() -> {
@@ -62,41 +53,39 @@ code example shows the basic function to execute a slider movement. The amount o
 the movements can be set by the user.
 
 ```java
-  SelenideAddons.dragAndDropUntilCondition((SelenideElement) elementToMove,
-                                           (SelenideElement)elementToCheck,
-    (int)horizontalMovement,
-    (int)verticalMovement,
-    (int)pauseBetweenMovements,
-    (int)retryMovements,
-    (Condition)condition));
+SelenideAddons.dragAndDropUntilCondition((SelenideElement) elementToMove,
+                                         (SelenideElement) elementToCheck,
+                                         (int) horizontalMovement,
+                                         (int) verticalMovement,
+                                         (int) pauseBetweenMovements,
+                                         (int) retryMovements,
+                                         (Condition) condition);
 ```
 
 If needed the user can add more special functions based on the basic function. The code example shows a horizontal
 movement until a given text.
 
 ```java
-  private void leftHorizontalDragAndDropUntilText((SelenideElement) elementToMove,
-                                                  (SelenideElement)elementToCheck,
-    (int)horizontalMovement,
-    (String)sliderValueAttributeName,
-    (String)moveUntil)
-    {
-    SelenideAddons.
-
-dragAndDropUntilCondition(elementToMove,
-                          elementToCheck,
-                          horizontalMovement, 
-                                             0,3000,10,
-                          Condition.attribute(sliderValueAttributeName,
-                          moveUntil));
-    }
+private void leftHorizontalDragAndDropUntilText((SelenideElement) elementToMove,
+                                                (SelenideElement) elementToCheck,
+                                                (int) horizontalMovement,
+                                                (String) sliderValueAttributeName,
+                                                (String) moveUntil)
+{
+    SelenideAddons.dragAndDropUntilCondition(elementToMove,
+                                             elementToCheck,
+                                             horizontalMovement, 
+                                             0, 3000, 10,
+                                             Condition.attribute(sliderValueAttributeName,
+                                             moveUntil));
+}
 ```
 
 If there is no possible condition to validate the interaction, or it is not needed for some reason you can use the
 following function. E.g. unlocking something with a simple slide interaction.
 
 ```java
-  SelenideAddons.dragAndDrop((SelenideElement) elementToMove, (int)horizontalMovement,(int)verticalMovement);
+SelenideAddons.dragAndDrop((SelenideElement) elementToMove, (int) horizontalMovement, (int) verticalMovement);
 ```
 
 ### Opening HTML snippets
@@ -105,10 +94,8 @@ Sometimes it comes handy to open an HTML snippet within the current browser and 
 it e.g. if you validate emails.
 
 ```java
-  String htmlSnippet = "<div dir=\"auto\">Hi<div dir=\"auto\"><br></div><div dir=\"auto\">How are you?)</div><div dir=\"auto\"><br></div><div dir=\"auto\">Bye</div></div>";
-  SelenideAddons.
-
-openHtmlContentWithCurrentWebDriver(htmlSnippet);
+String htmlSnippet = "<div dir=\"auto\">Hi<div dir=\"auto\"><br></div><div dir=\"auto\">How are you?)</div><div dir=\"auto\"><br></div><div dir=\"auto\">Bye</div></div>";
+SelenideAddons.openHtmlContentWithCurrentWebDriver(htmlSnippet);
 ```
 
 ### optionalWaitConditions
@@ -122,8 +109,8 @@ given condition or can not be found in the given time.
 Waits until an optional element matches a condition without throwing an exception if the element does not exist.
 
 ```java
-  // wait until the optional condition matches
-boolean var = SelenideAddons.optionalWaitUntilCondition($( < selector >), <condition>,CUSTOM_MAX_WAITING_TIME);
+// wait until the optional condition matches
+boolean var = SelenideAddons.optionalWaitUntilCondition($(<selector>), <condition>, CUSTOM_MAX_WAITING_TIME);
 ```
 
 #### optionalWaitWhileCondition
@@ -131,8 +118,8 @@ boolean var = SelenideAddons.optionalWaitUntilCondition($( < selector >), <condi
 Waits while an optional element matches a condition without throwing an exception if the element does not exist.
 
 ```java
- // wait until the optional condition does not match anymore
-boolean var = SelenideAddons.optionalWaitWhileCondition($( < selector >), <condition>);
+// wait until the optional condition does not match anymore
+boolean var = SelenideAddons.optionalWaitWhileCondition($(<selector>), <condition>);
 ```
 
 ## AllureAddons
@@ -145,12 +132,9 @@ To create a new step without defining an extra function
 
 ```java
 // wrap an action otherwise you would need to create an extra function and annotate it using @Step 
-AllureAddons.step("Need to see this description in the report",() ->{
-
-// Some actions
-$("#masthead .search-toggle").
-
-click();
+AllureAddons.step("Need to see this description in the report", () -> {
+    // Some actions
+    $("#masthead .search-toggle").click();
 });
 ```
 
@@ -181,9 +165,7 @@ class contains methods that help you to validate the state/readiness of a webpag
 JavaScriptUtils.waitForReady();
 
 // Some actions that require a fully loaded website
-$("#masthead .search-toggle").
-
-click();
+$("#masthead .search-toggle").click();
 ```
 
 Furthermore, it contains the method `injectJavascriptPopupBlocker` which will inject a script to automatically block the
@@ -191,8 +173,7 @@ popups defined in the `neodymium.properties`. It will actually be called automat
 
 ## TestData
 
-The [
-`TestData`](https://github.com/Xceptance/neodymium/blob/master/src/main/java/com/xceptance/neodymium/common/testdata/TestData.java)
+The [TestData](https://github.com/Xceptance/neodymium/blob/master/src/main/java/com/xceptance/neodymium/common/testdata/TestData.java)
 class contains methods to handle your test data easily.
 
 To access the test data you can use `Neodymium.getData().get(key)` to read the value from the map directly or use the
@@ -203,7 +184,7 @@ default value if the data field can't be found. If you need to check if a certai
 `exists(String key)`.
 
 Furthermore, we provide a function that can instantiate POJO models via reflection. Please see the following example to
-understand how to use it. Please visit also our [Test data provider]({{< relref "020-test-data" >}}) wiki page for more
+understand how to use it. Please visit also our [Test data provider]({{< relref "../features/020-test-data.md" >}}) wiki page for more
 examples on this.
 
 <h4>Example</h4>
@@ -306,8 +287,6 @@ public class SomeTest
 
 ## WebDriverUtils
 
-{{< TODO >}} update cucumber link when page exists {{< /TODO >}}<br>
-
 The [WebDriverUtils](https://github.com/Xceptance/neodymium-library/blob/master/src/main/java/com/xceptance/neodymium/util/WebDriverUtils.java)
 class contains functions that need to/can be referenced within the project if you want to use Cucumber with Neodymium.
-Please find more on this topic and how to use it in our [Cucumber]({{< relref "200-cucumber" >}}) documentation.
+Please find more on this topic and how to use it in our [Cucumber]({{< relref "../framework/200-cucumber.md" >}}) documentation.

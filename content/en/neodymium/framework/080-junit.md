@@ -63,7 +63,7 @@ more details on these topics.
 * `@RandomBrowser`
 * `@SuppressBrowser`
 
-Please check the [browser]({{< relref "010-browser" >}}) page for detailed information.
+Please check the [browser]({{< relref "../browsers/010-browser.md" >}}) page for detailed information.
 
 #### Test data
 
@@ -71,7 +71,7 @@ Please check the [browser]({{< relref "010-browser" >}}) page for detailed infor
 * `@SuppressDataSet`
 * `@DataFile`
 
-Please check the [test data]({{< relref "020-test-data" >}}) page for detailed information.
+Please check the [test data]({{< relref "../features/020-test-data.md" >}}) page for detailed information.
 
 ## Test execution order for a particular test
 
