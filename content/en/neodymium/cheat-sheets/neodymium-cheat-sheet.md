@@ -3,7 +3,7 @@ title: "Neodymium Cheat-Sheet: Features & Usage"
 weight: 10
 type: docs
 description: >
-  Quick reference for all Neodymium features and how to use them.
+  Quick reference for all Neodymium features and how to use them on a single page.
 ---
 
 {{< TODO >}}single page cheat sheet - decide if we want to use multiple pages or this and add the additional information to the multiple pages{{< /TODO >}}
@@ -38,7 +38,7 @@ Properties files must reside in the `./config/*.properties` directory at the pro
 6. `config/neodymium.properties`
 
 In cases where a property is found in several files, the value from the file with the highest priority is used.
-Further read: [Neodymium properties]({{< relref "../neodymium/configuration/090-neodymium-properties.md" >}})
+Further read: [Neodymium properties]({{< relref "../configuration/090-neodymium-properties.md" >}})
 
 ### Key Properties
 
@@ -537,7 +537,7 @@ neodymium.popup.customPopUp=#myWindowCloseButton
 
 ## PageObjects and Components
 
-The [Page Object Model (POM)]({{< relref "framework/530-page-objects.md" >}}) wraps all elements and functionality of a
+The [Page Object Model (POM)]({{< relref "../framework/530-page-objects.md" >}}) wraps all elements and functionality of a
 web page into an object.
 
 ```java

@@ -186,7 +186,7 @@ enable = false
     name = "Overview"
     weight = 10
     parent = "xlt"
-    url = "/xlt/"    
+    url = "/xlt/"
 [[menu.main]]
     identifier = "about-xlt"
     name = "About"
@@ -279,18 +279,58 @@ enable = false
     parent = "neodymium"
     url = "/neodymium/"
 [[menu.main]]
-    name = "Quick Start"
+    name = "Installation"
     weight = 12
+    url = "/neodymium/10-setup-execution"
+    parent = "neodymium"
+[[menu.main]]
+    name = "Quick Start"
+    weight = 13
     url = "/neodymium/quick-start"
     parent = "neodymium"
 [[menu.main]]
-    name = "Advanced"
-    weight = 13
-    url = "/neodymium/advanced"
+    name = "Browsers"
+    weight = 14
+    url = "/neodymium/browsers"
+    parent = "neodymium"
+[[menu.main]]
+    name = "Cheat Sheets"
+    weight = 15
+    url = "/neodymium/cheat-sheets"
+    parent = "neodymium"
+[[menu.main]]
+    name = "Features"
+    weight = 16
+    url = "/neodymium/features"
+    parent = "neodymium"
+[[menu.main]]
+    name = "Framework"
+    weight = 17
+    url = "/neodymium/framework"
+    parent = "neodymium"
+[[menu.main]]
+    name = "Example Projects"
+    weight = 18
+    url = "/neodymium/040-test-suites"
+    parent = "neodymium"
+[[menu.main]]
+    name = "Configuration"
+    weight = 19
+    url = "/neodymium/configuration"
+    parent = "neodymium"
+[[menu.main]]
+    name = "Integrations"
+    weight = 20
+    url = "/neodymium/integrations"
+    parent = "neodymium"
+[[menu.main]]
+    name = "Miscellaneous"
+    weight = 21
+    url = "/neodymium/miscellaneous"
     parent = "neodymium"
 [[menu.main]]
     name = "Release Notes"
     identifier = "neodymium-release-notes"
-    weight = 16
+    weight = 22
     url = "/neodymium/release-notes"
     parent = "neodymium"

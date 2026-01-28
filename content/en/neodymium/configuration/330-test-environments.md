@@ -47,18 +47,18 @@ The following example shows the required structure for configuring access to maj
 # Test Environment Credentials
 
 ## SauceLabs
-browserprofile.testEnvironment.saucelabs.url = [https://ondemand.saucelabs.com:443/wd/hub](https://ondemand.saucelabs.com:443/wd/hub)
+browserprofile.testEnvironment.saucelabs.url = https://ondemand.saucelabs.com:443/wd/hub
 browserprofile.testEnvironment.saucelabs.username = SAUCELAB_USERNAME
 browserprofile.testEnvironment.saucelabs.password = SAUCELAB_ACCESS_KEY
 
 ## TestingBot
-browserprofile.testEnvironment.testingbot.url = [https://hub.testingbot.com/wd/hub](https://hub.testingbot.com/wd/hub)
+browserprofile.testEnvironment.testingbot.url = https://hub.testingbot.com/wd/hub
 browserprofile.testEnvironment.testingbot.username = TESTINGBOT_KEY
 browserprofile.testEnvironment.testingbot.password = TESTINGBOT_SECRET
 
 ## Browserstack
-browserprofile.testEnvironment.browserstack.url = [https://hub-cloud.browserstack.com/wd/hub](https://hub-cloud.browserstack.com/wd/hub)
-browserprofile.testEnvironment.browserstack.username = BROWSERSTACK_KEY
+browserprofile.testEnvironment.browserstack.url = https://hub-cloud.browserstack.com/wd/hub
+browserprofile.testEnvironment.browserstack.username = BROWSERSTACK_USERNAME
 browserprofile.testEnvironment.browserstack.password = BROWSERSTACK_KEY
 ```
 

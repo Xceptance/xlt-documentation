@@ -6,7 +6,7 @@ type: docs
 description: "Building the project and running tests with Maven."
 ---
 
-To build the project and run tests with Maven you need to open the command line, navigate to your projects and execute the following command
+To build the project and run tests with Maven you need to open the command line, navigate to your projects root directory and execute the following command
 
 `mvn clean install`
 
@@ -16,6 +16,6 @@ In case you not only want to compile but also execute the test then you can run 
 
 ## Grouping tests
 
-You can also group your tests and execute only a subset of them with maven by following this [guide for JUnit4](https://github.com/junit-team/junit4/wiki/categories) and this [guide for JUnit5](https://junit.org/junit5/docs/current/user-guide/#running-tests-tags).
+You can also group your tests and execute only a subset of them with maven by following this [guide for JUnit4](https://github.com/junit-team/junit4/wiki/categories) and this [guide for JUnit5](https://docs.junit.org/6.0.2/running-tests/tags).
 
-In JUnit4 you don't need to define suite classes to group tests. Grouping can be done by annotate a class with one or more group-classes. Furthermore, you **don't** need the `@RunWith(Categories.class)` this is already covered by `NeodymiumRunner` and must be configured via pom.xml, see [Using categories with Maven](https://github.com/junit-team/junit4/wiki/categories#using-categories-with-maven). Thus executing test groups is currently only available via maven commands.
+In JUnit4 you don't need to define suite classes to group tests. Grouping can be done by annotate a class with one or more group-classes. Furthermore, you **don't** need the `@RunWith(Categories.class)` this is already covered by `NeodymiumRunner` and must be configured via `pom.xml`, see [Using categories with Maven](https://github.com/junit-team/junit4/wiki/categories#using-categories-with-maven). Thus executing test groups is currently only available via maven commands.

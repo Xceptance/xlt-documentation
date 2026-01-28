@@ -16,7 +16,9 @@ configuration we introduced the file: `config/neodymium.properties`.
 The file contains a collection of properties that are used to configure some aspects of the used frameworks. It doesn't
 cover all the possible configurations for all the frameworks we've integrated.
 Have a look at this [file](https://github.com/Xceptance/neodymium-library/blob/master/config/neodymium.properties) since
-it lists all supported properties as well as their default values and its purpose.
+it lists all supported properties as well as their default values and its purpose or take a look at the
+`[NeodymiumConfiguration](https://github.com/Xceptance/neodymium/blob/master/src/main/java/com/xceptance/neodymium/util/NeodymiumConfiguration.java)`
+file directly
 
 We use [Owner](https://matteobaccan.github.io/owner/docs/usage/) a framework to write powerful and flexible properties
 in order to avoid writing all the boilerplate code. If you are in need of your own set of global properties we encourage

@@ -54,7 +54,7 @@ Neodymium.localizedText("<LocalizationKey>");
 ### Configuration
 
 You can access the instantiated version of
-the [NeodymiumConfiguration](https://github.com/Xceptance/neodymium-library/blob/master/src/main/java/com/xceptance/neodymium-library/blob/master/src/main/java/com/xceptance/neodymium/util/NeodymiumConfiguration.java)
+the [NeodymiumConfiguration]({{< relref "090-neodymium-properties.md" >}})
 class to retrieve any configuration setting:
 
 ```java
@@ -65,7 +65,7 @@ Neodymium.configuration().<settingFunctionName>()
 
 ### WebDriver Access
 
-You can retrieve different types of WebDriver instances as needed:
+You can retrieve different types of [WebDriver]({{< relref "../browsers/_index.md" >}}) instances as needed:
 
 | Method                           | Description                                                                       |
 |:---------------------------------|:----------------------------------------------------------------------------------|
@@ -147,16 +147,16 @@ useful for adapting locators or interactions for sites optimized for different d
 
 **NOTE**: The following values are defaults and can be configured in the `config/neodymium.properties` file.
 
-| Function                       | Description                 |
-|:-------------------------------|:----------------------------|
-| `boolean isExtraSmallDevice()` | true if 0 <= width < 576    |
-| `boolean isSmallDevice()`      | true if 576 <= width < 768  |
-| `boolean isMediumDevice()`     | true if 768 <= width < 992  |
-| `boolean isLargeDevice()`      | true if 992 <= width < 1200 |
-| `boolean isExtraLargeDevice()` | true if width >= 1200       |
-| `boolean isMobile()`           | true if width < 768         |
-| `boolean isTablet()`           | true if 768 <= width < 992  |
-| `boolean isDesktop()`          | true if width >= 992        |
+| Function                       | Description                   |
+|:-------------------------------|:------------------------------|
+| `boolean isExtraSmallDevice()` | true if 0 &le; width < 576    |
+| `boolean isSmallDevice()`      | true if 576 &le; width < 768  |
+| `boolean isMediumDevice()`     | true if 768 &le; width < 992  |
+| `boolean isLargeDevice()`      | true if 992 &le; width < 1200 |
+| `boolean isExtraLargeDevice()` | true if width &ge; 1200       |
+| `boolean isMobile()`           | true if width < 768           |
+| `boolean isTablet()`           | true if 768 &le; width < 992  |
+| `boolean isDesktop()`          | true if width &ge; 992        |
 
 Additionally, you can directly access the current dimensions of the browser elements:
 

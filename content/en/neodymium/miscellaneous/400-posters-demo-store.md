@@ -36,7 +36,7 @@ Simply press `Ctrl + C` and wait for the server to shut down.
 
 ## Resetting the Database
 
-To reset the database, first stop the server. Then, delete the `./samples/app-server/data folder`. Restarting the server
+To reset the database, first stop the server. Then, delete the `./samples/app-server/data` folder. Restarting the server
 will automatically recreate the database with its default values.
 
 ## Deleting Log Files

@@ -282,7 +282,7 @@ public class OrderTest extends AbstractTest
 You can add links to general, issue tracking, and test management systems (TMS) to easily match test reports with
 external sources of information.
 
-```
+```java
 @TmsLink("end-of-script-developer-and-now")
 @Issue("148")
 @Link(url = "[https://ask.xceptance.de/t/end-of-script-developer-and-now/148](https://ask.xceptance.de/t/end-of-script-developer-and-now/148)", type = "custom", name = "DemoLink")
@@ -296,11 +296,11 @@ public class HomePageTest extends AbstractTest
 To enable the TmsLink and Issue annotations, you must specify the corresponding URL patterns in your `pom.xml` under the
 Surefire plugin's `systemPropertyVariables`:
 
-```
+```XML
 <systemPropertyVariables>
     <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
-    <allure.link.issue.pattern>[https://ask.xceptance.de/t/](https://ask.xceptance.de/t/){}</allure.link.issue.pattern>
-    <allure.link.tms.pattern>[https://ask.xceptance.de/t/](https://ask.xceptance.de/t/){}</allure.link.tms.pattern>
+    <allure.link.issue.pattern>https://ask.xceptance.de/t/{}</allure.link.issue.pattern>
+    <allure.link.tms.pattern>https://ask.xceptance.de/t/{}</allure.link.tms.pattern>
     <selenide.reports>${project.build.directory}/selenide-results</selenide.reports>
 </systemPropertyVariables>
 
@@ -344,7 +344,7 @@ Test Data Display in Allure Report.
 ### Capturing JSON Comparison Details
 
 To prevent confusion from cryptic assertion errors during JSON comparisons, the dedicated `JsonAssert` class (built upon
-[JSONAssert](https://github.com/skyscreamer/JSONassert)) is utilized.
+[JSONassert](https://github.com/skyscreamer/JSONassert)) is utilized.
 
 * If `assertEquals` fails, an attachment named **"Json Compare"** is added, containing the exact differences between the
   expected and actual JSON data.
