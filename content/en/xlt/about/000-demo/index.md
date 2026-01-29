@@ -30,6 +30,18 @@ We welcome your help in improving the XLT documentation. For a step-by-step guid
 
 ## Info Boxes
 
+{{% tip %}}
+A Tip with a standard header/title
+{{% /tip %}}
+
+{{% tip title="Custom Tip" %}}
+A Tip with a custom header/title and `markdown`
+{{% /tip %}}
+
+{{% tip notitle %}}
+A Tip without a title
+{{% /tip %}}
+
 {{% note %}}
 A Note with a standard header/title
 {{% /note %}}

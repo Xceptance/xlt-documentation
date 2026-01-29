@@ -22,16 +22,14 @@
     background: White;
 }
 
-/* Simple blockquote with neutral style */
-.td-content>blockquote {
-    border-left: 4px solid #ccc;
-    color: black;
-    padding: 0.75rem 1.25rem;
-}
-
 /* Note */
 .alert-info {
     background-color: #d9edf7;
+}
+
+/* Tip */
+.alert-light {
+    background-color: #f5f5f5;
 }
 
 /* Warning */
@@ -71,7 +69,7 @@ a {
 */
 .td-max-width-on-larger-screens {
     @include media-breakpoint-up(lg) {
-        max-width: 95%;
+        max-width: 1000px;
     }
 
 }
@@ -94,6 +92,38 @@ footer {
 .td-content {
     /* give the content less of a hard contrast */
     color: $main-text-color !important;
+
+    p code {
+        font-size: 1rem;
+    }
+
+    .highlight {
+        code {
+            font-size: 1rem !important;
+        }
+    }
+
+    pre {
+        border: $card-border-width solid #eee;
+        @include border-radius($card-border-radius);
+    }
+
+    li>a>code {
+        color: inherit;
+        padding: 0.2em 0.4em;
+        margin: 0;
+        font-size: 85%;
+        word-break: normal;
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 0.25rem;
+    }
+
+    /* Simple blockquote with neutral style */
+    blockquote {
+        border-left: 4px solid #ccc;
+        color: black;
+        padding: 0.75rem 1.25rem;
+    }
 }
 
 .td-cover-block {
@@ -109,12 +139,6 @@ footer {
         font-size: 120%;
         color: White !important;
     }
-}
-
-.td-navbar {
-    /* avoid that the text wraps */
-    /* white-space: nowrap; - Removed to fix mobile collapse */
-    /* use narrow font */
 }
 
 /* Force standard Bootstrap behavior for responsive navbar if partially overridden */
@@ -247,30 +271,6 @@ footer {
     color: $primary;
     font-size: 100%;
     padding: 0px 2px;
-}
-
-.td-content p code {
-    font-size: 1rem;
-}
-
-.td-content li>a>code {
-    color: inherit;
-    padding: 0.2em 0.4em;
-    margin: 0;
-    font-size: 85%;
-    word-break: normal;
-    background-color: rgba(0, 0, 0, 0.05);
-    border-radius: 0.25rem;
-}
-
-.highlight code {
-    font-size: 1rem !important;
-}
-
-.highlight,
-.td-content>pre {
-    border: $card-border-width solid $card-border-color;
-    @include border-radius($card-border-radius);
 }
 
 .image-description {
