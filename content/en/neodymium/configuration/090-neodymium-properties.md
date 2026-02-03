@@ -6,6 +6,8 @@ type: docs
 
 description: >
   Everything you can configure in the Neodymium properties.
+tags: ["neodymium", "configuration", "properties", "setup"]
+last_updated: 2024-05-22
 ---
 
 This chapter contains all information about the Neodymium properties.
@@ -291,7 +293,7 @@ CSS selector which targets the close button of the popup.
 
 | Property                     | Default value | Description                                                                                                      |
 |------------------------------|---------------|------------------------------------------------------------------------------------------------------------------|
-| neodymium.popup.<popup name> | &lt;none&gt;  | Define a pop up and the selector to close it. e.g. `neodymium.popup.newsletter = #newsletterbox > button.close ` |
+| neodymium.popup.<popup name> | &lt;none&gt;  | Define a pop up and the selector to close it. e.g. `neodymium.popup.newsletter = #newsletterbox > button.close` |
 | neodymium.popupInterval      | 1000 ms       | The delay between two checks for a popup in milliseconds                                                         |
 
 ## Credentials properties

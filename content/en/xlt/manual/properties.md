@@ -35,6 +35,10 @@ These properties control the execution of load tests, network behavior, and gene
 | `com.xceptance.xlt.stopTestOnJavaScriptErrors` | Abort a transaction if a JavaScript error occurs. | `false` |
 | `com.xceptance.xlt.useHighPrecisionTimer` | Use `System.nanoTime()` for timing instead of `System.currentTimeMillis()` to avoid issues with system clock adjustments. | `true` |
 
+{{% note title="Note" %}}
+These properties are core framework settings typically defined in `default.properties`.
+{{% /note %}}
+
 ### Network & Proxy
 
 | Property | Description | Default |
@@ -51,6 +55,10 @@ These properties control the execution of load tests, network behavior, and gene
 | `com.xceptance.xlt.timeout` | Connection and socket timeout in milliseconds. | `30000` |
 | `com.xceptance.xlt.http.keepAlive` | Use keep-alive HTTP connections. | `true` |
 | `com.xceptance.xlt.http.gzip` | Request compressed content (GZIP). | `true` |
+
+{{% note title="Note" %}}
+Network settings are typically defined in `default.properties` or overridden in `project.properties`.
+{{% /note %}}
 
 ### Web Client & Browser Emulation
 
@@ -80,6 +88,10 @@ These properties control the execution of load tests, network behavior, and gene
 | `com.xceptance.xlt.projectName` | Name of the project, displayed in reports. | *(empty)* |
 | `com.xceptance.xlt.loadtests.<TestCase>.class` | Mapping of a test case name to its fully qualified Java class. | *(auto-discovered)* |
 
+{{% note title="Note" %}}
+Test case descriptions and profile settings are typically defined in `project.properties` or `test.properties`.
+{{% /note %}}
+
 ## Report Generation Properties
 
 These properties configure the XLT report generator, including output location, charts, apdex scores, and data formatting. All properties typically reside in `reportgenerator.properties` or can be overridden in `project.properties`.
@@ -104,6 +116,10 @@ These properties configure the XLT report generator, including output location, 
 | `com.xceptance.xlt.reportgenerator.charts.cappingValue` | Cap runtime charts at this value [ms]. Can be suffixed with `.transactions`, `.actions`, `.requests`. | *(none)* |
 | `com.xceptance.xlt.reportgenerator.charts.cappingFactor` | Cap runtime charts at `factor * mean`. Can be suffixed with `.transactions`, etc. | *(none)* |
 | `com.xceptance.xlt.reportgenerator.runtimePercentiles` | Percentiles shown in data tables. | `50, 95, 99, 99.9` |
+
+{{% note title="Note" %}}
+Report generator properties are typically defined in `reportgenerator.properties` in the XLT installation directory or overridden in `project.properties`.
+{{% /note %}}
 
 ### Apdex Configuration
 

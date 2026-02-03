@@ -1,0 +1,37 @@
+# Xceptance Performance & Automation Documentation
+
+This document provides a machine-readable entry point for AI agents exploring Xceptance's documentation for XLT, Neodymium, and XTC.
+
+## XLT (Xceptance Load Test)
+XLT is a multi-purpose load and performance testing tool. It supports WebDriver-style automation, real-browser testing at scale, and "loadtest as code" via Java. XLT is licensed under Apache License 2.0.
+
+- [XLT Quick Start](https://docs.xceptance.com/xlt/quick-start/): Get up and running with XLT quickly.
+- [XLT Manual](https://docs.xceptance.com/xlt/manual/): Comprehensive guide covering installation, concepts, and configuration.
+- [Advanced Topics](https://docs.xceptance.com/xlt/advanced/): Deep dives into DNS, merge rules, and specialized configurations.
+- [XLT Glossary](https://docs.xceptance.com/xlt/about/glossary/): Core terminology.
+
+## Neodymium
+Neodymium is an open-source testing framework based on JUnit 4/5. It provides a structured way to write and execute automated tests, especially for web applications. Neodymium is licensed under MIT License.
+
+- [Neodymium Quick Start](https://docs.xceptance.com/neodymium/quick-start/): Fast track for Neodymium.
+- [Neodymium Features](https://docs.xceptance.com/neodymium/features/): Core capabilities including data-driven testing and browser abstraction.
+- [Neodymium Configuration](https://docs.xceptance.com/neodymium/configuration/): Setting up Neodymium behavior.
+
+## XTC (Xceptance Test Center)
+XTC is the cloud-based platform for running and managing large-scale load tests with XLT. XTC is a SaaS offering by Xceptance.
+
+- [XTC Basics](https://docs.xceptance.com/xtc/basics/): Introduction to XTC.
+- [XTC Load Testing](https://docs.xceptance.com/xtc/loadtesting/): Running XLT tests in the cloud.
+- [XTC Monitoring](https://docs.xceptance.com/xtc/monitoring/): Infrastructure and application monitoring.
+
+## Key Terminology
+
+- **User Path**: A sequence of actions performed by a virtual user.
+- **Action**: A high-level step in a User Path (e.g., "Login").
+- **Request**: An individual HTTP/network request triggered by an action.
+- **Transaction**: A complete execution of a User Path.
+
+## License
+
+This documentation and the project are licensed under the Apache License, Version 2.0.
+

@@ -6,6 +6,8 @@ type: docs
 
 description: >
     Learn how to customize reports further by splitting, combining, and renaming requests.
+tags: ["reporting", "merge-rules", "configuration", "performance"]
+last_updated: 2026-02-02
 ---
 
 ## Motivation

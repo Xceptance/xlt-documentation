@@ -6,6 +6,8 @@ type: docs
 
 description: >
     Learn how XLT handles DNS, options for modifying this behavior, and how to capture DNS-related data.
+tags: ["dns", "configuration", "networking", "performance"]
+last_updated: 2026-02-02
 ---
 
 ## The Challenge
@@ -139,3 +141,6 @@ These DNS properties only apply when using XLT's WebClient or HttpClient. Custom
 | `xlt.dns.providers.dnsjava.resolver.servers` | (empty) | Comma-separated list of DNS server addresses for `dnsjava`. Empty uses system defaults. |
 | `xlt.dns.providers.dnsjava.resolver.timeout` | `5` | DNS server timeout in seconds for `dnsjava`. |
 | `xlt.dns.providers.dnsjava.edns.version` | `0` | EDNS version for `dnsjava`. Set to `-1` to disable. |
+
+> [!NOTE]
+> These properties are typically defined in `project.properties` or `default.properties` for test suites, except for `xlt.dns.providers.platform.cache.duration` which is often a system-wide setting.

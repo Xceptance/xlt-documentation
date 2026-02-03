@@ -6,6 +6,8 @@ type: docs
 
 description: >
   Special configuration settings for load test projects in XTC.
+tags: ["xtc", "configuration", "loadtesting", "repository", "properties"]
+last_updated: 2024-05-22
 ---
 
 The _Configuration_ of a load test project is very similar to the basic [project configuration]({{< relref "../basics/060-project-configuration" >}}), but there are a few special settings for this project type:
