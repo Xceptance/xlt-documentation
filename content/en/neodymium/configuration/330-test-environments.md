@@ -15,7 +15,7 @@ self-hosted Selenium Grid or cloud-based browser providers like SauceLabs, Testi
 allow you to execute browser-based tests on real or emulated devices (personal computers, tablets, and cell phones) with
 various operating system and browser configurations.
 
-Our multi-browser support enables you to seamlessly execute tests in the cloud environments defined below.
+Multi-browser support enables seamless test execution in the cloud environments defined below.
 
 ## Credentials
 
@@ -33,10 +33,8 @@ To overwrite credentials in your development environment without committing them
 * **Development Override (Recommended):** `config/dev-credentials.properties` (This file should be excluded from version
   control.)
 
-{{% warning notitle %}}
-**ATTENTION**: Always exercise caution when committing credentials. It is strongly recommended to store sensitive
-information exclusively in the `dev-credentials.properties` file and exclude it from version control (Git). For CI/CD
-environments, utilize the dedicated secret/credential handling mechanisms provided by your pipeline.
+{{% warning title="Attention" %}}
+Always exercise caution when committing credentials. It is strongly recommended to store sensitive information exclusively in the `dev-credentials.properties` file and exclude it from version control (Git). For CI/CD environments, utilize the dedicated secret/credential handling mechanisms provided by your pipeline.
 {{% /warning %}}
 
 ### Example Credentials
@@ -62,9 +60,8 @@ browserprofile.testEnvironment.browserstack.username = BROWSERSTACK_USERNAME
 browserprofile.testEnvironment.browserstack.password = BROWSERSTACK_KEY
 ```
 
-{{% note notitle %}}
-**NOTE**: The property key names (`saucelabs`, `testingbot`, `browserstack`) are crucial, as they are used to reference
-the configuration when defining a browser profile.
+{{% note %}}
+The property key names (`saucelabs`, `testingbot`, `browserstack`) are crucial, as they are used to reference the configuration when defining a browser profile.
 {{% /note %}}
 
 ## Configuring Browser Profiles for Cloud Execution
@@ -145,9 +142,8 @@ browserprofile.testEnvironment.saucelabs.proxy.username = PROXY_USERNAME
 browserprofile.testEnvironment.saucelabs.proxy.password = PROXY_PASSWORD
 ```
 
-{{% note notitle %}}
-**NOTE**: Ensure the property key names contain the correct test environment identifier (e.g., `saucelabs`) for
-reference.
+{{% note %}}
+Ensure the property key names contain the correct test environment identifier (e.g., `saucelabs`) for reference.
 {{% /note %}}
 
 ## Browser-Specific Test Environment Configuration
@@ -172,16 +168,14 @@ each provider (e.g., TestingBot's non-consequent naming scheme is handled automa
 | `version`                    | String  | Browser or system version (e.g., "12.2")                               | supported     | supported                    | supported                     |
 | `acceptInsecureCertificates` | Boolean | Controls acceptance of insecure SSL certificates                       | not supported | not supported                | renamed: "acceptSslCerts"     |
 
-{{< TODO >}}check the table what currently is supported where{{< /TODO >}}
 
-{{% note notitle %}}
-**NOTE**: Since TestingBot's naming scheme is inconsistent, we standardized the property names based on SauceLabs.
-Configure the properties as named in the table, and Neodymium will handle the necessary mapping.
+
+{{% note %}}
+Since TestingBot's naming scheme is inconsistent, the property names have been standardized based on SauceLabs. Configure the properties as named in the table, and Neodymium will handle the necessary mapping.
 {{% /note %}}
 
-{{% note notitle %}}
-**TIP**: You can use the [BrowserStack capabilities generator](https://www.browserstack.com/automate/capabilities) to
-see the required configurations for your desired device.
+{{% note %}}
+You can use the [BrowserStack capabilities generator](https://www.browserstack.com/automate/capabilities) to see the required configurations for your desired device.
 {{% /note %}}
 
 ### Mobile Device Example Configurations

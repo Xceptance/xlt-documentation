@@ -8,13 +8,13 @@ description: >
   Improve code readability and maintainability with the Page Object Model.
 ---
 
-This section focuses on code readability, maintainability, and reusability. While not mandatory for Neodymium test development, we believe these goals are best achieved by implementing the Page Object Model and leveraging Allure’s `@Step()` annotations to improve report clarity.
+This section focuses on code readability, maintainability, and reusability. While not mandatory for Neodymium test development, these goals are best achieved by implementing the Page Object Model and leveraging Allure’s `@Step()` annotations to improve report clarity.
 
 ## Page Object Model
 
 The Page Object Model (POM) is a design pattern used to wrap all elements and functionality of a web page into an object. The main goal is to reduce duplicate code and support reusability.
 
-Initially, our [Example Test]({{< relref "first-test" >}}) contained all element locators and page interactions directly. To apply the Page Object Model pattern, we create Page Objects for the `HomePage`, `ProductListingPage` (PLP), and `ProductDetailPage` (PDP), leading to this updated test code:
+Initially, our [Example Test]({{< relref "first-test" >}}) contained all element locators and page interactions directly. To apply the Page Object Model pattern, Page Objects are created for the `HomePage`, `ProductListingPage` (PLP), and `ProductDetailPage` (PDP), leading to this updated test code:
 
 ```java
 import com.codeborne.selenide.Selenide;
@@ -79,7 +79,7 @@ public class HomePage
 
 ### Shared Components
 
-We can further extend the Page Object Model pattern to define shared components found on various pages. The `header`, which is consistent across all pages, serves as a good example.
+The Page Object Model pattern can be further extended to define shared components found on various pages. The `header`, which is consistent across all pages, serves as a good example.
 
 ```java
 import com.codeborne.selenide.SelenideElement;
@@ -110,7 +110,7 @@ public class Header
 }
 ```
 
-We can create an `AbstractPageObject` that all Page Objects extend, allowing us to add the header to all pages without duplicating code.
+An `AbstractPageObject` can be created that all Page Objects extend, allowing the addition of the header to all pages without duplicating code.
 
 ```java
 import org.example.pageobjects.components.Header;
@@ -125,7 +125,7 @@ public class AbstractPageObject
 
 Integrating Allure's `@Step()` annotations with the Page Object Model enhances test reports. These annotations allow for descriptive function naming and improved report structure. Simply apply them directly to the functions you want to document.
 
-For example, the `HomePage` from our previous example would be modified as follows:
+For example, the `HomePage` from our previous example is modified as follows:
 
 ```java
 import io.qameta.allure.Step;
@@ -149,7 +149,7 @@ public class HomePage
 }
 ```
 
-The flexibility of `@Step()` annotations allows us to parameterize them, enriching the report with more context. In the `HomePage` example, the `@Step()` annotation of `openCategoryAtPosition()` is parameterized, and the `position` parameter is automatically added to the report.
+The flexibility of `@Step()` annotations allows parameterization, enriching the report with more context. In the `HomePage` example, the `@Step()` annotation of `openCategoryAtPosition()` is parameterized, and the `position` parameter is automatically added to the report.
 
 Here is what the `FirstTest` report looks like after integrating the Page Object Model and Allure's `@Step()` annotations:
 

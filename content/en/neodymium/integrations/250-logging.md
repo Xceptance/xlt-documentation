@@ -10,12 +10,10 @@ description: >
 
 ## SLF4J
 
-We added logging support via [Simple Logging Facade for Java (SLF4J)](https://www.slf4j.org/). Doing so everybody is
-able to configure own logging framework according to wishes and requirements.
+Logging support has been added via [Simple Logging Facade for Java (SLF4J)](https://www.slf4j.org/). This allows users to configure their own logging framework according to their wishes and requirements.
 
-{{% warning notitle %}}
-It is required to set up some kind of logging in your test project. Otherwise, you will see
-the following message in the console during execution of the tests:
+{{% warning %}}
+It is required to set up some kind of logging in your test project. Otherwise, you will see the following message in the console during execution of the tests:
 {{% /warning %}}
 
 ```
@@ -29,8 +27,7 @@ SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
 
 ## Setup Logging with Log4j
 
-If you are not sure, what framework to take for logging, we
-recommend [Apache Log4j 2](https://logging.apache.org/log4j/2.x/).
+If unsure about which logging framework to use, [Apache Log4j 2](https://logging.apache.org/log4j/2.x/) is recommended.
 
 To use it, simply add the dependency to your pom.xml:
 
@@ -47,8 +44,7 @@ Now you should be able to instantiate a logger and find messages of level `warni
 Additionally, every logging event of severity `error` or above will be appended to
 `[PROJECT_PATH]\target\log\neodymium-error.log`.
 
-Unfortunately, Log4j doesn't provide a non-programmatic way of extending an existing configuration. Hence, the easiest
-way to change our configuration is to overwrite ours with your own.
+Unfortunately, Log4j doesn't provide a non-programmatic way of extending an existing configuration. Hence, the easiest way to change the configuration is to overwrite the default one with a custom configuration.
 
 The following listing shows the Log4j configuration provided by Neodymium. This is a good starting point to write your
 own. Please check out the official [Log4j documentation](https://logging.apache.org/log4j/2.x/manual/configuration.html)

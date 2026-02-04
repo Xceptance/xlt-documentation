@@ -8,8 +8,7 @@ description: >
   A comprehensive guide to mastering Neodymium's powerful extensions for JUnit, covering key features like annotations, test multiplication, and test suites.
 ---
 
-Neodymium customizes JUnit execution to provide additional features such as test data handling, multi browser support
-and the subsequent test multiplication. This side provides insights on how these features work when using Neodymium.
+Neodymium customizes JUnit execution to provide additional features such as test data handling, multi-browser support, and the subsequent test multiplication. This page provides insights on how these features work when using Neodymium.
 
 ## How to use it
 
@@ -51,11 +50,7 @@ public class DemoTest
 
 ### Supported annotations
 
-With Neodymium, a test case can be executed with different data sets, which enables _Data Driven Testing_. Furthermore,
-Neodymium supports running test cases with their data sets in different browsers. This is what we call the Neodymium
-multi browser support. These features can be combined. While multi-browser support is activated by annotating classes or
-methods, multiple data set usage is triggered whenever a matching data file is found. Please follow the links below for
-more details on these topics.
+With Neodymium, a test case can be executed with different data sets, which enables _Data Driven Testing_. Furthermore, Neodymium supports running test cases with their data sets in different browsers, referred to as Neodymium multi-browser support. These features can be combined. While multi-browser support is activated by annotating classes or methods, multiple data set usage is triggered whenever a matching data file is found. Please follow the links below for more details on these topics.
 
 #### Multi browser
 
@@ -416,9 +411,8 @@ public class A
 }
 ```
 
-{{% note notitle %}}
-**NOTE:** The tag Strings should not contain any whitespace, as the Allure reporting framework is unable to process tags
-with spaces.
+{{% note %}}
+The tag Strings should not contain any whitespace, as the Allure reporting framework is unable to process tags with spaces.
 {{% /note %}}
 
 ### JUnit4
@@ -507,9 +501,8 @@ maintenance effort.
 </profile>
 ```
 
-{{% note notitle %}}
-**Important:** JUnit5 also supports tag expressions, which allow more flexible grouping of tests. Please read
-more [here](https://docs.junit.org/current/running-tests/tags.html).
+{{% note title="Important" %}}
+JUnit5 also supports tag expressions, which allow more flexible grouping of tests. Please read more [here](https://docs.junit.org/current/running-tests/tags.html).
 {{% /note %}}
 
 ## Avoiding test collisions with Maven Surefire

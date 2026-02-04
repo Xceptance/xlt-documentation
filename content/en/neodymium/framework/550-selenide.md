@@ -8,7 +8,7 @@ description: "Selenide integration in Neodymium."
 
 [Selenide](https://github.com/codeborne/selenide/) is a test automation framework built on top of [Selenium Webdriver](https://github.com/SeleniumHQ/selenium) that allows you to write concise test.
 
-If you have ever used jQuery the syntax will look familiar to you. Furthermore, you don't have to worry about some of the major problems you would have to overcome if you were using a plain Selenium Webdriver since Selenide introduces:
+If you have ever used jQuery, the syntax will look familiar to you. Furthermore, common problems that would have to be overcome when using a plain Selenium Webdriver (like stale element handling or timeouts) are avoided, as Selenide facilitates:
 
 * Stale element handling
 * Handling timeouts

@@ -8,25 +8,18 @@ description: "Visual assertions using Applitools with Neodymium."
 
 ### Visual Assertions
 
-Besides functional testing, there is often a need to check the outlook of the application under test, in other words to make some visual assertions.
-There are few ways to automate such tests, but probably one of the most popular is to use AI for this. That is what [Applitools](https://applitools.com/) testing framework was created for.
-In order to make integration of this framework into a neodymium project easier, you can use [Neodymium Plugin Applitools](https://github.com/Xceptance/neodymium-plugin-applitools).
+Beyond functional testing, verifying the look and feel of the application under test (visual assertions) is often necessary. While there are a few ways to automate such tests, using AI for this purpose is one of the most popular approaches. The [Applitools](https://applitools.com/) testing framework addresses this need. To facilitate integration of this framework into a Neodymium project, the [Neodymium Plugin Applitools](https://github.com/Xceptance/neodymium-plugin-applitools) can be used.
 
 ### Getting Started
 
-First of all, you will need to add this plugin as a dependency in your maven project.
-To have the most up-to-date information about how to do this, please see the instructions
-below [the plugin project](https://github.com/Xceptance/neodymium-plugin-applitools) itself.
+First, add this plugin as a dependency in your maven project. To have the most up-to-date information about how to do this, please see the instructions below [the plugin project](https://github.com/Xceptance/neodymium-plugin-applitools) itself.
 
-As the dependency is included, it's time to configure the plugin using the `config/applitools.propperties` file.
-Analog to [`neodymium.properties`]({{< ref "090-neodymium-properties" >}}),
-the configurations in `config/appitools.properties` can be overwritten with once from `config/dev-applitools.properties`.
+Once the dependency is included, the plugin must be configured using the `config/applitools.properties` file. Analogous to [`neodymium.properties`]({{< ref "090-neodymium-properties" >}}), the configurations in `config/applitools.properties` can be overwritten with ones from `config/dev-applitools.properties`.
 
 ### Applitools properties
 
-In the table below you can see all available properties to configure Applitools Plugin. In case you need to change them for the current test, you can use Applitools.getConfiguration().
-Using this method, please mind, that all configurations will be cleared and read from `config/applitools.properties`file in setup methods (`ApplitoolsApi.setupGlobal()`, `ApplitoolsApi.setupBasic()` and
- `ApplitoolsApi.setupGroupingOfTestsByName(batchName)`).
+The table below lists all available properties to configure the Applitools Plugin. In case they need to be changed for the current test, `Applitools.getConfiguration()` can be used.
+When using this method, please mind that all configurations will be cleared and read from the `config/applitools.properties` file in setup methods (`ApplitoolsApi.setupGlobal()`, `ApplitoolsApi.setupBasic()` and `ApplitoolsApi.setupGroupingOfTestsByName(batchName)`).
 
 | Property                          | Default value | Is optional | Description                                                                                                                                                                                                                 |
 |-----------------------------------|---------------|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -38,10 +31,9 @@ Using this method, please mind, that all configurations will be cleared and read
 | `applitools.hideCaret`            | true          | true        | option to set whether Eyes should hide the cursor before the screenshot is captured. Can be changed at any point of the test using `ApplitoolsApi.setHideCaret(hideCaret)`                                                  |
 | `applitools.waitBeforeScreenshot` | 100           | true        | amount of time in milliseconds that Eyes will wait before capturing a screenshot. By default 100 milliseconds. Can be changed at any point of the test using `ApplitoolsApi.setWaitBeforeScreenshot(waitBeforeScreenshots)` |
 
-As you can see in the table above, the only mandatory parameter is `applitools.apiKey`. So as this parameter is filled with value, you can start visual assertions.
+As shown in the table above, the only mandatory parameter is `applitools.apiKey`. Once this parameter is filled with a value, visual assertions can be started.
 
-Before to make any assertions, please call `ApplitoolsApi.setupGlobal()`, `ApplitoolsApi.setupBasic()`
-or `ApplitoolsApi.setupGroupingOfTestsByName(batchName)` (the difference among these methods will be described [in chapter Batches](#batches)) and `ApplitoolsApi.openEyes(testName)`.
+Before making any assertions, please call `ApplitoolsApi.setupGlobal()`, `ApplitoolsApi.setupBasic()` or `ApplitoolsApi.setupGroupingOfTestsByName(batchName)` (the difference among these methods will be described [in chapter Batches](#batches)) and `ApplitoolsApi.openEyes(testName)`.
 So your setup for test can look like following:
 
 ```Java
@@ -62,7 +54,7 @@ The value you passed as parameter to `ApplitoolsApi.openEyes(testName)` will be 
 Example test name in Applitools Test Manager.
 {{< /image >}}
 
-Now your test is ready to make visual assertions. There are few options to do this:
+The test is now ready to make visual assertions. There are a few options to do this:
 
 * to assert the whole page, use `ApplitoolsApi.assertPage(pageDescription)`, where pageDescription is the name of the page.
 * to assert one element on the page, use `ApplitoolsApi.assertElement(condition, imageDescription)`, where condition is org.openqa.selenium.By object, which will be used to select the element and imageDescription is the name of the element.

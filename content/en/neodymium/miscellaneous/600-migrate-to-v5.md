@@ -6,9 +6,7 @@ type: docs
 description: "Migration guide for Neodymium 5."
 ---
 
-We are thrilled to announce the release of Neodymium 5. It is a significant milestone that brings support for JUnit 5
-and Selenium 4 / Selenide 6 or above. Upgrading to Neodymium 5 involves a few necessary steps to ensure compatibility
-with your existing projects.
+This page lists the significant milestones of Neodymium 5, including support for JUnit 5 and Selenium 4 / Selenide 6 or above. Upgrading to Neodymium 5 involves a few necessary steps to ensure compatibility with existing projects.
 
 ## 1. Requirements
 
@@ -16,8 +14,7 @@ Please note that Neodymium 5 requires **Java 17** (JDK 17). Ensure your developm
 
 ## 2. General changes in POM
 
-If you based your project on our [neodymium-template](https://github.com/Xceptance/neodymium-template), update the
-properties in your `pom.xml` as follows:
+If the project is based on the [neodymium-template](https://github.com/Xceptance/neodymium-template), update the properties in the `pom.xml` as follows:
 
 ```xml
     <properties>
@@ -31,7 +28,7 @@ properties in your `pom.xml` as follows:
     </properties>
 ```
 
-In case you have your own project structure, here are some instructions for what you need to do:
+In case of a custom project structure, follow these instructions:
 
 1. Update Neodymium dependency to version `5.0.0`.
 2. Update Maven Compiler to version `17` as Neodymium now requires Java 17.
@@ -81,8 +78,7 @@ Setting the Allure Commandline version in Jenkins.
 
 ## 5. Changes required if you want to stay with JUnit 4 but with Neodymium 5
 
-While JUnit 5 introduces many useful features, we do not force you to migrate your tests. Whether due to compatibility
-or preference, you can continue using JUnit 4.
+While JUnit 5 introduces many useful features, migrating tests is not mandatory. Users can continue using JUnit 4 if preferred due to compatibility or other reasons.
 
 However, some changes to your project configuration are still required.
 
@@ -136,8 +132,7 @@ the `neodymium-template`, this should be placed right after the AspectJ dependen
 
 ### 5.2 Changes in imports
 
-As Neodymium 5 now supports both JUnit4 and JUnit5 but the offered sugar is mutual for both implementations, a lot of
-classes were moved to different packages:
+As Neodymium 5 now supports both JUnit4 and JUnit5 but the offered sugar is mutual for both implementations, many classes were moved to different packages:
 
 * `com.xceptance.neodymium.module.statement.browser.multibrowser.Browser` moved to `com.xceptance.neodymium.common.browser.Browser`
 * `com.xceptance.neodymium.module.statement.browser.multibrowser.SuppressBrowser` moved to `com.xceptance.neodymium.common.browser.SuppressBrowser`
@@ -177,10 +172,7 @@ easier to customize test execution. Neodymium's features have been adapted to wo
 
 Here are the key things you need to know:
 
-* **Annotations**: JUnit 5 focuses on method-level annotations. New annotations include `@TestTemplate`,
-  `@ParameterizedTest`, and `@RepeatedTest`. We introduced `@NeodymiumTest` for tests driven by Neodymium. Unlike JUnit
-  4, where you annotated the class with `@RunWith(NeodymiumRunner.class)`, you now simply annotate the test method with
-  `@NeodymiumTest`. This allows you to mix Neodymium tests and standard JUnit tests in the same class.
+* **Annotations**: JUnit 5 focuses on method-level annotations. New annotations include `@TestTemplate`, `@ParameterizedTest`, and `@RepeatedTest`. `@NeodymiumTest` was introduced for tests driven by Neodymium. Unlike JUnit 4, where the class was annotated with `@RunWith(NeodymiumRunner.class)`, the test method is now simply annotated with `@NeodymiumTest`. This allows mixing Neodymium tests and standard JUnit tests in the same class.
 
 * **Extensions**: JUnit 5 replaces `Rule`s with `@ExtendWith` and the `Extension` API. If you need to use a Neodymium
   feature that was previously a rule, simply annotate the class or method. For example, to use soft assertions, annotate

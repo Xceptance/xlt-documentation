@@ -31,7 +31,7 @@ For integration with Neodymium's [multi browser support]({{< relref "010-browser
 
 ## Setting up a Local Grid
 
-While you can use third-party providers like SauceLabs, you might want to set up your own Grid.
+While third-party providers like SauceLabs can be used, it might be desirable to set up a custom Grid.
 
 ### 1. Prerequisites
 

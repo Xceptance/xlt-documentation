@@ -25,8 +25,8 @@ Every test method runs in its own thread with a unique context. This context con
 This structure allows you to access and modify settings and test data strictly within a single test without affecting
 other concurrent tests.
 
-{{% note notitle %}}
-**NOTE:** To explicitly clear the current thread context, use `Neodymium.clearThreadContext()`.
+{{% note %}}
+To explicitly clear the current thread context, use `Neodymium.clearThreadContext()`.
 {{% /note %}}
 
 ## Accessing Contextual Data

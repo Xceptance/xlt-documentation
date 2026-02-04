@@ -26,7 +26,7 @@ Neodymium v5.0.0+ requires **Java 17** or later.
 
 ### 2. Apache Maven
 
-We recommend [Apache Maven](https://maven.apache.org/) for build and dependency management.
+It is recommended to use [Apache Maven](https://maven.apache.org/) for build and dependency management.
 
 * To check if Maven is installed, run:
 

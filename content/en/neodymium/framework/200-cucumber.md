@@ -8,9 +8,7 @@ description: >
   Everything about BDD in Neodymium using Cucumber.
 ---
 
-[Cucumber](https://github.com/cucumber/cucumber) is a Behavior-Driven Development (BDD) framework. Currently, Neodymium
-only supports Cucumber framework in combination with JUnit4. Please follow these [instructions]({{< relref "../miscellaneous/600-migrate-to-v5.md" >}})
-to migrate or set up your Cucumber project with Neodymium 5.
+[Cucumber](https://github.com/cucumber/cucumber) is a Behavior-Driven Development (BDD) framework. Currently, the Cucumber framework is supported in combination with JUnit4 only. Please follow these [instructions]({{< relref "../miscellaneous/600-migrate-to-v5.md" >}}) to migrate or set up your Cucumber project with Neodymium 5.
 
 ## Introduction
 
@@ -23,9 +21,7 @@ Cucumber itself is a popular BDD framework that provides some structural element
 uses [Gherkin](https://docs.cucumber.io/gherkin/reference/), a defined set of keywords to differentiate and organize the
 steps.
 
-We prepared a demo project: [Neodymium Cucumber Example](https://github.com/Xceptance/neodymium-cucumber-example) which
-gives an idea how Cucumber could be used in a test automation suite. Further information can be obtained directly from
-the project.
+A demo project, [Neodymium Cucumber Example](https://github.com/Xceptance/neodymium-cucumber-example), has been prepared to provide an idea of how Cucumber could be used in a test automation suite. Further information can be obtained directly from the project.
 
 ### Structural Elements:
 
@@ -161,21 +157,20 @@ Feature: Searching for products
 Please see the following example for more hands-on
 experience: [Search.feature](https://github.com/Xceptance/neodymium-cucumber-example/blob/master/src/test/java/posters/cucumber/features/Search.feature)
 
-{{% note notitle %}}
-**NOTE:** Since we demonstrate both ways of setting up the WebDriver in the same demo project we had to add a special
-tag to the hook and the test case to avoid interferences. Probably you won't need this in your project.
+{{% note %}}
+Since both ways of setting up the WebDriver are demonstrated in the same demo project, a special tag had to be added to the hook and the test case to avoid interferences. This is likely not needed in a real project.
 {{% /note %}}
 
 ### Tear down
 
 To tear down the WebDriver you just need to add a general hook.
 
-{{% note notitle %}}
-**NOTE:** Cucumber hooks allow you to specify an `order` to control the execution sequence:
+{{% note %}}
+Cucumber hooks allow you to specify an `order` to control the execution sequence:
 
 * **`@Before`** hooks are executed in **ascending** order (e.g., 0, 1, 2...).
 * **`@After`** hooks are executed in **descending** order (e.g., 2, 1, 0...).
-  {{% /note %}}
+{{% /note %}}
 
 Because `@After` hooks run in reverse (descending) order, a **lower** order number means it will be executed **later**.
 By providing an order number below 10000 (which is often used as a baseline or default in many frameworks), you ensure
@@ -195,20 +190,13 @@ public void tearDown(Scenario scenario)
 
 ## Clean up steps in Cucumber
 
-Sometimes test cases need a special setup on execution. In a perfect test world you could just start your test with a
-new prepared environment but since this can't be realized in every case you need to clean up after the test execution.
-Cucumber supports hooks to add an `After` step after a scenario, but you can't share data between different steps
-without further programming. We present an easy solution to the problem below.
+Sometimes test cases need a special setup on execution. In a perfect test world you could just start your test with a new prepared environment but since this can't be realized in every case you need to clean up after the test execution. Cucumber supports hooks to add an `After` step after a scenario, but you can't share data between different steps without further programming. An easy solution to the problem is presented below.
 
 ### How to use dependency injection to share data between the Cucumber steps
 
-We demonstrate how to share data between steps
-using [Cucumber PicoContainer](https://github.com/cucumber/cucumber-jvm/tree/main/cucumber-picocontainer). This
-technique is used to implement clean up steps
-for [Register.feature](https://github.com/Xceptance/neodymium-cucumber-example/blob/master/src/test/java/posters/cucumber/features/Register.feature).
+This section demonstrates how to share data between steps using [Cucumber PicoContainer](https://github.com/cucumber/cucumber-jvm/tree/main/cucumber-picocontainer). This technique is used to implement clean up steps for [Register.feature](https://github.com/Xceptance/neodymium-cucumber-example/blob/master/src/test/java/posters/cucumber/features/Register.feature).
 
-In Neodymium version 3.3.0 we moved the PicoContainer dependency into the library to avoid incompatibilities in child
-projects when we update the Cucumber version.
+In Neodymium version 3.3.0, the PicoContainer dependency was moved into the library to avoid incompatibilities in child projects when updating the Cucumber version.
 
 1. Implement a global storage object that can hold the data that is supposed to be shared. Please
    see [GlobalStorage.java](https://github.com/Xceptance/neodymium-cucumber-example/blob/master/src/test/java/posters/cucumber/support/GlobalStorage.java)

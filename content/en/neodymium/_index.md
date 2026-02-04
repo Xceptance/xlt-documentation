@@ -5,9 +5,9 @@ weight: 220
 type: docs
 
 description: >
-  Neodymium - Test Automation with WebDriver and a Lot of Bells and Whistles
---- 
+  Neodymium - Test Automation with WebDriver
+---
 
 {{% note title="Documentation Migration" %}}
-We are in the process of migrating the documentation from [GitHub](https://github.com/Xceptance/neodymium) into this format here. Please be patient and we appreciate any feedback, pull requests, etc.
+The documentation is currently being migrated from [GitHub](https://github.com/Xceptance/neodymium) into this format. Your patience is appreciated during this process. Feedback and pull requests are welcome.
 {{% /note %}}

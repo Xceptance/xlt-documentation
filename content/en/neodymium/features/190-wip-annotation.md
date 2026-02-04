@@ -16,11 +16,8 @@ The `@WorkInProgress` annotation functions as a selective execution marker. When
 with `@WorkInProgress` will be executed within that test class. All other unannotated test methods in the class are
 automatically skipped.
 
-{{% note notitle %}}
-**Note:** To prevent accidental execution in continuous integration (CI/CD) environments, this annotation must be
-explicitly enabled via the configuration property `neodymium.workInProgress`. This property is initially set to `false`
-in `config/neodymium.properties`. The recommended best practice is to enable it locally by setting it to `true` in your
-`config/dev-neodymium.properties` file.
+{{% note %}}
+To prevent accidental execution in continuous integration (CI/CD) environments, this annotation must be explicitly enabled via the configuration property `neodymium.workInProgress`. This property is initially set to `false` in `config/neodymium.properties`. The recommended best practice is to enable it locally by setting it to `true` in your `config/dev-neodymium.properties` file.
 {{% /note %}}
 
 ## Examples

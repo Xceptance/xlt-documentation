@@ -18,10 +18,9 @@ This feature can be enabled by setting `gif.enableFilming=true` or `video.enable
 
 * **File Output:** There is one recording per test case, saved as an `.mp4` (video) or `.gif` file.
 * **Coverage:** Neodymium records the entire viewport of the browser executing your tests.
-* **Disk Space:** Consider your disk space. Running hundreds of test cases on one machine requires sufficient space, as
-  each recording is stored in the defined folder and, if enabled, within the Allure report as well.
+* **Disk Space:** Ensure sufficient disk space is available. Running hundreds of test cases on one machine requires significant space, as each recording is stored in the defined folder and, if enabled, within the Allure report as well.
 
-In our example test suites, GIF recording is enabled by default.
+In the example test suites, GIF recording is enabled by default.
 
 ## Configuration and Usage
 
@@ -33,9 +32,8 @@ To enable and configure recording, define the desired properties within the dedi
 
 A complete list of available properties is provided in the overview below.
 
-{{% warning notitle %}}
-**Prerequisites:** To properly use **video recording (MP4)**, you must have [ffmpeg](https://ffmpeg.org/) installed on
-the execution machine. **GIF recording** works out of the box without external tools.
+{{% warning title="Prerequisites" %}}
+To properly use **video recording (MP4)**, you must have [ffmpeg](https://ffmpeg.org/) installed on the execution machine. **GIF recording** works out of the box without external tools.
 {{% /warning %}}
 
 ### Integration in Allure Report

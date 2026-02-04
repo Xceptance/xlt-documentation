@@ -34,18 +34,17 @@ Available plugins in Jenkins list.
 
 After that you need to configure the new installed plugin(s).
 
-{{% warning notitle %}}
-**Important**: Allure plugin version is not matching the version of Allure Commandline tool that will be used to
-generate report after test. Beginning from Neodymium v5.0.0 the minimal version of Allure Commandline should be 2.27.0.
-Please, configure this version in the Manage Jenkins > Tools like on the image below:
+{{% warning %}}
+The Allure plugin version does not match the version of the Allure Commandline tool that will be used to generate the report after the test. Beginning from Neodymium v5.0.0, the minimal version of Allure Commandline should be 2.27.0.
+Please configure this version in Manage Jenkins > Tools like in the image below:
 {{% /warning %}}
 
 {{< image max-width="80%" src="neodymium/allure_commandline_installations_jenkins.png" >}}
 Setting the Allure Commandline version in Jenkins.
 {{< /image >}}
 
-{{% note notitle %}}
-**NOTE**: Since Xvfb is system specific we can not provide an installation guide for that.
+{{% note %}}
+Since Xvfb is system-specific, an installation guide cannot be provided here.
 {{% /note %}}
 
 {{< image max-width="80%" src="neodymium/jenkins_global_config_allure.png" >}}

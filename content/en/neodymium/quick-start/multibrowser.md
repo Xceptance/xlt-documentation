@@ -15,7 +15,7 @@ devices such as Android, iPhone, and iPad.
 
 To configure these browsers, create a `browser.properties` file in the `config` directory at the project root.
 
-{{% note notitle %}}
+{{% note %}}
 The `browser.properties` file needs to be located in `./config/browser.properties`.
 {{% /note %}}
 
@@ -54,8 +54,7 @@ For a complete list of properties, see the [Configurations]({{< relref "010-brow
 
 To utilize the browsers defined in `browser.properties`, use the `@Browser("<browserId>")` annotation.
 
-If no tests are annotated, the default Neodymium browser is used. To execute all tests with every configured browser,
-you can annotate the `AbstractTest` class with `@Browser("<browserId>")` for each browser.
+If no tests are annotated, the default Neodymium browser is used. To execute all tests with every configured browser, the `AbstractTest` class can be annotated with `@Browser("<browserId>")` for each browser.
 
 ```java
 import com.xceptance.neodymium.common.browser.Browser;

@@ -8,13 +8,13 @@ description: "Handling iFrames in Neodymium."
 
 ### iFrame handling
 
-An iFrame is used to display a webpage within a webpage. Sometimes it is necessary to access the contained elements for test automation. To do so we have to switch frame. For Selenide the syntax looks like this.
+An iFrame is used to display a webpage within a webpage. Sometimes it is necessary to access the contained elements for test automation. To do so, switching frames is required. The Selenide syntax is as follows:
 
 ```Java
 switchTo().frame($("#frame"));
 ```
 
-If you finished your work within the iFrame you need to switch back to the main frame to execute any actions there. You could do this with the function above or you can use the following. It will always bring you back to the main frame.
+After finishing work within the iFrame, switching back to the main frame is necessary to execute actions there. This can be done with the previous function or the following, which always returns to the main frame.
 
 ```Java
 switchTo().defaultContent();

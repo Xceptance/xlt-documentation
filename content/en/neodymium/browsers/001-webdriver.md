@@ -8,8 +8,7 @@ description: >
   Everything about WebDrivers.
 ---
 
-To run browser tests a WebDriver for the desired browser is necessary. If the driver is missing, Selenium will
-automatically download the latest one.
+To run browser tests, a WebDriver for the desired browser is necessary. If the driver is missing, Selenium will automatically download the latest one.
 
 Within the file `config/browser.properties` you can set up the browsers used throughout testing.
 More details on configuring the browser properties can be found in the
@@ -19,8 +18,7 @@ The next three sections describe how to set up specific WebDriver and browsers.
 
 ## Set Up a Specific WebDriver
 
-For that, you have to download and provide a
-specific [Selenium WebDriver](https://www.selenium.dev/documentation/webdriver/).
+For that, download and provide a specific [Selenium WebDriver](https://www.selenium.dev/documentation/webdriver/).
 
 You can download the common WebDriver here:
 
@@ -52,8 +50,7 @@ browserprofile.Safari_1024x768.screenResolution=1024x768
 
 ## Tear Down
 
-Normally Neodymium takes care of quitting the WebDriver instances and there is nothing else to do or to worry about.
-Nevertheless, there may be some use and edge cases you need to handle yourself or know what you can do.
+Normally, Neodymium takes care of quitting the WebDriver instances automatically. Nevertheless, there may be some use and edge cases that require manual handling.
 
 ### KeepBrowserOpen and KeepBrowserOpenOnFailure
 
@@ -68,8 +65,7 @@ To keep the browser open you can either:
 
 More details about properties can be found in
 the [Neodymium configuration properties]({{< relref "090-neodymium-properties#browser-behavior" >}}).
-We recommend that you only activate these properties for local test development to avoid resource issues within your CI
-environment.
+It is recommended to only activate these properties for local test development to avoid resource issues within the CI environment.
 
 If those options are activated, the WebDrivers that opened the browsers can't be terminated since this would also result
 in closing the browsers that should stay open. Unfortunately, after you inspected the open browsers and closed them, the
@@ -77,10 +73,8 @@ WebDrivers then stay open. Therefore, you need to quit those processes manually 
 interface provided by your operating system. If you restart your system regularly you can probably ignore this, since
 those WebDriver zombie processes will be closed during the normal shutdown routine.
 
-{{% warning notitle %}}
-**Attention:** use the `KeepBrowserOpen` logic with care. The WebDriver won't be shut down by
-closing the browser and need to be closed manually via some kind of task manager or interface provided by your operating
-system.
+{{% warning title="Attention" %}}
+Use the `KeepBrowserOpen` logic with care. The WebDriver won't be shut down by closing the browser and must be closed manually via some kind of task manager or interface provided by the operating system.
 {{% /warning %}}
 
 ### Reuse of WebDrivers
@@ -93,7 +87,7 @@ setting can be configured via the [Neodymium configuration properties]({{< relre
 Nevertheless, you may want to quit specific WebDrivers for some reason, e.g. prevent side effects from some browser
 state that is not easy to clear or free up resources within the test environment.
 
-In such cases we provide three ways how such a behaviour can be achieved.
+In such cases, three ways are provided to achieve such behavior.
 
 #### Tear Down a Specific WebDriver to Prevent Its Reuse
 
@@ -127,9 +121,8 @@ public void afterClass()
 }
 ```
 
-{{% note notitle %}}
-**Attention:** It is safe to run this function during a sequential test execution. It can however have repercussions
-(e.g. longer test duration) in a parallel execution environment.
+{{% note title="Attention" %}}
+It is safe to run this function during a sequential test execution. It can however have repercussions (e.g. longer test duration) in a parallel execution environment.
 {{% /note %}}
 
 #### Configuring the Max Reuse Setting

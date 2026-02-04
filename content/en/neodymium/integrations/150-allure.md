@@ -322,16 +322,13 @@ step to the Allure report whenever a new page is loaded.
 
 ### Displaying Test Data in the Report
 
-When debugging a failed test case, quick access to the used test data is crucial for replication. This feature adds the
-test data in **JSON format** as an attachment to each test in the Allure report.
+When debugging a failed test case, quick access to the used test data is crucial for replication. This feature adds the test data in **JSON format** as an attachment to each test in the Allure report.
 
 * **Activation:** This feature is **activated by default**.
 * **Deactivation:** It can be deactivated by setting the `neodymium.report.enableTestDataInReport` property to `false`.
-* **Note:** This only applies to test data initialized using `Neodymium.getData()` or `DataItem` (Neodymium classes). The
-  attachment name always starts with "Testdata".
+* **Note:** This only applies to test data initialized using `Neodymium.getData()` or `DataItem` (Neodymium classes). The attachment name always starts with "Testdata".
 
-If the test data is modified during the test run, you can add those changes as an additional attachment using the helper
-function:
+If the test data is modified during the test run, those changes can be added as an additional attachment using the helper function:
 
 ```
 AllureAddons.addDataAsJsonToReport(String name, Object data)
@@ -380,8 +377,7 @@ to `false`.
 By default, Selenide includes detailed, specific information (like file paths) in its error messages, which makes each
 message unique. While useful locally, this prevents Allure from effectively categorizing errors by similar messages.
 
-To ensure Allure's categorization feature works as intended, a toggle is introduced to reduce the information in the
-Selenide error message.
+To ensure Allure's categorization feature works as intended, a toggle is introduced to reduce the information in the Selenide error message.
 
 * **Configuration:** Use the `neodymium.report.showSelenideErrorDetails` property in your `neodymium.properties` file.
 * **Local Testing:** If running tests locally *without* Allure, you might want to set this value to `true` (e.g., in

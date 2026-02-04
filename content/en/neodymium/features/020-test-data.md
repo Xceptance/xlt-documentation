@@ -8,7 +8,7 @@ description: >
   Everything about test data handling.
 ---
 
-We enriched the Neodymium library to have an easy way to structure and manage test data in various ways.
+The Neodymium library provides an easy way to structure and manage test data in various ways.
 
 In general, we support the following file formats:
 
@@ -17,65 +17,40 @@ In general, we support the following file formats:
 * XML
 * Properties
 
-This is also the order in which data set files and package test data files are searched. In case you have
-multiple data set files with the same name but different extensions, only the file which extension has higher priority
-in the list above will be taken in count. E.g. if you have `FooTest.csv` and `FooTest.json`, the test automation will
-only read data sets from the `FooTest.csv`.
+The search order for data set files and package test data files corresponds to the list above. If you have multiple data set files with the same name but different extensions, only the file with the higher priority extension will be used. For example, if you have `FooTest.csv` and `FooTest.json`, the test automation will only read data sets from `FooTest.csv`.
 
-{{< TODO >}}choose note/info box style and apply it to all!{{< /TODO >}}<br>
-
-{{% note notitle %}}
-**NOTE:** This is also the order in which data set files and package test data files are searched. In case you have
-multiple data set files with the same name but different extensions, only the file which extension has higher priority
-in the list above will be taken in count. E.g. if you have `FooTest.csv` and `FooTest.json`, the test automation will
-only read data sets from the `FooTest.csv`.
-{{% /note %}}
-
-{{% note %}}
-This is also the order in which data set files and package test data files are searched. In case you have multiple data
-set files with the same name but different extensions, only the file which extension has higher priority in the list
-above will be taken in count. E.g. if you have `FooTest.csv` and `FooTest.json`, the test automation will only read data
-sets from the `FooTest.csv`.
-{{% /note %}}
-
-{{% note title="test file order" %}}
-In case a multiple data set files with the same name are defined, the one with the highest priority is used.
+{{% note title="Test File Order" %}}
+If multiple data set files with the same name are defined, the one with the highest priority is used.
 The priority is as follows:
 
 1. CSV
 2. JSON
 3. XML
 4. Properties
-
 {{% /note %}}
 
-Test data is a key-value storage that is defined beside your test classes. There are two different types of data files,
-data sets and package test data. Combined they build test data. In general all package data will be added to the map and
-then later on data from data sets. It is on purpose that you can overwrite values from package test data with values
-from data sets. This allows you to define general data in package test data and test specific data in the data sets. So
-you can augment your data sets while having the possibility to override it at the same time.
+Test data is a key-value storage defined alongside your test classes. There are two types of data files: data sets and package test data. Together, they constitute the test data. Generally, all package data is added to the map first, followed by data from data sets. Values from package test data can be overwritten by values from data sets. This allows you to define general data in package test data and test-specific data in the data sets. Thus, you can augment your data sets while retaining the ability to override them.
 
 * **Data sets**:
   Contains multiple sets of data for a particular test class. A data set file must have the same name as the test class
-  it is providing data for. For example: A data set file for a class named `foo.java` could be for example `foo.csv` or
-  `foo.json`
+  it provides data for. For example: A data set file for a class named `foo.java` could be `foo.csv` or
+  `foo.json`.
 * **Package test data**:
   Provides data for all test classes that are in the same package and inherits to classes all sub packages. Package test
   data is defined in a file named `package_testdata` which must contain data in one of the supported file formats and so
   it needs a proper file ending e.g.: `package_testdata.properties`
 
-{{% warning notitle %}}
-**ATTENTION:** In general both types of data files need to be at the same place (package) as the class, otherwise they
-can't be found.
+{{% warning title="Attention" %}}
+Both types of data files must be in the same package as the class, otherwise they cannot be found.
 {{% /warning %}}
 
 {{< image max-width="100%" src="neodymium/eclipse_testdata_example.png" >}}
 Test data location example in Eclipse.
 {{< /image >}}
 
-{{% warning notitle %}}
-**ATTENTION:** Please note that in order to use complex data with nested objects currently **only JSON is supported**.
-Simple, key/value like data sets can be used with CSV, XML or JSON.
+{{% warning title="Attention" %}}
+To use complex data with nested objects, currently **only JSON is supported**.
+Simple, key/value-like data sets can be used with CSV, XML, or JSON.
 {{% /warning %}}
 
 ## Data Sets
@@ -95,18 +70,16 @@ behaviour with annotations: `@DataSet`, `@RandomDataSets` and `@SuppressDataSets
   (index) or by using a string (id)
     * index: `@DataSet(2)` an integer referencing a specific data set (first data set would be referenced by 1)
     * id: `@DataSet(id = "Jebediah's data set")` a string value that refers to a data set which has the same value for
-      attribute `testId` (see [Example 1]({{<ref "#example1" >}}) ). This allows you to name your data sets which will
-      come handy at some point.
+      the attribute `testId` (see [Example 1]({{<ref "#example1" >}}) ). This allows you to name your data sets, which is useful for identification.
 * **@RandomDataSets**: Can be annotated to a method and/or class. This annotation allows to run test with certain amount
   of random data sets. The random data sets will be chosen from test data list. In case the annotated test also contains
   `@DataSet` annotation, the random sets will be selected among the sets selected by the latter.
     * value: `@RandomDataSets(2)` an integer referencing a number of randomly selected data sets
-    * If the corresponding test data file contains fewer data sets than mentioned you will receive the
-      exception.
+    * If the corresponding test data file contains fewer data sets than requested, an exception will be thrown.
 
-{{% note notitle %}}
-**NOTE:** Every test method within the JUnit test will be executed once for each data set, unless specified otherwise
-using the annotations `@DataSet`, `@RandomDataSets` and `@SuppressDataSets`. Test specific data overwrites the fields
+{{% note %}}
+Every test method within the JUnit test will be executed once for each data set, unless specified otherwise
+using the annotations `@DataSet`, `@RandomDataSets`, and `@SuppressDataSets`. Test-specific data overwrites fields
 from package test data.
 {{% /note %}}
 
@@ -123,8 +96,8 @@ Jebediah, Jebediah's data set
 Jill, Jill's data set
 ```
 
-{{% note notitle %}}
-**NOTE**: Our CSV implementation treats the first line as variable name definition
+{{% note %}}
+Our CSV implementation treats the first line as the variable name definition.
 {{% /note %}}
 
 And let the test class be `MyTest` containing the following code:
@@ -217,12 +190,12 @@ public class CanReadDataSetJsonAgain
 
 ## Package test data
 
-Package test data is almost the same as data sets except that it doesn't lead to multiple method execution. It is also a
-key value store that you can access from all the classes in a package and its sub packages. Package test data are
-defined in a file named e.g. `package_testdata.csv` (ending depends on chosen content format). One of the goodies of
-package test data is that the containing data will be inherited. For example: you define package test data in package
-`com.mycompany` and you can also use them from classes in sub packages like `com.mycompany.tests` and you can override
-these values by redefine a new value in a sub package test data file.
+Package test data is similar to data sets, except that it does not trigger multiple method executions. It is also a
+key-value store accessible from all classes in a package and its sub-packages. Package test data is
+defined in a file named, for example, `package_testdata.csv` (the extension depends on the chosen format). One of the benefits of
+package test data is inheritance. For example: if you define package test data in package
+`com.mycompany`, you can also use it in classes in sub-packages like `com.mycompany.tests`, and you can override
+these values by redefining a value in a sub-package test data file.
 
 It's possible to change the package testdata's scope of validity by moving in deeper in the structure. Moving the file
 deeper in structure (e.g, from `checkout.guest` to `checkout.guest.shipping`) will decrease the scope of validity. In
@@ -261,11 +234,11 @@ string.
 | `boolean exists(String key)`                          | returns true if the given key is present or false otherwise                                                                              |
 | `T get(Class<T> clazz)`                               | creates an instance of the given class and tries<br /> to set value of member by searching test data<br /> for fields with the same name |
 | `JsonObject getDataAsJsonObject()`                    | returns the test data as JSON object                                                                                                     | 
-| `randomEmail()`                                       | creates an random email address based on<br /> the values from configuration                                                             |
-| `randomPassword()`                                    | creates an random password based on<br /> the values from configuration                                                                  |
+| `randomEmail()`                                       | creates a random email address based on<br /> the values from configuration                                                             |
+| `randomPassword()`                                    | creates a random password based on<br /> the values from configuration                                                                  |
 
-{{% warning notitle %}}
-**ATTENTION:** trying to access a non-existing key with a function like `asString(String key)` will result in an
+{{% warning title="Attention" %}}
+Trying to access a non-existing key with a function like `asString(String key)` will result in an
 exception. `asString(String key, String defaultValue)` can be used to fall back to a predefined value.
 {{% /warning %}}
 
@@ -273,8 +246,8 @@ exception. `asString(String key, String defaultValue)` can be used to fall back 
 
 The test data files should follow a specific key value pattern. We showcase the format for each type below.
 
-{{% note notitle %}}
-**NOTE:** The `testId` field in your data set is optional. However, if specified, it can be used to run test methods
+{{% note %}}
+The `testId` field in your data set is optional. However, if specified, it can be used to run test methods
 with a specific data set by using the annotation `@DataSet(id = "<testId>")`. This allows you to target and execute
 tests with named data sets.
 {{% /note %}}

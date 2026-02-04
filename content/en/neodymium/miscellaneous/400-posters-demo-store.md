@@ -26,7 +26,7 @@ Execute either `start.cmd` (Windows) or `start.sh` (Linux, macOS) and wait for t
 You can then access the Posters store in your browser by navigating
 to [https://localhost:8443/posters/](https://localhost:8443/posters/).
 
-{{% note notitle %}}
+{{% note %}}
 **NOTE:** On Linux/macOS, you might need to set the executable flag for `start.sh` before running the script.
 {{% /note %}}
 

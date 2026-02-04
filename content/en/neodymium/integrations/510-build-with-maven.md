@@ -6,11 +6,11 @@ type: docs
 description: "Building the project and running tests with Maven."
 ---
 
-To build the project and run tests with Maven you need to open the command line, navigate to your projects root directory and execute the following command
+To build the project and run tests with Maven, open the command line, navigate to your project's root directory and execute the following command:
 
 `mvn clean install`
 
-Since Maven expects a restrictive [directory structure](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html) to projects, tests are located in `src/test/java` rather then `src/main/java`. Hence, we need to execute the goal `test-compile` which will only compile classes from test folder.
+Since Maven expects a restrictive [directory structure](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html) to projects, tests are located in `src/test/java` rather than `src/main/java`. Therefore, the goal `test-compile` must be executed, which will only compile classes from the test folder.
 
 In case you not only want to compile but also execute the test then you can run `mvn clean test` which will implicitly run `test-compile` and executes them.
 

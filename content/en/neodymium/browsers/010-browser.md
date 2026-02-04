@@ -8,7 +8,7 @@ description: >
   Everything about browser configuration, handling and multi browser.
 ---
 
-This chapter is about browser handling, setting up browsers and defining their properties and multi browser handling.
+This chapter covers browser handling, setting up browsers, defining their properties, and multi-browser handling.
 
 ## Browser Handling
 
@@ -31,9 +31,8 @@ clear them up afterwards.
 `@Browser("<browserId>")` selects the browser to use. The `<browserId>` is a reference to the defined browser
 configurations in the `config/browser.properties` explained [here](#browser-configuration).
 
-{{% note notitle %}}
-**Note:** `@Browser` and `@SuppressBrowser()` annotations are inherited from the super class if nighter of them is added
-in the child class.
+{{% note %}}
+`@Browser` and `@SuppressBrowser()` annotations are inherited from the super class if neither of them is added in the child class.
 {{% /note %}}
 
 ## Browser Configuration
@@ -44,12 +43,12 @@ is needed to define a configuration.
 Format: `browserprofile.<browserId>.<property> = <value>`
 
 * `browserprofile` is a static prefix that must be used for every configuration.
-* `<browserId>` is a user defined string that is later on used to be referred with `@Browser("<browserId>")` annotation
+* `<browserId>` is a user defined string that is later used to be referred with `@Browser("<browserId>")` annotation
 * `<property>` is one of the listed below
 * `<value>` is the value to set
 
-{{% warning notitle %}}
-**Attention:**  The `<browserId>` must not contain any white space characters. Also, it's treated case-sensitive.
+{{% warning title="Attention" %}}
+The `<browserId>` must not contain any white space characters. Also, it's treated case-sensitive.
 {{% /warning %}}
 
 The following table lists all possible properties.
@@ -93,10 +92,9 @@ For Firefox check `about:config` in your actual Firefox browser.
 
 Please be aware that different browsers use different preference keys.
 
-{{% note notitle %}}
-**Attention:**  Also, please keep in mind that the download folder can be set via properties directly, but also via
-preferences. If both are set, the `browserprofile.<browserId>.downloadDirectory` property is used.
-{{% /note %}}
+{{% note title="Attention" %}}
+Please keep in mind that the download folder can be set via properties directly, but also via preferences. If both are set, the `browserprofile.<browserId>.downloadDirectory` property is used.
+{{% / note %}}
 
 ### Set Up a Specific Browser Executable
 

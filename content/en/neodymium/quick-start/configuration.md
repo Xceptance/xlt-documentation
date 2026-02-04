@@ -9,10 +9,8 @@ description: >
 
 Neodymium utilizes various properties files to establish default settings and customize specific behaviors.
 
-{{% note notitle %}}
-**Note:** This is a quick summary. For the complete list of all properties and detailed explanations, please visit
-the [Configuration]({{< relref "../configuration/090-neodymium-properties.md" >}}) page. For browser-specific
-configurations, see [Browsers]({{< relref "../browsers/010-browser.md" >}}).
+{{% note %}}
+**Note:** This is a quick summary. For the complete list of all properties and detailed explanations, please visit the [Configuration]({{< relref "../configuration/090-neodymium-properties.md" >}}) page. For browser-specific configurations, see [Browsers]({{< relref "../browsers/010-browser.md" >}}).
 {{% /note %}}
 
 ## Key Configuration Files

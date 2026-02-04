@@ -62,4 +62,4 @@ The Showcase is a collection of specific "how-to" examples. It covers advanced t
 * **Repository:** [neodymium](https://github.com/Xceptance/neodymium)
 * **Best for:** Contributors and deep divers.
 
-The core library itself. Check this out if you want to understand the internal mechanics, contribute to the framework, or browse the latest source code.
+The core library itself. This repository contains the source code, allowing you to understand internal mechanics or contribute to the framework.

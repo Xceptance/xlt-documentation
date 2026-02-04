@@ -128,6 +128,6 @@ Mail mail = XcMailrApi.retrieveLastEmailBySubject("user@example.com", "Welcome M
 SelenideAddons.openHtmlContentWithCurrentWebDriver(mail.htmlContent);
 ```
 
-{{% note notitle %}}
+{{% note %}}
 Please note to use `mail.htmlContent` for HTML viewing and `mail.textContent` for plain text viewing.
 {{% /note %}}

@@ -14,9 +14,7 @@ Neodymium, an open-source tool to improve the quality of web pages.
 
 ## Install Lighthouse CLI
 
-First of all we recommend installing a package manager like [npm](https://www.npmjs.com/), which we are also going to
-use in order to [install Lighthouse CLI](https://www.npmjs.com/package/lighthouse). After you went through
-the installation process of npm, open a terminal and enter the command below.
+First, it is recommended to install a package manager like [npm](https://www.npmjs.com/), which will be used to [install Lighthouse CLI](https://www.npmjs.com/package/lighthouse). After installing npm, open a terminal and enter the command below.
 
 ```
 npm install -g lighthouse
@@ -30,11 +28,10 @@ lighthouse --version
 
 ## Use Lighthouse Inside Neodymium
 
-With the objective of creating Lighthouse reports inside Neodymium we implemented the class `LighthouseUtils`,
+To create Lighthouse reports inside Neodymium, the class `LighthouseUtils` is used,
 containing the function `createLightHouseReport(String reportName)`. By calling this function, a Lighthouse report of
 the current web page is generated and automatically added to the Allure report with the name specified in the
-`reportName` parameter. Keep in mind that creating a Lighthouse report only works while using Chrome or Chromium-based
-browsers.
+`reportName` parameter. Note that creating a Lighthouse report only works while using Chrome or Chromium-based browsers.
 
 The method call can be added at every point of your test and will create a report of the currently opened page. This
 also works for pages, which rely on session data like a login state or products that should have been added to a
@@ -121,9 +118,8 @@ network load on th the test machine. This can lead to random outliers in the mea
 A check against the 75th percentile is recommended to give the test some stability (see for
 example [here](https://web.dev/articles/defining-core-web-vitals-thresholds#choice-of-percentile)).
 
-{{% warning notitle %}}
-Lighthouse reports during test automation are not recommended to be used for performance testing, but can be a helpful
-tool to do add a lower border for your performance to get an alert if something is wrong.
+{{% warning title="Performance Testing" %}}
+Lighthouse reports during test automation are not recommended for performance testing, but can serve as a lower bound check to alert if basic performance metrics degrade.
 {{% /warning %}}
 
 ### Lighthouse Audit Validation

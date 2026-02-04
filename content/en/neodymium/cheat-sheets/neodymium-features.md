@@ -47,9 +47,8 @@ Methods can have multiple `@DataSet()` annotations
 3. XML
 4. properties
 
-{{% warning notitle %}}
-**Attention:** only JSON is currently supported for complex test data with nested objects! Simple key/value pairs can be
-used in all formats.
+{{% warning title="Attention" %}}
+Only JSON is currently supported for complex test data with nested objects! Simple key/value pairs can be used in all formats.
 {{% /warning %}}
 
 **Test data access:**

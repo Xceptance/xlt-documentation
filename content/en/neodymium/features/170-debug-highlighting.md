@@ -8,9 +8,7 @@ description: >
   Highlighting the Last Interacted Element
 ---
 
-Debugging or analyzing test automation built on Selenium-based WebDriver can be challenging. Because test execution is
-often too fast to follow, it's hard to visualize which element was matched by the last selector. To address this, we
-have added a highlighting feature.
+Debugging or analyzing test automation built on Selenium-based WebDriver can be challenging. Because test execution is often too fast to follow, it is difficult to visualize which element was matched by the last selector. To address this, a highlighting feature is available.
 
 ### Highlighting the Current Selection
 
@@ -23,8 +21,8 @@ element, and the second on the `<header>` element found within it.
 The highlight is displayed for a configured duration, after which it is automatically reset to ensure it doesn't
 interfere with the next action. The default duration is **100 milliseconds** if no value is specified.
 
-{{% warning notitle %}}
-**Note:** The highlighting is disabled by default and when enabling it, the test runtime will increase.
+{{% warning title="Note" %}}
+The highlighting is disabled by default. Enabling it will increase the test runtime.
 {{% /warning %}}
 
 ### Configuration

@@ -12,11 +12,9 @@ The [Neodymium](https://github.com/Xceptance/neodymium-library/blob/master/src/m
 context class provides a function to assist with localization. `localizedText(String key)` retrieves a string for the
 key of the current locale. The mapping is stored within file `config/localization.yaml`.
 
-{{% warning notitle %}}
-Using the YAML format helps us to structure the localization file in an easy manner. Nevertheless, some YAML features
-may introduce pitfalls. The YAML spec defines an auto-conversion for keys and values. We expect the keys to always be of
-type `String`, so make sure to quote keys that would otherwise be converted to booleans or numbers. Using quotes also
-allows to use YAML special characters in values name.
+{{% warning title="YAML Pitfalls" %}}
+Using the YAML format aids in structuring the localization file. However, some YAML features may introduce pitfalls. 
+The YAML spec defines an auto-conversion for keys and values. Keys are expected to always be of type `String`, so ensure to quote keys that would otherwise be converted to booleans or numbers. Using quotes also allows for the use of YAML special characters in value names.
 {{% /warning %}}
 
 Consider having a site to test with different languages (English, Italian and French) and we need to check the
@@ -67,9 +65,8 @@ corresponding text.
 The default locale is en_US. To configure a locale set the property `neodymium.locale = <target locale>` in any
 `neodymium.properties` file or define it inside the test data and set it during runtime like in the following code.
 
-{{% note notitle %}}
-The current set locale will be read from file `config/neodymium.properties`. The property is named `neodymium.locale`
-and defaults to `neodymium.locale=en_US` if not set.
+{{% note %}}
+The currently configured locale is read from the file `config/neodymium.properties`. The property is named `neodymium.locale` and defaults to `neodymium.locale=en_US` if not set.
 {{% /note %}}
 
 Here is the JSON defining the test data.
@@ -117,8 +114,8 @@ text. In that case the `localizedText` function would try to search for a value 
 undefined. Finally, the `default` locale would be used to find a value. If the key can't be found overall then the
 function call will result in an assertion error.
 
-{{% note notitle %}}
-The special language fallback e.g. `en_US` or `en_GB` to the prefix `en` can be used to prevent duplication.
+{{% note %}}
+The special language fallback (e.g., `en_US` or `en_GB` to the prefix `en`) can be used to prevent duplication.
 {{% /note %}}
 
 If you need the localized text for a locale that differs from the configured one, you can add the locale as a parameter

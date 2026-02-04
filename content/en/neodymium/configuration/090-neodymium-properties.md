@@ -10,11 +10,8 @@ description: >
 
 ## Configuration via Properties Files
 
-Neodymium combines a couple of frameworks that all have their own configuration needs which also effects test execution.
-Most of these properties can be defined/overwritten with environment variables. However since this is an awkward way of
-configuration we introduced the file: `config/neodymium.properties`.
-The file contains a collection of properties that are used to configure some aspects of the used frameworks. It doesn't
-cover all the possible configurations for all the frameworks we've integrated.
+Neodymium combines several frameworks, each with its own configuration needs that affect test execution. Most properties can be defined or overwritten with environment variables. However, since this can be a less convenient configuration method, the file `config/neodymium.properties` was introduced.
+This file contains a collection of properties used to configure aspects of the integrated frameworks. It does not cover all possible configurations for all integrated frameworks.
 Have a look at this [file](https://github.com/Xceptance/neodymium-library/blob/master/config/neodymium.properties) since
 it lists all supported properties as well as their default values and its purpose or take a look at the
 `[NeodymiumConfiguration](https://github.com/Xceptance/neodymium/blob/master/src/main/java/com/xceptance/neodymium/util/NeodymiumConfiguration.java)`
@@ -53,19 +50,18 @@ If one property exists in multiple of those places. The value of the higher rank
 This makes it possible to define `config/dev-neodymium.properties` for local testing without changing the setup for
 CI/CD, which is quite useful.
 
-{{% note notitle %}}
-The Order in which the properties are loaded is as follows:
+{{% note %}}
+The order in which the properties are loaded is as follows:
 
 1. System properties
-2. temporary config file (e.g. `config/temp-neodymium.properties`)
+2. Temporary config file (e.g. `config/temp-neodymium.properties`)
 3. `config/dev-neodymium.properties`
 4. System environment variables
 5. `config/credentials.properties`
 6. `config/neodymium.properties`
 
-If one property exists in multiple of those places. The value of the higher ranking file is taken.
-This makes it possible to define `config/dev-neodymium.properties` for local testing without changing the setup for
-CI/CD, which is quite useful.
+If a property exists in multiple locations, the value from the higher-ranking source is taken.
+This makes it possible to define `config/dev-neodymium.properties` for local testing without changing the setup for CI/CD, which is quite useful.
 {{% /note %}}
 
 The next sections contain all properties which can be configured in Neodymium.
@@ -86,14 +82,13 @@ The next sections contain all properties which can be configured in Neodymium.
 | neodymium.url.includeList | &lt;none&gt;  | A list of URLs that the test is allowed to visit separated by whitespaces   |
 | neodymium.url.excludeList | &lt;none&gt;  | A list of URLs that the test is forbidden to visit separated by whitespaces |
 
-{{% note notitle %}}
-When defining url.protocol, url.host, url.path and url.site the final URL is constructed as follows:
+{{% note %}}
+When defining `url.protocol`, `url.host`, `url.path`, and `url.site`, the final URL is constructed as follows:
 
 ```properties
 neodymium.url=${neodymium.url.protocol}://${neodymium.url.host}${neodymium.url.path}
 neodymium.url.path=${neodymium.url.port}/
 ```
-
 {{% /note %}}
 
 ### Localization
@@ -128,8 +123,7 @@ neodymium.url.path=${neodymium.url.port}/
 
 ### Neodymium context
 
-Responsive design breakpoints. Determines at which page width a site is considered to be displayed on a small, medium,
-large oder extra large device.
+Responsive design breakpoints. Determines at which page width a site is considered to be displayed on a small, medium, large, or extra large device.
 
 | Property                                   | Default value | Description                                                                    |
 |--------------------------------------------|---------------|--------------------------------------------------------------------------------|
@@ -298,8 +292,7 @@ Each value rages from 0.0 - 1.0 representing 0% to 100%.
 
 ### Popup blocker
 
-We introduced a simple popup blocker to get rid of test affecting popups on a webpage. To use it just configure a
-CSS selector which targets the close button of the popup.
+A simple popup blocker was introduced to handle test-affecting popups on a webpage. To use it, simply configure a CSS selector which targets the close button of the popup.
 
 | Property                           | Default value | Description                                                                                                      |
 |------------------------------------|---------------|------------------------------------------------------------------------------------------------------------------|
@@ -325,9 +318,8 @@ test environment named `saucelabs` which can be referenced in the browser settin
 means that in order to create that particular web driver defined in `browser.properties` the information from
 `credentials.properties` will be taken into account.
 
-{{% note notitle %}}
-Neodymium already contains a `credentials.properties.template` file which can be copied and renamed to
-`credentials.properties`.
+{{% note %}}
+Neodymium already contains a `credentials.properties.template` file which can be copied and renamed to `credentials.properties`.
 {{% /note %}}
 
 Here are the example properties from the paragraph above.

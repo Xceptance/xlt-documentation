@@ -8,10 +8,7 @@ description: >
   Everything about the custom classes extending Selenide and Allure. Also covering the TestData handling class and Cucumber WebDriverUtils. 
 ---
 
-We added several utility classes in order to address problems that most test automation project face.
-We won't cover every function at this place, but we want to bring the classes to your awareness in order to have a look
-if the needed functionality is already implemented.
-If you encounter other things that should be supported by Neodymium don't hesitate to get in contact with us.
+Several utility classes have been added to address problems that most test automation projects face. Not every function is covered here, but the classes are introduced to raise awareness of implemented functionality. If other things should be supported by Neodymium, please get in touch.
 
 ## SelenideAddons
 
@@ -21,7 +18,7 @@ functions that are hard to use if you don't have deeper knowledge of Selenide.
 
 ### Regex Matching Attributes
 
-We extended Selenide with regex to match values and attributes.
+Selenide has been extended with regex to match values and attributes.
 
 ```java
 // validate that the value attribute contains non digit characters using a regex
@@ -90,8 +87,7 @@ SelenideAddons.dragAndDrop((SelenideElement) elementToMove, (int) horizontalMove
 
 ### Opening HTML snippets
 
-Sometimes it comes handy to open an HTML snippet within the current browser and perform interactions or validations upon
-it e.g. if you validate emails.
+Sometimes it comes in handy to open an HTML snippet within the current browser and perform interactions or validations upon it, e.g. when validating emails.
 
 ```java
 String htmlSnippet = "<div dir=\"auto\">Hi<div dir=\"auto\"><br></div><div dir=\"auto\">How are you?)</div><div dir=\"auto\"><br></div><div dir=\"auto\">Bye</div></div>";
@@ -180,12 +176,9 @@ To access the test data you can use `Neodymium.getData().get(key)` to read the v
 conversion methods provided by the `TestData` class for some basic types (boolean, double, float, int, long, String). We
 provide two methods for each type. The first one is `as<Type>(String key)` which raises an `IllegalArgumentException` if
 the data field can't be found. The second method is `as<Type>(String key, <Type> default)` which returns the given
-default value if the data field can't be found. If you need to check if a certain key exists you can use
-`exists(String key)`.
+default value if the data field can't be found. If it is necessary to check if a certain key exists, `exists(String key)` can be used.
 
-Furthermore, we provide a function that can instantiate POJO models via reflection. Please see the following example to
-understand how to use it. Please visit also our [Test data provider]({{< relref "../features/020-test-data.md" >}}) wiki page for more
-examples on this.
+Furthermore, a function is provided that can instantiate POJO models via reflection. Please see the following example to understand how to use it. Please also visit the [Test data provider]({{< relref "../features/020-test-data.md" >}}) wiki page for more examples on this.
 
 <h4>Example</h4>
 
