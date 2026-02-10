@@ -63,6 +63,8 @@ Control Selenide's behavior.
 
 Define browser profiles referenced by `@Browser("<profileName>")`.
 
+The syntax is `browserprofile.<profileName>.<Property> = value`.
+
 | Property | Mandatory | Description |
 |---|---|---|
 | `name` | YES | Display name in reports. |

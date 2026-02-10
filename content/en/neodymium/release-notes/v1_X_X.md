@@ -1,6 +1,6 @@
 ---
 layout: manual
-title: 1.X.X
+title: Neodymium 1.X.X
 
 weight: 950
 type: docs
