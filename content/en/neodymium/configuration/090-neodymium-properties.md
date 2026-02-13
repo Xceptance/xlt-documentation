@@ -123,7 +123,7 @@ neodymium.url.path=${neodymium.url.port}/
 
 ### Neodymium context
 
-Responsive design breakpoints. Determines at which page width a site is considered to be displayed on a small, medium, large, or extra large device.
+Responsive design breakpoints determines at which page width a site is considered to be displayed on a small, medium, large, or extra large device. The initial random value is used to make randomized testcases repeatable.
 
 | Property                                   | Default value | Description                                                                    |
 |--------------------------------------------|---------------|--------------------------------------------------------------------------------|
