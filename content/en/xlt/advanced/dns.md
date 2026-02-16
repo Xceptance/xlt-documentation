@@ -30,9 +30,19 @@ Enable IP address logging to gain visibility into DNS resolution. Logged IPs app
 xlt.dns.recordAddresses = true
 ```
 
-{{% note notitle %}}
-IPs are logged only at resolution time. Subsequent requests using the cached address are not logged, reducing data file size.
-{{% /note %}}
+### Request-Specific Logging
+
+While `xlt.dns.recordAddresses` logs IP addresses once per resolution, you can also collect the IP address used for *every* individual request. This is particularly useful when a host resolves to multiple IPs and you want to track which server handled each specific request.
+
+```bash
+com.xceptance.xlt.results.data.request.collectUsedIpAddress = true
+```
+
+Additionally, XLT can capture more detailed request information, such as the HTTP method and, for POST requests, the form data and its encoding. Use this sparingly, as it significantly increases the size of result data.
+
+```bash
+com.xceptance.xlt.results.data.request.collectAdditionalRequestInfo = true
+```
 
 ## Improve Distribution
 
@@ -141,6 +151,8 @@ These DNS properties only apply when using XLT's WebClient or HttpClient. Custom
 | `xlt.dns.providers.dnsjava.resolver.servers` | (empty) | Comma-separated list of DNS server addresses for `dnsjava`. Empty uses system defaults. |
 | `xlt.dns.providers.dnsjava.resolver.timeout` | `5` | DNS server timeout in seconds for `dnsjava`. |
 | `xlt.dns.providers.dnsjava.edns.version` | `0` | EDNS version for `dnsjava`. Set to `-1` to disable. |
+| `com.xceptance.xlt.results.data.request.collectUsedIpAddress` | `false` | Whether to collect the specific IP address used for every request. |
+| `com.xceptance.xlt.results.data.request.collectAdditionalRequestInfo` | `false` | When enabled, collects HTTP method and POST form data for each request. |
 
 > [!NOTE]
 > These properties are typically defined in `project.properties` or `default.properties` for test suites, except for `xlt.dns.providers.platform.cache.duration` which is often a system-wide setting.
