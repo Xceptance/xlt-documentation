@@ -9,7 +9,7 @@ description: >
 ---
 ## Motivation
 
-This chapter explains the setup of a base test environment and how to configure the components of XLT correctly. Please ensure you have read the [Architecture]({{< relref "architecture" >}}) guide first. You should also have created a test suite by now (see [Test Development]({{< relref "test-development" >}})) and likely configured a first test (see [Test Setup]({{< relref "test-setup" >}})).
+This chapter explains the setup of a base test environment and how to configure the components of XLT correctly. Please ensure you have read the [Architecture]({{< relref "xlt/about/architecture" >}}) guide first. You should also have created a test suite by now (see [Test Development]({{< relref "test-development" >}})) and likely configured a first test (see [Test Setup]({{< relref "test-setup" >}})).
 
 The setup of the environment and execution of a test consists of the following steps:
 
@@ -37,7 +37,7 @@ You can also start agentcontrollers manually on remote machines, if you like.
 
 This is the most typical XLT deployment. There are many agentcontrollers available and already started and configured, you only have to tell your mastercontroller which of these should take part in the next load test run.
 
-The remote machines can be in the cloud, in your own datacenter, machines under your table, or all together.
+The remote machines can be in the cloud, in your own datacenter, within your local infrastructure, or all together.
 
 ## Starting the Agentcontroller
 
@@ -118,9 +118,9 @@ cd <XLT>/bin
 
 A screen appears that displays the command line menu as shown below:
 
-```
-Xceptance LoadTest 5.2.0
-Copyright (c) 2005-2020 Xceptance Software Technologies GmbH. All rights reserved.
+```text
+Xceptance LoadTest 10.0.0
+Copyright (c) 2005-2025 Xceptance Software Technologies GmbH. All rights reserved.
 XLT is Open Source and available under the Apache License 2.0.
 
 Checking for agent controller reachability and XLT version conflicts ... OK
@@ -164,7 +164,7 @@ The following options are available:
 
 * **Show agent controller information (i)**: Displays information about the configured agentcontrollers such as XLT, Java, and system status). If a test suite has already been uploaded, it displays an overview of the configured load profile too, e.g.:
 
-```
+```text
 -------------------------------------------------------------------------------
 Test Case | Arrival Rate [eff] | Users [eff] | Load Factor | Measurement Period
 -------------------------------------------------------------------------------
@@ -220,8 +220,8 @@ cd <XLT>/bin
 See below for what the screen displays in _auto_ mode:
 
 ```cmd
-Xceptance LoadTest 5.2.0
-Copyright (c) 2005-2020 Xceptance Software Technologies GmbH. All rights reserved.
+Xceptance LoadTest 10.0.0
+Copyright (c) 2005-2025 Xceptance Software Technologies GmbH. All rights reserved.
 XLT is Open Source and available under the Apache License 2.0.
 
 Uploading test suite ...
@@ -266,7 +266,7 @@ For long-running tests, it is recommended to run the test without the `-auto` op
 
 ### Non-Interactive Mode (Scripted Commands)
 
-In order to better fit into highly-automated environments, XLT 5.2.1 improved the mastercontroller in order to ease scripting. With the command line option `-c <commandList>` (or `--commands <commandList>`) you can specify which commands the mastercontroller should execute on your behalf. This way, typical use cases can be scripted quite easily:
+In order to better fit into highly-automated environments, the mastercontroller was improved in order to ease scripting. With the command line option `-c <commandList>` (or `--commands <commandList>`) you can specify which commands the mastercontroller should execute on your behalf. This way, typical use cases can be scripted quite easily:
 
 * upload the test suite and start the load test (`mastercontroller.sh -c upload,start`)
 * download the results of a running load test and generate a report from them (`mastercontroller.sh -c download,report`)

@@ -12,23 +12,22 @@ description: >
 
 ### Hardware
 
-- CPU at 1.5GHz or higher
-- 1.0 GB RAM
-- 1.0 GB available in the hard disk (default installation requires
-    about 150 MB, but test results might need additional capacity)
+- Multi-core processor (2+ cores)
+- 4 GB RAM (8 GB recommended for load generation)
+- 1 GB available disk space
 
 ### Software
 
 XLT will work on any operating system for which a current JVM and the other software prerequisites are available, so make sure you have the following:
 
-- current JVM (see [release notes]({{< relref "../release-notes" >}}) for currently recommended version)
-- a browser to view the html load test reports in (note that JavaScript has to be enabled to utilize all functionality)
+- Java 17 or later (see [release notes]({{< relref "../release-notes" >}}) for currently recommended version)
+- A browser to view the HTML load test reports (JavaScript must be enabled)
 
 ## Installation
 
 ### Download
 
-The XLT archive can either be obtained from the [Xceptance website](https://www.xceptance.com/en/xlt/download.html) or from Xceptance's custom Maven-compatible repository (see [below]({{< relref "#maven" >}})) which allows users of Maven and Ivy to conveniently integrate XLT and all of its dependencies into their build processes.
+The XLT archive can be obtained from the [Xceptance website](https://www.xceptance.com/en/xlt/download.html) or from Maven Central (see [below]({{< relref "#maven" >}})) which allows users of Maven and Gradle to conveniently integrate XLT and all of its dependencies into their build processes.
 
 ### Extract
 
@@ -45,17 +44,12 @@ Please make sure the executable directory of your Java installation is listed in
     <dependency>
         <groupId>com.xceptance</groupId>
         <artifactId>xlt</artifactId>
-        <version>9.0.0</version>
+        <version>10.0.0</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
 ```
 
-{{% warning title="Version" %}}
-The version above might not be the latest. Please adjust the version information accordingly.
-
-For versions below XLT 5.0.x you need to [configure the Xceptance repository]({{< relref "maven-builds" >}}).
-{{% /warning %}}
 
 ## Updating
 

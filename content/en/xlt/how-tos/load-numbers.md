@@ -36,7 +36,7 @@ We need at least a few numbers from which to derive our calculation, such as:
 * Peak page views/h: for example, 250,000 page views.
 * Peak orders/h: for example, 200 orders.
 
-[^1]: [What are visits?]({{< relref "glossary#visit" >}})
+[^1]: [What are visits?]({{< relref "xlt/about/glossary#visit" >}})
 
 Based on these assumptions, we can assemble a fairly simple yet sufficiently accurate load mix. Of course, we can also analyze current log files and try to devise something more precise, but that will only be a snapshot. Traffic is very volatile; hence, we can be very generous when setting up this mix.
 

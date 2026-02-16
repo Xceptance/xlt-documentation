@@ -66,7 +66,7 @@ Basic settings for creating a new load test report: adjusting the time range.
 
 By clicking **Show Advanced Settings** five more sections will appear:
 
-* in _Merge Rules_ you can override the project's [merge rules]({{< relref "merge-rules" >}}) (to avoid unexpected side effects we recommend to paste your complete set of merge rules here, even the ones that may have been already defined in the project),
+* in _Merge Rules_ you can override the project's [merge rules]({{< relref "xlt/advanced/merge-rules" >}}) (to avoid unexpected side effects we recommend to paste your complete set of merge rules here, even the ones that may have been already defined in the project),
 * in _Agent Includes/Excludes_ you can define include and exclude patterns for [agents]({{< relref "report-options#report-for-a-subset-of-agents" >}}),
 * in _Test Scenario Includes/Excludes_ those for
 [test cases]({{< relref "report-options#excluding-test-scenarios" >}}),

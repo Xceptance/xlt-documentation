@@ -28,10 +28,10 @@ Jenkins is a widely used continuous integration system. It helps set up and cont
 
 The plug-in enriches the standard Jenkins project and build pages. On a build's page, the corresponding load test report is available, as well as a list of any success criteria that may have been violated during this build. The project page displays trend charts and provides links to access the trend reports.
 
-
 ### Installation Instructions
 
-First, check the Jenkins version you are using. The XLT plug-in requires v1.642.3 or later.
+
+First, check the Jenkins version you are using. The XLT plug-in requires a recent Jenkins version.
 
 The Jenkins plug-in is free to clone or download on [Github](https://github.com/Xceptance/XLT-jenkins-plugin). If you do not want to build it yourself, the latest prebuilt artifacts can be downloaded from [Maven Central](https://search.maven.org/artifact/com.xceptance/xlt-jenkins-plugin).
 
@@ -48,9 +48,13 @@ A regular XLT load test project will be the foundation for your automated load t
 
 When the code is complete, prepare the test configurations for which you want to run automatic load tests as separate properties files. Now, test your load test suite and configurations thoroughly. Everything should work as expected when run manually.
 
+### Configuration for a Free-Style Job
+
 #### Create a Load Test Build Project
 
 An automated load test suite requires a separate build project. The reason is that the test suite itself needs to be retrieved from a version control system, and the code needs to be compiled. This is best accomplished in its own build project, so let's create one now. In Jenkins, create the load test project and give it a meaningful name and description. Choose "free-style project" as the project type. Now, the project needs to be configured.
+
+#### Step Execution
 
 **Step 1 - Connect to your version control system**
 
@@ -86,7 +90,7 @@ Once you're done with the configuration, start your build project manually to ve
 To run your load test automatically, you need to define the event that should trigger the load test build project. You basically have two options:
 
 1. You can run the load test once another build project has completed successfully (e.g., after your application has been built and deployed). To do this, configure your load test project to depend on the application's main build project.
-1. You might also run your load test periodically (e.g., every night) as an independent or stand-alone project. In this case, you would need to configure a time pattern that defines when Jenkins will execute the project.
+2. You might also run your load test periodically (e.g., every night) as an independent or stand-alone project. In this case, you would need to configure a time pattern that defines when Jenkins will execute the project.
 
 ### Advanced Configuration
 
@@ -97,7 +101,7 @@ Many other details of the XLT plug-in functionality can be configured. This incl
 * Trend Charts and Success Criteria
 * Chart Options
 
-Each configuration value provides extensive help text, so ensure you click the _Help_ icon next to the value if you are unsure what can be configured there.
+Each configuration value provides extensive help text, so ensure you click the *Help* icon next to the value if you are unsure what can be configured there.
 
 {{% note notitle %}}Note that the XLT plug-in can be added to a project/job not only once, but multiple times. This allows running multiple tests with the same test suite in a row (e.g., a short smoke test followed by a longer performance test). In this case, each XLT build step must be configured individually.{{% /note %}}
 
@@ -105,7 +109,7 @@ Each configuration value provides extensive help text, so ensure you click the _
 
 As stated above, a job might perform multiple load tests in one build. Each of these load tests creates a result belonging to a specific result set, which is used as input not only for chart generation but also for creating summary, trend, and difference reports.
 
-Since it makes no sense to merge all load test results into a single result set, the question was: How can we identify one load test across several builds of the same job? This can be done by using an identifier that is distinct for all load test steps in the same job: the step identifier or `stepId`. 
+Since it makes no sense to merge all load test results into a single result set, the question was: How can we identify one load test across several builds of the same job? This can be done by using an identifier that is distinct for all load test steps in the same job: the step identifier or `stepId`.
 
 {{< image src="how-to/jenkins/BuildSteps.png" >}}
 Build Steps in a Job
@@ -135,18 +139,25 @@ Furthermore, the _xlt_ pipeline step returns a result object that can be queried
 * **runFailed** - (boolean) Indicates whether the build status is FAILED.
 * **conditionFailed** - (boolean) Indicates whether a criterion is not met.
 * **conditionError** - (boolean) Indicates whether a criterion caused an error.
-* **conditionCritical** - (boolean) Indicates whether the build is marked as critical according to the given 'markCritical' option.
-* **conditionMessage** - (string) Summary message of all failed and erroneous criteria.
+* **stepId** - (string) The step ID of the test run.
+* **jobName** - (string) The name of the Jenkins job.
+* **buildNumber** - (string) The number of the build.
+* **timestamp** - (string) The timestamp of the build.
+* **duration** - (string) The duration of the load test.
 * **reportUrl** - (string) XLT Report URL.
-* **diffReportUrlv - (string) XLT Difference Report URL.
+* **diffReportUrl** - (string) XLT Difference Report URL.
 * **testFailures** - (list) Information about failed tests. Each object in the list has the following fields:
-	* **testCaseName** - (string) Name of the test.
-	* **actionName** - (string) Name of the action where the error occurred.
-	* **message** - (string) Error message.
+  * **Step identifier**: The identifier for the result.
+  * **Run ID**: The run ID (timestamp) of the test run.
+  * **Date**: The date and time of the test run.
+  * **Duration**: The duration of the load test.
+  * **Total**: The total number of transactions executed.
+  * **Failed**: The number of failed transactions.
+  * **Errors**: The number of errors that occurred.
+  * **message** - (string) Error message.
 * **criteriaFailures** - (list) Information about criteria whose condition is not met. Each object in this list has the following fields:
-	* **id** - (string) The criterion's ID.
-	* **condition** - (string) The criterion's condition.
-	* **message** - (string) Failure/error message.
+  * **id** - (string) The criterion's ID.
+  * **message** - (string) Error message.
 * **criteriaErrors** - (list) Information about criteria whose evaluation caused an error. The objects have the same fields as `criteriaFailures`.
 
 Example:

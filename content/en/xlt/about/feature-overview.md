@@ -53,7 +53,7 @@ Each test setup is just a set of property files that can be prepared upfront and
 
 Reporting was a primary driver for creating another load test tool. Most tools didn't offer sufficient and detailed reports or hid important data points.
 
-XLT comes with ready-to-use test reports. These reports are easily adjustable in [content]({{< relref "report-options" >}}) and [layout]({{< relref "report-configuration" >}}). It's even possible to incorporate [custom data]({{< relref "custom-data" >}}) and reporting. Requests can be [grouped]({{< relref "merge-rules" >}}) according to your needs. It's also possible to generate [comparison]({{< relref "reports#comparison-report" >}}) and [trend reports]({{< relref "reports#trend-report" >}}) to get a better overview of how test runs have developed over time.
+XLT comes with ready-to-use test reports. These reports are easily adjustable in [content]({{< relref "report-options" >}}) and [layout]({{< relref "report-configuration" >}}). It's even possible to incorporate [custom data]({{< relref "custom-data" >}}) and reporting. Requests can be [grouped]({{< relref "xlt/advanced/merge-rules" >}}) according to your needs. It's also possible to generate [comparison]({{< relref "reports#comparison-report" >}}) and [trend reports]({{< relref "reports#trend-report" >}}) to get a better overview of how test runs have developed over time.
 
 {{< image src="user-manual/test-report-small.png" large="user-manual/test-report.png" >}}
 XLT Performance Test Report
@@ -65,7 +65,7 @@ XLT uses open data formats to support custom analytics and reporting. All measur
 
 ## CI/CD Ready - Jenkins Module
 
-XLT provides the tools to make continuous load testing an engineering habit. By offering a [Jenkins plug-in]({{< relref "ci-cd" >}}), you can run your XLT tests with every build. You don't have to deal with XLT tools directly, meaning you don't need to write shell scripts to drive the load test. Instead, you simply configure basic settings via the Jenkins UI, and the plug-in handles the necessary steps with your provided parameters. Furthermore, the plug-in automatically stores results, creates load test reports, and updates trend reports. By defining success criteria (e.g., no errors and maximum runtime below 10 seconds), you can automate the evaluation of load test results. The XLT Jenkins plug-in can also visualize long-term trends across multiple builds. Simply define the values you want to monitor over time.
+XLT provides the tools to make continuous load testing an engineering habit. By offering a [Jenkins plug-in]({{< relref "jenkins" >}}), you can run your XLT tests with every build. You don't have to deal with XLT tools directly, meaning you don't need to write shell scripts to drive the load test. Instead, you simply configure basic settings via the Jenkins UI, and the plug-in handles the necessary steps with your provided parameters. Furthermore, the plug-in automatically stores results, creates load test reports, and updates trend reports. By defining success criteria (e.g., no errors and maximum runtime below 10 seconds), you can automate the evaluation of load test results. The XLT Jenkins plug-in can also visualize long-term trends across multiple builds. Simply define the values you want to monitor over time.
 
 ## Realtime Test Monitoring
 

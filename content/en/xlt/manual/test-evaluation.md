@@ -15,8 +15,8 @@ When your load test has finished, you might want to render a report based on the
 ### Command Line
 
 ```bash
-./create_report.sh ../results/20200202-123400
-firefox ../reports/20200202-123400/index.html
+./create_report.sh ../results/20250320-123400
+firefox ../reports/20250320-123400/index.html
 ```
 
 ### Master Controller
@@ -64,7 +64,7 @@ Also on your test report overview, in *General Information*, you will find the C
 Concurrent Users Chart
 {{< /image >}}
 
-#### Requests
+#### Requests Overview
 
 Right below the Concurrent Users chart you'll find the Requests Per Second and Request Runtime charts.
 
@@ -80,7 +80,7 @@ Requests Per Second Chart
 Request Runtime Chart
 {{< /image >}}
 
-#### Errors
+#### Errors Overview
 
 Further below is the Transaction Errors Chart.
 
@@ -147,7 +147,7 @@ The **Bandwidth** tab displays information about the used incoming and outgoing 
 
 #### Slowest Requests
 
-Starting with XLT 9.0.x, the report features a *Slowest Requests* page that lists the top slowest requests in your load test with many details. To open this page, click on the corresponding entry in the *Requests* submenu of the navigation bar.
+The report features a *Slowest Requests* page that lists the top slowest requests in your load test with many details. To open this page, click on the corresponding entry in the *Requests* submenu of the navigation bar.
 
 By default, the *Slowest Requests* page lists up to 500 requests, with a limit of 20 requests per request name. To be counted as a slow request, the runtime of a request must be between 3 seconds and 10 minutes. All of these default limits can be reconfigured in the report generator configuration using the following properties:
 
@@ -255,8 +255,8 @@ If you started the master controller in [interactive mode]({{< relref "test-exec
 The master controller's command line menu in interactive mode looks like this:
 
 ```dos
-Xceptance LoadTest 5.2.0
-Copyright (c) 2005-2020 Xceptance Software Technologies GmbH. All rights reserved.
+Xceptance LoadTest 10.0.0
+Copyright (c) 2005-2025 Xceptance Software Technologies GmbH. All rights reserved.
 XLT is Open Source and available under the Apache License 2.0.
 
 (u) Upload test suite

@@ -12,7 +12,7 @@ description: >
 
 In a zero-trust environment, not only must the client verify the server's identity, but the server must also verify the client's identity. This is known as [Mutual Transport Layer Security (mTLS)](https://www.cloudflare.com/learning/access-management/what-is-mutual-tls/).
 
-XLT has always supported mTLS. Starting with XLT 8.2.0, it provides configuration options to set this up more conveniently and, notably, independently of your scenarios.
+XLT supports mTLS and provides configuration options to set this up conveniently and, notably, independently of your scenarios.
 
 To run tests with XLT in such environments, the underlying HtmlUnit WebClient must be configured with:
 
@@ -23,7 +23,7 @@ The trust store setup is needed only if the server key was not signed by one of 
 
 The key store containing the client key can be configured as follows:
 
-```
+```properties
 com.xceptance.xlt.tls.keyStore.file = config/keystore.p12
 com.xceptance.xlt.tls.keyStore.password = <store-pw>
 ```
@@ -32,7 +32,7 @@ Note that the path to the key store must be relative to your test suite's root d
 
 The trust store with the CA certificate is set up as follows:
 
-```
+```properties
 com.xceptance.xlt.tls.trustStore.file = config/truststore.p12
 com.xceptance.xlt.tls.trustStore.password = <store-pw>
 ```

@@ -12,7 +12,7 @@ Organizations are containers for projects, which in turn are the containers for 
 
 ## XTC Project Types
 
-Projects can either be of type [monitoring]({{< relref "monitoring" >}}) or [load test]({{< relref "loadtesting" >}}). They have a different set of properties depending on their nature.
+Projects can either be of type [monitoring]({{< relref "xtc/monitoring" >}}) or [load test]({{< relref "xtc/loadtesting" >}}). They have a different set of properties depending on their nature.
 
 In short, **Load Test Projects** are used to perform a number of load/performance tests, each of which can be configured individually (e.g. for gradually increasing the load applied to the system). XTC will save the results and generate performance reports for each load test it runs, so you have test management and evaluation conveniently available in one place.
 
@@ -24,7 +24,7 @@ The project type will be indicated in the project tile:
 A monitoring project on the dashboard of the _Xceptance_ organization.
 {{< /image >}}
 
-The project menu on the left side will look a bit different depending on whether you are currently viewing a [load test project]({{< relref "loadtesting" >}}) or a [monitoring project]({{< relref "monitoring" >}}):
+The project menu on the left side will look a bit different depending on whether you are currently viewing a [load test project]({{< relref "xtc/loadtesting" >}}) or a [monitoring project]({{< relref "xtc/monitoring" >}}):
 
 {{< image src="xtc/project_menus.png" >}}
 The menu of a monitoring project (left) and a load testing project (right).
@@ -44,7 +44,7 @@ You will be shown a list of the projects in this organization:
 A list of projects in an organization, as seen by the organization administrator.
 {{< /image >}}
 
-By clicking the `+` button top right, you will see a popup menu to add either a [Monitoring Project]({{< relref "monitoring" >}}) or a [Load Testing Project]({{< relref "loadtesting" >}}). The project nature can not be changed once the project was created.
+By clicking the `+` button top right, you will see a popup menu to add either a [Monitoring Project]({{< relref "xtc/monitoring" >}}) or a [Load Testing Project]({{< relref "xtc/loadtesting" >}}). The project nature can not be changed once the project was created.
 
 {{< image src="xtc/ui_newProject.png" >}}
 Adding a new project
