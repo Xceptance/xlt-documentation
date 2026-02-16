@@ -30,7 +30,6 @@ The plug-in enriches the standard Jenkins project and build pages. On a build's 
 
 ### Installation Instructions
 
-
 First, check the Jenkins version you are using. The XLT plug-in requires a recent Jenkins version.
 
 The Jenkins plug-in is free to clone or download on [Github](https://github.com/Xceptance/XLT-jenkins-plugin). If you do not want to build it yourself, the latest prebuilt artifacts can be downloaded from [Maven Central](https://search.maven.org/artifact/com.xceptance/xlt-jenkins-plugin).
@@ -136,28 +135,22 @@ Since XLT 4.11.0, the Jenkins XLT plug-in fully supports this new concept. It pr
 Parameters and their values can be easily obtained using Jenkins' Snippet Generator. You can use the UI to configure the plug-in as usual and get the corresponding pipeline script snippet by clicking the 'Generate Pipeline Script' button.
 
 Furthermore, the _xlt_ pipeline step returns a result object that can be queried for details if desired. The result object has the following fields:
+
 * **runFailed** - (boolean) Indicates whether the build status is FAILED.
 * **conditionFailed** - (boolean) Indicates whether a criterion is not met.
 * **conditionError** - (boolean) Indicates whether a criterion caused an error.
-* **stepId** - (string) The step ID of the test run.
-* **jobName** - (string) The name of the Jenkins job.
-* **buildNumber** - (string) The number of the build.
-* **timestamp** - (string) The timestamp of the build.
-* **duration** - (string) The duration of the load test.
+* **conditionCritical** - (boolean) Indicates whether the build is marked as critical according to the given 'markCritical' option.
+* **conditionMessage** - (string) Summary message of all failed and erroneous criteria.
 * **reportUrl** - (string) XLT Report URL.
-* **diffReportUrl** - (string) XLT Difference Report URL.
+* **diffReportUrlv - (string) XLT Difference Report URL.
 * **testFailures** - (list) Information about failed tests. Each object in the list has the following fields:
-  * **Step identifier**: The identifier for the result.
-  * **Run ID**: The run ID (timestamp) of the test run.
-  * **Date**: The date and time of the test run.
-  * **Duration**: The duration of the load test.
-  * **Total**: The total number of transactions executed.
-  * **Failed**: The number of failed transactions.
-  * **Errors**: The number of errors that occurred.
+	* **testCaseName** - (string) Name of the test.
+	* **actionName** - (string) Name of the action where the error occurred.
   * **message** - (string) Error message.
 * **criteriaFailures** - (list) Information about criteria whose condition is not met. Each object in this list has the following fields:
   * **id** - (string) The criterion's ID.
-  * **message** - (string) Error message.
+	* **condition** - (string) The criterion's condition.
+	* **message** - (string) Failure/error message.
 * **criteriaErrors** - (list) Information about criteria whose evaluation caused an error. The objects have the same fields as `criteriaFailures`.
 
 Example:

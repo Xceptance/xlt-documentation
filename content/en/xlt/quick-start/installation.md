@@ -20,7 +20,7 @@ description: >
 
 XLT will work on any operating system for which a current JVM and the other software prerequisites are available, so make sure you have the following:
 
-- Java 17 or later (see [release notes]({{< relref "../release-notes" >}}) for currently recommended version)
+- Java 21 or later (see [release notes]({{< relref "../release-notes" >}}) for currently recommended version)
 - A browser to view the HTML load test reports (JavaScript must be enabled)
 
 ## Installation
@@ -44,12 +44,15 @@ Please make sure the executable directory of your Java installation is listed in
     <dependency>
         <groupId>com.xceptance</groupId>
         <artifactId>xlt</artifactId>
-        <version>10.0.0</version>
+        <version>9.2.2</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
 ```
 
+{{% note title="Latest Version" %}}
+The version above might not be the latest. Please adjust the version information accordingly.
+{{% /note %}}
 
 ## Updating
 

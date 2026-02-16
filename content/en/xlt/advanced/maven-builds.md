@@ -17,7 +17,7 @@ XLT is published to [Maven Central](https://search.maven.org/artifact/com.xcepta
     <dependency>
         <groupId>com.xceptance</groupId>
         <artifactId>xlt</artifactId>
-        <version>10.0.0</version>
+        <version>9.2.2</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
@@ -26,7 +26,6 @@ XLT is published to [Maven Central](https://search.maven.org/artifact/com.xcepta
 {{% note title="Dependency Scopes" %}}
 When adding **xlt** as a project dependency, you should always use the `provided` scope. This means XLT is provided at runtime by the container. This reduces the upload size when starting a load test, thereby speeding up the process.  
 {{% /note %}}
-
 
 
 {{% note title="Version Update" %}}
