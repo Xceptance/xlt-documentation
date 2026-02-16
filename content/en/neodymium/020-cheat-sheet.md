@@ -1,20 +1,121 @@
 ---
-title: "Neodymium Cheat-Sheet: Features & Usage"
-weight: 10
+title: "Cheat Sheet"
+weight: 20
 type: docs
 description: >
   Quick reference for all Neodymium features and how to use them on a single page.
 ---
-
-{{< TODO >}}single page cheat sheet - decide if we want to use multiple pages or this and add the additional information to the multiple pages{{< /TODO >}}
-
 
 ## Setup & Installation
 
 - **Java 17+**: Required for Neodymium 5.x+
 - **Maven**: Used for build and dependency management
 - **Docker**: Use `maven:3-openjdk-17` or `markhobson/maven-chrome:jdk-17` for quick setup
-- **FFmpeg**: (Optional) For video recording of test runs
+- **FFmpeg**: (Optional) For mp4 video recording of test runs
+
+## Defining and Running Tests
+
+### JUnit5
+
+```java
+@Browser
+public class SomeTest
+{
+    @NeodymiumTest
+    public void someTestMethod()
+    {
+        // ...
+    }
+}
+```
+
+### JUnit4
+
+```java
+@RunWith(NeodymiumRunner.class)
+@Browser
+public class SomeTest
+{
+    @Test
+    public void someTestMethod()
+    {
+        // ...
+    }
+}
+```
+
+## Run Tests
+
+- In IDE as JUnit test
+- `mvn clean test` (all tests)
+- `mvn clean test -Dtest=TestClass` (specific class)
+- `mvn clean test -Dtest=TestClass#testMethod` (specific method)
+
+## Generate Reports
+
+* `mvn allure:report` to generate the report
+* `mvn allure:serve` to generate and show the report
+* `mvn clean test allure:report` to run all tests and generate the report
+
+### Recommended pom.xml
+
+```xml
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+
+        <allure.version>2.29.0</allure.version>
+        <aspectj.version>1.9.22</aspectj.version>
+        <neodymium.version>5.3.0</neodymium.version>
+        <surefire.version>3.5.2</surefire.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire.version}</version>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                    <systemPropertyVariables>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                        <selenide.reports>${project.build.directory}/selenide-results</selenide.reports>
+                    </systemPropertyVariables>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure.version}</version>
+                <configuration>
+                    <reportVersion>2.32.0</reportVersion>
+                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.xceptance</groupId>
+            <artifactId>neodymium-library</artifactId>
+            <version>${neodymium.version}</version>
+        </dependency>
+    </dependencies>
+```
+
 
 ## Properties & Configuration
 
@@ -57,44 +158,6 @@ neodymium.localization.file = config/localization.yaml              # Localizati
 - **neodymium-example**: Standard Java-based tests ([GitHub](https://github.com/Xceptance/neodymium-example))
 - **neodymium-cucumber-example**: BDD with Cucumber ([GitHub](https://github.com/Xceptance/neodymium-cucumber-example))
 - **neodymium-showcase**: Advanced features and recipes ([GitHub](https://github.com/Xceptance/neodymium-showcase))
-
-## Defining and Running Tests
-
-### JUnit5
-
-```java
-@Browser
-public class SomeTest
-{
-    @NeodymiumTest
-    public void someTestMethod()
-    {
-        // ...
-    }
-}
-```
-
-### JUnit4
-
-```java
-@RunWith(NeodymiumRunner.class)
-@Browser
-public class SomeTest
-{
-    @Test
-    public void someTestMethod()
-    {
-        // ...
-    }
-}
-```
-
-**Run tests:**
-
-- In IDE as JUnit test
-- `mvn clean test` (all tests)
-- `mvn clean test -Dtest=TestClass` (specific class)
-- `mvn clean test -Dtest=TestClass#testMethod` (specific method)
 
 ## Browser & WebDriver Features
 
@@ -448,7 +511,6 @@ neodymium.screenshots.blurFullPageScreenshot = false                        # Bl
 neodymium.screenshots.highlightLastElement = false                          # Highlight last element
 neodymium.screenshots.element.highlightColor = #FF00FF                      # Last element color
 neodymium.screenshots.highlightLineThickness = 4                            # Highlight line thickness
-neodymium.screenshots.enableTreeDirectoryStructure = false                  # Tree dir for screenshots
 
 # proxy / local proxy
 neodymium.proxy = false                                                     # Use HTTP proxy
@@ -498,9 +560,8 @@ See [Parallel Execution]({{< relref "../framework/540-parallel-execution.md" >}}
 Highlights elements during test execution for better visual debugging.
 
 ```properties
-neodymium.debug.highlight = true                            # Enable highlighting
-neodymium.debug.highlight.duration = 100                    # Highlight duration in ms
-neodymium.debug.highlight.color = #FF0000                   # Highlight color
+neodymium.debugUtils.highlight = true                            # Enable highlighting
+neodymium.debugUtils.highlight.duration = 100                    # Highlight duration in ms
 ```
 
 ### Advanced Screenshots
