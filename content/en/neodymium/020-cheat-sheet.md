@@ -65,7 +65,7 @@ public class SomeTest
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
 
-        <allure.version>2.29.0</allure.version>
+        <allure.version>2.32.0</allure.version>
         <aspectj.version>1.9.22</aspectj.version>
         <neodymium.version>5.3.0</neodymium.version>
         <surefire.version>3.5.2</surefire.version>
@@ -127,9 +127,9 @@ The most important configuration files are listed below:
 * `gif-recording.properties`
 * `video-recording.properties`
 
-Properties files must reside in the `./config/*.properties` directory at the project root. `dev-*.properties` files can be used to override or add values.
+Properties files must reside in the `./config/` directory at the project root. `dev-*.properties` files can be used to override or add values.
 
-**Loading order (highest priority last):**
+**Loading order (highest priority first):**
 
 1. system properties
 2. temporary config file
@@ -418,8 +418,8 @@ neodymium.seleniumLogLevel = SEVERE                             # Selenium log l
 
 - **Allure Reporting**
   - Add to `pom.xml` and use:
-    - `mvn allure:report` to generate the report
-    - `mvn allure:serve` to generate and show the report
+    - `mvn allure:report` to generate the report as static HTML files
+    - `mvn allure:serve` to generate and open the report in the browser using a temporary webserver
     - `mvn clean test allure:report` to run all tests and generate the report
   - Add steps/attachments in code with `AllureAddons`
 
