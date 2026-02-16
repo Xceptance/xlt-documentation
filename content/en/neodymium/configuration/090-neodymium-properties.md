@@ -35,8 +35,6 @@ Those properties can be overwritten in the following way (The system environment
 * `System.getProperties()` (passing configuration properties via the `-D` switch on command line)
 * `System.getenv()` (set configuration properties via your system environment e.g. PATH)
 
-{{< TODO >}} decide to use the following text or the info box {{< /TODO >}}<br>
-
 The Order in which the properties are loaded is as follows:
 
 1. System properties
@@ -65,10 +63,6 @@ This makes it possible to define `config/dev-neodymium.properties` for local tes
 {{% /note %}}
 
 The next sections contain all properties which can be configured in Neodymium.
-
-{{< TODO >}} **sort** properties! and maybe combine them under a fitting heading? {{< /TODO >}}<br>
-
-{{< TODO >}} add missing descriptions {{< /TODO >}}<br>
 
 ### URL
 
@@ -344,4 +338,4 @@ browserprofile.FF_1024x768.testEnvironment=saucelabs
 
 ## Browser configuration
 
-{{< TODO >}} add browser config or link it to the chapter in multi-browser? {{< /TODO >}}<br>
+The browser properties can be found in the [Browsers]({{< relref "../browsers/010-browser" >}}) section.

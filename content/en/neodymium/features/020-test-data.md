@@ -523,7 +523,7 @@ The test data can now be used like this:
 @DataSet(id = "asObject")
 public void testGetClass() throws Exception
 {
-    TestCompoundClass testCompound = DataUtils.get(TestCompoundClass.class);
+    TestCompoundClass testCompound = Neodymium.getData().get(TestCompoundClass.class);
 
     Assert.assertEquals("1234567890", testCompound.getClubCardNumber());
 
@@ -559,33 +559,33 @@ public void testGetClass() throws Exception
 @DataSet(id = "asObject")
 public void testGetByPath() throws Exception
 {
-    String description = DataUtils.get("$.description", String.class);
+    String description = Neodymium.getData().get("$.description", String.class);
     Assert.assertEquals(null, description);
 
-    TestCreditCard creditCard = DataUtils.get("$.creditCard", TestCreditCard.class);
+    TestCreditCard creditCard = Neodymium.getData().get("$.creditCard", TestCreditCard.class);
     Assert.assertEquals("4111111111111111", creditCard.getCardNumber());
     Assert.assertEquals("123", creditCard.getCcv());
     Assert.assertEquals(10, creditCard.getMonth());
     Assert.assertEquals(2018, creditCard.getYear());
 
-    String name = DataUtils.get("$.names[2]", String.class);
+    String name = Neodymium.getData().get("$.names[2]", String.class);
     Assert.assertEquals("ghi", name);
 
-    String lastName = DataUtils.get("$.persons[1].lastName", String.class);
+    String lastName = Neodymium.getData().get("$.persons[1].lastName", String.class);
     Assert.assertEquals("d", lastName);
 
-    TestCompoundClass.Level level = DataUtils.get("$.level", TestCompoundClass.Level.class);
+    TestCompoundClass.Level level = Neodymium.getData().get("$.level", TestCompoundClass.Level.class);
     Assert.assertEquals(TestCompoundClass.Level.HIGH, level);
 
     @SuppressWarnings("unchecked")
-    List<String> firstNames = DataUtils.get("$.persons[*].firstName", List.class);
+    List<String> firstNames = Neodymium.getData().get("$.persons[*].firstName", List.class);
     Assert.assertEquals("a", firstNames.get(0));
     Assert.assertEquals("c", firstNames.get(1));
 
-    Object nullValue = DataUtils.get("$.nullValue", Object.class);
+    Object nullValue = Neodymium.getData().get("$.nullValue", Object.class);
     Assert.assertEquals(null, nullValue);
 
-    Object notSet = DataUtils.get("$.notSet", Object.class);
+    Object notSet = Neodymium.getData().get("$.notSet", Object.class);
     Assert.assertEquals(null, notSet);
 }
 ```
@@ -602,7 +602,7 @@ be used to instantiate the corresponding fields.
 Instead of accessing the test data inside each test method:
 
 ```java
-String description = DataUtils.get("$.description", String.class);
+String description = Neodymium.getData().get("$.description", String.class);
 ```
 
 it is also possible to create attributes, in which Neodymium will automatically insert the given values:

@@ -5,10 +5,8 @@ weight: 180
 type: docs
 
 description: >
-  TODO
+  Utility to automatically close unwanted pop-ups during test execution.
 ---
-
-{{< TODO >}}add description{{< /TODO >}}
 
 Pop-ups are a common feature in web applications. During test execution, it is often necessary to automatically close certain pop-ups to ensure a smooth test flow. For this purpose, a JavaScript-based, in-page Pop-up Blocker has been implemented.
 
@@ -34,6 +32,3 @@ The Pop-up Blocker is currently only implemented for **CSS selectors**.
 
 The interval in milliseconds at which the system attempts to find and close the pop-up can be configured using the
 `neodymium.popupInterval` property.
-
-{{< TODO >}}Properties sind nicht konsistent: neodymium.popup.customPopUp aber neodymium.popupInterval für das
-Intervall. Sollte man ggf anpassen{{< /TODO >}}

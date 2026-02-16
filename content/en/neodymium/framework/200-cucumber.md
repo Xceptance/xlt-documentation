@@ -81,10 +81,7 @@ here: [DriverHooks.java](https://github.com/Xceptance/neodymium-cucumber-example
 By calling a Cucumber `Given` step and passing the browser profile name via the standard test data mechanism you can
 call the Neodymium `WebDriverUtils` class to set up the browser.
 
-{{< TODO >}} check if this works {{< /TODO >}}<br>
-
 ```java
-
 @Given("^\"([^\"]*)\" is open$")
 public static void setUp(final String browserProfileName)
 {
@@ -122,7 +119,6 @@ a configured browser profile name within the tags of the scenario. Beware that t
 one browser profile name will lead to an exception, since it can't be decided which was meant to run.
 
 ```java
-
 @Before()
 public static void setUp(Scenario scenario)
 {

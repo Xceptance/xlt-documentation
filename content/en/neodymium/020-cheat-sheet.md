@@ -139,7 +139,7 @@ Properties files must reside in the `./config/` directory at the project root. `
 6. `config/neodymium.properties`
 
 In cases where a property is found in several files, the value from the file with the highest priority is used.
-Further read: [Neodymium properties]({{< relref "../configuration/090-neodymium-properties.md" >}})
+Further read: [Neodymium properties]({{< relref "configuration/090-neodymium-properties.md" >}})
 
 ### Key Properties
 
@@ -553,7 +553,7 @@ Parallel execution is supported via Maven Surefire Plugin. It works on **class l
 </plugin>
 ```
 
-See [Parallel Execution]({{< relref "../framework/540-parallel-execution.md" >}}).
+See [Parallel Execution]({{< relref "framework/540-parallel-execution.md" >}}).
 
 ### Debug Highlighting
 
@@ -623,7 +623,7 @@ neodymium.popup.customPopUp=#myWindowCloseButton
 
 ## PageObjects and Components
 
-The [Page Object Model (POM)]({{< relref "../framework/530-page-objects.md" >}}) wraps all elements and functionality of a
+The [Page Object Model (POM)]({{< relref "framework/530-page-objects.md" >}}) wraps all elements and functionality of a
 web page into an object.
 
 ```java

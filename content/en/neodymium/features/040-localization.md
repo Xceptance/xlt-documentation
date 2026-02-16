@@ -96,7 +96,7 @@ And inside the test set the locale dynamically like this.
 public void setUpLocaleAndSite()
 {
     // get the locale from the test data
-    String locale = DataUtils.asString("locale", "en_GB");
+    String locale = Neodymium.getData().getOrDefault("locale", "en_GB");
     Neodymium.configuration().setProperty("neodymium.locale", locale);
 }
 ```

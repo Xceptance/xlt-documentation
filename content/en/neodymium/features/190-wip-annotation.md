@@ -5,10 +5,8 @@ weight: 190
 type: docs
 
 description: >
-  TODO
+  Using `@WorkInProgress` for selective test execution during development.
 ---
-
-{{< TODO >}}add description{{< /TODO >}}
 
 ## Basic Information
 

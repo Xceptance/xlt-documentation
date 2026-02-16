@@ -5,10 +5,8 @@ weight: 300
 type: docs
 
 description: >
-  Have you got anything without spam?
+    Integration with XcMailr for temporary email services.
 ---
-
-{{< TODO >}}add description{{< /TODO >}}
 
 Temporary email services are essential for UI test automation involving email confirmation or
 communication. [XcMailr](https://xcmailr.xceptance.de/?lang=de) provides this service, and the
@@ -30,8 +28,6 @@ mechanisms, and helpful shortcuts for common requests, providing an experience s
 
 First, include the XcMailr plugin as a dependency in your Maven project. Always check
 the [plugin project](https://github.com/Xceptance/neodymium-plugin-xcmailr) for the latest release version.
-
-{{< TODO >}}update dependency after release{{< /TODO >}}
 
 ```xml
 

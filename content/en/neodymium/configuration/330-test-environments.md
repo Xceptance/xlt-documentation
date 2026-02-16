@@ -5,10 +5,8 @@ weight: 330
 type: docs
 
 description: >
-  TODO
+  Configuring external test environments and Remote WebDriver providers.
 ---
-
-{{< TODO >}}add description{{< /TODO >}}
 
 Neodymium supports the use of external **Test Environments** via a **Remote WebDriver**. These environments can be a
 self-hosted Selenium Grid or cloud-based browser providers like SauceLabs, TestingBot, or Browserstack. These services

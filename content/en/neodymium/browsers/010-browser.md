@@ -146,8 +146,6 @@ This can be seen in the image below.
 Multi browser test execution.
 {{< /image >}}
 
-{{< TODO >}}double-check the following part. it depends on a Neo PR for issue 400.{{< /TODO >}}
-
 Furthermore, you can filter which browser should be used for testing with the property
 `neodymium.webDriver.browserFilter`. This property allows you to provide a list of specific browsers to use for your
 tests. As a result, only tests that are explicitly annotated for a particular browser will be executed with that
@@ -157,6 +155,14 @@ with Firefox and Chrome.
 If you take the example above, and you were to set the property to
 `neodymium.webDriver.browserFilter = Firefox_large, Chrome_large`, the test would only run on Firefox and Chrome. The
 Internet Explorer would be ignored.
+
+The browser filter can also be passed via the Maven command line using `-Dneodymium.webDriver.browserFilter=Firefox_large` or the shorter `-Dbrowserdefinition=Firefox_large`.
+
+{{% note %}}
+Please be aware that `neodymium.webDriver.browserFilter` overrides `browserdefinition` and is not overridden by it. So
+if you set `-Dneodymium.webDriver.browserFilter=Firefox_large` and `-Dbrowserdefinition=Chrome_large`, only Firefox will
+be used for testing.
+{{% /note %}}
 
 ## Separate Browser Sessions for Test Setup and Cleanup
 
