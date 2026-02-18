@@ -15,9 +15,9 @@ that provides essential methods and properties for your test execution.
 
 Every test method runs in its own thread with a unique context. This context contains:
 
-* All [test data]({{< relref "020-test-data" >}}).
-* The currently used [WebDriver]({{< relref "001-webdriver" >}}) instance.
-* [Localization data]({{< relref "040-localization" >}}).
+* All [test data]({{< relref "test-data" >}}).
+* The currently used [WebDriver]({{< relref "../browsers/webdriver" >}}) instance.
+* [Localization data]({{< relref "../features/localization" >}}).
 * An instance of
   the [NeodymiumConfiguration](https://github.com/Xceptance/neodymium-library/blob/master/src/main/java/com/xceptance/neodymium/util/NeodymiumConfiguration.java)
   class.
@@ -40,12 +40,12 @@ Neodymium.getData().get("<dataKey>"); // get the map entry directly
 Neodymium.getData().asString("<dataKey>"); // get the map entry parsed as String (available for multiple types)
 ```
 
-See the [test data chapter]({{< relref "020-test-data" >}}) for more information and convenience methods related to test
+See the [test data chapter]({{< relref "test-data" >}}) for more information and convenience methods related to test
 data.
 
 ### Localization
 
-The `Neodymium` class offers access to the [Localization]({{< relref "040-localization" >}}) feature:
+The `Neodymium` class offers access to the [Localization]({{< relref "../features/localization" >}}) feature:
 
 ```java
 Neodymium.localizedText("<LocalizationKey>");
@@ -54,7 +54,7 @@ Neodymium.localizedText("<LocalizationKey>");
 ### Configuration
 
 You can access the instantiated version of
-the [NeodymiumConfiguration]({{< relref "090-neodymium-properties.md" >}})
+the [NeodymiumConfiguration]({{< relref "neodymium-properties.md" >}})
 class to retrieve any configuration setting:
 
 ```java

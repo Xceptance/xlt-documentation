@@ -8,7 +8,7 @@ description: >
   Everything about BDD in Neodymium using Cucumber.
 ---
 
-[Cucumber](https://github.com/cucumber/cucumber) is a Behavior-Driven Development (BDD) framework. Currently, the Cucumber framework is supported in combination with JUnit4 only. Please follow these [instructions]({{< relref "../miscellaneous/600-migrate-to-v5.md" >}}) to migrate or set up your Cucumber project with Neodymium 5.
+[Cucumber](https://github.com/cucumber/cucumber) is a Behavior-Driven Development (BDD) framework. Currently, the Cucumber framework is supported in combination with JUnit4 only. Please follow these [instructions]({{< relref "../miscellaneous/migrate-to-v5.md" >}}) to migrate or set up your Cucumber project with Neodymium 5.
 
 ## Introduction
 

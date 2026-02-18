@@ -27,7 +27,7 @@ Use this as a foundation to build your own test automation project.
 * **Repository:** [neodymium-example](https://github.com/Xceptance/neodymium-example)
 * **Best for:** Learning patterns for standard Java-based tests.
 
-This project demonstrates a complete test suite for the [Xceptance Posters]({{< relref "400-posters-demo-store" >}}) demo store. It uses:
+This project demonstrates a complete test suite for the [Xceptance Posters]({{< relref "posters-demo-store" >}}) demo store. It uses:
 
 * **Page Object Model (POM)** for maintainability.
 * **Pure Java** (Standard JUnit/Selenide) without Cucumber.

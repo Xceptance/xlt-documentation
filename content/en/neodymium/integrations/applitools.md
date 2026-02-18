@@ -14,7 +14,7 @@ Beyond functional testing, verifying the look and feel of the application under 
 
 First, add this plugin as a dependency in your maven project. To have the most up-to-date information about how to do this, please see the instructions below [the plugin project](https://github.com/Xceptance/neodymium-plugin-applitools) itself.
 
-Once the dependency is included, the plugin must be configured using the `config/applitools.properties` file. Analogous to [`neodymium.properties`]({{< ref "090-neodymium-properties" >}}), the configurations in `config/applitools.properties` can be overwritten with ones from `config/dev-applitools.properties`.
+Once the dependency is included, the plugin must be configured using the `config/applitools.properties` file. Analogous to [`neodymium.properties`]({{< ref "neodymium-properties" >}}), the configurations in `config/applitools.properties` can be overwritten with ones from `config/dev-applitools.properties`.
 
 ### Applitools properties
 

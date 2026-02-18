@@ -108,7 +108,7 @@ the path to the browser in the `config/neodymium.properties` file.
 e.g. `neodymium.webDriver.firefox.pathToBrowser =  /usr/bin/firefox`
 
 More documentation on the settings within the `config/neodymium.properties` can be found on
-the [Neodymium configuration properties]({{< relref "090-neodymium-properties" >}}) page.
+the [Neodymium configuration properties]({{< relref "neodymium-properties" >}}) page.
 
 ## Multi Browser Handling
 

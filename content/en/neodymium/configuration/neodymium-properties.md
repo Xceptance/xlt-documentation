@@ -270,7 +270,7 @@ Each value rages from 0.0 - 1.0 representing 0% to 100%.
 | neodymium.lighthouse.assert.thresholdScore.accessibility | 0.5           | Specifies the minimum acceptable score for the accessibility category in Lighthouse reports.                                                                                                                                                                                                          |
 | neodymium.lighthouse.assert.thresholdScore.bestPractices | 0.5           | Specifies the minimum acceptable score for the best practices category in Lighthouse reports.                                                                                                                                                                                                         |
 | neodymium.lighthouse.assert.thresholdScore.seo           | 0.5           | Specifies the minimum acceptable score for the seo category in Lighthouse reports.                                                                                                                                                                                                                    |
-| neodymium.lighthouse.assert.audits                       | &lt;none&gt;  | A comma separated list of audits to assert. If one fails, the test also fails. A full list of all audit ID's and their corresponding titles can be found [here]({{< relref "110-accessibility#lighthouse-audit-validation">}}).                                                                       |
+| neodymium.lighthouse.assert.audits                       | &lt;none&gt;  | A comma separated list of audits to assert. If one fails, the test also fails. A full list of all audit ID's and their corresponding titles can be found [here]({{< relref "../features/accessibility#lighthouse-audit-validation">}}).                                                               |
 
 ### Report
 
@@ -342,4 +342,4 @@ browserprofile.FF_1024x768.testEnvironment=saucelabs
 
 ## Browser configuration
 
-The browser properties can be found in the [Browsers]({{< relref "../browsers/010-browser" >}}) section.
+The browser properties can be found in the [Browsers]({{< relref "../browsers/browser" >}}) section.

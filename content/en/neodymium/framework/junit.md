@@ -58,7 +58,7 @@ With Neodymium, a test case can be executed with different data sets, which enab
 * `@RandomBrowser`
 * `@SuppressBrowser`
 
-Please check the [browser]({{< relref "../browsers/010-browser.md" >}}) page for detailed information.
+Please check the [browser]({{< relref "../browsers/browser.md" >}}) page for detailed information.
 
 #### Test data
 
@@ -66,7 +66,7 @@ Please check the [browser]({{< relref "../browsers/010-browser.md" >}}) page for
 * `@SuppressDataSet`
 * `@DataFile`
 
-Please check the [test data]({{< relref "../features/020-test-data.md" >}}) page for detailed information.
+Please check the [test data]({{< relref "../features/test-data.md" >}}) page for detailed information.
 
 ## Test execution order for a particular test
 

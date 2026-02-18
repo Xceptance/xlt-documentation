@@ -157,7 +157,7 @@ public class SearchData
 
 ## Multiple Data Sets
 
-Neodymium automatically runs tests for each data set defined in your data file. This can be controlled by using `@SuppressDataSets` and `@DataSet()`. More information can be found in the [Test Data]({{< relref "020-test-data" >}}) chapter.
+Neodymium automatically runs tests for each data set defined in your data file. This can be controlled by using `@SuppressDataSets` and `@DataSet()`. More information can be found in the [Test Data]({{< relref "test-data" >}}) chapter.
 
 Another data set is added to the test data file:
 

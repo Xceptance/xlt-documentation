@@ -178,7 +178,7 @@ provide two methods for each type. The first one is `as<Type>(String key)` which
 the data field can't be found. The second method is `as<Type>(String key, <Type> default)` which returns the given
 default value if the data field can't be found. If it is necessary to check if a certain key exists, `exists(String key)` can be used.
 
-Furthermore, a function is provided that can instantiate POJO models via reflection. Please see the following example to understand how to use it. Please also visit the [Test data provider]({{< relref "../features/020-test-data.md" >}}) wiki page for more examples on this.
+Furthermore, a function is provided that can instantiate POJO models via reflection. Please see the following example to understand how to use it. Please also visit the [Test data provider]({{< relref "../features/test-data.md" >}}) wiki page for more examples on this.
 
 <h4>Example</h4>
 
@@ -282,4 +282,4 @@ public class SomeTest
 
 The [WebDriverUtils](https://github.com/Xceptance/neodymium-library/blob/master/src/main/java/com/xceptance/neodymium/util/WebDriverUtils.java)
 class contains functions that need to/can be referenced within the project if you want to use Cucumber with Neodymium.
-Please find more on this topic and how to use it in our [Cucumber]({{< relref "../framework/200-cucumber.md" >}}) documentation.
+Please find more on this topic and how to use it in our [Cucumber]({{< relref "../framework/cucumber.md" >}}) documentation.

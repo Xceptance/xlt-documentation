@@ -27,7 +27,7 @@ To set up this cloud, you need a central server (the **Hub** in Selenium Grid) a
                         +----------------------------------------------+
 ```
 
-For integration with Neodymium's [multi browser support]({{< relref "010-browser#multi-browser-handling" >}}), you simply annotate the required browser on your test, and Neodymium manages the web browser's lifecycle.
+For integration with Neodymium's [multi browser support]({{< relref "browser#multi-browser-handling" >}}), you simply annotate the required browser on your test, and Neodymium manages the web browser's lifecycle.
 
 ## Setting up a Local Grid
 

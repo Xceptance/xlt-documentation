@@ -62,13 +62,13 @@ acquire the data that is necessary to create a trending graph like in the screen
 There are different options to get web driver based tests running with Jenkins.
 
 In order to get web driver based tests running with Jenkins, the build system needs either a (local) web driver and
-frame buffer setup in order to render a browser or your browser configuration needs to refer a [Selenium grid]({{< ref "../browsers/450-selenium-grid" >}}).
+frame buffer setup in order to render a browser or your browser configuration needs to refer a [Selenium grid]({{< ref "../browsers/selenium-grid" >}}).
 In that case the browser itself runs on a different host and will be remote controlled with Selenium.
 
 ### Local web driver
 
 Web driver and browser can be installed on the Jenkins machine locally just like on any other machine that you use e.g.
-for tests development. Please read more about it [here]({{< ref "001-webdriver" >}}).
+for tests development. Please read more about it [here]({{< ref "../browsers/webdriver" >}}).
 
 {{% note notitle %}}
 **Note**: if you need your tests to be executed in non-headless mode, you will need the Xvfb plugin mentioned above. In
@@ -79,7 +79,7 @@ case headless mode is enough for your purposes, this plugin is not required.
 
 Selenium doesn't only work with local browsers it also is able to remote control a browser via web driver interface of
 the wire. In order to get that running read the
-[Selenium grid]({{< ref "../browsers/450-selenium-grid" >}}) section.
+[Selenium grid]({{< ref "../browsers/selenium-grid" >}}) section.
 
 ### Docker image in Jenkins pipeline
 

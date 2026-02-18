@@ -48,7 +48,7 @@ browserprofile.Firefox_1200x768.headless=false
 | `acceptInsecureCertificates` | Whether the driver accepts insecure certificates.                |
 | `headless`                   | Defines if the browser should run in headless mode.              |
 
-For a complete list of properties, see the [Configurations]({{< relref "010-browser" >}}) page.
+For a complete list of properties, see the [Configurations]({{< relref "browser" >}}) page.
 
 ## Running Tests
 
