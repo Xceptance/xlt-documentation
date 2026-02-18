@@ -5,6 +5,12 @@ on:
     branches: 
       - main # Set a branch to deploy
   workflow_dispatch:
+  
+# Prevent concurrent deployments across ALL branches/runs of this workflow.
+# New runs will wait (queue) until the current one finishes.
+concurrency:
+  group: deploy-documentation
+  cancel-in-progress: false
     
 jobs:
   deploy:
