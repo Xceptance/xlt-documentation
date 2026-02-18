@@ -326,7 +326,8 @@ When debugging a failed test case, quick access to the used test data is crucial
 
 * **Activation:** This feature is **activated by default**.
 * **Deactivation:** It can be deactivated by setting the `neodymium.report.enableTestDataInReport` property to `false`.
-* **Note:** This only applies to test data initialized using `Neodymium.getData()` or `DataItem` (Neodymium classes). The attachment name always starts with "Testdata".
+* **Note:** This is applied for all ways you can access test data during the test (`Neodymium.getData()` or `DataItem` (Neodymium classes), `Neodymium.dataValue()`, `TestData` and `DataUtils` classes methods). To keep it easy, the whole data set is logged on the method call. The
+  attachment name always starts with "Testdata".
 
 If the test data is modified during the test run, those changes can be added as an additional attachment using the helper function:
 
