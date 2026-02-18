@@ -9,7 +9,8 @@ weight: 1
 
 description: >
     XTC allows you to be ahead of performance and stability issues by using a centralized testing platform that offers fine-grained control, maximum scale, and a unique monitoring approach.
-
+tags: ["xtc", "saas", "loadtesting", "monitoring", "concepts"]
+last_updated: 2024-05-22
 ---
 
 ## What is XTC?

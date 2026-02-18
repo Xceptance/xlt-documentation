@@ -6,6 +6,8 @@ type: docs
 
 description: >
   Everything you can configure in the Neodymium properties.
+tags: ["neodymium", "configuration", "properties", "setup"]
+last_updated: 2024-05-22
 ---
 
 ## Configuration via Properties Files

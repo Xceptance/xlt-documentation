@@ -6,15 +6,17 @@ type: docs
 
 description: >
     Learn how to customize reports further by splitting, combining, and renaming requests.
+tags: ["reporting", "merge-rules", "configuration", "performance"]
+last_updated: 2026-02-02
 ---
 
 ## Motivation
 
-Merge rules are one of XLT's most interesting and versatile features. You can think of them as bucketing rules for your requests: merge rules define how requests are merged together or split up in your report. This makes the request table more meaningful and provides better insights. Setting up these rules requires careful thought, but well-crafted merge rules help you get significantly more out of your data.
+Merge rules are one of XLT's most powerful and versatile features. They act as "bucketing" rules for your requests, defining how requests are categorized, merged, or split in reports. This leads to more meaningful request tables and better insights. While designing effective rules requires careful consideration, well-crafted merge rules significantly enhance the value of your results.
 
 ## Essentials
 
-The main concept when setting up merge rules is defining a new name (which can also be called a named bucket) for requests that match certain criteria. 
+The main concept when setting up merge rules is defining a new name (which can also be called a named bucket) for requests that match certain criteria.
 
 When you check the `timers.csv` files on disk, you can see the original names used. Requests are automatically given a name. These mostly depend on the action name chosen when designing your test suite. If a page (or whatever occurs in the action block) consists of several requests, such as XHR requests after the page load, each request name is also assigned an index number.
 
@@ -29,9 +31,11 @@ A,AddToCart,1566427027660,373,false
 
 This quick example shows that we will likely see three different URLs. Activities are later displayed under a single name in the report: `AddToCart`. The index number might also appear, depending on the initial merge rules your test suite contains. If the index is also used, you will see three lines; however, because the index may or may not be stable, the data might not be consistent.
 
-Rules are defined to match and capture data for a new name. Merge rules are numbered (using positive numbers; gaps are permitted) and are executed in the order defined by these numbers. They apply only to requests and can evaluate several data points per request, such as the URL, name, agent details, content type, status code, and more. The rules use regular expressions for maximum versatility.
+Rules are defined to match and capture data to form or assign a new name. Merge rules are numbered (using positive numbers; gaps are permitted) and are executed in the order defined by these numbers with the ability to skip rules using the `continueOnMatchAtId` and `continueOnNoMatchAtId` parameters, if needed for performance reasons or just to make the rules more readable.
 
-Therefore, before processing data, understand what the request does. Decide what details you need, then carefully craft the regular expression. Avoid separating 'good' from 'bad' (e.g., splitting requests with errors from those that ran fine but performed the same basic function). It's better to use merge rules to split redirects or summarize identical requests. Do not destroy the context (action) unless it's unnecessary. Keep in mind that the smaller the bucket, the less data it contains, and the less meaningful the measured data becomes.
+Rules apply only to requests and can evaluate several data points, such as the URL, name, agent details, content type, status code, and more. The rules use regular expressions and some offer an additional text only match for maximum versatility.
+
+Before processing data, it is essential to understand what each request represents. Define the requirements for your reports and then craft appropriate regular expressions. Avoid separating "successful" from "failed" requests if they perform the same basic function; instead, use merge rules to isolate redirects or consolidate identical requests across different contexts. Be mindful that overly specific rules (smaller buckets) may dilute the statistical significance of the measured data.
 
 {{% note notitle %}}
 More about the collected data and the CSV format can be found in the chapter [Result Data]({{< relref "results" >}}).
@@ -50,18 +54,27 @@ newName .................. new request name (required)
 [c] contentTypePattern ... regex defining a matching response content type
 [s] statusCodePattern .... regex defining a matching status code
 [u] urlPattern ........... regex defining a matching request URL
-[m] methodPattern ........ regex defining a matching request method
+[u] urlText .............. substring defining a matching request URL
+[m] methodPattern ........ regex defining a matching HTTP request method
 [r] runTimeRanges ........ list of runtime segment boundaries
 
-stopOnMatch .............. whether or not to process more rules when the current rule applies
+Because URLs are often containing very random parameters, the regexp matching result cannot be efficiently cached and the regex must be applied again and again. To tune this, you can also specify just a text to be contained in the URL. This is much faster. If you specify text (contains) and a regex pattern, both must match and the text match is done first.
+
+stopOnMatch .............. whether to stop processing further rules if the current rule matches
                                 (defaults to true)
-dropOnMatch .............. whether or not to discard a matching request instead of renaming it 
-                                (defaults to false). dropOnMatch implies stopOnMatch.
+dropOnMatch .............. whether to discard a matching request instead of renaming it 
+                                (defaults to false; implies stopOnMatch)
+continueOnMatchAtId ...... the ID of the next rule to evaluate if the current rule matches
+continueOnNoMatchAtId .... the ID of the next rule to evaluate if the current rule does not match
 ```
 
 At least one of _namePattern_, _transactionPattern_, _agentPattern_, _contentTypePattern_, _statusCodePattern_, _urlPattern_, [_methodPattern_]({{< relref "/xlt/release-notes/6_2_x#use-request-method-in-merge-rules" >}}) or _runTimeRanges_ must be specified. If more than one pattern is given, all given patterns must match.
 
-Note that _newName_ may contain placeholders, which are replaced with the content of a specified capturing group of the respective pattern. The placeholder format is as follows: `{<category>:<capturingGroupIndex>}`, where `<category>` is the type code of the respective pattern (see parameter list above). `<capturingGroupIndex>` denotes the respective capturing group in the selected pattern (does not apply to _runTimeRanges_).
+Note that `newName` may contain placeholders replaced by specific capturing groups from the patterns. The format is `{<category>:<capturingGroupIndex>}`, where `<category>` is the type code (see brackets in the parameter list above) and `<capturingGroupIndex>` is the numeric index of the regex group.
+
+`runTimeRanges` is a list of runtime segment boundaries. The format is `start,end`. The start and end values are in milliseconds. Capturing is not support via regular expressions. The text is automatically setup and offered as `{r}` when ranges are defined.
+
+You can also use `{<category>}` (e.g., `{s}`) as a shorthand placeholder. These do not require a corresponding pattern and resolve to the full text of the request attribute. This is useful, for example, to append a status code directly to a request name without setting up a dedicated pattern rule.
 
 ### Excluding Patterns
 
@@ -74,13 +87,20 @@ com.xceptance.xlt.reportgenerator.requestMergeRules.<num>.<param>.exclude = <val
 Requests that match the exclude pattern will not be selected. For example, to create a bucket for all non-JavaScript resources, you could set up a rule like:
 
 ```txt
-com.xceptance.xlt.reportgenerator.requestMergeRules.1.newName = {n:0} NonJS
-com.xceptance.xlt.reportgenerator.requestMergeRules.1.namePattern = .+
+com.xceptance.xlt.reportgenerator.requestMergeRules.1.newName = {n} NonJS
 com.xceptance.xlt.reportgenerator.requestMergeRules.1.contentTypePattern.exclude = javascript
 com.xceptance.xlt.reportgenerator.requestMergeRules.1.stopOnMatch = false
 ```
 
-Note that an include pattern and an exclude pattern can be specified for a pattern type simultaneously. In this case, a request is selected if and only if it matches the include pattern and does not match the exclude pattern.
+Note that an include pattern and an exclude pattern can be specified for a pattern type simultaneously. In this case, a request is selected if and only if it matches the include pattern and does not match the exclude pattern. You cannot capture data using exclude patterns.
+
+### URL Substring Match
+
+To improve performance, you can use `urlText` instead of `urlPattern`. This option specifies a plain text substring that must be included in the request URL. Substring search is significantly faster than regular expression matching.
+
+```txt
+
+If you need to capture data or add more complex conditions, you can combine `urlText` and `urlPattern`. Both must match (AND condition), except when using `.exclude`, where only one must match. Note that you cannot capture data using `{u}` with `urlText`. `urlText` is always evaluated first, when specified. Only when it matches, the `urlPattern` is evaluated.
 
 ### Dropping Requests
 
@@ -136,6 +156,7 @@ First, let's split off the _\_\_Analytics-Start_ requests seen in COLogin.6. The
 ...requestMergeRules.10.urlPattern = /__Analytics-Start\\?
 ...requestMergeRules.10.stopOnMatch = true
 ```
+
 Pay attention to the double backslash before the question mark (`\\?`). The first `\`  escapes the `?` from the regular expression perspective, treating it as a literal character. The second `\` escapes the `\` character because this is a Java property file format. Here, `\` is a special character (see [Java Properties](https://docs.oracle.com/javase/8/docs/api/java/util/Properties.html#load-java.io.Reader-)).
 
 ### Step 2: Remove the Index
@@ -150,6 +171,7 @@ We don't need the sub-request naming pattern at the moment, so let's remove the 
 ...requestMergeRules.20.namePattern = ^([^\\.]*)(\\.[0-9]+)+$
 ...requestMergeRules.20.stopOnMatch = false
 ```
+
 You can access the captured data of the regular expression by specifying its index (e.g., `{n:1}`) to build the new name. If you use `{n:0}` or `{n}`, it will use all available data. In that case, no specific pattern needs to be specified in the rule, as this data is made available automatically. See the next examples as well.
 
 {{% note notitle %}}
@@ -177,7 +199,7 @@ Usually, we expect 200 response codes for requests, so other codes might be of s
 ...requestMergeRules.60.namePattern = .*
 ...requestMergeRules.60.statusCodePattern = (30[0-9])
 ...requestMergeRules.60.stopOnMatch = false
-``` 
+```
 
 {{% note title="Speed up Processing" %}}
 To speed up data processing, XLT automatically provides the full data for each parameter. You don't have to use a regular expression with a capturing group like `.+` to fill the context for `{n:0}`.
@@ -190,7 +212,7 @@ A faster, optimized rule looks like this:
 ...requestMergeRules.60.newName = {n} [{s}]
 ...requestMergeRules.60.statusCodePattern = 30[0-9]
 ...requestMergeRules.60.stopOnMatch = false
-``` 
+```
 
 ### Step 4: Capture a Part of the URL
 
@@ -204,6 +226,7 @@ Remaining requests follow the pattern _'-Site/locale/Action'_. We now sort reque
 ```
 
 ### Step 5: Result
+
 We sorted our COLogin requests to appear in the requests table. Additionally, there will be another table row for all _\_\_Analytics-Start_ requests:
 
 {{< image src="user-manual/cologin-in-buckets.png" >}}
@@ -212,11 +235,29 @@ Requests table, organized with merge rules
 
 This sorted table provides more precise data and helps pinpoint higher runtimes.
 
-As you can see, this isn't rocket science, but it requires careful thought and some regular expression knowledge (see [regular expression skills](https://xkcd.com/208/)).
+While setting up merge rules requires careful planning and a solid understanding of regular expressions, the resulting reports are far more precise and provide much clearer insights into performance bottlenecks.
 
-## Good to Know
+## Flow Control
 
-### Performance
+### Terminating Early
+
+If you have several rules, and the initial rules already finalize the name, with subsequent rules making no further changes, consider stopping processing earlier using the `stopOnMatch` feature.
+
+### Rule Jumps
+
+By default, rules are evaluated sequentially. However, if you know that subsequent rules are not applicable, you can jump forward to a specific rule ID, skipping intermediate ones.
+
+```txt
+com.xceptance.xlt.reportgenerator.requestMergeRules.5.newName = {n} CSS
+com.xceptance.xlt.reportgenerator.requestMergeRules.5.namePattern =
+com.xceptance.xlt.reportgenerator.requestMergeRules.5.urlPattern = \\.css$
+com.xceptance.xlt.reportgenerator.requestMergeRules.5.stopOnMatch = false
+com.xceptance.xlt.reportgenerator.requestMergeRules.5.continueOnMatchAtId = 10
+```
+
+Use `continueOnMatchAtId` to jump if the current rule matches, or `continueOnNoMatchAtId` if it does not. The target rule ID must be higher than the current one (forward jumps only). If the target ID does not exist, the next available rule with a higher ID is used.
+
+## Performance
 
 Every rule you add influences the report generation speed. You can improve the speed by avoiding redundant rules, skipping remaining rules when a match occurs, capturing only necessary data, and more.
 
@@ -228,7 +269,7 @@ We discussed this earlier, but here is the example again to show where you can s
 ...requestMergeRules.60.newName = {n:0} [{s:0}]
 ...requestMergeRules.60.namePattern = .+
 ...requestMergeRules.60.statusCodePattern = (30[0-9])
-``` 
+```
 
 XLT automatically provides the full data for each request topic. You don't have to use a regular expression and capturing groups like `.+` or `(30[0-9])` to fill the context for `{n:0}` and `{s:0}`.
 
@@ -239,7 +280,7 @@ The improved rule:
 ...requestMergeRules.60.statusCodePattern = 30[0-9]
 ```
 
-#### Don't Capture Data You Don't Need
+### Don't Capture Data You Don't Need
 
 Only when you need parts of the data do you have to use a capturing group and access its content. In this example, the first capturing group is not used in the new name definition, so there's no need to capture it.
 
@@ -247,13 +288,13 @@ Only when you need parts of the data do you have to use a capturing group and ac
 # Too much capturing
 ...requestMergeRules.60.newName = <{n:2}>
 ...requestMergeRules.60.namePattern = ^(Homepage) (.*)$
-``` 
+```
 
 ```txt
 # Capture only what is needed
 ...requestMergeRules.60.newName = <{n:1}>
 ...requestMergeRules.60.namePattern = ^Homepage (.*)$
-``` 
+```
 
 In this example, the string `Homepage` is static. Therefore, you don't have to copy this data from the regex to the new name; instead, define it directly.
 
@@ -261,7 +302,7 @@ In this example, the string `Homepage` is static. Therefore, you don't have to c
 # Capturing static content
 ...requestMergeRules.60.newName = <{n:1}>
 ...requestMergeRules.60.namePattern = ^(Homepage).*$
-``` 
+```
 
 ```txt
 # Define static content rather than capturing it
@@ -269,14 +310,10 @@ In this example, the string `Homepage` is static. Therefore, you don't have to c
 ...requestMergeRules.60.namePattern = ^Homepage.*$
 ```
 
-#### Superfluous Rules
+### Superfluous Rules
 
 If you define rules that will never match (because your data doesn't contain such entries or you inherited rules from another project), remove them.
 
-#### Expensive Regular Expressions
+### Expensive Regular Expressions
 
 Regular expressions can be computationally expensive, especially if they are inefficient in determining matches. For more information, see this example: [Regexes: The Bad, the Better, and the Best](https://www.loggly.com/blog/regexes-the-bad-better-best/).
-
-#### Terminating Early
-
-If you have several rules, and the initial rules already finalize the name, with subsequent rules making no further changes, consider stopping processing earlier using the _stopOnMatch_ feature.

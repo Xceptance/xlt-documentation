@@ -18,7 +18,7 @@ XLT test cases are usually developed in Java, as JUnit test cases. This means yo
 
 To develop a test case, start by identifying common usage scenarios for your application. (In our sample test suites, these are things like a visit to the homepage, some browsing, adding a product to the cart, searching, up to the whole ordering process).
 
-The scenarios often share some steps, so the next step is to identify these to create [flows]({{< relref "glossary#flow-xlt" >}}) or [actions]({{< relref "glossary#action-xlt" >}}) to make those common steps easily reusable in all test cases that need them (and also to make maintenance less complicated). Using a real-world example from our sample test suites, this is what we did:
+The scenarios often share some steps, so the next step is to identify these to create [flows]({{< relref "xlt/about/glossary#flow-xlt" >}}) or [actions]({{< relref "xlt/about/glossary#action-xlt" >}}) to make those common steps easily reusable in all test cases that need them (and also to make maintenance less complicated). Using a real-world example from our sample test suites, this is what we did:
 
 ```txt
                 Homepage
@@ -89,13 +89,51 @@ just cut it down to
 that way you will always see the latest test run, just by refreshing the result browser.
 {{% /note %}}
 
-### CI Integration
+### Continuous Integration
 
-A performance test case is also a regression test case - and if you want to [integrate XLT into your CI/CD pipeline]({{< relref "ci-cd" >}}) for either regression testing or, even better, continuous load testing to already spot performance issues in early development stages, we provide tools for this: there is a Jenkins plugin that brings load testing and continuous integration together, enabling you to set up your load test project as just another Jenkins build project and to define success criteria according to your needs. Learn more in the [Advanced section]({{< relref "ci-cd" >}}).
+Test automation is an important part of continuous integration (CI). XLT effectively supports CI.
+
+Since XLT uses JUnit, you can run your tests with any CI tool that supports JUnit. We recommend using [Jenkins]({{< relref "jenkins" >}}) or [Bamboo](https://www.atlassian.com/software/bamboo).
+
+XLT provides a [Jenkins plug-in]({{< relref "jenkins" >}}) that makes it easy to run your load tests with Jenkins. The plug-in also provides trend reports and success criteria evaluation.
 
 ## Basic Rules for Test Development
 
 {{% note notitle %}}**tl;dr:** Keep it short, keep it simple, reduce dependencies, stress re-usability and clean up when you're finished.{{% /note %}}
+
+If you prefer to name your test cases your way or use the package mapping to structure your test cases, you can build your own naming strategy. Just overwrite the method `getTestCaseName` in `AbstractTestCase`.
+
+The test case mapping can be configured in `project.properties`. Please see [Glossary]({{< relref "xlt/about/glossary" >}}) for details.
+
+### Test Data
+
+It's good practice to separate test logic and test data. Therefore, XLT supports separate data sets for test cases.
+
+XLT uses the name of the test case to look up test data in the `config/data` directory. If you have a test case named `TAuthor`, XLT looks for a file `TAuthor.properties` in `config/data`. If you have a package-based name like `com.company.test.TAuthor` and mapped it to `TAuthor` (default mapping), it will also look for `TAuthor.properties`. If you used the `com.company.test.TAuthor=TAuthor` mapping, it will look for `TAuthor.properties` in `config/data`.
+
+The properties file is a standard Java properties file. It supports correct handling of non-ASCII characters.
+
+#### Data Sets
+
+Often you want to run the same test case with different data. To do this, you can define multiple data sets in one property file. To separate the data sets, XLT uses the notion of keys. A key is a unique identifier for a data set.
+
+The key must be separated from the property name by a dot.
+
+```properties
+dataset1.c.password = secret
+dataset2.c.password = secret
+```
+
+XLT automatically detects the available keys and runs the test case for each key. If no keys are found, the test case is run once.
+
+The keys can be any string. If you want to run a test case for a specific customer, you can use the customer ID as part of the key.
+
+```properties
+1000.c.password = secret
+1001.c.password = secret
+```
+
+By default the key is randomly chosen from the available keys. You can configure the data set selection strategy in `project.properties`. Please see [Glossary]({{< relref "xlt/about/glossary" >}}) for details.
 
 * **Do not overload the test cases.** Focus on the (one) key purpose of the test case. It is better to create a lot of short tests than only a few large test cases that cover many features. This helps to maintain and debug the tests and it is also much easier to locate the root cause of real problems if a test case fails.
 * **Do not test the same feature again and again.** If possible, do not test the same feature again and again in several test cases. Instead find the shortest way to get to a specific page! For example when testing different shopping bag or checkout features in several test cases, try to avoid searching for a product and browsing to the product detail page. Instead, start the test case by opening the product detail page directly. That way, if something happens to the search functionality, only the test cases covering search will fail. If search is used in all the test cases, then all of them will fail and the issue will be more difficult to debug.

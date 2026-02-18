@@ -5,7 +5,7 @@
 
 <div class="imagebox">
 <a href="{{ .Get `src` }}" data-lightbox="{{ .Page.Title }}" {{ with .Inner }}data-title="{{ . | markdownify}}"{{ end }}>
-	<img  style="box-shadow: 1px 1px 5px 1px #ccc" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="" />
+	<img  style="{{ if ne (.Get "shadow") "false" }}box-shadow: 1px 1px 5px 1px #ccc{{ end }}" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="" />
 </a>
 
 {{ with .Inner }}

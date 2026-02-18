@@ -100,7 +100,7 @@ Since not all performance details are sent to Graphite, you will only get a firs
 
 ### Page load timings in Graphite
 
-In older XLT versions, page load timings were reported as custom timers to Graphite. Since XLT 4.12.0, page load timing data has been promoted from custom timers to a dedicated data type (a bug prevented the data from being sent to Graphite before this was fixed in v5.1.2). 
+Page load timings are reported as a dedicated data type "pageLoadTimings" to Graphite. 
 
 This data is stored in the "pageLoadTimings" subtrees. The bucket name structure for both specific page load timing records and summary records is similar to that of actions and custom timers. See below for an example of how page load timing data is reported to Graphite:
 

@@ -10,7 +10,8 @@ description: >
 
 ## Setup a Test Execution
 
-Ok, so now you have the [demo shop running on your machine]({{< relref "demo-application" >}}) and you have [set up the demo testsuite]({{< relref "demo-test-suite" >}}). To run a test, first tell XLT in `<posters-simple-loadtest-suite>/config/project.properties` which test configuration to use and where to find your Posters demo shop instance:
+Once the [demo shop is running locally]({{< relref "demo-application" >}}) and you have [set up the demo test suite]({{< relref "demo-test-suite" >}}), you are ready to run a test.
+First, tell XLT in `<posters-simple-loadtest-suite>/config/project.properties` which test configuration to use and where to find your Posters demo shop instance:
 
 ```bash
 # Point to the test setup for XLT, this is an XLT setting

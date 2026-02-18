@@ -7,6 +7,8 @@ type: docs
 
 description: >
     An explanation of the most important terms and abbreviations used in XLT.
+tags: ["glossary", "terminology", "definitions", "concepts"]
+last_updated: 2024-05-22
 ---
 
 ## Action (XLT)
@@ -450,13 +452,13 @@ A percentile defines how many numbers (measurements) fall below or above a certa
 
 For instance, when we have the measurements:
 
-```
+```bash
 50, 60, 65, 100, 500, 15, 60, 10, 1000, 100
 ```
 
 we sort them first:
 
-```
+```bash
 10, 15, 50, 60, 60, 65, 100, 100, 500, 1000
 ```
 

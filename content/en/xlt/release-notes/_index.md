@@ -1,6 +1,8 @@
 ---
-title: "Release Notes"
-linkTitle: "Release Notes"
+title: "Release Notes 📢"
+linkTitle: "Release Notes 📢"
+url: "/xlt/release-notes/"
+
 
 type: docs
 

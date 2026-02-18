@@ -8,7 +8,7 @@ description: >
     How to customize the reports via configuration file.
 ---
 
-By [adjusting the report options]({{< relref "report-options" >}}) you can already adjust the focus of your generated reports very well, but there are even more possibilities by configuring the file `<xlt>/config/reportgenerator.properties`.
+By [adjusting the report options]({{< relref "report-options" >}}) you can already adjust the focus of your generated reports very well, but there are even more possibilities by configuring the file `<xlt>/config/reportgenerator.properties`. See the [Properties Reference]({{< relref "properties" >}}) for a full list of available reporting properties.
 
 ## Using Custom Report Generator Settings
 
@@ -267,13 +267,15 @@ com.xceptance.xlt.reportgenerator.requests.table.colorization.default.percentile
 Again, you can configure this either in `<xlt>/config/reportgenerator.properties` or, alternatively, in your test suite settings, e.g. in `<test-suite>/config/project.properties`. You might even want to create additional property files for your favorite report colorization and then [include them]({{< relref "test-suite-configuration#including-additional-property-files" >}}) in your project properties as needed.
 
 {{% note notitle %}}
-If you don’t want to highlight requests that exceed/fall below the target value, simply set the respective boundary equal to the target value. Typically, you would do this for requests outperforming the target value, so you can focus on the red ones.
+If you do not want to see all the request details, you can merge requests by URL pattern or response code. This is very useful when you want to group similar requests (e.g. all product details pages) or when you want to group all requests that resulted in a specific error code.
+
+To define request merge rules, edit `config/merge-rules.properties`. See [Merge Rules]({{< relref "xlt/advanced/merge-rules" >}}) for details.
 {{% /note %}}
 
 ## Merge Rules
 
 In order to reduce the list of requests in the report, the values of different
-requests can be merged together. This is done by defining merge rules for your project. Merge rules are one of the most unique XLT features, you can also think of them as bucketing rules for your requests. Setting them up requires some careful thinking, as they can do quite some harm to your reports, but well crafted merge rules will help you make sense of your reports. You can read more on this topic in the [Advanced section]({{< relref "merge-rules" >}}).
+requests can be merged together. This is done by defining merge rules for your project. Merge rules are one of the most unique XLT features, you can also think of them as bucketing rules for your requests. Setting them up requires some careful thinking, as they can do quite some harm to your reports, but well crafted merge rules will help you make sense of your reports. You can read more on this topic in the [Advanced section]({{< relref "xlt/advanced/merge-rules" >}}).
 
 ## Masking Passwords in the Test Report
 

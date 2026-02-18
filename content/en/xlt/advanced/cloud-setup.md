@@ -160,8 +160,8 @@ Regions             : us-central1, us-east1
 Instance group name : my-test
 Instance count      : 8
 Instance template     
-    - Name           : xlt-5-3-0--xl
-    - Image          : projects/my-project1/global/images/xlt-5-3-0-v20210221
+    - Name           : xlt-10-0-0--xl
+    - Image          : projects/my-project1/global/images/xlt-10-0-0-v20250221
     - Machine type   : custom-16-30720
 
 Do you want to create a managed instance group with the above configuration? [y/n] =>
@@ -363,7 +363,7 @@ Select the key-pair to use for the new EC2 instances:
 
 ```text
 Configuration:  
-  AMI               : ami-01f30091020d1934a - XLT 5.4.0
+  AMI               : ami-01f30091020d1934a - XLT 10.0.0
   Region            : us-east-1  
   Availability zone : <unspecified>  
   VPC               : vpc-91079bf4

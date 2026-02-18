@@ -42,9 +42,6 @@ After successful internal use, we released the tool as a licensed product. The b
 
 Test automation became more important to us, so we sought a tool to simplify the process. Selenium IDE was one option, but its feature set was too limited, leading us to create Script Developer.
 
-{{< image src="legacy/script-developer.png" >}}
-{{< /image >}}
-
 Over its lifetime, Script Developer gained many features, including modules for easier reuse, JUnit-like test data support, and even test documentation tooling. The documentation tooling generated full HTML-based documentation from code and comments.
 
 ## 2011 - 2019
@@ -76,3 +73,7 @@ The world evolved, and open source became the norm for many businesses, especial
 So, in February 2020, we completely open-sourced XLT to make it more accessible and simplify the decision-making process. XLT is published on Github under the [Apache License 2.0](https://opensource.org/licenses/Apache-2.0). Xceptance continues to maintain and extend XLT as before. We build and publish releases regularly.
 
 We still maintain the [legacy documentation](https://lab.xceptance.de/releases/xlt/5.7.1/index.html) for information about older or deprecated XLT versions or functionalities. For everything else, [this is the new documentation]({{< relref "/" >}}), also available on [Github](https://github.com/Xceptance/xlt-documentation). It is growing steadily, with updates pushed constantly. Please provide feedback, raise issues, and contribute to the documentation if you like.
+
+## 2021 - 2025
+
+XLT has been open source since 2020 and has been growing steadily ever since. We continue to maintain and extend XLT as before. We build and publish releases regularly.

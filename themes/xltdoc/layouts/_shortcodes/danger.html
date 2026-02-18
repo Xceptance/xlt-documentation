@@ -1,10 +1,10 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
 
-<div class="alert alert-danger" role="alert">
+<div class="alert alert-danger">
 	{{ if eq (.Get 0) "notitle" }}
 	{{ else }}
 	    {{ with .Get "title" | default "Danger"}}
-	        <h4 class="alert-heading">{{ . | safeHTML }}</h4>
+	        <h4 class="alert-heading">🚨 {{ . | safeHTML }}</h4>
 	    {{ end }}
     {{ end }}
     

@@ -6,6 +6,8 @@ type: docs
 
 description: >
   Neodymium - Test Automation with WebDriver
+tags: ["neodymium", "configuration", "properties", "setup"]
+last_updated: 2026-02-02
 ---
 
 {{% note title="Documentation Migration" %}}

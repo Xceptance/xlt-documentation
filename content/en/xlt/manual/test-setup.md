@@ -12,13 +12,25 @@ When you have finished developing your test suite and the tests themselves are w
 
 ## Load Configuration
 
-First of all, you will want to define what load will be applied. You can define this either in terms of [user count]({{< relref "glossary#concurrent-users" >}}) or [arrival rate]({{< relref "glossary#constant-arrival-rate" >}}), per test case if needed or globally for the whole test suite. If the load is defined per user count (value for arrival rate is omitted), the system generates a constant load based on the number of concurrent users. If an arrival rate was specified, the system generates load with a cluster-wide constant arrival rate. In the latter case, the maximum load is limited by the number of concurrent users.
+First of all, you will want to define what load will be applied. You can define this either in terms of [user count]({{< relref "xlt/about/glossary#concurrent-users" >}}) or [arrival rate]({{< relref "xlt/about/glossary#constant-arrival-rate" >}}), per test case if needed or globally for the whole test suite. If the load is defined per user count (value for arrival rate is omitted), the system generates a constant load based on the number of concurrent users. If an arrival rate was specified, the system generates load with a cluster-wide constant arrival rate. In the latter case, the maximum load is limited by the number of concurrent users.
 
 In case you want to switch the load between test runs for a quick check, the easiest way to do this is by changing the [load factor]({{< relref "load-configuration#load-factor" >}}). For [more elaborate load scenarios]({{< relref "load-configuration#load-profiles" >}}), not only can you define a static load, but also a ramp-up load profile or variable load profile.
 
 The load configuration usually lives in your `test.properties`. This file also contains the information about which test cases are to be included in the load test run. Several of these test profile configuration files may be prepared in advance for different load test runs. Then simply reference the appropriate properties for the current test run.
 
 Read more about [Load Configuration]({{< relref "load-configuration" >}}) and the load test profile configuration file [here]({{< relref "test-suite-configuration/#load-test-profile-configuration" >}}).
+
+### Agent Configuration
+
+The agent configuration is located in `config/agent.properties`. This file contains all settings that are relevant for the agent usage.
+
+The agent configuration can be overwritten by the command line options. Please see [Glossary]({{< relref "xlt/about/glossary" >}}) for details.
+
+### Common Configuration
+
+The common configuration is located in `config/common.properties`. This file contains all settings that are shared between the master controller and the agents.
+
+The common configuration can be overwritten by the command line options. Please see [Glossary]({{< relref "xlt/about/glossary" >}}) for details.
 
 ## Environment Configuration
 
