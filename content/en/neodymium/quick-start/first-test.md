@@ -8,11 +8,11 @@ description: >
   Write and run your first browser-based test with Neodymium.
 ---
 
-This tutorial shows you how to write browser-based test automation with Neodymium from scratch.
+This tutorial demonstrates how to write browser-based test automation with Neodymium from scratch.
 
 A more complex test suite setup can be found in the [neodymium-template project](https://github.com/Xceptance/neodymium-template), which includes necessary dependencies, configuration files, and a basic test utilizing the Page Object Model pattern, Cucumber, and more.
 
-Throughout this guide, we will create basic tests for the [Xceptance Poster Demo Store](https://posters.xceptance.io:8443/). Instead of setting up the store locally, we will use the [hosted online version](https://posters.xceptance.io:8443/).
+Throughout this guide, basic tests for the [Xceptance Poster Demo Store](https://github.com/Xceptance/posters-demo-store) will be created. Instead of setting up the store locally, the [hosted online version](https://posters.xceptance.io:8443/) is used.
 
 ## Example Test
 
@@ -60,7 +60,7 @@ public class FirstTest
 
 ## Executing Tests
 
-To execute the tests in your IDE, you can run them as any other JUnit test. It is also possible to run them via Maven:
+Tests can be executed in the IDE just like any other JUnit test. It is also possible to run them via Maven:
 
 * `mvn clean test` to execute all tests
 * `mvn clean test -Dtest=<NameOfTestClass>` to execute specific tests

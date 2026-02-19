@@ -9,9 +9,9 @@ description: >
 
 Neodymium utilizes various properties files to establish default settings and customize specific behaviors.
 
-> [!TIP]
-> This is a quick summary. For the complete list of all properties and detailed explanations, please visit the [Configuration]({{< relref "../configuration/090-neodymium-properties.md" >}}) page.
-> For browser-specific configurations, see [Browsers]({{< relref "../browsers/010-browser.md" >}}).
+{{% note %}}
+**Note:** This is a quick summary. For the complete list of all properties and detailed explanations, please visit the [Configuration]({{< relref "../configuration/neodymium-properties.md" >}}) page. For browser-specific configurations, see [Browsers]({{< relref "../browsers/browser.md" >}}).
+{{% /note %}}
 
 ## Key Configuration Files
 
@@ -22,7 +22,7 @@ The most important configuration files are:
 * `credentials.properties`: Sensitive data like SauceLabs keys (do not commit!).
 * `gif-recording.properties` / `video-recording.properties`: Media recording settings.
 
-Neodymium's properties files must reside in the `./config/*.properties` directory at the project root.
+Neodymium's properties files must reside in the `./config/` directory at the project root.
 
 For test-specific configurations, `dev-*.properties` files can be used to override values locally. **Always exclude `dev-*` and `credentials.properties` from version control.**
 
@@ -62,6 +62,8 @@ Control Selenide's behavior.
 ### Browser Profiles (`browser.properties`)
 
 Define browser profiles referenced by `@Browser("<profileName>")`.
+
+The syntax is `browserprofile.<profileName>.<Property> = value`.
 
 | Property | Mandatory | Description |
 |---|---|---|

@@ -17,7 +17,7 @@ To utilize this feature:
 1. Set the `neodymium.locale` property within the Neodymium configuration to the desired locale.
 2. Create a `localization.yaml` file stored in the `config` directory at the project's root.
 
-{{% note notitle %}}
+{{% note %}}
 The `localization.yaml` needs to be located in `./config/localization.yaml`.
 {{% /note %}}
 
@@ -47,11 +47,11 @@ Localized text can be retrieved using:
 
 If a key is missing for the requested locale, Neodymium automatically falls back to the `default` locale's values. If the key is absent in the default locale as well, an error is thrown.
 
-The default locale is `en_US`, but it can be changed during runtime using `Neodymium.configuration().setProperty("neodymium.locale", <locale>)` or by modifying the `neodymium.properties` configuration file with `neodymium.locale=<locale>`.
+The initial locale is `en_US`, but it can be changed during runtime using `Neodymium.configuration().setProperty("neodymium.locale", <locale>)` or by modifying the `neodymium.properties` configuration file with `neodymium.locale=<locale>`.
 
 ## Example
 
-We can extend the `TestDataTest` from the [Data Driven]({{< relref "data-driven" >}}) section. For this small example, only one label on the homepage and the heading on the product listing page are localized.
+The `TestDataTest` from the [Data Driven]({{< relref "data-driven" >}}) section can be extended. For this small example, only one label on the homepage and the heading on the product listing page are localized.
 
 To validate that labels are correctly localized, the page objects must be updated. This example demonstrates the changes in the `HomePage` class. The `validateHotProductsLabelText()` function uses `Neodymium.localizedText("webElements.hotProductsLabel")` to get the appropriate localized label text.
 
@@ -114,7 +114,7 @@ public class TestDataTest extends AbstractTest
 }
 ```
 
-To maintain a single point of control for locale configuration in a localized project, we use a `setUpLocaleAndSite()` function in an `AbstractTest` base class. This function sets the locale for the current test run using test data. If no locale is found in the test data, the locale from the config or the default Neodymium locale (`en_US`) is used.
+To maintain a single point of control for locale configuration in a localized project, a `setUpLocaleAndSite()` function in an `AbstractTest` base class is used. This function sets the locale for the current test run using test data. If no locale is found in the test data, the locale from the config or the default Neodymium locale (`en_US`) is used.
 
 ```java
 import com.xceptance.neodymium.util.Neodymium;

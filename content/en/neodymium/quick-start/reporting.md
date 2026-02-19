@@ -10,7 +10,7 @@ description: >
 
 Neodymium generates HTML reports using Allure. These reports offer detailed insights into test execution, including all test steps, error screenshots, page source HTML, and test-specific data.
 
-We have extended the basic Allure reports with new features, such as:
+The basic Allure reports have been extended with new features, such as:
 
 * Test data added as JSON to the test report.
 * Steps showing the new URL if it changes.
@@ -48,7 +48,7 @@ Add the following lines to your project's `pom.xml` to include Allure.
 </build>
 ```
 
-To enable all Allure report features, including `@Step()` annotations, you must add the following configuration to the `plugins` section of your `pom.xml` file.
+To enable all Allure report features, including `@Step()` annotations, the following configuration must be added to the `plugins` section of the `pom.xml` file.
 
 ```xml
 <plugin>
@@ -76,10 +76,10 @@ To enable all Allure report features, including `@Step()` annotations, you must 
 </plugin>
 ```
 
-{{% warning notitle %}}
-**Attention:** if you do not add the dependencies above to your `pom.xml`, `@Step()` annotations **will not** work.
+{{% warning %}}
+If the dependencies above are not added to the `pom.xml`, `@Step()` annotations **will not** work.
 {{% /warning %}}
 
-{{% warning notitle %}}
-**Attention:** The Allure results are collected into the project base directory and are not removed by `mvn clean` by default. For complete Allure functionality and to streamline results management, Surefire is required. When adding Surefire, update the Allure results directory to the one specified by Surefire.
+{{% warning %}}
+The Allure results are collected into the project base directory and are not removed by `mvn clean` by default. For complete Allure functionality and to streamline results management, Surefire is required. When adding Surefire, update the Allure results directory to the one specified by Surefire.
 {{% /warning %}}

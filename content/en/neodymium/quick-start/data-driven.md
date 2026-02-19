@@ -15,11 +15,11 @@ Neodymium provides convenient test data handling, with support for the following
 3. XML
 4. Properties
 
-{{% warning notitle %}}
-**Attention:** Only JSON is currently supported for complex test data with nested objects! Simple key/value pairs can be used in all formats.
+{{% warning %}}
+Only JSON is currently supported for complex test data with nested objects! Simple key/value pairs can be used in all formats.
 {{% /warning %}}
 
-Neodymium automatically links test data files found in the resource folder with matching paths to the test, making them accessible. For custom locations, use the `@DataFile("<path/to/file>")` annotation, ensuring you provide the complete path from the resource folder, including the file extension.
+Neodymium automatically links test data files found in the resource folder with matching paths to the test, making them accessible. For custom locations, use the `@DataFile("<path/to/file>")` annotation, ensuring the complete path from the resource folder, including the file extension, is provided.
 
 ## Accessing Data
 
@@ -73,9 +73,9 @@ A simple JSON file is used to store the test data:
 
 ## Data Objects (POJOs)
 
-Instead of direct data access, you can define a Plain Old Java Object (POJO) to represent your test data. By annotating a POJO attribute in your test class with `@DataItem`, the test data will be automatically parsed into the object. This method is ideal for complex data structures, as it groups related data into easily accessible objects. Furthermore, you can use multiple data objects within a single test.
+Instead of direct data access, a Plain Old Java Object (POJO) can be defined to represent the test data. By annotating a POJO attribute in the test class with `@DataItem`, the test data will be automatically parsed into the object. This method is ideal for complex data structures, as it groups related data into easily accessible objects. Furthermore, multiple data objects can be used within a single test.
 
-We will now expand the `TestDataTest` to include test data objects.
+The `TestDataTest` is now expanded to include test data objects.
 
 ```java
 @Browser
@@ -128,7 +128,7 @@ Using test data objects simplifies the handling of complex JSON test data. There
 ]
 ```
 
-To map complex JSON data to Java objects, we need to create POJOs. The `SearchData` class is shown as an example; the `Product` class follows a similar structure.
+To map complex JSON data to Java objects, POJOs must be created. The `SearchData` class is shown as an example; the `Product` class follows a similar structure.
 
 ```java
 public class SearchData
@@ -157,9 +157,9 @@ public class SearchData
 
 ## Multiple Data Sets
 
-Neodymium automatically runs tests for each data set defined in your data file. This can be controlled by using `@SuppressDataSets` and `@DataSet()`. More information can be found in the [Test Data]({{< relref "020-test-data" >}}) chapter.
+Neodymium automatically runs tests for each data set defined in your data file. This can be controlled by using `@SuppressDataSets` and `@DataSet()`. More information can be found in the [Test Data]({{< relref "test-data" >}}) chapter.
 
-Let's add another data set to the test data file:
+Another data set is added to the test data file:
 
 ```json
 [
@@ -180,7 +180,7 @@ Let's add another data set to the test data file:
 ]
 ```
 
-After executing the test with both data sets, we get the following report:
+Execution of the test with both data sets results in the following report:
 
 {{< image max-width="60%" src="neodymium/test_data_report.png" >}}
 Report of the data driven test `TestDataTest` with two data sets.

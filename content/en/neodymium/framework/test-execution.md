@@ -10,7 +10,7 @@ Once test cases are developed, you need flexible ways to execute them—whether 
 
 ## Run in the IDE as JUnit Test
 
-As a test developer, you spend most of your time in an IDE. You can launch a Neodymium test case just like any standard JUnit test:
+Test developers often work primarily within an IDE. A Neodymium test case can be launched just like any standard JUnit test:
 
 1. Select the test class or method in your project explorer.
 2. Right-click and choose **Run as JUnit Test**.
