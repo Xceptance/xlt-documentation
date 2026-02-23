@@ -68,7 +68,10 @@ behaviour with annotations: `@DataSet`, `@RandomDataSets` and `@SuppressDataSets
   annotation the DataSet annotation can be used on a method to re-enable execution for all or individual data sets.
   DataSet annotation can be parameterized to reference a specific data set. One could refer them by using an integer
   (index) or by using a string (id)
-    * index: `@DataSet(2)` an integer referencing a specific data set (first data set would be referenced by 1)
+    * index: 
+      * `@DataSet()` every single data set gets referenced
+      * `@DataSet(2)` an integer referencing a specific data set (first data set would be referenced by 1)
+      * `@DataSet({1, 5})` an integer array referencing a range of data sets (in this example the first 5 data sets are executed)
     * id: `@DataSet(id = "Jebediah's data set")` a string value that refers to a data set which has the same value for
       the attribute `testId` (see [Example 1]({{<ref "#example1" >}}) ). This allows you to name your data sets, which is useful for identification.
 * **@RandomDataSets**: Can be annotated to a method and/or class. This annotation allows to run test with certain amount
