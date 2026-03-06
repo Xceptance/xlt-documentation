@@ -286,7 +286,7 @@ enable = false
 [[menu.main]]
     name = "Installation"
     weight = 12
-    url = "/neodymium/10-setup-execution"
+    url = "/neodymium/setup-execution"
     parent = "neodymium"
 [[menu.main]]
     name = "Quick Start"
@@ -301,7 +301,7 @@ enable = false
 [[menu.main]]
     name = "Cheat Sheets"
     weight = 15
-    url = "/neodymium/cheat-sheets"
+    url = "/neodymium/cheat-sheet"
     parent = "neodymium"
 [[menu.main]]
     name = "Features"
@@ -316,7 +316,7 @@ enable = false
 [[menu.main]]
     name = "Example Projects"
     weight = 18
-    url = "/neodymium/040-test-suites"
+    url = "/neodymium/test-suites"
     parent = "neodymium"
 [[menu.main]]
     name = "Configuration"
