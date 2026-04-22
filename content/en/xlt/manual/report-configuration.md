@@ -195,6 +195,58 @@ All requests, with logarithmic y axis.
 
 This is just a glimpse of what is possible, and often there is no one right way to go about things, but several different versions compared side-by-side might provide the information you need.
 
+## Labeling Rules
+
+You can assign custom labels to transactions, actions and requests during report generation by defining labeling rules (e.g. all requests in the checkout area of a shopping app could be labeled with "checkout"). These labels will be included in the HTML report and the XML data file, and can be used to filter data tables or as part of [Report Colorization]({{< relref "#report-colorization" >}}) and [Scorecard]({{< relref "scorecard" >}}) rules.
+
+{{< image src="user-manual/labeling-rules.png" >}}
+Request Table with Labels
+{{< /image >}}
+
+A labeling rule specifies a new label string and the conditions that must be fulfilled for these labels to be assigned to a data table entry. Conditions can be provided in any combination and the new labels will only be assigned if all given conditions match. Labeling rules are numbered (using positive numbers; gaps are permitted) and are executed in the order defined by these numbers.
+
+This is an overview of the parameters you can use in labeling rules:
+
+```txt
+newLabels .......... The new label string to assign on match (required). The previously existing
+                     label string will be overwritten by the new one.
+
+types .............. The report types to apply this rule to. Valid values are: "T" (Transaction),
+                     "A" (Action) and "R" (Request). Multiple type codes can be provided separated
+                     by space, comma or semicolon (e.g. provide "A,R" to apply a rule to Actions
+                     and Requests).
+
+namePattern [n] .... Regex defining a matching name
+labelPattern [l] ... Regex defining a matching label string
+
+stopOnMatch ........ Whether or not to process the next rule even if the current rule applied
+                     (defaults to "true").
+```
+
+You can also define exclude patterns by appending `exclude` to pattern parameters (e.g. `namePattern.exclude`). If an exclude pattern matches, the new labels will not be assigned. An include pattern and an exclude pattern can be specified for a pattern type at the same time; in this case, the labels are applied to an entry if and only if it matches the include pattern, but does not match the exclude pattern.
+
+Note that `newLabels` may contain placeholders, which are replaced with the specified capturing group from the respective pattern. The placeholder format is as follows: `{<category>:<capturingGroupIndex>}`, where `<category>` is the type code of the respective pattern (given in brackets above) and `<capturingGroupIndex>` denotes the respective capturing group in the selected pattern. You may also use just `{<category>}` as placeholder; such placeholders do not require a pattern and are resolved to the full text of the respective attribute.
+
+{{% note title="Assigning Multiple Labels" %}}
+When labels are visualized in the report tables, spaces in the label string are interpreted as delimiters between multiple labels (e.g. the label string "checkout payment" will be displayed as two labels - "checkout" and "payment"). Therefore, you can also use the `{l}` placeholder to effectively append new labels to the existing label string (e.g. `{l} payment` means that the existing label string is kept and the label "payment" is appended at the end).
+{{% /note %}}
+
+See below for an example configuration:
+
+```bash
+## Assign label "checkout" to requests and actions with the specified name pattern
+com.xceptance.xlt.reportgenerator.labelingRules.1.newLabels = checkout
+com.xceptance.xlt.reportgenerator.labelingRules.1.types = A,R
+com.xceptance.xlt.reportgenerator.labelingRules.1.namePattern = ^(StartCheckout|EnterShippingAddress|EnterBillingAddress|EnterPaymentMethod)
+com.xceptance.xlt.reportgenerator.labelingRules.1.stopOnMatch = false
+
+## Append additional label "payment" to all requests and actions that contain "Pay" and already have the "checkout" label
+com.xceptance.xlt.reportgenerator.labelingRules.2.newLabels = {l} payment
+com.xceptance.xlt.reportgenerator.labelingRules.2.types = A,R
+com.xceptance.xlt.reportgenerator.labelingRules.2.namePattern = Pay
+com.xceptance.xlt.reportgenerator.labelingRules.2.labelPattern = checkout
+```
+
 ## Apdex Definition
 
 The load test report lists the *Apdex* for each action.
@@ -243,17 +295,17 @@ In contrast to the Apdex for actions, where you get an extra value, you are free
 
 Table cells are colored based on a certain target value and a lower and upper boundary. If the actual value exceeds the target, the cell will gradually turn more red, and if it goes below the target, the report will reward you with a greenish background. When the value reaches the lower/upper limit, the background color will stay either bright green or red.
 
-The target value and upper and lower boundaries are configurable per request, but, same as for the Apdex, you can also group requests by name (via regular expressions) for less configuration effort and there is also a default rule for all other requests. See below for a sample configuration:
+The target value and upper and lower boundaries are configurable per request, but you can also group requests by name and/or labels (via regular expressions) for less configuration effort and there is also a default rule for all other requests. See below for a sample configuration:
 
 ```bash
 ## Use specific colorization rules for COLogin/COBilling/COShipping requests  
-com.xceptance.xlt.reportgenerator.requests.table.colorization.Checkout.matching = CO(Login|Billing|Shipping).*  
+com.xceptance.xlt.reportgenerator.requests.table.colorization.Checkout.matching.name = CO(Login|Billing|Shipping).*  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.Checkout.mean = 250 500 1000  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.Checkout.percentile.p95.id = 95  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.Checkout.percentile.p95 = 375 750 1500
 
-## Use specific colorization rules for COPlaceOrder requests  
-com.xceptance.xlt.reportgenerator.requests.table.colorization.PlaceOrder.matching = COPlaceOrder.*  
+## Use specific colorization rules for requests with label "order"
+com.xceptance.xlt.reportgenerator.requests.table.colorization.PlaceOrder.matching.label = order  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.PlaceOrder.mean = 1000 2000 4000  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.PlaceOrder.percentile.p95.id = 95  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.PlaceOrder.percentile.p95 = 1500 3000 6000
