@@ -2,6 +2,7 @@
   font-family: 'Ubuntu Mono';
   font-style: normal;
   font-weight: 500;
+  font-display: swap;
   src: url('../fonts/UbuntuMono.woff2') format('woff2'),
     url('../fonts/UbuntuMono.ttf') format('truetype');
 }
@@ -11,6 +12,7 @@
   font-style: normal;
   font-weight: 300 800;
   font-stretch: 75% 100%;
+  font-display: swap;
   src: url('../fonts/OpenSans-VariableFont_wdth,wght.woff2') format('woff2'),
     url('../fonts/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
 }

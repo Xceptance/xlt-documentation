@@ -61,6 +61,10 @@
 {{ partial "opengraph.html" . -}}
 {{ partial "schema.html" . -}}
 {{ partial "twitter_cards.html" . -}}
+{{/* Preload primary fonts to avoid FOUT/FOIT */ -}}
+<link rel="preload" href="{{ "fonts/inter_2.woff2" | relURL }}" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="{{ "fonts/outfit_8.woff2" | relURL }}" as="font" type="font/woff2" crossorigin="anonymous">
+
 {{ partialCached "head-css.html" . "head-css-cache-key" -}}
 
 {{/* Removed jQuery and Lunr.js */ -}}
