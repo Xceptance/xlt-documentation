@@ -154,5 +154,6 @@ These DNS properties only apply when using XLT's WebClient or HttpClient. Custom
 | `com.xceptance.xlt.results.data.request.collectUsedIpAddress` | `false` | Whether to collect the specific IP address used for every request. |
 | `com.xceptance.xlt.results.data.request.collectAdditionalRequestInfo` | `false` | When enabled, collects HTTP method and POST form data for each request. |
 
-> [!NOTE]
-> These properties are typically defined in `project.properties` or `default.properties` for test suites, except for `xlt.dns.providers.platform.cache.duration` which is often a system-wide setting.
+{{% note %}}
+These properties are typically defined in `project.properties` or `default.properties` for test suites, except for `xlt.dns.providers.platform.cache.duration` which is often a system-wide setting.
+{{% /note %}}

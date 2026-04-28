@@ -329,24 +329,46 @@
     background: White;
 }
 
+.alert {
+    padding: 1.5rem;
+    border-radius: 6px;
+    border: none;
+    border-left: 4px solid #ccc;
+    background-color: #f8f9fa;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+
+    h1, h2, h3, h4, h5, h6 {
+        margin-top: 0;
+    }
+
+    > i, > svg {
+        font-size: 1.25em;
+        margin-right: 0.75rem;
+    }
+}
+
 /* Note */
 .alert-info {
-    background-color: #d9edf7;
+    background-color: #e8f4fd;
+    border-left-color: #337ab7;
 }
 
 /* Tip */
-.alert-light {
-    background-color: #f5f5f5;
+.alert-light, .alert-warning {
+    background-color: #fff8e6;
+    border-left-color: #f0ad4e;
 }
 
 /* Warning */
 .alert-secondary {
     background-color: #ffdcad;
+    border-left-color: #d9534f;
 }
 
 /* Danger */
 .alert-danger {
-    background-color: #f7c1ba;
+    background-color: #fdf2f0;
+    border-left-color: #d9534f;
 }
 
 /* Permissions */
@@ -405,7 +427,12 @@ footer {
     }
 
     p code {
-        font-size: 1rem;
+        font-size: 0.9em;
+        padding: 0.2em 0.4em;
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 4px;
+        color: #d63384;
     }
 
     .highlight {
@@ -434,6 +461,27 @@ footer {
         border-left: 4px solid #ccc;
         color: black;
         padding: 0.75rem 1.25rem;
+    }
+
+    table {
+        width: 100%;
+        margin-bottom: 1.5rem;
+        border-collapse: collapse;
+
+        th, td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e9ecef;
+            text-align: left;
+        }
+
+        th {
+            font-weight: 600;
+            background-color: #f8f9fa;
+        }
+
+        tbody tr:nth-of-type(even) {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
     }
 }
 
@@ -566,6 +614,15 @@ footer {
 
 .td-toc {
     font-family: $font-family-sidebar;
+
+    a {
+        color: #6c757d;
+        transition: color 0.2s;
+        
+        &:hover, &.active {
+            color: $primary;
+        }
+    }
 }
 
 /* just to display our TODO */
@@ -578,9 +635,17 @@ footer {
     }
 }
 
-.alert {
-    //border: 1px solid;
-    border-radius: 4px;
+.section-index {
+    .entry {
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        p {
+            margin-bottom: 0.5rem;
+        }
+    }
 }
 
 .lead>code {
