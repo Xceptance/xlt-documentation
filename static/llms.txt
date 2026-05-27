@@ -23,6 +23,8 @@ XTC is the cloud-based platform for running and managing large-scale load tests 
 - [XTC Basics](https://docs.xceptance.com/xtc/basics/): Introduction to XTC.
 - [XTC Load Testing](https://docs.xceptance.com/xtc/loadtesting/): Running XLT tests in the cloud.
 - [XTC Monitoring](https://docs.xceptance.com/xtc/monitoring/): Infrastructure and application monitoring.
+- [XTC API Explorer / Public API Documentation](https://xtc.xceptance.com/exploreApi): The interactive documentation and OpenAPI explorer for all public XTC REST API endpoints.
+- [XTC API Integration Guide](https://docs.xceptance.com/xtc/integrations/500-api/): Guide on managing credentials, obtaining access tokens, and making REST API calls.
 
 ## Key Terminology
 
