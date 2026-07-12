@@ -39,13 +39,17 @@ To configure your preferred build tool, click the editing button, select a build
 {{< image src="xtc/loadtest_selectBuildTool.png" >}}
 {{< /image >}}
 
-### Build Dependency Cache
+### Build Artifact and Dependency Cache
 
-Building the load test suite before the actual start of the test may take several minutes to complete. Most of that time can be attributed to the download of dependencies (XLT and other required libraries).
+Building the load test suite before the actual start of the test may take several minutes to complete. Most of that time is typically spent compiling sources or downloading dependencies (XLT and other required libraries).
 
-XTC caches the downloaded dependencies of a load test project so subsequent builds should run much faster. The cache expires automatically 14 days after the last load test was run.
+To shorten startup times, XTC provides caching for two separate parts of the build process:
+* **Dependency Cache**: XTC caches the downloaded dependencies of a load test project so subsequent builds do not have to download them again.
+* **Build Artifact Cache**: XTC caches the fully compiled and built load test suite. For new load test runs, the built project is restored directly from this cache, eliminating the need to run the compilation/build process entirely. This applies as long as there are no changes to the Git repository or code archive. If a new Git revision or code archive version is used, a fresh build is executed (which still benefits from the dependency cache).
 
-If you need to discard the cache (for example due to corrupted or compromised artifacts), you can do so by going to this section and clicking _Discard Cache_.
+Both caches expire automatically and are deleted 14 days after the last load test was run.
+
+If you suspect the caches are corrupt or outdated, you can delete them manually by going to this section and clicking **Discard Cache**.
 
 ## Default Sharing Settings
 

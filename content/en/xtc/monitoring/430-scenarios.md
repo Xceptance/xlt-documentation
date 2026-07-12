@@ -91,7 +91,7 @@ In _Properties_ you may add test properties to use for scenario execution. These
 
 #### Notifications
 
-Under _Notifications_ you can enable or disable notifications entirely for the current scenario if desired, and set a default reply-to address for email notifications.
+Under the **Settings** tab of the scenario, you can enable or disable notifications entirely for the current scenario if desired, and set a default reply-to address for email notifications.
 
 **When** an alert is triggered and **to whom** notifications are sent is defined by the scenario's [**quality sensors**]({{< relref "#quality-sensors" >}}) and the [**notification lists**]({{< relref "420-monitoring-configuration/#notification-lists" >}}) these sensors are linked to.
 

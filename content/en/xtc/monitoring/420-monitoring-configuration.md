@@ -25,7 +25,7 @@ Another specialty for _Repository_ configuration is that you can define the bran
 
 ## Scenario Defaults
 
-On the _Scenario Defaults_ tab in _Configuration_ you can define [default settings]({{< relref "430-scenarios/#scenario-settings" >}}) to be used for all monitoring scenarios. These defaults can be overwritten for each individual scenario. To edit scenario defaults, use the edit button on the right of any section:
+On the _Scenario Defaults_ tab in _Configuration_, you can define [default settings]({{< relref "430-scenarios/#scenario-settings" >}}) to be used for all monitoring scenarios (including the default Reply-To Address and whether notifications are enabled for the scenarios). These defaults can be overwritten for each individual scenario. To edit scenario defaults, use the edit button on the right of any section:
 
 {{< image src="xtc/monitoring_scenario_defaults.png" >}}
 The scenario defaults tab with expand toggle and editing button.
@@ -43,7 +43,7 @@ In a simple project, the setup of notification lists might look like this:
 * **Monitoring Dev Team**: Maintains the monitoring scenarios.
 * **App Dev Team**: Addresses performance issues in the monitored application.
 
-The default **Reply-To Address** for all notification e-mails can be defined in the _General_ settings on the _Notifications_ tab. If none is set this will be a no-reply service address, so we recommend using any sensible contact in your project for this.
+The default **Reply-To Address** for all notification emails can be defined in the project configuration under the **Scenario Defaults** tab. If none is set, this defaults to a no-reply service address, so we recommend using a sensible contact address for your project.
 
 ### Defining a Notification List
 
