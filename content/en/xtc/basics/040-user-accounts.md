@@ -39,6 +39,16 @@ External login providers for this account will be listed here and if you want to
 
 Organization admins may impose **mandatory login requirements** on users of their organization. They may require users to be authenticated using specific login providers or 2FA. Read more about this [here]({{< relref "045-organizations/#mandatory-login-requirements" >}}).
 
+## Brute-Force Protection
+
+To prevent brute-force attacks on user accounts, XTC automatically locks a local user account for one hour after six consecutive unsuccessful login attempts. 
+
+During the lockout period:
+
+* Any login attempt for this account will fail immediately, even if the correct password is used.
+* The user is not notified by email about the lockout for security reasons.
+* If you need to access your account immediately, an [Organization Administrator]({{< relref "045-organizations#locking-members-of-an-organization" >}}) can unlock your account manually from the organization's members list.
+
 ## Notifications
 
 XTC users will get notified by email whenever their membership in a project or organization has changed:
