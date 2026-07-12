@@ -97,6 +97,8 @@ Show settings used for creating for a custom test report.
 Settings from an example report
 {{< /image >}}
 
+You can easily copy the merge rules used for a custom report by clicking the **Copy to Clipboard** button directly in the settings dialog. This is helpful when creating another custom report with similar settings.
+
 ## Comparison Reports
 
 {{% permission type="project" least="true" role="tester" action="create comparison reports" %}}
