@@ -116,6 +116,10 @@ These properties configure the XLT report generator, including output location, 
 | `com.xceptance.xlt.reportgenerator.charts.scale` | Y-axis scale for runtime charts (`linear` or `logarithmic`). | `linear` |
 | `com.xceptance.xlt.reportgenerator.charts.cappingValue` | Cap runtime charts at this value [ms]. Can be suffixed with `.transactions`, `.actions`, `.requests`. | *(none)* |
 | `com.xceptance.xlt.reportgenerator.charts.cappingFactor` | Cap runtime charts at `factor * mean`. Can be suffixed with `.transactions`, etc. | *(none)* |
+| `com.xceptance.xlt.reportgenerator.charts.commonAverage.type` | The standard moving average look-behind type (`percentage` or `time`). | `percentage` |
+| `com.xceptance.xlt.reportgenerator.charts.commonAverage.value` | Look-behind window value (e.g. `5%` or `10m`). | `5%` |
+| `com.xceptance.xlt.reportgenerator.charts.averages.<n>.type` | Type of additional moving average (`percentage` or `time`). | *(none)* |
+| `com.xceptance.xlt.reportgenerator.charts.averages.<n>.value` | Value of additional moving average. | *(none)* |
 | `com.xceptance.xlt.reportgenerator.runtimePercentiles` | Percentiles shown in data tables. | `50, 95, 99, 99.9` |
 
 {{% note title="Note" %}}

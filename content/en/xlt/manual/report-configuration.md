@@ -195,6 +195,26 @@ All requests, with logarithmic y axis.
 
 This is just a glimpse of what is possible, and often there is no one right way to go about things, but several different versions compared side-by-side might provide the information you need.
 
+## Moving Averages
+
+The XLT report generator can generate moving averages alongside response time charts to highlight trends and smooth out fluctuations. By default, three moving averages are created: a standard 5% moving average, and two additional ones at 2% and 10%.
+
+You can configure the look-behind window for moving averages based on either a percentage of values or a time range:
+
+```properties
+## The standard moving average with a window of 5% of the values.
+com.xceptance.xlt.reportgenerator.charts.commonAverage.type = percentage
+com.xceptance.xlt.reportgenerator.charts.commonAverage.value = 5%
+
+## An additional moving average with a window of 10% of the values.
+com.xceptance.xlt.reportgenerator.charts.averages.1.type = percentage
+com.xceptance.xlt.reportgenerator.charts.averages.1.value = 10%
+
+## An additional moving average with a window of 10 minutes.
+com.xceptance.xlt.reportgenerator.charts.averages.2.type = time
+com.xceptance.xlt.reportgenerator.charts.averages.2.value = 10m
+```
+
 ## Labeling Rules
 
 You can assign custom labels to transactions, actions and requests during report generation by defining labeling rules (e.g. all requests in the checkout area of a shopping app could be labeled with "checkout"). These labels will be included in the HTML report and the XML data file, and can be used to filter data tables or as part of [Report Colorization]({{< relref "#report-colorization" >}}) and [Scorecard]({{< relref "scorecard" >}}) rules.
