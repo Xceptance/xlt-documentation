@@ -34,6 +34,7 @@ These properties control the execution of load tests, network behavior, and gene
 | `com.xceptance.xlt.stopTestOnHttpErrors.embedded` | Abort a transaction if an HTTP error occurs while loading an embedded resource. | `false` |
 | `com.xceptance.xlt.stopTestOnJavaScriptErrors` | Abort a transaction if a JavaScript error occurs. | `false` |
 | `com.xceptance.xlt.useHighPrecisionTimer` | Use `System.nanoTime()` for timing instead of `System.currentTimeMillis()` to avoid issues with system clock adjustments. | `true` |
+| `com.xceptance.xlt.virtualThreads.enabled` | Execute load test user activities using Java 21 virtual threads instead of platform threads. | `true` |
 
 {{% note title="Note" %}}
 These properties are core framework settings typically defined in `default.properties`.

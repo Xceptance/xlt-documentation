@@ -142,6 +142,18 @@ com.xceptance.xlt.abortLongRunningTransactions = true
 com.xceptance.xlt.maximumTransactionRunTime = 900000
 ```
 
+### Virtual Threads
+
+By default, XLT uses Java 21 *virtual threads* to execute load testing scenarios. Virtual threads are extremely lightweight compared to platform threads, allowing you to configure very high numbers of concurrent users on the same agent machine.
+
+To execute scenarios using standard platform threads instead, you can disable virtual threads:
+
+```properties
+com.xceptance.xlt.virtualThreads.enabled = false
+```
+
+Virtual threads are highly recommended for high concurrency tests. However, if your test suite code relies on legacy thread features such as thread grouping (`ThreadGroup`), you may need to refactor it to use `InheritableThreadLocal` context sharing instead.
+
 ### Support for HTTP/2
 
 Nowadays, more and more servers use HTTP/2; however, HtmlUnit does not yet support HTTP/2. Until proper support is available out-of-the-box, XLT provides an alternative web connection that uses the OkHttp HTTP client, which can use HTTP/2. The new web connection tries to mimic the original web connection, but browser specifics may not be emulated as accurately. Furthermore, the ability to reconfigure the web connection according to current web client options during the test scenario is limited. That's why XLT still uses the standard HtmlUnit web connection by default.
