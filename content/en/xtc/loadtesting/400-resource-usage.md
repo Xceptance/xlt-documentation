@@ -8,7 +8,7 @@ description: >
     How XTC helps you to keep track of resource usage within your organization.
 ---
 
-When performing load tests, agent machines are started on your behalf to drive the traffic against the system under test. After a load test, both the raw load test results (measurements, error information, etc.) and also the reports generated from the results are saved to a storage device. Both agent machines and storage incur costs. XTC records information about machine hours and occupied storage to give you an overview for an [organization's]({{< relref "#organization-resource-usage" >}}) or [project's]({{< relref "#project-resource-usage" >}}) resource usage.
+When performing load tests, agent machines are started on your behalf to drive the traffic against the system under test, or you can use your own [private machines]({{< relref "156-private-machines" >}}). After a load test, both the raw load test results (measurements, error information, etc.) and also the reports generated from the results are saved to a storage device. Both agent machines and storage incur costs. XTC records information about machine hours (for both public cloud/custom and private machines) and occupied storage to give you an overview for an [organization's]({{< relref "#organization-resource-usage" >}}) or [project's]({{< relref "#project-resource-usage" >}}) resource usage.
 
 ## Organization Resource Usage
 
@@ -35,6 +35,10 @@ This screen lists the spent machine hours and occupied storage for this project 
 In addition to the resource usage overview for the whole organization, XTC offers you an overview for each load test project's resource usage. To access this information, navigate to your load test project and click _Resource Usage_ in the menu on the left.
 
 This screen lists the spent machine hours and occupied storage for this project for your information. You will get one tab for **machine minutes** and another tab for **storage space**. Used storage is listed by day, while used machines are listed for each load test in this project, and by clicking the expand button on the right you may view more detailed data for this load test.
+
+{{% note notitle %}}
+Private machines are also tracked in resource usage. The tracking records how many private machines were active, when they were used, and the duration of their usage, aggregated by load test and project, matching the level of detail provided for public cloud or custom machines.
+{{% /note %}}
 
 {{< image src="xtc/resourceUsagePro_storage.png" max-width="80%" >}}
 Storage Space Overview, listed per day. 
