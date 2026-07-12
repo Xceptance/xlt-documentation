@@ -36,9 +36,9 @@ Learn more in our _Load Testing_ section about [configuring load profiles]({{< r
 
 ### Properties
 
-In _Properties_ and _Secret Properties_ you may overwrite [properties]({{< relref "test-suite-configuration" >}}) for test execution. Values set here take precedence over the values from the project repository, which are always used as default.
+In _Properties_ and _Secret Properties_ you may overwrite [properties]({{< relref "test-suite-configuration" >}}) for test execution. Values set here take precedence over the project-level settings (which may in turn be inherited from the organization).
 
-Properties may also be overwritten globally for all load tests of this project in the [project configuration]({{< relref "120-load-project-configuration#properties" >}}).
+Load tests can choose whether to inherit project-level properties. In either case, the load test can still define its own properties, which will overwrite project-level properties if they share the same key. Properties that are not set in XTC will be read from the project data.
 
 ### Repository
 

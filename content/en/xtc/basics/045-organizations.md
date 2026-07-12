@@ -16,11 +16,15 @@ Organizations can only be created by an XTC admin. They will also assign an init
 
 {{% permission role="organization administrator" %}}
 
-In _Configuration_, you may edit the name, short name and description of your organization as well as upload an organization logo (which will also be displayed when the organization is shown in the list on the Dashboard page).
+In the **General** tab of the _Configuration_ page, you may edit the name, short name and description of your organization as well as upload an organization logo (which will also be displayed when the organization is shown in the list on the Dashboard page).
 
-In the _Security_ tab, you may enable or disable [user invitations]({{< relref "#inviting-users-to-join-xtc" >}}) or define [authorization requirements]({{< relref "#mandatory-login-requirements" >}}) for the members of your organization.
+In the **Repository** tab, you can predefine default Git repository configurations (including repository URL and HTTPS credentials or SSH key authentication) that projects within the organization can inherit.
 
-The _Integrations_ tab allows you to integrate XTC with your Slack Workspace to be notified of certain events like load test status changes. See the [Slack Integration]({{< relref "../integrations/510-slack" >}}) for further details.
+In the **Properties** tab, you can predefine regular and secret properties globally at the organization level. Projects within the organization can inherit these properties to avoid duplicate setups.
+
+In the **Security** tab, you may enable or disable [user invitations]({{< relref "#inviting-users-to-join-xtc" >}}) or define [authorization requirements]({{< relref "#mandatory-login-requirements" >}}) for the members of your organization.
+
+In the **Integrations** tab, you can integrate XTC with your Slack Workspace to be notified of certain events like load test status changes. See the [Slack Integration]({{< relref "../integrations/510-slack" >}}) for further details.
 
 ## User Roles Within an Organization
 

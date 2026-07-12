@@ -80,6 +80,8 @@ In _Properties_, you can globally define [properties]({{< relref "test-suite-con
 [Secret properties]({{< relref "test-suite-configuration#secret-properties" >}}) behave the same as [regular properties]({{< relref "test-suite-configuration" >}}). However, their values will be masked with ****** both in the load test report and in the result data set.
 When editing an existing secret property in the UI, its current value will be shown as \*\*\*. To redefine that setting, simply overwrite \*\*\* with the new value.
 
+Projects can choose to **inherit properties** (both regular and secret properties) defined at the organization level. If inherited, organization-level changes are applied immediately to the project. Projects can still define project-specific properties on top of the inherited properties (which will override inherited ones if they share the same key).
+
 Properties configured at project level apply to all new load tests alike, while [properties defined at a certain load test]({{< relref "155-lt-settings" >}}) apply to that load test only. Load-test-level properties will overwrite project-level properties. Properties that are not set in XTC will be read from the project data.
 
 ## Environment

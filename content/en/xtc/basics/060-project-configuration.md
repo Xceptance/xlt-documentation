@@ -23,7 +23,7 @@ For monitoring projects, this tab will additionally contain information on **dat
 {{% permission type="project" least="true" role="tester" action="view repository settings" %}}
 {{% permission type="project" least="true" role="test manager" action="edit repository settings" %}}
 
-In _Repository_, you can define where the test suite repository is located, which branch should be used and how to resolve the test suite root within the repository. If the access to the remote repository is restricted, you can also provide authentication details. For load test projects, this section also allows you to [define which build tool to use]({{< relref "../loadtesting/120-load-project-configuration#build-tool" >}}) and to [clear the dependency cache]({{< relref "../loadtesting/120-load-project-configuration#build-dependency-cache" >}}) if necessary.
+In _Repository_, you can define where the test suite repository is located, which branch should be used and how to resolve the test suite root within the repository. If the access to the remote repository is restricted, you can also provide authentication details. Alternatively, projects can choose to **inherit the repository configuration** (such as repository URL and credentials) from the organization settings, while still allowing the project to specify a custom branch. For load test projects, this section also allows you to [define which build tool to use]({{< relref "../loadtesting/120-load-project-configuration#build-tool" >}}) and to [clear the dependency cache]({{< relref "../loadtesting/120-load-project-configuration#build-dependency-cache" >}}) if necessary.
 
 ### Branch
 
