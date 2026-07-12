@@ -44,6 +44,15 @@ To set up any kind of test, either for load testing or monitoring, you need to n
 
 In case you are a member of many organizations, navigating between them on the dashboard may get tedious. XTC helps you to focus on your current "working set" of orgs and projects: simply **star an org or project** using the star icon to mark it as favorite. By default, only the starred orgs/projects will be shown on the dashboard page. If you need to navigate to a project that is not listed by default, you can always use the project dropdown in the page header.
 
+### System Notifications
+
+To keep you informed about important events, XTC includes a system notification mechanism. You will see banner notifications displayed at the top of your screen for events such as:
+* Planned system maintenance windows
+* Deployment of new XTC releases
+* Crucial system announcements
+
+Once read, these notifications do not disappear immediately but remain accessible for a specified period of time. System notifications are broadcasted by XTC administrators only; they cannot be created by regular users.
+
 ## Navigation
 
 The navigation links to the sub pages of an organization or project can be found in the sidebar to the left. Click the hamburger menu button to minimize/expand the sidebar.
