@@ -22,9 +22,9 @@ Please note that none of the test settings can be edited after the test was star
 
 ### Load Profile
 
-Under _Load Profile_ you can override the settings in your test suite for the [test properties file to be used]({{< relref "test-suite-configuration#test-properties-file" >}}). In addition to that, you can override the settings for test duration and [load factor]({{< relref "load-configuration#load-factor" >}}). All other settings, for example, [ramp-up times]({{< relref "load-configuration#ramp-up-load-profile" >}}), are not directly configurable in the UI yet, but are still read from the properties files in your test suite.
+Under _Load Profile_ you can override the settings in your test suite for the [test properties file to be used]({{< relref "test-suite-configuration#test-properties-file" >}}). In addition to that, you can override the settings for test duration, ramp-up time, shutdown time, and [load factor]({{< relref "load-configuration#load-factor" >}}).
 
-The load profile settings are only needed if you want to override your test suite settings for some reason, e.g. quickly changing the test duration or load factor without pushing changes to the repository, or switching between your prepared test property files. If the fields are left empty, the settings in the test suite will be used.
+The load profile settings are only needed if you want to override your test suite settings for some reason, e.g. quickly changing the test duration, ramp-up times, or load factor without pushing changes to the repository, or switching between your prepared test property files. If the fields are left empty, the settings in the test suite will be used.
 
 When overriding the load profile settings for a particular load test, you must specify a value for each parameter, including the ramp-up and shutdown times. Load Factor formulas are only allowed if ramp up time equals zero. The resulting load curve is shown in a graph next to the settings then:
 
