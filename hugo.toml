@@ -21,6 +21,9 @@ disableKinds = ["taxonomy"]
 # log warning if link does not exist on build (instead of default ERROR, which fails the build)
 refLinksErrorLevel = "WARNING"
 
+[security]
+  allowContent = ['text/markdown', 'text/html']
+
 [frontmatter]
 date = [":git", "lastmod", "date", "publishDate", ":fileModTime"]
 lastmod = [":git", "lastmod", "date", "publishDate", ":fileModTime"]

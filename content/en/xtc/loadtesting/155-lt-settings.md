@@ -44,6 +44,12 @@ Properties may also be overwritten globally for all load tests of this project i
 
 Under _Repository_ you can enter a branch of the project repository to be used for this test run. This is only necessary if you want to use another branch than the one you [configured for the project]({{< relref "../basics/060-project-configuration#repository" >}}). If this is left empty, the project or default branch will be used.
 
+### Code Archive
+
+Under _Code Archive_ you can configure your load test to run using an uploaded ZIP archive instead of Git. You can select either a specific version of your uploaded archives or choose **Use Latest** to automatically run with the most recently uploaded archive.
+
+Note that using a code archive must be explicitly enabled for the load test. For details on how to manage and upload archives, see [Code Archives]({{< relref "122-code-archives" >}}).
+
 ## Machine Configuration
 
 The most important (and mandatory) part of the test setup is the configuration of the test machines to be used. The machines and machine settings to use for a load test can be found in the _**Machines**_ tab.

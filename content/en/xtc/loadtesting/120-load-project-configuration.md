@@ -19,6 +19,15 @@ The _Configuration_ of a load test project is very similar to the basic [project
 
 In addition to the [basic repository settings]({{< relref "060-project-configuration#repository" >}}) which can be defined for load test projects and monitoring projects alike, there are a few additional options for load test projects concerning the compiling of the test suite:
 
+## Code Archives
+
+{{% permission type="project" least="true" role="tester" action="view repository settings" %}}
+{{% permission type="project" least="true" role="test manager" action="edit repository settings" %}}
+
+As an alternative to Git-based source code repositories, load testing projects allow you to upload source code archives (ZIP files). Under the **Code Archives** tab of the project configuration, you can upload new archives, edit their metadata, and delete archives that are no longer needed. 
+
+For full details on prerequisites, retention rules, and automated uploads via the REST API, see [Code Archives]({{< relref "122-code-archives" >}}).
+
 ## Build
 
 ### Build Tool
