@@ -22,6 +22,10 @@ Results tab and results context menu
 
 Results are basically the [raw data recorded during a test]({{< relref "results" >}}). They are hard to read and usually you will only need them if you are looking for very specific information that is not contained in the [test report]({{< relref "test-evaluation#reading-a-test-report" >}}).
 
+### Partial Result Downloads
+
+Occasionally, downloading load test results from one or more agent machines may fail, typically due to network issues or an overloaded agent controller. Previously, the results from the other agent machines were also lost in this case. Now, however, XTC stores whatever data is available and also creates a load test report from it. To indicate that the results are partial, the dataset and report names include the note `"Download from x of y agent controllers failed."`
+
 ### Downloading Results
 
 To download a set of test results, click _Download_ in the result set's context menu. You will get a .tar.gz archive containing nested archives for all [_timers.csv_ files]({{< relref "results#collected-values" >}}).
