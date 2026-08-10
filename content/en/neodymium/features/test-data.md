@@ -70,8 +70,9 @@ behaviour with annotations: `@DataSet`, `@RandomDataSets` and `@SuppressDataSets
   (index) or by using a string (id)
     * index: 
       * `@DataSet()` every single data set gets referenced
-      * `@DataSet(2)` an integer referencing a specific data set (first data set would be referenced by 1)
-      * `@DataSet({1, 5})` an integer array referencing a range of data sets (in this example the first 5 data sets are executed)
+      * `@DataSet(2)` an integer referencing a specific data set (first data set is referenced by 1)
+      * `@DataSet({1, 5})` an integer array referencing specific data sets (executes data sets 1 and 5)
+      * `@DataSet((3, 16))` a tuple range referencing an inclusive range of data sets (executes data sets 3 through 16)
     * id: `@DataSet(id = "Jebediah's data set")` a string value that refers to a data set which has the same value for
       the attribute `testId` (see [Example 1]({{<ref "#example1" >}}) ). This allows you to name your data sets, which is useful for identification.
 * **@RandomDataSets**: Can be annotated to a method and/or class. This annotation allows to run test with certain amount
