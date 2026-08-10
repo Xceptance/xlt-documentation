@@ -127,6 +127,34 @@ The _Create Comparison Report_ dialog.
 
 Just like regular load test reports, comparison reports can be renamed, [deleted]({{< relref "#deleting-a-report" >}}), [downloaded]({{< relref "#downloading-reports" >}}) as an archive, and also [shared]({{< relref "#sharing-a-report" >}}) publicly.
 
+## Trend Reports
+
+{{% permission type="project" least="true" role="tester" action="create trend reports" %}}
+
+{{% permission type="project" least="true" role="reviewer" action="read or download available trend reports" %}}
+
+In addition to individual load test reports and comparison reports, XTC supports **Trend Reports**. Trend reports allow you to track and visualize performance metrics over time across multiple test runs, helping you identify long-term performance trends and regressions.
+
+### Creating Trend Reports
+
+To create a trend report in XTC:
+
+1. Mark all relevant load test reports as *comparable* using the *Set Comparable* option in their context menu.
+2. Navigate to the **Comparison** page in the left navigation menu and open the **Reports** tab.
+3. Select the reports you want to include in your trend report (at least two source reports are required).
+4. Click the **Trend** button above the table to open the configuration dialog.
+5. Enter a name and optional description for the report, then click submit.
+6. Once XTC finishes generating the report, navigate to the **Trend Reports** tab and click on your new report to view it.
+
+### Report Lifecycle and Sharing
+
+Trend reports fully support standard report operations:
+
+* **Pinning:** Pin important trend reports to prevent automatic cleanup.
+* **Sharing:** Share trend reports via public links with stakeholders who do not have an XTC account.
+* **Downloads:** Download trend reports as standard archive files.
+* **Lifecycle Management:** Unpacked HTML files are automatically cleaned up after 180 days (but can be extracted from the archive on demand), and deleted reports can be recovered within 30 days.
+
 ## Sharing a Report
 
 {{% permission type="project" least="true" role="test manager" %}}
