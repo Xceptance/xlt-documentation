@@ -171,3 +171,18 @@ These properties are typically used in `dev.properties` to aid in compiling and 
 | `com.xceptance.xlt.output2disk` | Write page content to disk (`never`, `onError`, `always`). | `onError` |
 | `com.xceptance.xlt.output2disk.size` | Number of pages kept in memory for `onError`. | `3` |
 | `com.xceptance.xlt.output2disk.onError.dumpMode` | Dump `modifiedAndFinalPages` or `finalPagesOnly`. | `finalPagesOnly` |
+
+### Agent Controller & Private Machine Mode
+
+Configure XLT agent controller settings in `agentcontroller.properties`.
+
+| Property | Description | Default |
+| :--- | :--- | :--- |
+| `com.xceptance.xlt.agentcontroller.password` | Access password for the agent controller. | `xceptance` |
+| `com.xceptance.xlt.agentcontroller.privateMachine.enabled` | Enable Private Machine mode for XTC integration. | `false` |
+| `com.xceptance.xlt.agentcontroller.privateMachine.name` | Human-readable private machine name in XTC. | *(auto-generated)* |
+| `com.xceptance.xlt.agentcontroller.privateMachine.type` | Capacity class (`TINY`, `SMALL`, `MEDIUM`, `LARGE`). | `MEDIUM` |
+| `com.xceptance.xlt.agentcontroller.privateMachine.xtc.clientId` | API client ID created in XTC. | *(empty)* |
+| `com.xceptance.xlt.agentcontroller.privateMachine.xtc.clientSecret` | API client secret created in XTC. | *(empty)* |
+| `com.xceptance.xlt.agentcontroller.privateMachine.xtc.org` | Short name of your XTC organization. | *(empty)* |
+| `com.xceptance.xlt.agentcontroller.privateMachine.xtc.project` | Short name of your XTC load testing project. | *(empty)* |

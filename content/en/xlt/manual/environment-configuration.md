@@ -80,6 +80,24 @@ The agentcontroller is also fully configurable via command line parameters. Any 
 
 This also works when running the mastercontroller with an embedded agent controller. Simply pass the agentcontroller properties on to the mastercontroller’s command line. Note that parameters passed on at the command line will override the respective settings in the agentcontroller’s properties file.
 
+### Private Machine Mode
+
+When using XLT agent controllers with Xceptance Test Center (XTC) in private network environments, you can enable **Private Machine Mode**. In this mode, the agent controller registers with XTC and communicates via an outbound secure tunnel (XLT Relay) rather than accepting direct inbound connections.
+
+Configure private machine mode in `<xlt>/config/agentcontroller.properties`:
+
+| Property | Default | Description |
+|---|---|---|
+| `com.xceptance.xlt.agentcontroller.privateMachine.enabled` | `false` | Set to `true` to enable private machine mode. |
+| `com.xceptance.xlt.agentcontroller.privateMachine.name` | _(auto-generated)_ | Human-readable name for this machine as it appears in XTC. |
+| `com.xceptance.xlt.agentcontroller.privateMachine.type` | `MEDIUM` | Capacity class (`TINY`, `SMALL`, `MEDIUM`, `LARGE`). |
+| `com.xceptance.xlt.agentcontroller.privateMachine.xtc.clientId` | — | API client ID created in XTC with `PRIVATEMACHINE_REGISTER` scope. |
+| `com.xceptance.xlt.agentcontroller.privateMachine.xtc.clientSecret` | — | API client secret created in XTC. |
+| `com.xceptance.xlt.agentcontroller.privateMachine.xtc.org` | — | Short name of your XTC organization. |
+| `com.xceptance.xlt.agentcontroller.privateMachine.xtc.project` | — | Short name of your XTC load testing project. |
+
+For detailed information on configuring private machine load tests in XTC, refer to the [XTC Private Machines Guide]({{< relref "xtc/loadtesting/156-private-machines" >}}).
+
 ## Mastercontroller Configuration
 
 In the mastercontroller configuration file, you can define these properties:
