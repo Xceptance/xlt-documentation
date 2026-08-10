@@ -146,13 +146,33 @@ com.xceptance.xlt.maximumTransactionRunTime = 900000
 
 By default, XLT uses Java 21 *virtual threads* to execute load testing scenarios. Virtual threads are extremely lightweight compared to platform threads, allowing you to configure very high numbers of concurrent users on the same agent machine.
 
-To execute scenarios using standard platform threads instead, you can disable virtual threads:
+To execute scenarios using standard platform threads instead, you can disable virtual threads in your test suite configuration:
 
 ```properties
 com.xceptance.xlt.virtualThreads.enabled = false
 ```
 
-Virtual threads are highly recommended for high concurrency tests. However, if your test suite code relies on legacy thread features such as thread grouping (`ThreadGroup`), you may need to refactor it to use `InheritableThreadLocal` context sharing instead.
+#### Carrier Thread Pool Tuning
+
+Virtual threads execute on underlying JVM carrier threads. If the JVM determines that additional carrier threads are needed during high-concurrency execution, it may spawn new native threads. You can limit the max pool size of carrier threads by setting `jdk.virtualThreadScheduler.maxPoolSize` in `<xlt>/config/jvmargs.cfg`:
+
+```cfg
+-Djdk.virtualThreadScheduler.maxPoolSize=128
+```
+
+#### Code Migration & Context Sharing
+
+Virtual threads are not created with a `ThreadGroup`. If your test suite or underlying libraries rely on `ThreadGroup` to share data or look up thread context, you must refactor the code to use `InheritableThreadLocal` instead:
+
+```java
+// Legacy ThreadGroup context lookup
+private static final Map<ThreadGroup, Context> CONTEXTS = new ConcurrentHashMap<>();
+
+// Refactored context sharing for Virtual Threads
+private static final InheritableThreadLocal<Context> CONTEXTS = new InheritableThreadLocal<>();
+```
+
+Because XLT uses the thread context to transmit measurement data within the framework, ensuring context preservation with `InheritableThreadLocal` is essential for accurate request metric collection.
 
 ### Support for HTTP/2
 
