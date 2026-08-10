@@ -120,6 +120,7 @@ These properties configure the XLT report generator, including output location, 
 | `com.xceptance.xlt.reportgenerator.charts.commonAverage.value` | Look-behind window value (e.g. `5%` or `10m`). | `5%` |
 | `com.xceptance.xlt.reportgenerator.charts.averages.<n>.type` | Type of additional moving average (`percentage` or `time`). | *(none)* |
 | `com.xceptance.xlt.reportgenerator.charts.averages.<n>.value` | Value of additional moving average. | *(none)* |
+| `com.xceptance.xlt.reportgenerator.dynamicCharts.enabled` | Generate interactive dynamic overview charts in the report. | `true` |
 | `com.xceptance.xlt.reportgenerator.runtimePercentiles` | Percentiles shown in data tables. | `50, 95, 99, 99.9` |
 
 {{% note title="Note" %}}

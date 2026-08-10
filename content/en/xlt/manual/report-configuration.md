@@ -215,6 +215,16 @@ com.xceptance.xlt.reportgenerator.charts.averages.2.type = time
 com.xceptance.xlt.reportgenerator.charts.averages.2.value = 10m
 ```
 
+## Dynamic Overview Charts
+
+Load test reports include interactive charts on the *Dynamic Overview* tab. These dynamic charts display tooltips under the cursor (including timestamp, metric value, and count/s values), preserve minimum-maximum bands when zooming in, and display data in the report's configured time zone.
+
+The data for dynamic charts is stored in JSON files within the report directory. If you do not need dynamic charts or want to reduce report disk space usage, you can disable this feature in `reportgenerator.properties`:
+
+```properties
+com.xceptance.xlt.reportgenerator.dynamicCharts.enabled = false
+```
+
 ## Labeling Rules
 
 You can assign custom labels to transactions, actions and requests during report generation by defining labeling rules (e.g. all requests in the checkout area of a shopping app could be labeled with "checkout"). These labels will be included in the HTML report and the XML data file, and can be used to filter data tables or as part of [Report Colorization]({{< relref "#report-colorization" >}}) and [Scorecard]({{< relref "scorecard" >}}) rules.
