@@ -142,6 +142,20 @@ xlt.webDriver.chrome_clientperformance.userAgent.desktop = Mozilla/5.0 (X11; Lin
 xlt.webDriver.chrome_clientperformance.userAgent.mobile = Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1 Xceptance LoadTest
 ```
 
+#### Programmatic Driver Instantiation
+
+When instantiating `XltFirefoxDriver` programmatically using `XltFirefoxDriver.Builder`, pass a `FirefoxOptions` object to configure custom profiles or browser binaries:
+
+```java
+FirefoxOptions options = new FirefoxOptions();
+options.setProfile(customProfile);
+
+XltFirefoxDriver driver = XltFirefoxDriver.builder()
+    .setFirefoxOptions(options)
+    .setHeadless(true)
+    .build();
+```
+
 ### Client Performance Test Cases in XLT
 
 To enable client performance measurements in XLT, test cases must use the action concept to mark areas for screenshots and time naming. In other words, your UI test cases should extend `AbstractWebDriverTestCase` or `AbstractWebDriverScriptTestCase`.
