@@ -63,7 +63,21 @@ To view and edit the subscribers and check assignments of a notification list, e
 Notification list detail view.
 {{< /image >}}
 
-To add new subscribers to a notification list, go to the _Subscribers_ tab in the list detail view and click _Add_. You may add **XTC user subscribers** (existing XTC account with predefined contact data) or **custom subscribers** (custom mail address or phone number). For each subscriber you may choose whether to send notifications via e-mail or text message (or both). You can also add a [**slack channel**]({{< relref "../integrations/510-slack/" >}}) to the subscribers list. The subscriber data can be edited anytime, subscribers can also be deactivated or removed entirely.
+To add new subscribers to a notification list, go to the _Subscribers_ tab in the list detail view and click _Add_. You may add **XTC user subscribers** (existing XTC account with predefined contact data) or **custom subscribers** (custom mail address, phone number, or push topic). For each subscriber, you can choose notification channels such as e-mail, **push notifications** (via [ntfy.sh](https://ntfy.sh)), or a [**Slack channel**]({{< relref "../integrations/510-slack/" >}}). The subscriber data can be edited anytime, and subscribers can be deactivated or removed entirely.
+
+#### Push Notifications Setup
+
+To receive instant monitoring alerts on your mobile device via push notifications:
+
+1. Install the **ntfy** app on your mobile device (available for iOS and Android).
+2. Open your XTC account settings and navigate to **Profile > Push Notifications**.
+3. Generate a new, unique notification topic and scan the displayed QR code with your mobile device. The ntfy app will automatically subscribe to your topic.
+4. Click **Send Test Message** in XTC to verify that notifications are working as expected.
+5. In your project's **Notification List**, edit a user or custom subscriber and enable the **Push Notification** channel.
+
+{{% warning title="Deprecation Warning: SMS Notification Channel" %}}
+Push notifications are replacing SMS alerts. The SMS notification channel will be **deactivated in September 2026**. Please migrate your notification lists to push notifications as soon as possible.
+{{% /warning %}}
 
 ### Notification List Assignments
 
@@ -86,6 +100,10 @@ To limit the active time, go to the notification list and switch to the _Activat
 * The time zone for the start and end times.
 
 You can define multiple activation times to allow for different time periods on the same or different weekdays. Time windows may overlap. Notifications are sent as long as at least one time window is active.
+
+{{% note title="Warning for Inactive Notification Lists" %}}
+If all activation times are removed from a notification list, the list becomes effectively inactive and will not send alerts. XTC displays a warning banner when a notification list has no active time windows configured.
+{{% /note %}}
 
 ### Pausing or Disabling Notifications
 
