@@ -22,6 +22,12 @@ Please ensure that your code archive meets the following requirements:
 * **Structure**: The ZIP archive must contain a single top-level directory.
 * **Sources**: The top-level directory must contain the source files of your test suite. This includes all files required to successfully build the test suite (e.g., Maven's `pom.xml` or Gradle's `build.gradle`). You can exclude version control metadata such as `.git` directories.
 
+## Maven Plugin Automation
+
+To simplify and automate packaging and uploading code archives to XTC, Xceptance provides a dedicated Maven plugin. The plugin can be integrated directly into your Maven-based test projects to automate packaging and uploading test suites as part of your build or CI/CD process.
+
+Detailed configuration instructions and setup examples are available in the GitHub repository: [xtc-maven-plugin](https://github.com/Xceptance/xtc-maven-plugin).
+
 ## Best Practices
 
 When creating a code archive manually or using tools/scripts other than the official plugin, ensure you exclude temporary or generated directories to keep the archive size small. In particular, exclude the following before archiving:
