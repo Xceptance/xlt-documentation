@@ -1,6 +1,8 @@
 ---
 title: Test Suites
 description: "All about our different test suites from simple to advanced.\n"
+sidebar:
+  label: "Overview"
 ---
 
 XLT leverages the concept of a **Test Suite** as a structured framework for your testing efforts. It provides the foundation for designing and writing tests, allowing you to extend the core XLT capabilities with your own domain-specific API.

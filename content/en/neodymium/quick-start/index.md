@@ -1,6 +1,8 @@
 ---
 title: Quick Start
 description: "A full tutorial in several steps to get you started with Neodymium.\n"
+sidebar:
+  label: "Overview"
 ---
 
 This tutorial will guide you through writing browser-based test automation with Neodymium from scratch.
