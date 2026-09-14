@@ -1,16 +1,9 @@
 ---
-title: "Software Used"
-
-type: docs
-
-weight: 90
-
-aliases: 
-#    - /about-xlt/software-used
-
-description: >
-    A list of open-source software and components used to build this documentation.
-
+title: Software Used
+description: "A list of open-source software and components used to build this
+  documentation.\n"
+sidebar:
+  order: 90
 ---
 
 Our goal in building new and comprehensive documentation for XLT was to use open-source components. Below is a list of frameworks, fonts, and their respective licenses used to create this documentation.

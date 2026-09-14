@@ -1,13 +1,9 @@
 ---
-title: "Configuring mTLS for your XLT Test Suite"
-linkTitle: "mTLS"
-
-weight: 640
-type: docs
-
-
-description: >
-    Learn how to set up your XLT test suite for using mTLS.  
+title: Configuring mTLS for your XLT Test Suite
+description: "Learn how to set up your XLT test suite for using mTLS. \ \n"
+sidebar:
+  label: mTLS
+  order: 640
 ---
 
 In a zero-trust environment, not only must the client verify the server's identity, but the server must also verify the client's identity. This is known as [Mutual Transport Layer Security (mTLS)](https://www.cloudflare.com/learning/access-management/what-is-mutual-tls/).

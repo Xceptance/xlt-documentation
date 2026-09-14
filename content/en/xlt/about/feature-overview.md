@@ -1,17 +1,13 @@
 ---
-title: "Features"
-
-type: docs
-
-weight: 20
-
-description: >
-    A summary of XLT's most important features.
+title: Features
+description: "A summary of XLT's most important features.\n"
+sidebar:
+  order: 20
 ---
 
 ## Platform Independence
 
-Supporting only MS Windows was never an option when XLT was developed. We aimed for a tool that runs everywhere, with a preference for Linux. XLT load tests can be developed and executed on any platform with a supported JDK. Of course, you can easily run your load tests on a [distributed cloud infrastructure]({{< relref "cloud-setup" >}}). Releases include [pre-built Amazon Web Services (AWS) AMIs]({{< relref "cloud-setup#image-templates-for-aws" >}}). Images for other cloud providers and containers can be built easily (see [XLT-Packer](https://github.com/Xceptance/XLT-Packer).
+Supporting only MS Windows was never an option when XLT was developed. We aimed for a tool that runs everywhere, with a preference for Linux. XLT load tests can be developed and executed on any platform with a supported JDK. Of course, you can easily run your load tests on a [distributed cloud infrastructure](/xlt/advanced/cloud-setup/). Releases include [pre-built Amazon Web Services (AWS) AMIs](/xlt/advanced/cloud-setup/#image-templates-for-aws). Images for other cloud providers and containers can be built easily (see [XLT-Packer](https://github.com/Xceptance/XLT-Packer).
 
 ## Java
 
@@ -25,9 +21,9 @@ XLT uses trusted open-source components like Apache HttpClient, HtmlUnit, JUnit,
 
 XLT load tests are typically run from the command line (on your local machine or any remote machine). Results are stored wherever the tests are executed from. Anyone with the correct password and agent IPs can attach to a running test. This makes it very easy to share work and monitor a running test from anywhere.
 
-If you're not comfortable with the command line, the [XLT Jenkins plugin]({{< relref "#cicd-ready---jenkins-module" >}}) provides a UI for managing tests.
+If you're not comfortable with the command line, the [XLT Jenkins plugin](#cicd-ready---jenkins-module) provides a UI for managing tests.
 
-Xceptance is also offering an [SaaS solution]({{< relref "/xtc" >}}) to simplify scheduling, running, storing, and sharing testing work and results.
+Xceptance is also offering an [SaaS solution](/xtc) to simplify scheduling, running, storing, and sharing testing work and results.
 
 ## Test Suites
 
@@ -41,11 +37,11 @@ There are several approaches to writing and designing XLT tests, for example:
 * Real browser: Use a WebDriver-style test approach and scale up load testing using real browsers (Chrome, Firefox). XLT also captures page rendering times.
 * Request level: For API testing, plain HttpRequests can be created and executed
 
-Xceptance offers [example test suites]({{< relref "../test-suites" >}}) for most of these concepts, so you can get a feeling what suits your needs. This includes a test suite that uses YAML for test configuration, almost entirely skipping programming.
+Xceptance offers [example test suites](/xlt/manual/test-suites/) for most of these concepts, so you can get a feeling what suits your needs. This includes a test suite that uses YAML for test configuration, almost entirely skipping programming.
 
 ## Load Profiles
 
-The [load profiles]({{< relref "load-configuration" >}}) offered by XLT are configurable, like everything else, and therefore completely flexible. Whether you need a constant user number or arrival rate is just one of many possible approaches. Additionally, you can define a ramp-up or warm-up phase for your tests or even create a fully variable load profile for any test profile you want to create. The load is freely and independently configurable for every test scenario. To simplify test run configuration, you can increase or decrease the load using the load factor feature.
+The [load profiles](/xlt/manual/load-configuration/) offered by XLT are configurable, like everything else, and therefore completely flexible. Whether you need a constant user number or arrival rate is just one of many possible approaches. Additionally, you can define a ramp-up or warm-up phase for your tests or even create a fully variable load profile for any test profile you want to create. The load is freely and independently configurable for every test scenario. To simplify test run configuration, you can increase or decrease the load using the load factor feature.
 
 Each test setup is just a set of property files that can be prepared upfront and referenced by your test run. Includes allow for easy component reuse. This allows you to prepare scenarios for dry runs, exclude test cases (e.g., no checkout currently), create a marketing day setup, or reflect an average day.
 
@@ -53,27 +49,25 @@ Each test setup is just a set of property files that can be prepared upfront and
 
 Reporting was a primary driver for creating another load test tool. Most tools didn't offer sufficient and detailed reports or hid important data points.
 
-XLT comes with ready-to-use test reports. These reports are easily adjustable in [content]({{< relref "report-options" >}}) and [layout]({{< relref "report-configuration" >}}). It's even possible to incorporate [custom data]({{< relref "custom-data" >}}) and reporting. Requests can be [grouped]({{< relref "xlt/advanced/merge-rules" >}}) according to your needs. It's also possible to generate [comparison]({{< relref "reports#comparison-report" >}}) and [trend reports]({{< relref "reports#trend-report" >}}) to get a better overview of how test runs have developed over time.
+XLT comes with ready-to-use test reports. These reports are easily adjustable in [content](/xlt/manual/report-options/) and [layout](/xlt/manual/report-configuration/). It's even possible to incorporate [custom data](/xlt/advanced/custom-data/) and reporting. Requests can be [grouped](/xlt/advanced/merge-rules/) according to your needs. It's also possible to generate [comparison](/xlt/manual/reports/#comparison-report) and [trend reports](/xlt/manual/reports/#trend-report) to get a better overview of how test runs have developed over time.
 
-{{< image src="user-manual/test-report-small.png" large="user-manual/test-report.png" >}}
-XLT Performance Test Report
-{{< /image >}}
+![XLT Performance Test Report](/images/user-manual/test-report-small.png)
+*XLT Performance Test Report*
 
 ## Open Data Formats
 
-XLT uses open data formats to support custom analytics and reporting. All measured data is stored in [csv files]({{< relref "../advanced/results" >}}). Intermediate data is stored in XML format (using XSLT for HTML transformation and CSS for styling).
+XLT uses open data formats to support custom analytics and reporting. All measured data is stored in [csv files](/xlt/advanced/results/). Intermediate data is stored in XML format (using XSLT for HTML transformation and CSS for styling).
 
 ## CI/CD Ready - Jenkins Module
 
-XLT provides the tools to make continuous load testing an engineering habit. By offering a [Jenkins plug-in]({{< relref "jenkins" >}}), you can run your XLT tests with every build. You don't have to deal with XLT tools directly, meaning you don't need to write shell scripts to drive the load test. Instead, you simply configure basic settings via the Jenkins UI, and the plug-in handles the necessary steps with your provided parameters. Furthermore, the plug-in automatically stores results, creates load test reports, and updates trend reports. By defining success criteria (e.g., no errors and maximum runtime below 10 seconds), you can automate the evaluation of load test results. The XLT Jenkins plug-in can also visualize long-term trends across multiple builds. Simply define the values you want to monitor over time.
+XLT provides the tools to make continuous load testing an engineering habit. By offering a [Jenkins plug-in](/xlt/advanced/jenkins/), you can run your XLT tests with every build. You don't have to deal with XLT tools directly, meaning you don't need to write shell scripts to drive the load test. Instead, you simply configure basic settings via the Jenkins UI, and the plug-in handles the necessary steps with your provided parameters. Furthermore, the plug-in automatically stores results, creates load test reports, and updates trend reports. By defining success criteria (e.g., no errors and maximum runtime below 10 seconds), you can automate the evaluation of load test results. The XLT Jenkins plug-in can also visualize long-term trends across multiple builds. Simply define the values you want to monitor over time.
 
 ## Realtime Test Monitoring
 
-While your load test is running, you can watch the results in real-time and see how performance develops. [XLT supports Graphite]({{< relref "real-time-monitoring" >}}), a well-known data collection and graphing tool. During a load test, XLT can push selected metrics to Graphite, allowing you to watch your most important performance data instantly.
+While your load test is running, you can watch the results in real-time and see how performance develops. [XLT supports Graphite](/xlt/advanced/real-time-monitoring/), a well-known data collection and graphing tool. During a load test, XLT can push selected metrics to Graphite, allowing you to watch your most important performance data instantly.
 
-{{< image src="how-to/graphite/realtime-reporting.png" >}}
-Load Testing Dashboard
-{{< /image >}}
+![Load Testing Dashboard](/images/how-to/graphite/realtime-reporting.png)
+*Load Testing Dashboard*
 
 ## Misc
 

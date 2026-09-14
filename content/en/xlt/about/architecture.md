@@ -1,13 +1,9 @@
 ---
-title: "Architecture"
-linkTitle: "Architecture"
-
-type: docs
-
-weight: 30
-
-description: >
-    An overview of the XLT architecture.
+title: Architecture
+description: "An overview of the XLT architecture.\n"
+sidebar:
+  label: Architecture
+  order: 30
 ---
 
 ## Architecture
@@ -34,4 +30,4 @@ This section covers the master controller, agents, test suites, and monitoring.
 * Reports can be generated from results at any time.
 * Results and reports preserve test setups, making it easy to repeat tests.
 
-{{< TODO >}}This page is still a work in progress.{{< /TODO >}}
+{/*  TODO: }This page is still a work in progress.  */}}

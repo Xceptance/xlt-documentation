@@ -1,0 +1,50 @@
+---
+title: How to Run Java Test Cases in IntelliJ
+description: "Learn how to import a demo test suite and execute its Java test
+  cases in IntelliJ.\n"
+sidebar:
+  label: Running Tests in IntelliJ
+  order: 500
+---
+
+## Execution of Java Test Cases Using IntelliJ IDE
+After downloading and installing IntelliJ on your system, you can use the following process to get a demo test suite up and running in your IDE. 
+
+### Obtaining the Test Suite
+Clone the demo test suite from [Github](https://github.com/Xceptance/posters-simple-loadtest-suite) to a local directory (e.g., `<posters-simple-loadtest-suite>`). 
+
+### Importing the _Posters_ Test Suite into IntelliJ 
+Once IntelliJ has started, do the following:
+1. On the left pane, ensure you have selected the 'Projects' tab. 
+
+    ![](/images/how-to/ide/intelli1.jpg)
+**
+
+2. On the top right of the window, click the 'Open' button.
+3. Select the root directory and point to your cloned test suite (e.g., `<posters-simple-loadtest-suite>`).
+
+    ![](/images/how-to/ide/intelli2.png)
+**
+
+4. After clicking 'OK,' the test suite should open as a Maven project in the IDE.
+
+    ![](/images/how-to/ide/intelli3.png)
+**
+
+
+
+:::note
+Before executing the tests, ensure that the [demo application](/xlt/quick-start/demo-application/) is running.
+:::
+
+### Executing Java Test Cases in IntelliJ
+The imported tests can be run in IntelliJ in headless browser mode. Go to the package `com.xceptance.xlt.samples.tests`, right-click, and select 'Run All Tests'. 
+
+![](/images/how-to/ide/intelli4.png)
+**
+
+By default, the test cases will run against the [demo application](/xlt/quick-start/demo-application/) you already started. (If you modified the ports there, you might have to change them in `<project>/config/project.properties` accordingly; look for the `store-url` property). 
+
+![](/images/how-to/ide/intelli5.png)
+**
+

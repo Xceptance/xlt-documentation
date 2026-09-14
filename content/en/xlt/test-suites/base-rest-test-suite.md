@@ -1,11 +1,9 @@
 ---
-title: "Base REST Test Suite"
-
-weight: 20
-type: docs
-
-description: >
-  This test suite demonstrates how to test REST services or simple request/response examples.
+title: Base REST Test Suite
+description: "This test suite demonstrates how to test REST services or simple
+  request/response examples.\n"
+sidebar:
+  order: 20
 ---
 
 ## Introduction

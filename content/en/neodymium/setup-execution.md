@@ -1,9 +1,9 @@
 ---
-title: "Installation"
-linkTitle: "Installation"
-weight: 5
-type: docs
+title: Installation
 description: "Basic installation requirements and setup for Neodymium."
+sidebar:
+  label: Installation
+  order: 5
 ---
 
 This page covers the basic requirements to get started with Neodymium.
@@ -54,10 +54,10 @@ If you prefer using Docker, you can use images with pre-installed dependencies:
 Once your environment is ready, the best way to start a new project is using the **Neodymium Template**.
 
 * Check out the [Neodymium Template](https://github.com/Xceptance/neodymium-template) repository.
-* Follow the [Quick Start Guide]({{< relref "quick-start" >}}) for a step-by-step tutorial.
+* Follow the [Quick Start Guide](/neodymium/quick-start/) for a step-by-step tutorial.
 
 ## Next Steps
 
-* **Configuration:** Learn how to configure browsers and environments in [Configuration]({{< relref "configuration" >}}).
-* **Browser Setup:** Details on setting up drivers and profiles are in the [Browsers]({{< relref "browsers" >}}) section.
-* **Running Tests:** Learn about flexible execution options (IDE, Maven, filtering) in [Test Execution]({{< relref "framework/test-execution" >}}).
+* **Configuration:** Learn how to configure browsers and environments in [Configuration](/neodymium/quick-start/configuration/).
+* **Browser Setup:** Details on setting up drivers and profiles are in the [Browsers](/neodymium/browsers/) section.
+* **Running Tests:** Learn about flexible execution options (IDE, Maven, filtering) in [Test Execution](/neodymium/framework/test-execution/).

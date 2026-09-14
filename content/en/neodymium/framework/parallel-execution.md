@@ -1,9 +1,9 @@
 ---
-title: "Parallel Execution"
-linkTitle: "Parallel Execution"
-weight: 540
-type: docs
+title: Parallel Execution
 description: "Running tests in parallel with Maven."
+sidebar:
+  label: Parallel Execution
+  order: 540
 ---
 
 Execution of a bunch of tests in parallel is currently only supported with Maven. To enable parallel execution you need to add the following surefire configuration to the `build` section of your projects pom file.

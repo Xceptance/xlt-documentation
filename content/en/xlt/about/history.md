@@ -1,15 +1,10 @@
 ---
-title: "History"
-linkTitle: "History"
-aliases: 
-    - history
-
-type: docs
-
-weight: 10
-
-description: >
-    To better understand XLT's features, especially the detailed work on reporting and scaling, you might want to explore its history.
+title: History
+description: "To better understand XLT's features, especially the detailed work
+  on reporting and scaling, you might want to explore its history.\n"
+sidebar:
+  label: History
+  order: 10
 ---
 
 ## Why Have We Built Another Tool?
@@ -46,7 +41,7 @@ Over its lifetime, Script Developer gained many features, including modules for 
 
 ## 2011 - 2019
 
-We continuously enhanced the tool, improving reporting, deployment, CI/CD integration, the API, data logging and capturing, and much more. Feel free to go over the [release history]({{< relref "/xlt/release-notes" >}}) to learn more about the development history.
+We continuously enhanced the tool, improving reporting, deployment, CI/CD integration, the API, data logging and capturing, and much more. Feel free to go over the [release history](/xlt/release-notes) to learn more about the development history.
 
 ## 2017 - Script Developer Discontinued
 
@@ -72,7 +67,7 @@ The world evolved, and open source became the norm for many businesses, especial
 
 So, in February 2020, we completely open-sourced XLT to make it more accessible and simplify the decision-making process. XLT is published on Github under the [Apache License 2.0](https://opensource.org/licenses/Apache-2.0). Xceptance continues to maintain and extend XLT as before. We build and publish releases regularly.
 
-We still maintain the [legacy documentation](https://lab.xceptance.de/releases/xlt/5.7.1/index.html) for information about older or deprecated XLT versions or functionalities. For everything else, [this is the new documentation]({{< relref "/" >}}), also available on [Github](https://github.com/Xceptance/xlt-documentation). It is growing steadily, with updates pushed constantly. Please provide feedback, raise issues, and contribute to the documentation if you like.
+We still maintain the [legacy documentation](https://lab.xceptance.de/releases/xlt/5.7.1/index.html) for information about older or deprecated XLT versions or functionalities. For everything else, [this is the new documentation](/), also available on [Github](https://github.com/Xceptance/xlt-documentation). It is growing steadily, with updates pushed constantly. Please provide feedback, raise issues, and contribute to the documentation if you like.
 
 ## 2021 - 2025
 

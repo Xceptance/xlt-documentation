@@ -1,8 +1,8 @@
 ---
-title: "Example Projects"
-weight: 40
-type: docs
+title: Example Projects
 description: "A comprehensive list of Neodymium example projects, templates, and showcases."
+sidebar:
+  order: 40
 ---
 
 Xceptance provides several open-source projects on GitHub to help you get started with Neodymium, whether you prefer a clean slate, a BDD approach, or want to see specific features in action.
@@ -27,7 +27,7 @@ Use this as a foundation to build your own test automation project.
 * **Repository:** [neodymium-example](https://github.com/Xceptance/neodymium-example)
 * **Best for:** Learning patterns for standard Java-based tests.
 
-This project demonstrates a complete test suite for the [Xceptance Posters]({{< relref "posters-demo-store" >}}) demo store. It uses:
+This project demonstrates a complete test suite for the [Xceptance Posters](/neodymium/miscellaneous/posters-demo-store/) demo store. It uses:
 
 * **Page Object Model (POM)** for maintainability.
 * **Pure Java** (Standard JUnit/Selenide) without Cucumber.

@@ -1,9 +1,8 @@
 ---
-title: "Selenium Grid"
-weight: 450
-type: docs
-description: >
-  A Guide to Using a Selenium Grid with Neodymium
+title: Selenium Grid
+description: "A Guide to Using a Selenium Grid with Neodymium\n"
+sidebar:
+  order: 450
 ---
 
 ## Integrating with Selenium Grid
@@ -27,7 +26,7 @@ To set up this cloud, you need a central server (the **Hub** in Selenium Grid) a
                         +----------------------------------------------+
 ```
 
-For integration with Neodymium's [multi browser support]({{< relref "browser#multi-browser-handling" >}}), you simply annotate the required browser on your test, and Neodymium manages the web browser's lifecycle.
+For integration with Neodymium's [multi browser support](/neodymium/browsers/browser/#multi-browser-handling), you simply annotate the required browser on your test, and Neodymium manages the web browser's lifecycle.
 
 ## Setting up a Local Grid
 

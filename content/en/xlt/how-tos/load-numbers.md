@@ -1,24 +1,21 @@
 ---
-title: "How to Calculate Load Test Target Numbers"
-linkTitle: "Calculate Target Numbers"
-
-weight: 50
-type: docs
-
-
-description: >
-    Learn how to set up the right load mix and calculate target numbers correctly without overreaching.
+title: How to Calculate Load Test Target Numbers
+description: "Learn how to set up the right load mix and calculate target
+  numbers correctly without overreaching.\n"
+sidebar:
+  label: Calculate Target Numbers
+  order: 50
 ---
 
 ## Motivation
 
-Before you can start load testing for your application, you need to [define target numbers]({{< relref "load-configuration" >}}). The load you apply should ideally model real-world traffic behavior, but chances are you do not yet have a complete list of numbers at hand. You might also have heard about ["concurrent users"]({{< relref "#calculation-of-concurrent-users" >}}) or received these as a metric, which makes things even trickier.
+Before you can start load testing for your application, you need to [define target numbers](/xlt/manual/load-configuration/). The load you apply should ideally model real-world traffic behavior, but chances are you do not yet have a complete list of numbers at hand. You might also have heard about ["concurrent users"](#calculation-of-concurrent-users) or received these as a metric, which makes things even trickier.
 
 So, what should you do when you do not know every detail about current or future load patterns? We will describe one approach that works quite well in the context of commerce applications and consistently yields satisfying results for us.
 
 ## Assumptions
 
-As you can see in our [example test suites]({{< relref "../test-suites" >}}), we have defined a handful of typical test scenarios for commerce applications. For our example, we will use the following scenarios:
+As you can see in our [example test suites](/xlt/manual/test-suites/), we have defined a handful of typical test scenarios for commerce applications. For our example, we will use the following scenarios:
 
 * _TVisit_: Enters the store and does not move beyond this starting page.
 * _TBrowsing_: _TVisit_ plus category and product browsing.
@@ -36,7 +33,7 @@ We need at least a few numbers from which to derive our calculation, such as:
 * Peak page views/h: for example, 250,000 page views.
 * Peak orders/h: for example, 200 orders.
 
-[^1]: [What are visits?]({{< relref "xlt/about/glossary#visit" >}})
+[^1]: [What are visits?](/xlt/about/glossary/#visit)
 
 Based on these assumptions, we can assemble a fairly simple yet sufficiently accurate load mix. Of course, we can also analyze current log files and try to devise something more precise, but that will only be a snapshot. Traffic is very volatile; hence, we can be very generous when setting up this mix.
 
@@ -44,7 +41,7 @@ Since we do not take daily averages as a base but rather the peaks, we will calc
 
 ## Arrival Rate Calculation
 
-There are [two different approaches]({{< relref "load-model" >}}) (load models) available to define a load test setup: the user count model and the arrival rate model.
+There are [two different approaches](/xlt/how-tos/load-model/) (load models) available to define a load test setup: the user count model and the arrival rate model.
 
 For the user count model, you define a certain number of concurrent users the system will have to handle, whereas with the arrival rate model, your criteria is the number of transactions per hour. As the latter is better suited for real-world load, we will proceed with the arrival rate model.
 
@@ -117,7 +114,7 @@ Depending on the store type (large store, small store, etc.), people tend to use
 
 ### Configuration
 
-Now we can [set up the arrival rates]({{< relref "load-configuration#arrival-rate-model" >}}) in the test properties:
+Now we can [set up the arrival rates](/xlt/manual/load-configuration/#arrival-rate-model) in the test properties:
 
 ```text
 ## Test case specific configuration.
@@ -155,7 +152,7 @@ The numbers we have just calculated tell us how often a test scenario needs to r
 
 XLT requires a user count per test scenario alongside the arrival rate.
 
-This number of concurrent users is a result rather than an input value for the load model. The number is used to impose an upper limit on the number of concurrent users, which may help restrict the total load on the system if you want to avoid an overload situation resulting from the [feedback loop]({{< relref "load-model#response-time-as-influencing-factor" >}}).
+This number of concurrent users is a result rather than an input value for the load model. The number is used to impose an upper limit on the number of concurrent users, which may help restrict the total load on the system if you want to avoid an overload situation resulting from the [feedback loop](/xlt/how-tos/load-model/#response-time-as-influencing-factor).
 
 But where do user numbers come from?
 
@@ -196,7 +193,7 @@ These results are based on many assumptions, which means they are not necessaril
 
 #### How do I know if the think times are correct?
 
-For your real-world application, it's a bit of work to determine the correct think times. For most testing, rough estimates are good enough. There are only a few cases where think times play a larger role. For the load test, you can [set the think time in your test properties]({{< relref "test-suite-configuration#think-times" >}}). Ensure the think times are random enough and not overly fixed.
+For your real-world application, it's a bit of work to determine the correct think times. For most testing, rough estimates are good enough. There are only a few cases where think times play a larger role. For the load test, you can [set the think time in your test properties](/xlt/manual/test-suite-configuration/#think-times). Ensure the think times are random enough and not overly fixed.
 
 #### What if the response time gets longer than you expect?
 
