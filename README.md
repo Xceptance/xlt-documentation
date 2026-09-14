@@ -1,66 +1,153 @@
-# XLT Documentation
+# Xceptance Documentation
 
-XLT Documentation is based on [Docsy](https://www.docsy.dev/), a [Hugo](https://gohugo.io/) theme for technical documentation sets that provides simple navigation, site structure, and more.
+Documentation for **XLT**, **XTC**, and **Neodymium**, built with [Blume](https://github.com/blumedocs/blume) on [Astro](https://astro.build/) and [Vite](https://vite.dev/).
+
+---
 
 ## Prerequisites
 
-The following are the basic prerequisites to build the documentation locally:
+- **Node.js**: Version 20 or newer (Node.js 22+ recommended).
+- **Package Manager**: `npm` (bundled with Node.js) or `pnpm`.
 
-- **Hugo**: Install a recent release of the Hugo "extended" version (we recommend version 0.150.0 or later). If you install from the [release page](https://github.com/gohugoio/hugo/releases), ensure you download the `_extended` version which supports SCSS.
-- **Node.js**: [Install the current Node environment](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) (version > 14.x).
-- **Dependencies**: Install all further dependencies by executing `npm ci` in the documentation's root folder.
+---
 
-## Build and Preview
+## Getting Started
 
-### Local Development Server
+1. **Install dependencies**:
 
-To build and deploy the documentation to a local web server with live reloading:
+   ```bash
+   npm install
+   ```
 
-```bash
-hugo server --watch --disableFastRender
+2. **Start the local development server**:
+
+   ```bash
+   npm run dev
+   ```
+
+   The documentation will be available at [http://localhost:4321](http://localhost:4321) with hot reloading.
+
+3. **Validate site integrity**:
+
+   ```bash
+   npm run validate
+   ```
+
+   Verifies internal links, redirects, and document structure.
+
+4. **Build for production**:
+
+   ```bash
+   npm run build
+   ```
+
+   Generates optimized static HTML in the `dist/` directory.
+
+5. **Preview the production build**:
+
+   ```bash
+   npm run preview
+   ```
+
+---
+
+## Authoring Guide
+
+Documentation content lives in the `content/en/` directory, partitioned into product tabs:
+- `content/en/xlt/`: Xceptance LoadTest (XLT)
+- `content/en/xtc/`: Xceptance Test Center (XTC)
+- `content/en/neodymium/`: Neodymium test automation framework
+
+### Frontmatter
+
+Every Markdown (`.md`) and MDX (`.mdx`) page starts with YAML frontmatter:
+
+```yaml
+---
+title: Getting Started with XLT
+description: A quick start guide to installing and running your first test.
+sidebar:
+  label: Quick Start     # Optional: override label in the sidebar
+  order: 10              # Optional: numerical sort order
+  hidden: true           # Optional: hide empty index placeholder from sidebar
+---
 ```
 
-The documentation will be available at [http://localhost:1313](http://localhost:1313).
+### Callout Directives
 
-### Custom Port
+Blume supports native GitHub/rehype callout directives without needing component imports:
 
-If you need to change the port, use the following command:
+```markdown
+:::note
+Informational note with standard title.
+:::
 
-```bash
-hugo server --watch --disableFastRender --port 2626
+:::tip[Best Practice]
+A tip with a custom header and markdown formatting.
+:::
+
+:::warning
+Cautionary advice or potential pitfall.
+:::
+
+:::danger
+High-priority danger or breaking change alert.
+:::
+
+:::info[Role Required]
+Contextual requirement or permission indicator.
+:::
 ```
 
-### Static Build
+### Internal Links & Assets
 
-To generate the static site in the `public/` directory:
+- **Internal Links**: Use standard root-relative markdown links:
+  ```markdown
+  See the [XLT Manual](/xlt/manual/) or [Release Notes](/xlt/release-notes).
+  ```
+- **Images**: Place images in `public/images/` and reference them directly:
+  ```markdown
+  ![Architecture Overview](/images/xlt-architecture.png)
+  ```
 
-```bash
-hugo
-```
+---
 
 ## How to Contribute
 
-We welcome contributions! To suggest changes or add new content, please follow these steps:
+We welcome your contributions! To suggest changes or add new content:
 
-1. **Fork the Repository**: Create your own copy of the repository by clicking the **Fork** button at the top of the GitHub page.
-2. **Clone and Branch**: Clone your fork locally and create a new branch for your changes:
-
+1. **Fork the Repository**: Create your fork on GitHub.
+2. **Create a Branch**:
    ```bash
-   git checkout -b feature/your-feature-name
+   git checkout -b feature/your-topic-name
    ```
-
-3. **Make Changes**: Update or add documentation files in the `content/` directory.
-4. **Build and Preview**: Ensure everything looks correct by running the local development server (see [Build and Preview](#build-and-preview) section above).
-5. **Commit and Push**: Commit your changes with a descriptive message and push them to your fork:
-
+3. **Make Edits**: Add or modify files in `content/en/`.
+4. **Test & Validate**:
+   ```bash
+   npm run dev       # verify in browser
+   npm run validate  # verify links and frontmatter
+   npm run build     # ensure clean build
+   ```
+5. **Commit and Push**:
    ```bash
    git add .
-   git commit -m "Brief description of changes"
-   git push origin feature/your-feature-name
+   git commit -m "docs: describe your changes"
+   git push origin feature/your-topic-name
    ```
+6. **Open a Pull Request**: Submit your pull request to the `master` branch.
 
-6. **Create a Pull Request**: Go to the original repository on GitHub and create a Pull Request from your branch.
+---
+
+## Built With
+
+- **Framework**: [Blume](https://github.com/blumedocs/blume) (built on [Astro](https://astro.build/) and [Vite](https://vite.dev/))
+- **Search**: Built-in static index with [Pagefind](https://pagefind.app/) / Orama
+- **Icons**: [Lucide Icons](https://lucide.dev/)
+- **Styling**: Tailwind CSS & Vanilla CSS
+- **Typography**: Outfit, Inter, and Ubuntu Mono
+
+---
 
 ## License
 
-This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for details.
+This documentation and its source code are licensed under the [Apache License 2.0](LICENSE).
