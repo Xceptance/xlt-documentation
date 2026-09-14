@@ -6,7 +6,7 @@ The Xceptance documentation site currently runs on Hugo with the Docsy theme and
 
 - **Blume Adoption**: Introduce `blume` as the documentation framework, configured via `blume.config.ts`, with build, dev, validation, and preview scripts in `package.json`.
 - **Preserved Content Root**: Mount `content/en` as the content root (`content: { root: "content/en" }`) to maintain existing folder organization without bulk moves.
-- **Modern Interactive Landing Page**: Replace `content/en/_index.html` with an idiomatic `content/en/index.mdx` using Blume's `<CardGroup cols={3}>` and `<Card>` components, showcasing XTC, XLT, and Neodymium alongside their UI screenshots.
+- **Modern Interactive Landing Page**: Replace `content/en/_index.html` with a custom full-width landing page via `pages/index.astro` using Blume's `PageLayout`, showcasing XTC, XLT, and Neodymium in a responsive card grid alongside their UI screenshots.
 - **Automated Shortcode Conversion**:
   - `{{% note %}}`, `{{% warning %}}`, `{{% tip %}}`, `{{% danger %}}` converted to Blume directives (`:::note`, `:::warning`, `:::tip`, `:::danger`).
   - `{{% permission %}}` shortcodes converted to standard `:::info[Role Required] ... :::` callouts.
