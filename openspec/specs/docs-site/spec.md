@@ -14,11 +14,15 @@ The system SHALL mount documentation content from `content/en` as the content ro
 - **THEN** the system serves the documentation hub landing page rendered from `pages/index.astro`.
 
 ### Requirement: Multi-Product Navigation Tabs
-The system SHALL configure top-level navigation tabs for XLT (`/xlt`), XTC (`/xtc`), and Neodymium (`/neodymium`), dynamically scoping the sidebar navigation to the active product section.
+The system SHALL configure top-level navigation tabs for XLT (`/xlt`), XTC (`/xtc`), and Neodymium (`/neodymium`), dynamically scoping the sidebar navigation to the active product section, and ordering and labeling section chapters according to configured section metadata.
 
 #### Scenario: Section navigation scoping
 - **WHEN** a user navigates to a route under `/xlt/`
-- **THEN** the XLT header tab is highlighted and the sidebar renders only pages and groups belonging to the XLT section.
+- **THEN** the XLT header tab is highlighted and the sidebar renders only pages and groups belonging to the XLT section without falling back to top-level site links.
+
+#### Scenario: Section chapter ordering and labeling
+- **WHEN** a user views the XLT sidebar navigation
+- **THEN** the top-level chapters are displayed in the configured logical order: About, Quick Start, Base Manual, Advanced, Test Suites, Release Notes, How-Tos, and Knowledge Base.
 
 ### Requirement: Interactive Card Hub Landing Page
 The system SHALL render the documentation hub landing page as a custom full-width page via `pages/index.astro` using `PageLayout` (omitting docs sidebar and table of contents), displaying XTC, XLT, and Neodymium product cards with descriptions, preview screenshots, and action links in a responsive grid.
@@ -54,3 +58,4 @@ The system SHALL validate all page frontmatter against Blume's strict schema and
 #### Scenario: Strict build execution
 - **WHEN** `blume build --strict` is run against the documentation source
 - **THEN** the static HTML output is generated in `dist/` without any frontmatter schema errors or dropped pages.
+
