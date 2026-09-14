@@ -12,7 +12,7 @@
 
 ## 3. Landing Page & Redirects
 
-- [x] 3.1 Create `content/en/index.mdx` using Blume `<CardGroup cols={3}>` and `<Card>` components with product descriptions, preview screenshots, and action links; remove legacy `content/en/_index.html` and `content/en/search.md`.
+- [x] 3.1 Create `pages/index.astro` using Blume's `PageLayout` with responsive product cards, preview screenshots, and action links; remove legacy `content/en/_index.html` and `content/en/search.md`.
 - [x] 3.2 Configure redirects in `blume.config.ts` for existing Hugo aliases (such as `/xtc/xtc-release-notes/` -> `/xtc/release-notes/`); verify redirect entries.
 
 ## 4. Validation & Decommissioning

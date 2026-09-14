@@ -45,10 +45,10 @@ Moving to Blume eliminates the external Hugo binary dependency, removes legacy S
 - **Rationale**: Zero external component imports needed in MDX. Pure standard Blume primitives.
 - **Alternatives Considered**: Custom `<Permission>` MDX component (unnecessary abstraction when `:::info` natively renders cleanly).
 
-### Decision 5: Landing Page Variant 1 (Interactive Cards with Previews)
-- **Choice**: Implement `content/en/index.mdx` using `<CardGroup cols={3}>` and `<Card>` containing the existing preview screenshots (`xtc-loadtest-dashboard.png`, `xlt-report-transactions.png`, `test-automation-allure-suites.png`).
-- **Rationale**: Provides above-the-fold visibility for all 3 tools, maintains visual product recognition, and makes future removal of screenshots trivial if a minimalist design is later desired.
-- **Alternatives Considered**: Custom Astro template (`pages/index.astro`) or full alternating zigzag layout.
+### Decision 5: Landing Page via `pages/index.astro` and `PageLayout`
+- **Choice**: Implement `pages/index.astro` using Blume's `PageLayout` with a responsive 3-column card grid containing the existing preview screenshots (`xtc-loadtest-dashboard.png`, `xlt-report-transactions.png`, `test-automation-allure-suites.png`).
+- **Rationale**: Rendering the landing page inside MDX (`content/en/index.mdx`) forces Blume's `RootLayout` docs shell, which displays the documentation sidebar, table of contents, and a narrow column width that compresses 3-column cards. A custom page with `PageLayout` provides a full-width container without sidebar/TOC while retaining the site header, branding, search, and navigation tabs.
+- **Alternatives Considered**: MDX landing page (`content/en/index.mdx` - discarded due to docs sidebar and column constraint) or full alternating zigzag layout.
 
 ### Decision 6: Static Asset Relocation
 - **Choice**: Move `static/images/` to `public/images/`; place favicons and icons directly in `public/`.

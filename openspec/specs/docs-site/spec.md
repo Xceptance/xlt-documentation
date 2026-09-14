@@ -1,15 +1,17 @@
+# docs-site Specification
+
 ## Purpose
 
 Provides the documentation website architecture, content rendering, search, navigation tabs, and build validation for Xceptance tools (XLT, XTC, and Neodymium).
 
-## ADDED Requirements
+## Requirements
 
 ### Requirement: Content Root & Layout
 The system SHALL mount documentation content from `content/en` as the content root and serve pages relative to the site base path.
 
 #### Scenario: Root route rendering
 - **WHEN** a user navigates to the root URL `/`
-- **THEN** the system serves the documentation hub landing page rendered from `content/en/index.mdx`.
+- **THEN** the system serves the documentation hub landing page rendered from `pages/index.astro`.
 
 ### Requirement: Multi-Product Navigation Tabs
 The system SHALL configure top-level navigation tabs for XLT (`/xlt`), XTC (`/xtc`), and Neodymium (`/neodymium`), dynamically scoping the sidebar navigation to the active product section.
@@ -19,11 +21,11 @@ The system SHALL configure top-level navigation tabs for XLT (`/xlt`), XTC (`/xt
 - **THEN** the XLT header tab is highlighted and the sidebar renders only pages and groups belonging to the XLT section.
 
 ### Requirement: Interactive Card Hub Landing Page
-The system SHALL render the documentation hub landing page using Blume `<CardGroup>` and `<Card>` components displaying XTC, XLT, and Neodymium with product descriptions, preview screenshots, and action links.
+The system SHALL render the documentation hub landing page as a custom full-width page via `pages/index.astro` using `PageLayout` (omitting docs sidebar and table of contents), displaying XTC, XLT, and Neodymium product cards with descriptions, preview screenshots, and action links in a responsive grid.
 
 #### Scenario: Card hub display
 - **WHEN** a user views the documentation hub homepage
-- **THEN** three distinct product cards are displayed in a responsive grid, each containing the tool logo/screenshot, summary, and links to manuals and release notes.
+- **THEN** three distinct product cards are displayed in a responsive grid, each containing the tool logo/screenshot, summary, and direct action links to manuals and release notes without displaying the documentation sidebar or table of contents.
 
 ### Requirement: Native Directives and MDX Callouts
 The system SHALL parse and render callout directives (`:::note`, `:::warning`, `:::tip`, `:::danger`, `:::info`) in `.mdx` files without requiring explicit component imports.
@@ -52,4 +54,3 @@ The system SHALL validate all page frontmatter against Blume's strict schema and
 #### Scenario: Strict build execution
 - **WHEN** `blume build --strict` is run against the documentation source
 - **THEN** the static HTML output is generated in `dist/` without any frontmatter schema errors or dropped pages.
-
