@@ -35,7 +35,5 @@ export default defineConfig({
   },
   redirects: [
     { from: "/xtc/release-notes", to: "/xtc/xtc-release-notes" },
-    { from: "/documentation-helpers", to: "/xlt/about/000-demo" },
-    { from: "/writing-documentation", to: "/xlt/about/000-demo" },
   ],
 });
