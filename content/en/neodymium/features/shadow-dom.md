@@ -1,9 +1,9 @@
 ---
-title: "Shadow DOM Testing"
-linkTitle: "Shadow DOM Testing"
-weight: 570
-type: docs
+title: Shadow DOM Testing
 description: "Testing Shadow DOM with Neodymium."
+sidebar:
+  label: Shadow DOM Testing
+  order: 570
 ---
 
 [Shadow DOM](https://javascript.info/shadow-dom) is a construct that helps create encapsulated web components. The self-contained nature of such components makes it hard to automate them, as their elements cannot be accessed via regular JavaScript. Selenide enables handling of these elements.
@@ -16,7 +16,7 @@ To access the elements within a Shadow DOM, inspecting the tree within is necess
 
 Selenide provides the `shadowCss` function to access Shadow DOM elements. For this, a CSS Selector identifying the parent, under which the Shadow DOM is located, and one which identifies the element to be accessed, are needed. Below is an example of how to use it.
 
-```Java
+```java
 $(Selectors.shadowCss("#target-element", "#shadowhost-element")).click()
 ```
 
@@ -24,7 +24,7 @@ This function returns a `WebElement` which can be used in the standard manner.
 
 The `shadowCss` function can also be used to access a Shadow DOM within a Shadow DOM. For this, a collection of selectors for the parents of the inner Shadow DOMs must be added. The syntax for this is as follows:
 
-```Java
+```java
 $(Selectors.shadowCss("#target-element", "#shadowhost-element", listOfInnerShadowHost))
 ```
 

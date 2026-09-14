@@ -1,11 +1,9 @@
 ---
-title: "The Delicate Art of Load Test Scripting"
-
-weight: 10
-type: docs
-
-description: >
-  We are often asked why we need that much time to recheck load test scripts. So, here is our explanation in a few sentences.
+title: The Delicate Art of Load Test Scripting
+description: "We are often asked why we need that much time to recheck load test
+  scripts. So, here is our explanation in a few sentences.\n"
+sidebar:
+  order: 10
 ---
 
 “Why is the script broken? We haven’t changed anything.” A load test script can break in two ways. It can break explicitly, triggering an exception or assertion that provides a clear error message. Alternatively, it can be subtly incorrect—appearing to pass while being flawed and leading to misleading results.
@@ -36,9 +34,8 @@ Now, you might think, “Why not just scale up my UI automation tests?” Good q
 
 Modern browsers are resource-intensive, requiring multiple CPUs, at least 512 MB of memory, and often a GPU. Attempting to scale tests with actual browsers consumes excessive resources, making high-traffic testing expensive and unreliable.
 
-{{< image src="xlt/browser-vs-loadtesttool.jpg" >}}
-Illustration: Browsers at Scale vs. Load Test Simulation
-{{< /image >}}
+![Illustration: Browsers at Scale vs. Load Test Simulation](/images/xlt/browser-vs-loadtesttool.jpg)
+*Illustration: Browsers at Scale vs. Load Test Simulation*
 
 Furthermore, running a UI test at scale would be inefficient. You would be rendering the same UI millions of times without gaining new performance insights. Browsers are also difficult to control remotely, especially when you need to filter or tweak requests to target (or avoid) specific resources. This filtering can lead to issues due to JavaScript dependencies or rendering quirks when third-party calls are skipped. Finally, browsers struggle to signal when they are truly “ready” because so much occurs asynchronously. Modern websites are rarely idle, making the “ready” state difficult to define precisely.
 

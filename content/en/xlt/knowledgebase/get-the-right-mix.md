@@ -1,11 +1,8 @@
 ---
-title: "Get The Right Load Mix Out of a Few Numbers"
-
-weight: 30
-type: docs
-
-description: >
-  How can you set up the right load mix when you only get some basic numbers?
+title: Get The Right Load Mix Out of a Few Numbers
+description: "How can you set up the right load mix when you only get some basic numbers?\n"
+sidebar:
+  order: 35
 ---
 
 When testing ecommerce applications in SaaS environments, you often don't have all the traffic data you'd like. Clients might be launching their first online presence, or data from a previous host or IT department might be unavailable.

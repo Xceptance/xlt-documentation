@@ -1,11 +1,9 @@
 ---
-title: "First Test"
-linkTitle: "First Test"
-weight: 20
-type: docs
-
-description: >
-  Write and run your first browser-based test with Neodymium.
+title: First Test
+description: "Write and run your first browser-based test with Neodymium.\n"
+sidebar:
+  label: First Test
+  order: 20
 ---
 
 This tutorial demonstrates how to write browser-based test automation with Neodymium from scratch.

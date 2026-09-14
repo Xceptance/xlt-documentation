@@ -1,11 +1,9 @@
 ---
-title: "Page Objects"
-linkTitle: "Page Objects"
-weight: 40
-type: docs
-
-description: >
-  Improve code readability and maintainability with the Page Object Model.
+title: Page Objects
+description: "Improve code readability and maintainability with the Page Object Model.\n"
+sidebar:
+  label: Page Objects
+  order: 40
 ---
 
 This section focuses on code readability, maintainability, and reusability. While not mandatory for Neodymium test development, these goals are best achieved by implementing the Page Object Model and leveraging Allure’s `@Step()` annotations to improve report clarity.
@@ -14,7 +12,7 @@ This section focuses on code readability, maintainability, and reusability. Whil
 
 The Page Object Model (POM) is a design pattern used to wrap all elements and functionality of a web page into an object. The main goal is to reduce duplicate code and support reusability.
 
-Initially, our [Example Test]({{< relref "first-test" >}}) contained all element locators and page interactions directly. To apply the Page Object Model pattern, Page Objects are created for the `HomePage`, `ProductListingPage` (PLP), and `ProductDetailPage` (PDP), leading to this updated test code:
+Initially, our [Example Test](/neodymium/quick-start/first-test/) contained all element locators and page interactions directly. To apply the Page Object Model pattern, Page Objects are created for the `HomePage`, `ProductListingPage` (PLP), and `ProductDetailPage` (PDP), leading to this updated test code:
 
 ```java
 import com.codeborne.selenide.Selenide;
@@ -153,6 +151,5 @@ The flexibility of `@Step()` annotations allows parameterization, enriching the 
 
 Here is what the `FirstTest` report looks like after integrating the Page Object Model and Allure's `@Step()` annotations:
 
-{{< image max-width="60%" src="neodymium/report_with_steps.png" >}}
-Improved report for the example test `FirstTest` with additional `Step` annotations.
-{{< /image >}}
+![Improved report for the example test `FirstTest` with additional `Step` annotations.](/images/neodymium/report_with_steps.png)
+*Improved report for the example test `FirstTest` with additional `Step` annotations.*

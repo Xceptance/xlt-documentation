@@ -17,7 +17,7 @@ In order to ease evaluation of load test results, XLT provides the possibility t
 
 In order to add an automatic evaluation to the report, add a JSON file containing your evaluation rules to the test suite (see attached [schema](https://github.com/Xceptance/XLT/blob/develop/src/main/resources/com/xceptance/xlt/report/scorecard/configuration-schema.json) and [example config](https://github.com/Xceptance/XLT/blob/develop/samples/testsuite-posters/config/scorecard-config.json)). The path to this file has to be set as the value of the property `com.xceptance.xlt.scorecard.config` in the test suite (relative to test suite's `config` directory). Subdirectories are not supported. The rule file must be placed directly in the `config` directory.
 
-The rules will then be applied at report creation, and the test report will contain a tab **Scorecard** that contains information about the evaluation result of each [rule]({{< relref "#rules" >}}) and [rule group]({{< relref "#groups" >}}), the resulting [test rating]({{< relref "#rating" >}}) and the overall [scorecard result]({{< relref "#scorecard-result" >}}). 
+The rules will then be applied at report creation, and the test report will contain a tab **Scorecard** that contains information about the evaluation result of each [rule](#rules) and [rule group](#groups), the resulting [test rating](#rating) and the overall [scorecard result](#scorecard-result). 
 
 XLT will evaluate as many rules as possible (unless the JSON is broken or does not validate). If any rule breaks (XPath or condition is wrong), the entire test result will be `ERROR`. This way, you always have debugging feedback and can fix the problem at once. Failures or errors in the evaluation will never disrupt report creation.
 
@@ -37,11 +37,11 @@ The schema may change in the future, resulting in multiple supported versions. T
 
 ### Rules
 
-A rule captures values and compares them. It can succeed or fail, based on conditions (**[checks]({{< relref "#rule-checks" >}})**). The evaluation of a rule will return either `PASSED`, `NOTPASSED`, `SKIPPED` or `ERROR` as the rule's **status**. 
+A rule captures values and compares them. It can succeed or fail, based on conditions (**[checks](#rule-checks)**). The evaluation of a rule will return either `PASSED`, `NOTPASSED`, `SKIPPED` or `ERROR` as the rule's **status**. 
 
 By default, all rule checks have to pass in order to have the rule evaluate to `PASSED` (you can change this by setting the `negateResult` attribute to `true`, which will negate the result, turning `PASSED` into `NOTPASSED` and vice versa, but won't change `SKIPPED` or `ERROR` status). Rules that do not contain any enabled check will always pass (unless `negateResult` is `true` which causes the rule to never pass).
 
-For a quick rating, rules can define a number of achievable **points** that are summarized at the end to get a final score whose value determines the [rating]({{< relref "#rating" >}}) to apply. Rules that do not pass do not contribute any point to the final score, and in case they do pass they contribute all their points.
+For a quick rating, rules can define a number of achievable **points** that are summarized at the end to get a final score whose value determines the [rating](#rating) to apply. Rules that do not pass do not contribute any point to the final score, and in case they do pass they contribute all their points.
 
 By setting the `failsTest` property to `true`, you define that if this rule fails, the entire test will be marked failed. This will not stop the rest of the evaluation or point calculation.
 

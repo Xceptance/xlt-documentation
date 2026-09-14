@@ -1,15 +1,10 @@
 ---
-title: "Test Approaches"
-linkTitle: "Test Approaches"
-
-type: docs
-
-weight: 40
-
-description: >
-    An overview of XLT test approaches.
-
+title: Test Approaches
+description: "An overview of XLT test approaches.\n"
 draft: true
+sidebar:
+  label: Test Approaches
+  order: 40
 ---
 
 * Full DOM mode (with JavaScript execution)
@@ -21,4 +16,4 @@ draft: true
 
 ## Example test suites for these approaches:
 
-{{< TODO >}}This page is still a work in progress.{{< /TODO >}}
+{/*  TODO: }This page is still a work in progress.  */}}

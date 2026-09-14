@@ -1,11 +1,10 @@
 ---
-title: "Choosing a Load Test Model"
-
-weight: 20
-type: docs
-
-description: >
-  When running load tests, the concept behind how you set up and run your test is crucial. One of the key decisions is choosing the right load model.
+title: Choosing a Load Test Model
+description: "When running load tests, the concept behind how you set up and run
+  your test is crucial. One of the key decisions is choosing the right load
+  model.\n"
+sidebar:
+  order: 20
 ---
 
 When running load tests, success depends on the concept behind how you set up and execute your tests. While we've previously touched on gathering metrics, today we'll dive into the different load models you can use to structure your runs.
@@ -50,9 +49,8 @@ While the Arrival Rate Model is often the better choice for realism, technical t
 - Even more concurrent users are added
 - A feedback loop begins
 
-{{< image src="xlt/arrivalrate-cycle.jpg" shadow="false" >}}
-Illustration: The Feedback Loop
-{{< /image >}}
+![Illustration: The Feedback Loop](/images/xlt/arrivalrate-cycle.jpg)
+*Illustration: The Feedback Loop*
 
 There is a solution: to prevent a complete system breakdown, you can set an upper limit on the number of concurrent users in the Arrival Rate Model. This restricts the total load and prevents the feedback loop from spiraling out of control. While this slightly sacrifices perfect realism, it mirrors how real users might eventually stop trying if the experience becomes too painful.
 

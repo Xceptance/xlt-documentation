@@ -1,11 +1,9 @@
 ---
-title: "Basics"
-
-weight: 10
-type: docs
-
-description: >
-  An overview of XLT's capabilities and what you need to start developing and running a load test suite.
+title: Basics
+description: "An overview of XLT's capabilities and what you need to start
+  developing and running a load test suite.\n"
+sidebar:
+  order: 10
 ---
 
 ## What is XLT?
@@ -16,19 +14,18 @@ XLT is platform independent (you can develop and run your tests on any platform 
 
 ## How does it work?
 
-To use XLT, you will model the expected user actions on your application as a set of JUnit tests. You can develop and check these on your own machine in your preferred IDE (see [Workflow]({{< relref "workflow" >}}) for details on how this is usually done), using XLT libraries or even starting with one of our [sample test suites]({{< relref "test-suites" >}}). To consolidate your test cases, XLT builds a [result browser]({{< relref "result-browser" >}}) for every test run (regardless of whether it was run from your IDE or in a load test environment). This provides further insights into what happened, in addition to the information output to the console or logs.
+To use XLT, you will model the expected user actions on your application as a set of JUnit tests. You can develop and check these on your own machine in your preferred IDE (see [Workflow](/xlt/manual/workflow/) for details on how this is usually done), using XLT libraries or even starting with one of our [sample test suites](/xlt/manual/test-suites/). To consolidate your test cases, XLT builds a [result browser](/xlt/manual/result-browser/) for every test run (regardless of whether it was run from your IDE or in a load test environment). This provides further insights into what happened, in addition to the information output to the console or logs.
 
-Load testing means executing the tests from your test suite against your application, with many virtual users running many tests simultaneously (XLT allows you to [easily configure]({{< relref "load-configuration" >}}) the exact load). To run a load test, a distributed load generation environment consisting of a cluster of test machines is usually required to generate sufficient load. XLT includes tools to set up your cluster using [Google Cloud]({{< relref "cloud-setup#google-cloud-gc" >}}) or [Amazon Web Services]({{< relref "cloud-setup#amazon-web-services-aws" >}})).
+Load testing means executing the tests from your test suite against your application, with many virtual users running many tests simultaneously (XLT allows you to [easily configure](/xlt/manual/load-configuration/) the exact load). To run a load test, a distributed load generation environment consisting of a cluster of test machines is usually required to generate sufficient load. XLT includes tools to set up your cluster using [Google Cloud](/xlt/advanced/cloud-setup/#google-cloud-gc) or [Amazon Web Services](/xlt/advanced/cloud-setup/#amazon-web-services-aws)).
 
-The results of your load test are neatly summarized in a [test report]({{< relref "reports" >}}), which may also contain links to the result browsers of individual tests within this load test run (e.g., if something went wrong, allowing you to check the cause of any error).
+The results of your load test are neatly summarized in a [test report](/xlt/manual/reports/), which may also contain links to the result browsers of individual tests within this load test run (e.g., if something went wrong, allowing you to check the cause of any error).
 
 ## Load Test Components
 
 This is a rough overview of the components:
 
-{{< image src="user-manual/suite-controller-agents.png" >}}
-High Level Overview
-{{< /image >}}
+![High Level Overview](/images/user-manual/suite-controller-agents.png)
+*High Level Overview*
 
 ### Test Suite
 
@@ -48,13 +45,13 @@ The agents are the workhorses of the load test, as they actually execute the tes
 
 ### Grafana
 
-Graphite/Grafana can be used to display real time test information. It shows response times, errors, machine utilization, transaction and action runtimes, and can also be paired with infrastructure monitoring. For more details, see [Real Time Reporting with Graphite]({{< relref "real-time-monitoring" >}}).
+Graphite/Grafana can be used to display real time test information. It shows response times, errors, machine utilization, transaction and action runtimes, and can also be paired with infrastructure monitoring. For more details, see [Real Time Reporting with Graphite](/xlt/advanced/real-time-monitoring/).
 
 ## How to start using XLT
 
 ### What to think about
 
-The goal of your load test should be to mimic the expected traffic on your application as accurately as possible. Therefore, you should know the typical scenarios for a user of your application. For example, if you want to test your web shop, these scenarios might include: users visiting only the homepage and then leaving, users browsing or searching for products but never ordering, and users placing an order either as a guest or as a registered user. We have built some [sample test suites]({{< relref "test-suites" >}}) with what we think are plausible test cases, so feel free to take a look.
+The goal of your load test should be to mimic the expected traffic on your application as accurately as possible. Therefore, you should know the typical scenarios for a user of your application. For example, if you want to test your web shop, these scenarios might include: users visiting only the homepage and then leaving, users browsing or searching for products but never ordering, and users placing an order either as a guest or as a registered user. We have built some [sample test suites](/xlt/manual/test-suites/) with what we think are plausible test cases, so feel free to take a look.
 
 Also, your test environment should mimic the app as accurately as possible. You can test on live systems, but be aware that the load might be too much for your system (after all, you are testing to determine just that). Also, consider the processes that might be triggered by the tests (you don't want to deal with thousands of fake test orders, and neither does your payment provider).
 
@@ -68,8 +65,8 @@ To run XLT, you will need the following:
 * Java IDE of your choice.
 * [Maven](https://maven.apache.org/).
 
-Installing XLT is described in more detail [here]({{< relref "installation" >}}).
+Installing XLT is described in more detail [here](/xlt/manual/installation/).
 
 ### How to proceed
 
-The [Quick Start]({{< relref "xlt/quick-start" >}}) section offers guidance on how to start using XLT, from installation to your first local load test. For further information, you might want to return to this [User Manual]({{< relref "workflow" >}}), where you can learn all the details about developing and configuring your tests, setting up remote machines to generate load, and everything in between. Happy testing!
+The [Quick Start](/xlt/quick-start) section offers guidance on how to start using XLT, from installation to your first local load test. For further information, you might want to return to this [User Manual](/xlt/manual/workflow/), where you can learn all the details about developing and configuring your tests, setting up remote machines to generate load, and everything in between. Happy testing!

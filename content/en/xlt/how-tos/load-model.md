@@ -1,13 +1,10 @@
 ---
-title: "How to Select the Right Load Model"
-linkTitle: "Select a Load Model"
-
-weight: 40
-type: docs
-
-
-description: >
-    Learn how to select the right load model for accurately testing requirements.
+title: How to Select the Right Load Model
+description: "Learn how to select the right load model for accurately testing
+  requirements.\n"
+sidebar:
+  label: Select a Load Model
+  order: 40
 ---
 
 ## Motivation
@@ -45,8 +42,8 @@ This means the arrival rate model works on a feedback basis and reacts to respon
 
 However, another thing to keep in mind is the potentially aggressive behavior of a test using the arrival rate model: if the response time increases, more concurrent users are used. This probably means the response time will increase further due to heavier load, causing the system to use even more concurrent users (which is where recursion kicks in). 
 
-{{< image src="how-to/arrival_rate_model.svg" max-width="400px">}}
-{{< /image >}}
+![](/images/how-to/arrival_rate_model.svg)
+**
 
 To avoid a complete breakdown in this scenario, define an upper limit for the number of concurrent users in the arrival model. This restricts the total load on the system to avoid a total overload resulting from the feedback loop. Of course, that does not reflect reality, but if users experience a certain pain point in reality, they might also hold back.
 

@@ -1,20 +1,16 @@
 ---
-title: "Metrics"
-
-weight: 450
-type: docs
-
-description: >
-  Monitoring Metrics
+title: Metrics
+description: "Monitoring Metrics\n"
+sidebar:
+  order: 450
 ---
 
 ## Overview
 
 In addition to the data provided in _History_, in **Metrics** you will find a graphical dashboard for your monitoring project.
 
-{{< image src="xtc/monitoring_grafana1.png" >}}
-The Overview page of the metrics dashboard.
-{{< /image >}}
+![The Overview page of the metrics dashboard.](/images/xtc/monitoring_grafana1.png)
+*The Overview page of the metrics dashboard.*
 
 This dashboard visualizes the most interesting measurements over time so you can spot trends or periods of slowness more easily.
 
