@@ -12,6 +12,9 @@ export default defineConfig({
     root: "content/en",
   },
   navigation: {
+    sidebar: {
+      display: "group",
+    },
     tabs: [
       { label: "XLT", path: "/xlt" },
       { label: "XTC", path: "/xtc" },
