@@ -6,3 +6,8 @@ node_modules/
 .idea
 *.DS_Store
 .blume-verify/
+
+# Environment files and credentials
+.env
+.env.*
+!.env.example

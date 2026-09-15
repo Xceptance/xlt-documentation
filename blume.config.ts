@@ -40,4 +40,17 @@ export default defineConfig({
   redirects: [
     { from: "/xtc/release-notes", to: "/xtc/xtc-release-notes" },
   ],
+  ai: {
+    ask: {
+      enabled: Boolean(process.env.ASK_AI_ENDPOINT?.trim()),
+      ...(process.env.ASK_AI_ENDPOINT?.trim()
+        ? { endpoint: process.env.ASK_AI_ENDPOINT.trim() }
+        : {}),
+      suggestions: [
+        { label: "How do I configure load profiles in XLT?", icon: "sliders" },
+        { label: "How do I evaluate test results?", icon: "activity" },
+        { label: "How do I configure DNS settings in XLT?", icon: "globe" },
+      ],
+    },
+  },
 });
