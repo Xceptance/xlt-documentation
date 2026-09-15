@@ -68,6 +68,29 @@ To enable Ask AI in local development:
 
 > **Security Note**: Never commit `.env` or real API keys to Git. `.env` is ignored by `.gitignore`.
 
+### Ask AI Context & Retrieval Sizing
+
+Blume automatically grounds Ask AI answers in documentation content by performing request-time lexical search (Orama), excerpting relevant sections around matched query terms, and injecting them into the system prompt.
+
+The retrieval parameters are configured in [`blume.config.ts`](./blume.config.ts) under `ai.ask.retrieval`:
+
+```ts
+retrieval: {
+  excerptChars: 4500,   // Characters extracted per document chunk (default: 2000)
+  contextBudget: 32000, // Total character ceiling across all injected chunks (default: 10000)
+  maxResults: 6,        // Maximum number of documentation hits retrieved (default: 6)
+}
+```
+
+#### Why these parameters are tuned for this repository:
+- **`excerptChars: 4500` (Chunk Size)**: An analysis of the repository's 162 core guides and manuals showed a median page length of **4,067 characters**. The default limit of 2,000 characters cuts multi-section guides in half, often truncating code examples, XML snippets, and configuration tables. Sizing to 4,500 characters allows median guide pages to fit entirely within the prompt window.
+- **`contextBudget: 32000` (Total Budget)**: When a user asks a question from an active documentation page, Blume injects the viewed page first and then iterates through the search hits. Under default settings (10,000 characters), hits 5 and 6 are discarded due to budget exhaustion. A budget of 32,000 characters (~8,000 tokens) accommodates the active page plus all 6 retrieved hits without dropping context:
+  $$\text{Max Injection} = (1 \text{ active page} + 6 \text{ search hits}) \times 4,500 = 31,500 \text{ characters} \le 32,000$$
+- **`maxResults: 6`**: Provides comprehensive cross-product coverage across XLT, XTC, and Neodymium.
+- **Model Efficiency**: `google/gemini-3.8-flash` features a 1M+ token context window, sub-second prefill latency (<200ms for ~8,000 tokens), and near-zero input token costs, making this expanded context highly cost-effective and accurate.
+
+For full configuration options and details on how Blume handles section scoring and lead-in windows, see the [Blume Ask AI Retrieval Documentation](https://blume.sh/docs/configuration/ask-ai#retrieval-size).
+
 ### Model Context Protocol (MCP) Server
 Blume serves a live Model Context Protocol (MCP) server endpoint at `/mcp` allowing coding agents in developer IDEs to search, inspect, and read the XLT documentation directly without web scraping.
 
