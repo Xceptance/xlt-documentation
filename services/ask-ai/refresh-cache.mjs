@@ -69,6 +69,12 @@ if (!projectId || projectId === 'your-gcp-project-id') {
   process.exit(1);
 }
 
+// Populate standard Google SDK environment variables to prevent google-auth-library
+// from probing the unreachable GCE metadata server (169.254.169.254) on local machines,
+// which would cause a 60-75 second TCP timeout hang before completing.
+process.env.GOOGLE_CLOUD_PROJECT = projectId;
+process.env.GCLOUD_PROJECT = projectId;
+
 const region = process.env.GCP_REGION || 'europe-west3';
 
 // 2. Model Selection

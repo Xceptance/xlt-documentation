@@ -97,6 +97,8 @@ export async function handleAskAi(req, res, deps = {}) {
       res.setHeader('Content-Type', 'text/plain; charset=utf-8');
       return res.status(500).end('Server misconfiguration: GCP_PROJECT_ID is not configured.');
     }
+    process.env.GOOGLE_CLOUD_PROJECT = projectId;
+    process.env.GCLOUD_PROJECT = projectId;
     ai = new GoogleGenAI({ vertexai: true, project: projectId, location });
   }
 
