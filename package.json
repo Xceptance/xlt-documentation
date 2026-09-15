@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Xceptance/xlt-documentation#readme",
   "dependencies": {
+    "@ai-sdk/openai-compatible": "^3.0.48",
     "blume": "^1.6.6"
   }
 }

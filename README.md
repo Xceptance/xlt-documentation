@@ -51,6 +51,63 @@ Documentation for **XLT**, **XTC**, and **Neodymium**, built with [Blume](https:
 
 ---
 
+## AI Features & Model Context Protocol (MCP)
+
+This documentation hub includes built-in AI capabilities powered by Blume:
+
+### In-Browser Ask AI
+The site provides a native Ask AI assistant in the navigation header powered by Google Gemini (`google/gemini-3.8-flash`) via the Kilo Gateway (`https://api.kilo.ai/api/gateway`).
+
+To enable Ask AI in local development:
+1. Copy `.env.example` to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+2. Set your `KILO_API_KEY` in `.env` (obtainable from [app.kilo.ai/profile](https://app.kilo.ai/profile)).
+3. Start the dev server (`npm run dev`).
+
+> **Security Note**: Never commit `.env` or real API keys to Git. `.env` is ignored by `.gitignore`.
+
+### Model Context Protocol (MCP) Server
+Blume serves a live Model Context Protocol (MCP) server endpoint at `/mcp` allowing coding agents in developer IDEs to search, inspect, and read the XLT documentation directly without web scraping.
+
+Exposed MCP tools:
+- `search_docs`: Full-text lexical search across the documentation corpus.
+- `get_page`: Retrieve the clean Markdown content of any specific page.
+- `list_pages`: List all documentation pages and routes.
+- `get_navigation`: Inspect the sidebar tree and section hierarchy.
+
+#### Connecting from Claude Code
+```bash
+# Local development server:
+claude mcp add --transport http xlt-docs http://localhost:4321/mcp
+
+# Production server:
+claude mcp add --transport http xlt-docs https://docs.xceptance.com/mcp
+```
+
+#### Connecting from Cursor
+1. Go to **Settings** (`Cmd + ,` / `Ctrl + ,`) → **Features** → **MCP**.
+2. Click **Add New MCP Server**.
+3. Set:
+   - **Name**: `xlt-docs`
+   - **Type**: `SSE` / `HTTP` (Streamable HTTP)
+   - **Server URL**: `http://localhost:4321/mcp` (or your deployed URL)
+
+#### Connecting from VS Code (Cline / Roo Code / Continue)
+Add to your MCP settings JSON (e.g. `cline_mcp_settings.json`):
+```json
+{
+  "mcpServers": {
+    "xlt-docs": {
+      "url": "http://localhost:4321/mcp"
+    }
+  }
+}
+```
+
+---
+
 ## Authoring Guide
 
 Documentation content lives in the `content/en/` directory, partitioned into product tabs:
