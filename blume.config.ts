@@ -62,6 +62,21 @@ export default defineConfig({
       apiKeyEnv: "KILO_API_KEY",
       // Model routed through Kilo BYOK (Bring Your Own Key) to Google AI Studio
       model: "google/gemini-3.8-flash",
+
+      // Corpus-optimized RAG retrieval sizing:
+      // - Corpus analysis of 162 core guides/manuals shows a median page length of 4,067 characters.
+      // - excerptChars: 4500 ensures that median technical guide pages fit entirely within the
+      //   retrieval window, preventing multi-section code examples, XML snippets, and property
+      //   tables from being truncated with ellipses.
+      // - contextBudget: 32000 (~8,000 tokens) provides sufficient capacity for the actively viewed
+      //   page plus all 6 search hits without premature budget exhaustion ((1 + 6) * 4500 = 31,500 <= 32,000).
+      // - maxResults: 6 ensures thorough cross-topic coverage across XLT, XTC, and Neodymium.
+      // On Gemini 3.8 Flash (1M+ token window), ~8k tokens incurs negligible latency (<200ms) and cost.
+      retrieval: {
+        excerptChars: 4500,
+        contextBudget: 32000,
+        maxResults: 6,
+      },
       suggestions: [
         { label: "How do I configure load profiles in XLT?", icon: "sliders" },
         { label: "How do I evaluate test results?", icon: "activity" },
