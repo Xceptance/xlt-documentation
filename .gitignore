@@ -4,8 +4,11 @@ node_modules/
 .hugo_build.lock
 .vscode
 .idea
-*.DS_Store
+.DS_Store
+**/.DS_Store
+._*
 .blume-verify/
+homepage_preview.png
 
 # Environment files and credentials
 .env
