@@ -30,10 +30,15 @@ const { config } = data;
     />
 
     <div class="relative z-10 mx-auto max-w-5xl px-6 py-16 sm:py-20 lg:py-24 text-center">
-      <div class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1 text-xs font-medium text-slate-200 backdrop-blur-md mb-6">
-        <span class="inline-block size-2 rounded-full bg-emerald-400"></span>
-        <span>Xceptance Quality & Performance Suite</span>
-      </div>
+      {/* MCP Agent Top Announcement Pill */}
+      <a
+        href="#mcp-server-section"
+        class="group inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium text-slate-200 backdrop-blur-md mb-6 transition-all duration-200 hover:border-white/40 hover:bg-white/20 hover:text-white"
+      >
+        <Icon name="bot" size={13} class="text-sky-300" />
+        <span>Connect your Agent via <code class="font-mono text-white">/mcp</code> (Antigravity, Claude Code...)</span>
+        <Icon name="arrow-right" size={12} class="text-slate-300 transition-transform group-hover:translate-x-0.5" />
+      </a>
 
       <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-white">
         Documentation Hub
@@ -71,17 +76,6 @@ const { config } = data;
         <a href="/neodymium" class="rounded-full bg-white/10 px-2.5 py-0.5 hover:bg-white/20 text-slate-200 transition-colors">Neodymium</a>
       </div>
 
-      {/* MCP Server Developer Discovery Badge */}
-      <div class="mt-5 flex justify-center">
-        <a
-          href="#mcp-server-section"
-          class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium text-slate-200 backdrop-blur-md transition-all duration-200 hover:border-white/40 hover:bg-white/20 hover:text-white"
-        >
-          <Icon name="bot" size={14} class="text-sky-300" />
-          <span>MCP Server live at <code class="font-mono text-white">/mcp</code> for Antigravity, Claude Code, Cursor & Windsurf</span>
-          <Icon name="chevron-down" size={12} class="text-slate-300" />
-        </a>
-      </div>
     </div>
   </section>
 
