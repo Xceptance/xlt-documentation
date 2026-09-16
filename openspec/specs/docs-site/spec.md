@@ -45,11 +45,15 @@ The system SHALL configure top-level navigation tabs for XLT (`/xlt`), XTC (`/xt
 - **THEN** the item renders as a direct single page link in the sidebar rather than a collapsible group.
 
 ### Requirement: Interactive Card Hub Landing Page
-The system SHALL render the documentation hub landing page as a custom full-width page via `pages/index.astro` using `PageLayout` (omitting docs sidebar and table of contents), retaining the primary heading "Documentation Hub", featuring an Xceptance corporate gradient hero banner (`#004682` to `#0f172a`) with an active mouse-clickable search launchpad trigger and platform-adaptive keyboard shortcut badge (`⌘K` on macOS/iOS, `Ctrl K` on Windows/Linux), displaying an MCP server status badge and direct navigation suggestion chips, showcasing XTC, XLT, and Neodymium product cards with descriptions, preview screenshots, and pill-shaped action links, and providing quick wayfinding alongside a dedicated AI Coding Agents & MCP feature section.
+The system SHALL render the documentation hub landing page as a custom full-width page via `pages/index.astro` using `PageLayout` (omitting docs sidebar and table of contents), featuring a prominent top announcement pill linking to the MCP server endpoint (`Connect your Agent via /mcp (Antigravity, Claude Code...) →`), displaying the primary heading "Documentation Hub", an active mouse-clickable search launchpad trigger and platform-adaptive keyboard shortcut badge (`⌘K` on macOS/iOS, `Ctrl K` on Windows/Linux), direct navigation suggestion chips, showcasing XTC, XLT, and Neodymium product cards with descriptions, preview screenshots, and pill-shaped action links, and providing quick wayfinding alongside a dedicated AI Coding Agents & MCP feature section.
 
 #### Scenario: Card hub display
 - **WHEN** a user views the documentation hub homepage
-- **THEN** the page displays the primary heading "Documentation Hub", a brand-aligned gradient hero banner with an interactive search launchpad and MCP status badge, three distinct product cards (XTC, XLT, Neodymium) with screenshots and pill-shaped action links, a quick-wayfinding section, and an MCP coding agent connection section without displaying the documentation sidebar or table of contents.
+- **THEN** the page displays a top announcement pill for connecting IDE agents, the primary heading "Documentation Hub", a brand-aligned gradient hero banner with an interactive search launchpad and suggested pathway chips, three distinct product cards (XTC, XLT, Neodymium) with screenshots and pill-shaped action links, a quick-wayfinding section, and a dedicated MCP coding agent connection section without displaying the documentation sidebar or table of contents.
+
+#### Scenario: Top hero agent announcement pill
+- **WHEN** a user views the hero banner
+- **THEN** it displays a top announcement pill stating `Connect your Agent via /mcp (Antigravity, Claude Code...)` that links smoothly to the `#mcp-server-section` on click.
 
 #### Scenario: Hero search launch
 - **WHEN** a user activates the search bar trigger inside the homepage hero banner via mouse click or keyboard
@@ -67,7 +71,7 @@ The system SHALL render the documentation hub landing page as a custom full-widt
 
 #### Scenario: Homepage MCP agent discovery section
 - **WHEN** a developer views the homepage
-- **THEN** the page displays an interactive MCP status badge in the hero banner and a dedicated "AI Coding Agents & MCP" section providing instructions, supported tools (Google Antigravity, Claude Code, Cursor, Windsurf, VS Code), and a 1-click copy button for the connection snippets using the `xceptance-docs` identifier.
+- **THEN** the page displays a dedicated "AI Coding Agents & MCP" section providing instructions, supported tools (Google Antigravity, Claude Code, Cursor, Windsurf, VS Code), and a 1-click copy button for the connection snippets using the `xceptance-docs` identifier.
 
 ### Requirement: Native Directives and MDX Callouts
 The system SHALL parse and render callout directives (`:::note`, `:::warning`, `:::tip`, `:::danger`, `:::info`) in `.mdx` files without requiring explicit component imports.
