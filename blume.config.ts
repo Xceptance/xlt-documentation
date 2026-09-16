@@ -39,11 +39,15 @@ export default defineConfig({
       { label: "GitHub", href: "https://github.com/Xceptance/xlt-documentation" },
     ],
   },
+  logo: {
+    image: "/images/xceptance_only.svg",
+    text: "Docs",
+  },
   theme: {
-    accent: "#a00000",
+    accent: "#004682",
     fonts: {
-      display: { name: "Outfit" },
-      body: "inter",
+      display: { name: "Roboto Condensed" },
+      body: "roboto",
       mono: { name: "Ubuntu Mono" },
     },
   },

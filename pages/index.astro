@@ -1,7 +1,5 @@
 ---
 import PageLayout from "blume/components/layout/PageLayout.astro";
-import Card from "blume/components/content/Card.astro";
-import CardGroup from "blume/components/content/CardGroup.astro";
 import Icon from "blume/components/Icon.astro";
 import data from "blume:data";
 
@@ -22,128 +20,291 @@ const { config } = data;
   ogEnabled={config.og.enabled}
   page={{ title: "Documentation Hub — Xceptance", description: config.description }}
 >
-  <div class="mx-auto max-w-6xl px-6 py-16">
-    <header class="mb-12 text-center">
-      <h1 class="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
+  {/* Hero Banner with Xceptance Corporate Gradient */}
+  <section class="relative overflow-hidden bg-gradient-to-br from-[#004682] via-[#003868] to-[#0f172a] text-white">
+    {/* Ambient radial glow */}
+    <div
+      class="pointer-events-none absolute inset-0 -z-0 opacity-40"
+      style="background: radial-gradient(circle at 50% 30%, rgba(0, 95, 176, 0.45) 0%, rgba(0, 70, 130, 0.15) 50%, transparent 80%);"
+      aria-hidden="true"
+    />
+
+    <div class="relative z-10 mx-auto max-w-5xl px-6 py-16 sm:py-20 lg:py-24 text-center">
+      <div class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1 text-xs font-medium text-slate-200 backdrop-blur-md mb-6">
+        <span class="inline-block size-2 rounded-full bg-emerald-400"></span>
+        <span>Xceptance Quality & Performance Suite</span>
+      </div>
+
+      <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-white">
         Documentation Hub
       </h1>
-      <p class="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-        The online documentation hub for Xceptance testing tools — <strong>XTC</strong>, <strong>XLT</strong>, and <strong>Neodymium</strong>.
+
+      <p class="mx-auto mt-4 max-w-2xl text-base sm:text-lg text-slate-200 leading-relaxed">
+        Guides, architecture manuals, and API references for <strong class="text-white">XTC</strong>, <strong class="text-white">XLT</strong>, and <strong class="text-white">Neodymium</strong>.
       </p>
-    </header>
 
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-      {/* XTC Card */}
-      <div class="flex flex-col overflow-hidden rounded-blume border border-border bg-card transition-all hover:border-accent hover:shadow-md">
-        <div class="border-b border-border bg-muted/30 p-4">
-          <img
-            src="/images/xtc/xtc-loadtest-dashboard.png"
-            alt="XTC Loadtest Dashboard"
-            class="h-44 w-full rounded object-cover shadow-sm"
-          />
-        </div>
-        <div class="flex flex-1 flex-col p-6">
-          <div class="mb-3 flex items-center gap-2.5">
-            <div class="rounded-md bg-accent/10 p-2 text-accent">
-              <Icon name="cloud" size={22} />
-            </div>
-            <h2 class="text-xl font-bold text-foreground">XTC</h2>
-          </div>
-          <p class="flex-1 text-sm text-muted-foreground leading-relaxed">
-            The SaaS platform for high-scale performance testing, extensive load test management, and advanced synthetic monitoring.
-          </p>
-          <div class="mt-6 flex flex-wrap gap-2 pt-4 border-t border-border/60">
-            <a
-              href="/xtc"
-              class="inline-flex items-center gap-1.5 rounded-blume bg-accent px-3.5 py-1.5 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
-            >
-              Manual
-              <Icon name="arrow-right" size={14} />
-            </a>
-            <a
-              href="/xtc/xtc-release-notes"
-              class="inline-flex items-center gap-1.5 rounded-blume border border-border px-3.5 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
-            >
-              Release Notes
-            </a>
-          </div>
-        </div>
+      {/* Prominent Search & Ask AI Launchpad */}
+      <div class="mt-8 flex justify-center">
+        <button
+          type="button"
+          data-blume-search-open
+          class="group flex w-full max-w-xl items-center justify-between rounded-full border border-white/25 bg-white/10 px-5 py-3.5 text-sm text-slate-200 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-white/50 hover:bg-white/20 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#004682]"
+          aria-label="Search documentation or Ask AI"
+        >
+          <span class="flex items-center gap-3">
+            <Icon name="search" size={18} class="text-slate-300 transition-colors group-hover:text-white" />
+            <span class="font-normal text-slate-200 group-hover:text-white">Search documentation or Ask AI...</span>
+          </span>
+          <span class="hidden sm:flex items-center gap-1 rounded-md border border-white/20 bg-white/10 px-2 py-0.5 font-mono text-xs text-slate-200">
+            <span>⌘</span><span>K</span>
+          </span>
+        </button>
       </div>
 
-      {/* XLT Card */}
-      <div class="flex flex-col overflow-hidden rounded-blume border border-border bg-card transition-all hover:border-accent hover:shadow-md">
-        <div class="border-b border-border bg-muted/30 p-4">
-          <img
-            src="/images/home/xlt-report-transactions.png"
-            alt="XLT Report Transactions"
-            class="h-44 w-full rounded object-cover shadow-sm"
-          />
-        </div>
-        <div class="flex flex-1 flex-col p-6">
-          <div class="mb-3 flex items-center gap-2.5">
-            <div class="rounded-md bg-accent/10 p-2 text-accent">
-              <Icon name="gauge" size={22} />
-            </div>
-            <h2 class="text-xl font-bold text-foreground">XLT</h2>
-          </div>
-          <p class="flex-1 text-sm text-muted-foreground leading-relaxed">
-            Premier load and performance testing tool featuring unrivaled capabilities and scale. Open Source under Apache License 2.0.
-          </p>
-          <div class="mt-6 flex flex-wrap gap-2 pt-4 border-t border-border/60">
-            <a
-              href="/xlt"
-              class="inline-flex items-center gap-1.5 rounded-blume bg-accent px-3.5 py-1.5 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
-            >
-              Manual
-              <Icon name="arrow-right" size={14} />
-            </a>
-            <a
-              href="/xlt/release-notes"
-              class="inline-flex items-center gap-1.5 rounded-blume border border-border px-3.5 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
-            >
-              Release Notes
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Neodymium Card */}
-      <div class="flex flex-col overflow-hidden rounded-blume border border-border bg-card transition-all hover:border-accent hover:shadow-md">
-        <div class="border-b border-border bg-muted/30 p-4">
-          <img
-            src="/images/home/test-automation-allure-suites.png"
-            alt="Neodymium Test Automation Suites"
-            class="h-44 w-full rounded object-cover shadow-sm"
-          />
-        </div>
-        <div class="flex flex-1 flex-col p-6">
-          <div class="mb-3 flex items-center gap-2.5">
-            <div class="rounded-md bg-accent/10 p-2 text-accent">
-              <Icon name="cpu" size={22} />
-            </div>
-            <h2 class="text-xl font-bold text-foreground">Neodymium</h2>
-          </div>
-          <p class="flex-1 text-sm text-muted-foreground leading-relaxed">
-            Modern test automation framework combining the best open source libraries with battle-tested templates. MIT licensed.
-          </p>
-          <div class="mt-6 flex flex-wrap gap-2 pt-4 border-t border-border/60">
-            <a
-              href="/neodymium"
-              class="inline-flex items-center gap-1.5 rounded-blume bg-accent px-3.5 py-1.5 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
-            >
-              Manual
-              <Icon name="arrow-right" size={14} />
-            </a>
-            <a
-              href="/neodymium/release-notes"
-              class="inline-flex items-center gap-1.5 rounded-blume border border-border px-3.5 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
-            >
-              Release Notes
-            </a>
-          </div>
-        </div>
+      {/* Quick Search Suggestions */}
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-slate-300">
+        <span class="text-slate-400">Suggested:</span>
+        <a href="/xlt/quick-start" class="rounded-full bg-white/10 px-2.5 py-0.5 hover:bg-white/20 text-slate-200 transition-colors">Quick Start</a>
+        <a href="/xlt/manual/load-configuration" class="rounded-full bg-white/10 px-2.5 py-0.5 hover:bg-white/20 text-slate-200 transition-colors">Load Profiles</a>
+        <a href="/xtc" class="rounded-full bg-white/10 px-2.5 py-0.5 hover:bg-white/20 text-slate-200 transition-colors">XTC Cloud</a>
+        <a href="/neodymium" class="rounded-full bg-white/10 px-2.5 py-0.5 hover:bg-white/20 text-slate-200 transition-colors">Neodymium</a>
       </div>
     </div>
+  </section>
+
+  {/* Main Content Body */}
+  <div class="mx-auto max-w-6xl px-6 py-14 sm:py-18">
+    {/* Section: Core Testing Tools */}
+    <section aria-labelledby="heading-core-tools" class="mb-20">
+      <div class="mb-10 text-center sm:text-left">
+        <h2 id="heading-core-tools" class="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+          Core Testing Tools
+        </h2>
+        <p class="mt-2 text-sm sm:text-base text-muted-foreground">
+          Select a tool below to access comprehensive user manuals, installation guides, and release notes.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        {/* XTC Card */}
+        <article class="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-accent/40">
+          <div class="relative overflow-hidden border-b border-border bg-muted/40 p-3">
+            <img
+              src="/images/xtc/xtc-loadtest-dashboard.png"
+              alt="XTC Load Testing and Monitoring Dashboard"
+              loading="lazy"
+              class="h-44 w-full rounded-lg object-cover shadow-sm transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <div class="mb-3 flex items-center gap-3">
+              <div class="rounded-xl bg-accent/10 p-2.5 text-accent">
+                <Icon name="cloud" size={22} />
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-foreground">XTC</h3>
+                <span class="text-xs font-medium text-muted-foreground">Cloud Platform & Monitoring</span>
+              </div>
+            </div>
+            <p class="flex-1 text-sm leading-relaxed text-muted-foreground">
+              The SaaS platform for high-scale performance testing, extensive distributed load test management, and synthetic 24/7 monitoring.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-2.5 border-t border-border/60 pt-5">
+              <a
+                href="/xtc"
+                class="inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-sm font-medium text-accent-foreground shadow-sm transition-all duration-300 hover:bg-[#005fb0] hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
+                aria-label="Open XTC Manual"
+              >
+                <span>Manual</span>
+                <Icon name="arrow-right" size={14} />
+              </a>
+              <a
+                href="/xtc/xtc-release-notes"
+                class="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-all duration-300 hover:bg-muted hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
+                aria-label="View XTC Release Notes"
+              >
+                <span>Release Notes</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        {/* XLT Card */}
+        <article class="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-accent/40">
+          <div class="relative overflow-hidden border-b border-border bg-muted/40 p-3">
+            <img
+              src="/images/home/xlt-report-transactions.png"
+              alt="XLT Performance Report Transaction Details"
+              loading="lazy"
+              class="h-44 w-full rounded-lg object-cover shadow-sm transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <div class="mb-3 flex items-center gap-3">
+              <div class="rounded-xl bg-accent/10 p-2.5 text-accent">
+                <Icon name="gauge" size={22} />
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-foreground">XLT</h3>
+                <span class="text-xs font-medium text-muted-foreground">Load & Performance Engine</span>
+              </div>
+            </div>
+            <p class="flex-1 text-sm leading-relaxed text-muted-foreground">
+              Premier load and performance testing tool featuring unrivaled execution capabilities, detailed reporting, and massive scalability. Open Source under Apache 2.0.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-2.5 border-t border-border/60 pt-5">
+              <a
+                href="/xlt"
+                class="inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-sm font-medium text-accent-foreground shadow-sm transition-all duration-300 hover:bg-[#005fb0] hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
+                aria-label="Open XLT Manual"
+              >
+                <span>Manual</span>
+                <Icon name="arrow-right" size={14} />
+              </a>
+              <a
+                href="/xlt/release-notes"
+                class="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-all duration-300 hover:bg-muted hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
+                aria-label="View XLT Release Notes"
+              >
+                <span>Release Notes</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        {/* Neodymium Card */}
+        <article class="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-accent/40">
+          <div class="relative overflow-hidden border-b border-border bg-muted/40 p-3">
+            <img
+              src="/images/home/test-automation-allure-suites.png"
+              alt="Neodymium Test Automation Report and Allure Suites"
+              loading="lazy"
+              class="h-44 w-full rounded-lg object-cover shadow-sm transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <div class="mb-3 flex items-center gap-3">
+              <div class="rounded-xl bg-accent/10 p-2.5 text-accent">
+                <Icon name="cpu" size={22} />
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-foreground">Neodymium</h3>
+                <span class="text-xs font-medium text-muted-foreground">Test Automation Framework</span>
+              </div>
+            </div>
+            <p class="flex-1 text-sm leading-relaxed text-muted-foreground">
+              Modern test automation framework uniting the best open source web testing libraries with production-proven architecture patterns. MIT licensed.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-2.5 border-t border-border/60 pt-5">
+              <a
+                href="/neodymium"
+                class="inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-sm font-medium text-accent-foreground shadow-sm transition-all duration-300 hover:bg-[#005fb0] hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
+                aria-label="Open Neodymium Manual"
+              >
+                <span>Manual</span>
+                <Icon name="arrow-right" size={14} />
+              </a>
+              <a
+                href="/neodymium/release-notes"
+                class="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-all duration-300 hover:bg-muted hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
+                aria-label="View Neodymium Release Notes"
+              >
+                <span>Release Notes</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    {/* Section: Quick Wayfinding */}
+    <section aria-labelledby="heading-quick-wayfinding" class="border-t border-border pt-12">
+      <div class="mb-8">
+        <h2 id="heading-quick-wayfinding" class="text-2xl font-bold tracking-tight text-foreground">
+          Quick Wayfinding
+        </h2>
+        <p class="mt-1 text-sm text-muted-foreground">
+          Direct links to frequently referenced guides, configurations, and external resources.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <a
+          href="/xlt/quick-start"
+          class="group flex flex-col justify-between rounded-xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        >
+          <div>
+            <div class="mb-3 inline-flex rounded-lg bg-accent/10 p-2 text-accent">
+              <Icon name="zap" size={20} />
+            </div>
+            <h3 class="font-semibold text-foreground group-hover:text-accent transition-colors">Quick Start</h3>
+            <p class="mt-1.5 text-xs text-muted-foreground leading-relaxed">
+              Step-by-step setup to create and run your first load test scenario in minutes.
+            </p>
+          </div>
+          <span class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-accent">
+            <span>Get started</span>
+            <Icon name="arrow-right" size={12} class="transition-transform group-hover:translate-x-0.5" />
+          </span>
+        </a>
+
+        <a
+          href="/xlt/manual/load-configuration"
+          class="group flex flex-col justify-between rounded-xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        >
+          <div>
+            <div class="mb-3 inline-flex rounded-lg bg-accent/10 p-2 text-accent">
+              <Icon name="sliders" size={20} />
+            </div>
+            <h3 class="font-semibold text-foreground group-hover:text-accent transition-colors">Load Profiles</h3>
+            <p class="mt-1.5 text-xs text-muted-foreground leading-relaxed">
+              Configure load curves, ramp-up schedules, arrival rates, and agent clusters.
+            </p>
+          </div>
+          <span class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-accent">
+            <span>Configure loads</span>
+            <Icon name="arrow-right" size={12} class="transition-transform group-hover:translate-x-0.5" />
+          </span>
+        </a>
+
+        <a
+          href="/neodymium"
+          class="group flex flex-col justify-between rounded-xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        >
+          <div>
+            <div class="mb-3 inline-flex rounded-lg bg-accent/10 p-2 text-accent">
+              <Icon name="code" size={20} />
+            </div>
+            <h3 class="font-semibold text-foreground group-hover:text-accent transition-colors">Neodymium Patterns</h3>
+            <p class="mt-1.5 text-xs text-muted-foreground leading-relaxed">
+              Clean page object architecture and robust browser test automation templates.
+            </p>
+          </div>
+          <span class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-accent">
+            <span>Explore patterns</span>
+            <Icon name="arrow-right" size={12} class="transition-transform group-hover:translate-x-0.5" />
+          </span>
+        </a>
+
+        <a
+          href="/xlt/release-notes"
+          class="group flex flex-col justify-between rounded-xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        >
+          <div>
+            <div class="mb-3 inline-flex rounded-lg bg-accent/10 p-2 text-accent">
+              <Icon name="history" size={20} />
+            </div>
+            <h3 class="font-semibold text-foreground group-hover:text-accent transition-colors">Release Notes</h3>
+            <p class="mt-1.5 text-xs text-muted-foreground leading-relaxed">
+              Full version history, migration notes, bugfixes, and feature changelogs.
+            </p>
+          </div>
+          <span class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-accent">
+            <span>View changelog</span>
+            <Icon name="arrow-right" size={12} class="transition-transform group-hover:translate-x-0.5" />
+          </span>
+        </a>
+      </div>
+    </section>
   </div>
 </PageLayout>
-
