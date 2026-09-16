@@ -92,7 +92,7 @@ retrieval: {
 For full configuration options and details on how Blume handles section scoring and lead-in windows, see the [Blume Ask AI Retrieval Documentation](https://blume.sh/docs/configuration/ask-ai#retrieval-size).
 
 ### Model Context Protocol (MCP) Server
-Blume serves a live Model Context Protocol (MCP) server endpoint at `/mcp` allowing coding agents in developer IDEs to search, inspect, and read the XLT documentation directly without web scraping.
+Blume serves a live Model Context Protocol (MCP) server endpoint at `/mcp` allowing coding agents in developer IDEs to search, inspect, and read the documentation across all Xceptance tools (XLT, XTC, and Neodymium) directly without web scraping.
 
 Exposed MCP tools:
 - `search_docs`: Full-text lexical search across the documentation corpus.
@@ -100,30 +100,43 @@ Exposed MCP tools:
 - `list_pages`: List all documentation pages and routes.
 - `get_navigation`: Inspect the sidebar tree and section hierarchy.
 
+#### Connecting from Google Antigravity
+In Antigravity IDE or Antigravity CLI (`agy`), add the MCP server to your workspace or global MCP configuration:
+```json
+{
+  "mcpServers": {
+    "xceptance-docs": {
+      "url": "https://docs.xceptance.com/mcp"
+    }
+  }
+}
+```
+*(For local testing with `blume dev`, point the URL to `http://localhost:4321/mcp`)*.
+
 #### Connecting from Claude Code
 ```bash
 # Local development server:
-claude mcp add --transport http xlt-docs http://localhost:4321/mcp
+claude mcp add --transport http xceptance-docs http://localhost:4321/mcp
 
 # Production server:
-claude mcp add --transport http xlt-docs https://docs.xceptance.com/mcp
+claude mcp add --transport http xceptance-docs https://docs.xceptance.com/mcp
 ```
 
 #### Connecting from Cursor
 1. Go to **Settings** (`Cmd + ,` / `Ctrl + ,`) → **Features** → **MCP**.
 2. Click **Add New MCP Server**.
 3. Set:
-   - **Name**: `xlt-docs`
+   - **Name**: `xceptance-docs`
    - **Type**: `SSE` / `HTTP` (Streamable HTTP)
-   - **Server URL**: `http://localhost:4321/mcp` (or your deployed URL)
+   - **Server URL**: `https://docs.xceptance.com/mcp` (or `http://localhost:4321/mcp` for local development)
 
 #### Connecting from VS Code (Cline / Roo Code / Continue)
 Add to your MCP settings JSON (e.g. `cline_mcp_settings.json`):
 ```json
 {
   "mcpServers": {
-    "xlt-docs": {
-      "url": "http://localhost:4321/mcp"
+    "xceptance-docs": {
+      "url": "https://docs.xceptance.com/mcp"
     }
   }
 }
@@ -244,10 +257,11 @@ Configured in [`blume.config.ts`](./blume.config.ts) and automatically downloade
 ### Homepage Architecture (`pages/index.astro`)
 
 The documentation hub homepage is built as a custom full-width page via Blume's `<PageLayout>`:
-1. **Corporate Gradient Hero**: High-impact banner styled with `#004682` to `#0f172a`, ambient radial glow, and official badge.
-2. **Prominent Search Launchpad**: Instant search bar with keyboard shortcut `⌘K` that delegates to Blume's native modal search dialog (`data-blume-search-open`) with full-text indexing and Ask AI.
+1. **Corporate Gradient Hero**: High-impact banner styled with `#004682` to `#0f172a`, ambient radial glow, and an interactive `/mcp` developer status badge.
+2. **Prominent Search Launchpad**: Active mouse-clickable search launchpad with dynamic OS keyboard shortcut detection (`⌘K` on Apple devices, `Ctrl K` on Windows/Linux) that triggers Blume's native modal search dialog (`blume-search [data-blume-search-open]`) with full-text indexing and Ask AI.
 3. **Core Testing Tools (3-Column Grid)**: Parallel product cards for XTC, XLT, and Neodymium featuring screenshots, value summaries, feature highlights, and pill action buttons (`rounded-full`). Includes smooth physics-based elevation on hover (`hover:-translate-y-1.5 hover:shadow-xl`).
 4. **Quick Wayfinding**: Fast navigation cards to popular developer pathways (Quick Start, Load Profiles, Neodymium Patterns, Release Notes).
+5. **AI Coding Agents & MCP Feature Section**: Dedicated homepage section separated by generous vertical spacing and section borders (`mt-16 sm:mt-20 border-t pt-12`), compatible coding tools (Google Antigravity, Claude Code, Cursor, Windsurf, VS Code), and a multi-client tabbed terminal box with 1-click clipboard copy for Antigravity JSON config and Claude Code CLI.
 
 ### WCAG 2.1 / 2.2 Accessibility Conformance
 
