@@ -1,9 +1,9 @@
 ---
-title: "Test Execution"
-weight: 10
-type: docs
-description: >
-  Strategies for running Neodymium tests: IDE, Maven, profiles, and selective execution.
+title: Test Execution
+description: "Strategies for running Neodymium tests: IDE, Maven, profiles, and
+  selective execution.\n"
+sidebar:
+  order: 10
 ---
 
 Once test cases are developed, you need flexible ways to execute them—whether it's running a single test in your IDE, a specific suite via Maven, or a complex matrix of browsers and datasets in a CI/CD pipeline.

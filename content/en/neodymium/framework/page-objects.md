@@ -1,9 +1,9 @@
 ---
-title: "Page Objects"
-linkTitle: "Page Objects"
-weight: 530
-type: docs
+title: Page Objects
 description: "Using Page Objects in Neodymium."
+sidebar:
+  label: Page Objects
+  order: 530
 ---
 
 Page objects are a pattern that describes how to wrap the functionality of a web page. Page objects simplify web pages to simple objects and reduce the amount of duplicated code. In order to reuse already written code even more, the concept of components is introduced to implement functionality that is common to different pages in a single place.

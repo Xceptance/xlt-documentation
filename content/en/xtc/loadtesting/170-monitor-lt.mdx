@@ -1,0 +1,57 @@
+---
+title: Monitoring the Test Run
+description: "How to monitor a load test in XTC.\n"
+sidebar:
+  order: 170
+---
+
+XTC provides several ways to monitor load tests. Although comprehensive data is collected during the test and compiled into a final report, real-time information is also available, giving users immediate insights into the ongoing execution.
+
+:::info[Role Required]
+To view the load test and scenario status, your account must at least have the role of a [reviewer](/xtc/basics/projects/#user-roles-within-a-project) within the project.
+:::
+
+## Test Status
+
+The _Status_ tab contains an overview of the test status. This is a list of the steps carried out in the load test phases _Preparation_, _Execution_,  and _Results and Clean Up_ which will be marked done while the test progresses. 
+
+![The status view for a running load test.](/images/xtc/loadtest_status.png)
+*The status view for a running load test.*
+
+Steps that failed due to errors (like timeouts or failed authentication) will be marked as failed here, so you can see why and at which step the test does not progress or was aborted.
+
+## Scenario Status
+
+The _Scenario Status_ tab only contains information while the test is actually running or finished. After the [live metrics](#live-metrics) follows an overview of all test scenarios that are executed in this load test, containing scenario name and state and other useful information such as currently running users, average scenario runtime and especially the number of events and errors that occurred in this scenario:
+
+![The scenario status view for a running load test.](/images/xtc/loadtest_scenarioStatus.png)
+*The scenario status view for a running load test.*
+
+### Live Metrics
+
+The graph on top of the scenario status table is updated while the load test is running. It displays information on the number of currently active users as well as the user limit for each test scenario. Hovering over the graph displays a popup with the values for this point in time (user limit in parentheses).
+
+Since there might be a lot of information, you can **filter** in the dropdown for single or several test scenarios or just display total values. If you want to see more details in the chart, selecting a higher **scaling factor** will make the chart taller. 
+
+Red vertical bars are displayed when scenario errors occurred. These are bound to the respective scenarios, i.e. when you select a single scenario only the errors for this scenario will be visible in the graph. When you select _Total_, the sum of all scenario errors will be displayed.
+
+:::note
+Please note that there may be gaps in the live metrics even though the test was running fine during that time - this might happen due to a restart or relocation of the status updater (which regularly fetches the test status from the agents). Also, if the status updater does not receive any status from the agents for whatever reason, the charts will contain a gap for that period. 
+:::
+
+The data for the scenario status chart is available for a limited period of time only (7 days after the load test has ended). After that time the chart will no longer be displayed as it would be empty anyway.
+
+## Error Reporting
+
+XTC displays error and event information from your load test while it is running. This allows you to analyze errors and events as they occur without having to create an interim load test report.
+
+To view errors and events, open the *Error Reporting* tab on the details page of your load test. Specify the time period you are interested in and use the search and filter controls to narrow down the list of entries. Error entries include a stack trace, which can be viewed by expanding the entry.
+
+![Live error reporting during a test run.](/images/xtc/loadtest_error_reporting.png)
+*Live error reporting during a test run.*
+
+Note that error and event data is stored for **24 hours only**.
+
+:::note
+This feature is currently considered experimental. Therefore, it is available to certain organizations only. After further testing, we will gradually roll it out to all organizations.
+:::

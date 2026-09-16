@@ -1,11 +1,8 @@
 ---
-title: "Report Options"
-
-weight: 540
-type: docs
-
-description: >
-    How to customize the reports via command line options.
+title: Report Options
+description: "How to customize the reports via command line options.\n"
+sidebar:
+  order: 540
 ---
 
 ## Creating a report
@@ -30,7 +27,7 @@ The output path can be relative to your current location or absolute. XLT will n
 
 ## Excluding the Ramp-Up Phase
 
-In most cases you won’t be interested in what’s happening during the [ramp up phase]({{< relref "load-configuration/#ramp-up-load-profile" >}}) (the period of your load test when, one by one, all the users are becoming active) because you typically just want to check what happens under full load. You can easily cut the ramp up part of the test from the report by using the `-noRampUp` parameter, e.g.:
+In most cases you won’t be interested in what’s happening during the [ramp up phase](/xlt/manual/load-configuration/#ramp-up-load-profile) (the period of your load test when, one by one, all the users are becoming active) because you typically just want to check what happens under full load. You can easily cut the ramp up part of the test from the report by using the `-noRampUp` parameter, e.g.:
 
 ```bash
 bin $ ./create_report.sh ../results/20191224-131200 -noRampUp

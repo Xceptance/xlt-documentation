@@ -1,9 +1,13 @@
 {
   "name": "xlt-documentation",
   "version": "1.0.0",
-  "description": "XLT Documentation is based on Docsy. Docsy is a [Hugo](https://gohugo.io/) theme for technical documentation sets, providing simple navigation, site structure, and more.",
+  "description": "XLT Documentation built with Blume.",
   "main": "index.js",
   "scripts": {
+    "dev": "blume dev",
+    "build": "blume build",
+    "preview": "blume preview",
+    "validate": "blume validate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,9 +22,8 @@
     "url": "https://github.com/Xceptance/xlt-documentation/issues"
   },
   "homepage": "https://github.com/Xceptance/xlt-documentation#readme",
-  "devDependencies": {
-    "autoprefixer": "^10.4.22",
-    "postcss": "^8.5.6",
-    "postcss-cli": "^11.0.1"
+  "dependencies": {
+    "@ai-sdk/openai-compatible": "^3.0.48",
+    "blume": "^1.7.0"
   }
 }

@@ -1,10 +1,11 @@
 ---
-title: "Concurrent Users - The Art of Calculation"
-weight: 30
-type: docs
-
-description: >
-  "Concurrent User": In the context of load and performance testing, this metric is often claimed to be the ultimate measure, but it is not. This article aims to shed some light on the concurrent user metric and the misunderstandings and myths surrounding it.
+title: Concurrent Users - The Art of Calculation
+description: "\"Concurrent User\": In the context of load and performance
+  testing, this metric is often claimed to be the ultimate measure, but it is
+  not. This article aims to shed some light on the concurrent user metric and
+  the misunderstandings and myths surrounding it.\n"
+sidebar:
+  order: 30
 ---
 
 You are likely familiar with the term "Concurrent User". In the context of load and performance testing, this metric is often claimed to be the ultimate measure, frequently accompanied by astronomically high numbers that are difficult to verify and sometimes used merely as sales arguments for overpriced software products.

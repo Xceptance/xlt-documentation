@@ -1,9 +1,9 @@
 ---
-title: "Applitools Plugin"
-linkTitle: "Applitools Plugin"
-weight: 500
-type: docs
+title: Applitools Plugin
 description: "Visual assertions using Applitools with Neodymium."
+sidebar:
+  label: Applitools Plugin
+  order: 500
 ---
 
 ### Visual Assertions
@@ -14,7 +14,7 @@ Beyond functional testing, verifying the look and feel of the application under 
 
 First, add this plugin as a dependency in your maven project. To have the most up-to-date information about how to do this, please see the instructions below [the plugin project](https://github.com/Xceptance/neodymium-plugin-applitools) itself.
 
-Once the dependency is included, the plugin must be configured using the `config/applitools.properties` file. Analogous to [`neodymium.properties`]({{< ref "neodymium-properties" >}}), the configurations in `config/applitools.properties` can be overwritten with ones from `config/dev-applitools.properties`.
+Once the dependency is included, the plugin must be configured using the `config/applitools.properties` file. Analogous to [`neodymium.properties`](/neodymium/configuration/neodymium-properties/), the configurations in `config/applitools.properties` can be overwritten with ones from `config/dev-applitools.properties`.
 
 ### Applitools properties
 
@@ -36,7 +36,7 @@ As shown in the table above, the only mandatory parameter is `applitools.apiKey`
 Before making any assertions, please call `ApplitoolsApi.setupGlobal()`, `ApplitoolsApi.setupBasic()` or `ApplitoolsApi.setupGroupingOfTestsByName(batchName)` (the difference among these methods will be described [in chapter Batches](#batches)) and `ApplitoolsApi.openEyes(testName)`.
 So your setup for test can look like following:
 
-```Java
+```java
     @Rule
     public TestName name = new TestName();
 
@@ -50,9 +50,8 @@ So your setup for test can look like following:
 
 The value you passed as parameter to `ApplitoolsApi.openEyes(testName)` will be displayed here:
 
-{{< image max-width="80%" src="neodymium/applitools_test_manager_test_name.png" >}}
-Example test name in Applitools Test Manager.
-{{< /image >}}
+![Example test name in Applitools Test Manager.](/images/neodymium/applitools_test_manager_test_name.png)
+*Example test name in Applitools Test Manager.*
 
 The test is now ready to make visual assertions. There are a few options to do this:
 
@@ -62,9 +61,8 @@ The test is now ready to make visual assertions. There are a few options to do t
 
  The description parameter, passed to these methods will be displayed here:
 
- {{< image max-width="80%" src="neodymium/applitools_test_manager_page_description.png" >}}
-Example page description in Applitools Test Manager.
- {{< /image >}}
+ ![Example page description in Applitools Test Manager.](/images/neodymium/applitools_test_manager_page_description.png)
+*Example page description in Applitools Test Manager.*
 
 At the end of each test please call `ApplitoolsApi.endAssertions()`.
 
@@ -79,7 +77,7 @@ So if you want to run tests in parallel, please configure it with following inpu
           <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-surefire-plugin</artifactId>
-              <version>${surefire.version}</version>
+              <version>`${surefire.version}`</version>
               <configuration>
                   <parallel>classes</parallel>
                   <threadCount>2</threadCount>
@@ -107,7 +105,7 @@ with the name passed in `ApplitoolsApi.openEyes(testName)`
 Another option to accumulate tests is to group them within one batch. For this purpose you can use `ApplitoolsApi.addProperty(name,value)` method.
 Regarding this method, after execution of following code before the tests, related to category
 
-```Java
+```java
     @BeforeEach
     public void setupBatch(TestInfo testInfo)
     {
@@ -119,7 +117,7 @@ Regarding this method, after execution of following code before the tests, relat
 
 and the following before the tests, related to home page
 
-```Java
+```java
     @BeforeEach
     public void setupBatch(TestInfo testInfo)
     {
@@ -131,6 +129,5 @@ and the following before the tests, related to home page
 
 it is possible to group them like this:
 
-{{< image max-width="80%" src="neodymium/applitools_test_manager_group_by_properites.png" >}}
-Example grouping by custom properties in Applitools Test Manager.
-{{< /image >}}
+![Example grouping by custom properties in Applitools Test Manager.](/images/neodymium/applitools_test_manager_group_by_properites.png)
+*Example grouping by custom properties in Applitools Test Manager.*

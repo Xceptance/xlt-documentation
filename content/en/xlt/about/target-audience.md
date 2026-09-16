@@ -1,13 +1,9 @@
 ---
-title: "Target Audience"
-linkTitle: "Target Audience"
-
-type: docs
-
-weight: 5
-
-description: >
-    Learn about the target markets and audiences for XLT.
+title: Target Audience
+description: "Learn about the target markets and audiences for XLT.\n"
+sidebar:
+  label: Target Audience
+  order: 5
 ---
 
 XLT was developed by a testing company to provide a tool with greater flexibility and better reporting that enhances the trust in test results. Its power might also be its biggest challenge, as it's not a typical, easy-to-use load testing tool.
@@ -31,7 +27,7 @@ XLT was developed by a testing company to provide a tool with greater flexibilit
 
 ## XLT is suitable for
 
-* any kind of load and performance test, preferably over HTTP. XLT has also been used for WebSocket, FTP, and [WebDAV testing]({{< relref "webdav-test-suite" >}}),
+* any kind of load and performance test, preferably over HTTP. XLT has also been used for WebSocket, FTP, and [WebDAV testing](/xlt/test-suites/webdav-test-suite/),
 * tests that require many machines and locations,
 * your CI/CD setup,
 * extensive data processing of results, as XLT provides transparency and allows you to add data sources and capture more data at any time,

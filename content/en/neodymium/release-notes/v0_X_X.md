@@ -1,17 +1,11 @@
 ---
 title: Neodymium 0.X.X
-linkTitle: 0.X.X
-
-weight: 1000
-type: docs
-
-sitemap:
-  changefreq: weekly
-  priority: 0.1
-
-description: >
-    
+description: ""
+sidebar:
+  label: 0.X.X
+  order: 1000
 ---
+
 ## 0.2.1
 
 ### General

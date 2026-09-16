@@ -1,10 +1,7 @@
 ---
-title: "What is next?"
-
-weight: 60
-type: docs
-
-description: >
-  Suggestion how to continue your XLT experience
+title: What is next?
+description: "Suggestion how to continue your XLT experience\n"
+sidebar:
+  order: 60
 ---
 

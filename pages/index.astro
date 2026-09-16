@@ -1,0 +1,555 @@
+---
+import PageLayout from "blume/components/layout/PageLayout.astro";
+import Icon from "blume/components/Icon.astro";
+import data from "blume:data";
+
+const { config } = data;
+---
+
+<PageLayout
+  site={{ title: config.title, description: config.description }}
+  logo={config.logo}
+  banner={config.banner}
+  analytics={config.analytics}
+  navigation={data.navigation}
+  favicon={config.favicon}
+  fontCssVars={data.fontCssVars}
+  themeMode={config.theme.mode}
+  searchEnabled={config.search.enabled}
+  siteUrl={config.site}
+  ogEnabled={config.og.enabled}
+  page={{ title: "Documentation Hub — Xceptance", description: config.description }}
+>
+  {/* Hero Banner with Xceptance Corporate Gradient */}
+  <section class="relative overflow-hidden bg-gradient-to-br from-[#004682] via-[#003868] to-[#0f172a] text-white">
+    {/* Ambient radial glow */}
+    <div
+      class="pointer-events-none absolute inset-0 -z-0 opacity-40"
+      style="background: radial-gradient(circle at 50% 30%, rgba(0, 95, 176, 0.45) 0%, rgba(0, 70, 130, 0.15) 50%, transparent 80%);"
+      aria-hidden="true"
+    />
+
+    <div class="relative z-10 mx-auto max-w-5xl px-6 py-16 sm:py-20 lg:py-24 text-center">
+      {/* MCP Agent Top Announcement Pill */}
+      <a
+        href="#mcp-server-section"
+        class="group inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium text-slate-200 backdrop-blur-md mb-6 transition-all duration-200 hover:border-white/40 hover:bg-white/20 hover:text-white"
+      >
+        <Icon name="bot" size={13} class="text-sky-300" />
+        <span>Connect your Agent via <code class="font-mono text-white">/mcp</code> (Antigravity, Claude Code...)</span>
+        <Icon name="arrow-right" size={12} class="text-slate-300 transition-transform group-hover:translate-x-0.5" />
+      </a>
+
+      <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-white">
+        Documentation Hub
+      </h1>
+
+      <p class="mx-auto mt-4 max-w-2xl text-base sm:text-lg text-slate-200 leading-relaxed">
+        Guides, architecture manuals, and API references for <strong class="text-white">XTC</strong>, <strong class="text-white">XLT</strong>, and <strong class="text-white">Neodymium</strong>.
+      </p>
+
+      {/* Prominent Search & Ask AI Launchpad */}
+      <div class="mt-8 flex justify-center">
+        <button
+          type="button"
+          id="hero-search-button"
+          data-blume-search-open
+          class="group flex w-full max-w-xl cursor-pointer items-center justify-between rounded-full border border-white/25 bg-white/10 px-5 py-3.5 text-sm text-slate-200 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-white/50 hover:bg-white/20 hover:shadow-xl active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#004682]"
+          aria-label="Search documentation or Ask AI"
+        >
+          <span class="flex items-center gap-3">
+            <Icon name="search" size={18} class="text-slate-300 transition-colors group-hover:text-white" />
+            <span class="font-normal text-slate-200 group-hover:text-white">Search documentation or Ask AI...</span>
+          </span>
+          <span class="hidden sm:flex items-center gap-1 rounded-md border border-white/20 bg-white/10 px-2 py-0.5 font-mono text-xs text-slate-200">
+            <span id="hero-search-kbd">⌘K</span>
+          </span>
+        </button>
+      </div>
+
+      {/* Quick Search Suggestions */}
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-slate-300">
+        <span class="text-slate-400">Suggested:</span>
+        <a href="/xlt/quick-start" class="rounded-full bg-white/10 px-2.5 py-0.5 hover:bg-white/20 text-slate-200 transition-colors">Quick Start</a>
+        <a href="/xlt/manual/load-configuration" class="rounded-full bg-white/10 px-2.5 py-0.5 hover:bg-white/20 text-slate-200 transition-colors">Load Profiles</a>
+        <a href="/xtc" class="rounded-full bg-white/10 px-2.5 py-0.5 hover:bg-white/20 text-slate-200 transition-colors">XTC Cloud</a>
+        <a href="/neodymium" class="rounded-full bg-white/10 px-2.5 py-0.5 hover:bg-white/20 text-slate-200 transition-colors">Neodymium</a>
+      </div>
+
+    </div>
+  </section>
+
+  {/* Main Content Body */}
+  <div class="mx-auto max-w-6xl px-6 py-14 sm:py-18">
+    {/* Section: Core Testing Tools */}
+    <section aria-labelledby="heading-core-tools" class="mb-20">
+      <div class="mb-10 text-center sm:text-left">
+        <h2 id="heading-core-tools" class="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+          Core Testing Tools
+        </h2>
+        <p class="mt-2 text-sm sm:text-base text-muted-foreground">
+          Select a tool below to access comprehensive user manuals, installation guides, and release notes.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        {/* XTC Card */}
+        <article class="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-accent/40">
+          <div class="relative overflow-hidden border-b border-border bg-muted/40 p-3">
+            <img
+              src="/images/xtc/xtc-loadtest-dashboard.png"
+              alt="XTC Load Testing and Monitoring Dashboard"
+              loading="lazy"
+              class="h-44 w-full rounded-lg object-cover shadow-sm transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <div class="mb-3 flex items-center gap-3">
+              <div class="rounded-xl bg-accent/10 p-2.5 text-accent">
+                <Icon name="cloud" size={22} />
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-foreground">XTC</h3>
+                <span class="text-xs font-medium text-muted-foreground">Cloud Platform & Monitoring</span>
+              </div>
+            </div>
+            <p class="flex-1 text-sm leading-relaxed text-muted-foreground">
+              The SaaS platform for high-scale performance testing, extensive distributed load test management, and synthetic 24/7 monitoring.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-2.5 border-t border-border/60 pt-5">
+              <a
+                href="/xtc"
+                class="inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-sm font-medium text-accent-foreground shadow-sm transition-all duration-300 hover:bg-[#005fb0] hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
+                aria-label="Open XTC Manual"
+              >
+                <span>Manual</span>
+                <Icon name="arrow-right" size={14} />
+              </a>
+              <a
+                href="/xtc/xtc-release-notes"
+                class="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-all duration-300 hover:bg-muted hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
+                aria-label="View XTC Release Notes"
+              >
+                <span>Release Notes</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        {/* XLT Card */}
+        <article class="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-accent/40">
+          <div class="relative overflow-hidden border-b border-border bg-muted/40 p-3">
+            <img
+              src="/images/home/xlt-report-transactions.png"
+              alt="XLT Performance Report Transaction Details"
+              loading="lazy"
+              class="h-44 w-full rounded-lg object-cover shadow-sm transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <div class="mb-3 flex items-center gap-3">
+              <div class="rounded-xl bg-accent/10 p-2.5 text-accent">
+                <Icon name="gauge" size={22} />
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-foreground">XLT</h3>
+                <span class="text-xs font-medium text-muted-foreground">Load & Performance Engine</span>
+              </div>
+            </div>
+            <p class="flex-1 text-sm leading-relaxed text-muted-foreground">
+              Premier load and performance testing tool featuring unrivaled execution capabilities, detailed reporting, and massive scalability. Open Source under Apache 2.0.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-2.5 border-t border-border/60 pt-5">
+              <a
+                href="/xlt"
+                class="inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-sm font-medium text-accent-foreground shadow-sm transition-all duration-300 hover:bg-[#005fb0] hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
+                aria-label="Open XLT Manual"
+              >
+                <span>Manual</span>
+                <Icon name="arrow-right" size={14} />
+              </a>
+              <a
+                href="/xlt/release-notes"
+                class="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-all duration-300 hover:bg-muted hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
+                aria-label="View XLT Release Notes"
+              >
+                <span>Release Notes</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        {/* Neodymium Card */}
+        <article class="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-accent/40">
+          <div class="relative overflow-hidden border-b border-border bg-muted/40 p-3">
+            <img
+              src="/images/home/test-automation-allure-suites.png"
+              alt="Neodymium Test Automation Report and Allure Suites"
+              loading="lazy"
+              class="h-44 w-full rounded-lg object-cover shadow-sm transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <div class="mb-3 flex items-center gap-3">
+              <div class="rounded-xl bg-accent/10 p-2.5 text-accent">
+                <Icon name="cpu" size={22} />
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-foreground">Neodymium</h3>
+                <span class="text-xs font-medium text-muted-foreground">Test Automation Framework</span>
+              </div>
+            </div>
+            <p class="flex-1 text-sm leading-relaxed text-muted-foreground">
+              Modern test automation framework uniting the best open source web testing libraries with production-proven architecture patterns. MIT licensed.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-2.5 border-t border-border/60 pt-5">
+              <a
+                href="/neodymium"
+                class="inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-sm font-medium text-accent-foreground shadow-sm transition-all duration-300 hover:bg-[#005fb0] hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
+                aria-label="Open Neodymium Manual"
+              >
+                <span>Manual</span>
+                <Icon name="arrow-right" size={14} />
+              </a>
+              <a
+                href="/neodymium/release-notes"
+                class="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-all duration-300 hover:bg-muted hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
+                aria-label="View Neodymium Release Notes"
+              >
+                <span>Release Notes</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    {/* Section: Quick Wayfinding */}
+    <section aria-labelledby="heading-quick-wayfinding" class="border-t border-border pt-12">
+      <div class="mb-8">
+        <h2 id="heading-quick-wayfinding" class="text-2xl font-bold tracking-tight text-foreground">
+          Quick Wayfinding
+        </h2>
+        <p class="mt-1 text-sm text-muted-foreground">
+          Direct links to frequently referenced guides, configurations, and external resources.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <a
+          href="/xlt/quick-start"
+          class="group flex flex-col justify-between rounded-xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        >
+          <div>
+            <div class="mb-3 inline-flex rounded-lg bg-accent/10 p-2 text-accent">
+              <Icon name="zap" size={20} />
+            </div>
+            <h3 class="font-semibold text-foreground group-hover:text-accent transition-colors">Quick Start</h3>
+            <p class="mt-1.5 text-xs text-muted-foreground leading-relaxed">
+              Step-by-step setup to create and run your first load test scenario in minutes.
+            </p>
+          </div>
+          <span class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-accent">
+            <span>Get started</span>
+            <Icon name="arrow-right" size={12} class="transition-transform group-hover:translate-x-0.5" />
+          </span>
+        </a>
+
+        <a
+          href="/xlt/manual/load-configuration"
+          class="group flex flex-col justify-between rounded-xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        >
+          <div>
+            <div class="mb-3 inline-flex rounded-lg bg-accent/10 p-2 text-accent">
+              <Icon name="sliders" size={20} />
+            </div>
+            <h3 class="font-semibold text-foreground group-hover:text-accent transition-colors">Load Profiles</h3>
+            <p class="mt-1.5 text-xs text-muted-foreground leading-relaxed">
+              Configure load curves, ramp-up schedules, arrival rates, and agent clusters.
+            </p>
+          </div>
+          <span class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-accent">
+            <span>Configure loads</span>
+            <Icon name="arrow-right" size={12} class="transition-transform group-hover:translate-x-0.5" />
+          </span>
+        </a>
+
+        <a
+          href="/neodymium"
+          class="group flex flex-col justify-between rounded-xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        >
+          <div>
+            <div class="mb-3 inline-flex rounded-lg bg-accent/10 p-2 text-accent">
+              <Icon name="code" size={20} />
+            </div>
+            <h3 class="font-semibold text-foreground group-hover:text-accent transition-colors">Neodymium Patterns</h3>
+            <p class="mt-1.5 text-xs text-muted-foreground leading-relaxed">
+              Clean page object architecture and robust browser test automation templates.
+            </p>
+          </div>
+          <span class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-accent">
+            <span>Explore patterns</span>
+            <Icon name="arrow-right" size={12} class="transition-transform group-hover:translate-x-0.5" />
+          </span>
+        </a>
+
+        <a
+          href="/xlt/release-notes"
+          class="group flex flex-col justify-between rounded-xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        >
+          <div>
+            <div class="mb-3 inline-flex rounded-lg bg-accent/10 p-2 text-accent">
+              <Icon name="history" size={20} />
+            </div>
+            <h3 class="font-semibold text-foreground group-hover:text-accent transition-colors">Release Notes</h3>
+            <p class="mt-1.5 text-xs text-muted-foreground leading-relaxed">
+              Full version history, migration notes, bugfixes, and feature changelogs.
+            </p>
+          </div>
+          <span class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-accent">
+            <span>View changelog</span>
+            <Icon name="arrow-right" size={12} class="transition-transform group-hover:translate-x-0.5" />
+          </span>
+        </a>
+      </div>
+    </section>
+
+    {/* Section: AI Coding Agents & MCP */}
+    <section id="mcp-server-section" aria-labelledby="heading-mcp-section" class="mt-16 sm:mt-20 border-t border-border pt-12 scroll-mt-20">
+      <div class="overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-card via-card to-accent/5 p-6 sm:p-8 shadow-sm">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+          <div class="max-w-2xl">
+            <div class="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent mb-3">
+              <Icon name="bot" size={14} />
+              <span>Model Context Protocol (MCP)</span>
+            </div>
+            <h2 id="heading-mcp-section" class="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              Connect Your AI Coding Assistant
+            </h2>
+            <p class="mt-2 text-sm sm:text-base text-muted-foreground leading-relaxed">
+              The documentation hub serves a live, streamable Model Context Protocol (MCP) endpoint at <code class="rounded bg-muted px-1.5 py-0.5 font-mono text-xs text-foreground">/mcp</code>. Connect Google Antigravity, Claude Code, Cursor, Windsurf, or VS Code to search and retrieve grounded documentation for XLT, XTC, and Neodymium in real-time without web scraping.
+            </p>
+            <div class="mt-4 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+              <span class="font-medium text-foreground">Compatible with:</span>
+              <span class="inline-flex items-center gap-1.5 rounded-md border border-accent/40 bg-accent/10 px-2.5 py-0.5 font-medium text-foreground">
+                <Icon name="sparkles" size={12} class="text-accent" />
+                Google Antigravity
+              </span>
+              <span class="inline-flex items-center rounded-md border border-border bg-muted/50 px-2 py-0.5 font-medium text-foreground">Claude Code</span>
+              <span class="inline-flex items-center rounded-md border border-border bg-muted/50 px-2 py-0.5 font-medium text-foreground">Cursor</span>
+              <span class="inline-flex items-center rounded-md border border-border bg-muted/50 px-2 py-0.5 font-medium text-foreground">Windsurf</span>
+              <span class="inline-flex items-center rounded-md border border-border bg-muted/50 px-2 py-0.5 font-medium text-foreground">VS Code (Cline / Roo)</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2.5 lg:min-w-[460px]">
+            {/* Terminal Window with Multi-Client Tabs */}
+            <div class="overflow-hidden rounded-xl border border-border bg-slate-950 shadow-md">
+              {/* Terminal Titlebar with Tabs & 1-Click Copy */}
+              <div class="flex items-center justify-between border-b border-slate-800 bg-slate-900/90 px-3 py-2">
+                <div class="flex items-center gap-1" role="tablist" aria-label="MCP Connection Configuration">
+                  <button
+                    type="button"
+                    role="tab"
+                    id="mcp-tab-antigravity"
+                    aria-selected="true"
+                    aria-controls="mcp-panel-antigravity"
+                    class="mcp-tab-btn flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium text-white bg-slate-800 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+                  >
+                    <Icon name="sparkles" size={12} class="text-sky-400" />
+                    <span>Antigravity / JSON</span>
+                  </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    id="mcp-tab-claude"
+                    aria-selected="false"
+                    aria-controls="mcp-panel-claude"
+                    class="mcp-tab-btn flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium text-slate-400 hover:text-slate-200 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+                  >
+                    <Icon name="terminal" size={12} />
+                    <span>Claude Code</span>
+                  </button>
+                </div>
+
+                <button
+                  type="button"
+                  id="copy-mcp-btn"
+                  class="inline-flex items-center gap-1.5 rounded-md bg-white/10 px-2.5 py-1 text-xs font-medium text-slate-200 transition-all hover:bg-white/20 active:scale-95 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white"
+                  aria-label="Copy snippet to clipboard"
+                >
+                  <Icon name="copy" size={13} />
+                  <span id="copy-mcp-text">Copy</span>
+                </button>
+              </div>
+
+              {/* Panel 1: Antigravity / JSON Config */}
+              <div
+                id="mcp-panel-antigravity"
+                role="tabpanel"
+                aria-labelledby="mcp-tab-antigravity"
+                class="p-3.5 font-mono text-xs text-slate-200 overflow-x-auto leading-relaxed selection:bg-accent/40 selection:text-white"
+              >
+                <pre class="m-0 p-0 bg-transparent text-xs whitespace-pre"><code><span class="text-slate-500">"mcpServers"</span>: &#123;
+  <span class="text-emerald-400">"xceptance-docs"</span>: &#123;
+    <span class="text-sky-300">"url"</span>: <span class="text-amber-300">"https://docs.xceptance.com/mcp"</span>
+  &#125;
+&#125;</code></pre>
+              </div>
+
+              {/* Panel 2: Claude Code CLI */}
+              <div
+                id="mcp-panel-claude"
+                role="tabpanel"
+                aria-labelledby="mcp-tab-claude"
+                class="hidden p-3.5 font-mono text-xs text-slate-200 overflow-x-auto leading-relaxed selection:bg-accent/40 selection:text-white"
+              >
+                <pre class="m-0 p-0 bg-transparent text-xs whitespace-pre-wrap break-all"><code><span class="text-emerald-400 select-none">$ </span>claude mcp add --transport http xceptance-docs https://docs.xceptance.com/mcp</code></pre>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-muted-foreground px-0.5">
+              <span>Server identifier: <strong class="text-foreground">xceptance-docs</strong></span>
+              <a href="https://modelcontextprotocol.io/" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 text-accent hover:underline">
+                <span>Learn about MCP</span>
+                <Icon name="external-link" size={12} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  {/* Client-side Interactivity Script */}
+  <script>
+    function setupHomepageInteractivity() {
+      // 1. Hero Search Launchpad Click Handler
+      const heroBtn = document.getElementById("hero-search-button");
+      if (heroBtn && !heroBtn.dataset.bound) {
+        heroBtn.dataset.bound = "true";
+        heroBtn.addEventListener("click", () => {
+          // Attempt 1: Trigger the search button in Blume's header
+          const headerBtn = document.querySelector<HTMLButtonElement>("blume-search [data-blume-search-open]");
+          if (headerBtn) {
+            headerBtn.click();
+            return;
+          }
+
+          // Attempt 2: Call open() directly on the custom element if available
+          const searchEl = document.querySelector("blume-search") as any;
+          if (typeof searchEl?.open === "function") {
+            searchEl.open();
+            return;
+          }
+
+          // Attempt 3: Dispatch keyboard shortcut event (Cmd+K / Ctrl+K)
+          const isApple = /mac|iphone|ipad|ipod/iu.test(navigator.platform);
+          document.dispatchEvent(
+            new KeyboardEvent("keydown", {
+              key: "k",
+              metaKey: isApple,
+              ctrlKey: !isApple,
+              bubbles: true,
+            })
+          );
+        });
+      }
+
+      // 2. Dynamic Keyboard Shortcut Detection
+      const kbd = document.getElementById("hero-search-kbd");
+      if (kbd) {
+        const isApple = typeof navigator !== "undefined" && /mac|iphone|ipad|ipod/iu.test(navigator.platform);
+        kbd.textContent = isApple ? "⌘K" : "Ctrl K";
+      }
+
+      // 3. MCP Snippet Tabs & Clipboard Copy
+      const tabAntigravity = document.getElementById("mcp-tab-antigravity");
+      const tabClaude = document.getElementById("mcp-tab-claude");
+      const panelAntigravity = document.getElementById("mcp-panel-antigravity");
+      const panelClaude = document.getElementById("mcp-panel-claude");
+      const copyBtn = document.getElementById("copy-mcp-btn");
+      const copyText = document.getElementById("copy-mcp-text");
+
+      const snippets: Record<string, string> = {
+        antigravity: '{\n  "mcpServers": {\n    "xceptance-docs": {\n      "url": "https://docs.xceptance.com/mcp"\n    }\n  }\n}',
+        claude: 'claude mcp add --transport http xceptance-docs https://docs.xceptance.com/mcp',
+      };
+
+      let activeTab: "antigravity" | "claude" = "antigravity";
+
+      function switchTab(tab: "antigravity" | "claude") {
+        activeTab = tab;
+        if (tab === "antigravity") {
+          tabAntigravity?.setAttribute("aria-selected", "true");
+          tabAntigravity?.classList.add("text-white", "bg-slate-800");
+          tabAntigravity?.classList.remove("text-slate-400");
+
+          tabClaude?.setAttribute("aria-selected", "false");
+          tabClaude?.classList.remove("text-white", "bg-slate-800");
+          tabClaude?.classList.add("text-slate-400");
+
+          panelAntigravity?.classList.remove("hidden");
+          panelClaude?.classList.add("hidden");
+        } else {
+          tabClaude?.setAttribute("aria-selected", "true");
+          tabClaude?.classList.add("text-white", "bg-slate-800");
+          tabClaude?.classList.remove("text-slate-400");
+
+          tabAntigravity?.setAttribute("aria-selected", "false");
+          tabAntigravity?.classList.remove("text-white", "bg-slate-800");
+          tabAntigravity?.classList.add("text-slate-400");
+
+          panelClaude?.classList.remove("hidden");
+          panelAntigravity?.classList.add("hidden");
+        }
+      }
+
+      if (tabAntigravity && !tabAntigravity.dataset.bound) {
+        tabAntigravity.dataset.bound = "true";
+        tabAntigravity.addEventListener("click", () => switchTab("antigravity"));
+      }
+
+      if (tabClaude && !tabClaude.dataset.bound) {
+        tabClaude.dataset.bound = "true";
+        tabClaude.addEventListener("click", () => switchTab("claude"));
+      }
+
+      if (copyBtn && !copyBtn.dataset.bound) {
+        copyBtn.dataset.bound = "true";
+        copyBtn.addEventListener("click", async () => {
+          const command = snippets[activeTab];
+          try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              await navigator.clipboard.writeText(command);
+            } else {
+              const textarea = document.createElement("textarea");
+              textarea.value = command;
+              textarea.style.position = "fixed";
+              textarea.style.opacity = "0";
+              document.body.appendChild(textarea);
+              textarea.focus();
+              textarea.select();
+              document.execCommand("copy");
+              document.body.removeChild(textarea);
+            }
+            if (copyText) {
+              copyText.textContent = "Copied!";
+              copyBtn.classList.add("text-emerald-300", "bg-emerald-500/20");
+              setTimeout(() => {
+                copyText.textContent = "Copy";
+                copyBtn.classList.remove("text-emerald-300", "bg-emerald-500/20");
+              }, 2000);
+            }
+          } catch (err) {
+            console.error("Failed to copy command:", err);
+          }
+        });
+      }
+    }
+
+    // Initialize on initial page load and on Astro client-router page transitions
+    setupHomepageInteractivity();
+    document.addEventListener("astro:page-load", setupHomepageInteractivity);
+  </script>
+</PageLayout>

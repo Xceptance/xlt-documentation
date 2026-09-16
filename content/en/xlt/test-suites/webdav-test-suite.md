@@ -1,11 +1,9 @@
 ---
-title: "WebDav Test Suite"
-
-weight: 40
-type: docs
-
-description: >
-  WebDav can be tested with this test suite. It depends on a WebDav XLT-library.
+title: WebDav Test Suite
+description: "WebDav can be tested with this test suite. It depends on a WebDav
+  XLT-library.\n"
+sidebar:
+  order: 40
 ---
 
 ## Introduction
@@ -27,7 +25,7 @@ To get started, clone the **Demo Test Suite**. You only need the library source 
 
 ### Demo Server
 
-To try the test suite, use the [Demo Application Server]({{< relref "../quick-start/demo-application" >}}) included with XLT. It features a built-in WebDAV server available at `http://localhost:8080/webdav/` or `https://localhost:8443/webdav/`.
+To try the test suite, use the [Demo Application Server](/xlt/quick-start/demo-application/) included with XLT. It features a built-in WebDAV server available at `http://localhost:8080/webdav/` or `https://localhost:8443/webdav/`.
 
 * **Credentials**: `webdav` / `webdav`
 * **Data Directory**: `<xlt>/samples/app-server/data/webdav`

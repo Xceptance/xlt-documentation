@@ -1,0 +1,76 @@
+---
+title: Basic Structure
+description: "The basic structure of XTC. All about users, organizations and projects.\n"
+sidebar:
+  order: 30
+---
+
+## Basic Structure
+
+XTC is structured into organization and projects. Each projects belongs to exactly one organization. Imagine organizations as companies or entities and projects as logical work items such a products, services, or tasks. Each user account can be a member of many organizations and many projects. This is especially useful for implementation partners and external consultants while it still serves the needs of development and test departments.
+
+The basic idea of XTC is: [user accounts](/xtc/basics/user-accounts/) can run tests organized in [projects](/xtc/basics/projects/) of different project natures for [organizations](/xtc/basics/organizations/).
+
+![XTC User Accounts as Members of Orgs which Contain Projects that Run Tests](/images/xtc/xtc_basic_structure.svg)
+*XTC User Accounts as Members of Orgs which Contain Projects that Run Tests*
+
+To use Xceptance Test Center, you need an account. You can easily sign up on [https://xtc.xceptance.com/](https://xtc.xceptance.com/). XTC allows you to either select a password for your account, or use an external login provider (Google or Microsoft) for SSO. For more information, see [user accounts](/xtc/basics/user-accounts/).
+
+## Home Dashboard
+
+When you log in to XTC you will first see a dashboard page.
+
+![The XTC home dashboard.](/images/xtc/home_dashboard.png)
+*The XTC home dashboard.*
+
+This dashboard contains all organizations and projects you are a member of, or your favorite/starred organizations and projects. You can toggle between your favorites and the full list by clicking _Show All/Show Starred_. On the bottom (or right, if you select _Column Layout_) it displays your _Last Accessed Projects_ (six of the most recently visited projects - archived projects will not appear in the list).
+
+You can navigate to a project or organization both via dashboard links or by using the two select boxes in the header next to the _XTC_ logo. If you are a member of many organizations and projects, the organization and project selectors in the page header feature a useful search input field to filter the list of displayed entries by substring and ignoring case. (Click the _XTC_ logo to return to your home dashboard.)
+
+![The XTC top menu allows you to select organization and project directly.](/images/xtc/topmenu.png)
+*The XTC top menu allows you to select organization and project directly.*
+
+To set up any kind of test, either for load testing or monitoring, you need to navigate to the right project.
+
+### Favorite Projects and Organizations
+
+In case you are a member of many organizations, navigating between them on the dashboard may get tedious. XTC helps you to focus on your current "working set" of orgs and projects: simply **star an org or project** using the star icon to mark it as favorite. By default, only the starred orgs/projects will be shown on the dashboard page. If you need to navigate to a project that is not listed by default, you can always use the project dropdown in the page header.
+
+### System Notifications
+
+To keep you informed about important events, XTC includes a system notification mechanism. You will see banner notifications displayed at the top of your screen for events such as:
+* Planned system maintenance windows
+* Deployment of new XTC releases
+* Crucial system announcements
+
+Once read, these notifications do not disappear immediately but remain accessible for a specified period of time. System notifications are broadcasted by XTC administrators only; they cannot be created by regular users.
+
+## Navigation
+
+The navigation links to the sub pages of an organization or project can be found in the sidebar to the left. Click the hamburger menu button to minimize/expand the sidebar.
+
+:::note
+Please note that the menu on the left offers different options depending on whether you are currently viewing the dashboard, an organization, or a load testing or monitoring project.
+:::
+
+In order to **quickly navigate from a project back to its organization**, use the link at the bottom of the navigation in the left sidebar:
+
+![Clicking the link in the sidebar will take you back to a project's organization.](/images/xtc/ui_backToOrg.png)
+*Clicking the link in the sidebar will take you back to a project's organization.*
+
+## Keyboard Shortcuts
+
+XTC provides a number of useful keyboard shortcuts. Press the <kbd>?</kbd> key to display a list of all available hotkeys:
+
+* Press <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>H</kbd> to return to the _User Dashboard_ from anywhere in XTC.
+* Press <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>O</kbd> or <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>P</kbd> to activate the organization or project selection box. Use the <kbd>↑</kbd>/<kbd>↓</kbd> arrow keys to highlight the desired item in the drop-down list item and press <kbd>Enter</kbd> to select it.
+* Most dialogs and forms can be accepted with the <kbd>Alt</kbd>+<kbd>Enter</kbd> shortcut. <kbd>Enter</kbd> alone is not supported, as it is often needed to interact with the currently focused input element. Use the <kbd>Esc</kbd> key to cancel a dialog.
+
+On the details page of a load test the following keyboard shortcuts are available:
+
+* Press <kbd>Ctrl</kbd>+<kbd>Left</kbd> or <kbd>Ctrl</kbd>+<kbd>Right</kbd> to navigate to the previous or next load test.
+* Press <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>S</kbd> to start the current load test.
+
+## Footer Information
+
+On the right side of the footer XTC is always displaying your role in the organization or project you are currently viewing. You can also find the current XTC version and the Contact/Privacy/Changelog links in the footer.
