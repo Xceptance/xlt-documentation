@@ -218,13 +218,58 @@ We welcome your contributions! To suggest changes or add new content:
 
 ---
 
+## Branding, Theming & Accessibility
+
+The documentation hub uses Xceptance's modern corporate visual identity (matching [xceptance.com](https://www.xceptance.com/en/)) and conforms to WCAG 2.1 / 2.2 accessibility standards.
+
+### Corporate Brand Tokens
+
+| Token | Value | Role & Usage |
+| :--- | :--- | :--- |
+| **Primary Blue** | `#004682` | Primary brand accent (`theme.accent`), primary pill buttons, icons, card highlights |
+| **Hover Blue** | `#005fb0` | Interactive hover state for primary buttons (`hover:bg-[#005fb0]`), lighter & brighter |
+| **Brand Red** | `#dc3545` / `#c8102e` | Signature Xceptance red mark ("X"), highlight badges, alert states |
+| **Slate Navy** | `#0f172a` | Dark endpoint for hero gradient (`linear-gradient(135deg, #004682, #0f172a)`) |
+| **Slate Medium** | `#1e293b` | Dark surface backgrounds and bold dark titles |
+| **Body Slate** | `#334155` / `#475569` | High-readability body copy and descriptive metadata |
+| **Light Surfaces** | `#ffffff`, `#f8fafc` | Card backgrounds, search launchpads, and subtle borders (`#e2e8f0`) |
+
+### Typography
+
+Configured in [`blume.config.ts`](./blume.config.ts) and automatically downloaded and self-hosted at build time by Blume:
+- **Headings & Display**: `Roboto Condensed` (`weights: [500, 700]`) — technical, modern sans-serif.
+- **Body Text**: `Roboto` — clean, highly readable document prose.
+- **Code & Monospace**: `Ubuntu Mono` — monospace for code blocks, CLI snippets, and shortcuts.
+
+### Homepage Architecture (`pages/index.astro`)
+
+The documentation hub homepage is built as a custom full-width page via Blume's `<PageLayout>`:
+1. **Corporate Gradient Hero**: High-impact banner styled with `#004682` to `#0f172a`, ambient radial glow, and official badge.
+2. **Prominent Search Launchpad**: Instant search bar with keyboard shortcut `⌘K` that delegates to Blume's native modal search dialog (`data-blume-search-open`) with full-text indexing and Ask AI.
+3. **Core Testing Tools (3-Column Grid)**: Parallel product cards for XTC, XLT, and Neodymium featuring screenshots, value summaries, feature highlights, and pill action buttons (`rounded-full`). Includes smooth physics-based elevation on hover (`hover:-translate-y-1.5 hover:shadow-xl`).
+4. **Quick Wayfinding**: Fast navigation cards to popular developer pathways (Quick Start, Load Profiles, Neodymium Patterns, Release Notes).
+
+### WCAG 2.1 / 2.2 Accessibility Conformance
+
+The documentation hub is engineered to satisfy WCAG Level AA (and Level AAA for contrast):
+- **Contrast Ratios (AAA)**:
+  - Corporate Blue (`#004682`) on White: **9.55:1** (exceeds AAA requirement of 7.0:1)
+  - White text on Hero Gradient (`#004682` $\rightarrow$ `#0f172a`): **9.55:1 – 17.85:1** (exceeds AAA)
+  - White text on Button Hover (`#005fb0`): **6.43:1** (exceeds AA requirement of 4.5:1)
+  - Slate body text (`#334155`) on White: **10.35:1** (exceeds AAA)
+- **Keyboard Navigation**: Explicit `:focus-visible` focus rings (`focus-visible:ring-2 focus-visible:ring-accent`) on all interactive buttons, cards, and links.
+- **Semantic Landmark Hierarchy**: Strict document structure with a single `h1` (`Documentation Hub`), `h2` section headers (`Core Testing Tools`, `Quick Wayfinding`), and `h3` component cards.
+- **Assistive Technology**: Informative `aria-label` attributes on action buttons and descriptive `alt` text on all screenshots.
+
+---
+
 ## Built With
 
 - **Framework**: [Blume](https://github.com/blumedocs/blume) (built on [Astro](https://astro.build/) and [Vite](https://vite.dev/))
 - **Search**: Built-in static index with [Pagefind](https://pagefind.app/) / Orama
 - **Icons**: [Lucide Icons](https://lucide.dev/)
 - **Styling**: Tailwind CSS & Vanilla CSS
-- **Typography**: Outfit, Inter, and Ubuntu Mono
+- **Typography**: Roboto Condensed, Roboto, and Ubuntu Mono
 
 ---
 
