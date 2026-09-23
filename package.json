@@ -4,11 +4,14 @@
   "description": "XLT Documentation built with Blume.",
   "main": "index.js",
   "scripts": {
-    "dev": "blume dev",
-    "build": "blume build",
+    "dev": "node scripts/dev.mjs",
+    "dev:docs": "blume dev",
+    "dev:proxy": "node scripts/vertex-proxy.mjs",
+    "start": "node scripts/prod.mjs",
+    "build": "ASTRO_TELEMETRY_DISABLED=1 blume build",
     "preview": "blume preview",
     "validate": "blume validate",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node scripts/test-proxy.mjs"
   },
   "repository": {
     "type": "git",
