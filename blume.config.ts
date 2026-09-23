@@ -1,5 +1,12 @@
 import { defineConfig } from "blume";
 
+const askAiEndpoint = process.env.ASK_AI_ENDPOINT?.trim();
+const isAskAiConfigured = Boolean(askAiEndpoint);
+
+if (!isAskAiConfigured) {
+  console.warn("\n⚠️  [Ask AI] ASK_AI_ENDPOINT is not configured in .env. Ask AI assistant is disabled.\n");
+}
+
 export default defineConfig({
   title: "Xceptance Documentation",
   description: "Documentation for XLT, XTC, and Neodymium including manuals and how-tos.",
@@ -57,35 +64,38 @@ export default defineConfig({
   ai: {
     // In-browser Ask AI chat assistant
     ask: {
-      enabled: true,
-      // Connect to Kilo Gateway via Blume's standard OpenAI-compatible provider
-      provider: "openai-compatible",
-      baseUrl: process.env.ASK_AI_ENDPOINT?.trim() || "https://api.kilo.ai/api/gateway",
-      // SECURITY MANDATE: Only specify the environment variable NAME here.
-      // NEVER commit or hardcode the raw API key. It is read from process.env at runtime.
-      apiKeyEnv: "KILO_API_KEY",
-      // Model routed through Kilo BYOK (Bring Your Own Key) to Google AI Studio
-      model: "google/gemini-3.8-flash",
+      enabled: isAskAiConfigured,
+      ...(isAskAiConfigured
+        ? {
+            // Connect to Vertex AI Gateway proxy via Blume's standard OpenAI-compatible provider
+            provider: "openai-compatible",
+            baseUrl: askAiEndpoint,
+            // SECURITY MANDATE: Only specify the environment variable NAME here.
+            // NEVER commit or hardcode raw keys. The proxy authenticates with GCP IAM.
+            apiKeyEnv: "ASK_AI_API_KEY",
+            // Default model routed to Google Cloud Vertex AI
+            model: process.env.ASK_AI_MODEL?.trim() || "gemini-2.5-flash",
 
-      // Corpus-optimized RAG retrieval sizing:
-      // - Corpus analysis of 162 core guides/manuals shows a median page length of 4,067 characters.
-      // - excerptChars: 4500 ensures that median technical guide pages fit entirely within the
-      //   retrieval window, preventing multi-section code examples, XML snippets, and property
-      //   tables from being truncated with ellipses.
-      // - contextBudget: 32000 (~8,000 tokens) provides sufficient capacity for the actively viewed
-      //   page plus all 6 search hits without premature budget exhaustion ((1 + 6) * 4500 = 31,500 <= 32,000).
-      // - maxResults: 6 ensures thorough cross-topic coverage across XLT, XTC, and Neodymium.
-      // On Gemini 3.8 Flash (1M+ token window), ~8k tokens incurs negligible latency (<200ms) and cost.
-      retrieval: {
-        excerptChars: 4500,
-        contextBudget: 32000,
-        maxResults: 6,
-      },
-      suggestions: [
-        { label: "How do I configure load profiles in XLT?", icon: "sliders" },
-        { label: "How do I evaluate test results?", icon: "activity" },
-        { label: "How do I configure DNS settings in XLT?", icon: "globe" },
-      ],
+            // Corpus-optimized RAG retrieval sizing:
+            // - Corpus analysis of 162 core guides/manuals shows a median page length of 4,067 characters.
+            // - excerptChars: 4500 ensures that median technical guide pages fit entirely within the
+            //   retrieval window, preventing multi-section code examples, XML snippets, and property
+            //   tables from being truncated with ellipses.
+            // - contextBudget: 32000 (~8,000 tokens) provides sufficient capacity for the actively viewed
+            //   page plus all 6 search hits without premature budget exhaustion ((1 + 6) * 4500 = 31,500 <= 32,000).
+            // - maxResults: 6 ensures thorough cross-topic coverage across XLT, XTC, and Neodymium.
+            retrieval: {
+              excerptChars: 4500,
+              contextBudget: 32000,
+              maxResults: 6,
+            },
+            suggestions: [
+              { label: "How do I configure load profiles in XLT?", icon: "sliders" },
+              { label: "How do I evaluate test results?", icon: "activity" },
+              { label: "How do I configure DNS settings in XLT?", icon: "globe" },
+            ],
+          }
+        : {}),
     },
 
     // Model Context Protocol (MCP) server

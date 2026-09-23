@@ -19,15 +19,25 @@ Documentation for **XLT**, **XTC**, and **Neodymium**, built with [Blume](https:
    npm install
    ```
 
-2. **Start the local development server**:
+2. **Authenticate with Google Cloud (one-time local prerequisite)**:
+
+   ```bash
+   gcloud auth application-default login
+   ```
+
+   This allows the local Vertex AI Gateway proxy to authenticate securely via Application Default Credentials (ADC) without storing any static API keys.
+
+3. **Start the local development servers**:
 
    ```bash
    npm run dev
    ```
 
-   The documentation will be available at [http://localhost:4321](http://localhost:4321) with hot reloading.
+   This concurrently starts:
+   - The **Vertex AI Gateway Proxy** on `http://localhost:4000/v1`
+   - The **Blume Documentation Server** on `http://localhost:4321` with hot reloading.
 
-3. **Validate site integrity**:
+4. **Validate site integrity**:
 
    ```bash
    npm run validate
@@ -35,7 +45,7 @@ Documentation for **XLT**, **XTC**, and **Neodymium**, built with [Blume](https:
 
    Verifies internal links, redirects, and document structure.
 
-4. **Build for production**:
+5. **Build for production**:
 
    ```bash
    npm run build
@@ -43,11 +53,13 @@ Documentation for **XLT**, **XTC**, and **Neodymium**, built with [Blume](https:
 
    Generates optimized static HTML in the `dist/` directory.
 
-5. **Preview the production build**:
+6. **Run production server**:
 
    ```bash
-   npm run preview
+   npm start
    ```
+
+   Starts the Vertex AI Gateway proxy and serves the built documentation in production mode.
 
 ---
 
@@ -56,17 +68,40 @@ Documentation for **XLT**, **XTC**, and **Neodymium**, built with [Blume](https:
 This documentation hub includes built-in AI capabilities powered by Blume:
 
 ### In-Browser Ask AI
-The site provides a native Ask AI assistant in the navigation header powered by Google Gemini (`google/gemini-3.8-flash`) via the Kilo Gateway (`https://api.kilo.ai/api/gateway`).
+The site provides a native Ask AI assistant in the navigation header powered by Google Cloud Vertex AI (`gemini-2.5-flash` or configured `ASK_AI_MODEL`) via a local/production OpenAI-compatible proxy (`scripts/vertex-proxy.mjs`).
 
-To enable Ask AI in local development:
+#### Local Development Setup
 1. Copy `.env.example` to `.env`:
    ```bash
    cp .env.example .env
    ```
-2. Set your `KILO_API_KEY` in `.env` (obtainable from [app.kilo.ai/profile](https://app.kilo.ai/profile)).
-3. Start the dev server (`npm run dev`).
+2. Configure your Google Cloud Project ID in `.env`:
+   ```bash
+   GCP_PROJECT=your-gcp-project-id
+   GCP_LOCATION=global
+   ASK_AI_ENDPOINT=http://localhost:4000/v1
+   ASK_AI_MODEL=gemini-2.5-flash
+   ASK_AI_API_KEY=local-dev
+   ```
+3. Authenticate with Google Cloud using Application Default Credentials:
+   ```bash
+   gcloud auth application-default login
+   ```
+4. Start both the proxy and docs dev server:
+   ```bash
+   npm run dev
+   ```
 
-> **Security Note**: Never commit `.env` or real API keys to Git. `.env` is ignored by `.gitignore`.
+#### Production Server Deployment
+When deploying to a remote server or container (e.g. Cloud Run, GCE VM, or Kubernetes):
+1. In production, `npm start` executes `scripts/prod.mjs`, which coordinates both the Vertex AI proxy and the built Blume server.
+2. The proxy automatically acquires authentication tokens from the **Google Cloud Compute Metadata Server** (`http://metadata.google.internal`), eliminating the need for any key files or manual logins.
+3. Configure `GCP_PROJECT`, `GCP_LOCATION=global`, and `ASK_AI_ENDPOINT` via environment variables.
+
+> **Security Mandate (Zero Git Secrets)**:
+> - Never commit `.env` or any cloud credentials to Git. `.env` and `.env.*` are strictly excluded in `.gitignore`.
+> - Authentication is strictly performed dynamically via Google Cloud IAM (ADC or Compute Metadata Server) with in-memory token caching. No static API keys exist.
+> - If `ASK_AI_ENDPOINT` is not configured, `blume.config.ts` prints a warning and gracefully disables the Ask AI panel, allowing static and CI builds to compile cleanly without errors.
 
 ### Ask AI Context & Retrieval Sizing
 
