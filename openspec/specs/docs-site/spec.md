@@ -114,7 +114,7 @@ The documentation hub and theme SHALL conform to WCAG 2.1 / 2.2 Level AA require
 - **THEN** the document structure begins with a single `h1` ("Documentation Hub"), follows with `h2` for major layout sections, and `h3` for individual tool cards.
 
 ### Requirement: Build and Schema Conformance
-The system SHALL validate all page frontmatter against Blume strict schema and generate a pure static production build in `dist/` ready for standard web server hosting (Apache, Nginx, or S3/CDN) with zero Node.js server runtime dependency.
+The system SHALL validate all page frontmatter against Blume strict schema, maintain zero Git submodule dependencies by managing themes and build tooling purely via `package.json`, and generate a pure static production build in `dist/` ready for standard web server hosting (Apache, Nginx, or S3/CDN) with zero Node.js server runtime dependency.
 
 #### Scenario: Strict build execution
 - **WHEN** `blume build` is run against the documentation source
@@ -123,6 +123,10 @@ The system SHALL validate all page frontmatter against Blume strict schema and g
 #### Scenario: Static Apache hosting compatibility
 - **WHEN** the contents of `dist/` are deployed to an Apache web server
 - **THEN** the bundled `.htaccess` provides URL rewriting, gzip/deflate compression, and custom 404 handling without server-side execution.
+
+#### Scenario: Zero Git submodule dependency
+- **WHEN** a contributor or CI workflow clones the documentation repository
+- **THEN** all site layout components, templates, and build tooling are resolved through `package.json` with no Git submodules (`.gitmodules`) or Go module files (`go.mod`, `go.sum`) required.
 
 ### Requirement: Contributor Documentation and Authoring Guidance
 The repository SHALL provide contributor setup instructions, local development commands, Blume Markdown/MDX authoring conventions, code search indexing details, and a Hugo/Docsy feature comparison in the repository root `README.md` and pull request documentation rather than within user-facing product documentation.
