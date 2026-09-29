@@ -4,14 +4,10 @@
   "description": "XLT Documentation built with Blume.",
   "main": "index.js",
   "scripts": {
-    "dev": "node scripts/dev.mjs",
-    "dev:docs": "blume dev",
-    "dev:proxy": "node scripts/vertex-proxy.mjs",
-    "start": "node scripts/prod.mjs",
+    "dev": "blume dev",
     "build": "ASTRO_TELEMETRY_DISABLED=1 blume build",
     "preview": "blume preview",
-    "validate": "blume validate",
-    "test": "node scripts/test-proxy.mjs"
+    "validate": "blume validate"
   },
   "repository": {
     "type": "git",
@@ -26,7 +22,6 @@
   },
   "homepage": "https://github.com/Xceptance/xlt-documentation#readme",
   "dependencies": {
-    "@ai-sdk/openai-compatible": "^3.0.48",
     "blume": "^1.7.0"
   }
 }

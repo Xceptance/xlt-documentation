@@ -45,19 +45,19 @@ The system SHALL configure top-level navigation tabs for XLT (`/xlt`), XTC (`/xt
 - **THEN** the item renders as a direct single page link in the sidebar rather than a collapsible group.
 
 ### Requirement: Interactive Card Hub Landing Page
-The system SHALL render the documentation hub landing page as a custom full-width page via `pages/index.astro` using `PageLayout` (omitting docs sidebar and table of contents), featuring a prominent top announcement pill linking to the MCP server endpoint (`Connect your Agent via /mcp (Antigravity, Claude Code...) →`), displaying the primary heading "Documentation Hub", an active mouse-clickable search launchpad trigger and platform-adaptive keyboard shortcut badge (`⌘K` on macOS/iOS, `Ctrl K` on Windows/Linux), direct navigation suggestion chips, showcasing XTC, XLT, and Neodymium product cards with descriptions, preview screenshots, and pill-shaped action links, and providing quick wayfinding alongside a dedicated AI Coding Agents & MCP feature section.
+The system SHALL render the documentation hub landing page as a custom full-width page via `pages/index.astro` using `PageLayout` (omitting docs sidebar and table of contents), featuring the primary heading "Documentation Hub", an active mouse-clickable search launchpad trigger and platform-adaptive keyboard shortcut badge (`⌘K` on macOS/iOS, `Ctrl K` on Windows/Linux), direct navigation suggestion chips, showcasing XTC, XLT, and Neodymium product cards with descriptions, preview screenshots, and pill-shaped action links, and providing quick wayfinding without dynamic server connection widgets.
 
 #### Scenario: Card hub display
 - **WHEN** a user views the documentation hub homepage
-- **THEN** the page displays a top announcement pill for connecting IDE agents, the primary heading "Documentation Hub", a brand-aligned gradient hero banner with an interactive search launchpad and suggested pathway chips, three distinct product cards (XTC, XLT, Neodymium) with screenshots and pill-shaped action links, a quick-wayfinding section, and a dedicated MCP coding agent connection section without displaying the documentation sidebar or table of contents.
+- **THEN** the page displays the primary heading "Documentation Hub", a brand-aligned gradient hero banner with an interactive search launchpad and suggested pathway chips, three distinct product cards (XTC, XLT, Neodymium) with screenshots and pill-shaped action links, and a quick-wayfinding section without displaying the documentation sidebar, table of contents, or dynamic server widgets.
 
 #### Scenario: Top hero agent announcement pill
 - **WHEN** a user views the hero banner
-- **THEN** it displays a top announcement pill stating `Connect your Agent via /mcp (Antigravity, Claude Code...)` that links smoothly to the `#mcp-server-section` on click.
+- **THEN** the top announcement pill for server-side `/mcp` endpoints is removed to reflect pure static hosting.
 
 #### Scenario: Hero search launch
 - **WHEN** a user activates the search bar trigger inside the homepage hero banner via mouse click or keyboard
-- **THEN** the system opens Blume's native modal search dialog with Ask AI and full-text documentation indexing, focusing the search query input.
+- **THEN** the system opens Blume native modal search dialog with full-text documentation and code block indexing, focusing the search query input.
 
 #### Scenario: Platform-adaptive keyboard shortcut hint
 - **WHEN** the homepage is viewed on a macOS or iOS device
@@ -71,7 +71,7 @@ The system SHALL render the documentation hub landing page as a custom full-widt
 
 #### Scenario: Homepage MCP agent discovery section
 - **WHEN** a developer views the homepage
-- **THEN** the page displays a dedicated "AI Coding Agents & MCP" section providing instructions, supported tools (Google Antigravity, Claude Code, Cursor, Windsurf, VS Code), and a 1-click copy button for the connection snippets using the `xceptance-docs` identifier.
+- **THEN** dynamic server-rendered `/mcp` terminal tabs and copy buttons are removed, focusing the landing page on documentation discovery and search.
 
 ### Requirement: Native Directives and MDX Callouts
 The system SHALL parse and render callout directives (`:::note`, `:::warning`, `:::tip`, `:::danger`, `:::info`) in `.mdx` files without requiring explicit component imports.
@@ -114,26 +114,38 @@ The documentation hub and theme SHALL conform to WCAG 2.1 / 2.2 Level AA require
 - **THEN** the document structure begins with a single `h1` ("Documentation Hub"), follows with `h2` for major layout sections, and `h3` for individual tool cards.
 
 ### Requirement: Build and Schema Conformance
-The system SHALL validate all page frontmatter against Blume's strict schema and generate a static production build.
+The system SHALL validate all page frontmatter against Blume strict schema and generate a pure static production build in `dist/` ready for standard web server hosting (Apache, Nginx, or S3/CDN) with zero Node.js server runtime dependency.
 
 #### Scenario: Strict build execution
-- **WHEN** `blume build --strict` is run against the documentation source
-- **THEN** the static HTML output is generated in `dist/` without any frontmatter schema errors or dropped pages.
+- **WHEN** `blume build` is run against the documentation source
+- **THEN** the static HTML output, asset bundles, and search index are generated directly in `dist/` without any frontmatter schema errors or dropped pages.
+
+#### Scenario: Static Apache hosting compatibility
+- **WHEN** the contents of `dist/` are deployed to an Apache web server
+- **THEN** the bundled `.htaccess` provides URL rewriting, gzip/deflate compression, and custom 404 handling without server-side execution.
 
 ### Requirement: Contributor Documentation and Authoring Guidance
-The repository SHALL provide contributor setup instructions, local development commands, and Blume Markdown/MDX authoring conventions in the repository root `README.md` rather than within user-facing product documentation.
+The repository SHALL provide contributor setup instructions, local development commands, Blume Markdown/MDX authoring conventions, code search indexing details, and a Hugo/Docsy feature comparison in the repository root `README.md` and pull request documentation rather than within user-facing product documentation.
 
 #### Scenario: Contributor guidance availability
 - **WHEN** a contributor views `README.md`
-- **THEN** it provides accurate prerequisites for Node.js, npm commands for Blume (`dev`, `build`, `validate`), and documentation formatting conventions including callout directives.
+- **THEN** it provides accurate prerequisites for Node.js, standard npm commands for Blume (`dev`, `build`, `validate`, `preview`), documentation formatting conventions including callout directives, and search indexing options.
 
 #### Scenario: Ask AI retrieval parameter documentation
 - **WHEN** a contributor or developer inspects `README.md`
-- **THEN** it documents the Ask AI retrieval parameters (`excerptChars`, `contextBudget`, `maxResults`), explains why they were tuned for the repository's documentation corpus (4,067-char median guide size) and `gemini-3.8-flash`, and references the official Blume Ask AI retrieval size documentation.
+- **THEN** it documents that dynamic Ask AI retrieval and Vertex AI proxies are retired in favor of pure static hosting and code-inclusive search indexing.
 
 #### Scenario: Theme tokens and WCAG layout documentation
 - **WHEN** a contributor or developer inspects `README.md`
 - **THEN** it documents the Xceptance corporate theme tokens (colors, typography, logo), the homepage layout architecture in `pages/index.astro`, and the WCAG 2.1 AA/AAA contrast and accessibility standards applied across the site.
+
+#### Scenario: Hugo and Docsy comparison documentation
+- **WHEN** a maintainer or stakeholder reviews the migration documentation or pull request description
+- **THEN** it provides a clear, structured comparison of search performance, frontend footprint (0 KB JS reading vs. Bootstrap/Lunr), authoring syntax (directives vs. shortcodes), and static deployment simplicity.
+
+#### Scenario: Static AI and machine-readable docs documentation
+- **WHEN** a developer inspects the project documentation
+- **THEN** it documents the availability of `/llms-full.txt`, `/llms.txt`, and raw `.md` mirrors, and notes the ability to mount `/llms-full.txt` as a resource in an MCP server.
 
 ### Requirement: Documentation Page Feedback Rating Suppression
 The documentation system SHALL suppress the reader feedback rating widget ("Was this page helpful?") across all documentation pages until an analytics provider or feedback handling backend is explicitly configured.
@@ -142,48 +154,6 @@ The documentation system SHALL suppress the reader feedback rating widget ("Was 
 - **WHEN** a reader navigates to any documentation page
 - **THEN** the "Was this page helpful?" rating widget and its buttons are not displayed below the article content.
 
-### Requirement: Ask AI Assistant Integration
-The documentation site SHALL provide an in-page Ask AI chat assistant integrated into the header navigation, displaying XLT-specific starter question suggestions and routing user queries via Blume's built-in OpenAI-compatible chat backend to a Google Cloud Vertex AI gateway proxy configured for the Google Cloud project ID (`GCP_PROJECT`) and location (`GCP_LOCATION`), dynamically configured via `ASK_AI_ENDPOINT` without hardcoding `localhost`.
-
-#### Scenario: Ask AI button and panel rendering
-- **WHEN** a user navigates to any documentation page with Ask AI enabled (`ASK_AI_ENDPOINT` is configured)
-- **THEN** the header displays an Ask AI button and opening the panel displays an interactive chat interface.
-
-#### Scenario: Starter question suggestions display
-- **WHEN** a user opens the Ask AI chat panel with an empty conversation
-- **THEN** three clickable prompt suggestions are displayed: "How do I configure load profiles in XLT?", "How do I evaluate test results?", and "How do I configure DNS settings in XLT?".
-
-#### Scenario: Native gateway query routing
-- **WHEN** a user submits a question through the Ask AI chat panel
-- **THEN** the system processes the request through Blume's internal RAG retrieval pipeline, builds dynamic documentation context excerpts, and streams the answer from Google Cloud Vertex AI (`gemini-2.5-flash` or configured `ASK_AI_MODEL`) via the Vertex proxy using IAM / Application Default Credentials with `GCP_PROJECT` and `GCP_LOCATION`.
-
-#### Scenario: Corpus-optimized RAG retrieval sizing
-- **WHEN** Blume constructs the grounded context prompt for an Ask AI query
-- **THEN** the retrieval pipeline uses an excerpt window of up to 4,500 characters per document, a total context budget of 32,000 characters, and up to 6 search results so that complete guide pages and code examples are provided to `gemini-2.5-flash` without truncation or dropped search hits.
-
-#### Scenario: External endpoint delegation
-- **WHEN** the environment variable `ASK_AI_ENDPOINT` is provided via environment or `.env`
-- **THEN** `blume.config.ts` dynamically sets `baseUrl` to that endpoint URL and enables Ask AI without relying on any hardcoded `localhost` fallback in the configuration source.
-
-#### Scenario: Endpoint absence warning and graceful degradation
-- **WHEN** `ASK_AI_ENDPOINT` is unset or empty during config evaluation
-- **THEN** `blume.config.ts` logs a warning indicating `ASK_AI_ENDPOINT is not configured. Ask AI is disabled.` and sets `enabled: false`, allowing the site to build and validate cleanly without schema errors.
-
-#### Scenario: Global location endpoint routing
-- **WHEN** `GCP_LOCATION` is set to `global` (or omitted as default)
-- **THEN** the Vertex AI gateway proxy routes requests to Google Cloud's global Vertex endpoint `https://aiplatform.googleapis.com/v1/projects/{GCP_PROJECT}/locations/global/publishers/google/models/{MODEL}:streamGenerateContent` for dynamic global capacity allocation.
-
-### Requirement: Model Context Protocol (MCP) Server Endpoint
-The documentation site SHALL host a live Model Context Protocol (MCP) server endpoint at `/mcp` to allow developer IDE coding agents (such as Google Antigravity, Claude Code, and Cursor) to search, inspect, and retrieve documentation pages and site navigation dynamically across all suite tools (XLT, XTC, and Neodymium) using the unified identifier `xceptance-docs`.
-
-#### Scenario: MCP endpoint availability
-- **WHEN** an MCP-compliant client connects via HTTP to `/mcp`
-- **THEN** the server establishes an MCP session and advertises available documentation tools including search, page retrieval, and navigation structure across XLT, XTC, and Neodymium.
-
-#### Scenario: Developer MCP usage documentation
-- **WHEN** a developer inspects the project `README.md` or homepage MCP section
-- **THEN** it documents how to connect IDE assistants (Google Antigravity, Claude Code, Cursor, Windsurf, and VS Code) to the `/mcp` endpoint using the `xceptance-docs` identifier with copy-and-paste connection commands and settings.
-
 ### Requirement: Open in External Chat Assistants
 The documentation site SHALL provide direct page actions to open the current document's raw Markdown mirror in supported external AI chat tools, configured for Claude, ChatGPT, and Cursor.
 
@@ -191,20 +161,24 @@ The documentation site SHALL provide direct page actions to open the current doc
 - **WHEN** a user clicks an "Open in" option from the page actions menu
 - **THEN** the browser opens the chosen assistant (Claude, ChatGPT, or Cursor) pre-filled with a prompt referencing the current page's raw Markdown URL.
 
-### Requirement: Secret and API Key Git Hygiene
-The documentation project SHALL exclude all real API keys, cloud project credentials, secret-bearing environment files, and local credential stores from Git version control, maintaining only non-sensitive placeholder templates in `.env.example`.
+### Requirement: Code Block Search Indexing
+The documentation search system SHALL index fenced code block content during build time, enabling readers to search for technical identifiers, configuration property keys, class names, annotations, XML tags, and CLI options.
 
-#### Scenario: Git exclusion of environment secrets
-- **WHEN** git status or repository changes are inspected with local `.env` or `.env.*` files present
-- **THEN** all actual secret files are ignored by git and prevented from being staged or committed.
+#### Scenario: Code block identifier search
+- **WHEN** a user searches for a configuration property, class name, or CLI option defined inside a fenced code block via the search dialog (`⌘K`)
+- **THEN** the search engine matches the term, ranks the containing document in the search results, and displays the code context in the result excerpt.
 
-#### Scenario: Configuration references environment variable name only
-- **WHEN** `blume.config.ts` is configured for Ask AI
-- **THEN** the configuration specifies `apiKeyEnv: "ASK_AI_API_KEY"` (the name of the environment variable holding a local non-sensitive placeholder) and contains no raw API keys or token strings.
+#### Scenario: Code indexing configuration
+- **WHEN** `search.indexing.includeCodeBlocks` is set to `true` in `blume.config.ts`
+- **THEN** the build compiles the code block content into the static client search index (`blume-search.json`) without indexing raw code fence backticks or language tags.
 
-#### Scenario: IAM-based authentication without static keys
-- **WHEN** the Vertex AI gateway proxy authenticates with Google Cloud Vertex AI
-- **THEN** authentication is performed dynamically via Google Cloud IAM (Application Default Credentials, local `gcloud` CLI, or GCP Metadata Server) with in-memory token caching and zero static API keys stored in configuration or committed to Git.
+### Requirement: Static Machine-Readable AI Artifacts Generation
+The documentation build SHALL generate self-contained, machine-readable artifacts (`/llms-full.txt`, `/llms.txt`, and per-page `.md` mirrors) in the static root to enable external developer tools, coding assistants, search engines, and MCP servers to consume documentation without requiring a separate live Blume server runtime.
 
+#### Scenario: Full corpus export generation
+- **WHEN** the static build command `blume build` is executed
+- **THEN** the build emits `/llms-full.txt` containing the complete, structured Markdown documentation corpus of all published pages, formatted for ingestion as a single MCP resource or long-context LLM prompt.
 
-
+#### Scenario: Raw Markdown mirror resolution
+- **WHEN** an external tool or coding agent requests documentation by route
+- **THEN** the static web server serves the clean Markdown mirror directly at `/{route}.md` without web scraping or HTML parsing.

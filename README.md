@@ -4,6 +4,17 @@ Documentation for **XLT**, **XTC**, and **Neodymium**, built with [Blume](https:
 
 ---
 
+## Architecture & Hosting
+
+This site is configured as a **100% pure static documentation site**:
+- **Zero Node.js Runtime in Production**: Compiles directly to static HTML, CSS, JavaScript, and search indexes in `dist/`.
+- **Zero Cloud API Keys & Zero Proxies**: No backend servers, external proxies, or Google Cloud IAM credentials required.
+- **Apache Web Server Drop-in**: The output directory `dist/` contains the production `.htaccess` with pre-configured caching, Gzip/Brotli compression, and security headers.
+- **Instant Search with Code Indexing**: Orama client-side search indexing covers headings, paragraphs, and fenced code blocks (`search.indexing.includeCodeBlocks: true`).
+- **Machine-Readable AI Discoverability**: Emits `/llms.txt`, `/llms-full.txt`, and per-page `.md` mirrors for LLMs, AI agents, and developer tooling.
+
+---
+
 ## Prerequisites
 
 - **Node.js**: Version 20 or newer (Node.js 22+ recommended).
@@ -19,25 +30,15 @@ Documentation for **XLT**, **XTC**, and **Neodymium**, built with [Blume](https:
    npm install
    ```
 
-2. **Authenticate with Google Cloud (one-time local prerequisite)**:
-
-   ```bash
-   gcloud auth application-default login
-   ```
-
-   This allows the local Vertex AI Gateway proxy to authenticate securely via Application Default Credentials (ADC) without storing any static API keys.
-
-3. **Start the local development servers**:
+2. **Start the local development server**:
 
    ```bash
    npm run dev
    ```
 
-   This concurrently starts:
-   - The **Vertex AI Gateway Proxy** on `http://localhost:4000/v1`
-   - The **Blume Documentation Server** on `http://localhost:4321` with hot reloading.
+   Starts the Blume local development server on `http://localhost:4321` with instant hot-module reloading.
 
-4. **Validate site integrity**:
+3. **Validate site integrity**:
 
    ```bash
    npm run validate
@@ -45,137 +46,87 @@ Documentation for **XLT**, **XTC**, and **Neodymium**, built with [Blume](https:
 
    Verifies internal links, redirects, and document structure.
 
-5. **Build for production**:
+4. **Build for production**:
 
    ```bash
    npm run build
    ```
 
-   Generates optimized static HTML in the `dist/` directory.
+   Generates optimized static HTML, search indexes, and `.htaccess` directly into `dist/`.
 
-6. **Run production server**:
+5. **Preview the production build**:
 
    ```bash
-   npm start
+   npm run preview
+   # or specify a custom port:
+   npx blume preview --port=8080
    ```
 
-   Starts the Vertex AI Gateway proxy and serves the built documentation in production mode.
+   Spins up a local static file server to test the built output in `dist/` before deployment.
+
+6. **Alternative: Test with Python HTTP Server**:
+
+   Because Blume compiles directly to `dist/` in static mode (rather than `dist/client/`), point Python's HTTP server directly to `dist`:
+
+   ```bash
+   python3 -m http.server 8080 -d dist
+   ```
 
 ---
 
-## AI Features & Model Context Protocol (MCP)
+## Deployment (Apache HTTP Server)
 
-This documentation hub includes built-in AI capabilities powered by Blume:
+The production build in `dist/` is completely self-contained and drop-in compatible with Apache HTTP Server:
 
-### In-Browser Ask AI
-The site provides a native Ask AI assistant in the navigation header powered by Google Cloud Vertex AI (`gemini-2.5-flash` or configured `ASK_AI_MODEL`) via a local/production OpenAI-compatible proxy (`scripts/vertex-proxy.mjs`).
-
-#### Local Development Setup
-1. Copy `.env.example` to `.env`:
+1. Run the build:
    ```bash
-   cp .env.example .env
-   ```
-2. Configure your Google Cloud Project ID in `.env`:
-   ```bash
-   GCP_PROJECT=your-gcp-project-id
-   GCP_LOCATION=global
-   ASK_AI_ENDPOINT=http://localhost:4000/v1
-   ASK_AI_MODEL=gemini-2.5-flash
-   ASK_AI_API_KEY=local-dev
-   ```
-3. Authenticate with Google Cloud using Application Default Credentials:
-   ```bash
-   gcloud auth application-default login
-   ```
-4. Start both the proxy and docs dev server:
-   ```bash
-   npm run dev
+   npm run build
    ```
 
-#### Production Server Deployment
-When deploying to a remote server or container (e.g. Cloud Run, GCE VM, or Kubernetes):
-1. In production, `npm start` executes `scripts/prod.mjs`, which coordinates both the Vertex AI proxy and the built Blume server.
-2. The proxy automatically acquires authentication tokens from the **Google Cloud Compute Metadata Server** (`http://metadata.google.internal`), eliminating the need for any key files or manual logins.
-3. Configure `GCP_PROJECT`, `GCP_LOCATION=global`, and `ASK_AI_ENDPOINT` via environment variables.
+2. Synchronize the `dist/` directory to your web server document root (e.g. `/var/www/html/`):
+   ```bash
+   rsync -avz --delete dist/ user@webserver:/var/www/html/
+   ```
 
-> **Security Mandate (Zero Git Secrets)**:
-> - Never commit `.env` or any cloud credentials to Git. `.env` and `.env.*` are strictly excluded in `.gitignore`.
-> - Authentication is strictly performed dynamically via Google Cloud IAM (ADC or Compute Metadata Server) with in-memory token caching. No static API keys exist.
-> - If `ASK_AI_ENDPOINT` is not configured, `blume.config.ts` prints a warning and gracefully disables the Ask AI panel, allowing static and CI builds to compile cleanly without errors.
+3. Ensure Apache has `mod_rewrite`, `mod_headers`, and `mod_deflate` enabled to take full advantage of the included `.htaccess`.
 
-### Ask AI Context & Retrieval Sizing
+---
 
-Blume automatically grounds Ask AI answers in documentation content by performing request-time lexical search (Orama), excerpting relevant sections around matched query terms, and injecting them into the system prompt.
+## Code Block Search Indexing
 
-The retrieval parameters are configured in [`blume.config.ts`](./blume.config.ts) under `ai.ask.retrieval`:
+By default, documentation search indexes headings, titles, and body prose. For developer-focused documentation like XLT and Neodymium, users frequently search for:
+- Java property keys (e.g. `com.xceptance.xlt.*`)
+- Java annotations (e.g. `@Test`, `@XltTest`)
+- XML configuration tags and parameters
+- Command-line flags and options
+
+Fenced code block indexing is enabled in `blume.config.ts`:
 
 ```ts
-retrieval: {
-  excerptChars: 4500,   // Characters extracted per document chunk (default: 2000)
-  contextBudget: 32000, // Total character ceiling across all injected chunks (default: 10000)
-  maxResults: 6,        // Maximum number of documentation hits retrieved (default: 6)
-}
+search: {
+  indexing: {
+    includeCodeBlocks: true,
+  },
+},
 ```
 
-#### Why these parameters are tuned for this repository:
-- **`excerptChars: 4500` (Chunk Size)**: An analysis of the repository's 162 core guides and manuals showed a median page length of **4,067 characters**. The default limit of 2,000 characters cuts multi-section guides in half, often truncating code examples, XML snippets, and configuration tables. Sizing to 4,500 characters allows median guide pages to fit entirely within the prompt window.
-- **`contextBudget: 32000` (Total Budget)**: When a user asks a question from an active documentation page, Blume injects the viewed page first and then iterates through the search hits. Under default settings (10,000 characters), hits 5 and 6 are discarded due to budget exhaustion. A budget of 32,000 characters (~8,000 tokens) accommodates the active page plus all 6 retrieved hits without dropping context:
-  $$\text{Max Injection} = (1 \text{ active page} + 6 \text{ search hits}) \times 4,500 = 31,500 \text{ characters} \le 32,000$$
-- **`maxResults: 6`**: Provides comprehensive cross-product coverage across XLT, XTC, and Neodymium.
-- **Model Efficiency**: `google/gemini-3.8-flash` features a 1M+ token context window, sub-second prefill latency (<200ms for ~8,000 tokens), and near-zero input token costs, making this expanded context highly cost-effective and accurate.
+All fenced code block contents are tokenized into `dist/blume-search.json`, making code snippets instantly searchable via the `⌘K` modal.
 
-For full configuration options and details on how Blume handles section scoring and lead-in windows, see the [Blume Ask AI Retrieval Documentation](https://blume.sh/docs/configuration/ask-ai#retrieval-size).
+---
 
-### Model Context Protocol (MCP) Server
-Blume serves a live Model Context Protocol (MCP) server endpoint at `/mcp` allowing coding agents in developer IDEs to search, inspect, and read the documentation across all Xceptance tools (XLT, XTC, and Neodymium) directly without web scraping.
+## AI Discoverability & Model Context Protocol (MCP)
 
-Exposed MCP tools:
-- `search_docs`: Full-text lexical search across the documentation corpus.
-- `get_page`: Retrieve the clean Markdown content of any specific page.
-- `list_pages`: List all documentation pages and routes.
-- `get_navigation`: Inspect the sidebar tree and section hierarchy.
+In pure static mode, the documentation site produces complete machine-readable representations alongside standard HTML:
 
-#### Connecting from Google Antigravity
-In Antigravity IDE or Antigravity CLI (`agy`), add the MCP server to your workspace or global MCP configuration:
-```json
-{
-  "mcpServers": {
-    "xceptance-docs": {
-      "url": "https://docs.xceptance.com/mcp"
-    }
-  }
-}
-```
-*(For local testing with `blume dev`, point the URL to `http://localhost:4321/mcp`)*.
+1. **Full Documentation Corpus (`/llms-full.txt`)**: A clean, single-file Markdown export of the entire ~1.9 MB documentation corpus.
+2. **Curated Index (`/llms.txt`)**: A high-level overview of core sections, guides, and manuals.
+3. **Raw Markdown Mirrors (`/{route}.md`)**: Every documentation page has a raw Markdown mirror accessible by appending `.md` to the URL.
+4. **Direct Chat Actions**: Pages include direct links to open the active guide's Markdown in external AI assistants (Claude, ChatGPT, Cursor).
 
-#### Connecting from Claude Code
-```bash
-# Local development server:
-claude mcp add --transport http xceptance-docs http://localhost:4321/mcp
+### Exposing Docs as an MCP Resource
+Because Blume automatically builds and outputs the complete documentation into `/llms-full.txt`, any Model Context Protocol (MCP) server can easily expose it as an MCP Resource (e.g. `docs://manual` or via resource templates).
 
-# Production server:
-claude mcp add --transport http xceptance-docs https://docs.xceptance.com/mcp
-```
-
-#### Connecting from Cursor
-1. Go to **Settings** (`Cmd + ,` / `Ctrl + ,`) → **Features** → **MCP**.
-2. Click **Add New MCP Server**.
-3. Set:
-   - **Name**: `xceptance-docs`
-   - **Type**: `SSE` / `HTTP` (Streamable HTTP)
-   - **Server URL**: `https://docs.xceptance.com/mcp` (or `http://localhost:4321/mcp` for local development)
-
-#### Connecting from VS Code (Cline / Roo Code / Continue)
-Add to your MCP settings JSON (e.g. `cline_mcp_settings.json`):
-```json
-{
-  "mcpServers": {
-    "xceptance-docs": {
-      "url": "https://docs.xceptance.com/mcp"
-    }
-  }
-}
-```
+This enables AI coding assistants (such as Google Antigravity, Claude Code, Cursor, or VS Code) to read and query the entire documentation corpus directly with zero server-side infrastructure and zero web scraping.
 
 ---
 
@@ -284,7 +235,7 @@ The documentation hub uses Xceptance's modern corporate visual identity (matchin
 
 ### Typography
 
-Configured in [`blume.config.ts`](./blume.config.ts) and automatically downloaded and self-hosted at build time by Blume:
+Configured in `blume.config.ts` and automatically downloaded and self-hosted at build time by Blume:
 - **Headings & Display**: `Roboto Condensed` (`weights: [500, 700]`) — technical, modern sans-serif.
 - **Body Text**: `Roboto` — clean, highly readable document prose.
 - **Code & Monospace**: `Ubuntu Mono` — monospace for code blocks, CLI snippets, and shortcuts.
@@ -292,11 +243,10 @@ Configured in [`blume.config.ts`](./blume.config.ts) and automatically downloade
 ### Homepage Architecture (`pages/index.astro`)
 
 The documentation hub homepage is built as a custom full-width page via Blume's `<PageLayout>`:
-1. **Corporate Gradient Hero**: High-impact banner styled with `#004682` to `#0f172a`, ambient radial glow, and an interactive `/mcp` developer status badge.
-2. **Prominent Search Launchpad**: Active mouse-clickable search launchpad with dynamic OS keyboard shortcut detection (`⌘K` on Apple devices, `Ctrl K` on Windows/Linux) that triggers Blume's native modal search dialog (`blume-search [data-blume-search-open]`) with full-text indexing and Ask AI.
+1. **Corporate Gradient Hero**: High-impact banner styled with `#004682` to `#0f172a` with ambient radial glow.
+2. **Prominent Search Launchpad**: Active mouse-clickable search launchpad with dynamic OS keyboard shortcut detection (`⌘K` on Apple devices, `Ctrl K` on Windows/Linux) that triggers Blume's native modal search dialog with full-text and code block indexing.
 3. **Core Testing Tools (3-Column Grid)**: Parallel product cards for XTC, XLT, and Neodymium featuring screenshots, value summaries, feature highlights, and pill action buttons (`rounded-full`). Includes smooth physics-based elevation on hover (`hover:-translate-y-1.5 hover:shadow-xl`).
 4. **Quick Wayfinding**: Fast navigation cards to popular developer pathways (Quick Start, Load Profiles, Neodymium Patterns, Release Notes).
-5. **AI Coding Agents & MCP Feature Section**: Dedicated homepage section separated by generous vertical spacing and section borders (`mt-16 sm:mt-20 border-t pt-12`), compatible coding tools (Google Antigravity, Claude Code, Cursor, Windsurf, VS Code), and a multi-client tabbed terminal box with 1-click clipboard copy for Antigravity JSON config and Claude Code CLI.
 
 ### WCAG 2.1 / 2.2 Accessibility Conformance
 
@@ -315,7 +265,7 @@ The documentation hub is engineered to satisfy WCAG Level AA (and Level AAA for 
 ## Built With
 
 - **Framework**: [Blume](https://github.com/blumedocs/blume) (built on [Astro](https://astro.build/) and [Vite](https://vite.dev/))
-- **Search**: Built-in static index with [Pagefind](https://pagefind.app/) / Orama
+- **Search**: Built-in static index with Orama
 - **Icons**: [Lucide Icons](https://lucide.dev/)
 - **Styling**: Tailwind CSS & Vanilla CSS
 - **Typography**: Roboto Condensed, Roboto, and Ubuntu Mono
