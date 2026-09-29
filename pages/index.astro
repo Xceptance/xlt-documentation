@@ -30,16 +30,6 @@ const { config } = data;
     />
 
     <div class="relative z-10 mx-auto max-w-5xl px-6 py-16 sm:py-20 lg:py-24 text-center">
-      {/* MCP Agent Top Announcement Pill */}
-      <a
-        href="#mcp-server-section"
-        class="group inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium text-slate-200 backdrop-blur-md mb-6 transition-all duration-200 hover:border-white/40 hover:bg-white/20 hover:text-white"
-      >
-        <Icon name="bot" size={13} class="text-sky-300" />
-        <span>Connect your Agent via <code class="font-mono text-white">/mcp</code> (Antigravity, Claude Code...)</span>
-        <Icon name="arrow-right" size={12} class="text-slate-300 transition-transform group-hover:translate-x-0.5" />
-      </a>
-
       <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-white">
         Documentation Hub
       </h1>
@@ -48,18 +38,18 @@ const { config } = data;
         Guides, architecture manuals, and API references for <strong class="text-white">XTC</strong>, <strong class="text-white">XLT</strong>, and <strong class="text-white">Neodymium</strong>.
       </p>
 
-      {/* Prominent Search & Ask AI Launchpad */}
+      {/* Prominent Search Launchpad */}
       <div class="mt-8 flex justify-center">
         <button
           type="button"
           id="hero-search-button"
           data-blume-search-open
           class="group flex w-full max-w-xl cursor-pointer items-center justify-between rounded-full border border-white/25 bg-white/10 px-5 py-3.5 text-sm text-slate-200 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-white/50 hover:bg-white/20 hover:shadow-xl active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#004682]"
-          aria-label="Search documentation or Ask AI"
+          aria-label="Search documentation"
         >
           <span class="flex items-center gap-3">
             <Icon name="search" size={18} class="text-slate-300 transition-colors group-hover:text-white" />
-            <span class="font-normal text-slate-200 group-hover:text-white">Search documentation or Ask AI...</span>
+            <span class="font-normal text-slate-200 group-hover:text-white">Search documentation...</span>
           </span>
           <span class="hidden sm:flex items-center gap-1 rounded-md border border-white/20 bg-white/10 px-2 py-0.5 font-mono text-xs text-slate-200">
             <span id="hero-search-kbd">⌘K</span>
@@ -314,111 +304,6 @@ const { config } = data;
       </div>
     </section>
 
-    {/* Section: AI Coding Agents & MCP */}
-    <section id="mcp-server-section" aria-labelledby="heading-mcp-section" class="mt-16 sm:mt-20 border-t border-border pt-12 scroll-mt-20">
-      <div class="overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-card via-card to-accent/5 p-6 sm:p-8 shadow-sm">
-        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-          <div class="max-w-2xl">
-            <div class="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent mb-3">
-              <Icon name="bot" size={14} />
-              <span>Model Context Protocol (MCP)</span>
-            </div>
-            <h2 id="heading-mcp-section" class="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              Connect Your AI Coding Assistant
-            </h2>
-            <p class="mt-2 text-sm sm:text-base text-muted-foreground leading-relaxed">
-              The documentation hub serves a live, streamable Model Context Protocol (MCP) endpoint at <code class="rounded bg-muted px-1.5 py-0.5 font-mono text-xs text-foreground">/mcp</code>. Connect Google Antigravity, Claude Code, Cursor, Windsurf, or VS Code to search and retrieve grounded documentation for XLT, XTC, and Neodymium in real-time without web scraping.
-            </p>
-            <div class="mt-4 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-              <span class="font-medium text-foreground">Compatible with:</span>
-              <span class="inline-flex items-center gap-1.5 rounded-md border border-accent/40 bg-accent/10 px-2.5 py-0.5 font-medium text-foreground">
-                <Icon name="sparkles" size={12} class="text-accent" />
-                Google Antigravity
-              </span>
-              <span class="inline-flex items-center rounded-md border border-border bg-muted/50 px-2 py-0.5 font-medium text-foreground">Claude Code</span>
-              <span class="inline-flex items-center rounded-md border border-border bg-muted/50 px-2 py-0.5 font-medium text-foreground">Cursor</span>
-              <span class="inline-flex items-center rounded-md border border-border bg-muted/50 px-2 py-0.5 font-medium text-foreground">Windsurf</span>
-              <span class="inline-flex items-center rounded-md border border-border bg-muted/50 px-2 py-0.5 font-medium text-foreground">VS Code (Cline / Roo)</span>
-            </div>
-          </div>
-
-          <div class="flex flex-col gap-2.5 lg:min-w-[460px]">
-            {/* Terminal Window with Multi-Client Tabs */}
-            <div class="overflow-hidden rounded-xl border border-border bg-slate-950 shadow-md">
-              {/* Terminal Titlebar with Tabs & 1-Click Copy */}
-              <div class="flex items-center justify-between border-b border-slate-800 bg-slate-900/90 px-3 py-2">
-                <div class="flex items-center gap-1" role="tablist" aria-label="MCP Connection Configuration">
-                  <button
-                    type="button"
-                    role="tab"
-                    id="mcp-tab-antigravity"
-                    aria-selected="true"
-                    aria-controls="mcp-panel-antigravity"
-                    class="mcp-tab-btn flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium text-white bg-slate-800 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
-                  >
-                    <Icon name="sparkles" size={12} class="text-sky-400" />
-                    <span>Antigravity / JSON</span>
-                  </button>
-                  <button
-                    type="button"
-                    role="tab"
-                    id="mcp-tab-claude"
-                    aria-selected="false"
-                    aria-controls="mcp-panel-claude"
-                    class="mcp-tab-btn flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium text-slate-400 hover:text-slate-200 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
-                  >
-                    <Icon name="terminal" size={12} />
-                    <span>Claude Code</span>
-                  </button>
-                </div>
-
-                <button
-                  type="button"
-                  id="copy-mcp-btn"
-                  class="inline-flex items-center gap-1.5 rounded-md bg-white/10 px-2.5 py-1 text-xs font-medium text-slate-200 transition-all hover:bg-white/20 active:scale-95 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white"
-                  aria-label="Copy snippet to clipboard"
-                >
-                  <Icon name="copy" size={13} />
-                  <span id="copy-mcp-text">Copy</span>
-                </button>
-              </div>
-
-              {/* Panel 1: Antigravity / JSON Config */}
-              <div
-                id="mcp-panel-antigravity"
-                role="tabpanel"
-                aria-labelledby="mcp-tab-antigravity"
-                class="p-3.5 font-mono text-xs text-slate-200 overflow-x-auto leading-relaxed selection:bg-accent/40 selection:text-white"
-              >
-                <pre class="m-0 p-0 bg-transparent text-xs whitespace-pre"><code><span class="text-slate-500">"mcpServers"</span>: &#123;
-  <span class="text-emerald-400">"xceptance-docs"</span>: &#123;
-    <span class="text-sky-300">"url"</span>: <span class="text-amber-300">"https://docs.xceptance.com/mcp"</span>
-  &#125;
-&#125;</code></pre>
-              </div>
-
-              {/* Panel 2: Claude Code CLI */}
-              <div
-                id="mcp-panel-claude"
-                role="tabpanel"
-                aria-labelledby="mcp-tab-claude"
-                class="hidden p-3.5 font-mono text-xs text-slate-200 overflow-x-auto leading-relaxed selection:bg-accent/40 selection:text-white"
-              >
-                <pre class="m-0 p-0 bg-transparent text-xs whitespace-pre-wrap break-all"><code><span class="text-emerald-400 select-none">$ </span>claude mcp add --transport http xceptance-docs https://docs.xceptance.com/mcp</code></pre>
-              </div>
-            </div>
-
-            <div class="flex items-center justify-between text-xs text-muted-foreground px-0.5">
-              <span>Server identifier: <strong class="text-foreground">xceptance-docs</strong></span>
-              <a href="https://modelcontextprotocol.io/" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 text-accent hover:underline">
-                <span>Learn about MCP</span>
-                <Icon name="external-link" size={12} />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
 
   {/* Client-side Interactivity Script */}
@@ -461,90 +346,6 @@ const { config } = data;
       if (kbd) {
         const isApple = typeof navigator !== "undefined" && /mac|iphone|ipad|ipod/iu.test(navigator.platform);
         kbd.textContent = isApple ? "⌘K" : "Ctrl K";
-      }
-
-      // 3. MCP Snippet Tabs & Clipboard Copy
-      const tabAntigravity = document.getElementById("mcp-tab-antigravity");
-      const tabClaude = document.getElementById("mcp-tab-claude");
-      const panelAntigravity = document.getElementById("mcp-panel-antigravity");
-      const panelClaude = document.getElementById("mcp-panel-claude");
-      const copyBtn = document.getElementById("copy-mcp-btn");
-      const copyText = document.getElementById("copy-mcp-text");
-
-      const snippets: Record<string, string> = {
-        antigravity: '{\n  "mcpServers": {\n    "xceptance-docs": {\n      "url": "https://docs.xceptance.com/mcp"\n    }\n  }\n}',
-        claude: 'claude mcp add --transport http xceptance-docs https://docs.xceptance.com/mcp',
-      };
-
-      let activeTab: "antigravity" | "claude" = "antigravity";
-
-      function switchTab(tab: "antigravity" | "claude") {
-        activeTab = tab;
-        if (tab === "antigravity") {
-          tabAntigravity?.setAttribute("aria-selected", "true");
-          tabAntigravity?.classList.add("text-white", "bg-slate-800");
-          tabAntigravity?.classList.remove("text-slate-400");
-
-          tabClaude?.setAttribute("aria-selected", "false");
-          tabClaude?.classList.remove("text-white", "bg-slate-800");
-          tabClaude?.classList.add("text-slate-400");
-
-          panelAntigravity?.classList.remove("hidden");
-          panelClaude?.classList.add("hidden");
-        } else {
-          tabClaude?.setAttribute("aria-selected", "true");
-          tabClaude?.classList.add("text-white", "bg-slate-800");
-          tabClaude?.classList.remove("text-slate-400");
-
-          tabAntigravity?.setAttribute("aria-selected", "false");
-          tabAntigravity?.classList.remove("text-white", "bg-slate-800");
-          tabAntigravity?.classList.add("text-slate-400");
-
-          panelClaude?.classList.remove("hidden");
-          panelAntigravity?.classList.add("hidden");
-        }
-      }
-
-      if (tabAntigravity && !tabAntigravity.dataset.bound) {
-        tabAntigravity.dataset.bound = "true";
-        tabAntigravity.addEventListener("click", () => switchTab("antigravity"));
-      }
-
-      if (tabClaude && !tabClaude.dataset.bound) {
-        tabClaude.dataset.bound = "true";
-        tabClaude.addEventListener("click", () => switchTab("claude"));
-      }
-
-      if (copyBtn && !copyBtn.dataset.bound) {
-        copyBtn.dataset.bound = "true";
-        copyBtn.addEventListener("click", async () => {
-          const command = snippets[activeTab];
-          try {
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-              await navigator.clipboard.writeText(command);
-            } else {
-              const textarea = document.createElement("textarea");
-              textarea.value = command;
-              textarea.style.position = "fixed";
-              textarea.style.opacity = "0";
-              document.body.appendChild(textarea);
-              textarea.focus();
-              textarea.select();
-              document.execCommand("copy");
-              document.body.removeChild(textarea);
-            }
-            if (copyText) {
-              copyText.textContent = "Copied!";
-              copyBtn.classList.add("text-emerald-300", "bg-emerald-500/20");
-              setTimeout(() => {
-                copyText.textContent = "Copy";
-                copyBtn.classList.remove("text-emerald-300", "bg-emerald-500/20");
-              }, 2000);
-            }
-          } catch (err) {
-            console.error("Failed to copy command:", err);
-          }
-        });
       }
     }
 
