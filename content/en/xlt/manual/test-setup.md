@@ -39,7 +39,7 @@ Your load test environment consists of one master controller and one or more age
 
 There are several more settings, e.g. for update intervals for the status printed in the console, for parallel communication with the ACs and error behavior in case of unreachable ACs.
 
-Read more about [Load Test Environment Configuration](/xlt/manual/environment-configuration/), especially the [mastercontroller.properties](/xlt/manual/environment-configuration/#master-controller-configuration).
+Read more about [Load Test Environment Configuration](/xlt/manual/environment-configuration/), especially the [mastercontroller.properties](/xlt/manual/environment-configuration/#mastercontroller-configuration).
 
 ## Test Suite Configuration
 

@@ -7,7 +7,7 @@ sidebar:
 
 ## Platform Independence
 
-Supporting only MS Windows was never an option when XLT was developed. We aimed for a tool that runs everywhere, with a preference for Linux. XLT load tests can be developed and executed on any platform with a supported JDK. Of course, you can easily run your load tests on a [distributed cloud infrastructure](/xlt/advanced/cloud-setup/). Releases include [pre-built Amazon Web Services (AWS) AMIs](/xlt/advanced/cloud-setup/#image-templates-for-aws). Images for other cloud providers and containers can be built easily (see [XLT-Packer](https://github.com/Xceptance/XLT-Packer).
+Supporting only MS Windows was never an option when XLT was developed. We aimed for a tool that runs everywhere, with a preference for Linux. XLT load tests can be developed and executed on any platform with a supported JDK. Of course, you can easily run your load tests on a [distributed cloud infrastructure](/xlt/advanced/cloud-setup/). Releases include [pre-built Amazon Web Services (AWS) AMIs](/xlt/advanced/cloud-setup/#amis-for-aws). Images for other cloud providers and containers can be built easily (see [XLT-Packer](https://github.com/Xceptance/XLT-Packer).
 
 ## Java
 
