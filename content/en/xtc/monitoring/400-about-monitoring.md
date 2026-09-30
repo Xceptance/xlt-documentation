@@ -24,8 +24,8 @@ This is a high-level overview of the features XTC offers to monitor your web app
   * [Scenario Defaults](/xtc/monitoring/monitoring-configuration/#scenario-defaults),
   * [Notification Lists](/xtc/monitoring/monitoring-configuration/#notification-lists) for specified recipients, and
   * [Quality Sensors](/xtc/monitoring/monitoring-configuration/#quality-sensors) that define success metrics for your scenarios,
-* [Quiet Periods](/xtc/monitoring/monitoring-configuration/#quiet-periods) allows you to pause notifications for the whole project or even pause running any scenario,
-* in [Scenarios](/xtc/monitoring/monitoring-configuration/#scenarios) you can define and configure your monitoring scenarios including the quality sensors to be applied,
+* [Quiet Periods](/xtc/monitoring/quiet-periods/) allows you to pause notifications for the whole project or even pause running any scenario,
+* in [Scenarios](/xtc/monitoring/scenarios/) you can define and configure your monitoring scenarios including the quality sensors to be applied,
 * the [Dashboard](/xtc/monitoring/dashboard/) of a monitoring project provides a rough overview of the scenarios that are currently set up and their recent performance,
 * [Metrics](/xtc/monitoring/metrics/) are offering graphical live data for different parameters,
 * the [History](/xtc/monitoring/history/) view contains details about all recent scenario executions, and

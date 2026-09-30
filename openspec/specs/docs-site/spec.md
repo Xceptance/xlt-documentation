@@ -81,11 +81,15 @@ The system SHALL parse and render callout directives (`:::note`, `:::warning`, `
 - **THEN** the system renders a styled informational callout with the title "Role Required" and the enclosed role requirement text.
 
 ### Requirement: Internal Link Integrity
-The system SHALL resolve all internal links to valid content routes and asset targets.
+The system SHALL resolve all internal links, anchor targets, and referenced static assets to valid destinations, eliminating all validator warnings and broken references across documentation pages.
 
 #### Scenario: Strict link validation
 - **WHEN** the validation command `blume validate --strict` is executed
 - **THEN** the process exits with status code 0 and reports zero broken internal links, anchor targets, or missing images.
+
+#### Scenario: Standard validation cleanliness
+- **WHEN** the validation command `npm run validate` (or `blume validate`) is executed
+- **THEN** the process completes successfully with zero warnings and zero errors reported across all documentation content.
 
 ### Requirement: Brand Theme and Styling
 The system SHALL apply Xceptance corporate brand identity styling across light and dark modes, utilizing primary corporate blue `#004682`, display font `Roboto Condensed`, body font `Roboto`, monospace font `Ubuntu Mono`, and display the official Xceptance SVG wordmark (`/images/xceptance_only.svg`) in the site header.
@@ -114,7 +118,7 @@ The documentation hub and theme SHALL conform to WCAG 2.1 / 2.2 Level AA require
 - **THEN** the document structure begins with a single `h1` ("Documentation Hub"), follows with `h2` for major layout sections, and `h3` for individual tool cards.
 
 ### Requirement: Build and Schema Conformance
-The system SHALL validate all page frontmatter against Blume strict schema, maintain zero Git submodule dependencies by managing themes and build tooling purely via `package.json`, and generate a pure static production build in `dist/` ready for standard web server hosting (Apache, Nginx, or S3/CDN) with zero Node.js server runtime dependency.
+The system SHALL validate all page frontmatter against Blume strict schema and generate a pure static production build in `dist/` ready for standard web server hosting (Apache, Nginx, or S3/CDN) with zero Node.js server runtime dependency.
 
 #### Scenario: Strict build execution
 - **WHEN** `blume build` is run against the documentation source
@@ -123,10 +127,6 @@ The system SHALL validate all page frontmatter against Blume strict schema, main
 #### Scenario: Static Apache hosting compatibility
 - **WHEN** the contents of `dist/` are deployed to an Apache web server
 - **THEN** the bundled `.htaccess` provides URL rewriting, gzip/deflate compression, and custom 404 handling without server-side execution.
-
-#### Scenario: Zero Git submodule dependency
-- **WHEN** a contributor or CI workflow clones the documentation repository
-- **THEN** all site layout components, templates, and build tooling are resolved through `package.json` with no Git submodules (`.gitmodules`) or Go module files (`go.mod`, `go.sum`) required.
 
 ### Requirement: Contributor Documentation and Authoring Guidance
 The repository SHALL provide contributor setup instructions, local development commands, Blume Markdown/MDX authoring conventions, code search indexing details, and a Hugo/Docsy feature comparison in the repository root `README.md` and pull request documentation rather than within user-facing product documentation.

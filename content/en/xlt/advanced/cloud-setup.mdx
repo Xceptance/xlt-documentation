@@ -36,7 +36,7 @@ Follow the instructions in the project's README file to create an XLT image for 
 
 #### Setting Up and Managing Load Test Instances
 
-XLT ships with two small scripts that simplify the process of **setting up** and **managing** load test instances: **[gce_admin](#google-cloud-gc)** (for Google Cloud) and **[ec2_admin](#amazon-web-services-aws)** (for Amazon Web Services).
+XLT ships with two small scripts that simplify the process of **setting up** and **managing** load test instances: **[gce_admin](#google-cloud-gcp)** (for Google Cloud) and **[ec2_admin](#amazon-web-services-aws)** (for Amazon Web Services).
 
 The scripts quickly set up a cluster of test machines. After the setup, **add the machines to the master controller configuration**: navigate to `<XLT>/config/mastercontroller.properties` on your MC machine, then enter the AC data provided by the tools when listing the created instances. You are now ready for load testing.
 
@@ -326,7 +326,7 @@ The cost displayed is based on the cost at the time XLT was released. This is no
 This is for informational purposes to make machines more comparable, as larger machines might be more cost-effective.
 :::
 
-<a name="aws-name-tag"></a>
+<a id="aws-name-tag"></a>
 
 `ec2_admin` will ask you _how many instances_ you want to start and let you set an _instance name_. All instances set up in this action will be tagged with this name, so you can easily filter them later when [listing](#listing-running-aws-instances) or [terminating](#terminating-aws-instances) instances. Keep in mind that [AWS tag value restrictions](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#tag-restrictions) apply.
 
