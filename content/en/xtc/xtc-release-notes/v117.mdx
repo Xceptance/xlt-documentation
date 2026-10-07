@@ -1,16 +1,10 @@
 ---
 title: XTC v117
-linkTitle: XTC v117
-description: 2026-09-23
-
-weight: 99
-type: docs
-
+description: "2026-09-23"
 date: 2026-09-22
-
-sitemap:
-  changefreq: never
-  priority: 0.1
+sidebar:
+  label: XTC v117
+  order: 99
 ---
 
 ## Load Testing
@@ -96,8 +90,8 @@ For detailed request payloads and schema specifications, visit the [API Explorer
 
 ### Available XLT Execution Environments
 
-* XLT 9.x → [9.2.2]({{< relref "/xlt/release-notes/9_2_x" >}}) (recommended)
-* XLT 10.x → [10.0.0-beta-5]({{< relref "/xlt/release-notes/10_0_x" >}})
+* XLT 9.x → [9.2.2](/xlt/release-notes/v9_2_x/) (recommended)
+* XLT 10.x → [10.0.0-beta-5](/xlt/release-notes/v10_0_x/)
 
 
 ## Monitoring
@@ -108,12 +102,12 @@ As previously announced, the SMS notification channel has been deactivated. Moni
 
 If you have not already done so, please migrate any remaining notification lists to push notifications:
 
-1. Refer to the [XTC v115 Release Notes]({{< relref "/xtc/xtc-release-notes/v115/#new-feature-push-notifications" >}}) for instructions on setting up push notifications via the ntfy app.
+1. Refer to the [XTC v115 Release Notes](/xtc/xtc-release-notes/v115/#new-feature-push-notifications) for instructions on setting up push notifications via the ntfy app.
 2. In your project notification lists, update user subscriber entries to enable the **Push Notification** channel.
 
-{{% note notitle %}}
+:::note
 Phone numbers are still retained in user profiles for contact purposes, but phone number verification via SMS is no longer required.
-{{% /note %}}
+:::
 
 
 ## Platform
