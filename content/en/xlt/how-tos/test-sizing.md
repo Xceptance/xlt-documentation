@@ -18,5 +18,5 @@ For RAM, we usually reserve 512 MB for the system, plus about 512 MB for the JVM
 **Was my choice of machines right?**
 Check the agents' CPU usage in the [test report](/xlt/manual/test-evaluation/#agents) after your load test so you know whether any adjustments are necessary.
 
-{/*  TODO: }to be continued...  */}}
+<!-- TODO: to be continued... -->
 

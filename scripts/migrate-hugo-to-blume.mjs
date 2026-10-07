@@ -273,6 +273,9 @@ for (const filePath of allFiles) {
   // Cleanup any malformed spans from earlier run
   body = body.replace(/<span style=\{\{ color: "([^"]*)" \}\}>}([\s\S]*?)<\/span>}/g, '<span style={{ color: "$1" }}>$2</span>');
 
+  // Cleanup any malformed TODO comment artifacts from earlier run
+  body = body.replace(/\{\/\*\s*TODO:\s*\}?\s*([\s\S]*?)\s*\*\/\}*\}/g, '{/* TODO: $1 */}');
+
   // Handle Hugo comment shortcodes: {{</* ... */>}} and {{%/* ... */%}}
   body = body.replace(/\{\{([%<])\/\*([\s\S]*?)\*\/\1\}\}/g, (match, d, inner) => `\`{{${d}${inner}${d}}}\``);
 
@@ -298,8 +301,8 @@ for (const filePath of allFiles) {
     return `:::info[Role Required]\n${actionText} your account must ${leastText}have the role of ${article} [${role}](${link}) within the ${scope}\n:::`;
   });
 
-  // 2. Note / Warning / Tip / Danger admonitions
-  body = body.replace(/\{\{[%<]\s*(note|warning|tip|danger)\b([^%>]*)[%>]\}\}/gi, (match, type, rest) => {
+  // 2. Note / Warning / Tip / Danger admonitions (supports Hugo {{% ... %}} and Jekyll/Liquid {% ... %})
+  body = body.replace(/(?:\{\{[%<]|{%\s*)\s*(note|warning|tip|danger)\b([^%}>]*)(?:[%>]\}\}|%\})/gi, (match, type, rest) => {
     const lowerType = type.toLowerCase();
     const titleMatch = rest.match(/title="([^"]*)"/i) || rest.match(/"([^"]+)"/);
     if (titleMatch && titleMatch[1]) {
@@ -308,7 +311,7 @@ for (const filePath of allFiles) {
     return `:::${lowerType}`;
   });
 
-  body = body.replace(/\{\{\s*[%<]?\s*\/+\s*(?:note|warning|tip|danger)\s*[%<]?\s*\}\}/gi, ":::");
+  body = body.replace(/(?:\{\{\s*[%<]?\s*\/+|{%\s*end)(note|warning|tip|danger)\s*(?:[%<]?\s*\}\}|%\})/gi, ":::");
 
   // 3. Image & Imageres shortcodes
   body = body.replace(/\{\{[<]\s*(?:image|imageres)\b([^>]*?)(?:\s*\/>|>([\s\S]*?)\{\{[<]\s*\/(?:image|imageres)\s*[>]\}\}|>)/gi, (match, attrsStr, innerCaption) => {

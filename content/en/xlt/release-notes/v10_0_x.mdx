@@ -83,9 +83,9 @@ private static final InheritableThreadLocal<Context> CONTEXTS = new InheritableT
 
 The specific refactoring required will depend on your original intent.
 
-{% note %}
+:::note
 Virtual threads are not created with a `ThreadGroup`. Therefore, if you used `ThreadGroup` to share data between threads or look up a thread context, you must refactor your code to use `InheritableThreadLocal` instead. Only the threads carrying the virtual load test users are virtual threads. All forked threads from a virtual thread are also virtual threads. Because XLT uses the thread context to communicate measurements within the framework, the context must be preserved correctly.
-{% endnote %}
+:::
 
 If you don't see measurement values for requests or your suite is not running as expected, you should check if you used `ThreadGroup` in your test code. Always cross-check first by disabling the virtual threads using the property `com.xceptance.xlt.virtualThreads.enabled = false`.
 
