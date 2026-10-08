@@ -204,23 +204,27 @@ The documentation build SHALL generate self-contained, machine-readable artifact
 - **THEN** the static web server serves the clean Markdown mirror directly at `/{route}.md` without web scraping or HTML parsing.
 
 ### Requirement: Release Notes Hub and Navigation Icon
-The documentation system SHALL render `/xlt/release-notes/` as a structured Release Hub in MDX featuring a spotlight section for the latest release series, a card grid for recent releases, and collapsible accordions for historical archives. The system SHALL display the section title and sidebar label without emoji characters and display a standard megaphone icon.
+The documentation system SHALL render Release Hubs in MDX for XLT (`/xlt/release-notes/`), XTC (`/xtc/xtc-release-notes/`), and Neodymium (`/neodymium/release-notes/`), each featuring a spotlight section for the latest release, a card grid for recent releases, and collapsible accordions for historical archives. The system SHALL display clean section titles and sidebar labels without emoji characters, display the standard Lucide megaphone icon across all three products, set `sidebar.label: Overview` on each landing page, and preserve complete sidebar visibility for all individual release files.
 
 #### Scenario: Clean title and standard navigation icon
-- **WHEN** a user views the Release Notes page or navigates the XLT sidebar
-- **THEN** the page title and sidebar label display "Release Notes" without the raw megaphone emoji `📢`, and the navigation entry displays the standard Lucide megaphone icon.
+- **WHEN** a user views any Release Notes section or navigates the sidebar in XLT, XTC, or Neodymium
+- **THEN** all section titles and sidebar labels display "Release Notes" without emoji characters (e.g., removing `📢` from XTC), each section metadata defines `icon: "megaphone"` and `directory: "none"`, and each landing page defines `sidebar.label: Overview`.
 
 #### Scenario: Latest release spotlight
-- **WHEN** a user visits `/xlt/release-notes/`
-- **THEN** the page renders a prominent spotlight card for XLT 10.0.x summarizing key features (Java 21 virtual threads, dynamic overview charts, moving averages, private machine mode) and linking directly to the XLT 10.0.x release notes.
+- **WHEN** a user visits a product's Release Notes landing page
+- **THEN** the page renders a prominent spotlight card for the latest release (XLT 10.0.x, XTC v117, or Neodymium 5.3.0) summarizing key marquee features and linking directly to the corresponding release notes document.
 
 #### Scenario: Recent release series card grid
-- **WHEN** a user views the recent releases section on the Release Notes Hub
-- **THEN** the system displays a responsive grid of cards for recent release series (such as XLT 9.2.x, 9.1.x, 9.0.x, and 8.x) with version summaries and links to their respective release documents.
+- **WHEN** a user views the recent releases section on any product's Release Notes Hub
+- **THEN** the system displays a responsive 2-column card grid summarizing recent stable releases (XLT 9.2.x–8.x, XTC v116–v113, Neodymium 5.2.0–4.x) with feature descriptions and links.
 
 #### Scenario: Collapsible historical archive
-- **WHEN** a user views older release series on the Release Notes Hub
-- **THEN** release series from XLT 7.x down to 3.x are organized inside collapsible accordion sections, preserving access to all historical release documents without cluttering the main view.
+- **WHEN** a user views older release series on any product's Release Notes Hub
+- **THEN** earlier releases are organized inside collapsible accordion sections categorized by major series or platform eras (such as 6 era brackets for XTC and 5 series brackets for Neodymium), providing direct links to historical release notes while keeping the initial page layout clean.
+
+#### Scenario: Complete sidebar release visibility and URL preservation
+- **WHEN** a user navigates the sidebar tree or accesses bookmarked links
+- **THEN** all individual release note documents (including all 102 XTC releases and 10 Neodymium releases) remain directly visible in the sidebar navigation without `sidebar.hidden: true`, and the existing path `/xtc/xtc-release-notes/` remains intact without redirection or broken bookmarks.
 
 ### Requirement: Standard Site Footer and Navigation Hygiene
 The system SHALL render a standard site footer across all documentation pages featuring corporate copyright, company links (Blog, Website, Privacy Policy, Imprint), and social profile icons (GitHub, LinkedIn, X), while maintaining a clean top header navigation focused on documentation products.
