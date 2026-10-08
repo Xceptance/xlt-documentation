@@ -1,6 +1,6 @@
 import { defineMeta } from "blume";
 
 export default defineMeta({
-  title: "How-Tos",
-  directory: "card",
+  title: "Release Notes 📢",
+  directory: "none",
 });

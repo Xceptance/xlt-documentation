@@ -314,30 +314,8 @@ const { config } = data;
       if (heroBtn && !heroBtn.dataset.bound) {
         heroBtn.dataset.bound = "true";
         heroBtn.addEventListener("click", () => {
-          // Attempt 1: Trigger the search button in Blume's header
-          const headerBtn = document.querySelector<HTMLButtonElement>("blume-search [data-blume-search-open]");
-          if (headerBtn) {
-            headerBtn.click();
-            return;
-          }
-
-          // Attempt 2: Call open() directly on the custom element if available
-          const searchEl = document.querySelector("blume-search") as any;
-          if (typeof searchEl?.open === "function") {
-            searchEl.open();
-            return;
-          }
-
-          // Attempt 3: Dispatch keyboard shortcut event (Cmd+K / Ctrl+K)
-          const isApple = /mac|iphone|ipad|ipod/iu.test(navigator.platform);
-          document.dispatchEvent(
-            new KeyboardEvent("keydown", {
-              key: "k",
-              metaKey: isApple,
-              ctrlKey: !isApple,
-              bubbles: true,
-            })
-          );
+          const headerSearchBtn = document.querySelector<HTMLButtonElement>("blume-search [data-blume-search-open]");
+          headerSearchBtn?.click();
         });
       }
 

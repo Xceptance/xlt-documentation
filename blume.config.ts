@@ -48,10 +48,27 @@ export default defineConfig({
       { label: "XTC", path: "/xtc" },
       { label: "Neodymium", path: "/neodymium" },
     ],
-    featured: [
+  },
+  markdown: {
+    externalLinks: true,
+  },
+  lastModified: "git",
+  export: {
+    pdf: true,
+  },
+  footer: {
+    copyright: `© ${new Date().getFullYear()} Xceptance Software Technologies GmbH`,
+    links: [
       { label: "Blog", href: "https://blog.xceptance.com/" },
-      { label: "GitHub", href: "https://github.com/Xceptance/xlt-documentation" },
+      { label: "Xceptance", href: "https://www.xceptance.com/" },
+      { label: "Privacy Policy", href: "https://www.xceptance.com/en/privacy-policy.html" },
+      { label: "Imprint", href: "https://www.xceptance.com/en/imprint.html" },
     ],
+    socials: {
+      github: "https://github.com/Xceptance/xlt-documentation",
+      linkedin: "https://www.linkedin.com/company/xceptance-software-technologies-gmbh/",
+      x: "https://x.com/xceptance",
+    },
   },
   logo: {
     image: "/images/xceptance_only.svg",
