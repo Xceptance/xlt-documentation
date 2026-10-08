@@ -41,7 +41,7 @@ The remote machines can be in the cloud, in your own datacenter, within your loc
 
 For local execution at small scale or dry-runs, you can run the agentcontroller and hence the agents locally. To start the agent controllers manually, open a command line window/console and type the following commands:
 
-```dos
+```bash
 cd <XLT>/bin
 ./agentcontroller.sh
 ```
@@ -52,7 +52,7 @@ Windows users have to use the respective `.cmd` files. The documentation will no
 
 The agent controller starts and listens on the specified port. With default logging enabled (WARN), no messages are printed during the agentcontroller startup. When [info logging is enabled](/xlt/manual/environment-configuration/#agentcontroller-logging), the output might look like this:
 
-```dos
+```log
 [15:00:51,452] INFO  [main] - start servlet
 [15:00:51,509] INFO  [main] - Logging initialized @946ms to org.eclipse.jetty.util.log.Slf4jLog
 [15:00:51,665] INFO  [main] - jetty-9.4.35.v20201120; built: 2020-11-20T21:17:03.964Z; git: bdc54f03a5e0a7e280fab27f55c3c75ee8da89fb; jvm 11.0.8+10

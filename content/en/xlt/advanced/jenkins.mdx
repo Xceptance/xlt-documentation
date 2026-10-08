@@ -69,11 +69,15 @@ Now add the XLT plug-in as a new build step to your project and configure it as 
 * In the agent controller section, check the radio button "Use a single embedded agent controller".
 * Use the defaults for all other settings for now.
 
-:::noteNote that with the default configuration, the load test will be driven from the Jenkins machine, so the configured load profile should not be too demanding. See below for an overview of what else can be configured.:::
+:::note
+Note that with the default configuration, the load test will be driven from the Jenkins machine, so the configured load profile should not be too demanding. See below for an overview of what else can be configured.
+:::
 
 To generate higher load, running one XLT agent controller from the Jenkins machine might not be enough. Dedicated load generating machines are recommended. When configuring the XLT plug-in, the agent controller section offers several options, one of them being "Start agent machines in Amazon's EC2". This allows automatically starting Amazon machine images (AMIs) in Amazon's Elastic Compute Cloud (EC2) that can be used to generate load. Typically, you will use one of the machine images with XLT already installed. For the current list of AMI IDs, see the [Xceptance Homepage](https://www.xceptance.com/en/xlt/download.html).
 
-:::noteWhen using the option "Start agent machines in Amazon's EC2," the XLT master controller has to wait for the remote agent controller EC2 machines to come up. This can take several minutes. Therefore, you should adjust the XLT property `com.xceptance.xlt.mastercontroller.initialResponseTimeout` to a value suitable for the described scenario.:::
+:::note
+When using the option "Start agent machines in Amazon's EC2," the XLT master controller has to wait for the remote agent controller EC2 machines to come up. This can take several minutes. Therefore, you should adjust the XLT property `com.xceptance.xlt.mastercontroller.initialResponseTimeout` to a value suitable for the described scenario.
+:::
 
 **Step 4 - Other project settings**
 
@@ -99,7 +103,9 @@ Many other details of the XLT plug-in functionality can be configured. This incl
 
 Each configuration value provides extensive help text, so ensure you click the *Help* icon next to the value if you are unsure what can be configured there.
 
-:::noteNote that the XLT plug-in can be added to a project/job not only once, but multiple times. This allows running multiple tests with the same test suite in a row (e.g., a short smoke test followed by a longer performance test). In this case, each XLT build step must be configured individually.:::
+:::note
+Note that the XLT plug-in can be added to a project/job not only once, but multiple times. This allows running multiple tests with the same test suite in a row (e.g., a short smoke test followed by a longer performance test). In this case, each XLT build step must be configured individually.
+:::
 
 #### A Note on the 'stepId' Parameter
 
@@ -156,7 +162,9 @@ def r = xlt stepId: 'any-step-id', xltTemplateDir: '/path/to/xlt'
 echo "Run failed: `${r.runFailed}` | Report URL: `${r.reportUrl}`"
 ```
 
-:::note Feel free to look at Jenkins' Pipeline Reference page, which lists all available pipeline steps and their documentation, including names, types, and descriptions of their parameters and return values.:::
+:::note
+Feel free to look at Jenkins' Pipeline Reference page, which lists all available pipeline steps and their documentation, including names, types, and descriptions of their parameters and return values.
+:::
 
 ## Success Criteria Evaluation
 
@@ -219,7 +227,9 @@ cd <XLT>/bin
 ./check_criteria.sh -c /path/to/criteria.json /path/to/report.xml
 ```
 
-:::noteWindows users must use the appropriate `.cmd` file located in the same directory.:::
+:::note
+Windows users must use the appropriate `.cmd` file located in the same directory.
+:::
 
 The tool can process more than one XML file in one pass. Simply specify the path of each file as an additional argument:
 

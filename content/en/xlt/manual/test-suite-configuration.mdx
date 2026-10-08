@@ -154,7 +154,7 @@ com.xceptance.xlt.virtualThreads.enabled = false
 
 Virtual threads execute on underlying JVM carrier threads. If the JVM determines that additional carrier threads are needed during high-concurrency execution, it may spawn new native threads. You can limit the max pool size of carrier threads by setting `jdk.virtualThreadScheduler.maxPoolSize` in `<xlt>/config/jvmargs.cfg`:
 
-```cfg
+```properties
 -Djdk.virtualThreadScheduler.maxPoolSize=128
 ```
 
