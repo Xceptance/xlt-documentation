@@ -150,7 +150,7 @@ Load tests were not affected.
 It may easily happen that, by mistake, the same URL is configured for
 different agent controllers:
 
-```bash
+```properties
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac1.url = https://localhost:8500  
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac2.url = https://localhost:8500
 ```
@@ -226,14 +226,14 @@ this case, XLT’s transfer directory can be reconfigured. For the agent
 controllers, specify the new directory in
 `config/agentcontroller.properties`:
 
-```bash
+```properties title="agentcontroller.properties"
 com.xceptance.xlt.agentcontroller.tempdir = /var/tmp/xlt
 ```
 
 The master controller provides a similar setting in
 `config/mastercontroller.properties`:
 
-```bash
+```properties title="mastercontroller.properties"
 com.xceptance.xlt.mastercontroller.tempdir = /var/tmp/xlt
 ```
 
@@ -623,7 +623,7 @@ ramping up the load to the maximum number of users. For example, this
 allows for starting the test with 50 users and continuing with a ramp-up
 step size of 5 users only:
 
-```bash
+```properties
 com.xceptance.xlt.loadtests.TAuthor.users = 100
 com.xceptance.xlt.loadtests.TAuthor.rampUpPeriod = 15m  
 com.xceptance.xlt.loadtests.TAuthor.rampUpStepSize = 5  
@@ -719,7 +719,7 @@ users as well as a steady period of 10 minutes, the framework would
 calculate the necessary over-all ramp-up period of 40 minutes. The
 corresponding configuration looks like so:
 
-```bash
+```properties
 com.xceptance.xlt.loadtests.TAuthor.users = 500
 #com.xceptance.xlt.loadtests.TAuthor.rampUpPeriod = 40m  
 com.xceptance.xlt.loadtests.TAuthor.rampUpSteadyPeriod = 10m  
@@ -920,7 +920,7 @@ machine is not necessary any longer. Just tell the framework how many
 agent processes a certain agent controller should start by setting the
 appropriate property in the `mastercontroller.properties` file:
 
-```bash
+```properties title="mastercontroller.properties"
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac1.url = https://foo:8500  
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac1.agents = 1  
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac2.url = https://bar:8500  
@@ -936,7 +936,7 @@ statistics. Furthermore, when generating the charts, all available CPUs
 will be used by default. To change this behavior adjust the settings in
 the `config/reportgenerator.properties` file.
 
-```bash
+```properties title="reportgenerator.properties"
 ## The number of threads to use during report generation
 ## (defaults to the number of available CPUs).  
 com.xceptance.xlt.reportgenerator.threads = 2
@@ -960,7 +960,7 @@ type. Now there are three additional request filter types:
 
 For example, consider the following request merge rule:
 
-```bash
+```properties
 com.xceptance.xlt.reportgenerator.requestMergeRules.0.newName = {a:0} - {t:0} - {n:0} [{r}]  
 com.xceptance.xlt.reportgenerator.requestMergeRules.0.namePattern = .+  
 com.xceptance.xlt.reportgenerator.requestMergeRules.0.transactionPattern = .+  
@@ -1117,7 +1117,7 @@ handled the load.
 How the master controller should behave in such a situation can now be
 configured in the `mastercontroller.properties` file.
 
-```bash
+```properties title="mastercontroller.properties"
 com.xceptance.xlt.mastercontroller.ignoreUnreachableAgentControllers = true
 ```
 
@@ -1167,7 +1167,7 @@ communicate with its agent controllers, such a proxy can be configured
 much easier now. Simply provide the respective settings in the
 `mastercontroller.properties` file:
 
-```bash
+```properties title="mastercontroller.properties"
 com.xceptance.xlt.mastercontroller.https.proxy.enabled = true
 com.xceptance.xlt.mastercontroller.https.proxy.host = proxy.mydomain.com  
 com.xceptance.xlt.mastercontroller.https.proxy.port = 8888  
@@ -1190,7 +1190,7 @@ test suite, for example, runs even slower in compiled mode. However, for
 web applications with great portions of JavaScript, the benefit might be
 significant. Therefore, the user can control which mode will be used:
 
-```bash
+```properties
 ## The optimization level to use when compiling JavaScript snippets.
 ## Possible values are:
 ## –1 … interpreted mode, no compilation (default)
@@ -1205,7 +1205,7 @@ compile a JavaScript snippet and the time to execute it. These values
 will also be part of the load test report. Note that these measurements
 need to enabled in the XLT configuration:
 
-```bash
+```properties
 ## Whether or not the compilation and execution time of JavaScript snippets
 ## will be measured. Defaults to “false”.  
 com.xceptance.xlt.js.takeMeasurements = true
@@ -1223,7 +1223,7 @@ transaction, aka transaction timeout. This will prevent infinite loops
 in case of a certain error condition that was not covered yet in the
 test case code. Enable the transaction timeout in the XLT configuration:
 
-```bash
+```properties
 ## Whether the framework should abort a transaction (defaults to false)
 ## if it exceeds a certain maximum run time [ms] (defaults to 15 min).  
 com.xceptance.xlt.abortLongRunningTransactions = false  
@@ -1265,7 +1265,7 @@ used as the field separator in the corresponding data files. Now the
 provider offers a configuration option to specify a different field
 separator character, for example a semicolon:
 
-```bash
+```properties
 ## Sets the field separator character for CSV files (defaults to “,”).  
 com.xceptance.xlt.data.dataSetProviders.csv.separator = ;
 ```
@@ -1276,7 +1276,7 @@ Now the agents’ root directory, which is `<xlt>/agent` by default, can
 be relocated to another directory by setting the corresponding property
 in file `agentcontroller.properties`:
 
-```bash
+```properties title="agentcontroller.properties"
 ## The directory where the separate agent directories are located.
 ## Defaults to: <XLT_HOME>/agent  
 com.xceptance.xlt.agentcontroller.agentsdir = /my_agents_dir
@@ -1315,7 +1315,7 @@ synchronously, too.
 Please note that the new default value might cause your old tests to
 break. In this case, simply set the AJAX mode to `resync` again:
 
-```bash
+```properties
 ## Sets the AJAX execution mode. Possible values are:
 ## - async …. perform AJAX calls always asynchronously
 ## - sync ….. perform AJAX calls always synchronously

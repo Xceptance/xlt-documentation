@@ -771,7 +771,7 @@ specify either *firefox\_clientperformance* or
 *chrome\_clientperformance* as the driver to use in the test suite
 configuration, and your test case super class will pick it up:
 
-```bash
+```properties
 xlt.webDriver = chrome_clientperformance
 ```
 
@@ -946,7 +946,7 @@ driver API yet, it is time to make this driver available as a new
 preconfigured alternative. To use this driver in your Web-driver-based
 test cases, change the test suite configuration as follows:
 
-```bash
+```properties
 xlt.webDriver = edge
 xlt.webDriver.edge.pathToDriverServer = c:/path/to/MicrosoftWebDriver.exe
 ```
@@ -1010,7 +1010,7 @@ For example, to always cap request charts at 5000 milliseconds and all
 other runtime charts only if needed and at 5 times the mean value your
 configuration would look as follows:
 
-```bash
+```properties
 com.xceptance.xlt.reportgenerator.charts.cappingFactor = 5
 com.xceptance.xlt.reportgenerator.charts.cappingValue.requests = 5000  
 com.xceptance.xlt.reportgenerator.charts.cappingMode.requests = always
@@ -1036,7 +1036,7 @@ To configure the list of percentiles to be shown, adjust the
 corresponding property in file `<xlt>/config/reportgenerator.properties`
 as needed:
 
-```bash
+```properties title="reportgenerator.properties"
 com.xceptance.xlt.reportgenerator.runtimePercentiles = 50, 95, 99, 99.9
 ```
 

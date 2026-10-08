@@ -55,7 +55,7 @@ header of each report page (and also the page title).
 Here is how you would specify the project name in the settings of your
 project, typically in file `config/project.properties`:
 
-```bash
+```properties title="project.properties"
 com.xceptance.xlt.projectName = Posters
 ```
 
@@ -435,7 +435,7 @@ Apdex thresholds can be defined either globally in
 settings, e.g. in `<test-suite>/config/project.properties`. See below
 for an example:
 
-```bash
+```properties title="project.properties"
 ## The threshold for all checkout-related actions.  
 com.xceptance.xlt.reportgenerator.apdex.Checkout.actions = CO(Login|Billing|Shipping).*  
 com.xceptance.xlt.reportgenerator.apdex.Checkout.threshold = 2.0
@@ -479,7 +479,7 @@ request, but, same as for the Apdex, you can also group requests by name
 also a default rule for all other requests. See below for a sample
 configuration:
 
-```bash
+```properties
 ## Use specific colorization rules for the homepage request and overwrite the default group.  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.Checkout.matching = CO(Login|Billing|Shipping).*  
 com.xceptance.xlt.reportgenerator.requests.table.colorization.Checkout.mean = 250 500 1000  
@@ -521,7 +521,7 @@ there, you might wish to ignore them for the rest of the analysis. You
 can now use a special request processing rule to identify the offending
 requests and delete them from the report:
 
-```bash
+```properties
 ## Delete all requests without a valid status code.
 com.xceptance.xlt.reportgenerator.requestMergeRules.10.statusCodePattern = 0  
 com.xceptance.xlt.reportgenerator.requestMergeRules.10.dropOnMatch = true
@@ -533,7 +533,7 @@ this grouping, you can turn it off now via configuration in
 `<xlt>/config/reportgenerator.properties` or, alternatively, in your
 test suite settings, e.g. in `<test-suite>/config/project.properties`:
 
-```bash
+```properties title="project.properties"
 com.xceptance.xlt.reportgenerator.events.groupByTestCase = false
 ```
 

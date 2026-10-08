@@ -123,7 +123,7 @@ through several rules and more than one rule can be applied. This can be
 useful when requests have to be *renamed* first and afterwards
 *regrouped*.
 
-```bash
+```properties
 com.xceptance.xlt.reportgenerator.requestMergeRules.0.newName = {n:1} CSS  
 com.xceptance.xlt.reportgenerator.requestMergeRules.0.namePattern = ([^.]+)  
 com.xceptance.xlt.reportgenerator.requestMergeRules.0.contentTypePattern =  
@@ -179,7 +179,7 @@ several merging rules. The first rule splits the requests by protocol to
 build up individual buckets. The second rule marks requests when a
 redirect response code was issued, such as 301 and 302.
 
-```bash
+```properties
 com.xceptance.xlt.reportgenerator.requestMergeRules.0.newName = {n:1} - {u:1}  
 com.xceptance.xlt.reportgenerator.requestMergeRules.0.namePattern = ([^.]+)  
 com.xceptance.xlt.reportgenerator.requestMergeRules.0.contentTypePattern =  
@@ -248,7 +248,7 @@ with another property.
 
 ##### Example
 
-```bash
+```properties
 com.test.host = www.test.org
 com.test.url = http://`${com.test.host}`/
 ```
@@ -318,7 +318,7 @@ Only the transferred agent name will change.
 A list of typical agent names can be obtained from
 [user-agents.org](http://www.user-agents.org/).
 
-```bash
+```properties
 ## The user agent string that will be sent to the server. By default, the user
 ## agent string is derived from the configured browser, but can be overridden
 ## with this setting.  
@@ -327,7 +327,7 @@ A list of typical agent names can be obtained from
 
 ##### Example
 
-```bash
+```properties
 com.xceptance.xlt.browser.userAgent = Mozilla/5.0 (Windows; U;\
  Windows NT 5.1; en-US; rv:1.9.0.10) Gecko/2009042316 Firefox/3.0.10  
 com.xceptance.xlt.browser.userAgent = Test User-Agent sent by Xceptance LoadTest
@@ -349,7 +349,7 @@ property supports regular expressions.
 The following example will exclude the hosts `localhost`, `127.0.0.1`,
 and all hosts starting with 192.168.
 
-```bash
+```properties
 com.xceptance.xlt.proxy.bypassForHosts = localhost 127\\.0\\.0\\.1 ^192\\.168
 ```
 
@@ -607,7 +607,7 @@ measurements begin.
 
 The necessary configuration is shown here:
 
-```bash
+```properties
 ## Default configuration.  
 com.xceptance.xlt.loadtests.default.initialDelay = 0  
 com.xceptance.xlt.loadtests.default.warmUpPeriod = 20m  
@@ -648,7 +648,7 @@ which will be reached after 20 minutes.
 
 This is what the respective configuration would look like:
 
-```bash
+```properties
 ## Default configuration.  
 com.xceptance.xlt.loadtests.default.initialDelay = 0  
 com.xceptance.xlt.loadtests.default.measurementPeriod = 30m  

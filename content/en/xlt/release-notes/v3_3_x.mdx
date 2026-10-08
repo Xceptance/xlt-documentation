@@ -199,7 +199,7 @@ There is a new configuration file: `<xlt>/config/ec2_admin.properties`.
 The most important settings are your AWS credentials. These are needed
 to authorize any AWS operation, which is executed on your behalf.
 
-```bash
+```properties title="ec2_admin.properties"
 ## Your AWS credentials.  
 aws.accessKey = <enter your access key>  
 aws.secretKey = <enter your secret key>
@@ -340,7 +340,7 @@ credentials could only be set programmatically. Similar to the proxy
 authentication, you can use these new properties from the file
 `config/default.properties` now:
 
-```bash
+```properties title="default.properties"
 com.xceptance.xlt.auth.userName = <your_name>
 com.xceptance.xlt.auth.password = <your_password>  
 #com.xceptance.xlt.auth.domain = <your_domain>
@@ -405,7 +405,7 @@ Comments can stretch across multiple lines in the property files, when
 the line break is escaped with a backslash (\\). This line break will
 not cause a line break in the test report.
 
-```bash
+```properties
 com.xceptance.xlt.loadtests.comment = This configuration tests \ 
 the reaction on heavily changing thinktimes. \ 
 Therefore the user count is extremely high to accommodate that.
@@ -427,7 +427,7 @@ servers for this test.”
 The comment feature supports HTML to give you the ability to express
 test comments in a more structured way.
 
-```bash
+```properties
 com.xceptance.xlt.loadtests.comment = This configuration tests \
 the reaction on heavily changing <em>thinktimes</em>.<br/> \
 Therefore the user count is <span style="color: Red;">extremely</span> \
@@ -451,7 +451,7 @@ will be included in their natural order. This means
 numbered comments, such as `...comment.1` or `...comment.8`. The comment
 from the command line will be placed at the end.
 
-```bash
+```properties
 com.xceptance.xlt.loadtests.comment.1 = This is a comment.
 com.xceptance.xlt.loadtests.comment.2 = This is another comment.  
 com.xceptance.xlt.loadtests.comment.9 = Here comes another one, completely out of order, but valid.
@@ -471,7 +471,7 @@ machine and that weight is taken into consideration when automatically
 distributing the load across machines.
 
 Now the master controller’s configuration looks like this:
-```bash
+```properties
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac1.url = https://agentmachine1:8500  
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac1.weight = 5  
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac2.url = https://agentmachine2:8500  
@@ -1238,7 +1238,7 @@ the waiting time when no timeout value is specified. This value will be
 used if no waiting time is passed to any of the
 `AbstractHtmlPageAction#loadPageXYZ()` methods.
 
-```bash
+```properties
 ## The default time (in ms) to wait for JavaScript background jobs to finish.
 
 ## Default value is 0, if not set.  
@@ -1260,7 +1260,7 @@ XLT is able to route traffic through an HTTP proxy. If the proxy
 requires user authentication, the credentials needed can now be
 configured as additional properties in the file `default.properties`:
 
-```bash
+```properties title="default.properties"
 com.xceptance.xlt.proxy.userName = myUserName
 com.xceptance.xlt.proxy.password = myPassword
 ```

@@ -18,7 +18,7 @@ sidebar:
 
 When running test cases, you can save the page output to disk. The relevant property is `com.xceptance.xlt.output2disk`. By default, it is set to `never` (`always` in development mode). If you want to enable page output to disk, copy the following lines to `dev.properties` or `test.properties` or set the already existing property accordingly:
 
-```bash
+```properties title="test.properties"
 ## Enables page output to disk. Possible values are:
 ## - never ..... pages are never logged
 ## - onError ... pages are logged only if the transaction had errors
@@ -29,20 +29,20 @@ com.xceptance.xlt.output2disk = always
 If you have saved the page output to disk and want links from the error entries in the load test report to the corresponding result browsers in the results directory in your [report](/xlt/manual/test-evaluation/}
 ), make sure the property is set accordingly in `reportgenerator.properties`:
 
-```bash
+```properties title="reportgenerator.properties"
 com.xceptance.xlt.reportgenerator.linkToResultBrowsers = true
 ```
 
 By enabling page output to disk, a lot of data will be aggregated. To minimize this in load test mode, the property may be set to `onError` so that only the page output that resulted in an error is saved to disk. Since this single page on its own is not always enough to determine what generated the error, we can also set the number of actions previous to the error that should be kept as part of the record (this is set to 3 by default and to `all` in development mode):
 
-```bash
+```properties
 #com.xceptance.xlt.output2disk.size = all
 com.xceptance.xlt.output2disk.size = 3
 ```
 
 Also, the dump mode (whether modified or only final pages are saved) may be defined:
 
-```bash
+```properties
 #com.xceptance.xlt.output2disk.onError.dumpMode = modifiedAndFinalPages
 com.xceptance.xlt.output2disk.onError.dumpMode = finalPagesOnly
 ```
@@ -70,7 +70,7 @@ Don't put dynamic data into your stacktrace message such as unique product numbe
 
 #### Settings
 
-```bash
+```properties
 ## Amount of different errors handled by the dump limiter.
 ## If not specified it is 0 and we allow an unlimited amount of different errors.
 com.xceptance.xlt.output2disk.onError.limiter.maxDifferentErrors = 500
@@ -101,7 +101,7 @@ These settings are per running agent process! Hence, when you run ten machines w
 
 When saving request data to disk for the result browser, the request body of POST requests is currently limited to 8K by default and will be cropped when exceeding this value. If this is still too low for your most complex requests, for instance Web service requests with large JSON bodies, you can also tailor this limit to your needs (in bytes):
 
-```bash
+```properties
 com.xceptance.xlt.output2disk.maxRequestBodySize = 12345
 ```
 
@@ -240,7 +240,7 @@ space, the response content is NOT included in the generated HAR files.
 To enable this feature, add the following line to your test
 configuration:
 
-```
+```properties
 com.xceptance.xlt.output2disk.writeHarFile = true
 ```
 

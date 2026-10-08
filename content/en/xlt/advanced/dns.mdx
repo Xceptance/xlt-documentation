@@ -22,7 +22,7 @@ Java's standard DNS resolution has two key limitations that might affect the loa
 
 Enable IP address logging to gain visibility into DNS resolution. Logged IPs appear in the [result data files](/xlt/advanced/results/#collected-values).
 
-```bash
+```properties
 xlt.dns.recordAddresses = true
 ```
 
@@ -30,13 +30,13 @@ xlt.dns.recordAddresses = true
 
 While `xlt.dns.recordAddresses` logs IP addresses once per resolution, you can also collect the IP address used for *every* individual request. This is particularly useful when a host resolves to multiple IPs and you want to track which server handled each specific request.
 
-```bash
+```properties
 com.xceptance.xlt.results.data.request.collectUsedIpAddress = true
 ```
 
 Additionally, XLT can capture more detailed request information, such as the HTTP method and, for POST requests, the form data and its encoding. Use this sparingly, as it significantly increases the size of result data.
 
-```bash
+```properties
 com.xceptance.xlt.results.data.request.collectAdditionalRequestInfo = true
 ```
 
@@ -50,7 +50,7 @@ XLT includes enhancements to improve load distribution across multiple IP addres
 
 Enable these features by setting the following properties:
 
-```bash
+```properties
 xlt.dns.cacheAddresses = true
 xlt.dns.shuffleAddresses = true
 ```
@@ -59,7 +59,7 @@ xlt.dns.shuffleAddresses = true
 
 In some network environments, a specific IP protocol (IPv4 or IPv6) might cause connectivity issues or adds unwanted complexity. You can configure XLT to ignore addresses of a specific IP version during resolution.
 
-```bash
+```properties
 xlt.dns.ignoreIPv4Addresses = false
 xlt.dns.ignoreIPv6Addresses = true
 ```
@@ -72,7 +72,7 @@ When a hostname resolves to multiple IP addresses, the underlying HttpClient sil
 
 By setting the property below, XLT will randomly pick a single IP address from the available list and only use that one. If that specific server has issues, the request will fail immediately, identifying the culprit.
 
-```bash
+```properties
 xlt.dns.pickOneAddressRandomly = true
 ```
 
@@ -84,7 +84,7 @@ Combine with `xlt.dns.recordAddresses=true` to identify exactly which IP/server 
 
 You can manually map a hostname to one or more IP addresses, bypassing DNS resolution entirely. This works like a per-test `/etc/hosts` file and is useful for testing in environments where DNS might be unreliable or to direct traffic to specific pre-production servers.
 
-```bash
+```properties
 # Format: xlt.dns.override.<hostname> = <ip1>, <ip2>, ...
 xlt.dns.override.example.org = 192.0.2.1, 2001:db8::1
 ```
@@ -93,7 +93,7 @@ xlt.dns.override.example.org = 192.0.2.1, 2001:db8::1
 
 Java's DNS handler may cache entries longer than the TTL announced during resolution. You can override this behavior to force more frequent DNS lookups.
 
-```bash
+```properties
 xlt.dns.providers.platform.cache.duration = 30
 ```
 
@@ -113,7 +113,7 @@ XLT supports an alternative DNS resolver using [dnsjava](https://github.com/dnsj
 Java's built-in DNS has improved in recent releases. Evaluate whether the alternative provider is still necessary for your use case.
 :::
 
-```bash
+```properties
 xlt.dns.provider = dnsjava
 ```
 
@@ -121,7 +121,7 @@ xlt.dns.provider = dnsjava
 
 When using the `dnsjava` provider, additional configuration options are available:
 
-```bash
+```properties
 xlt.dns.providers.dnsjava.resolver.servers =
 xlt.dns.providers.dnsjava.resolver.timeout = 5
 xlt.dns.providers.dnsjava.edns.version = 0

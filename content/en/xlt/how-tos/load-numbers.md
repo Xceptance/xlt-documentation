@@ -219,7 +219,7 @@ The concurrent user count alone does not define business metrics such as page vi
 
 So, now that we have the number of users, we can complete our load configuration. Keep in mind that you might want to increase the user numbers beyond your calculated count to account for varying response times.
 
-```bash
+```properties
 ## Test case configuration
 ## User numbers use a safety factor of two.
 com.xceptance.xlt.loadtests.TBrowsing.users = 94

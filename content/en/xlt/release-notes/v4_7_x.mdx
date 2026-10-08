@@ -178,7 +178,7 @@ configuration for a set of AWS machines, the generated agent controller
 names will now also contain the region in which the respective machine
 is running:
 
-```bash
+```properties
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac001_ap-southeast-2.url = https://52.62.14.48:8500  
 com.xceptance.xlt.mastercontroller.agentcontrollers.ac002_us-east-1.url = https://54.82.197.127:8500
 ```
@@ -416,7 +416,7 @@ Just edit one function only.
 
 An example configuration would look like this:
 
-```bash
+```properties
 com.xceptance.xlt.loadtests.default.loadFactor = 15m/1, 60m/1, 65m/2, 120m/1.5  
 com.xceptance.xlt.loadtests.TBrowse.arrivalRate = 2000  
 com.xceptance.xlt.loadtests.TOrder.arrivalRate = 100  
@@ -537,7 +537,7 @@ will generate charts for the topmost 50 errors only by default.
 However, you can tailor this limit selectively in
 `reportgenerator.properties`. See the following example:
 
-```bash
+```properties title="reportgenerator.properties"
 com.xceptance.xlt.reportgenerator.errors.requestErrorOverviewChartsLimit = 0  
 com.xceptance.xlt.reportgenerator.errors.transactionErrorOverviewChartsLimit = –1  
 com.xceptance.xlt.reportgenerator.errors.transactionErrorDetailChartsLimit = 10
@@ -599,7 +599,7 @@ runtime segmentation was required. Now it is optional as well. To switch
 it off, either comment out the respective setting in file
 `reportgenerator.properties` or leave it empty:
 
-```bash
+```properties title="reportgenerator.properties"
 #com.xceptance.xlt.reportgenerator.runtimeIntervalBoundaries = 1000, 3000, 5000  
 com.xceptance.xlt.reportgenerator.runtimeIntervalBoundaries =
 ```
@@ -669,7 +669,7 @@ data can become significantly large. Therefore, recording method, POST
 data and its content type is disabled by default. To enable this
 feature, set the following property in your project configuration:
 
-```bash
+```properties
 com.xceptance.xlt.results.data.request.collectAdditionalRequestInfo = true
 ```
 
@@ -681,7 +681,7 @@ now was a way to configure the path to the actual browser binary. This
 is useful in case multiple browser versions are installed and the
 default one is not the one to use.
 
-```bash
+```properties
 xlt.webDriver.chrome.pathToDriverServer = /path/to/chromedriver  
 xlt.webDriver.chrome.pathToBrowser = /path/to/chrome
 ```
@@ -700,7 +700,7 @@ by default. If your test scenarios don’t make use of the browser history
 at all, you can turn it off completely with the following setting in
 your project configuration:
 
-```bash
+```properties
 com.xceptance.xlt.browser.history.size = 0
 ```
 

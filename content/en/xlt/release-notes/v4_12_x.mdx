@@ -29,7 +29,7 @@ option. Now, any browser command line argument parameter may contain
 whitespace if the entire argument is quoted properly using either single
 or double quotes:
 
-```bash
+```properties
 xlt.webDriver.chrome.browserArgs = --headless
 “--user-agent=Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5
 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko)
@@ -59,7 +59,7 @@ Xvfb. By default, XLT runs Xvfb with a display size of 1600x1200 and a
 color depth of 24 bits. You may now reconfigure these settings as
 follows:
 
-```bash
+```properties
 xlt.clientperformance.xvfb.screen = 1920x1080x24
 ```
 
@@ -172,7 +172,7 @@ therefore cause unexpected issues in certain systems. So before you use
 this feature, make sure the other system can handle it. Then use the
 following new setting to enable this feature:
 
-```bash
+```properties
 com.xceptance.xlt.http.requestId.appendToUserAgent = true
 ```
 
@@ -181,7 +181,7 @@ far, you could only specify a single header name that was used for both,
 the outgoing request ID and the incoming response ID. For more
 flexibility, you may now specify different header names as follows:
 
-```bash
+```properties
 com.xceptance.xlt.http.requestId.enabled = true
 com.xceptance.xlt.http.requestId.headerName = X-XLT-RequestId  
 com.xceptance.xlt.http.responseId.enabled = true  
@@ -230,7 +230,7 @@ shuffling the IP addresses so all IPs will be utilized equally.
 
 Enable these features by setting the following properties as needed:
 
-```bash
+```properties
 xlt.dns.cacheAddresses = true
 xlt.dns.shuffleAddresses = true
 ```
@@ -243,7 +243,7 @@ was responsible for that very request. That’s why XLT may record the IP
 this feature, set the following property in the test suite
 configuration:
 
-```bash
+```properties
 xlt.dns.recordAddresses = true
 ```
 
@@ -264,7 +264,7 @@ masked by the silent fail-over to another server, you can now debug this
 much better. Set the following property and XLT will randomly pick a
 single IP address from the list of available addresses:
 
-```bash
+```properties
 xlt.dns.pickOneAddressRandomly = true
 ```
 
@@ -283,7 +283,7 @@ optionally be enabled for non-idempotent requests (i.e. *POST* and
 *PATCH*). Now, this feature can be enabled or disabled altogether, and
 you may also tune the retry count:
 
-```bash
+```properties
 com.xceptance.xlt.http.retry.enabled = true
 com.xceptance.xlt.http.retry.nonIdempotentRequests = true  
 com.xceptance.xlt.http.retry.count = 3
@@ -366,7 +366,7 @@ simplifies the definition of request processing rules where the entire
 request attribute (and not only parts of it) is to be inserted into the
 new name.
 
-```bash
+```properties
 # old style  
 com.xceptance.xlt.reportgenerator.requestMergeRules.30.newName = {n:0} JS  
 com.xceptance.xlt.reportgenerator.requestMergeRules.30.namePattern = .*  
@@ -395,7 +395,7 @@ it. Otherwise, you would need to move the extra functionality to another
 rule. Finally, enable the automatic index stripping feature by setting
 this property:
 
-```bash
+```properties
 com.xceptance.xlt.reportgenerator.requests.removeIndexes = true
 ```
 

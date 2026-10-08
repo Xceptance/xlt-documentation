@@ -142,7 +142,7 @@ The report features a *Slowest Requests* page that lists the top slowest request
 
 By default, the *Slowest Requests* page lists up to 500 requests, with a limit of 20 requests per request name. To be counted as a slow request, the runtime of a request must be between 3 seconds and 10 minutes. All of these default limits can be reconfigured in the report generator configuration using the following properties:
 
-```bash
+```properties
 ## The maximum number of slow requests to remember per request name
 com.xceptance.xlt.reportgenerator.slowestRequests.requestsPerBucket = 20
 

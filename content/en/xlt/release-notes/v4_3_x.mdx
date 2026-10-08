@@ -106,7 +106,7 @@ In a request merge rule, the new request name is often composed of parts
 of the filter text. These parts are typically taken from matching groups
 in the filter regular expressions. For example:
 
-```bash
+```properties
 # add the host to the request name
 com.xceptance.xlt.reportgenerator.requestMergeRules.3.newName = {n:0} - {u:1}  
 com.xceptance.xlt.reportgenerator.requestMergeRules.3.namePattern = .*  
@@ -136,7 +136,7 @@ out new merge rules or report style sheets.
 XLT did not respect certain combinations of cache control directives in
 the `Cache-Control` HTTP header, for example:
 
-```bash
+```properties
 Cache-Control: public, max-age=604800 		// OK  
 Cache-Control: max-age=604800, public 		// was not recognized
 ```
@@ -655,7 +655,7 @@ course, each included file may also define includes itself.
 
 To include other property files, use the following syntax:
 
-```bash
+```properties title="dev.properties"
 com.xceptance.xlt.propertiesInclude.1 = path/to/directory_with_properties_files  
 com.xceptance.xlt.propertiesInclude.2 = path/to/other.properties
 ```
@@ -669,7 +669,7 @@ as the underlying WebDriver by default. Up to now, you had to write code
 to run test cases with another WebDriver. XLT 4.3.0 lets you define the
 default driver type in the test suite configuration:
 
-```bash
+```properties
 xlt.webDriver = chrome 
 xlt.webDriver.window.width = 1200  
 xlt.webDriver.window.height = 900  
@@ -746,7 +746,7 @@ settings to turn request ID handling on or off, to configure the name of
 the request/response header that carries the ID, and the length of
 outbound request IDs:
 
-```bash
+```properties
 com.xceptance.xlt.http.requestId.enabled = true
 com.xceptance.xlt.http.requestId.headerName = X-XLT-RequestId  
 com.xceptance.xlt.http.requestId.length = 16

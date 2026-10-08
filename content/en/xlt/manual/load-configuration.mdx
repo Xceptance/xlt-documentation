@@ -49,7 +49,7 @@ The arrival rate model is ideal for verifying that a system can handle a specifi
 
 Often, tests need to run at levels other than 100% of the target load (e.g., lower for dry runs, higher for peak load tests). Instead of recalculating profiles, XLT offers a _load factor_. You configure the target numbers (100%) once and scale the load as needed:
 
-```bash
+```properties
 ## Scale the load up to 150% for TVisit and down to 10% for all other scenarios
 com.xceptance.xlt.loadtests.TVisit.loadFactor = 1.5
 com.xceptance.xlt.loadtests.default.loadFactor = 0.1
@@ -59,7 +59,7 @@ The load factor applies to both user count and arrival rate (if specified).
 
 XLT also supports a variable load factor that changes over time. Specify a function instead of a simple value:
 
-```bash
+```properties
 ## Scale the load up to 150% after one hour and down to 50% after two hours
 com.xceptance.xlt.loadtests.default.loadFactor = 0/1.0, 1h/1.0, 1h/1.5, 2h/1.5, 2h/0.5
 ```
@@ -82,7 +82,7 @@ Detailed explanations follow below.
 
 The load parameter remains constant throughout the test. This is the simplest profile. Ensure the target system can handle the full load from the start. You only need to define the user count and measurement period:
 
-```bash
+```properties
 com.xceptance.xlt.loadtests.TVisit.users = 500
 com.xceptance.xlt.loadtests.default.measurementPeriod = 1h
 ```
@@ -109,7 +109,7 @@ If an arrival rate is defined, ramp-up applies to it; otherwise, it applies to t
 
 For example, given a ramp-up step size of 100 users, a total of 500 users, and a steady period of 10 minutes, the framework calculates a total ramp-up period of 40 minutes. The configuration:
 
-```bash
+```properties
 com.xceptance.xlt.loadtests.TVisit.users = 500
 #com.xceptance.xlt.loadtests.TVisit.rampUpPeriod = 40m
 com.xceptance.xlt.loadtests.TVisit.rampUpSteadyPeriod = 10m
@@ -129,7 +129,7 @@ Keep in mind that times in the configuration can be specified in different ways.
 
 However, to configure a simple ramp-up phase for the system to warm up, this setting is sufficient:
 
-```bash
+```properties
 com.xceptance.xlt.loadtests.TVisit.users = 500
 com.xceptance.xlt.loadtests.TVisit.rampUpPeriod = 40m
 com.xceptance.xlt.loadtests.TVisit.measurementPeriod = 60m
@@ -156,7 +156,7 @@ Do not use whitespace within a time unit or between time and value (e.g., `1 h` 
 
 Example load function:
 
-```bash
+```properties
 com.xceptance.xlt.loadtests.default.loadFactor = 0/10, 60m/10, 60m/20, 70m/5
 ```
 
@@ -171,21 +171,21 @@ Pairs must be sorted by time (ascending). You can specify two pairs for the same
 
 You can specify times and values relative to the previous point using `+` or `-`:
 
-```bash
+```properties
 ## This load function is equivalent to "0/1.0, 1h/1.5, 1h30m/0.5"
 com.xceptance.xlt.loadtests.default.loadFactor = 0/1.0, +1h/+0.5, +30m/-1.0
 ```
 
 Absolute and relative pairs can be mixed. Relative times cannot result in a negative time (pairs must remain sorted).
 
-```bash
+```properties
 ## This load function is equivalent to "0/1.0, 1h/1.0, 1h20m/2.0, 1h40m/2.0, 2h/1.0"
 com.xceptance.xlt.loadtests.default.loadFactor = 0/1.0, 1h/+0, +20m/2.0, +20m/+0, +20m/1.0
 ```
 
 If the first pair is relative, a minimal non-zero start point is assumed at time 0:
 
-```bash
+```properties
 ## This load function results in "0/0.001, +1h/+1.0", +1h/+0.5", i.e. "0/0.001, 1h/1.001, 2h/1.501"
 com.xceptance.xlt.loadtests.default.loadFactor = +1h/+1.0 +1h/+0.5
 ```

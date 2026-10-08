@@ -82,7 +82,7 @@ Currently, no public XLT gcloud images are provided; however, you can build your
 
 Before its first use, the gce_admin tool needs to be configured. You can do this by editing `<XLT>/config/gce_admin.properties`. The most important property you need to set here is the **project id**, which should be the same project you set earlier in gcloud:
 
-```text
+```properties title="gce_admin.properties"
 xlt.gce.projectId = my-project-1
 ```
 
@@ -491,6 +491,6 @@ ec2_admin.sh terminate eu-central-1 Posters
 
 Note how `ec2_admin` writes the agent machine configuration to the `agents.properties` file, which in turn is passed to the master controller as input. Be aware, though, that it may take a while until the agent controllers are up and running. To prevent the master controller from complaining too early about unreachable agent controllers, configure an appropriate waiting time in `mastercontroller.properties` (e.g., one minute):
 
-```text
+```properties title="mastercontroller.properties"
 com.xceptance.xlt.mastercontroller.initialResponseTimeout = 60000
 ```

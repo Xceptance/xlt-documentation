@@ -10,7 +10,7 @@ sidebar:
 Once the [demo shop is running locally](/xlt/quick-start/demo-application/) and you have [set up the demo test suite](/xlt/quick-start/demo-test-suite/), you are ready to run a test.
 First, tell XLT in `<posters-simple-loadtest-suite>/config/project.properties` which test configuration to use and where to find your Posters demo shop instance:
 
-```bash
+```properties title="project.properties"
 # Point to the test setup for XLT, this is an XLT setting
 com.xceptance.xlt.testPropertiesFile = my-test.properties
 
@@ -21,7 +21,7 @@ store-url = https://localhost:8443/posters/
 
 Next, you configure the basic properties of the test suite and the load profile in `<posters-simple-loadtest-suite>/config/my-test.properties`. The demo test suite comes with basic `test.properties` which you can use as a starting point for whatever you are planning.
 
-```bash
+```properties title="test.properties"
 com.xceptance.xlt.loadtests = TVisit
 com.xceptance.xlt.loadtests.default.rampUpPeriod = 5m
 com.xceptance.xlt.loadtests.default.measurementPeriod = 1h
@@ -38,7 +38,7 @@ In this case we run a test for 1 hour with a 5 minute [ramp-up period](/xlt/abou
 
 To run the test execution, tell the [mastercontroller](/xlt/manual/environment-configuration/#mastercontroller-configuration) where the test suite is (in `<xlt>/config/mastercontroller.properties`):
 
-```bash
+```properties title="mastercontroller.properties"
 com.xceptance.xlt.mastercontroller.testSuitePath = <posters-simple-loadtest-suite>
 ```
 

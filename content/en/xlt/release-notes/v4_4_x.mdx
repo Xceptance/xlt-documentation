@@ -495,7 +495,7 @@ supports a simple load factor. When taking advantage of it, you only
 need to configure the target numbers (100% of load) once and can then
 easily scale the load up or down as you like:
 
-```bash
+```properties
 ## scale the load down to 50% for TAuthor and to 10% for all other scenarios  
 com.xceptance.xlt.loadtests.TAuthor.loadFactor = 0.5  
 com.xceptance.xlt.loadtests.default.loadFactor = 0.1
@@ -523,7 +523,7 @@ periodically clear the counter. Use this setting to limit the maximum
 number of result browsers for a given time period instead of the whole
 test runtime.
 
-```bash
+```properties
 # maximum number of different error types per agent  
 com.xceptance.xlt.output2disk.onError.limiter.maxDifferentErrors = 1000
 
@@ -614,7 +614,7 @@ The timeout used to abort long-running transactions has only been a
 global setting so far. Now it can be configured specifically for each
 test case/transaction type:
 
-```bash
+```properties
 # default settings  
 com.xceptance.xlt.abortLongRunningTransactions = true  
 com.xceptance.xlt.maximumTransactionRunTime = 900000
@@ -639,7 +639,7 @@ DOMContentLoaded/load event) as seen by the browser. To enable gathering
 client performance data, you simply have to configure a special Firefox
 web driver before executing your test cases:
 
-```bash
+```properties
 # use “firefox_clientperformance” instead of “firefox”
 xlt.webDriver = firefox_clientperformance
 ```

@@ -135,7 +135,7 @@ accomplish this, it’s now possible to configure the agent controller’s
 host - either by name or by IP - in the corresponding properties file
 `<xlt>/config/agentcontroller.properties`:
 
-```bash
+```properties title="agentcontroller.properties"
 com.xceptance.xlt.agentcontroller.host = myhost.domain.com
 ```
 
@@ -938,7 +938,7 @@ or an end value (for the end of the measurement period), as there are
 reasonable defaults. For example, the following load function is totally
 valid:
 
-```bash
+```properties
 com.xceptance.xlt.loadtests.TAuthor.users = 30s/5
 ```
 
@@ -1255,7 +1255,7 @@ exactly 100 times per hour using at most 10 concurrent users, but in the
 beginning the arrival rate is steadily ramped up from 1 up to 100 over a
 period of 5 minutes.
 
-```bash
+```properties
 com.xceptance.xlt.loadtests.TAuthor.arrivalRate = 100
 com.xceptance.xlt.loadtests.TAuthor.users = 10  
 com.xceptance.xlt.loadtests.TAuthor.rampUpPeriod = 5m
@@ -1265,7 +1265,7 @@ Note that if no arrival rate is defined for a test scenario, the ramp-up
 parameters are applied to the user count instead. Imagine this
 configuration:
 
-```bash
+```properties
 com.xceptance.xlt.loadtests.TAuthor.users = 10
 com.xceptance.xlt.loadtests.TAuthor.rampUpPeriod = 5m
 ```
@@ -1297,7 +1297,7 @@ the network connection a lot more than simple control commands, the
 degree of concurrency can be configured. There are two new properties
 available in `mastercontroller.properties`:
 
-```bash
+```properties title="mastercontroller.properties"
 com.xceptance.xlt.mastercontroller.maxParallelUploads = 4
 com.xceptance.xlt.mastercontroller.maxParallelDownloads = 8
 ```
@@ -1322,7 +1322,7 @@ connection failures, the socket connect/read timeouts can be configured
 now. Two new properties have been introduced which are located in the
 `mastercontroller.properties` file:
 
-```bash
+```properties title="mastercontroller.properties"
 com.xceptance.xlt.mastercontroller.connectTimeout = 5000
 com.xceptance.xlt.mastercontroller.readTimeout = 10000
 ```
@@ -1371,7 +1371,7 @@ pattern types. All requests that match the exclude pattern will *not* be
 selected. For example, to create a bucket for all non-JavaScript
 resources, you would setup a rule like that:
 
-```bash
+```properties
 com.xceptance.xlt.reportgenerator.requestMergeRules.1.newName = {n:0} NonJS  
 com.xceptance.xlt.reportgenerator.requestMergeRules.1.namePattern = .+  
 com.xceptance.xlt.reportgenerator.requestMergeRules.1.contentTypePattern.exclude = javascript  

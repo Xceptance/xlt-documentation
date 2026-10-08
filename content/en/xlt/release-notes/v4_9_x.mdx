@@ -266,7 +266,7 @@ to now, you could configure just the path to the browser executable. Now
 there is a new property to specify also custom command line arguments to
 be passed to the browser:
 
-```bash
+```properties
 xlt.webDriver.chrome.browserArgs = --headless
 ```
 
@@ -395,7 +395,7 @@ mature.
 To switch between geckodriver mode and legacy mode, change the following
 setting in the test suite configuration as needed:
 
-```bash
+```properties
 xlt.webDriver.firefox.legacyMode = true
 xlt.webDriver.firefox_clientperformance.legacyMode = true
 ```
@@ -575,7 +575,7 @@ ports are often already used by other applications, you can now
 reconfigure them easily. To this end, open the file
 `<xlt>/samples/app-server/start.ini` and customize the ports as needed:
 
-```bash
+```properties
 ## the ports to use for HTTP and HTTPS
 jetty.http.port=8080  
 jetty.ssl.port=8443

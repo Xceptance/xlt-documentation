@@ -201,7 +201,7 @@ the XLT framework. By default, a command that failed because of a stale
 element will now be retried once, but you can reconfigure the number of
 retries as follows:
 
-```bash
+```properties
 com.xceptance.xlt.scripting.commandRetries = 1
 ```
 
@@ -228,7 +228,7 @@ protocols, namely SSLv2Hello, SSLv3, TLSv1, TLSv1.1, and TLSv1.2. They
 just need to be enabled. To reconfigure the set of enabled protocols,
 use the following setting:
 
-```bash
+```properties
 com.xceptance.xlt.ssl.protocols = SSLv3, TLSv1, TLSv1.1, TLSv1.2
 ```
 
@@ -442,7 +442,7 @@ don’t stand out anymore.
 Whether the value range should start at 0 can be configured in
 `<xlt>/config/trendreportgenerator.properties` using a new property:
 
-```bash
+```properties title="reportgenerator.properties"
 com.xceptance.xlt.trendreportgenerator.charts.autoRangeIncludesZero = true
 ```
 
@@ -789,7 +789,7 @@ can watch the most important performance data instantly:
 See below for the XLT settings needed to enable and configure real-time
 reporting:
 
-```bash
+```properties
 xlt.reporting.enabled = true
 xlt.reporting.interval = 15  
 xlt.reporting.metricNamePrefix = xlt.MyProject.  
@@ -954,7 +954,7 @@ the master controller from complaining too early about unreachable agent
 controllers, you should configure an appropriate waiting time in
 `mastercontroller.properties`, one minute, for example:
 
-```bash
+```properties title="mastercontroller.properties"
 com.xceptance.xlt.mastercontroller.initialResponseTimeout = 60000
 ```
 

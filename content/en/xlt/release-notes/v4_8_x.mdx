@@ -144,7 +144,7 @@ certain properties, i.e. their values will be replaced with \*\*\*\*\*\*. Specif
 the properties to be masked using a regular expression in
 `<xlt>/config/reportgenerator.properties`, for example:
 
-```bash
+```properties title="reportgenerator.properties"
 com.xceptance.xlt.reportgenerator.maskPropertiesRegex = (?i)(password|passphrase|login)
 ```
 
@@ -404,7 +404,7 @@ it a try in case you experience issues with geckodriver.
 To switch between geckodriver mode and legacy mode, change the following
 setting as needed:
 
-```bash
+```properties
 xlt.webDriver.firefox.legacyMode = true  
 xlt.webDriver.firefox_clientperformance.legacyMode = true
 ```
@@ -421,7 +421,7 @@ If you want to use the Opera browser for your WebDriver-based test
 cases, this is now possible in a very convenient way. Simply choose
 *opera* as the WebDriver to use in the test suite configuration:
 
-```bash
+```properties
 xlt.webDriver = opera
 #xlt.webDriver.opera.pathToDriverServer = /path/to/operadriver  
 #xlt.webDriver.opera.pathToBrowser = /path/to/opera
@@ -489,7 +489,7 @@ the seed value from the result browser, add the following line to your
 `dev.properties` file, and re-execute the test as usual from your
 favorite IDE:
 
-```bash
+```properties title="dev.properties"
 com.xceptance.xlt.random.initValue = <copied seed value>
 ```
 
@@ -533,7 +533,7 @@ framework property name with the scenario name or class in the settings
 of your test suite. Let’s use the think time between actions as an
 example:
 
-```bash
+```properties
 com.xceptance.xlt.thinktime.action = 5000  
 TOrder_DE.com.xceptance.xlt.thinktime.action = 10000  
 posters.loadtest.tests.TRestApi.com.xceptance.xlt.thinktime.action = 0
