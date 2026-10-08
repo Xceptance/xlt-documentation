@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/Xceptance/xlt-documentation#readme",
   "dependencies": {
-    "blume": "^1.7.0"
+    "blume": "^2.2.1"
   }
 }

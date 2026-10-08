@@ -9,7 +9,6 @@ export default defineConfig({
   // with pre-configured .htaccess URL rewrites, compression, and caching headers.
   deployment: {
     site: "https://docs.xceptance.com",
-    output: "static",
   },
 
   // Client-side search indexing powered by Orama:
