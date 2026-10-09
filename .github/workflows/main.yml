@@ -11,6 +11,9 @@ on:
 concurrency:
   group: deploy-documentation
   cancel-in-progress: false
+
+permissions:
+  contents: read
     
 jobs:
   deploy:

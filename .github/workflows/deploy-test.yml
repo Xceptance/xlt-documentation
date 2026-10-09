@@ -20,6 +20,9 @@ concurrency:
   group: deploy-test-documentation
   cancel-in-progress: false
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-24.04
