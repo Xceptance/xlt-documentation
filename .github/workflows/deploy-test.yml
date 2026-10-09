@@ -1,0 +1,51 @@
+name: Deploy documentation (Test / Staging)
+
+on:
+  push:
+    branches:
+      - poc-migrate-to-blume
+      - 'test/**'
+      - 'preview/**'
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Optional note / reason for deployment'
+        required: false
+        default: 'Manual test deployment'
+
+# Prevent concurrent deployments across ALL branches/runs of this test workflow.
+# New runs will wait (queue) until the current one finishes.
+# Kept isolated from production deploy-documentation concurrency group.
+concurrency:
+  group: deploy-test-documentation
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate documentation
+        run: npm run validate
+
+      - name: Build static documentation
+        run: npm run build
+
+      - name: Install lftp
+        run: sudo apt-get install lftp
+
+      - name: Mirror the documentation on the FTP
+        run: .github/workflows/scripts/mirrorftp ${{ secrets.FTP_TEST_USERNAME }} ${{ secrets.FTP_TEST_PASSWORD }} ${{ secrets.FTP_TEST_HOST }}
+

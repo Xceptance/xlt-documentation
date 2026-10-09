@@ -92,6 +92,45 @@ The production build in `dist/` is completely self-contained and drop-in compati
 
 ---
 
+## Staging & Test Deployments
+
+A dedicated staging deployment workflow is available to test documentation builds and verify pre-production changes before deploying to production:
+
+- **Staging URL**: [https://docs-test.xceptance.com](https://docs-test.xceptance.com)
+- **Workflow File**: `.github/workflows/deploy-test.yml`
+
+### Automated Triggers
+
+The test deployment workflow triggers automatically on push to:
+- `poc-migrate-to-blume` (active migration branch)
+- Any branch matching `test/**` (e.g. `test/new-navigation`)
+- Any branch matching `preview/**` (e.g. `preview/xlt-8-manual`)
+
+### Manual Trigger via GitHub UI (`workflow_dispatch`)
+
+You can manually trigger a deployment of **any** branch to the staging server:
+1. Navigate to the **Actions** tab in the GitHub repository.
+2. In the left workflow list, select **Deploy documentation (Test / Staging)**.
+3. Click the **Run workflow** dropdown button.
+4. Select the target branch you want to build and deploy.
+5. (Optional) Provide a deployment note or reason.
+6. Click **Run workflow** to initiate the deployment.
+
+### Required Repository Secrets
+
+The test deployment requires three encrypted GitHub Actions repository secrets configured under **Settings** $\rightarrow$ **Secrets and variables** $\rightarrow$ **Actions**:
+
+| Secret Name | Description | Example |
+| :--- | :--- | :--- |
+| `FTP_TEST_HOST` | Hostname or IP address of the staging FTP server | `ftp.example.com` |
+| `FTP_TEST_USERNAME` | FTP username for the staging account | `test-docs-user` |
+| `FTP_TEST_PASSWORD` | Password for the staging FTP account | `••••••••••••` |
+
+> [!NOTE]
+> **Secret Security & Isolation**: GitHub Actions secrets are encrypted at rest using libsodium sealed boxes, never exposed in workflow run logs (automatically masked with `***`), and bound to the repository rather than individual personal accounts. The test workflow runs under its own concurrency group (`deploy-test-documentation`) and uses separate credentials from the production deployment pipeline (`main.yml`).
+
+---
+
 ## Code Block Search Indexing
 
 By default, documentation search indexes headings, titles, and body prose. For developer-focused documentation like XLT and Neodymium, users frequently search for:
