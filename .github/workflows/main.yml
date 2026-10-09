@@ -11,6 +11,9 @@ on:
 concurrency:
   group: deploy-documentation
   cancel-in-progress: false
+
+permissions:
+  contents: read
     
 jobs:
   deploy:
@@ -19,37 +22,21 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
-          submodules: true # Fetch Hugo themes/modules
 
-      # 👇 NEW STEP: Setup Node.js Environment
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Use a recent stable LTS version
-          
-      # 👇 NEW STEP: Install PostCSS and other Node dependencies
-      - name: Install Node.js Dependencies
-        run: npm ci 
-        # `npm ci` (clean install) is faster and better for CI environments than `npm install`
+          node-version: '22'
+          cache: 'npm'
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: '0.152.2'
-          extended: true
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Cache Hugo modules
-        uses: actions/cache@v4
-        with:
-          path: /tmp/hugo_cache
-          key: ${{ runner.os }}-hugo-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-hugo-
+      - name: Validate documentation
+        run: npm run validate
 
-      - name: Build the documentation
-        env:
-            HUGO_CACHEDIR: /tmp/hugo_cache
-        run: hugo --gc --minify
+      - name: Build static documentation
+        run: npm run build
 
       - name: Install lftp
         run: sudo apt-get install lftp

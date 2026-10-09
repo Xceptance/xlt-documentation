@@ -7,6 +7,6 @@ HOST=$3
 lftp << EOF
 set ftp:ssl-force true
 connect -u $USER,$PASSWORD $HOST
-mirror -e -R --parallel=4 public/ .
+mirror -e -R --parallel=4 dist/ .
 exit
 EOF

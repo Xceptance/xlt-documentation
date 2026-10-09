@@ -1,9 +1,9 @@
 ---
-title: "Selenide"
-linkTitle: "Selenide"
-weight: 550
-type: docs
+title: Selenide
 description: "Selenide integration in Neodymium."
+sidebar:
+  label: Selenide
+  order: 550
 ---
 
 [Selenide](https://github.com/codeborne/selenide/) is a test automation framework built on top of [Selenium Webdriver](https://github.com/SeleniumHQ/selenium) that allows you to write concise test.

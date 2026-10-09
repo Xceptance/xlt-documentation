@@ -1,12 +1,10 @@
 ---
-title: "Private Machine Mode"
-linkTitle: "Private Machine Mode"
-
-weight: 495
-type: docs
-
-description: >
-    Running XLT load testing agent controllers in network-isolated environments and corporate infrastructure.
+title: Private Machine Mode
+description: "Running XLT load testing agent controllers in network-isolated
+  environments and corporate infrastructure.\n"
+sidebar:
+  label: Private Machine Mode
+  order: 495
 ---
 
 When performing load tests against applications located inside corporate firewalls, VPNs, or isolated private networks (such as internal staging or pre-production environments), external public cloud load generators cannot directly reach the System Under Test (SUT). Whitelisting arbitrary external IP addresses in enterprise firewalls is often impractical or prohibited by security policy.
@@ -64,4 +62,4 @@ Upon startup, the controller registers with XTC and opens its Relay tunnel. Veri
 * **Hybrid Execution**: Private machines can be freely combined with public cloud or custom machines within a single load test.
 * **Teardown**: When the load test completes, XTC automatically releases the reserved private machines back to the pool.
 
-For more information on using Private Machines in XTC load testing projects, see the [XTC Private Machines Guide]({{< relref "xtc/loadtesting/156-private-machines" >}}).
+For more information on using Private Machines in XTC load testing projects, see the [XTC Private Machines Guide](/xtc/loadtesting/private-machines/).

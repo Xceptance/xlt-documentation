@@ -1,9 +1,9 @@
 ---
-title: "Build with Maven"
-linkTitle: "Build with Maven"
-weight: 510
-type: docs
+title: Build with Maven
 description: "Building the project and running tests with Maven."
+sidebar:
+  label: Build with Maven
+  order: 510
 ---
 
 To build the project and run tests with Maven, open the command line, navigate to your project's root directory and execute the following command:

@@ -1,0 +1,108 @@
+---
+title: Slack Integration
+description: "XTC's ability to send notifications about specific events via Slack\n"
+sidebar:
+  order: 510
+---
+
+XTC can integrate with [Slack](https://slack.com) to send notifications about certain system event to public channels. Notifications include state changes for load tests or monitoring events.
+
+## Configuration
+
+Slack notifications can be configured either at the organization or project level.
+
+:::info[Role Required]
+To configure Slack integration on org level, your account must at least have the role of an [organization administrator](/xtc/basics/organizations/#user-roles-within-an-organization) within the organization.
+::: 
+
+:::info[Role Required]
+To configure Slack integration on project level, your account must at least have the role of a [project administrator](/xtc/basics/projects/#user-roles-within-a-project) within the project.
+:::
+
+![Default configuration values at the organization level: message sending is disabled, the integration is not configured and no target channels are set. Threads and compact messages are disabled.](/images/xtc/slack-config-readonly.png)
+*Default configuration values at the organization level: message sending is disabled, the integration is not configured and no target channels are set. Threads and compact messages are disabled.*
+
+Organization-level configuration values take effect in all the organization's projects unless explicitly overridden. Overriding occurs at a value level, i.e. not setting a specific configuration value at the project level will leave the corresponding value of the organization's config in place.
+
+![An integration config of a project with the "Send messages" overriden and all other values inherited from the surrounding organization.](/images/xtc/slack-config-override.png)
+*An integration config of a project with the "Send messages" overriden and all other values inherited from the surrounding organization.*
+
+## Configuration Values
+
+Clicking the edit button on the Slack configuration opens the configuration form for setting up or removing the integration and editing its settings:
+
+![The Slack integration config form](/images/xtc/slack-config.png)
+*The Slack integration config form*
+
+### Send messages
+
+The Slack integration will not send any messages unless enabled. If a project has a configuration, this value will *always* override the organization's setting, i.e. projects with this set to "Disabled" will not send messages even if their containing organization has the integration enabled.
+
+### Set Up Slack Integration
+
+This will forward the browser to Slack to initiate the integration process. If your Slack user has the appropriate permissions within the Slack workspace you will be presented with a screen to confirm the installation of XTC in your workspace. Upon confirmation you will be redirected back to the configuration overview where **Slack Integration** now should have changed to "Done" and and the **Slack Workspace** should contain the name of the Slack workspace you just installed XTC to.
+
+![Slack integration installed into a workspace named "XTC-Test-Workspace"](/images/xtc/slack-config-token-installed.png)
+*Slack integration installed into a workspace named "XTC-Test-Workspace"*
+  
+:::warning
+Clicking the "Set Up Slack Integration" button will forward you to Slack *without* saving the form contents.
+:::
+  
+:::note
+If your Slack workspace is set up to require app approval, you may be presented with a screen to request said approval from an appropriate user in your workspace. Once this approval has been granted you can just restart the setup from the XTC config form.
+:::
+
+When an integration is set up on the project level it will override any inherited values from the surrounding organization.
+
+### Remove Slack Integration
+
+Removing the integration from your organization or project will remove all necessary integration data. In order to re-enable the integration again, you might have to repeat the setup process, potentially including any confirmation process within Slack.
+
+:::note
+When removing the integration from a project the integration of the surrounding organization takes effect. XTC does not allow projects to override an organization-wide integration with "empty data".
+:::
+
+### Target Channels
+
+The channels to send messages to. Separate multiple channels using spaces. This value will override inherited values only if it is non-empty.
+  
+:::note
+XTC does *NOT* support sending messages to individual users or private channels.
+:::
+
+### Message Grouping / Compact View
+
+As the default message style takes up quite some space in the Slack channel, it might be desirable to get a more compact message view. This can be achieved by choosing the _Compact Message View_ and/or by _Grouping related messages into threads_ (e.g. all messages about the status of one load test). 
+
+![Default message format with thread for subsequent messages about the same load test.](/images/xtc/slack-format-thread.png)
+*Default message format with thread for subsequent messages about the same load test.*
+
+![A message in compact format.](/images/xtc/slack-format-compact.png)
+*A message in compact format.*
+
+### Send Test Message
+
+If a complete configuration (i.e. integration data and target channels) is available (inherited or configured directly), admins can send a test message to check for a correct setup. Please check in your Slack client whether the message arrived as expected. If not please re-check the configured values.
+
+## Notification Events
+
+:::warning
+Due to limitations in Slack's text renderer certain control characters (`_`, `*`, `` ` `` or `~`) have to be removed. This applies to organization, project, load test, and report names. XTC does not limit your freedom here when setting up data, but this won't make it into the Slack communication.
+:::
+
+Once configured XTC will send notifications for the following events:
+
+### Load Tests
+  * **Start** A user started a load test from the UI.
+  * **Running** The setup phase is complete; the actual test run starts.
+  * **Finished** The test run is done.
+  * **Aborted** The test run has been aborted by a user.
+  * **Error** The load test failed at any step.
+  * **Report Available** The final report for the test is available.
+
+Additionally XTC will also send notifications when intermediate reports become available.
+
+### Monitoring
+
+If a scenario is configured to [notify via Slack](/xtc/monitoring/monitoring-configuration/#defining-a-notification-list), XTC will send notifications the same way it would send e-mails or text messages.

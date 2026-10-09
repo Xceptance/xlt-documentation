@@ -1,11 +1,9 @@
 ---
-title: "Advanced Screenshot Features"
-
-weight: 140
-type: docs
-
-description: >
-  How to configure the advanced screenshots from Neodymium to improve error analysis.
+title: Advanced Screenshot Features
+description: "How to configure the advanced screenshots from Neodymium to
+  improve error analysis.\n"
+sidebar:
+  order: 140
 ---
 
 Selenide's default screenshots are sometimes insufficient for thorough bug analysis. Neodymium offers advanced features
@@ -23,15 +21,14 @@ By default, this captures normal viewport screenshots at the moment of failure, 
 
 * **Folder Structure:** Screenshots are stored in separate folders for each test class. To prevent conflicts when test
   classes share names across different test areas, the folder name includes the entire package path.
-  {{< image max-width="60%" src="neodymium/Screenshots_Folder_Normal.PNG" >}}
-  Example: Screenshots for `BrowseTest` in the `smoke` sub-package are stored in a path that reflects the full
-  package.
-  {{< /image >}}
+  ![Example: Screenshots for `BrowseTest` in the `smoke` sub-package are stored in a path that reflects the full
+  package.](/images/neodymium/Screenshots_Folder_Normal.PNG)
+*Example: Screenshots for `BrowseTest` in the `smoke` sub-package are stored in a path that reflects the full
+  package.*
 * **File Naming:** The file name includes the calling test method name, the used browser profile, the provided data set,
   and a timestamp for unique identification.
-  {{< image max-width="60%" src="neodymium/Screenshots_example.PNG" >}}
-  Improved screenshot naming.
-  {{< /image >}}
+  ![Improved screenshot naming.](/images/neodymium/Screenshots_example.PNG)
+*Improved screenshot naming.*
 
 ## Folder Tree Structure
 
@@ -39,9 +36,8 @@ For large test suites, the flat folder structure can become confusing. You can a
 folder tree structure for better organization:
 
 * **Activation:** Enable the `neodymium.screenshots.enableTreeDirectoryStructure` property.
-  {{< image max-width="60%" src="neodymium/Screenshots_Folder_Tree.PNG" >}}
-  Example: Improved tree structure.
-  {{< /image >}}
+  ![Example: Improved tree structure.](/images/neodymium/Screenshots_Folder_Tree.PNG)
+*Example: Improved tree structure.*
 
 ## Element Highlighting
 
@@ -49,17 +45,15 @@ To clarify which element was last evaluated or manipulated by a CSS selector, Ne
 directly on the screenshot.
 
 * **Activation:** Enable the `neodymium.screenshots.highlightLastElement` property.
-  {{< image max-width="60%" src="neodymium/Screenshots_highlighting_example.PNG" >}}
-  Highlighting the last interacted element for visual debugging.
-  {{< /image >}}
+  ![Highlighting the last interacted element for visual debugging.](/images/neodymium/Screenshots_highlighting_example.PNG)
+*Highlighting the last interacted element for visual debugging.*
 * **Customizing Highlight Color:** The default color can be changed using the
   `neodymium.screenshots.element.highlightColor` property, specified in hexadecimal format:
     ```properties
     neodymium.screenshots.element.highlightColor = #0000FF
     ```
-  {{< image max-width="60%" src="neodymium/Screenshots_highlighting_example_blue.PNG" >}}
-  Example: Custom highlight color.
-  {{< /image >}}
+  ![Example: Custom highlight color.](/images/neodymium/Screenshots_highlighting_example_blue.PNG)
+*Example: Custom highlight color.*
 
 ## Full Page Screenshots
 
@@ -68,9 +62,8 @@ When the viewport alone doesn't capture the entire context of a failure, you can
 * **Activation:** Use the `neodymium.screenshots.fullpagecapture.enable` property.
 * **Highlight Viewport:** To still know where the visible viewport was located on the full page, enable the highlight
   with `neodymium.screenshots.fullpagecapture.highlightViewport`.
-  {{< image max-width="60%" src="neodymium/Screenshots_fullpage.PNG" >}}
-  Full-page screenshot example, highlighting the viewport with blur applied to the surrounding area.
-  {{< /image >}}
+  ![Full-page screenshot example, highlighting the viewport with blur applied to the surrounding area.](/images/neodymium/Screenshots_fullpage.PNG)
+*Full-page screenshot example, highlighting the viewport with blur applied to the surrounding area.*
 
 ## Full Page Screenshot Customization
 

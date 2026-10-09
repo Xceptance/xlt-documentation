@@ -1,17 +1,12 @@
 ---
-title: "Allure and Reports"
-
-weight: 150
-type: docs
-
-description: >
-  Comprehensive Guide to Allure Test Reporting.
+title: Allure and Reports
+description: "Comprehensive Guide to Allure Test Reporting.\n"
+sidebar:
+  order: 150
 ---
 
-
-{{< image max-width="80%" src="neodymium/allure_demo_report_overview.png" >}}
-Example Allure report.
-{{< /image >}}
+![Example Allure report.](/images/neodymium/allure_demo_report_overview.png)
+*Example Allure report.*
 
 [Allure](https://github.com/allure-framework/allure2) is an open-source, flexible, and comprehensive test report tool
 that generates rich, interactive HTML reports from test execution results. It provides a Java API that allows you to
@@ -38,7 +33,7 @@ The `allure-maven` plugin defines where the results are stored and which report 
             <version>2.12.0</version>
             <configuration>
                 <reportVersion>2.27.0</reportVersion>
-                <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+                <resultsDirectory>`${project.build.directory}`/allure-results</resultsDirectory>
             </configuration>
         </plugin>   
     </plugins>
@@ -56,7 +51,7 @@ modification.
 <properties>
     <surefire.version>3.2.5</surefire.version>
     <aspectj.version>1.9.21</aspectj.version>
-    <!-- other properties... -->
+    {/*  other properties...  */}
 </properties>
 
 <build>
@@ -64,26 +59,26 @@ modification.
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
-            <version>${surefire.version}</version>
+            <version>`${surefire.version}`</version>
             <configuration>
-                <forkCount>4</forkCount><!-- parallel test execution -->
+                <forkCount>4</forkCount>{/*  parallel test execution  */}
                 <testFailureIgnore>true</testFailureIgnore>
-                <!-- AspectJ is required for Allure's runtime step integration -->
-                <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
+                {/*  AspectJ is required for Allure's runtime step integration  */}
+                <argLine>-javaagent:"`${settings.localRepository}`/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-`${aspectj.version}`.jar"</argLine>
                 <systemPropertyVariables>
-                    <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
-                    <selenide.reports>${project.build.directory}/selenide-results</selenide.reports>
+                    <allure.results.directory>`${project.build.directory}`/allure-results</allure.results.directory>
+                    <selenide.reports>`${project.build.directory}`/selenide-results</selenide.reports>
                 </systemPropertyVariables>
             </configuration>
             <dependencies>
                 <dependency>
                     <groupId>org.aspectj</groupId>
                     <artifactId>aspectjweaver</artifactId>
-                    <version>${aspectj.version}</version>
+                    <version>`${aspectj.version}`</version>
                 </dependency>
             </dependencies>
         </plugin>
-        <!-- other plugins... -->
+        {/*  other plugins...  */}
     </plugins>
 </build>
 
@@ -108,9 +103,8 @@ The primary command for generating the report is:
 
 ## Report History
 
-{{< image max-width="80%" src="neodymium/allure_report_trend.png" >}}
-Example of an Allure history.
-{{< /image >}}
+![Example of an Allure history.](/images/neodymium/allure_report_trend.png)
+*Example of an Allure history.*
 
 Allure reports can feature a **trend graph** indicating test execution results over past iterations. To enable this:
 
@@ -135,7 +129,7 @@ exactly how long each section took.
 Annotate methods that represent a distinct action in your test. It's recommended to include a short description and even
 method parameters for quick investigation.
 
-```Java
+```java
 
 @Step("Simple action")
 public void mySimpleAction()
@@ -153,7 +147,7 @@ public void mySimpleActionWithParameter(Object parameter)
 
 Here is a basic example of a test and the report it produces.
 
-```Java
+```java
 public class SampleTest
 {
     @NeodymiumTest
@@ -184,9 +178,8 @@ public class SampleTest
 
 This code will be displayed in the report as in the following screenshot.
 
-{{< image max-width="80%" src="neodymium/step_example.png" >}}
-The test steps of the example code above.
-{{< /image >}}
+![The test steps of the example code above.](/images/neodymium/step_example.png)
+*The test steps of the example code above.*
 
 ### Using `AllureAddons` for Dynamic Steps
 
@@ -296,12 +289,12 @@ public class HomePageTest extends AbstractTest
 To enable the TmsLink and Issue annotations, you must specify the corresponding URL patterns in your `pom.xml` under the
 Surefire plugin's `systemPropertyVariables`:
 
-```XML
+```xml
 <systemPropertyVariables>
-    <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+    <allure.results.directory>`${project.build.directory}`/allure-results</allure.results.directory>
     <allure.link.issue.pattern>https://ask.xceptance.de/t/{}</allure.link.issue.pattern>
     <allure.link.tms.pattern>https://ask.xceptance.de/t/{}</allure.link.tms.pattern>
-    <selenide.reports>${project.build.directory}/selenide-results</selenide.reports>
+    <selenide.reports>`${project.build.directory}`/selenide-results</selenide.reports>
 </systemPropertyVariables>
 
 ```
@@ -335,9 +328,8 @@ If the test data is modified during the test run, those changes can be added as 
 AllureAddons.addDataAsJsonToReport(String name, Object data)
 ```
 
-{{< image max-width="80%" src="neodymium/allure_report_testdata_display.png" >}}
-Test Data Display in Allure Report.
-{{< /image >}}
+![Test Data Display in Allure Report.](/images/neodymium/allure_report_testdata_display.png)
+*Test Data Display in Allure Report.*
 
 ### Capturing JSON Comparison Details
 

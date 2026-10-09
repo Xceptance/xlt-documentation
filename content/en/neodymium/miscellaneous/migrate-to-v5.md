@@ -1,9 +1,9 @@
 ---
-title: "Migrate to Neodymium 5"
-linkTitle: "Migrate to Neodymium 5"
-weight: 600
-type: docs
+title: Migrate to Neodymium 5
 description: "Migration guide for Neodymium 5."
+sidebar:
+  label: Migrate to Neodymium 5
+  order: 600
 ---
 
 This page lists the significant milestones of Neodymium 5, including support for JUnit 5 and Selenium 4 / Selenide 6 or above. Upgrading to Neodymium 5 involves a few necessary steps to ensure compatibility with existing projects.
@@ -43,7 +43,7 @@ report version to have good-looking reports** To use different allure report ver
     <plugin>
         <groupId>io.qameta.allure</groupId>
         <artifactId>allure-maven</artifactId>
-        <version>${allure.version}</version>
+        <version>`${allure.version}`</version>
         <configuration>
             <reportVersion>2.27.0</reportVersion>
         </configuration>
@@ -72,9 +72,8 @@ If you use the Allure Report plugin in Jenkins to generate and store reports, pl
 commandline tool. You not only need to update the plugin but also configure the commandline version in the global tool
 configuration, as shown below:
 
-{{< image max-width="80%" src="neodymium/allure_commandline_installations_jenkins.png" >}}
-Setting the Allure Commandline version in Jenkins.
-{{< /image >}}
+![Setting the Allure Commandline version in Jenkins.](/images/neodymium/allure_commandline_installations_jenkins.png)
+*Setting the Allure Commandline version in Jenkins.*
 
 ## 5. Changes required if you want to stay with JUnit 4 but with Neodymium 5
 
@@ -91,16 +90,16 @@ the `neodymium-template`, this should be placed right after the AspectJ dependen
     <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>${surefire.version}</version>
+        <version>`${surefire.version}`</version>
         <configuration>
             <forkCount>2</forkCount>
-            <!-- our test case naming does not follow Maven naming conventions -->
+            {/*  our test case naming does not follow Maven naming conventions  */}
             <includes>
                 <include>posters/tests/**/*Test.java</include>
             </includes>
             <testFailureIgnore>true</testFailureIgnore>
             <argLine>
-                -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                -javaagent:"`${settings.localRepository}`/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-`${aspectj.version}`.jar"
             </argLine>
             <properties>
                 <property>
@@ -109,17 +108,17 @@ the `neodymium-template`, this should be placed right after the AspectJ dependen
                 </property>
             </properties>
             <systemPropertyVariables>
-                <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                <allure.results.directory>`${project.build.directory}`/allure-results</allure.results.directory>
                 <allure.link.issue.pattern>https://ask.xceptance.de/t/{}</allure.link.issue.pattern>
                 <allure.link.tms.pattern>https://ask.xceptance.de/t/{}</allure.link.tms.pattern>
-                <selenide.reports>${project.build.directory}/selenide-results</selenide.reports>
+                <selenide.reports>`${project.build.directory}`/selenide-results</selenide.reports>
             </systemPropertyVariables>
         </configuration>
         <dependencies>
             <dependency>
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjweaver</artifactId>
-                <version>${aspectj.version}</version>
+                <version>`${aspectj.version}`</version>
             </dependency>
             <dependency>
                 <groupId>org.junit.vintage</groupId>

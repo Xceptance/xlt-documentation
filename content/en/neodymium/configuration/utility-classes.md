@@ -1,11 +1,9 @@
 ---
-title: "Utility classes"
-
-weight: 100
-type: docs
-
-description: >
-  Everything about the custom classes extending Selenide and Allure. Also covering the TestData handling class and Cucumber WebDriverUtils. 
+title: Utility classes
+description: "Everything about the custom classes extending Selenide and Allure.
+  Also covering the TestData handling class and Cucumber WebDriverUtils.\ \n"
+sidebar:
+  order: 100
 ---
 
 Several utility classes have been added to address problems that most test automation projects face. Not every function is covered here, but the classes are introduced to raise awareness of implemented functionality. If other things should be supported by Neodymium, please get in touch.
@@ -90,7 +88,7 @@ SelenideAddons.dragAndDrop((SelenideElement) elementToMove, (int) horizontalMove
 Sometimes it comes in handy to open an HTML snippet within the current browser and perform interactions or validations upon it, e.g. when validating emails.
 
 ```java
-String htmlSnippet = "<div dir=\"auto\">Hi<div dir=\"auto\"><br></div><div dir=\"auto\">How are you?)</div><div dir=\"auto\"><br></div><div dir=\"auto\">Bye</div></div>";
+String htmlSnippet = "<div dir=\"auto\">Hi<div dir=\"auto\"><br /></div><div dir=\"auto\">How are you?)</div><div dir=\"auto\"><br /></div><div dir=\"auto\">Bye</div></div>";
 SelenideAddons.openHtmlContentWithCurrentWebDriver(htmlSnippet);
 ```
 
@@ -178,7 +176,7 @@ provide two methods for each type. The first one is `as<Type>(String key)` which
 the data field can't be found. The second method is `as<Type>(String key, <Type> default)` which returns the given
 default value if the data field can't be found. If it is necessary to check if a certain key exists, `exists(String key)` can be used.
 
-Furthermore, a function is provided that can instantiate POJO models via reflection. Please see the following example to understand how to use it. Please also visit the [Test data provider]({{< relref "../features/test-data.md" >}}) wiki page for more examples on this.
+Furthermore, a function is provided that can instantiate POJO models via reflection. Please see the following example to understand how to use it. Please also visit the [Test data provider](/neodymium/features/test-data/) wiki page for more examples on this.
 
 <h4>Example</h4>
 
@@ -282,4 +280,4 @@ public class SomeTest
 
 The [WebDriverUtils](https://github.com/Xceptance/neodymium-library/blob/master/src/main/java/com/xceptance/neodymium/util/WebDriverUtils.java)
 class contains functions that need to/can be referenced within the project if you want to use Cucumber with Neodymium.
-Please find more on this topic and how to use it in our [Cucumber]({{< relref "../framework/cucumber.md" >}}) documentation.
+Please find more on this topic and how to use it in our [Cucumber](/neodymium/framework/cucumber/) documentation.

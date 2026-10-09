@@ -1,13 +1,13 @@
 ---
-title: "How to Use create_report Command Options (Cheat Sheet)"
-linkTitle: "`create_report` Cheat Sheet"
-
-weight: 400
-type: docs
-
-description: >
-  Learn how to use different `create_report` command options. <!-- You will find the usage instructions and a list of available commands below. -->
+title: How to Use create_report Command Options (Cheat Sheet)
+description: "Learn how to use different `create_report` command options. <!--
+  You will find the usage instructions and a list of available commands below.
+  -->\n"
+sidebar:
+  label: "`create_report` Cheat Sheet"
+  order: 400
 ---
+
 ## Usage
 - `create_report [<options>] <inputdir>` is used to generate a test report.
 - `create_report --help` displays all available command options and a brief guide on their usage.
@@ -27,31 +27,31 @@ cd <XLT>/bin
 ```
 
 ## List of Command Options
-- `-ae --exclude-agents <agents>` can be used for [excluding a comma-separated list of agents]({{< relref "report-options#report-for-a-subset-of-agents" >}}).
+- `-ae --exclude-agents <agents>` can be used for [excluding a comma-separated list of agents](/xlt/manual/report-options/#report-for-a-subset-of-agents).
 
-- `-ai --include-agents <agents>` is used for [including a comma-separated list of agents]({{< relref "report-options#report-for-a-subset-of-agents" >}}).
+- `-ai --include-agents <agents>` is used for [including a comma-separated list of agents](/xlt/manual/report-options/#report-for-a-subset-of-agents).
 
 -  `-D <property=value>` overrides a property from a file.
 
-- `-e,--exclude-testcases <test cases>` [excludes a comma-separated list of test cases]({{< relref "report-options#excluding-test-scenarios" >}}).
+- `-e,--exclude-testcases <test cases>` [excludes a comma-separated list of test cases](/xlt/manual/report-options/#excluding-test-scenarios).
 
-- `-from <time>` ignores results generated before the given time. It can also be combined with `-l` and `-to` for [defining a reporting timeframe]({{< relref "report-options#defining-a-reporting-timeframe" >}}).
+- `-from <time>` ignores results generated before the given time. It can also be combined with `-l` and `-to` for [defining a reporting timeframe](/xlt/manual/report-options/#defining-a-reporting-timeframe).
 
-- `-i,--include-testcases <test cases>` can be used to [include a comma-separated list of test cases]({{< relref "report-options#excluding-test-scenarios" >}}).
-- `-l <duration>` utilizes results generated within the [specified duration]({{< relref "report-options#defining-a-reporting-timeframe" >}}); must be used with the `-from` or `-to` option.
+- `-i,--include-testcases <test cases>` can be used to [include a comma-separated list of test cases](/xlt/manual/report-options/#excluding-test-scenarios).
+- `-l <duration>` utilizes results generated within the [specified duration](/xlt/manual/report-options/#defining-a-reporting-timeframe); must be used with the `-from` or `-to` option.
 
 - `-linkToResults <yes|no>` controls whether to link to the result browsers.
 
 - `-noAgentCharts,--no-agent-charts` disables the generation of agent charts.
 
-- `-noCharts,--no-charts` disables the generation of all charts. It is also used for [faster generation]({{< relref "report-options#speeding-it-up" >}}) of reports.
+- `-noCharts,--no-charts` disables the generation of all charts. It is also used for [faster generation](/xlt/manual/report-options/#speeding-it-up) of reports.
 
-- `-noRampUp` allows deciding whether to [exclude the ramp-up phase]({{< relref "report-options#excluding-the-ramp-up-phase" >}}).
+- `-noRampUp` allows deciding whether to [exclude the ramp-up phase](/xlt/manual/report-options/#excluding-the-ramp-up-phase).
 
-- `-o <dir>` can be used for [setting a custom output directory]({{< relref "report-options#setting-a-custom-output-directory" >}}).
+- `-o <dir>` can be used for [setting a custom output directory](/xlt/manual/report-options/#setting-a-custom-output-directory).
 
-- `-pf <property file>` specifies a [property file]({{< relref "report-configuration#using-custom-report-generator-settings" >}}) that overrides basic properties.
+- `-pf <property file>` specifies a [property file](/xlt/manual/report-configuration/#using-custom-report-generator-settings) that overrides basic properties.
 
-- `-timezone <timezoneID>` [overrides the user's default timezone]({{< relref "report-options#setting-a-custom-time-zone" >}}) while generating a test report.
+- `-timezone <timezoneID>` [overrides the user's default timezone](/xlt/manual/report-options/#setting-a-custom-time-zone) while generating a test report.
 
-- `-to <time>` ignores results generated [after the given time]({{< relref "report-options#defining-a-reporting-timeframe" >}}).
+- `-to <time>` ignores results generated [after the given time](/xlt/manual/report-options/#defining-a-reporting-timeframe).

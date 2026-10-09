@@ -1,11 +1,8 @@
 ---
-title: "Workflow"
-
-weight: 50
-type: docs
-
-description: >
-  The recommended way to a working loadtest.
+title: Workflow
+description: "The recommended way to a working loadtest.\n"
+sidebar:
+  order: 50
 ---
 
 ## The Recommended Steps to a Running Load Test
@@ -14,7 +11,7 @@ XLT is a powerful tool and as such might seem complex at first. But the way to r
 
 ### Have a Test Suite
 
-You will want a [test suite]({{< relref "test-suites" >}}) for your tests to live in (which is basically a Java Project containing your test cases (that don't _have to_ be written in Java) and everything else that is needed to run your tests later. Of course you can start one from scratch, but we provide you with a bunch of [sample test suites]({{< relref "test-suites" >}}) for common use cases. You can just browse their Github projects, clone them to your local machine, set them up as a project in your favorite IDE, understand the underlying concepts and adjust them to your needs.
+You will want a [test suite](/xlt/manual/test-suites/) for your tests to live in (which is basically a Java Project containing your test cases (that don't _have to_ be written in Java) and everything else that is needed to run your tests later. Of course you can start one from scratch, but we provide you with a bunch of [sample test suites](/xlt/manual/test-suites/) for common use cases. You can just browse their Github projects, clone them to your local machine, set them up as a project in your favorite IDE, understand the underlying concepts and adjust them to your needs.
 
 ### Make a Plan
 
@@ -27,7 +24,7 @@ Plan what you are going to do. This means:
 
 ### Develop your Tests
 
-[Test development]({{< relref "test-development" >}}) happens locally, in your IDE of choice. You will have to add test cases for all applicable scenarios, or adjust those from a sample test suite to your needs. If you need to do some functional testing, test data may be added.
+[Test development](/xlt/manual/test-development/) happens locally, in your IDE of choice. You will have to add test cases for all applicable scenarios, or adjust those from a sample test suite to your needs. If you need to do some functional testing, test data may be added.
 
 You can run those as a JUnit test from your IDE. This should be done repeatedly while you consolidate your tests so that you can judge if the results are stable or predictable. This reliability is essential to your load test.
 
@@ -35,7 +32,7 @@ For load testing, you usually want some randomness in your scenarios - with XLT,
 
 ### Define your Test Setup
 
-Once you have a reliable set of tests in your test suite, you're ready to start [setting up]({{< relref "test-setup" >}}) the load test. XLT is highly configurable. You will have to define:
+Once you have a reliable set of tests in your test suite, you're ready to start [setting up](/xlt/manual/test-setup/) the load test. XLT is highly configurable. You will have to define:
 
 * the load that is to be applied (either in terms of user count or arrival rate, per test case if needed or globally for the test suite),
 * the test scenarios that should be run, and
@@ -45,9 +42,9 @@ You can then configure the environment used for testing (master controller and a
 
 ### Run a Load Test
 
-Finally, [run your load test]({{< relref "test-execution" >}})! This can happen on your local machine as long as you only want a low load. For any significantly high loads you will want to use a cluster of test machines as your distributed load generation environment. In any case you will need the master controller to reference your test suite, distribute the load across the agent controllers, control the test run and let you get the results when it is finished.
+Finally, [run your load test](/neodymium/framework/test-execution/)! This can happen on your local machine as long as you only want a low load. For any significantly high loads you will want to use a cluster of test machines as your distributed load generation environment. In any case you will need the master controller to reference your test suite, distribute the load across the agent controllers, control the test run and let you get the results when it is finished.
 
 ### Evaluate the Results
 
-XLT will generate a [final report]({{< relref "test-evaluation" >}}
-) once the load test has finished. But since XLT writes result data the entire time it is running, we are also able to check intermediate test results while the test is still in progress. The final report contains detailed data about the test run that is human readable and easily shared in HTML format, as well as a machine readable XML version. Additionally, the format for result data is plain text (csv), which is perfect for searching for anything thing out of the ordinary. If you want to compare two or more test runs, you will also find [report options]({{< relref "report-options" >}}) for that.
+XLT will generate a [final report](/xlt/manual/test-evaluation/}
+) once the load test has finished. But since XLT writes result data the entire time it is running, we are also able to check intermediate test results while the test is still in progress. The final report contains detailed data about the test run that is human readable and easily shared in HTML format, as well as a machine readable XML version. Additionally, the format for result data is plain text (csv), which is perfect for searching for anything thing out of the ordinary. If you want to compare two or more test runs, you will also find [report options](/xlt/manual/report-options/) for that.
