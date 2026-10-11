@@ -61,12 +61,11 @@ export default defineConfig({
     links: [
       { label: "Blog", href: "https://blog.xceptance.com/" },
       { label: "Xceptance", href: "https://www.xceptance.com/" },
-      { label: "Privacy Policy", href: "https://www.xceptance.com/en/privacy-policy.html" },
-      { label: "Imprint", href: "https://www.xceptance.com/en/imprint.html" },
+      { label: "Privacy Policy", href: "https://www.xceptance.com/en/privacy/" },
     ],
     socials: {
       github: "https://github.com/Xceptance/xlt-documentation",
-      linkedin: "https://www.linkedin.com/company/xceptance-software-technologies-gmbh/",
+      linkedin: "https://www.linkedin.com/company/xceptance/",
       x: "https://x.com/xceptance",
     },
   },
