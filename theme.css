@@ -1,0 +1,12 @@
+/**
+ * Custom theme token overrides for Blume docs.
+ * Automatically discovered and inlined by Blume during build.
+ */
+
+/* Responsive documentation content width for large screens (>= 1536px / Tailwind 2xl) */
+@media (min-width: 96rem) {
+  :root {
+    --blume-content-width: 52rem;
+  }
+}
+

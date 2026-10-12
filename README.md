@@ -279,6 +279,24 @@ Configured in `blume.config.ts` and automatically downloaded and self-hosted at 
 - **Body Text**: `Roboto` — clean, highly readable document prose.
 - **Code & Monospace**: `Ubuntu Mono` — monospace for code blocks, CLI snippets, and shortcuts.
 
+### Content Width & Responsive Layout
+
+Blume defaults to a reading column width of `42rem` (`672px`), optimized for standard laptop viewports. To improve space utilization for multi-column tables, Java configuration properties, and wide code blocks on large displays without sacrificing typographic reading comfort, a custom `theme.css` in the project root overrides `--blume-content-width` at Tailwind's `2xl` breakpoint:
+
+```css
+/* theme.css */
+@media (min-width: 96rem) {
+  :root {
+    --blume-content-width: 52rem;
+  }
+}
+```
+
+- **Standard Screens (`< 1536px`)**: Renders at Blume's default `42rem` (`672px`).
+- **Large Screens (`>= 1536px` / `96rem`)**: Expands to `52rem` (`832px`), providing ~24% more width while keeping prose line lengths within optimal typographic measure (75–90 characters per line).
+- **Navigation Integrity**: Both the left navigation sidebar and the right-hand Table of Contents (TOC) remain fully visible and sticky across all viewports.
+- **Framework Upgrade Safety**: Uses Blume's public `--blume-content-width` CSS token directly without fragile CSS class overrides or Astro template modifications.
+
 ### Homepage Architecture (`pages/index.astro`)
 
 The documentation hub homepage is built as a custom full-width page via Blume's `<PageLayout>`:
