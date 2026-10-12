@@ -1,5 +1,6 @@
 ---
 title: How to Use create_report Command Options (Cheat Sheet)
+icon: file-text
 description: "Learn how to use different `create_report` command options. <!--
   You will find the usage instructions and a list of available commands below.
   -->\n"

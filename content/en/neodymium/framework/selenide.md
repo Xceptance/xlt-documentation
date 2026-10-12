@@ -1,5 +1,6 @@
 ---
 title: Selenide
+icon: globe
 description: "Selenide integration in Neodymium."
 sidebar:
   label: Selenide

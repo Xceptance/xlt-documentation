@@ -1,5 +1,6 @@
 ---
 title: Selenium Grid
+icon: network
 description: "A Guide to Using a Selenium Grid with Neodymium\n"
 sidebar:
   order: 450

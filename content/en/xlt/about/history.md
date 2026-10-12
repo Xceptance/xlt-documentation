@@ -1,5 +1,6 @@
 ---
 title: History
+icon: milestone
 description: "To better understand XLT's features, especially the detailed work
   on reporting and scaling, you might want to explore its history.\n"
 sidebar:

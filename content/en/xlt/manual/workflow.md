@@ -1,5 +1,6 @@
 ---
 title: Workflow
+icon: workflow
 description: "The recommended way to a working loadtest.\n"
 sidebar:
   order: 50

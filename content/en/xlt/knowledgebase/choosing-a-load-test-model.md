@@ -1,5 +1,6 @@
 ---
 title: Choosing a Load Test Model
+icon: compass
 description: "When running load tests, the concept behind how you set up and run
   your test is crucial. One of the key decisions is choosing the right load
   model.\n"

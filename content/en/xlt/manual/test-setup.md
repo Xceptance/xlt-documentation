@@ -1,5 +1,6 @@
 ---
 title: Test Setup
+icon: settings-2
 description: "How to setup the test suite to run as performance test and how to
   configure the load.\n"
 sidebar:

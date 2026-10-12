@@ -1,5 +1,6 @@
 ---
 title: How to Select the Right Load Model
+icon: gauge
 description: "Learn how to select the right load model for accurately testing
   requirements.\n"
 sidebar:

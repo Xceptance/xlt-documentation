@@ -1,5 +1,6 @@
 ---
 title: Allure and Reports
+icon: bar-chart-3
 description: "Comprehensive Guide to Allure Test Reporting.\n"
 sidebar:
   order: 150

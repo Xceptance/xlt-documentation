@@ -1,5 +1,6 @@
 ---
 title: Page Objects
+icon: layers
 description: "Improve code readability and maintainability with the Page Object Model.\n"
 sidebar:
   label: Page Objects

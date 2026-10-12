@@ -1,5 +1,6 @@
 ---
 title: How to Use mastercontroller Command Options (Cheat Sheet)
+icon: clipboard-list
 description: "Learn how to use different `mastercontroller` command options.
   <!-- You will find the usage instructions and a list of available commands
   below. -->\n"

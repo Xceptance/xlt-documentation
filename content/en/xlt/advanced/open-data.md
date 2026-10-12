@@ -1,5 +1,6 @@
 ---
 title: Open Data
+icon: folder-archive
 draft: true
 description: "An overview of XLT's basic data concepts, including archiving of
   reports and results.\n"

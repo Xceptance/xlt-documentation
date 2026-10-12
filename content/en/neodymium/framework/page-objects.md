@@ -1,5 +1,6 @@
 ---
 title: Page Objects
+icon: layers
 description: "Using Page Objects in Neodymium."
 sidebar:
   label: Page Objects

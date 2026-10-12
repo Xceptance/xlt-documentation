@@ -1,5 +1,6 @@
 ---
 title: License
+icon: scale
 description: "Details about the XLT software license (Apache License 2.0).\n"
 sidebar:
   order: 80

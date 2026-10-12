@@ -1,5 +1,6 @@
 ---
 title: Metrics
+icon: line-chart
 description: "Monitoring Metrics\n"
 sidebar:
   order: 450

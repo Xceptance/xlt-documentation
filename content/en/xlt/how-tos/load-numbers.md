@@ -1,5 +1,6 @@
 ---
 title: How to Calculate Load Test Target Numbers
+icon: calculator
 description: "Learn how to set up the right load mix and calculate target
   numbers correctly without overreaching.\n"
 sidebar:

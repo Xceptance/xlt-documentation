@@ -1,5 +1,6 @@
 ---
 title: Basics
+icon: info
 description: "An overview of XLT's capabilities and what you need to start
   developing and running a load test suite.\n"
 sidebar:

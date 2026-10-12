@@ -10,3 +10,9 @@
   }
 }
 
+/* Suppress page-level icons in sidebar navigation to keep page links plain text */
+/* Group header icons (such as Release Notes in .blume-nav-summary) remain visible */
+.blume-nav-link svg {
+  display: none;
+}
+

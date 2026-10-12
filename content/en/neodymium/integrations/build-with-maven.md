@@ -1,5 +1,6 @@
 ---
 title: Build with Maven
+icon: package
 description: "Building the project and running tests with Maven."
 sidebar:
   label: Build with Maven

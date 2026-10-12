@@ -1,5 +1,6 @@
 ---
 title: Architecture
+icon: cpu
 description: "An overview of the XLT architecture.\n"
 sidebar:
   label: Architecture

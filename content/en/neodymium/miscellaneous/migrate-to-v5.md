@@ -1,5 +1,6 @@
 ---
 title: Migrate to Neodymium 5
+icon: circle-arrow-up
 description: "Migration guide for Neodymium 5."
 sidebar:
   label: Migrate to Neodymium 5

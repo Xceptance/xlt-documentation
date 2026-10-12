@@ -1,5 +1,6 @@
 ---
 title: How to Size Your Test Environment
+icon: server
 description: "Learn how to determine the number and size of machines needed for
   your load test.\n"
 sidebar:

@@ -1,5 +1,6 @@
 ---
 title: Private Machine Mode
+icon: lock
 description: "Running XLT load testing agent controllers in network-isolated
   environments and corporate infrastructure.\n"
 sidebar:

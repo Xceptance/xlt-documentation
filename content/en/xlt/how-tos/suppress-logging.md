@@ -1,5 +1,6 @@
 ---
 title: How to Suppress Data Logging
+icon: eye-off
 description: "Learn how to suppress the logging of performance data.\n"
 sidebar:
   label: Suppress Data Logging

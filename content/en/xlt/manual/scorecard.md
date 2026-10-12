@@ -1,12 +1,10 @@
-
 ---
 title: "Scorecard"
-
-weight: 570
-type: docs
-
+icon: award
 description: >
     How to evaluate and rate reports in an automated fashion.
+sidebar:
+  order: 570
 ---
 
 ## Idea

@@ -1,5 +1,6 @@
 ---
 title: Run a Test
+icon: play
 description: "How to run your first load test.\n"
 sidebar:
   order: 35

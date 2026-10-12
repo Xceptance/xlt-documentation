@@ -1,5 +1,6 @@
 ---
 title: The Delicate Art of Load Test Scripting
+icon: file-code
 description: "We are often asked why we need that much time to recheck load test
   scripts. So, here is our explanation in a few sentences.\n"
 sidebar:

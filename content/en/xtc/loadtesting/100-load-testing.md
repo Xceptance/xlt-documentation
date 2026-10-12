@@ -1,5 +1,6 @@
 ---
 title: About
+icon: info
 description: "What Load Testing is used for, what you need and how it's usually done.\n"
 sidebar:
   order: 100

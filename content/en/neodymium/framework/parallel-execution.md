@@ -1,5 +1,6 @@
 ---
 title: Parallel Execution
+icon: split
 description: "Running tests in parallel with Maven."
 sidebar:
   label: Parallel Execution

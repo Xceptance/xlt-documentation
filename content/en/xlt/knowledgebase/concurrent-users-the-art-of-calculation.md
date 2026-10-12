@@ -1,5 +1,6 @@
 ---
 title: Concurrent Users - The Art of Calculation
+icon: users
 description: "\"Concurrent User\": In the context of load and performance
   testing, this metric is often claimed to be the ultimate measure, but it is
   not. This article aims to shed some light on the concurrent user metric and

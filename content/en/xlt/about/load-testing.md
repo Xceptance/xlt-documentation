@@ -1,5 +1,6 @@
 ---
 title: Load Test Execution
+icon: gauge
 description: "An overview of load testing with XLT.\n"
 draft: true
 sidebar:

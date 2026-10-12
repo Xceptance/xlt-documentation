@@ -1,5 +1,6 @@
 ---
 title: IFrame Handling
+icon: frame
 description: "Handling iFrames in Neodymium."
 sidebar:
   label: IFrame Handling

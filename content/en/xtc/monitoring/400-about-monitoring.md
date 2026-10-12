@@ -1,5 +1,6 @@
 ---
 title: About
+icon: info
 description: "What a monitoring project is and how XTC can help you monitor your
   applications.\n"
 sidebar:

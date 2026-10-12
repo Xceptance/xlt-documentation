@@ -1,5 +1,6 @@
 ---
 title: Retrying Test
+icon: rotate-cw
 description: "Retrying test to reduce flakiness."
 sidebar:
   label: Retrying Test

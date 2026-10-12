@@ -1,5 +1,6 @@
 ---
 title: Test Approaches
+icon: compass
 description: "An overview of XLT test approaches.\n"
 draft: true
 sidebar:

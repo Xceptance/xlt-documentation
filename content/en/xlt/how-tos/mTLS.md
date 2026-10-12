@@ -1,5 +1,6 @@
 ---
 title: Configuring mTLS for your XLT Test Suite
+icon: shield-check
 description: "Learn how to set up your XLT test suite for using mTLS. \ \n"
 sidebar:
   label: mTLS

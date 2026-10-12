@@ -1,5 +1,6 @@
 ---
 title: Applitools Plugin
+icon: eye
 description: "Visual assertions using Applitools with Neodymium."
 sidebar:
   label: Applitools Plugin

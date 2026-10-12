@@ -1,5 +1,6 @@
 ---
 title: Report Options
+icon: sliders-vertical
 description: "How to customize the reports via command line options.\n"
 sidebar:
   order: 540

@@ -1,5 +1,6 @@
 ---
 title: First Test
+icon: rocket
 description: "Write and run your first browser-based test with Neodymium.\n"
 sidebar:
   label: First Test

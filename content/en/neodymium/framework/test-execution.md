@@ -1,5 +1,6 @@
 ---
 title: Test Execution
+icon: play
 description: "Strategies for running Neodymium tests: IDE, Maven, profiles, and
   selective execution.\n"
 sidebar:

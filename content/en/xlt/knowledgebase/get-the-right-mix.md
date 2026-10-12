@@ -1,5 +1,6 @@
 ---
 title: Get The Right Load Mix Out of a Few Numbers
+icon: sliders-horizontal
 description: "How can you set up the right load mix when you only get some basic numbers?\n"
 sidebar:
   order: 35

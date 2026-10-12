@@ -1,5 +1,6 @@
 ---
 title: Shadow DOM Testing
+icon: box
 description: "Testing Shadow DOM with Neodymium."
 sidebar:
   label: Shadow DOM Testing

@@ -1,5 +1,6 @@
 ---
 title: Target Audience
+icon: users
 description: "Learn about the target markets and audiences for XLT.\n"
 sidebar:
   label: Target Audience

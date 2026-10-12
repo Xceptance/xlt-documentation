@@ -1,5 +1,6 @@
 ---
 title: Base Web Test Suite
+icon: globe
 description: "The most simple test suite that directly works on the XLT API, aka
   the Basic Demo Test Suite.\n"
 sidebar:

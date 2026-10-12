@@ -1,5 +1,6 @@
 ---
 title: Utility classes
+icon: wrench
 description: "Everything about the custom classes extending Selenide and Allure.
   Also covering the TestData handling class and Cucumber WebDriverUtils.\ \n"
 sidebar:

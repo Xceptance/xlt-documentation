@@ -1,5 +1,6 @@
 ---
 title: Advanced Screenshot Features
+icon: camera
 description: "How to configure the advanced screenshots from Neodymium to
   improve error analysis.\n"
 sidebar:

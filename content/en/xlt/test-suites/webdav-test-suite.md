@@ -1,5 +1,6 @@
 ---
 title: WebDav Test Suite
+icon: folder-sync
 description: "WebDav can be tested with this test suite. It depends on a WebDav
   XLT-library.\n"
 sidebar:

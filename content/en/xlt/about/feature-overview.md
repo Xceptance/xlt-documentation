@@ -1,5 +1,6 @@
 ---
 title: Features
+icon: sparkles
 description: "A summary of XLT's most important features.\n"
 sidebar:
   order: 20
