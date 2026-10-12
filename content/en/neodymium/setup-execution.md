@@ -1,5 +1,6 @@
 ---
 title: Installation
+icon: terminal
 description: "Basic installation requirements and setup for Neodymium."
 sidebar:
   label: Installation

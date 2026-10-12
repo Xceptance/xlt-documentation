@@ -184,12 +184,39 @@ Every Markdown (`.md`) and MDX (`.mdx`) page starts with YAML frontmatter:
 ---
 title: Getting Started with XLT
 description: A quick start guide to installing and running your first test.
+icon: rocket           # Optional: Lucide icon name for directory index cards
 sidebar:
   label: Quick Start     # Optional: override label in the sidebar
   order: 10              # Optional: numerical sort order
   hidden: true           # Optional: hide empty index placeholder from sidebar
 ---
 ```
+
+### Directory Cards & Icons
+
+Product overview pages (`/xlt/`, `/neodymium/`, `/xtc/`) and chapter indexes render visual wayfinding cards for their child topics via Blume's `directory: "card"` layout. Each card displays a 20px [Lucide](https://lucide.dev/) icon:
+
+- **For Chapters & Subdirectories (`meta.ts`)**:
+  Specify the icon and card directory layout in the directory's `meta.ts`:
+  ```ts
+  import { defineMeta } from "blume";
+
+  export default defineMeta({
+    title: "Quick Start",
+    icon: "rocket",           // Lucide icon name
+    directory: "card",        // Renders child topic cards
+  });
+  ```
+
+- **For Articles & Standalone Pages (`.md` / `.mdx`)**:
+  Specify the icon in the page's YAML frontmatter:
+  ```yaml
+  ---
+  title: Setup & Execution
+  description: How to configure and run test suites.
+  icon: terminal              # Lucide icon name
+  ---
+  ```
 
 ### Callout Directives
 
@@ -296,6 +323,25 @@ Blume defaults to a reading column width of `42rem` (`672px`), optimized for sta
 - **Large Screens (`>= 1536px` / `96rem`)**: Expands to `52rem` (`832px`), providing ~24% more width while keeping prose line lengths within optimal typographic measure (75–90 characters per line).
 - **Navigation Integrity**: Both the left navigation sidebar and the right-hand Table of Contents (TOC) remain fully visible and sticky across all viewports.
 - **Framework Upgrade Safety**: Uses Blume's public `--blume-content-width` CSS token directly without fragile CSS class overrides or Astro template modifications.
+
+### Sidebar Navigation & Icon Conventions
+
+To maintain a clean, readable typographic hierarchy:
+- **Directory Index Cards** display icons prominently for visual wayfinding on overview pages.
+- **Sidebar Navigation** is kept as clean plain text by suppressing sidebar icons in `theme.css`, with an explicit exception preserving the megaphone icon on Release Notes to visually highlight updates:
+
+```css
+/* theme.css */
+/* Suppress sidebar icons to keep navigation plain text, preserving only the Release Notes icon */
+.blume-nav-link svg,
+.blume-nav-summary-link svg {
+  display: none;
+}
+
+.blume-nav-summary-link[href*="release-notes"] svg {
+  display: inline-block;
+}
+```
 
 ### Homepage Architecture (`pages/index.astro`)
 

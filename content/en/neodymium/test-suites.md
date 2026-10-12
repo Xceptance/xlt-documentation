@@ -1,5 +1,6 @@
 ---
 title: Example Projects
+icon: folder-tree
 description: "A comprehensive list of Neodymium example projects, templates, and showcases."
 sidebar:
   order: 40

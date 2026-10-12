@@ -1,6 +1,7 @@
 ---
 title: Privacy
 description: "How XTC processes your personal data."
+icon: shield-check
 ---
 
 You can find all the details about the processing of personal data on Xceptance websites in the [Xceptance Privacy Statement](https://www.xceptance.com/en/contact/privacy.html). This is the condensed version of how XTC is handling personal data:
