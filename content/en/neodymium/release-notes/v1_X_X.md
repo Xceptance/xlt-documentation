@@ -1,19 +1,9 @@
 ---
-layout: manual
 title: Neodymium 1.X.X
-
-weight: 950
-type: docs
-
-sitemap:
-  changefreq: weekly
-  priority: 0.1
-
-
-description: >
-    
+description: ""
+sidebar:
+  order: 950
 ---
-
 
 ## 1.1.0
 
@@ -35,7 +25,7 @@ Multi-browser support was extended to accept insecure certificates when necessar
 
 **Example:** `config/browser.properties`
 
-```Properties
+```properties
 # .acceptInsecureCertificates:
 #     A Boolean property that decides whether the web driver accepts insecure certificate or not.
 #     The default behavior is the one of the used web driver.
@@ -49,7 +39,7 @@ browserprofile.<browser tag>.acceptInsecureCertificates = true
 You can now specify additional browser arguments/options to your browser configuration. Note: Firefox uses a single dash `-` for arguments while Chrome uses a double dash `--` (`-headless` vs. `--headless`). Luckily Chrome does also support the single dash notation that's why we suggest to use always a single dash for arguments.
 Furthermore since you can not have multiple arguments attributes you need to put them into a single line. Do so by concatenate them with a semicolon, see the example below.
 
-```Properties
+```properties
 # .arguments: Additional command line arguments for the browser to apply.
 #             As you can specify only on 'arguments' property for a browser at a time you need to chain multiple arguments.
 #             Multiple arguments are chained by semicolon (";") e.g.: `-window-position=0,0 ; -window-size=400,300`

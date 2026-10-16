@@ -1,0 +1,22 @@
+/**
+ * Custom theme token overrides for Blume docs.
+ * Automatically discovered and inlined by Blume during build.
+ */
+
+/* Responsive documentation content width for large screens (>= 1536px / Tailwind 2xl) */
+@media (min-width: 96rem) {
+  :root {
+    --blume-content-width: 52rem;
+  }
+}
+
+/* Suppress sidebar icons to keep navigation plain text, preserving only the Release Notes icon */
+.blume-nav-link svg,
+.blume-nav-summary-link svg {
+  display: none;
+}
+
+.blume-nav-summary-link[href*="release-notes"] svg {
+  display: inline-block;
+}
+

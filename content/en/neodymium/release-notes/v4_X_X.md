@@ -1,17 +1,9 @@
 ---
 title: Neodymium 4.X.X
-linkTitle: 4.X.X
-
-weight: 875
-type: docs
-
-sitemap:
-  changefreq: weekly
-  priority: 0.1
-
-
-description: >
-    
+description: ""
+sidebar:
+  label: 4.X.X
+  order: 875
 ---
 
 ## 4.1.5
@@ -51,7 +43,7 @@ After Log4j released a new version (2.16.0), we decided to update the dependency
 ## 4.1.1
 
 Security release
-Even though the standard usage of Neodymium itself doesn't provide an easy/useful attack scenario for the log4j issue (<https://nvd.nist.gov/vuln/detail/CVE-2021-44228>), we would like to encourage all our users to update the Neodymium dependency as soon as possible to avoid any further risks.
+Even though the standard usage of Neodymium itself doesn't provide an easy/useful attack scenario for the log4j issue ([https://nvd.nist.gov/vuln/detail/CVE-2021-44228](https://nvd.nist.gov/vuln/detail/CVE-2021-44228)), we would like to encourage all our users to update the Neodymium dependency as soon as possible to avoid any further risks.
 
 ### Library Updates
 

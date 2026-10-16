@@ -1,11 +1,10 @@
 ---
-title: "No Coding Test Suite"
-
-weight: 30
-type: docs
-
-description: >
-  This test suite gives you testing via YAML definitions with barely any code needed.
+title: No Coding Test Suite
+icon: file-code-2
+description: "This test suite gives you testing via YAML definitions with barely
+  any code needed.\n"
+sidebar:
+  order: 30
 ---
 
 ## Introduction

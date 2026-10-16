@@ -1,17 +1,11 @@
 ---
 title: Neodymium 3.X.X
-linkTitle: 3.X.X
-
-weight: 900
-type: docs
-
-sitemap:
-  changefreq: weekly
-  priority: 0.1
-
-description: >
-    
+description: ""
+sidebar:
+  label: 3.X.X
+  order: 900
 ---
+
 ## 3.6.0
 
 Added some missing features and updated dependencies.
@@ -24,7 +18,7 @@ Added some missing features and updated dependencies.
 ### Features
 
 * Add easy support for drag and drop e.g. sliders - #76 - [documentation](https://github.com/Xceptance/neodymium/wiki/Utility-classes#selenideaddons)
-* Support ShadowDOM (Thanks to <https://github.com/selenide/selenide> for adding support) - #113 - [documentation](https://github.com/Xceptance/neodymium/wiki/Shadow-DOM-Testing)
+* Support ShadowDOM (Thanks to [https://github.com/selenide/selenide](https://github.com/selenide/selenide) for adding support) - #113 - [documentation](https://github.com/Xceptance/neodymium/wiki/Shadow-DOM-Testing)
 * Add Method to get RemoteWebDriver - #115 - [documentation](https://github.com/Xceptance/neodymium/wiki/Neodymium-context#WebDriver-and-browser)
 * Integrated proxy to manipulate headers - #112 (Added basic support, more and documentation will follow with #117 )
 

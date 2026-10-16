@@ -1,13 +1,11 @@
 ---
-title: "Open Data"
-
-type: docs
-
-weight: 160
+title: Open Data
+icon: folder-archive
 draft: true
-
-description: >
-    An overview of XLT's basic data concepts, including archiving of reports and results.
+description: "An overview of XLT's basic data concepts, including archiving of
+  reports and results.\n"
+sidebar:
+  order: 160
 ---
 
 ## Filtering and Joining Results

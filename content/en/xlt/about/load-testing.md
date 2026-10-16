@@ -1,14 +1,10 @@
 ---
-title: "Load Test Execution"
-
-type: docs
-
-weight: 70
-
-description: >
-    An overview of load testing with XLT.
-
+title: Load Test Execution
+icon: gauge
+description: "An overview of load testing with XLT.\n"
 draft: true
+sidebar:
+  order: 70
 ---
 
 * Tests are typically executed via the command line.

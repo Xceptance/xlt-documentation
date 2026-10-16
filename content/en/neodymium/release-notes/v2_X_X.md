@@ -1,18 +1,10 @@
 ---
-layout: manual
 title: Neodymium 2.X.X
-
-weight: 925
-type: docs
-
-sitemap:
-  changefreq: weekly
-  priority: 0.1
-
-
-description: >
-    
+description: ""
+sidebar:
+  order: 925
 ---
+
 ## 2.1.0
 
 ### General

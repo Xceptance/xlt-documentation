@@ -1,0 +1,19 @@
+# Spec Delta
+
+## ADDED Requirements
+
+### Requirement: Directory Index Card Icons and Sidebar Typography
+The system SHALL display contextual Lucide icons on Directory Index Cards across topic chapter landing pages in XLT, XTC, and Neodymium, while suppressing page-level icons in the sidebar navigation to keep page links plain text and preserving the Release Notes section header icon.
+
+#### Scenario: Contextual icons on directory cards
+- **WHEN** a user navigates to any topic chapter overview page (e.g., `/xlt/about`, `/xlt/quick-start`, `/xtc/loadtesting`, `/neodymium/features`)
+- **THEN** each child article card renders its configured Lucide vector icon at 20px in the primary theme accent color (`#004682`) above the title.
+
+#### Scenario: Sidebar page links remain plain text
+- **WHEN** a user views the sidebar navigation for any product section
+- **THEN** individual page links render text-only labels without inline icons, maintaining a clean, scannable reading tree.
+
+#### Scenario: Preservation of Release Notes section icon
+- **WHEN** a user views the sidebar navigation for XLT, XTC, or Neodymium
+- **THEN** the Release Notes group header retains its configured Lucide megaphone icon (`icon: "megaphone"`), remaining the only section with an icon in the sidebar.
+
