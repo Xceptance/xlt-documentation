@@ -20,3 +20,57 @@
   display: inline-block;
 }
 
+/* Typographic hierarchy scale adjustments */
+.prose :where(h1) {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.prose :where(h2) {
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.prose :where(h3) {
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+
+.prose :where(h4) {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--blume-foreground);
+  line-height: 1.3;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Image captions: center text and pull closer to the preceding image */
+.prose :where(img) {
+  margin-bottom: 0.25rem;
+}
+
+.prose p:has(> img:only-child) {
+  margin-bottom: 0.25rem;
+}
+
+.prose p:has(> img:only-child) + p > em:only-child,
+.prose p:has(> img:only-child) + p {
+  text-align: center;
+}
+
+.prose p:has(> img:only-child) + p:has(> em:only-child) {
+  margin-top: 0.25rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--blume-muted-foreground);
+}
+
+.prose :where(figcaption) {
+  text-align: center;
+  margin-top: 0.25rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--blume-muted-foreground);
+}
+
