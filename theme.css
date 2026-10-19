@@ -50,16 +50,26 @@
   margin-bottom: 0.25rem;
 }
 
+/* If the image and caption are inside the SAME paragraph (no blank line in Markdown) */
+.prose p:has(> img:first-child):has(> em:last-child) {
+  text-align: center;
+}
+
+.prose p:has(> img:first-child) > em:last-child {
+  display: block;
+  margin-top: 0.25rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--blume-muted-foreground);
+}
+
+/* If the image and caption are in SEPARATE paragraphs (blank line in Markdown) */
 .prose p:has(> img:only-child) {
   margin-bottom: 0.25rem;
 }
 
-.prose p:has(> img:only-child) + p > em:only-child,
-.prose p:has(> img:only-child) + p {
-  text-align: center;
-}
-
 .prose p:has(> img:only-child) + p:has(> em:only-child) {
+  text-align: center;
   margin-top: 0.25rem;
   margin-bottom: 1.5rem;
   font-size: 0.8125rem;
@@ -73,4 +83,6 @@
   font-size: 0.8125rem;
   color: var(--blume-muted-foreground);
 }
+
+
 
