@@ -259,3 +259,9 @@ config
 Implementors
 resolver's
 data's
+Temurin
+Corretto
+(?i)HARs?
+(?i)prepend(s|ed|ing)?
+(?i)hotfix(es)?
+diffable

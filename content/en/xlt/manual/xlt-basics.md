@@ -9,65 +9,83 @@ sidebar:
 
 ## What is XLT?
 
-XLT (Xceptance Load Test) is a regression and performance testing tool. The first prototype was released in 2005, and it has been improving ever since. The tool is used daily at [Xceptance](https://xceptance.com), so our developers understand the needs of our load testers.
+XLT (Xceptance Load Test) is an open-source regression, load, and performance testing platform released under the Apache License 2.0. Developed and actively maintained by [Xceptance](https://xceptance.com), XLT is designed for scalable, developer-centric testing.
 
-XLT is platform independent (you can develop and run your tests on any platform with a JDK) and open source, available under the Apache License 2.0 since February 2020. It is simple to deploy and highly scalable, provides ready to use reports (for single or multiple test runs, allowing you to compare runs or see trends), and offers real time test monitoring. Nothing about XLT is proprietary; no custom IDE is needed. You can use your existing toolchain and knowledge.
+Key architectural characteristics include:
 
-## How does it work?
+* **Platform Independence**: Develop and execute tests on any operating system with Java 21 or higher.
+* **Standard Tooling**: Write tests in standard Java using JUnit. No proprietary scripting languages or vendor-locked IDEs are required.
+* **High Scalability**: Scale test execution from a single developer laptop to thousands of concurrent users distributed across cloud environments.
+* **Rich Diagnostics**: Generate detailed HTML reports, diffable execution trends, real-time metric streams, and visual [Result Browsers](/xlt/manual/result-browser/) capturing full DOM snapshots and network HARs.
 
-To use XLT, you will model the expected user actions on your application as a set of JUnit tests. You can develop and check these on your own machine in your preferred IDE (see [Workflow](/xlt/manual/workflow/) for details on how this is usually done), using XLT libraries or even starting with one of our [sample test suites](/xlt/manual/test-suites/). To consolidate your test cases, XLT builds a [result browser](/xlt/manual/result-browser/) for every test run (regardless of whether it was run from your IDE or in a load test environment). This provides further insights into what happened, in addition to the information output to the console or logs.
+## How XLT Works
 
-Load testing means executing the tests from your test suite against your application, with many virtual users running many tests simultaneously (XLT allows you to [easily configure](/xlt/manual/load-configuration/) the exact load). To run a load test, a distributed load generation environment consisting of a cluster of test machines is usually required to generate sufficient load. XLT includes tools to set up your cluster using [Google Cloud](/xlt/advanced/cloud-setup/#google-cloud-gcp) or [Amazon Web Services](/xlt/advanced/cloud-setup/#amazon-web-services-aws)).
+1. **Model Scenarios in Code**: Implement user journeys as JUnit test cases using XLT action classes or Selenium WebDriver. Follow the [Workflow](/xlt/manual/workflow/) guide or start with one of the provided [sample test suites](/xlt/manual/test-suites/).
+2. **Validate Locally**: Run test cases directly inside your IDE. XLT generates a local [Result Browser](/xlt/manual/result-browser/) for every run, allowing you to inspect requests, responses, headers, and DOM state.
+3. **Configure Load Profiles**: Define arrival rates, concurrency ceilings, ramp-up schedules, and durations in `test.properties`. See [Load Configuration](/xlt/manual/load-configuration/).
+4. **Deploy to a Cluster**: Distribute the test suite across agent machines on-premises, in [Google Cloud](/xlt/advanced/cloud-setup/#google-cloud-gcp), or in [Amazon Web Services](/xlt/advanced/cloud-setup/#amazon-web-services-aws).
+5. **Analyze Results**: Review performance metrics, percentiles, error rates, and resource utilization in the generated [Test Report](/xlt/manual/reports/).
 
-The results of your load test are neatly summarized in a [test report](/xlt/manual/reports/), which may also contain links to the result browsers of individual tests within this load test run (e.g., if something went wrong, allowing you to check the cause of any error).
+## Architecture & Components
 
-## Load Test Components
+A distributed XLT load testing environment consists of four core components:
 
-This is a rough overview of the components:
-
-![High Level Overview](/images/user-manual/suite-controller-agents.png)
-*High Level Overview*
+![XLT Architecture Overview](/images/user-manual/suite-controller-agents.png)
+*Figure: Master Controller, Agent Controllers, and Agents in an XLT cluster.*
 
 ### Test Suite
 
-A test suite contains your test code, data, and configuration. Developed on your own machine, it can reside in your preferred version control tool and be shared easily.
+The test suite is a standalone project containing test code, dataset files, third-party dependencies, and configuration. Version control your test suite alongside application code in Git.
 
-### MC/Master Controller
+<a id="mcmaster-controller"></a>
+### Master Controller (MC)
 
-The MC can be seen as the “brain” of the load test environment. It deploys the test suite to all load machines, evenly distributes the load, starts/stops the load test, and can be used to get agent information and create test reports. A test cluster may have only one master controller. It is loosely coupled, so you can (re-)attach to running tests if you need to interact with them.
+The Master Controller coordinates the load test environment:
 
-### AC/Agent Controller
+* Packages and uploads the test suite to all target machines.
+* Distributes virtual users and arrival rates across available agent controllers.
+* Synchronizes test start and stop signals.
+* Downloads measurements from all agents and compiles the final HTML report.
+* Supports non-blocking re-attachment to ongoing test runs.
 
-The MC communicates with the AC. The AC waits for, receives, and distributes the workload. There is usually one AC per hardware box (though more are possible), which typically listens on port 8500. The AC spawns the test agents. All agents are started and stopped by the AC. ACs are not aware of other ACs; they function independently and do not interact with one another.
+Each cluster uses exactly one Master Controller.
+
+<a id="acagent-controller"></a>
+### Agent Controller (AC)
+
+The Agent Controller is a background daemon that runs on each load generation host (typically listening on port 8500):
+
+* Receives test suite archives from the Master Controller.
+* Spawns, monitors, and terminates agent worker processes.
+* Collects local machine metrics (CPU, memory, network).
+* Functions independently without communicating with peer agent controllers.
 
 ### Agents
 
-The agents are the workhorses of the load test, as they actually execute the test suite against the system under test. Basically, an agent is a JVM that runs the users. Each user is a thread with subthreads (inactive threads are possible). The MC is responsible for calculating user distribution across agents, but the agents are still a component to watch, as memory tuning and sizing (total and relative to the box) are important for good and consistent test results. Still, a stalled agent does not block other agents.
+Agents are JVM processes spawned by the Agent Controller to execute test scenarios:
 
-### Grafana
+* Each virtual user executes in a dedicated thread or Java 21 virtual thread.
+* Agents record transaction durations, action runtimes, HTTP metrics, and error stack traces to disk.
+* Stalled or failing agents fail independently without blocking other agents in the cluster.
 
-Graphite/Grafana can be used to display real time test information. It shows response times, errors, machine utilization, transaction and action runtimes, and can also be paired with infrastructure monitoring. For more details, see [Real Time Reporting with Graphite](/xlt/advanced/real-time-monitoring/).
+### Real-Time Monitoring (Graphite / Grafana)
 
-## How to start using XLT
+For live monitoring during test execution, configure agents to stream metrics to Graphite and visualize them via Grafana dashboards. Track response times, error rates, and agent system utilization in real time. See [Real-Time Reporting](/xlt/advanced/real-time-monitoring/).
 
-### What to think about
+## Getting Started
 
-The goal of your load test should be to mimic the expected traffic on your application as accurately as possible. Therefore, you should know the typical scenarios for a user of your application. For example, if you want to test your web shop, these scenarios might include: users visiting only the homepage and then leaving, users browsing or searching for products but never ordering, and users placing an order either as a guest or as a registered user. We have built some [sample test suites](/xlt/manual/test-suites/) with what we think are plausible test cases, so feel free to take a look.
+### Planning Considerations
 
-Also, your test environment should mimic the app as accurately as possible. You can test on live systems, but be aware that the load might be too much for your system (after all, you are testing to determine just that). Also, consider the processes that might be triggered by the tests (you don't want to deal with thousands of fake test orders, and neither does your payment provider).
+* **Identify Realistic Journeys**: Model representative user behavior, such as catalog browsing, search workflows, account logins, and checkout funnels.
+* **Isolate Test Data**: Prepare test credentials, payment tokens, and inventory that do not conflict with production systems or live payment gateways.
+* **Verify System Stability**: Ensure the target environment and test scripts are stable before initiating large-scale load tests.
 
-While you develop your test cases, the app you want to test should be in a stable state. It's pointless to write tests that mimic user requests that will be changed the next day, so finish your app first, then finish your tests.
+### System Requirements
 
-### What to install
+To develop and execute tests, install:
 
-To run XLT, you will need the following:
+* Java Development Kit (JDK) 21 or higher
+* A Java IDE (IntelliJ IDEA, Eclipse, or VS Code)
+* Apache Maven
 
-* Latest JDK 21.
-* Java IDE of your choice.
-* [Maven](https://maven.apache.org/).
-
-Installing XLT is described in more detail [here](/xlt/manual/installation/).
-
-### How to proceed
-
-The [Quick Start](/xlt/quick-start) section offers guidance on how to start using XLT, from installation to your first local load test. For further information, you might want to return to this [User Manual](/xlt/manual/workflow/), where you can learn all the details about developing and configuring your tests, setting up remote machines to generate load, and everything in between. Happy testing!
+For step-by-step setup instructions, proceed to the [Installation](/xlt/manual/installation/) guide or walk through the [Quick Start](/xlt/quick-start/) tutorial.

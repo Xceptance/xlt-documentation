@@ -6,45 +6,39 @@ sidebar:
   order: 40
 ---
 
-## Hardware and Software Requirements
+## System Requirements
 
 ### Hardware
 
-- CPU at 1.5GHz or higher
-- 4.0 GB RAM
-- 1.0 GB available in the hard disk (default installation requires
-    about 150 MB, but test results might need additional capacity)
+* **CPU**: 1.5 GHz or higher (multi-core recommended for load generators)
+* **Memory**: Minimum 4 GB RAM (8 GB or more recommended for agents)
+* **Disk Space**: 1 GB available disk space (installation requires ~150 MB; test results and result browsers require additional capacity depending on test duration and load)
 
 ### Software
 
-#### Operating System
+* **Operating System**: Linux, macOS, or Microsoft Windows.
+* **Java Virtual Machine**: Java 21 or higher (OpenJDK, Eclipse Temurin, Amazon Corretto, or Oracle JDK).
+* **Web Browser**: Any modern browser (Firefox, Chrome, Edge, Safari) with JavaScript enabled to view HTML test reports and Result Browsers.
 
-Microsoft Windows, Linux, Oracle Solaris, HP-UX, or macOS. Which essentially means it will work on any operating system for which a JVM 21 (or higher) is available.
+## Installation Methods
 
-#### JVM
+### Option 1: Archive Download
 
-It’s recommended to use OpenJDK, Oracle JDK, or any other OpenJDK based derivative. Eclipse OpenJ9 has not been tested extensively and may or may not work.
+1. Download the latest XLT distribution archive from the [Xceptance website](https://www.xceptance.com/en/xlt/download.html).
+2. Extract the archive to your desired directory. Avoid directory paths containing spaces.
+3. Verify that Java 21 is available on your system `PATH`:
 
-#### Browser
+```bash
+java -version
+```
 
-Firefox, Chrome, or Safari for the HTML load reports. Note that JavaScript has to be enabled to utilize all functionality.
-
-## Installation
-
-### Download
-
-The XLT archive can either be obtained from the [Xceptance website](https://www.xceptance.com/en/xlt/download.html) or from Xceptance's custom Maven-compatible repository (see [below](#maven)) which allows users of Maven and Ivy to conveniently integrate XLT and all of its dependencies into their build processes.
-
-### Extract
-
-Unzip the XLT archive to a file system location of your choice. The root directory is part of the archive, so you don’t need to create it separately. XLT supports spaces in the path; however, it's easier to code tests when the path is free of them.
-
-:::note
-
-Please make sure the executable directory of your Java installation is listed in your PATH environment variable so that the XLT start scripts can find the JVM runtime.
+:::note[Java Runtime Requirement]
+Ensure the `bin` directory of your JDK 21 installation is configured in your `PATH` and `JAVA_HOME` environment variables so XLT start scripts locate the runtime.
 :::
 
-### Maven
+### Option 2: Maven Dependency
+
+To integrate XLT framework classes into Maven-based test suites, add the XLT dependency with `provided` scope:
 
 ```xml
 <dependencies>
@@ -57,37 +51,27 @@ Please make sure the executable directory of your Java installation is listed in
 </dependencies>
 ```
 
-:::info[Beta Release]
+:::info[Release Status]
 XLT 10 is currently in active preview (`10.0.0-beta-5`). If you require the previous general availability release, use version `9.2.1`.
 :::
 
-## Updating
+## Upgrading XLT
 
-### Backup
+When upgrading to a new XLT version:
 
-Before you update XLT, it’s highly recommended to back up all modified files and project-specific or customized settings. In particular, this includes:
-
-- All your test suites (especially when stored in a sub-folder of the XLT installation directory)
-- Result files (stored in `<XLT>/results` by default)
-- Generated load test reports (stored in `<XLT>/reports` by default)
-- Modified XLT properties files (`<XLT>/config`)
-
-### Download and install
-
-As described above in the [installation](#installation) section, download and install the latest XLT version from the Xceptance website. You can have multiple XLT versions simultaneously existing in the same directory since the name of the unpacked installation folder includes the version number by default.
-
-### Copy Backed-up Files
-
-Copy your backed-up files and directories to the corresponding place in the new XLT installation directory.
-
-### Copy test suite settings
-
-New test suite settings are provided in the `default.properties` file of the test suite *testsuite-template*. Copy it from `<LatestXLTversion>/samples/testsuite-template/config` to the config directory of your test suites `<YourTestSuite>/config`.
-
-:::note
-Note that when you configure your test project to use a newer version of XLT, do not forget to update XLT on your load machines as well. The version you have used to develop your test scripts must match the executing version of your load test environment.
-:::
+1. **Back up existing data**: Preserve custom configurations, results, and test suites:
+   * Test suites (if stored inside the `<xlt>` directory)
+   * Stored test results (`<xlt>/results/`)
+   * Generated reports (`<xlt>/reports/`)
+   * Custom agent and controller configurations (`<xlt>/config/*.properties`)
+2. **Extract the new release**: Unpack the new XLT archive alongside the existing installation.
+3. **Synchronize configuration**: Review changes in `config/default.properties` from `samples/testsuite-template` and copy any newly introduced settings into your test suite's `config/` directory.
+4. **Update agent machines**: Ensure all distributed agent controllers run the identical XLT version as your local development and controller environment.
 
 ## Uninstallation
 
-Before uninstalling XLT, make sure to back up all test results and test reports you want to keep. To uninstall XLT, simply delete its installation directory.
+To uninstall XLT:
+
+1. Back up any test results or reports you wish to keep.
+2. Remove the XLT installation directory from your file system.
+

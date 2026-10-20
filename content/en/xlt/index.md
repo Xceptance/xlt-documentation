@@ -4,6 +4,7 @@ sidebar:
   label: XLT Documentation
 ---
 
-XLT (Xceptance Load Test) is a multi-purpose load and performance testing tool that can also be used for test automation. Its test automation supports WebDriver-style automation while adding additional features. Load testing and test automation capabilities together allow you to run client-side performance tests. This means you can use a real browser to run performance tests at scale, rather than manually building all the calls.
+XLT (Xceptance Load Test) is a comprehensive load, performance, and regression testing platform. It combines protocol-level HTTP simulation with real-browser WebDriver automation to evaluate application performance under realistic conditions.
 
-XLT is powered by Java, allowing it to run almost everywhere. Java also enables you to program your scripts, rather than merely configuring them. This gives you the power of a full programming language, and you can use almost any Java library as part of XLT. Other similar products call that loadtest as code.
+By writing tests in standard Java, you gain full access to the Java ecosystem, standard build tools, and software development practices. Treat performance tests as code: version them in Git, run them in CI/CD pipelines, and scale them from local machines to distributed cloud clusters.
+

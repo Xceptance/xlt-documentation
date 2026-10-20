@@ -6,45 +6,65 @@ sidebar:
   order: 35
 ---
 
-## Setup a Test Execution
+## Configure the Test Run
 
-Once the [demo shop is running locally](/xlt/quick-start/demo-application/) and you have [set up the demo test suite](/xlt/quick-start/demo-test-suite/), you are ready to run a test.
-First, tell XLT in `<posters-simple-loadtest-suite>/config/project.properties` which test configuration to use and where to find your Posters demo shop instance:
+Ensure the [demo application is running locally](/xlt/quick-start/demo-application/) and you have imported the [demo test suite](/xlt/quick-start/demo-test-suite/).
+
+### Step 1: Configure Target Environment
+
+In `<posters-simple-loadtest-suite>/config/project.properties`, configure the target store URL and reference the active test profile:
 
 ```properties title="project.properties"
-# Point to the test setup for XLT, this is an XLT setting
+# Active load test profile
 com.xceptance.xlt.testPropertiesFile = my-test.properties
 
-# Specify data for the test suite
-# This is a test suite setting
+# Base URL of the Posters demo store
 store-url = https://localhost:8443/posters/
 ```
 
-Next, you configure the basic properties of the test suite and the load profile in `<posters-simple-loadtest-suite>/config/my-test.properties`. The demo test suite comes with basic `test.properties` which you can use as a starting point for whatever you are planning.
+### Step 2: Define the Load Profile
+
+Open `<posters-simple-loadtest-suite>/config/my-test.properties` and specify scenarios, durations, and load limits:
 
 ```properties title="test.properties"
+# Test scenarios to execute
 com.xceptance.xlt.loadtests = TVisit
+
+# Global phase durations
 com.xceptance.xlt.loadtests.default.rampUpPeriod = 5m
 com.xceptance.xlt.loadtests.default.measurementPeriod = 1h
 com.xceptance.xlt.loadtests.default.shutdownPeriod = 1m
 
-## Test case specific configuration.
+# Scenario-specific load (target 500 arrivals/hr with a ceiling of 1 user)
 com.xceptance.xlt.loadtests.TVisit.users = 1
 com.xceptance.xlt.loadtests.TVisit.arrivalRate = 500
 ```
 
-In this case we run a test for 1 hour with a 5 minute [ramp-up period](/xlt/about/glossary/#ramp-up-period-xlt), and a 1 minute [shutdown period](/xlt/about/glossary/#shutdown-period-xlt). The shutdown phase will not turn up in our measurements, but ramp-up does. You can exclude it later if desired. Total runtime is 1h 5min ( [measurement period](/xlt/about/glossary/#measurement-period-xlt) + shutdown period).
+This configuration executes `TVisit` with:
+* A 5-minute [ramp-up period](/xlt/about/glossary/#ramp-up-period-xlt) to warm up application caches.
+* A 1-hour [measurement period](/xlt/about/glossary/#measurement-period-xlt) recording metrics.
+* A 1-minute [shutdown period](/xlt/about/glossary/#shutdown-period-xlt) allowing active transactions to conclude.
 
-## Run the Test Execution
+Total execution time is 1 hour and 6 minutes.
 
-To run the test execution, tell the [mastercontroller](/xlt/manual/environment-configuration/#mastercontroller-configuration) where the test suite is (in `<xlt>/config/mastercontroller.properties`):
+## Execute the Load Test
+
+### Step 3: Configure the Master Controller
+
+In `<xlt>/config/mastercontroller.properties`, set the path to your test suite directory:
 
 ```properties title="mastercontroller.properties"
-com.xceptance.xlt.mastercontroller.testSuitePath = <posters-simple-loadtest-suite>
+com.xceptance.xlt.mastercontroller.testSuitePath = /path/to/posters-simple-loadtest-suite
 ```
 
-Then navigate to `<xlt>/bin` and start the mastercontroller (MC) in auto mode with an embedded agentcontroller (so the load generators come up on your local machine without any extra configuration work).
+### Step 4: Launch Master Controller
+
+Launch the Master Controller with embedded agent execution enabled. This spawns a local agent process automatically without requiring remote agent machines:
 
 ```bash
-./mastercontroller.sh -auto -embedded -comment "My first test run"
+cd <xlt>/bin
+./mastercontroller.sh -auto -embedded -comment "Local quick-start verification"
 ```
+
+The Master Controller displays live console status during execution, terminates gracefully upon completion, and generates the load test report in `<xlt>/reports/`.
+
