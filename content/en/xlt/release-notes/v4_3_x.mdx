@@ -221,7 +221,7 @@ exported the raw target. Fixed.
 #### Known issue: Invisible elements react to mouse-over events
 
 Script Developer permits to send mouse-over commands to invisible
-elements. That is not correct, because browsers wont’t send such events
+elements. That is not correct, because browsers won't send such events
 to invisible elements. When running these scripts via WebDriver, they
 will fail. To maintain compatibility of existing scripts, we decided to
 keep the incorrect behavior in place. We are going to change this
@@ -442,7 +442,7 @@ The WebDriver specification mandates to return the text as shown on the
 screen. XML script test cases are meant to be replayed outside Script
 Developer via the WebDriver API, so Script Developer has to be in line
 with the WebDriver specification. Therefore, it will now record text
-with the the character casing that appears on the screen and it will
+with the character casing that appears on the screen and it will
 also take the CSS property `text-transform` into account when replaying
 text assertions.
 

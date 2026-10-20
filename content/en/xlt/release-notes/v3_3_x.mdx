@@ -252,7 +252,7 @@ timing information.
 
 The bandwidth tab displays information about the use incoming and
 outgoing bandwidth per request. XLT measures on socket level and
-therefore the real transfered data out and in of the application is
+therefore the real transferred data out and in of the application is
 measured. XLT does not analyze or modify that data when taking the
 measurements. Bytes Sent comprises all data that is sent out of the
 application including overhead such as http(s) headers and SSL protocol
@@ -616,7 +616,7 @@ this release.
 
 #### Memory leaks in crawler demo scenario (\#570)
 
-The crawler demo scenarios accidently instantiated the web client too
+The crawler demo scenarios accidentally instantiated the web client too
 often, causing a memory leak because web client instances are only
 destroyed when the test finishes.
 
@@ -907,11 +907,11 @@ HTML page which obviously has to be loaded before we can go ahead.
 
 For this example we assume that the form to be submitted has the ID
 *sampleForm* and the input elements, whose values should be submitted,
-have the name *name*.
+have the attribute name `name`.
 
 First of all, we have to obtain the XLT driver instance. This is done by
 calling the method `getDriver()`, that is defined in the test super
-class `com.xceptanxe.xlt.api.tests.AbstractTestCase`. After that, we can
+class `com.xceptance.xlt.api.tests.AbstractTestCase`. After that, we can
 use the instance method `get(String)` of the XLT driver to load the
 desired page.
 

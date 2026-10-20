@@ -153,7 +153,7 @@ First, let's split off the _\_\_Analytics-Start_ requests seen in COLogin.6. The
 ...requestMergeRules.10.stopOnMatch = true
 ```
 
-Pay attention to the double backslash before the question mark (`\\?`). The first `\`  escapes the `?` from the regular expression perspective, treating it as a literal character. The second `\` escapes the `\` character because this is a Java property file format. Here, `\` is a special character (see [Java Properties](https://docs.oracle.com/javase/8/docs/api/java/util/Properties.html#load-java.io.Reader-)).
+Pay attention to the double backslash before the question mark (`\\?`). The first `\` escapes the `?` from the regular expression perspective, treating it as a literal character. The second `\` escapes the `\` character because this is a Java property file format. Here, `\` is a special character (see [Java Properties](https://docs.oracle.com/javase/8/docs/api/java/util/Properties.html#load-java.io.Reader-)).
 
 ### Step 2: Remove the Index
 
