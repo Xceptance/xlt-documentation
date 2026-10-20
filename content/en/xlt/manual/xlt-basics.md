@@ -9,13 +9,13 @@ sidebar:
 
 ## What is XLT?
 
-XLT (Xceptance Load Test) is an open-source regression, load, and performance testing platform released under the Apache License 2.0. Developed and actively maintained by [Xceptance](https://xceptance.com), XLT is designed for scalable, developer-centric testing.
+XLT (Xceptance Load Test) is an open-source load and performance testing tool released under the Apache License 2.0. Developed and actively maintained by [Xceptance](https://xceptance.com), XLT is designed for scalable, developer-centric performance testing.
 
 Key architectural characteristics include:
 
 * **Platform Independence**: Develop and execute tests on any operating system with Java 21 or higher.
 * **Standard Tooling**: Write tests in standard Java using JUnit. No proprietary scripting languages or vendor-locked IDEs are required.
-* **High Scalability**: Scale test execution from a single developer laptop to thousands of concurrent users distributed across cloud environments.
+* **High Scalability**: Scale test execution from a single developer laptop to thousands of concurrent users distributed across machines.
 * **Rich Diagnostics**: Generate detailed HTML reports, diffable execution trends, real-time metric streams, and visual [Result Browsers](/xlt/manual/result-browser/) capturing full DOM snapshots and network HARs.
 
 ## How XLT Works
