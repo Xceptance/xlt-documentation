@@ -1,0 +1,69 @@
+---
+title: Load Test Templates
+icon: copy
+description: Define and manage reusable load test blueprints to streamline recurring test setups across your team.
+sidebar:
+  order: 152
+---
+
+## Overview
+
+Setting up recurring performance tests—such as weekly soak tests, peak-season ramp-ups, or baseline regression benchmarks—often requires repeating identical machine topologies, load profiles, and property overrides.
+
+To eliminate repetitive manual configuration, XTC supports **Load Test Templates** (introduced in v117). Templates act as reusable blueprints that store complete load test definitions without cluttering your active test execution history.
+
+:::info[Role Required]
+To create, edit, or delete templates, your account must at least have the role of a [tester](/xtc/basics/projects/#user-roles-within-a-project) within the project. Reviewers can inspect templates.
+:::
+
+---
+
+## The Templates Workspace
+
+Templates reside in their own dedicated **Templates** section in the left project navigation menu:
+
+- **Isolated from Execution Runs**: Unlike duplicating past test runs—which mixes finished results with draft setups—templates remain clean and decoupled from execution histories.
+- **Centralized Standardization**: Teams can maintain standard "Gold Master" configurations (e.g., *1,000-User Soak Test*, *Nightly Sanity Check*, *Black Friday Stress Profile*) that any team member can launch with confidence.
+
+---
+
+## Creating a Template
+
+You can create templates using two approaches:
+
+### 1. From an Existing Load Test
+
+The fastest way to establish a template is to convert a known good load test run:
+
+1. Navigate to the **Load Tests** overview.
+2. Open the 3-dot context menu of the desired load test.
+3. Select **Create Template**.
+4. Enter a descriptive template name and documentation summary.
+
+All settings—including load profiles, duration, agent machine allocations, custom properties, and Git branch references—are cloned into the new template.
+
+### 2. From Scratch
+
+1. Navigate to **Templates** in the project navigation.
+2. Click the **NEW** button at the top of the table.
+3. Configure your target load profile, machine topology, and property overrides just like configuring a standard load test.
+
+---
+
+## Instantiating a Load Test from a Template
+
+To run a test based on a template:
+
+1. Navigate to **Templates** in the project navigation.
+2. Locate the desired template blueprint and click **Create Load Test** (or select it from the context menu).
+3. Specify a name for the new test execution run.
+4. The newly created load test opens with the status *New*, pre-populated with all parameters from the template. You can launch it immediately or tweak parameters without affecting the source blueprint.
+
+---
+
+## Managing Templates
+
+Templates support standard management workflows:
+- **Updating Settings**: Open any template to modify its machine configurations, load profile functions, or property sets. Future load tests created from the template will inherit the updated parameters.
+- **Duplicating Templates**: Quickly clone an existing template to create variations (e.g. *Staging Peak* vs. *Production Peak*).
+- **Archiving & Cleanup**: Delete templates that are no longer in use. Deleting a template does not delete or affect past test runs that were previously instantiated from it.

@@ -1,0 +1,347 @@
+---
+title: Scorecard
+icon: award
+description: Learn how to automate quality gating, SLA evaluation, and scorecard ratings using the Groovy DSL and legacy JSON rules.
+sidebar:
+  order: 570
+---
+
+## Overview
+
+To simplify the evaluation of load test results, XLT provides an automated quality gate that analyzes metrics during report generation. Configured rules inspect transaction rates, request response times, error counts, and agent resource utilization to grade the test run according to your quality standards.
+
+The evaluation outcome is displayed in the **Scorecard** tab of the HTML report and highlighted in the executive summary of the [PDF Report](/xlt/manual/reports/#executive-pdf-reports).
+
+XLT supports two configuration formats:
+- **Groovy Scorecard (`.groovy`)**: Recommended for XLT 10. A programmable Groovy DSL supporting fluent assertions, helper builders, live report data inspection, dynamic rule loops, and external property access.
+- **JSON Scorecard (`.json`)**: Legacy declarative format.
+
+:::tip[Authoring with AI Coding Assistants?]
+You can teach your assistant the complete Groovy scorecard DSL, fluent assertions, and XPath builders by installing the [`xlt-scorecards`](/xlt/how-tos/ai-agent-skills/) agent skill.
+:::
+
+---
+
+## Quick Start: Groovy Scorecard
+
+To activate automated evaluation with Groovy:
+
+1. Create a `scorecard.groovy` file inside your test suite's `config/` directory.
+2. In `config/project.properties` (or via `-D` override), point XLT to your script:
+
+```properties
+com.xceptance.xlt.scorecard.config = scorecard.groovy
+```
+
+Here is a minimal, complete example:
+
+```groovy
+// 1. Define rules and fluent assertions
+builder.rules {
+    rule {
+        id 'homepage_p95'
+        name 'Homepage Latency SLA'
+        points 10
+        checks {
+            check {
+                // Use xpathBuilder helper for P95 latency
+                selector xpathBuilder.requestP95('^Homepage')
+                isLessThanOrEqualTo 500
+            }
+        }
+        messages {
+            success "Homepage runtime is within acceptable limits"
+            fail "Homepage runtime exceeds 500 ms"
+        }
+    }
+}
+
+// 2. Group the rules
+builder.groups {
+    group {
+        id 'runtime'
+        name 'Runtime SLAs'
+        mode 'allPassed'
+        rules(['homepage_p95'])
+    }
+}
+
+// 3. Define the final rating scale (upper limit values)
+builder.ratings {
+    rating { id 'Fail'; value 99.99; failsTest true }
+    rating { id 'Pass'; value 100.0 }
+}
+```
+
+When report generation runs, XLT executes the script, evaluates all checks against the generated `testreport.xml`, computes achieved points and percentages, and renders the verdict banner and rule breakdowns.
+
+---
+
+## Groovy DSL Architecture & Bindings
+
+When your `.groovy` scorecard script executes, it runs inside a secured sandbox with pre-injected variables ready for use:
+
+| Binding | Type | Description |
+|---|---|---|
+| `builder` | `ScorecardBuilder` | Core builder object used to define rules, groups, selectors, and ratings. |
+| `xpathBuilder` | `XPathBuilder` | Helper object that generates complex XPath strings for standard report metrics automatically. |
+| `properties` | `XltProperties` | Access to XLT test configuration properties (e.g., `properties.getInt(...)`). |
+| `data` | `ReportData` | Query engine allowing live inspection of `testreport.xml` data during script evaluation. |
+| `log` | `Logger` | Logging interface (`log.info`, `log.warn`, `log.error`) printed to the console and embedded in report logs. |
+
+:::tip
+Always leave `builder` as the last expression or return it explicitly from your script so the evaluation engine can collect your configuration.
+:::
+
+---
+
+## Building Rules and Checks
+
+Rules define achievable points and evaluate one or more `checks`. If all checks pass, the rule contributes its points to the overall score. Rules with `points 0` serve as informational checks without affecting the overall percentage.
+
+```groovy
+builder.rules {
+    rule {
+        id 'cpu_check'
+        points 5
+        failsTest true
+        failsOn 'NOTPASSED' // 'NOTPASSED' (default) or 'PASSED'
+        checks {
+            check {
+                selector xpathBuilder.agentCpuMax()
+                isLessThan 90
+            }
+        }
+    }
+}
+```
+
+### Check Evaluation Options
+
+A check evaluates an XPath selector through either fluent assertions or direct condition expressions:
+
+- **Fluent Assertions**:
+  - `isLessThan(value)` / `isLessThanOrEqualTo(value)`
+  - `isGreaterThan(value)` / `isGreaterThanOrEqualTo(value)`
+  - `isEqualTo(value)` / `isNotEqualTo(value)`
+  - `matchesRegex(pattern)`
+- **Direct XPath Conditions**: `condition '<= 500'` or `condition '= 0'`.
+- **Value Formatting**: `formatter '%,.2f ms'` formats displayed numbers in the report using `java.util.Formatter` syntax with `Locale.US`.
+- **Manual Status Overrides**: To bypass evaluation and force an outcome, specify `status 'PASSED'`, `status 'FAILED'`, `status 'ERROR'`, or `status 'SKIPPED'`, alongside `value '...'` and optional `message '...'`.
+
+---
+
+## The `xpathBuilder` Reference Cheat Sheet
+
+Every metric helper in `xpathBuilder` supports two call forms:
+1. **Positional regex shorthand:** `xpathBuilder.requestP95('^Homepage')` (matches by regex on the element `name`).
+2. **Named parameters:** `xpathBuilder.requestP95(name: '^Homepage', excludeName: '^Order', label: 'critical', excludeLabel: 'cached')`.
+   - `name`: Matches regex against the element's `name`.
+   - `excludeName`: Rejects elements whose `name` matches the regex.
+   - `label`: Exact match on the element's semantic `labels` (configured via [Labeling Rules](/xlt/advanced/labeling-rules/)).
+   - `excludeLabel`: Rejects elements whose `labels` equals the string.
+
+### Requests, Transactions & Actions
+
+| Metric | Requests | Transactions | Actions | Description |
+|:---|:---|:---|:---|:---|
+| **P50 (Median)** | `requestP50(...)` | `transactionP50(...)` | `actionP50(...)` | 50th percentile response time |
+| **P95** | `requestP95(...)` | `transactionP95(...)` | `actionP95(...)` | 95th percentile response time |
+| **P99** | `requestP99(...)` | `transactionP99(...)` | `actionP99(...)` | 99th percentile response time |
+| **P99.9** | `requestP99_9(...)` | `transactionP99_9(...)` | `actionP99_9(...)` | 99.9th percentile response time |
+| **Mean** | `requestMean(...)` | `transactionMean(...)` | `actionMean(...)` | Mean response time |
+| **Median** | `requestMedian(...)` | `transactionMedian(...)` | `actionMedian(...)` | Median response time |
+| **Min** | `requestMin(...)` | `transactionMin(...)` | `actionMin(...)` | Minimum response time |
+| **Max** | `requestMax(...)` | `transactionMax(...)` | `actionMax(...)` | Maximum response time |
+| **Errors** | `requestErrors(...)` | `transactionErrors(...)` | `actionErrors(...)` | Error count |
+| **Error %** | `requestErrorPercentage(...)` | `transactionErrorPercentage(...)` | `actionErrorPercentage(...)` | Error rate percentage |
+| **Count** | `requestCount(...)` | `transactionCount(...)` | `actionCount(...)` | Total execution count |
+| **Arbitrary Metric** | `requestValue(..., path)` | `transactionValue(..., path)` | `actionValue(..., path)` | Relative XPath path (e.g. `'bytesSent/mean'`) |
+
+### Custom Timers
+
+| Method | Parameters | Description |
+|:---|:---|:---|
+| `customTimerP50(...)` | regex or map | 50th percentile runtime |
+| `customTimerP95(...)` | regex or map | 95th percentile runtime |
+| `customTimerP99(...)` | regex or map | 99th percentile runtime |
+| `customTimerMean(...)` | regex or map | Mean runtime |
+| `customTimerMax(...)` | regex or map | Maximum runtime |
+| `customTimerValue(..., path)` | regex or map, path | Custom sub-metric |
+
+### Global Summaries, HTTP Errors & Rate Calculations
+
+| Method | Parameters | Description |
+|:---|:---|:---|
+| `globalCountPerHour(type)` | `'transactions'`, `'requests'`, `'actions'` | Pre-computed hourly rate from report summary |
+| `globalErrorPercentage(type)` | `'transactions'`, `'requests'`, `'actions'` | Global summary error percentage |
+| `httpErrorCount(regex)` | Regex string (e.g., `'5..'`, `'404\|400'`) | Sum of counts for matching HTTP status codes |
+| `perHour(metricExpression)` | XPath expression string | Divides metric by test duration in hours (`/testreport/general/duration div 3600`) |
+
+### Agent & Resource Utilization
+
+| Method | Parameters | Description |
+|:---|:---|:---|
+| `agentCpuMax()` | *(none)* | Maximum CPU usage percentage across all agents |
+| `agentCountCpuMeanAbove(threshold)` | `Number` threshold | Count of agents whose mean CPU usage exceeded the threshold |
+| `agentCount()` | *(none)* | Total number of agents utilized in the test |
+| `agentCountWithErrors()` | *(none)* | Count of agents that encountered transaction errors |
+| `agentTransactionErrorsTotal()` | *(none)* | Pre-computed total transaction errors across all agents |
+
+---
+
+## Groups and Calculation Modes
+
+Groups bundle rules together and define how points are aggregated:
+
+```groovy
+builder.groups {
+    group {
+        id 'infrastructure'
+        name 'Agent Infrastructure'
+        mode 'allPassed'
+        rules(['cpu_utilization', 'agent_errors'])
+    }
+}
+```
+
+| Mode | Achievable Points | Achieved Points | Use Case |
+|---|---|---|---|
+| `allPassed` | Sum of all rules' points | Sum of all passed rules' points | Standard evaluation (every passed rule adds points). |
+| `firstPassed` | Maximum points of any single rule | Points from the *first* rule that passes | Tiered grading (e.g., test meets gold, silver, or bronze SLA). |
+| `lastPassed` | Maximum points of any single rule | Points from the *last* rule that passes | Reverse tiered grading. |
+
+---
+
+## Ratings and Forced Overrides
+
+Ratings define the grading thresholds (such as `A`, `B`, `C`, `F`). Ratings are evaluated sequentially in ascending order. The **first rating** whose `value` is greater than or equal to the achieved percentage is assigned. Therefore, `value` represents the **upper percentage limit**.
+
+```groovy
+builder.ratings {
+    rating { id 'Poor'; value 50.0; failsTest true } // <= 50%
+    rating { id 'Acceptable'; value 90.0 }           // <= 90%
+    rating { id 'Excellent'; value 100.0 }          // <= 100%
+}
+```
+
+### Conditional Rating Overrides (`forced`)
+
+You can conditionally force a specific rating based on test environment conditions, bypassing the point-based score calculation entirely:
+
+```groovy
+// Inspect agent CPU via live data query
+def maxCpuStr = data.get("max(//agents/agent/totalCpuUsage/max)")
+def maxCpu = maxCpuStr ? Double.parseDouble(maxCpuStr) : 0.0
+
+// Invalidate test if load agents were overloaded (> 90% CPU)
+def agentOverloaded = maxCpu > 90.0
+
+builder.ratings {
+    rating { id 'A'; value 100.0 }
+    rating { id 'Invalid'; value 0.0; forced agentOverloaded; failsTest true }
+}
+```
+
+---
+
+## Dynamic Rules via Live Data
+
+Because Groovy is fully programmable, you can query `testreport.xml` via the `data` binding to dynamically construct rules for whichever requests occurred during the test:
+
+```groovy
+// Read configurable thresholds from properties
+def defaultLimit = properties.getInt('scorecard.limit.default', 750)
+
+// Extract all request names dynamically from test results
+def allRequests = data.getList('//requests/request/name')
+
+builder.rules {
+    allRequests.each { reqName ->
+        rule {
+            id "sla_${reqName}"
+            name "SLA: ${reqName}"
+            points 5
+            checks {
+                check {
+                    selector xpathBuilder.requestP95(reqName)
+                    isLessThan defaultLimit
+                    formatter '%,.2f ms'
+                }
+            }
+        }
+    }
+}
+
+builder.groups {
+    group {
+        id 'dynamic_requests'
+        name 'All Requests P95'
+        mode 'allPassed'
+        rules(allRequests.collect { "sla_${it}" })
+    }
+}
+```
+
+---
+
+## Updating Scorecards Post-Test
+
+To tune or re-evaluate scorecard rules without re-running the test or regenerating the entire report from scratch, use `update_scorecard.sh`:
+
+```bash
+./bin/update_scorecard.sh ../reports/20260901-100000
+```
+
+The script re-evaluates the modified `scorecard.groovy` (or legacy `scorecard-config.json`) against the existing `testreport.xml` and updates the Scorecard tab instantly.
+
+---
+
+## JSON Scorecard Configuration (Legacy)
+
+:::warning[Legacy Implementation]
+The JSON scorecard format is a legacy implementation and it might be removed in the near future. For all new scorecard setups, use the programmable [Groovy Scorecard DSL](#quick-start-groovy-scorecard) (`scorecard.groovy`), which offers fluent assertions, dynamic queries against live report data, helper builders, and sandbox safety.
+:::
+
+If your pipeline requires declarative JSON without scripting, place a `scorecard-config.json` file in `config/`:
+
+```properties
+com.xceptance.xlt.scorecard.config = scorecard-config.json
+```
+
+```json
+{
+  "version": 2,
+  "rules": [
+    {
+      "id": "homepageResponseTime",
+      "name": "Homepage P95",
+      "points": 10,
+      "checks": [
+        {
+          "selector": "//requests/request[name[text() = 'Homepage']]/percentiles/p95",
+          "condition": "<= 500",
+          "displayValue": true
+        }
+      ],
+      "messages": {
+        "success": "Homepage latency is acceptable",
+        "fail": "Homepage latency exceeded 500 ms"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "runtimeGroup",
+      "name": "Runtime KPIs",
+      "mode": "allPassed",
+      "rules": ["homepageResponseTime"]
+    }
+  ],
+  "ratings": [
+    { "id": "poor", "value": 50.0, "failsTest": true },
+    { "id": "ok", "value": 90.0 },
+    { "id": "pass", "value": 100.0 }
+  ]
+}
+```

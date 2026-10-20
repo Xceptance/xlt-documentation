@@ -312,3 +312,26 @@ If you define rules that will never match (because your data doesn't contain suc
 ### Expensive Regular Expressions
 
 Regular expressions can be computationally expensive, especially if they are inefficient in determining matches. For more information, see this example: [Regexes: The Bad, the Better, and the Best](https://www.loggly.com/blog/regexes-the-bad-better-best/).
+
+---
+
+## Architectural Boundaries & Alternatives
+
+### Merge Rules vs. Labeling Rules
+
+While both features operate during report generation, they serve distinct purposes:
+
+| Feature | Primary Purpose | Scope | Output Impact |
+|---|---|---|---|
+| **Merge Rules** | Request bucketing and consolidation | Requests only | Mutates/renames request display names; merges lines in request tables |
+| **[Labeling Rules](/xlt/advanced/labeling-rules/)** | Semantic tagging & categorization | Transactions, Actions, Requests | Assigns non-destructive metadata tags (`label`) without altering names |
+
+If your goal is to group requests for SLA verification, AI data exports, or table filtering without destroying their individual identity or altering the timer name hierarchy, use [Labeling Rules](/xlt/advanced/labeling-rules/).
+
+### Property Expansion Lifecycle Boundary
+
+XLT 10 supports dynamic property evaluation using Groovy expressions (`#{...}`). However, it is essential to understand the architectural boundary between property expansion and merge rules:
+
+- **Startup Property Expansion (`#{...}`)**: Evaluated **once** when the test suite or report generator initializes its configuration properties. Property expressions cannot inspect individual timer records or dynamically transform CSV rows at report generation time.
+- **Streaming CSV Processing**: Merge rules operate as a dedicated, streaming regex engine compiled in Java to process millions of CSV lines with minimal latency and constant memory overhead. They do not invoke Groovy scripts per timer event.
+

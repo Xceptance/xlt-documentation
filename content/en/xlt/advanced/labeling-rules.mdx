@@ -1,0 +1,210 @@
+---
+title: Labeling Rules
+description: Learn how to assign semantic tags to transactions, actions, and requests during report generation for downstream filtering, scorecards, and AI data exports.
+icon: tags
+sidebar:
+  order: 20
+---
+
+## Motivation
+
+Modern load tests generate thousands of individual timer entries spanning requests, actions, and transactions. While [Merge Rules](/xlt/advanced/merge-rules/) are designed to rename, consolidate, or split requests by altering their displayed names, you frequently need to categorize measurements without mutating their identity.
+
+**Labeling Rules** (introduced in XLT 10) solve this challenge by applying non-destructive semantic tags (labels) to your test results during report generation. For instance, all requests associated with checkout steps can be labeled with `checkout`, or transactions can be tagged as `registered` vs `anonymous`.
+
+These labels propagate throughout the entire XLT reporting and analytics ecosystem:
+- **HTML Report**: Rendered as distinct visual badges on table rows, enabling quick visual categorization and interactive filtering.
+- **AI Data Report**: Included in the structured YAML report (`ai-data.yaml`), allowing LLMs to filter data slices by domain area without parsing brittle URL strings.
+- **Groovy Scorecards**: Directly queryable via scorecard helpers such as `xpathBuilder.requestP95(label: 'checkout')` or `excludeLabel: 'cached'`.
+- **XML Report Data**: Persisted in `<label>` elements within `testreport.xml` for automated ingestion into external dashboards or CI/CD pipelines.
+
+---
+
+## Configuration Syntax
+
+Labeling rules are configured in `config/reportgenerator.properties` (or passed via `-D` system properties) using the following property pattern:
+
+```properties
+com.xceptance.xlt.reportgenerator.labelingRules.<num>.<param> = <value>
+```
+
+Rules are sorted numerically by `<num>` and evaluated in ascending order.
+
+```properties
+## Example: Label homepage actions and requests
+com.xceptance.xlt.reportgenerator.labelingRules.1.newLabels = homepage
+com.xceptance.xlt.reportgenerator.labelingRules.1.types = A,R
+com.xceptance.xlt.reportgenerator.labelingRules.1.namePattern = ^Homepage
+```
+
+---
+
+## Parameters
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `newLabels` | String | **Yes** | The label string to assign to matching timer reports. Multiple labels are separated by spaces. Supports dynamic placeholders. |
+| `types` | String | No | Report types to apply this rule to. Valid codes: `T` (Transaction), `A` (Action), `R` (Request). Separate multiple types with spaces, commas, or semicolons (e.g., `A,R`). If omitted, matches all types. |
+| `namePattern` | Regex | No | Regular expression matching the timer report name (category code `n`). |
+| `labelPattern` | Regex | No | Regular expression matching existing label values (category code `l`). |
+| `namePattern.exclude` | Regex | No | Exclude timer reports whose name matches this regular expression. |
+| `labelPattern.exclude` | Regex | No | Exclude timer reports whose existing label matches this regular expression. |
+| `stopOnMatch` | Boolean | No | Whether to halt further rule processing for this timer report once matched. Defaults to `true`. Set to `false` for multi-pass tagging. |
+
+:::note
+If more than one pattern is defined on a single rule, **all** defined patterns must match for the rule to apply (logical AND). When both an include and an exclude pattern are configured for the same attribute, the report is selected if and only if it matches the include pattern and does *not* match the exclude pattern.
+:::
+
+---
+
+## Placeholders and Multi-Label Support
+
+### Capturing Groups
+
+The `newLabels` parameter supports dynamic substitution using values captured by regular expressions:
+
+- `{<category>:<capturingGroupIndex>}`: Replaced by the capturing group at `<capturingGroupIndex>` from the corresponding pattern.
+  - `{n:1}`: Group 1 from `namePattern`.
+  - `{l:2}`: Group 2 from `labelPattern`.
+- `{<category>}`: Replaced by the complete, raw attribute text without requiring an explicit regular expression pattern.
+  - `{n}`: Full timer report name.
+  - `{l}`: Full existing label string.
+
+### Appending Labels
+
+In the HTML report, whitespace within a label string serves as a delimiter, so space-separated tokens render as separate label badges. 
+
+To append a label without overwriting previously assigned labels, reference the `{l}` placeholder:
+
+```properties
+## Appends "checkout" to any existing labels
+com.xceptance.xlt.reportgenerator.labelingRules.10.newLabels = {l} checkout
+com.xceptance.xlt.reportgenerator.labelingRules.10.types = A,R
+com.xceptance.xlt.reportgenerator.labelingRules.10.namePattern = ^(StartCheckout|SubmitOrder)
+```
+
+---
+
+## Downstream Integrations
+
+### 1. Groovy Scorecard Assertions
+
+Rather than writing complex regex patterns against request names in your `scorecard.groovy`, you can target semantic labels directly:
+
+```groovy
+builder.rules {
+    rule {
+        id 'checkout_p95'
+        name 'Checkout Latency SLA'
+        checks {
+            check {
+                // Match all requests carrying the 'checkout' label
+                selector xpathBuilder.requestP95(label: 'checkout')
+                isLessThan 750
+            }
+            check {
+                // Exclude static assets or third-party tags
+                selector xpathBuilder.requestP95(label: 'checkout', excludeLabel: 'third-party')
+                isLessThan 500
+            }
+        }
+    }
+}
+```
+
+### 2. AI Data Report Analysis
+
+The [AI Data Report](/xlt/manual/ai-data-report/) formats metrics into a compact, token-efficient YAML document (`ai-data.yaml`). When labeling rules are active, each request and transaction section includes a `label` attribute:
+
+```yaml
+requests:
+  - name: "PlaceOrder"
+    label: "checkout order critical"
+    count: 1420
+    mean_ms: 312.4
+    p95_ms: 480.1
+    error_pct: 0.0
+```
+
+This allows prompt instructions such as *"Evaluate latency and error distribution specifically across all requests labeled with `checkout`"* without requiring the model to guess which URLs belong to the checkout funnel.
+
+---
+
+## Practical Recipes
+
+### Recipe 1: E-Commerce Funnel Categorization
+
+Categorize actions and requests into standard shopping funnel stages:
+
+```properties
+## 1. Homepage
+com.xceptance.xlt.reportgenerator.labelingRules.1.newLabels = homepage
+com.xceptance.xlt.reportgenerator.labelingRules.1.types = A,R
+com.xceptance.xlt.reportgenerator.labelingRules.1.namePattern = ^Homepage
+
+## 2. Catalog & Product Browsing
+com.xceptance.xlt.reportgenerator.labelingRules.2.newLabels = catalog
+com.xceptance.xlt.reportgenerator.labelingRules.2.types = A,R
+com.xceptance.xlt.reportgenerator.labelingRules.2.namePattern = ^(SelectCategory|ProductDetailView|Search)
+
+## 3. Cart Operations
+com.xceptance.xlt.reportgenerator.labelingRules.3.newLabels = cart
+com.xceptance.xlt.reportgenerator.labelingRules.3.types = A,R
+com.xceptance.xlt.reportgenerator.labelingRules.3.namePattern = ^(AddToCart|ViewCart|UpdateCart)
+
+## 4. Checkout Flow
+com.xceptance.xlt.reportgenerator.labelingRules.4.newLabels = checkout
+com.xceptance.xlt.reportgenerator.labelingRules.4.types = A,R
+com.xceptance.xlt.reportgenerator.labelingRules.4.namePattern = ^(StartCheckout|EnterShipping|EnterPayment)
+
+## 5. Order Placement
+com.xceptance.xlt.reportgenerator.labelingRules.5.newLabels = order
+com.xceptance.xlt.reportgenerator.labelingRules.5.types = A,R
+com.xceptance.xlt.reportgenerator.labelingRules.5.namePattern = ^PlaceOrder
+```
+
+### Recipe 2: Segmenting User Transactions (Include vs. Exclude)
+
+Tag transactions as either `registered` or `anonymous` using pattern exclusions:
+
+```properties
+## Tag registered order transactions
+com.xceptance.xlt.reportgenerator.labelingRules.10.newLabels = registered
+com.xceptance.xlt.reportgenerator.labelingRules.10.types = T
+com.xceptance.xlt.reportgenerator.labelingRules.10.namePattern = ^TOrder
+
+## Tag all other transactions as anonymous
+com.xceptance.xlt.reportgenerator.labelingRules.11.newLabels = anonymous
+com.xceptance.xlt.reportgenerator.labelingRules.11.types = T
+com.xceptance.xlt.reportgenerator.labelingRules.11.namePattern.exclude = ^TOrder
+```
+
+### Recipe 3: Multi-Pass Tagging with `stopOnMatch = false`
+
+Apply multiple orthogonal labels to the same request (e.g., business domain + priority):
+
+```properties
+## Base domain labeling (first pass)
+com.xceptance.xlt.reportgenerator.labelingRules.20.newLabels = checkout
+com.xceptance.xlt.reportgenerator.labelingRules.20.types = A,R
+com.xceptance.xlt.reportgenerator.labelingRules.20.namePattern = ^(StartCheckout|PlaceOrder)
+com.xceptance.xlt.reportgenerator.labelingRules.20.stopOnMatch = false
+
+## SLA priority labeling (second pass: appends to previous label)
+com.xceptance.xlt.reportgenerator.labelingRules.21.newLabels = {l} critical
+com.xceptance.xlt.reportgenerator.labelingRules.21.types = A,R
+com.xceptance.xlt.reportgenerator.labelingRules.21.namePattern = ^PlaceOrder
+```
+
+Requests matching `PlaceOrder` will end up with both labels: `checkout critical`.
+
+### Recipe 4: Dynamic Regex Extraction
+
+Extract subdomains or API version tokens directly from timer names and inject them into labels:
+
+```properties
+## Extract API version (e.g., "API_v2_GetUser" -> label "v2")
+com.xceptance.xlt.reportgenerator.labelingRules.30.newLabels = {n:1}
+com.xceptance.xlt.reportgenerator.labelingRules.30.types = R
+com.xceptance.xlt.reportgenerator.labelingRules.30.namePattern = ^API_(v[0-9]+)_.*
+```

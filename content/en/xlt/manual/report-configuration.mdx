@@ -442,3 +442,85 @@ processed much faster.
 
 In case you want to limit the number of CPUs used during report
 generation, set the property `com.xceptance.xlt.reportgenerator.threads` to an appropriate value.
+
+---
+
+## Semantic Tagging with Labeling Rules
+
+XLT 10 introduces **Labeling Rules**, allowing you to tag transaction, action, and request timer entries with semantic labels (e.g. `homepage`, `cart`, `checkout`, `registered`) during report generation without modifying timer names.
+
+```properties title="reportgenerator.properties"
+com.xceptance.xlt.reportgenerator.labelingRules.1.newLabels = checkout
+com.xceptance.xlt.reportgenerator.labelingRules.1.types = A,R
+com.xceptance.xlt.reportgenerator.labelingRules.1.namePattern = ^(StartCheckout|PlaceOrder)
+```
+
+Labels are rendered as interactive badges in the report tables, exported into the [AI Data Report](/xlt/manual/ai-data-report/), and queryable within [Groovy Scorecards](/xlt/manual/scorecard/).
+
+For a complete reference, parameter table, and recipes, see the dedicated [Labeling Rules Guide](/xlt/advanced/labeling-rules/).
+
+---
+
+## Executive PDF Report Generation
+
+In addition to HTML reports, the report generator can compile an executive-ready A4 PDF document (`load-report.pdf`) using pure Java (OpenHTMLtoPDF and Apache PDFBox):
+
+```properties title="reportgenerator.properties"
+com.xceptance.xlt.reportgenerator.pdf.enabled = true
+```
+
+You can also trigger PDF generation on the command line using the `--pdf` flag:
+
+```bash
+./bin/create_report.sh --pdf ./results/20260901-100000
+```
+
+When enabled, a download link for `load-report.pdf` is automatically included in the HTML report header. See the [Reports Overview](/xlt/manual/reports/#executive-pdf-reports) for full details.
+
+---
+
+## Markdown Comments in Reports
+
+Test comments configured in test properties can be rendered with rich Markdown formatting (headings, bullet points, tables, code blocks, and bold text) by prefixing the comment text with `::markdown::`:
+
+```properties
+# Single Markdown comment
+com.xceptance.xlt.loadtests.comment = ::markdown::## Run Highlights\n\n- **Build**: 10.0.0-beta-5\n- **Target**: Staging Environment\n- **Verdict**: Pass
+
+# Numbered multi-part comments
+com.xceptance.xlt.loadtests.comment.1 = ::markdown::### Test Setup\nStandard 100-user ramp-up over 15 minutes.
+com.xceptance.xlt.loadtests.comment.2 = ::markdown::### Observations\nTransient DB connection spike at minute 12 resolved automatically.
+```
+
+The `::markdown::` prefix is case-insensitive (e.g. `::Markdown::`, `::MARKDOWN::`), and leading/trailing whitespace is automatically trimmed. Unprefixed comments continue to be passed through as plain text (raw HTML is also permitted).
+
+### Ordering & Display
+
+Multiple comment properties (`comment.1`, `comment.2`, etc.) are sorted lexicographically by property name and each rendered into its own paragraph block. Comments supplied via the MasterController command-line option (`-c`) or interactive prompt are automatically recorded under `com.xceptance.xlt.loadtests.comment.commandLine`.
+
+If no comments are configured or all values evaluate to empty whitespace, the report displays *"No comment was given."*.
+
+### Integration Across Reports
+
+Markdown comments propagate across all XLT report artifacts:
+- **HTML Report (`index.html`)**: Displayed in the *Test Comment* section, wrapped in `<div class="markdown">` and styled via `default.css`.
+- **Executive PDF (`load-report.pdf`)**: Formatted for print in the *Test Comment* section using `pdf.css`.
+- **AI Data Report (`ai-data.md`)**: The XML report carries `<rawComments>` preserving the author's original Markdown formatting for LLMs, with blockquote prefixes (`>`) to protect document section headings.
+- **Trend & Diff Reports**: Preserved in trend historical records and diff comparisons.
+
+---
+
+## Moving Averages in Charts
+
+To smooth high-frequency jitter in runtime charts and identify macro trends, configure moving average trendlines in `reportgenerator.properties`:
+
+```properties
+# Enable global moving average across overview charts
+com.xceptance.xlt.reportgenerator.charts.commonAverage.enabled = true
+com.xceptance.xlt.reportgenerator.charts.commonAverage.steps = 50
+
+# Specific timer moving average overrides
+com.xceptance.xlt.reportgenerator.charts.averages.requests.enabled = true
+com.xceptance.xlt.reportgenerator.charts.averages.transactions.enabled = true
+```
+

@@ -25,9 +25,13 @@ Results are basically the [raw data recorded during a test](/xlt/advanced/result
 
 Occasionally, downloading load test results from one or more agent machines may fail, typically due to network issues or an overloaded agent controller. Previously, the results from the other agent machines were also lost in this case. Now, however, XTC stores whatever data is available and also creates a load test report from it. To indicate that the results are partial, the dataset and report names include the note `"Download from x of y agent controllers failed."`
 
-### Downloading Results
+### Downloading Results and Report Artifacts
 
-To download a set of test results, click _Download_ in the result set's context menu. You will get a .tar.gz archive containing nested archives for all [_timers.csv_ files](/xlt/advanced/results/#collected-values).
+To download a set of test results, click _Download_ in the result set's context menu. You will get a `.tar.gz` archive containing nested archives for all [_timers.csv_ files](/xlt/advanced/results/#collected-values).
+
+In addition to full raw result archives, XTC provides direct access to key report artifacts:
+- **AI Data (`ai-data.md`)**: A compact, LLM-optimized summary of test performance and error distributions.
+- **Executive PDF (`load-report.pdf`)**: A printable A4 management summary report with KPIs, ratings, and core charts.
 
 :::info[Role Required]
 To use this feature, your account must at least have the role of a [reviewer](/xtc/basics/projects/#user-roles-within-a-project) within the project.

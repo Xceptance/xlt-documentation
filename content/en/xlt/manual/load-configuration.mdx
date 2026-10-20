@@ -211,3 +211,32 @@ The following figure displays the phases relative to the total test time:
 
 ![Load Test Profile Configuration](/images/user-manual/chart_testprofile.svg)
 *Load Test Profile Configuration*
+
+## Virtual Threads and High Concurrency
+
+In XLT, each virtual user is executed in its own thread to maintain a straightforward, synchronous programming model. 
+
+Starting with XLT 10, user activities are executed using Java 21 **virtual threads** by default. Virtual threads are lightweight user-mode threads managed by the JVM runtime rather than directly by the operating system kernel:
+
+* **Platform Threads (Legacy)**: Each user allocates a dedicated OS thread with an operating system stack (typically ~1 MB). Sizing agents for thousands of users requires substantial RAM and frequently runs into operating system thread limits or scheduling overhead.
+* **Virtual Threads (Default)**: Virtual threads store call stacks as objects in JVM heap memory. Tens of thousands of virtual threads run cooperatively on a small pool of native carrier platform threads, slashing idle memory footprint and enabling unprecedented concurrency per load generator.
+
+### Enabling or Disabling Virtual Threads
+
+Virtual threads are enabled by default. If your test suite or third-party libraries require standard platform threads, you can disable virtual threads in `project.properties` or `test.properties`:
+
+```properties
+## Enable or disable virtual threads (default: true)
+com.xceptance.xlt.virtualThreads.enabled = false
+```
+
+### Carrier Thread Pool Tuning
+
+Virtual threads are scheduled onto a small pool of native carrier threads (typically defaulting to the number of available CPU cores, up to 256). You can configure the maximum number of carrier threads by setting the following JVM property in `<xlt>/config/jvmargs.cfg`:
+
+```properties
+-Djdk.virtualThreadScheduler.maxPoolSize=256
+```
+
+For detailed capacity planning and hardware sizing recommendations, see [How to Size Your Test Environment](/xlt/how-tos/test-sizing/). For test suite code migration guidelines, see [Test Suite Configuration](/xlt/manual/test-suite-configuration/#virtual-threads).
+

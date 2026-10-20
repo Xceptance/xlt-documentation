@@ -40,7 +40,7 @@ xlt-documentation/
 ├── pages/
 │   └── index.astro          # Custom documentation hub homepage (PageLayout)
 ├── openspec/                # OpenSpec specifications and change proposals
-│   └── specs/docs-site/     # Main docs-site specification and requirements
+│   └── specs/               # Capability specifications
 ├── public/                  # Static assets (images, icons, wordmarks)
 │   └── images/              # Referenced as /images/...
 ├── blume.config.ts          # Core Blume configuration (navigation, theme, search)
@@ -150,7 +150,7 @@ Follow the corporate styling configured in `blume.config.ts` and `theme.css`:
 ## 6. OpenSpec & Spec-Driven Development
 
 Site architecture, navigation requirements, and features are tracked formally with OpenSpec under `openspec/`:
-- **Core Specification**: `openspec/specs/docs-site/spec.md`
+- **Specifications**: Capability specifications live under `openspec/specs/`.
 - **Workflows**: When planning or proposing architectural changes, use the workflows in `.agents/workflows/`:
   - `/opsx-explore`: Explore concepts and audit requirements.
   - `/opsx-propose`: Create formal delta proposals.

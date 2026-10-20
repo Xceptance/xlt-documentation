@@ -8,8 +8,8 @@ export default defineMeta({
     "loadtesting",
     "monitoring",
     "integrations",
-    "xtc-release-notes",
     "privacy",
+    "xtc-release-notes",
   ],
 });
 

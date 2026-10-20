@@ -9,16 +9,17 @@ sidebar:
 As the most important tool for analyzing the results of a load test run, XLT offers three types of load test reports, which are thoroughly illustrated in the sections below.
 
 * [Load test report](#load-test-report): The bread and butter report for your daily work. It contains all information about a single test run.
+* [Executive PDF report](#executive-pdf-reports): A printable, A4 executive summary document with core KPIs, charts, and rating scores.
 * [Comparison report](#comparison-report): A quick way to compare two test runs and see the differences.
 * [Trend report](#trend-report): When you want to see the development of performance over time and set more than two reports in relation to each other, you will use the trend report.
+* [AI Data report](/xlt/manual/ai-data-report/): A compact, token-efficient export (`ai-data.md`) engineered for LLM and agentic test evaluation.
 
 ## Load Test Report
 
 A load test report is a report for a single test run or a manually combined set of runs. This report gives you all the information needed for a detailed analysis of a test run. This is what you need most often.
 
 :::note[Creating and Evaluating Reports]
-You can find more about creating and evaluating load test reports in the section [Test Evaluation](/xlt/manual/test-evaluation/}
-). More information about reporting options can be found in the [Report Options](/xlt/manual/report-options/) section of the manual.
+You can find more about creating and evaluating load test reports in the section [Test Evaluation](/xlt/manual/test-evaluation/). More information about reporting options can be found in the [Report Options](/xlt/manual/report-options/) section of the manual.
 :::
 
 ## Comparison Report
@@ -181,3 +182,115 @@ performed better or worse. Note that the numeric values are always
 available in the cell’s tool tip text, so just move the mouse over the
 cell to see the details.
 :::
+
+---
+
+## Executive PDF Reports
+
+XLT 10 introduces the ability to generate a printable, executive-ready PDF report (`load-report.pdf`) directly alongside the HTML report. 
+
+PDF generation is **100% pure Java**, powered by [OpenHTMLtoPDF](https://github.com/danfickle/openhtmltopdf) and Apache PDFBox. It requires no external tools, no headless browser installations (like Chrome or Puppeteer), and no native operating system dependencies, making it ideal for containerized CI/CD pipelines.
+
+### Generating the PDF
+
+PDF generation is disabled by default to optimize standard reporting speeds. Enable it via:
+
+- **Command Line**: Pass the `--pdf` flag:
+  ```bash
+  ./bin/create_report.sh --pdf ./results/20260901-100000
+  ```
+- **Configuration Property**: Set in `config/reportgenerator.properties`:
+  ```properties
+  com.xceptance.xlt.reportgenerator.pdf.enabled = true
+  ```
+
+When generated, a **PDF** download link is automatically embedded in the HTML report navigation header.
+
+:::note[Scope]
+PDF report generation applies exclusively to standard load test reports (`create_report.sh`). Trend and diff reports use separate report templates and do not generate a companion PDF report.
+:::
+
+### Document Structure & Technical Design
+
+The PDF document formats all key performance dimensions into an A4 landscape layout using CSS Paged Media Level 3:
+1. **Header & Metadata**: Report title, test start/end timestamps, elapsed duration.
+2. **Load Profile & Configuration**: Test cases, user counts, ramp-up and measurement periods.
+3. **Rating & Assessment** *(if present)*: 6-segment rating bar (`A+` to `F`), summary text, and Markdown evaluation notes.
+4. **Test Comments** *(if present)*: Test run notes (plain text or Markdown).
+5. **General Information & Charts**: Total hits, sent/received bytes, Concurrent Users, Requests/s, Request Runtime, and Transaction Errors charts.
+6. **Agent Health**: Load generator agent overview and All Agents CPU Usage chart.
+7. **Performance Summary**: KPI table across Transactions, Actions, Requests, Custom Timers, and network throughput.
+8. **Scorecard Summary** *(if present)*: Rule groups status, failed rules breakdown, and score percentage.
+9. **Transactions, Actions, Requests & Custom Timers**: Overview runtime charts and detailed statistical tables.
+10. **Errors & Events**: Aggregated error counts, status codes, and event distributions.
+
+- **On-the-Fly WebP Transcoding**: XLT charts are rendered in WebP format for optimal compression. A custom stream factory intercepts `.webp` chart requests and transcodes them to PNG in memory on the fly for OpenHTMLtoPDF.
+- **Typography**: Clean font stack (`Helvetica, Arial, sans-serif`) utilizing standard PDF core fonts with robust sans-serif fallbacks.
+- **Table Headers & Breaks**: Table headers automatically repeat across page breaks (`thead { display: table-header-group; }`), and summary elements avoid awkward mid-component splits (`page-break-inside: avoid`).
+
+---
+
+## External Ratings & Executive Evaluation
+
+In addition to internal scorecard checks, XLT supports injecting external quality ratings and executive evaluations directly into both the HTML and PDF reports. This is particularly useful for automated CI/CD pipelines, nightly regression gates, and AI-assisted performance analysis workflows.
+
+When present, the report renders a prominent **6-segment rating scale** (`A+`, `A`, `B`, `C`, `D`, `F`) with the active grade highlighted, alongside a concise summary text and rendered Markdown evaluation notes.
+
+### Command-Line Arguments
+
+Pass rating parameters directly to `create_report.sh` (or Windows `create_report.cmd`):
+
+```bash
+./bin/create_report.sh --pdf \
+    --rating-score A \
+    --rating-summary "All SLAs satisfied; response times well below 500 ms target." \
+    ./results/20260901-100000
+```
+
+| Argument (Long) | Argument (Short) | Description | Property Injected |
+|---|---|---|---|
+| `--rating-score <score>` | `-rating-score <score>` | Grade score: `A+` (or `Aplus`), `A`, `B`, `C`, `D`, `F` (no `E`) | `com.xceptance.xtc.loadtest.rating.score` |
+| `--rating-summary <text>` | `-rating-summary <text>` | Single-line summary description | `com.xceptance.xtc.loadtest.rating.summary` |
+
+:::note
+Both `Aplus` and `A+` (case-insensitive) are accepted and normalized to `A+`.
+:::
+
+### Configuration Properties & Markdown Evaluation
+
+Alternatively, configure ratings in your test suite properties (e.g. `project.properties`, `default.properties`) or pass them as system properties (`-D`):
+
+| Property Key | Type | Description |
+|---|---|---|
+| `com.xceptance.xtc.loadtest.rating.score` | String (`A+`, `A`, `B`, `C`, `D`, `F`) | Rating grade highlighted on the 6-segment rating bar. Accepts `Aplus` or `A+`. |
+| `com.xceptance.xtc.loadtest.rating.summary` | String | A concise summary text displayed alongside the rating bar. |
+| `com.xceptance.xtc.loadtest.rating.evaluation` | Markdown | Multi-paragraph assessment rendered from Markdown to formatted HTML. |
+
+#### Evaluation Markdown Format in Properties
+
+When supplying `com.xceptance.xtc.loadtest.rating.evaluation` in a `.properties` file, use standard Java properties newline escaping (`\n\`):
+
+```properties
+com.xceptance.xtc.loadtest.rating.score = B
+com.xceptance.xtc.loadtest.rating.summary = Performance acceptable with minor latency spikes during peak load.
+com.xceptance.xtc.loadtest.rating.evaluation = ### Executive Summary\n\n\
+  - **Peak Throughput**: 1,450 req/s\n\
+  - **P95 Response Time**: 320 ms\n\
+  - **Error Rate**: 0.02%\n\n\
+  ### Recommendations\n\
+  Review database connection pool settings under sustained high concurrency.
+```
+
+:::note[Precedence]
+Command-line options (`--rating-score`, `--rating-summary`, or `-D...`) take precedence over values loaded from test result property files.
+:::
+
+---
+
+## AI Data Report
+
+Every load test report automatically generates `ai-data.md`, an export specifically designed for Large Language Models (LLMs) and AI agents. It combines a clean YAML metadata header with dense Markdown tables, explicit measurement units, dynamic derived time-series intervals, and grouped error traces.
+
+For instructions, architectural details, and prompt recipes, see the dedicated [AI Data Report Guide](/xlt/manual/ai-data-report/).
+
+

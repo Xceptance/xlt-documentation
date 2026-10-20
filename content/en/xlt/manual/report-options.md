@@ -102,6 +102,32 @@ The load test report generated will be based on the default time zone of the mac
 ./create_report.sh -timezone UTC ../results/20120625-211541
 ```
 
+## Generating an Executive PDF Report
+
+To compile an executive-ready A4 PDF report (`load-report.pdf`) alongside the HTML report, pass the `--pdf` (or `-pdf`) option:
+
+```bash
+./create_report.sh --pdf ../results/20260901-100000
+```
+
+The PDF report is generated using pure Java (OpenHTMLtoPDF and Apache PDFBox) with no external headless browser requirements. When generated, a download link for `load-report.pdf` is automatically included in the HTML report navigation bar.
+
+## Injecting Test Ratings & Summaries
+
+You can inject external assessment grades and summaries (such as automated CI/CD ratings or AI-evaluated verdicts) directly into both the HTML and PDF reports:
+
+```bash
+./create_report.sh --pdf \
+    --rating-score A \
+    --rating-summary "All SLAs met; response times well below 500ms target." \
+    ../results/20260901-100000
+```
+
+| Option (Long) | Option (Short) | Description | Property Injected |
+|---|---|---|---|
+| `--rating-score <score>` | `-rating-score <score>` | Grade score: `A+` (or `Aplus`), `A`, `B`, `C`, `D`, `F` | `com.xceptance.xtc.loadtest.rating.score` |
+| `--rating-summary <text>` | `-rating-summary <text>` | Single-line summary description | `com.xceptance.xtc.loadtest.rating.summary` |
+
 ## Speeding It Up
 
 Finally, the `-noCharts` option might help you speed up your report generation, as it omits all charts.
@@ -109,3 +135,4 @@ Finally, the `-noCharts` option might help you speed up your report generation, 
 By default, the load test report contains several charts for each and every agent. If you use many agent machines with multiple agents each, the number of charts can grow significantly. If you don’t need these charts, you can turn them off using the `-noAgentCharts` option. This, too, will speed up report generation and noticeably reduce the overall size of the report, in case you have to distribute or archive it.
 
 There are more options available for very special needs (`./create_report.sh --help` will print all available options), and even more are planned for future releases.
+

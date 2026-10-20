@@ -20,6 +20,91 @@ All properties are read from the `<testsuite>/config/` directory. The existing p
 - `<testsuite>/config/test.properties` - [Load Test Profile Configuration](#load-test-profile-configuration)
 - `<testsuite>/config/dev.properties` - [Development Environment Configuration](#development-environment-configuration)
 
+---
+
+## Dynamic Property Expansion & Groovy Expressions
+
+In XLT 10, properties files support dynamic calculation and value expansion using Groovy expressions. This eliminates hardcoded repetition and allows you to dynamically derive load profiles, calculate user mix ratios, scale arrival rates, and configure environment-dependent settings.
+
+### Expansion Syntax
+
+XLT recognizes two distinct expansion expressions within any `.properties` file:
+
+- **`${property.name}`**: Standard variable substitution referencing existing properties.
+- **`#{...}`**: Dynamic Groovy expression evaluation (Spring Expression Language style).
+
+```properties
+# Standard property substitution
+base.url = https://staging.example.com
+login.url = ${base.url}/auth/login
+
+# Dynamic Groovy evaluation
+totalUsers = 120
+com.xceptance.xlt.loadtests.TBrowse.users = #{ (${totalUsers} * 0.40).intValue() }
+com.xceptance.xlt.loadtests.TCheckout.users = #{ (${totalUsers} * 0.20).intValue() }
+```
+
+### Evaluation Lifecycle & String Quoting
+
+Property expansion runs strictly in two phases during framework startup:
+
+1. **Phase 1 (`${...}`)**: All standard `${property.name}` variable references are resolved and substituted as literal text.
+2. **Phase 2 (`#{...}`)**: All `#{...}` Groovy expressions are compiled and executed in a sandboxed runtime.
+
+:::warning[Critical Rule: String Quoting in Groovy]
+Because Phase 1 pastes the raw property value directly into the Groovy script text before Groovy evaluates it:
+- **Numeric values** work directly without quotes (e.g. `#{ ${totalUsers} * 2 }` becomes `#{ 120 * 2 }`).
+- **String values MUST be quoted** (e.g. `'${mode}' == 'production'`). If omitted, Groovy interprets the unquoted text as a variable identifier and throws an `IllegalArgumentException` for an undefined variable!
+
+```properties
+mode = production
+
+# CORRECT: Groovy evaluates string literal 'production'
+users = #{ '${mode}' == 'production' ? 100 : 10 }
+
+# WRONG: Groovy attempts to resolve variable named 'production' -> Error
+users = #{ ${mode} == 'production' ? 100 : 10 }
+```
+:::
+
+### Chained References & Multiple Expressions
+
+- **Chained References**: When a property references another property that evaluates a Groovy expression, references are resolved recursively before evaluation:
+  ```properties
+  totalUsers = 100
+  browse.users = #{ (${totalUsers} * 0.4).intValue() }
+  search.users = #{ (${browse.users} * 2).intValue() }
+  ```
+- **Multiple Expressions in One Line**: A property value can contain multiple `#{...}` blocks or mix literal text with dynamic expressions:
+  ```properties
+  report.header = Test Run #{ 1 + 1 } (scale: #{ 2 * 5 })
+  ```
+
+### Multi-Line Scripts
+
+Groovy scripts can contain multiple statements, variables, and logic. Because standard Java `.properties` files require newline continuation, terminate intermediate lines with a backslash (`\`):
+
+```properties
+com.xceptance.xlt.loadtests.TSearch.users = #{ \
+    def total = ${totalUsers}; \
+    def searchRatio = 0.35; \
+    (total * searchRatio).intValue() \
+}
+```
+
+:::tip[Best Practice: Integer Conversion (`.intValue()` or `as int`)]
+Groovy arithmetic with decimals produces `BigDecimal` values (which format as `40.0`). When configuring properties that require integer types (such as users, arrival rates, or iterations), convert the result using `.intValue()` or `as int`.
+:::
+
+### Security & Sandbox Boundaries
+
+All Groovy property evaluations execute inside a secured sandbox:
+- **Blocked Operations**: Filesystem I/O (`File`, `FileReader`), network calls (`Socket`, `URL`), system runtime controls (`System`, `Runtime`), reflection, and thread management.
+- **Permitted Packages**: Safe standard utilities including `java.util.*`, `java.math.*`, and `java.text.*`.
+- **Evaluation Timing**: Expressions are evaluated **once** during test suite or tool startup. They cannot dynamically sample runtime metrics while load tests are executing.
+
+---
+
 ## Default Configuration
 
 The properties in `default.properties` represent general XLT framework settings that are all set to their respective default values. They are neither specific to a single test project nor a single test run.
@@ -153,11 +238,17 @@ com.xceptance.xlt.virtualThreads.enabled = false
 
 #### Carrier Thread Pool Tuning
 
-Virtual threads execute on underlying JVM carrier threads. If the JVM determines that additional carrier threads are needed during high-concurrency execution, it may spawn new native threads. You can limit the max pool size of carrier threads by setting `jdk.virtualThreadScheduler.maxPoolSize` in `<xlt>/config/jvmargs.cfg`:
+Virtual threads execute on underlying JVM carrier platform threads. By default, the JVM scheduler dynamically manages carrier threads up to a default limit of 256. If the JVM determines that additional carrier threads are needed during high-concurrency execution (for instance, during blocking operations), it may spawn native threads up to this limit. 
+
+You can restrict the maximum pool size of carrier threads by setting `jdk.virtualThreadScheduler.maxPoolSize` in `<xlt>/config/jvmargs.cfg` (or `<testsuite>/config/jvmargs.cfg`):
 
 ```properties
--Djdk.virtualThreadScheduler.maxPoolSize=128
+-Djdk.virtualThreadScheduler.maxPoolSize=256
 ```
+
+:::tip[Thread Pinning]
+Avoid holding Java `synchronized` monitors during long blocking network calls, as this "pins" the virtual thread to its underlying carrier thread, preventing other virtual threads from using it. Prefer modern `java.util.concurrent.locks.ReentrantLock` when custom synchronization is needed across blocking I/O.
+:::
 
 #### Code Migration & Context Sharing
 
@@ -171,7 +262,7 @@ private static final Map<ThreadGroup, Context> CONTEXTS = new ConcurrentHashMap<
 private static final InheritableThreadLocal<Context> CONTEXTS = new InheritableThreadLocal<>();
 ```
 
-Because XLT uses the thread context to transmit measurement data within the framework, ensuring context preservation with `InheritableThreadLocal` is essential for accurate request metric collection.
+Because XLT uses the thread context to transmit measurement data within the framework, ensuring context preservation with `InheritableThreadLocal` is essential for accurate request metric collection. For load agent sizing and memory calculations, see [How to Size Your Test Environment](/xlt/how-tos/test-sizing/).
 
 ### Support for HTTP/2
 
@@ -527,7 +618,7 @@ In addition to the files described above, you can find three other files in `<te
 
 - `dev-log4j.properties`: log4j logger settings used in development mode.
 - `log4j.properties`: log4j logger settings used in load test mode.
-- `jvmargs.cfg`: JVM settings for the agents and therefore only used in load test mode, e.g., settings for Java garbage collector tuning.
+- `jvmargs.cfg`: JVM settings for the agents and therefore only used in load test mode, e.g., settings for Java garbage collector tuning or [Java Flight Recorder (JFR) profiling](/xlt/how-tos/java-flight-recorder/).
 
 See also "Apache Log4j API Docs":[http://logging.apache.org/log4j/1.2/apidocs/index.html](http://logging.apache.org/log4j/1.2/apidocs/index.html) for more information on log4j settings.
 

@@ -1,0 +1,129 @@
+---
+title: Using AI Agent Skills
+description: How to provide specialized XLT and XTC skills to AI coding assistants like Claude Code, Cursor, and Codex.
+icon: bot
+sidebar:
+  order: 950
+---
+
+## Overview
+
+AI coding assistants (such as Claude Code, Cursor, Codex, and Antigravity) are powerful tools for test automation, but standard foundational models often hallucinate legacy syntax, use improper thread models, or guess incorrect configuration keys.
+
+To ensure your AI assistant writes production-grade XLT and XTC code, Xceptance publishes dedicated **Agent Skills** conforming to the [Agent Skills Discovery RFC](https://github.com/cloudflare/agent-skills-discovery-rfc).
+
+Skills are self-contained playbooks that teach an AI coding assistant:
+- Syntax rules and runtime bindings for modern features (such as Java 21 Virtual Threads and Groovy Scorecards).
+- Exact configuration keys in `project.properties` and `reportgenerator.properties`.
+- Diagnostic rules for interpreting performance test reports.
+
+---
+
+## Published Skills Catalog
+
+The documentation portal publishes the following dedicated skills:
+
+### 1. `xlt-scorecards` (XLT)
+
+Teaches your assistant how to author, tune, and debug automated Groovy quality gates (`scorecard.groovy`) in XLT 10.
+
+- **Capabilities**:
+  - Writing fluent SLA assertions (`isLessThan`, `between`, `matchesRegex`).
+  - Using the pre-injected `xpathBuilder` helper methods for transaction and request percentiles.
+  - Generating dynamic rules by inspecting `testreport.xml` data with `data.getList(...)`.
+  - Setting up multi-tiered rating scales and failure thresholds.
+  - Tuning rules post-run using `./bin/update_scorecard.sh`.
+- **Primary Reference**: [Scorecard Guide](/xlt/manual/scorecard/)
+- **Direct Skill Link**: [`/.well-known/agent-skills/xlt-scorecards/SKILL.md`](https://docs.xceptance.com/.well-known/agent-skills/xlt-scorecards/SKILL.md)
+
+### 2. `xtc-ai-data-prompts` (XTC)
+
+Teaches prompt engineering patterns and diagnostic recipes for analyzing XLT and XTC AI Data Reports (`ai-data.md`, Schema Version 2).
+
+- **Capabilities**:
+  - The **Three-Layer Bottleneck Diagnosis Rule** (attributing latency to Backend Server, Client/Browser, or Think Time/Logic).
+  - Isolating steady-state throughput by slicing out the `rampUpPeriod`.
+  - Enforcing strict anti-hallucination evidence citations on numeric metrics.
+  - Formulating differential regression comparisons between baseline and candidate test runs.
+  - Formulating CI/CD executive ratings for injection into `create_report.sh` via `--rating` and `--rating-summary`.
+- **Primary Reference**: [AI Data Report Guide](/xlt/manual/ai-data-report/)
+- **Direct Skill Link**: [`/.well-known/agent-skills/xtc-ai-data-prompts/SKILL.md`](https://docs.xceptance.com/.well-known/agent-skills/xtc-ai-data-prompts/SKILL.md)
+
+---
+
+## Installing Skills in Your AI Assistant
+
+### Claude Code
+
+Install a skill directly from the documentation portal into Claude Code:
+
+```bash
+# Install the XLT Scorecard skill
+claude skill install https://docs.xceptance.com/.well-known/agent-skills/xlt-scorecards/SKILL.md
+
+# Install the AI Data Prompting skill
+claude skill install https://docs.xceptance.com/.well-known/agent-skills/xtc-ai-data-prompts/SKILL.md
+```
+
+### Cursor, Windsurf, & Antigravity
+
+For IDE assistants that look for workspace skills under `.agents/skills/` or rules under `.cursor/rules/`:
+
+```bash
+# 1. Create the skill directories
+mkdir -p .agents/skills/xlt-scorecards
+mkdir -p .agents/skills/xtc-ai-data-prompts
+
+# 2. Download the skills directly into your project
+curl -sSL https://docs.xceptance.com/.well-known/agent-skills/xlt-scorecards/SKILL.md \
+  -o .agents/skills/xlt-scorecards/SKILL.md
+
+curl -sSL https://docs.xceptance.com/.well-known/agent-skills/xtc-ai-data-prompts/SKILL.md \
+  -o .agents/skills/xtc-ai-data-prompts/SKILL.md
+```
+
+Once installed in your project root, your coding assistant will automatically activate the skill whenever you prompt it about test scorecards or AI report analysis.
+
+---
+
+## Automatic Machine Discovery
+
+If your agent supports autonomous skill discovery, it can automatically locate all published skills on the Xceptance documentation portal via:
+
+- **Discovery Catalog**: `https://docs.xceptance.com/.well-known/agent-skills/index.json`
+- **Machine Map**: `https://docs.xceptance.com/llms.txt`
+
+The discovery catalog provides SHA-256 integrity digests and specification metadata for every published skill.
+
+---
+
+## Example Prompts Once Installed
+
+### Generating an XLT Scorecard with Claude Code or Cursor
+
+When `xlt-scorecards` is installed, you can prompt your assistant naturally:
+
+```text
+Create a config/scorecard.groovy file for our test suite.
+We need:
+1. An SLA rule that Homepage request P95 must be <= 600 ms.
+2. An SLA rule that Cart and Checkout transaction P95 must be <= 2000 ms.
+3. An Agent CPU check ensuring maximum CPU usage across all agents stayed below 85%.
+4. Group these into 'Latency SLAs' and 'Infrastructure SLAs'.
+5. A rating scale where achieving < 80% points marks the test as failed.
+```
+
+Your assistant will output valid Groovy using the `builder`, `xpathBuilder`, and fluent assertion methods without guessing syntax.
+
+### Diagnosing Test Results with `ai-data.md`
+
+When `xtc-ai-data-prompts` is installed:
+
+```text
+Here is our test run's ai-data.md file:
+[attach or paste ai-data.md]
+
+Audit this run for steady-state throughput and identify the root cause layer for any latency spikes.
+```
+
+The assistant will automatically isolate the steady-state interval using the header's `rampUpPeriod`, compare Request Mean against Action Mean, and output a structured diagnostic report citing exact table metrics.

@@ -69,10 +69,11 @@ By clicking **Show Advanced Settings** five more sections will appear:
 
 * in _Merge Rules_ you can override the project's [merge rules](/xlt/advanced/merge-rules/) (to avoid unexpected side effects we recommend to paste your complete set of merge rules here, even the ones that may have been already defined in the project),
 * in _Agent Includes/Excludes_ you can define include and exclude patterns for [agents](/xlt/manual/report-options/#report-for-a-subset-of-agents),
-* in _Test Scenario Includes/Excludes_ those for
-[test cases](/xlt/manual/report-options/#excluding-test-scenarios),
-* in _Report Generator Properties_ you can define completely a [custom report configuration](/xlt/manual/report-configuration/), and
-* in _Misc Settings_ you currently have the option to specify the time zone to be used, e.g. "CET" or "EDT" (this affects all time values shown in the report, especially in the charts - if no time zone is given, XTC will use UTC by default).
+* in _Test Scenario Includes/Excludes_ those for [test cases](/xlt/manual/report-options/#excluding-test-scenarios),
+* in _Report Generator Properties_ you can define completely a [custom report configuration](/xlt/manual/report-configuration/),
+* in _Exclude Ramp-Up (`noRampUp`)_ you can automatically exclude the warm-up period to generate a pure steady-state performance report,
+* in _Executive PDF Report_ you can toggle automatic compilation of an A4 printable PDF summary (`load-report.pdf`), and
+* in _Misc Settings_ you have the option to specify the time zone to be used, e.g. "CET" or "EDT" (if no time zone is given, XTC will use UTC by default).
 
 These advanced settings are not trivial, so make sure you know what you're doing.
 
@@ -82,6 +83,22 @@ To give you a quicker overview, XTC enables you to already open reports while th
 
 ![Topmost report is still incomplete and currently being uploaded](/images/xtc/loadtest_report_inProgress.png)
 *Topmost report is still incomplete and currently being uploaded*
+
+### Executive PDF Report Companion
+
+Every load test report in XTC can generate a companion executive PDF report (`load-report.pdf`). Powered by pure Java (OpenHTMLtoPDF and Apache PDFBox), the PDF provides an A4 printable management summary containing:
+- 6-segment executive rating score (`A+` to `F`), summary notes, and evaluation comments
+- Centered vector charts for Concurrent Users, Requests/s, Request Runtimes, and Agent CPU load
+- Aggregated SLA tables and Scorecard results
+
+When compiled, you can download `load-report.pdf` directly from the report list context menu or via the **PDF** link in the report's navigation header.
+
+### AI-Assisted Performance Analysis
+
+XTC integrates AI-assisted analysis capabilities designed to accelerate post-test triage:
+- **AI Data Export (`ai-data.md`)**: Automatically included with every report. You can download this file directly from the report context menu or access it inside the unpacked report. It provides a compact, token-efficient summary containing explicit units, time-series layer metrics, and grouped error traces.
+- **AI Analysis Reports**: Use the AI Data artifact with your preferred AI coding assistant or internal LLM to evaluate SLAs, detect regressions against baseline runs, and isolate server vs. client bottlenecks. For detailed schema information and prompt recipes, see the [AI Data Report Guide](/xlt/manual/ai-data-report/).
+
 
 ### Checking Report Settings
 

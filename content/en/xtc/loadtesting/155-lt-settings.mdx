@@ -36,6 +36,10 @@ When overriding the load profile settings for a particular load test, you must s
 
 Learn more in our _Load Testing_ section about [configuring load profiles](/xlt/manual/load-configuration/) for your test run.
 
+:::tip[Load Factor and Machine Scaling]
+When using a **Load Factor** greater than 1.0 (e.g. `2.0` to simulate double the baseline load), remember that the concurrency on each agent increases proportionally. Ensure your machine configuration allocates sufficient agent instances to handle the scaled concurrency, or adjust your instance count under the **Machines** tab accordingly.
+:::
+
 ### Properties
 
 In _Properties_ and _Secret Properties_ you may overwrite [properties](/xlt/manual/test-suite-configuration/) for test execution. Values set here take precedence over the project-level settings (which may in turn be inherited from the organization).

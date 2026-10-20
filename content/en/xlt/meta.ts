@@ -9,9 +9,9 @@ export default defineMeta({
     "manual",
     "advanced",
     "test-suites",
-    "release-notes",
     "how-tos",
     "knowledgebase",
+    "release-notes",
   ],
 });
 

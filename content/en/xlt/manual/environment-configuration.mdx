@@ -146,7 +146,7 @@ com.xceptance.xlt.mastercontroller.agentcontrollers.ac2.weight = 3
 By default, an agent controller spawns one agent process to generate the load. Depending on your code, the data requirements, and the scale might require more agents (aka JVM processes) per agentcontroller and hence per machine. Use the `agents` property to change the count.
 
 :::warning[Memory Requirements]
-Each agent will use the arguments of the `jvmargs.cfg` file from your test suite. Make sure that the machine can host the amount of agents and their respective memory configuration. Leave room for the OS as well.
+Each agent will use the arguments of the `jvmargs.cfg` file from your test suite. Make sure that the machine can host the amount of agents and their respective memory configuration. Leave room for the OS as well. For capacity planning and JVM diagnostics, see [How to Size Your Test Environment](/xlt/how-tos/test-sizing/) and [JFR Profiling](/xlt/how-tos/java-flight-recorder/).
 :::
 
 In case the configured agentcontroller is capable of running client-performance tests, you can set the property `clientPerformance` to `true`. Otherwise, ignore this completely or set it to `false`.

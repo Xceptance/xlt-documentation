@@ -1,0 +1,115 @@
+---
+title: How to Size Your Test Environment
+icon: server
+description: "Learn how to determine the number and size of machines needed for your load test, with capacity planning for Java 21 Virtual Threads.\n"
+sidebar:
+  label: Test Sizing
+  order: 80
+---
+
+Properly sizing your load testing environment is essential for generating valid performance measurements. If load test agents become saturated—running out of CPU, memory, or thread capacity—client-side queuing will artificially inflate measured transaction response times, distorting test results.
+
+This guide outlines how to calculate machine counts, CPU, and memory requirements for XLT load test agents, comparing traditional platform thread baselines with modern **Java 21 Virtual Threads**.
+
+---
+
+## 1. Concurrency Models: Platform Threads vs. Virtual Threads
+
+The primary factor determining memory and agent capacity is the thread execution model.
+
+| Metric / Dimension | Platform Threads (Legacy) | Virtual Threads (Default in XLT 10) |
+|---|---|---|
+| **Thread Architecture** | 1:1 mapping to OS kernel threads | M:N multiplexing over native carrier threads |
+| **Stack Memory** | Dedicated OS stack (~1 MB per thread) | Dynamic frames stored on JVM heap (a few KB unmounted) |
+| **Memory per 10k Users** | ~10 GB just for thread stacks | ~200–400 MB on the JVM heap |
+| **OS Thread Limits** | Constrained by `vm.max_map_count` and OS thread caps | Bounded only by JVM heap memory |
+| **Typical Agent Capacity** | 1,000 – 3,000 concurrent users | 10,000 – 50,000+ concurrent users |
+
+:::tip[One Thread per User Model]
+In both models, the synchronous test programming paradigm remains identical. Virtual threads allow test suites to scale to massive user numbers without adopting complex asynchronous reactive programming models.
+:::
+
+---
+
+## 2. Protocol-Level (HtmlUnit) vs. Real-Browser (WebDriver) Sizing
+
+Before calculating resources, distinguish between protocol-level and real-browser load testing:
+
+* **Protocol-Level Testing (HtmlUnit / OkHttp)**:
+  - Highly optimized, headless execution.
+  - Emulates HTTP/S traffic, redirects, cookies, and optional JavaScript.
+  - Ideal for high-scale concurrency (tens of thousands of users per machine).
+* **Real-Browser Testing (WebDriver / Chrome / Firefox)**:
+  - Runs actual browser processes for full layout rendering, CSS, and client-side single-page applications.
+  - Heavy resource consumption: each active browser instance requires roughly **1–2 dedicated CPU cores** and **1.0–2.0 GB of RAM**.
+  - Concurrency is strictly bounded: typically **10 to 30 concurrent browsers** per high-spec physical or cloud machine.
+
+---
+
+## 3. Memory Sizing Formulas (Protocol Tests)
+
+When sizing RAM for an Agent Controller machine running protocol-level tests, account for the operating system, JVM runtime overhead, carrier threads, and the heap requirements of each agent process.
+
+### Sizing Formula
+
+```text
+Total Machine RAM = OS Reservation (2 GB) + (Agent Count * (JVM Base + Heap Size + Native Stacks))
+```
+
+Where:
+* **OS Reservation**: 1.5 GB to 2.0 GB for Linux/Windows kernel, buffers, and system background processes.
+* **JVM Base**: ~512 MB per agent process for Metaspace, JIT compiler buffers, and code cache.
+* **Native Carrier Stacks**: Carrier threads allocated by the JVM scheduler (default up to 256):
+  $$\text{Carrier Stack Memory} = \text{Carrier Pool Size} \times 1\text{ MB} \approx 256\text{ MB}$$
+* **Configured Heap Size (`-Xmx`)**: Sized based on concurrent virtual users and in-memory test data.
+
+### Estimating Heap Size per Agent Process
+
+For virtual threads, each active user requires a small amount of heap state (cookies, session data, HTML DOM if parsed, and unmounted thread stack frames):
+* **Light API / Headless HTTP**: ~20 KB to 50 KB heap memory per concurrent user.
+* **Complex E-Commerce Scenarios (HTML parsing & state)**: ~100 KB to 250 KB heap memory per concurrent user.
+
+#### Example Calculation: 20,000 Concurrent Virtual Users
+
+To execute **20,000 concurrent users** on a single machine across 2 agent processes (10,000 users per agent):
+1. **User Heap State**: $10{,}000 \times 150\text{ KB} \approx 1.5\text{ GB}$
+2. **Buffer & Garbage Collector Headroom**: $+1.5\text{ GB}$ (allowing efficient G1GC collection without pause spikes)
+3. **Agent `-Xmx`**: Configured to **3 GB** per agent.
+4. **Per-Agent Process Footprint**:
+   $$\text{Agent Memory} = 512\text{ MB (JVM Base)} + 256\text{ MB (Carrier Stacks)} + 3000\text{ MB (Heap)} \approx 3.75\text{ GB}$$
+5. **Total Machine RAM**:
+   $$2\text{ GB (OS)} + (2 \times 3.75\text{ GB}) \approx 9.5\text{ GB} \implies \text{A 16 GB machine is recommended.}$$
+
+---
+
+## 4. CPU Sizing & Carrier Scheduler Tuning
+
+Virtual threads scale effortlessly across memory, but executing test logic, encrypting TLS traffic, parsing XML/JSON responses, and validating assertions still requires CPU cycles.
+
+### Rules of Thumb for CPU Capacity
+
+* **1 vCPU Core per 2,000 – 5,000 requests/minute**: For standard REST APIs and lightweight HTTP requests.
+* **1 vCPU Core per 1,000 – 2,000 requests/minute**: When parsing heavy JSON/XML payloads, evaluating complex regexes, or running complex JavaScript emulation.
+
+### Sizing Carrier Thread Pools
+
+The carrier thread pool determines how many platform threads execute virtual threads simultaneously. By default, the JVM sizes carrier threads to match available CPU cores up to 256:
+
+```properties
+## Set carrier thread limit in <xlt>/config/jvmargs.cfg:
+-Djdk.virtualThreadScheduler.maxPoolSize=256
+```
+
+:::warning[Thread Pinning]
+If your test code or third-party libraries execute long-running blocking operations inside synchronized blocks, the virtual thread will "pin" its carrier thread. If frequent pinning occurs, either replace `synchronized` with `ReentrantLock` or increase carrier thread capacity.
+:::
+
+---
+
+## 5. Validating Test Harness Health
+
+After running your load test, always verify that your test machines operated within safe limits:
+
+1. **Agent CPU Utilization**: Check the **Agents** section of the test report. Mean CPU should stay below **70%**, and peak CPU must not saturate **85%**. Sustained 100% CPU indicates agent starvation.
+2. **Garbage Collection Pauses**: Check minor and full GC counts. If full GCs occurred or young-gen collection consumed significant time during measurement, increase agent heap size.
+3. **JFR Runtime Profiling**: For deep diagnostics of agent JVM performance without measurement overhead, configure Java Flight Recorder profiling. See [How to Profile Load Tests with Java Flight Recorder (JFR)](/xlt/how-tos/java-flight-recorder/).

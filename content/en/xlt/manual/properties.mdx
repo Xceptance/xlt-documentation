@@ -108,6 +108,53 @@ These properties configure the XLT report generator, including output location, 
 | `com.xceptance.xlt.reportgenerator.threads` | Limit the number of threads used for report generation (CPUs used). | *(max available)* |
 | `com.xceptance.xlt.reportgenerator.maskPropertiesRegex` | Regex for property names whose values should be masked in the report (e.g., passwords). | `(?i)password` |
 
+### Executive PDF Generation
+
+| Property | Description | Default |
+| :--- | :--- | :--- |
+| `com.xceptance.xlt.reportgenerator.pdf.enabled` | Enable generation of an executive-ready A4 PDF report (`load-report.pdf`). | `false` |
+
+### AI Data Report Export
+
+| Property | Description | Default |
+| :--- | :--- | :--- |
+| `com.xceptance.xlt.reportgenerator.aiData.maxExportedTraces` | Maximum number of largest error groups to include stack traces for in `ai-data.md`. | `10` |
+| `com.xceptance.xlt.reportgenerator.aiData.maxFramesPerTrace` | Maximum number of leading frames to include per stack trace in `ai-data.md`. | `8` |
+
+### Labeling Rules (Semantic Tagging)
+
+| Property | Description | Default |
+| :--- | :--- | :--- |
+| `com.xceptance.xlt.reportgenerator.labelingRules.<num>.newLabels` | Semantic label string assigned to matching entries. Supports placeholders (`{n}`, `{l}`, `{n:1}`). | *(required)* |
+| `com.xceptance.xlt.reportgenerator.labelingRules.<num>.types` | Report types to apply rule to: `T` (Transaction), `A` (Action), `R` (Request). Separators: space/comma/semicolon. | *(all types)* |
+| `com.xceptance.xlt.reportgenerator.labelingRules.<num>.namePattern` | Regex matching timer report name (category code `n`). | *(none)* |
+| `com.xceptance.xlt.reportgenerator.labelingRules.<num>.labelPattern` | Regex matching existing label string (category code `l`). | *(none)* |
+| `com.xceptance.xlt.reportgenerator.labelingRules.<num>.namePattern.exclude` | Exclude timer reports matching this regular expression. | *(none)* |
+| `com.xceptance.xlt.reportgenerator.labelingRules.<num>.labelPattern.exclude` | Exclude timer reports whose existing labels match this regular expression. | *(none)* |
+| `com.xceptance.xlt.reportgenerator.labelingRules.<num>.stopOnMatch` | Stop processing subsequent labeling rules when this rule matches. | `true` |
+
+### Scorecard & External Ratings
+
+| Property | Description | Default |
+| :--- | :--- | :--- |
+| `com.xceptance.xlt.scorecard.config` | Scorecard evaluation script or schema file (e.g. `scorecard.groovy` or `scorecard-config.json`). | *(none)* |
+| `com.xceptance.xtc.loadtest.rating.score` | Executive rating score grade displayed on the rating bar: `A+` (or `Aplus`), `A`, `B`, `C`, `D`, `F`. | *(none)* |
+| `com.xceptance.xtc.loadtest.rating.summary` | Single-line executive summary displayed alongside rating bar. | *(none)* |
+| `com.xceptance.xtc.loadtest.rating.evaluation` | Multi-paragraph Markdown evaluation text rendered into HTML and PDF executive summaries. | *(none)* |
+
+### Test Run Comments
+
+| Property | Description | Default |
+| :--- | :--- | :--- |
+| `com.xceptance.xlt.loadtests.comment` | General test run comment displayed in report header. Prefix with `::markdown::` to render Markdown. | *(none)* |
+| `com.xceptance.xlt.loadtests.comment.<num>` | Numbered multi-part test run comments. Prefix with `::markdown::` for Markdown rendering. | *(none)* |
+
+### DNS Resolution Overrides
+
+| Property | Description | Default |
+| :--- | :--- | :--- |
+| `com.xceptance.xlt.dns.addresses.<hostname>` | Static IP address mapping for `<hostname>` overriding OS DNS resolution during load testing. | *(none)* |
+
 ### Charts & Data
 
 | Property | Description | Default |
@@ -117,8 +164,10 @@ These properties configure the XLT report generator, including output location, 
 | `com.xceptance.xlt.reportgenerator.charts.scale` | Y-axis scale for runtime charts (`linear` or `logarithmic`). | `linear` |
 | `com.xceptance.xlt.reportgenerator.charts.cappingValue` | Cap runtime charts at this value [ms]. Can be suffixed with `.transactions`, `.actions`, `.requests`. | *(none)* |
 | `com.xceptance.xlt.reportgenerator.charts.cappingFactor` | Cap runtime charts at `factor * mean`. Can be suffixed with `.transactions`, etc. | *(none)* |
+| `com.xceptance.xlt.reportgenerator.charts.commonAverage.enabled` | Enable moving average lines in overview runtime charts. | `true` |
 | `com.xceptance.xlt.reportgenerator.charts.commonAverage.type` | The standard moving average look-behind type (`percentage` or `time`). | `percentage` |
 | `com.xceptance.xlt.reportgenerator.charts.commonAverage.value` | Look-behind window value (e.g. `5%` or `10m`). | `5%` |
+| `com.xceptance.xlt.reportgenerator.charts.commonAverage.steps` | Number of steps/datapoints for moving average calculation. | `50` |
 | `com.xceptance.xlt.reportgenerator.charts.averages.<n>.type` | Type of additional moving average (`percentage` or `time`). | *(none)* |
 | `com.xceptance.xlt.reportgenerator.charts.averages.<n>.value` | Value of additional moving average. | *(none)* |
 | `com.xceptance.xlt.reportgenerator.dynamicCharts.enabled` | Generate interactive dynamic overview charts in the report. | `true` |
@@ -180,10 +229,11 @@ Configure XLT agent controller settings in `agentcontroller.properties`.
 | Property | Description | Default |
 | :--- | :--- | :--- |
 | `com.xceptance.xlt.agentcontroller.password` | Access password for the agent controller. | `xceptance` |
-| `com.xceptance.xlt.agentcontroller.privateMachine.enabled` | Enable Private Machine mode for XTC integration. | `false` |
+| `com.xceptance.xlt.agentcontroller.privateMachine.enabled` | Enable Private Machine mode for XTC integration (Beta). | `false` |
 | `com.xceptance.xlt.agentcontroller.privateMachine.name` | Human-readable private machine name in XTC. | *(auto-generated)* |
 | `com.xceptance.xlt.agentcontroller.privateMachine.type` | Capacity class (`TINY`, `SMALL`, `MEDIUM`, `LARGE`). | `MEDIUM` |
 | `com.xceptance.xlt.agentcontroller.privateMachine.xtc.clientId` | API client ID created in XTC. | *(empty)* |
 | `com.xceptance.xlt.agentcontroller.privateMachine.xtc.clientSecret` | API client secret created in XTC. | *(empty)* |
 | `com.xceptance.xlt.agentcontroller.privateMachine.xtc.org` | Short name of your XTC organization. | *(empty)* |
 | `com.xceptance.xlt.agentcontroller.privateMachine.xtc.project` | Short name of your XTC load testing project. | *(empty)* |
+

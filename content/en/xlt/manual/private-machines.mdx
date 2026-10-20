@@ -8,6 +8,10 @@ sidebar:
   order: 495
 ---
 
+:::warning[Beta Feature]
+**Private Machine Mode** is currently in beta/preview. If you would like to participate in the preview and run load tests using your internal infrastructure connected to XTC, please contact Xceptance.
+:::
+
 When performing load tests against applications located inside corporate firewalls, VPNs, or isolated private networks (such as internal staging or pre-production environments), external public cloud load generators cannot directly reach the System Under Test (SUT). Whitelisting arbitrary external IP addresses in enterprise firewalls is often impractical or prohibited by security policy.
 
 To solve this, XLT supports **Private Machine Mode**. In Private Machine Mode, XLT agent controllers run directly inside your own private infrastructure (on-premises or private cloud) with direct network access to the SUT.

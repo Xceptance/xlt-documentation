@@ -1,0 +1,275 @@
+---
+title: AI Data Report
+icon: bot
+description: Learn how to analyze XLT load test results with LLMs and coding agents using the compact, token-efficient ai-data.md export.
+sidebar:
+  order: 560
+---
+
+## Overview
+
+Every XLT load test report automatically compiles an `ai-data.md` artifact alongside the standard `index.html` and `testreport.xml`. While the HTML report is designed for human visual inspection and `testreport.xml` is structured for programmatic machine parsers, `ai-data.md` is specifically engineered for **Large Language Models (LLMs)** and AI coding agents.
+
+You can paste `ai-data.md` directly into ChatGPT, Claude, Gemini, or pass its file path to a local coding agent to ask diagnostic questions, detect regression anomalies, triage error traces, and evaluate performance SLAs in seconds.
+
+The report navigation bar provides a direct download link named **AI Data** pointing to `ai-data.md`.
+
+---
+
+## Quick Start: Prompting with AI Data
+
+After generating a load test report, open the report folder or click **AI Data** in the report header, copy the contents of `ai-data.md`, and feed it to an LLM:
+
+```markdown
+Here is my XLT load test data:
+
+[paste contents of ai-data.md]
+
+Which transactions are slowest, and is the latency originating in the backend server, the network, or the client?
+```
+
+The file is completely **self-contained**. It explicitly defines its measurement units (`ms`, `s`, `bytes`), states sampling constraints, and marks ramp-up intervals so the model does not have to guess and you do not need to explain XLT metrics upfront.
+
+:::tip[Prompt Engineering Agent Skill]
+For structured diagnostic recipes, steady-state isolation formulas, and differential run comparison templates, install the [`xtc-ai-data-prompts`](/xlt/how-tos/ai-agent-skills/) agent skill.
+:::
+
+---
+
+## Why a Dedicated AI Format?
+
+### XML vs. Markdown/YAML
+
+While `testreport.xml` contains all raw metrics, feeding it to an LLM has significant downsides:
+- **Token Inefficiency**: XML repeats element tags for every value, easily consuming 5× to 10× more tokens.
+- **Context Dilution**: The volume of structural XML markup buries the critical performance anomalies, degrading model reasoning.
+- **Table Density**: LLMs interpret Markdown tables with high precision. Column headers remain close to numbers, and one row per timer maps directly to comparison prompts (*"rank the slowest requests"*).
+
+`ai-data.md` pairs a YAML metadata block with clean Markdown tables. It typically fits in **tens of kilobytes**, allowing even complex multi-hour test runs to fit comfortably inside standard context windows.
+
+---
+
+## Schema Version 2 Anatomy
+
+`ai-data.md` uses **Schema Version 2**. Version 2 introduces a single top-level YAML block, explicit unit definitions, derived bucket time series, grouped error traces, and load profile shapes over time.
+
+### 1. Header & Units Specification
+
+```yaml
+schemaVersion: 2
+units:
+  responseTimes: ms      # min, max, mean, dev, percentiles, socket timings
+  periods: s             # duration, rampUp, measurement, shutdown
+  thinkTime: ms
+  sizes: bytes
+  rates: per second
+  webVitals: "CLS unitless score; FCP/LCP/INP/TTFB ms"
+product: "Xceptance LoadTest 10.0.0"
+project: "Posters-Demo"
+startTime: "2026-03-16 14:00:00 CET"
+endTime: "2026-03-16 15:15:00 CET"
+duration: 4500
+rampUpPeriod: 900
+hits: 3137711
+bytesSent: 4231268620
+bytesReceived: 26559661891
+xtc:
+  organization: "ACME"
+  project: "load-testing"
+  loadTestRunId: "#42"
+  resultId: "#1"
+  reportId: "#1"
+```
+
+- **`units`**: Explicitly disambiguates units. While response times are in milliseconds, durations are in seconds and Cumulative Layout Shift (CLS) is a unitless score.
+- **`rampUpPeriod`**: Stated directly in the header so the model immediately accounts for warm-up phases when evaluating overall throughput rates.
+- **`xtc`**: Identifies run context when executed on [Xceptance Test Center](/xtc/). Omitted for standalone local runs.
+
+### 2. Time Series & Layer Diagnosis
+
+The Time Series is the only section with a temporal dimension. It enables answers to *"when did degradation start?"* and *"did errors occur in a burst or sustained wave?"*:
+
+```markdown
+| Elapsed | Time | Transaction Mean | Transactions/s | Transaction Errors/s | Action Mean | Actions/s | Action Errors/s | Request Mean | Requests/s | Request Errors/s |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 900 | 14:15:00 | 41683 | 22.5 | 0.02 | 512 | 201.4 | 0.01 | 98 | 201.4 | 0.01 |
+| 960 | 14:16:00 | 48210 | 23.1 | 0.05 | 890 | 205.2 | 0.02 | 102 | 205.2 | 0.02 |
+```
+
+- **`Elapsed`**: Seconds from test start, making comparisons with `rampUpPeriod` immediate without timestamp parsing.
+- **`Time`**: Wall-clock time, allowing easy alignment with server APM or database logs.
+
+#### The Three-Layer Bottleneck Diagnosis Matrix
+
+By comparing the three means across the same time row, the model (or engineer) can instantly pinpoint the bottleneck layer:
+
+| Metric Pattern | Diagnosed Layer | Cause / Action |
+|---|---|---|
+| **Request Mean** increases | **Backend Server** | Database query latency, downstream API bottlenecks, or server thread starvation. |
+| **Action Mean** increases while Request Mean is flat | **Client / Browser / Test Code** | Heavy client-side JavaScript execution, DOM rendering delay, or test harness synchronization waits. |
+| **Transaction Mean** increases while Action Mean is flat | **Think Time / Test Logic** | High configured think times or long algorithmic processing loops between actions. |
+
+### 3. Dynamic Derived Bucket Intervals
+
+The time series row count is targeted dynamically rather than fixed to an arbitrary one-minute interval:
+
+```yaml
+interval: 60
+buckets: 75
+sourceResolution: 4
+```
+
+- A fixed interval fails on very short tests (a 5-minute test with 1-minute buckets would have only 5 rows, completely hiding ramp-up details).
+- A fixed interval also fails on long tests (a 24-hour test would generate 1,440 rows, bloating context size beyond utility).
+- XLT derives the bucket interval dynamically targeting approximately 60–120 rows:
+
+| Test Duration | Bucket Interval | Approximate Rows |
+|---|---|---:|
+| 5 minutes | 5 seconds | 60 |
+| 15 minutes | 10 seconds | 90 |
+| 30 minutes | 15 seconds | 120 |
+| 1 hour | 30 seconds | 120 |
+| 2 hours | 1 minute | 120 |
+| 8 hours | 5 minutes | 96 |
+| 24 hours | 15 minutes | 96 |
+
+The interval is never finer than `sourceResolution` to avoid claiming uncollected precision.
+
+### 4. Grouped Errors & Trimmed Traces
+
+Untrimmed error sections can constitute 80% of a raw report, filling context windows with redundant framework frames. In `ai-data.md`, errors are grouped by message, ordered by frequency, and limited to top groups:
+
+```yaml
+totalErrors: 7306
+distinctEntries: 100
+distinctMessages: 19
+maxExportedTraces: 10
+```
+
+```markdown
+### Errors by Frequency
+
+| # | Message | Count | Test Cases | Actions |
+| ---: | --- | ---: | ---: | ---: |
+| 1 | No element found for: {CSS=#dwfrm_shipping_...} | 3594 | 2 | 1 |
+| 2 | Unexpected HTTP status code. expected:<200> but was:<503> | 146 | 8 | 12 |
+```
+
+Stack traces are exported **only for the largest error groups**, retaining only the top leading frames (default 8) to show root cause test lines while cutting boilerplate:
+
+```text
+java.lang.AssertionError: Expected 200 but received 503
+	at org.junit.Assert.fail(Assert.java:89)
+	at com.xceptance.loadtest.actions.order.SubmitOrder.execute(SubmitOrder.java:142)
+	... 14 more frames
+```
+
+### 5. Semantic Labels Integration
+
+When [Labeling Rules](/xlt/advanced/labeling-rules/) are active, entries in the Transactions, Actions, and Requests tables include a `Labels` column:
+
+```markdown
+| Name | Labels | Count | Count/s | Errors | Error % | Mean | P95 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| PlaceOrder | checkout order critical | 1420 | 0.31 | 0 | 0.0 | 312 | 480 |
+| Search | catalog browse | 18500 | 4.11 | 2 | 0.01 | 95 | 180 |
+```
+
+This allows models to filter and reason by functional domains (e.g. *"analyze latency across checkout labels"*) without needing to guess from arbitrary URL substrings.
+
+### 6. Load Generator Agent Health
+
+```markdown
+| Agent | Transactions | Errors | Error % | CPU Mean % | CPU Max % | Minor GC Count | Minor GC Time |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| ac01_00 | 14250 | 3 | 0.02 | 34.2 | 68.5 | 45 | 1250 |
+| ac01_01 | 14190 | 4 | 0.03 | 36.1 | 71.0 | 42 | 1190 |
+```
+
+`CPU Max` is explicitly presented alongside `CPU Mean`. A mean CPU of 35% can easily conceal an agent that was pegged at 100% during peak traffic. If load generators were pegged, response times reflect client-side queue delays rather than true application latency.
+
+---
+
+## Analytical Constraints ("What You Cannot Conclude")
+
+`ai-data.md` explicitly embeds constraints within the document to keep models grounded:
+
+1. **Statistical tables are aggregates over the whole run**: Degradation over time cannot be derived from the Requests or Transactions tables alone; only the **Time Series** section reflects time.
+2. **Throughput rates include ramp-up**: `Count/s` divides total hits by the entire test duration (including warm-up). For true peak steady-state throughput, use the Time Series rows after `Elapsed >= rampUpPeriod`.
+3. **Network timing means do not sum**: DNS, Connect, Send, Server Busy, and Receive are independent means over their own distributions, not a rigid decomposition of the same single request.
+4. **Percentiles are response times, not counts**: A P95 of 500 means 95% of executions took 500 ms or less.
+5. **Request errors exclude semantic content validation**: A request returning HTTP 200 with an empty body or business error message has 0 request errors; the failure surfaces as an action or transaction assertion error.
+
+---
+
+## Deliberate Exclusions
+
+| Excluded Element | Rationale |
+|---|---|
+| **Apdex Score** | Compresses performance into an arbitrary threshold that obscures distribution shapes. Explicit percentiles (P50, P95, P99) provide superior actionable data. |
+| **Extrapolated Counts** | Linear per-hour or per-day projections are mathematical extrapolations, not measurements. The model can derive them using `Count`, `Count/s`, and `duration`. |
+| **Slowest Requests List** | Uncontextualized outlier lists filtered by arbitrary cutoffs mislead LLMs into treating single anomalies as systemic failures. |
+| **Per-Request Time Series** | Exporting time series for every individual URL would result in hundreds of thousands of lines, blowing token budgets. |
+
+---
+
+## Configuration & Architecture
+
+The AI Data report is generated as transformation **#18** via `config/xsl/loadreport/ai-data.xsl` using **XSLT 3.0** powered by the bundled Saxon-HE processor.
+
+### Trace Limit Tuning
+
+Adjust stack trace depth and group limits in `config/reportgenerator.properties`:
+
+```properties
+## Maximum number of error groups to export stack traces for (default: 10)
+com.xceptance.xlt.reportgenerator.aiData.maxExportedTraces = 10
+
+## Maximum number of leading frames per stack trace (default: 8)
+com.xceptance.xlt.reportgenerator.aiData.maxFramesPerTrace = 8
+```
+
+### Disabling AI Data Export
+
+To disable generation, comment out transformation #18 in `config/reportgenerator.properties`:
+
+```properties
+# com.xceptance.xlt.reportgenerator.transformations.18.styleSheetFileName = ai-data.xsl
+# com.xceptance.xlt.reportgenerator.transformations.18.outputFileName = ai-data.md
+```
+
+---
+
+## Prompt Cookbook: 6 Diagnostic Recipes
+
+Use these tested prompt recipes with `ai-data.md`:
+
+### 1. Bottleneck Root Cause Analysis
+
+> *"Using the Requests table and the Time Series, identify the top 3 bottlenecks in this test run. For each, determine whether the root cause lies in backend server processing, network transfer, or client-side execution, and specify the exact columns supporting your conclusion."*
+
+### 2. Steady-State True Throughput
+
+> *"Inspect the Time Series to identify where ramp-up concluded. Calculate the effective steady-state request throughput and mean transaction latency for the steady-state period only, and compare them against the full-run aggregate rates."*
+
+### 3. SLA Compliance Audit
+
+> *"Verify compliance against our SLA: Request P95 must remain below 750 ms, and Request Error Rate must remain below 0.05%. List every non-compliant request with its measured P95 and error percentage, grouping by semantic label where available."*
+
+### 4. Error Triage & Impact Assessment
+
+> *"Group all reported errors by root cause. For each error group, list affected test cases, determine whether failures occurred in a single spike or steadily across the run, and check the Response Codes table for non-2xx status codes that did not trigger explicit test assertions."*
+
+### 5. Infrastructure Validation
+
+> *"Audit the Agents table to evaluate whether the load generation infrastructure was healthy. Check CPU Mean, CPU Max, and Garbage Collection times to confirm whether client-side resource exhaustion influenced response times."*
+
+### 6. Differential Run Comparison
+
+> *"Here is the baseline load test report:*
+> *[paste ai-data.md of baseline]*
+> 
+> *Here is the report from today's build:*
+> *[paste ai-data.md of new run]*
+> 
+> *Compare the two runs. Use the XTC header metadata to confirm equivalence in duration and load profile, then highlight latency regressions exceeding 10% and any new error patterns."*

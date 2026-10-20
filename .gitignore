@@ -4,6 +4,8 @@ node_modules/
 .hugo_build.lock
 .vscode
 .idea
+.kilo/
+.kilocode/
 .DS_Store
 **/.DS_Store
 ._*

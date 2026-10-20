@@ -1,0 +1,81 @@
+---
+title: How to Profile Load Tests with Java Flight Recorder (JFR)
+icon: activity
+description: "Learn how to capture low-overhead JVM runtime profiling data during load tests using Java Flight Recorder (JFR).\n"
+sidebar:
+  label: JFR Profiling
+  order: 270
+---
+
+When executing large-scale load tests, understanding the performance characteristics and resource consumption of your load test agents is crucial. Inefficient test suite code, excessive object allocations, thread synchronization bottlenecks, or frequent garbage collection pauses on the load generator itself can distort response times and throttle maximum throughput.
+
+**Java Flight Recorder (JFR)** is an event-tracing and profiling framework built directly into the HotSpot JVM kernel. Because JFR operates at the JVM runtime layer, it incurs negligible overhead (typically under 1–2%), making it safe to run even during full-scale load tests.
+
+---
+
+## 1. Configuring JFR for Load Test Agents
+
+XLT agent processes read their JVM arguments from `<testsuite>/config/jvmargs.cfg` (or globally from `<xlt>/config/jvmargs.cfg`).
+
+To enable JFR profiling across all agent processes launched by the Agent Controller, add the following JVM flags to `jvmargs.cfg`:
+
+```properties
+-XX:+UnlockDiagnosticVMOptions
+-XX:+DebugNonSafepoints
+-XX:StartFlightRecording=delay=3m,disk=true,duration=15m,settings=profile,filename=./results/jfr-results.jfr,dumponexit=true,path-to-gc-roots=true
+```
+
+:::note[Location of jvmargs.cfg]
+Settings in `<testsuite>/config/jvmargs.cfg` are applied automatically to every agent JVM process launched by the Agent Controller during a load test.
+:::
+
+---
+
+## 2. Configuration Parameter Breakdown
+
+| Parameter | Purpose |
+|---|---|
+| `-XX:+UnlockDiagnosticVMOptions` | Unlocks advanced JVM diagnostic options required for low-level profiling. |
+| `-XX:+DebugNonSafepoints` | Instructs the JVM to generate accurate instruction pointer information and call stacks outside of JVM safepoints. Avoids sampling bias towards safepoint operations and yields precise CPU hot-spot analysis. |
+| `delay=3m` | Delays the start of the recording by 3 minutes, allowing load test ramp-up and JVM warmup to complete so the recording focuses exclusively on steady-state load. |
+| `disk=true` | Streams recorded event buffers to temporary disk storage rather than retaining them in JVM memory, keeping the memory footprint minimal and predictable. |
+| `duration=15m` | Sets recording duration (15 minutes). Concludes and saves automatically once the duration elapses. |
+| `settings=profile` | Uses the comprehensive `profile.jfc` template built into the JDK (captures CPU samples, memory allocations, thread locks, and I/O events). |
+| `filename=./results/jfr-results.jfr` | Specifies output path for the `.jfr` file. Placing it in `./results` ensures the recording is preserved alongside test run results. |
+| `dumponexit=true` | Flushes buffered in-flight data to the `.jfr` file upon agent JVM process termination. |
+| `path-to-gc-roots=true` | Enables reference chain tracking back to GC roots for allocated objects, facilitating object retention and leak analysis. |
+
+---
+
+## 3. Analyzing JFR Recordings
+
+Once the load test finishes, collect the generated `jfr-results.jfr` file from the agent results directory and inspect it with standard profiling tools:
+
+1. **JDK Mission Control (JMC)**: The official, deep-dive GUI tool provided by OpenJDK/Oracle for analyzing JFR files.
+2. **IntelliJ IDEA**: Built-in JFR profiler interface (*Help > Open Process Data / Profiler Dump* or drag-and-drop the `.jfr` file into the editor).
+3. **VisualVM**: Supports opening `.jfr` snapshots for thread, memory, and CPU inspection.
+4. **Command-Line (`jfr` tool)**: The JDK includes a CLI utility to inspect recordings:
+   ```bash
+   jfr summary jfr-results.jfr
+   jfr print --events "jdk.ExecutionSample" jfr-results.jfr
+   ```
+
+### Key Inspection Targets
+
+* **Method Profiling & CPU Hot Spots**: Look for unexpectedly slow helper methods, repetitive XML/JSON parsing, or regex compilation occurring inside transaction loops.
+* **Memory & Object Allocations**: Identify classes causing high allocation pressure in the TLAB (Thread-Local Allocation Buffer) that trigger excessive Young-Generation garbage collections.
+* **Thread Contention & Synchronization**: Detect lock contention (`jdk.JavaMonitorEnter`) or thread blocking that limits agent scaling.
+* **Garbage Collection Pauses**: Check GC pause durations and verify whether garbage collection is causing throughput dips during the measurement period.
+
+---
+
+## 4. Profiling in Local Development Mode
+
+To profile an individual test scenario during local execution or debugging in your IDE, supply the same JVM arguments in your IDE's Run Configuration:
+
+* **IntelliJ IDEA**: Add the arguments to **VM options** under *Run/Debug Configurations > JUnit*.
+* **Eclipse**: Add them to **VM arguments** under *Run Configurations > Arguments*.
+* **Maven CLI**: Pass them via the `-DargLine` parameter:
+   ```bash
+   mvn test -Dtest=TAuthor -DargLine="-XX:+UnlockDiagnosticVMOptions -XX:+DebugNonSafepoints -XX:StartFlightRecording=disk=true,settings=profile,filename=target/jfr-debug.jfr"
+   ```

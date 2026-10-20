@@ -27,6 +27,12 @@ export default defineConfig({
     openInChat: ["claude", "chatgpt", "cursor"],
   },
 
+  // Agent Skills:
+  // Publishes dedicated playbooks under /.well-known/agent-skills/ per Agent Skills RFC v0.2.0
+  agents: {
+    skills: "./skills",
+  },
+
   // The "Was this page helpful?" rating widget is enabled by default in Blume.
   // Disabled for now until an analytics provider (e.g. PostHog, GA4, Plausible)
   // or a custom feedback handler is wired up.
