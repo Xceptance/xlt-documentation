@@ -21,6 +21,7 @@ Always execute commands from the repository root:
 | :--- | :--- | :--- |
 | `npm run dev` | Starts Blume dev server at `http://localhost:4321` with HMR | Preview local changes live |
 | `npm run validate` | Runs `blume validate` | **Mandatory** before concluding any content change |
+| `npm run lint:prose` | Runs `vale content/` | Check technical prose quality, style, and terminology |
 | `npm run build` | Runs `ASTRO_TELEMETRY_DISABLED=1 blume build` | **Mandatory** to verify clean static compilation into `dist/` |
 | `npm run preview` | Runs `blume preview` (or `npx blume preview --port=8080`) | Preview the production bundle |
 

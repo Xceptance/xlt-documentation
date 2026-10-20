@@ -7,7 +7,8 @@
     "dev": "blume dev",
     "build": "ASTRO_TELEMETRY_DISABLED=1 blume build",
     "preview": "blume preview",
-    "validate": "blume validate"
+    "validate": "blume validate",
+    "lint:prose": "vale content/"
   },
   "repository": {
     "type": "git",

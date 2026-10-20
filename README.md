@@ -19,6 +19,7 @@ This site is configured as a **100% pure static documentation site**:
 
 - **Node.js**: Version 20 or newer (Node.js 22+ recommended).
 - **Package Manager**: `npm` (bundled with Node.js) or `pnpm`.
+- **Vale** (optional, recommended for content authors): Fast, syntax-aware prose linter for documentation style enforcement.
 
 ---
 
@@ -46,7 +47,17 @@ This site is configured as a **100% pure static documentation site**:
 
    Verifies internal links, redirects, and document structure.
 
-4. **Build for production**:
+4. **Lint prose with Vale** (optional):
+
+   ```bash
+   npm run lint:prose
+   # or lint a specific file/directory:
+   vale content/en/xlt/manual/
+   ```
+
+   Checks grammar, readability, active voice, and terminology consistency.
+
+5. **Build for production**:
 
    ```bash
    npm run build
@@ -54,7 +65,7 @@ This site is configured as a **100% pure static documentation site**:
 
    Generates optimized static HTML, search indexes, and `.htaccess` directly into `dist/`.
 
-5. **Preview the production build**:
+6. **Preview the production build**:
 
    ```bash
    npm run preview
@@ -64,13 +75,65 @@ This site is configured as a **100% pure static documentation site**:
 
    Spins up a local static file server to test the built output in `dist/` before deployment.
 
-6. **Alternative: Test with Python HTTP Server**:
+7. **Alternative: Test with Python HTTP Server**:
 
    Because Blume compiles directly to `dist/` in static mode (rather than `dist/client/`), point Python's HTTP server directly to `dist`:
 
    ```bash
    python3 -m http.server 8080 -d dist
    ```
+
+---
+
+## Prose Quality & Style Linting (Vale)
+
+To maintain consistent, high-readability technical prose across all guides, release notes, and manuals, this repository uses [Vale](https://vale.sh/).
+
+### Why Vale?
+
+- **Audience Accessibility**: Ensures clear, concise English for global engineers and non-native speakers by enforcing active voice and capping sentence lengths.
+- **AI / Agent Ingestion**: Eliminates ambiguous antecedents, run-on sentences, and filler words, producing cleaner embeddings for `/llms-full.txt` and AI coding assistants.
+- **Terminology Consistency**: Enforces canonical casing and spelling for domain terms (`XLT`, `XTC`, `HtmlUnit`, `WebDriver`, `Groovy`).
+
+### Vale Setup & Installation
+
+1. **Install the Vale CLI**:
+   - **Linux / macOS (Binary or Homebrew)**:
+     ```bash
+     # Homebrew
+     brew install vale
+
+     # Or download the prebuilt binary from GitHub:
+     curl -sL https://github.com/vale-cli/vale/releases/download/v3.24.0/vale_3.24.0_Linux_64-bit.tar.gz | tar -xz -C ~/.local/bin/ vale
+     ```
+   - **Windows**:
+     ```powershell
+     choco install vale
+     # or
+     winget install errata-ai.vale
+     ```
+
+2. **Sync style packages**:
+   Download the style packages declared in `.vale.ini` (`Google`, `write-good`):
+   ```bash
+   vale sync
+   ```
+
+### Configuration Overview
+
+- **Configuration File (`.vale.ini`)**: Declares active packages, minimum alert severity (`suggestion`), and Markdown/MDX token/block ignore rules to prevent linting frontmatter or inline code.
+- **Project Vocabulary (`styles/config/vocabularies/XLT/accept.txt`)**: Contains approved project terms, acronyms, and product names (such as `XLT`, `XTC`, `JFR`, `JVM`, `HtmlUnit`). Add project-specific terms here to avoid false positive spelling warnings.
+- **Ignored Directory (`styles/`)**: Downloaded third-party styles are cached in `styles/` and ignored by Git; only your custom vocabulary under `styles/config/` is tracked.
+
+### Common Vale Commands
+
+| Command | Description |
+| :--- | :--- |
+| `npm run lint:prose` | Lint all documentation files under `content/` |
+| `vale <file.mdx>` | Lint an individual file |
+| `vale --output=line <file.mdx>` | Format alerts as single lines (`file:line:col:rule:message`) |
+| `vale ls-metrics <file.mdx>` | Calculate readability scores (Flesch-Kincaid, Gunning Fog, grade level) |
+| `vale sync` | Update or reinstall configured style packages |
 
 ---
 
