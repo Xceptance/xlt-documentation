@@ -1,50 +1,49 @@
 ---
 title: Private Machines
 icon: server
-description: "Running load tests using your own machine infrastructure in
-  network-isolated environments.\n"
+description: "Running load tests using your own machine infrastructure in network-isolated environments.\n"
 sidebar:
   order: 156
 ---
 
 :::warning
-**Beta Feature**: The Private Machines feature is currently in beta/preview and is not yet generally available. If you would like to participate in the preview and have this feature enabled for your organization, please contact Xceptance. An updated pricing schema to support private machines will be announced when private machines leave the beta program.
+**Beta Feature**: the Private Machines feature is in beta and preview status. To participate in the preview and enable this feature for your organization, contact Xceptance. Updated pricing applies when private machines become generally available.
 :::
 
-Sometimes the system under test (SUT) is not accessible from the public internet — for example, when it resides behind a corporate firewall or in a private network segment. In such scenarios, whitelisting every XTC agent machine's IP address in the firewall is often impractical. 
+Sometimes the system under test (SUT) is not accessible from the public internet—for example, when residing behind a corporate firewall or within an isolated network segment. In such environments, allowlisting every public cloud agent IP address in corporate firewalls is impractical.
 
-A better alternative is to place the load generator machines in the same network as the SUT. Because those machines are not reachable from the outside, they are referred to as **private machines**. This allows you to run load tests in a fully contained, network-isolated environment.
+A practical alternative is placing load generator machines within the same network segment as the SUT. Because external services cannot reach these machines directly, XTC classifies them as **private machines**. This model allows running load tests in network-isolated environments.
 
-## How it Works
+## How it works
 
-Unlike public cloud or custom machines where XTC directly initiates communication to control them, private machines run within your own infrastructure and are not directly reachable from the internet. 
+Unlike public cloud or custom machines where XTC initiates inbound connections, private machines operate entirely within your internal network without exposing open inbound ports.
 
-Instead, the communication is initiated from the private machine itself:
-1. **Registration**: The XLT agent controller running on the private machine registers with XTC via the REST API so that XTC knows it is available.
-2. **Tunneling**: The agent controller establishes a secure tunnel to XTC via the **XLT Relay**. Through this tunnel, the agent controller receives tasks from XTC.
+Instead, the private machine initiates all communication:
+1. **Registration**: the XLT agent controller on the private machine registers with XTC via the REST API to signal availability.
+2. **Tunneling**: the agent controller establishes a secure outbound tunnel to XTC through the **XLT Relay**. XTC dispatches load testing tasks through this tunnel.
 
-Private machines must be available when a load test is started. You are responsible for starting and stopping them — either by keeping them running continuously, or by automating their lifecycle around your load tests with a scripted process.
+Private machines must be online when the load test starts. You manage their operational lifecycle—either keeping them continuously active or automating provisioning via script workflows around test execution.
 
-Apart from these operational differences, there are no further distinctions between public and private machines. Public machines (cloud or custom) and private machines can be freely mixed within a single load test.
+Apart from connectivity, private machines function identically to cloud machines. You can mix public cloud instances and private machines within the same test run.
 
 ## Prerequisites
 
-For a machine to act as a private machine, it must meet the following requirements:
+To operate as a private machine, a host must meet the following criteria:
 
-* **Connectivity**: Outbound HTTPS connections to `xtc.xceptance.com` and `xtc-xlt-relay.xceptance.com` on port 443 must be permitted.
-* **Java**: Java 21 or later must be installed.
-* **XLT**: XLT 10.0.0-beta-2 or later must be installed.
-* **Configuration**: XLT must be configured for private machine mode.
+* **Connectivity**: outbound HTTPS connections to `xtc.xceptance.com` and `xtc-xlt-relay.xceptance.com` on port 443 must be open.
+* **Java**: requires Java 21 or later installed.
+* **XLT**: requires XLT 10.0.0-beta-2 or later installed.
+* **Configuration**: requires configuring XLT for private machine mode.
 
-## Setup Steps
+## Setup steps
 
-### Step 1: Create API Client Credentials
-In your load testing project in XTC, create API client credentials with at least the `PRIVATEMACHINE_REGISTER` scope (under *Configuration > Integrations > API Client Credentials*). These credentials will be used by the XLT agent controllers on your private machines to register themselves. 
+### Step 1. Create API client credentials
+In your load testing project in XTC, create API client credentials with at least the `PRIVATEMACHINE_REGISTER` scope under *Configuration > Integrations > API Client Credentials*. Agent controllers on your private machines use these credentials to authenticate and register with XTC.
 
-Save the generated client ID and secret. You will also need the short names of your XTC organization and load testing project.
+Save the generated client ID and secret. Note the short names of your XTC organization and load testing project.
 
-### Step 2: Configure the XLT Agent Controller
-Configure XLT for private machine mode on each private machine by editing `<xlt>/config/agentcontroller.properties`. The following settings are required:
+### Step 2. Configure the XLT agent controller
+Configure XLT for private machine mode on each private host by editing `<xlt>/config/agentcontroller.properties`. Configure the following properties:
 
 | Property | Default | Description |
 |---|---|---|
@@ -57,17 +56,17 @@ Configure XLT for private machine mode on each private machine by editing `<xlt>
 | `com.xceptance.xlt.agentcontroller.privateMachine.xtc.org` | — | The short name of your XTC organization. |
 | `com.xceptance.xlt.agentcontroller.privateMachine.xtc.project` | — | The short name of your XTC load testing project. |
 
-### Step 3: Start the Agent Controller
-Start the XLT agent controller on each private machine. It will immediately register itself with XTC. Verify that all machines appear on the **Private Machines** page of your project in the XTC UI.
+### Step 3. Start the agent controller
+Start the XLT agent controller on each private machine. The controller immediately registers with XTC. Verify that all machines appear on the **Private Machines** page of your project in the XTC UI.
 
-## Using Private Machines in Load Tests
+## Using private machines in load tests
 
 To use private machines in a load test:
-1. Open the load test details page and go to the **Machines** tab.
-2. Under the **Private Machines** section, specify the desired machine type and the required number of machines. (The machines do not need to be online at the time of configuration).
-3. Ensure the agent controller password configured in `agentcontroller.properties` is entered in the **Common Machine Configuration** section.
-4. Start the load test as usual. 
+1. Open the load test details page and navigate to the **Machines** tab.
+2. Under the **Private Machines** section, specify the desired machine type, and enter the required count of machines. (Machines can remain offline during test configuration).
+3. Enter the agent controller password from `agentcontroller.properties` in the **Common Machine Configuration** section.
+4. Start the load test.
 
-When the load test starts, XTC searches for the requested number of available private machines of the specified type and reserves them for the duration of the test. If not enough private machines of that type are registered and online, the test will fail to start.
+When the load test begins, XTC locates available private machines of the requested type and reserves them for the test duration. If insufficient machines are registered and online, the test fails to start.
 
-Once the load test completes, XTC releases the reserved private machines, making them available for other load tests.
+Once the load test completes, XTC releases the reserved private machines, returning them to the available pool.
