@@ -6,24 +6,40 @@ sidebar:
   order: 40
 ---
 
-## Generating a Test Report
+## Generate the Test Report
 
-When your load test has finished, you might want to render a report based on the gathered data and open it in the browser of your choice:
+Upon test completion, generate the HTML load test report from the collected measurement directory:
 
 ```bash
-$> ./create_report.sh ../results/20200202-123400
-$> firefox ../reports/20200202-123400/index.html
+cd <xlt>/bin
+./create_report.sh ../results/20261020-120000
 ```
 
-:::note
-For more information on how to customize your reports, see the [Manual](/xlt/manual/report-options/).
+Open the generated report in any modern web browser:
+
+```bash
+xdg-open ../reports/20261020-120000/index.html
+```
+
+:::note[Customizing Reports]
+To configure custom percentiles, chart colors, or error thresholds, see [Report Options](/xlt/manual/report-options/) and [Report Configuration](/xlt/manual/report-configuration/).
 :::
 
-## Reading a Test Report
+## Key Report Sections
 
-The Load and Performance Test Report gives you all the information needed for a detailed analysis of a load test run. It provides several sections, each consisting of at least one table and one or more charts visualizing the graphic development of relevant measurements over time. The sections are: the [Overview](/xlt/manual/test-evaluation/#overview) (which contains general information, load setup, requests per second, concurrent user and error charts), [Transactions](/xlt/manual/test-evaluation/#transactions), [Actions](/xlt/manual/test-evaluation/#actions) and [Requests](/xlt/manual/test-evaluation/#requests), [Network](/xlt/manual/test-evaluation/#network) (all about incoming and outgoing traffic, hosts, response codes etc.), [Page Load Timings](/xlt/manual/test-evaluation/#page-load-timings) (page loading performance of real browsers - recorded only when using `XltChromeDriver` or `XltFirefoxDriver` to run the browser), [Custom Timers](/xlt/manual/test-evaluation/#custom-timers) and [Custom Values](/xlt/manual/test-evaluation/#custom-data), [External Data](/xlt/manual/test-evaluation/#external-data), [Errors](/xlt/manual/test-evaluation/#errors) and their stack traces, [Events](/xlt/manual/test-evaluation/#events), [Agents](/xlt/manual/test-evaluation/#agents) (which reports the resource utilization of each user agent), and details about the load test [configuration](/xlt/manual/test-evaluation/#configuration).
+The generated report contains interactive tables and time-series charts organized into dedicated sections:
 
-You will get results and even reports out of your load test fairly quickly, but evaluating a load test and drawing the correct conclusions from the data needs some practice. For more information please see the [Manual](/xlt/manual/test-evaluation/).
+* **[Overview](/xlt/manual/test-evaluation/#overview)**: Summary metrics, total requests, concurrent user progression, and error counts.
+* **[Transactions](/xlt/manual/test-evaluation/#transactions)**: End-to-end execution times, pass/fail ratios, and percentiles for each test scenario.
+* **[Actions](/xlt/manual/test-evaluation/#actions)**: Performance breakdown for individual user steps (e.g. `Search`, `AddToCart`).
+* **[Requests](/xlt/manual/test-evaluation/#requests)**: HTTP-level metrics including DNS lookup, connect time, time-to-first-byte (TTFB), and transfer duration.
+* **[Network](/xlt/manual/test-evaluation/#network)**: Bandwidth utilization, response status code distributions (2xx, 3xx, 4xx, 5xx), and target host breakdown.
+* **[Page Load Timings](/xlt/manual/test-evaluation/#page-load-timings)**: Navigation timing and Core Web Vitals collected during real-browser WebDriver runs.
+* **[Errors](/xlt/manual/test-evaluation/#errors)**: Categorized error logs, failed request URLs, and linked [Result Browsers](/xlt/manual/result-browser/) capturing full DOM snapshots at the exact moment of failure.
+* **[Agents](/xlt/manual/test-evaluation/#agents)**: Load generator host health metrics (CPU utilization, memory consumption, JVM garbage collection pauses).
+
+For detailed interpretation strategies and diagnosing performance bottlenecks, proceed to [Test Evaluation](/xlt/manual/test-evaluation/).
+
 
 
 

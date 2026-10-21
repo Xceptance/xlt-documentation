@@ -1,35 +1,31 @@
 ---
 title: About
 icon: info
-description: "What a monitoring project is and how XTC can help you monitor your
-  applications.\n"
+description: Overview of XTC monitoring projects, capabilities, and automated test execution.
 sidebar:
   order: 400
 ---
 
-## Monitoring Basics
+## Monitoring basics
 
-XTC can be used up to monitor your application's performance and availability by regularly running test cases, providing valuable data and insights over time. It can also notify specified recipients as soon as something unexpected happens, thus minimizing downtimes by addressing any issue as soon as possible.
+XTC tracks web app performance and availability by executing automated test cases on a recurring schedule. It alerts designated recipients when issues arise, helping teams resolve incidents, and preventing downtime.
 
-All of this can be achieved in [**XTC monitoring projects**](/xtc/basics/projects/#xtc-project-types).  
+Configure these capabilities within [**XTC monitoring projects**](/xtc/basics/projects/#xtc-project-types).
 
 ## Prerequisites
 
-To monitor your application in XTC, we assume you have a **Maven project** that defines at least one **Java class** containing one or more **JUnit testcases** that interact with your application available in the repository of your choice. Please take a look at our [monitoring template](https://github.com/Xceptance/xtc-monitoring-template).
+To set up monitoring in XTC, supply a **Maven project** containing a **Java class** with **JUnit test cases** in a Git repository. For a recommended reference project, explore the [monitoring template](https://github.com/Xceptance/xtc-monitoring-template).
 
 ## Features
 
-This is a high-level overview of the features XTC offers to monitor your web application:
+XTC offers the following core monitoring features:
 
-* [Configuration](/xtc/monitoring/monitoring-configuration/) allows you to adjust your settings for the whole monitoring project, including the definition of
-  * [Scenario Defaults](/xtc/monitoring/monitoring-configuration/#scenario-defaults),
-  * [Notification Lists](/xtc/monitoring/monitoring-configuration/#notification-lists) for specified recipients, and
-  * [Quality Sensors](/xtc/monitoring/monitoring-configuration/#quality-sensors) that define success metrics for your scenarios,
-* [Quiet Periods](/xtc/monitoring/quiet-periods/) allows you to pause notifications for the whole project or even pause running any scenario,
-* in [Scenarios](/xtc/monitoring/scenarios/) you can define and configure your monitoring scenarios including the quality sensors to be applied,
-* the [Dashboard](/xtc/monitoring/dashboard/) of a monitoring project provides a rough overview of the scenarios that are currently set up and their recent performance,
-* [Metrics](/xtc/monitoring/metrics/) are offering graphical live data for different parameters,
-* the [History](/xtc/monitoring/history/) view contains details about all recent scenario executions, and
-* [Exports](/xtc/monitoring/exports/) allows you to download monthly exports of your monitoring data.
+* [Configuration](/xtc/monitoring/monitoring-configuration/): manage global project settings, including [Scenario Defaults](/xtc/monitoring/monitoring-configuration/#scenario-defaults), [Notification Lists](/xtc/monitoring/monitoring-configuration/#notification-lists), and [Quality Sensors](/xtc/monitoring/monitoring-configuration/#quality-sensors).
+* [Quiet Periods](/xtc/monitoring/quiet-periods/): pause alerts across the project or suspend scheduled scenario executions.
+* [Scenarios](/xtc/monitoring/scenarios/): configure execution intervals, environments, and quality sensor assignments for individual test cases.
+* [Dashboard](/xtc/monitoring/dashboard/): review scenario health, recent performance histograms, and recent failures.
+* [Metrics](/xtc/monitoring/metrics/): inspect graphical live charts across transactions, runtimes, and HTTP statuses.
+* [History](/xtc/monitoring/history/): audit execution logs, status results, and transaction traces for completed runs.
+* [Exports](/xtc/monitoring/exports/): download monthly archive exports of monitoring telemetry and data.
 
-To learn more about each feature, please check out the linked resources.
+To learn more about each feature, explore the linked chapters.

@@ -1,51 +1,77 @@
 ---
 title: Workflow
 icon: workflow
-description: "The recommended way to a working loadtest.\n"
+description: Step-by-step roadmap from initial test design to executing and analyzing a load test.
 sidebar:
   order: 50
 ---
 
-## The Recommended Steps to a Running Load Test
+## Load Testing Roadmap
 
-XLT is a powerful tool and as such might seem complex at first. But the way to running your first load test does not need to be hard, and we are here to help you. As a software developer or developer in test you will find a thousand ways to reach your testing goal with XLT, as you can just use all your previous experience with Java and Junit, but this is what we recommend you to do:
+Executing a successful load test with XLT follows a structured six-stage lifecycle:
 
-### Have a Test Suite
+```text
+1. Test Suite Scaffolding ──> 2. Test Planning ──> 3. Local Scripting
+                                                            │
+6. Report Analysis <── 5. Distributed Execution <── 4. Load Configuration
+```
 
-You will want a [test suite](/xlt/manual/test-suites/) for your tests to live in (which is basically a Java Project containing your test cases (that don't _have to_ be written in Java) and everything else that is needed to run your tests later. Of course you can start one from scratch, but we provide you with a bunch of [sample test suites](/xlt/manual/test-suites/) for common use cases. You can just browse their Github projects, clone them to your local machine, set them up as a project in your favorite IDE, understand the underlying concepts and adjust them to your needs.
+---
 
-### Make a Plan
+### 1. Scaffold Your Test Suite
 
-Plan what you are going to do. This means:
+All test scenarios reside inside a [Test Suite](/xlt/manual/test-suites/). An XLT test suite is a standard Maven Java project containing your scenario scripts, configuration files, and dependencies.
 
-* **Expected load**: Have some numbers ready that estimate what load your application should be able to handle. You are testing to cushion the blow of app-demanding periods, so look at your statistics from the last holiday season or other times you expect to experience peak load. There is no "default load" that will be applied to your application - XLT allows and demands you to configure the load that will be applied for all test scenarios (even seperately, if needed).
-* **Test scenarios**: Know which user interactions are typical for your application. You will model these as test scenarios. Our sample test suites contain some typical scenarios for ecommerce platforms, so maybe you will find some inspiration there.
-* **Environment**: Think about the environment of the application your are going to test. You might not want to apply all the load to your live system, but the hardware underlying the tested application should be as close as possible to that of the live system. Also think of third-party systems such as order management or payment providers - you will need a way to circumvent these for your tests, as they might have an influence on response times that is completely out of your control (and also you don't want to deal with tons of test orders in your system).
-* **Mise en place**: What French chefs call the strategy of have everything in place before starting your work. This can also be applied to your testing! Have your system-under-test ready before scripting your tests. Tests should model real-world user interactions with your application as closely as possible. So if your application still changes every day while you are writing complex test scenarios, you will be doing the same work over and over again, modelling the ever changing interactions, and you may easily become frustrated.
+- **Sample Suites**: Clone one of the pre-configured [Sample Test Suites](/xlt/manual/test-suites/) to start with proven project structures and baseline dependencies.
+- **IDE Setup**: Import the project into your preferred IDE (IntelliJ IDEA, Eclipse, or VS Code) as a standard Maven project.
 
-### Develop your Tests
+---
 
-[Test development](/xlt/manual/test-development/) happens locally, in your IDE of choice. You will have to add test cases for all applicable scenarios, or adjust those from a sample test suite to your needs. If you need to do some functional testing, test data may be added.
+### 2. Plan Scenarios and Load Profiles
 
-You can run those as a JUnit test from your IDE. This should be done repeatedly while you consolidate your tests so that you can judge if the results are stable or predictable. This reliability is essential to your load test.
+Define your objectives before authoring test scripts:
 
-For load testing, you usually want some randomness in your scenarios - with XLT, you can easily add that as well as re-run single test cases with the exact same "random" input as before. This especially helps during debugging when it's best to reproduce test runs that returned an error as exactly as possible.
+- **Target Throughput & Concurrency**: Estimate required traffic volumes based on production analytics (such as peak holiday traffic or expected concurrent users).
+- **Core User Journeys**: Identify essential user paths through the application (browsing, searching, adding to cart, checkout).
+- **Target Environment**: Ensure test environments match production architecture as closely as possible. Bypass third-party services (such as external payment gateways or SMS providers) to avoid uncontrolled latency bottlenecks.
+- **Pre-Test Data**: Prepare system accounts, product inventories, and seeded databases to support concurrent test execution.
 
-### Define your Test Setup
+---
 
-Once you have a reliable set of tests in your test suite, you're ready to start [setting up](/xlt/manual/test-setup/) the load test. XLT is highly configurable. You will have to define:
+### 3. Develop and Stabilize Scenarios Locally
 
-* the load that is to be applied (either in terms of user count or arrival rate, per test case if needed or globally for the test suite),
-* the test scenarios that should be run, and
-* the limits within which these tests are supposed to work (in terms of thinktimes, timeouts, proxies, error rate limits).
+Author test scenarios locally in your IDE using standard JUnit and XLT abstractions:
 
-You can then configure the environment used for testing (master controller and agent controllers). If you need different setups for several test runs - you can prepare them all upfront, then reference the needed properties for the current test run. And since everything can be varied and overwritten and you can also use includes for your properties; you don't need to write any more than is necessary here.
+- **Modular Design**: Decompose interactions into granular **Actions** (single clicks/requests) and composite **Flows** (reusable business transactions like login or checkout). See the [Test Development Guide](/xlt/manual/test-development/) for patterns.
+- **Local Validation**: Execute tests against target environments directly from your IDE to ensure functional stability before applying load.
+- **Debugging**: Inspect the [Result Browser](/xlt/manual/result-browser/) to examine request headers, response bodies, and visual traces for failed steps.
 
-### Run a Load Test
+---
 
-Finally, [run your load test](/neodymium/framework/test-execution/)! This can happen on your local machine as long as you only want a low load. For any significantly high loads you will want to use a cluster of test machines as your distributed load generation environment. In any case you will need the master controller to reference your test suite, distribute the load across the agent controllers, control the test run and let you get the results when it is finished.
+### 4. Configure Load Profiles and Infrastructure
 
-### Evaluate the Results
+Configure load execution parameters in `project.properties` and environment settings:
 
-XLT will generate a [final report](/xlt/manual/test-evaluation/}
-) once the load test has finished. But since XLT writes result data the entire time it is running, we are also able to check intermediate test results while the test is still in progress. The final report contains detailed data about the test run that is human readable and easily shared in HTML format, as well as a machine readable XML version. Additionally, the format for result data is plain text (csv), which is perfect for searching for anything thing out of the ordinary. If you want to compare two or more test runs, you will also find [report options](/xlt/manual/report-options/) for that.
+- **Load Model**: Choose between user-count modeling (fixed concurrent users) or arrival-rate modeling (target transactions per second). Learn more in [Load Configuration](/xlt/manual/load-configuration/).
+- **Pacing & Limits**: Configure think times, request timeouts, and error thresholds.
+- **Agent Allocation**: Map scenarios to agent machines (local machines, on-premises servers, or cloud agents via [Cloud Setup](/xlt/advanced/cloud-setup/)).
+
+---
+
+### 5. Execute the Load Test
+
+Run your test using the XLT master controller:
+
+- **Local Execution**: For low-load smoke tests, run scenarios directly on your local workstation.
+- **Distributed Execution**: For production-scale tests, run `mastercontroller.sh` to upload the test suite, synchronize cloud or dedicated agent controllers, and stream runtime metrics.
+- **Automated CI/CD**: Trigger non-interactive test runs via CLI flags or the [XLT Jenkins Plugin](/xlt/advanced/jenkins/). See [XLT Test Execution](/xlt/manual/xlt-test-execution/) for command-line syntax.
+
+---
+
+### 6. Analyze Results and Reports
+
+When test execution completes, XLT compiles a comprehensive performance report:
+
+- **Load Test Report**: Review transaction percentiles, error rates, throughput charts, and resource metrics in the [HTML Report](/xlt/manual/test-evaluation/).
+- **Trend & Comparison Reports**: Compare current metrics against previous baselines to identify performance regressions using [Report Options](/xlt/manual/report-options/).
+- **Executive PDF & AI Data**: Generate high-level KPI summaries via [Executive PDF Reports](/xlt/manual/reports/#executive-pdf-reports) and export structured machine-readable metrics via [AI Data Reports](/xlt/manual/ai-data-report/).

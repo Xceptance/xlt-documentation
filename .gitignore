@@ -12,6 +12,10 @@ node_modules/
 .blume-verify/
 homepage_preview.png
 
+# Vale styles cache
+styles/*
+!styles/config/
+
 # Environment files and credentials
 .env
 .env.*

@@ -21,6 +21,7 @@ Always execute commands from the repository root:
 | :--- | :--- | :--- |
 | `npm run dev` | Starts Blume dev server at `http://localhost:4321` with HMR | Preview local changes live |
 | `npm run validate` | Runs `blume validate` | **Mandatory** before concluding any content change |
+| `npm run lint:prose` | Runs `vale content/` | Check technical prose quality, style, and terminology |
 | `npm run build` | Runs `ASTRO_TELEMETRY_DISABLED=1 blume build` | **Mandatory** to verify clean static compilation into `dist/` |
 | `npm run preview` | Runs `blume preview` (or `npx blume preview --port=8080`) | Preview the production bundle |
 
@@ -121,6 +122,26 @@ Avoid unrecognized syntax tags that cause build validator warnings.
 - **Internal Links**: Always use root-relative links (e.g., `[XLT Manual](/xlt/manual/)` or `[Release Notes](/xlt/release-notes/)`). Never use relative dot-paths like `../../manual`.
 - **Images**: Store images in `public/images/` and reference them with absolute root paths: `![Diagram](/images/xlt-architecture.png)`.
 
+### 4.6 Prose Quality, Style & Linting (Vale)
+
+All technical documentation must adhere to high clarity, conciseness, and consistent style enforced by [Vale](https://vale.sh/):
+
+1. **Active Voice & Imperative Instructions**:
+   - Write instructions in the active voice and imperative mood (*"Configure the agent"* instead of *"The agent should be configured"*).
+   - Avoid empty openers (*"There is"*, *"There are"*).
+2. **Controlled Sentence Length**:
+   - Aim for $\le 20\text{--}22$ words per sentence.
+   - Decompose multi-clause run-on sentences into bulleted lists or sequential steps to support non-native English speakers and optimize LLM embeddings (`/llms-full.txt`).
+3. **Avoid Weasel Words & Time-Bound Phrasing**:
+   - Eliminate vague adverbs (*"completely"*, *"significantly"*, *"fairly"*).
+   - Avoid ephemeral temporal markers in reference docs (*"currently in active beta"* $\rightarrow$ *"in active beta"*).
+4. **Vocabulary & Terminology Management**:
+   - Technical terms, acronyms, and product names (`XLT`, `XTC`, `HtmlUnit`, `WebDriver`, `Groovy`, `Scorecard`) are managed in [`styles/config/vocabularies/XLT/accept.txt`](styles/config/vocabularies/XLT/accept.txt).
+   - If Vale flags a valid project name or technical acronym as a misspelling (`Vale.Spelling`), add it to `accept.txt` rather than silencing or disabling the rule.
+5. **Agent Workflow for Vale**:
+   - Run `npm run lint:prose` or target specific files: `vale content/en/xlt/path/to/file.mdx`.
+   - Use the `vale` skill (`.agents/skills/vale/SKILL.md`) for guidance on triaging alerts, fixing prose, and inspecting readability scores (`vale ls-metrics`).
+
 ---
 
 ## 5. Design Tokens & Accessibility (WCAG 2.1/2.2 AA/AAA)
@@ -164,5 +185,6 @@ Site architecture, navigation requirements, and features are tracked formally wi
 
 Before finishing any task, you **MUST**:
 1. Run `npm run validate` and verify that zero broken links, invalid directives, or frontmatter errors are reported.
-2. Run `npm run build` and ensure the site builds cleanly into `dist/`.
-3. Check that no unintentional temporary files, broken anchors, or unmapped code blocks were committed.
+2. Run `npm run lint:prose` (or `vale <modified-files>`) to ensure edited prose meets quality, style, and terminology standards without introducing new errors.
+3. Run `npm run build` and ensure the site builds cleanly into `dist/`.
+4. Check that no unintentional temporary files, broken anchors, or unmapped code blocks were committed.

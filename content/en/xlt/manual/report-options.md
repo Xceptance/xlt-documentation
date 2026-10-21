@@ -58,7 +58,7 @@ For a report starting 15 minutes into the test and covering the following 30 min
 bin $ ./create_report.sh ../results/20191224-131200 -from +15m -l 30m
 ```
 
-For a report starting at a specified time (say, 2pm):
+For a report starting at a specified time (for example, 2:00 PM):
 
 ```bash
 bin $ ./create_report.sh ../results/20191224-131200 -from 20191224-140000

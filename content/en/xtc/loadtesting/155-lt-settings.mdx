@@ -1,18 +1,17 @@
 ---
 title: Load Test Settings
 icon: sliders-horizontal
-description: "Specific settings for your load test, e.g. load profile,
-  repository, machine configuration, and more.\n"
+description: "Specific settings for your load test, including load profile, repository, and machine configuration.\n"
 sidebar:
   order: 155
 ---
 
-## Test Settings
+## Test settings
 
-The _Settings_ tab contains all settings for the test run. Some of these are mandatory, you need to set them before the test run can be started.
+The _Settings_ tab contains configuration options for the test run. Complete all mandatory fields before starting the test.
 
 :::note
-Please note that none of the test settings can be edited after the test was started.
+You cannot edit test settings once execution starts.
 :::
 
 :::info[Role Required]
@@ -23,69 +22,69 @@ To edit test settings, your account must at least have the role of a [tester](/x
 To view test settings, your account must at least have the role of a [reviewer](/xtc/basics/projects/#user-roles-within-a-project) within the project.
 :::
 
-### Load Profile
+### Load profile
 
-Under _Load Profile_ you can override the settings in your test suite for the [test properties file to be used](/xlt/manual/test-suite-configuration/#test-properties-file). In addition to that, you can override the settings for test duration, ramp-up time, shutdown time, and [load factor](/xlt/manual/load-configuration/#load-factor).
+Under _Load Profile_, you can override test suite settings for the [test properties file](/xlt/manual/test-suite-configuration/#test-properties-file). You can also override test duration, ramp-up time, shutdown time, and [load factor](/xlt/manual/load-configuration/#load-factor).
 
-The load profile settings are only needed if you want to override your test suite settings for some reason, e.g. quickly changing the test duration, ramp-up times, or load factor without pushing changes to the repository, or switching between your prepared test property files. If the fields are left empty, the settings in the test suite will be used.
+Load profile overrides let you adjust parameters quickly—such as extending duration or testing higher load factors—without pushing changes to the repository or editing property files. If left blank, XTC applies the settings declared in the test suite.
 
-When overriding the load profile settings for a particular load test, you must specify a value for each parameter, including the ramp-up and shutdown times. Load Factor formulas are only allowed if ramp up time equals zero. The resulting load curve is shown in a graph next to the settings then:
+When overriding load profile settings, specify values for each parameter, including ramp-up and shutdown times. Load factor formulas require a ramp-up time of zero. The preview graph displays the resulting load curve:
 
 ![Overwriting the Load Profile with a Load Function](/images/xtc/load_profile_overwrite.png)
 *Overwriting the Load Profile with a Load Function*
 
-Learn more in our _Load Testing_ section about [configuring load profiles](/xlt/manual/load-configuration/) for your test run.
+Read more in the _Load Testing_ guide about [configuring load profiles](/xlt/manual/load-configuration/).
 
 :::tip[Load Factor and Machine Scaling]
-When using a **Load Factor** greater than 1.0 (e.g. `2.0` to simulate double the baseline load), remember that the concurrency on each agent increases proportionally. Ensure your machine configuration allocates sufficient agent instances to handle the scaled concurrency, or adjust your instance count under the **Machines** tab accordingly.
+When using a **Load Factor** greater than 1.0 (such as `2.0` to simulate double the baseline load), concurrency on each agent increases proportionally. Ensure your machine configuration allocates sufficient agent instances to handle the scaled concurrency, or adjust your instance count on the **Machines** tab.
 :::
 
 ### Properties
 
-In _Properties_ and _Secret Properties_ you may overwrite [properties](/xlt/manual/test-suite-configuration/) for test execution. Values set here take precedence over the project-level settings (which may in turn be inherited from the organization).
+In _Properties_ and _Secret Properties_, you can override [properties](/xlt/manual/test-suite-configuration/) for test execution. Values set here take precedence over project-level and organization-level settings.
 
-Load tests can choose whether to inherit project-level properties. In either case, the load test can still define its own properties, which will overwrite project-level properties if they share the same key. Properties that are not set in XTC will be read from the project data.
+Load tests can inherit project-level properties. You can also define test-specific properties that override matching project-level keys. Properties not defined in XTC load directly from the test project files.
 
 ### Repository
 
-Under _Repository_ you can enter a branch of the project repository to be used for this test run. This is only necessary if you want to use another branch than the one you [configured for the project](/xtc/basics/project-configuration/#repository). If this is left empty, the project or default branch will be used.
+Under _Repository_, specify a repository branch for this test run. This override is useful when testing branches that differ from the [project default branch](/xtc/basics/project-configuration/#repository). If left blank, XTC checks out the default branch configured for the project.
 
-### Code Archive
+### Code archive
 
-Under _Code Archive_ you can configure your load test to run using an uploaded ZIP archive instead of Git. You can select either a specific version of your uploaded archives or choose **Use Latest** to automatically run with the most recently uploaded archive.
+Under _Code Archive_, configure the load test to run using an uploaded ZIP archive instead of Git. Select a specific version of your uploaded archives or choose **Use Latest** to run with the most recently uploaded archive.
 
-Note that using a code archive must be explicitly enabled for the load test. For details on how to manage and upload archives, see [Code Archives](/xtc/loadtesting/code-archives/).
+You must explicitly enable code archives for the load test. For details on managing and uploading archives, see [Code Archives](/xtc/loadtesting/code-archives/).
 
-## Machine Configuration
+## Machine configuration
 
-The most important (and mandatory) part of the test setup is the configuration of the test machines to be used. The machines and machine settings to use for a load test can be found in the _**Machines**_ tab.
+Configuring test machines is mandatory. Access machine settings on the _**Machines**_ tab.
 
-The machines to be used can be selected from public cloud machines (_Amazon Cloud Machines_, _Google Cloud Machines_, or _Hetzner Cloud Machines_), custom machines, or your own [private machines](/xtc/loadtesting/private-machines/) (or you can use a combination of these).
+Select test machines from public cloud providers (Amazon, Google Cloud, or Hetzner), custom machines, or your own [private machines](/xtc/loadtesting/private-machines/). You can also combine these machine types within a single test.
 
-If you want to use machines in the _**Amazon/Google/Hetzner Cloud**_, you just enter configuration details and the selected machines will automatically be started prior to the load test and terminated afterwards by XTC. To edit the cloud machine configuration, click the editing button next to the headline. There you can
+When using public cloud machines, enter your machine requirements. XTC provisions and starts the selected instances before the test and terminates them afterward. To configure cloud machines, click the edit button next to the section heading:
 
-* specify which _regions_ the machines should run in (you can pick several, the machines will be spread over the selected regions as evenly as possible),
-* pick an _instance template_ for your machines, depending on how much computing power you think you'll need,
-* select the number of machine instances to start (_instance count_), and
-* select the number of _agents per instance_.
+* specify target _regions_ (XTC distributes instances across selected regions as evenly as possible),
+* select an _instance template_ based on required computing power,
+* enter the number of machine instances to launch (_instance count_), and
+* specify the number of _agents per instance_.
 
-As **[test sizing](/xlt/how-tos/test-sizing/)** is a whole topic in itself, you might want to check the CPU usage after your test and maybe adjust the number of machines for the next test run.
+Because [test sizing](/xlt/how-tos/test-sizing/) depends on test design, monitor CPU and memory usage after the test run to tune machine sizing for future executions.
 
-### Private Machines
+### Private machines
 
-If private machines are enabled for your organization, you can specify the required number of private machines of a specific capacity class in the **Private Machines** section on the **Machines** tab. 
+If private machines are enabled for your organization, request the required count of private machines by capacity class in the **Private Machines** section on the **Machines** tab.
 
-When the load test is started, XTC searches for the requested number of online private machines of the specified type and reserves them for the duration of the test. If not enough private machines of that type are registered and online, the test will fail to start.
+When the load test begins, XTC locates available private machines of the requested type and reserves them for the test duration. If insufficient machines are registered and online, the test fails to start.
 
-For details on how to set up and register your own private machine infrastructure, see [Private Machines](/xtc/loadtesting/private-machines/).
+For guidance on registering and maintaining your own infrastructure, see [Private Machines](/xtc/loadtesting/private-machines/).
 
-In _**Common Machine Configuration**_ you can enter a password for the communication between the master and all agent machines (a random password will be generated by default). You can also [override the default XLT execution environment version](/xtc/loadtesting/load-project-configuration/#environment) in this section.
+In _**Common Machine Configuration**_, set a communication password for traffic between master and agent machines (XTC generates a random password by default). You can also [override the default XLT execution environment version](/xtc/loadtesting/load-project-configuration/#environment) here.
 
 ## Notifications
 
-XTC can notify users whenever a load test changes its state.
+XTC can send notifications when a load test changes state.
 
-Here's how you can set up notifications:
+Supported notification channels include:
 
-* Via **Slack**: To receive Slack notifications, configure the [Slack Integration](/xtc/integrations/slack/) for your project. XTC will then send updates about the [load test's state](/xtc/integrations/slack/#load-tests) (start, finish, error, report available, etc.) directly to the Slack channel you've specified.
-* Via **Email**: If you prefer email notifications, go to the _Notifications_ section of the _Settings_ tab on the load test's details page. You can then add a custom list of email addresses that XTC will notify when the load test finishes. To disable notifications again, just clear the address list.
+* **Slack**: configure the [Slack integration](/xtc/integrations/slack/) for your project. XTC delivers updates on [load test state changes](/xtc/integrations/slack/#load-tests) directly to the specified Slack channel.
+* **Email**: open the _Notifications_ section of the _Settings_ tab and add recipient email addresses. XTC notifies these addresses when the load test finishes. To disable notifications, clear the address list.

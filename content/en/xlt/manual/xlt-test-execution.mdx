@@ -265,7 +265,7 @@ For long-running tests, it is recommended to run the test without the `-auto` op
 
 ### Non-Interactive Mode (Scripted Commands)
 
-In order to better fit into highly-automated environments, the mastercontroller was improved in order to ease scripting. With the command line option `-c <commandList>` (or `--commands <commandList>`) you can specify which commands the mastercontroller should execute on your behalf. This way, typical use cases can be scripted quite easily:
+To integrate smoothly into highly automated environments, the mastercontroller supports automated scripting. With the command-line option `-c <commandList>` (or `--commands <commandList>`), specify which commands the mastercontroller should execute:
 
 * upload the test suite and start the load test (`mastercontroller.sh -c upload,start`)
 * download the results of a running load test and generate a report from them (`mastercontroller.sh -c download,report`)

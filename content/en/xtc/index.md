@@ -1,30 +1,30 @@
 ---
 title: XTC Documentation
-description: "XTC allows you to be ahead of performance and stability issues by
-  using a centralized testing platform that offers fine-grained control, maximum
-  scale, and a unique monitoring approach.\n"
+description: Centralized load testing and continuous monitoring platform delivering XLT as a cloud service.
 sidebar:
-  label: XTC Documentation
+  label: Overview
 ---
 
-## What is XTC?
+## Overview
 
-XTC allows you to be ahead of performance and stability issues by using a centralized testing platform that offers fine-grained control, maximum scale, and a unique monitoring approach.
+XTC (**X**ceptance **T**est **C**enter) delivers [XLT](/xlt/) as a managed cloud platform. It accelerates performance testing, simplifies infrastructure orchestration, and automates continuous synthetic monitoring.
 
-XTC (**X**ceptance **T**est **C**enter) is an SaaS offering that delivers XLT as a service. It increases efficiency, lowers the time to test, and enables you to do all things you might have been doing [manually before](/neodymium/framework/test-execution/). It allows you to:
+With XTC, teams can:
 
-* manage your load test projects,
-* set up, configure, and run load tests,
-* evaluate load test runs and share the results, and
-* run continuous monitoring using browser-based test automation.
+* Manage load testing projects and user access
+* Configure and run distributed load tests across global cloud regions
+* Analyze test results and share interactive reports
+* Execute continuous browser-based synthetic monitoring
 
-XTC load and monitoring service are based fully on [XLT](/xlt/), hence everything you know about load testing with XLT is still valid. [Test development](/xlt/manual/test-development/) still takes place in your IDE and test suites live in your preferred GIT repo.
+Because XTC builds directly on [XLT](/xlt/), all existing test cases and scripts transfer seamlessly. You continue to write test automation in your preferred IDE and store test suites in Git.
 
-XTC helps you to speed up the more tedious tasks of load testing:
+### Key capabilities
 
-* It simplifies the test setup, allows to duplicate tests, comment on the setup as well as on the results.
-* It starts and stops all agent machines for you. You only have to define where you want the agents to be placed and how many agent you need.
-* It automatically starts and stops a test, collects all results, and creates a report.
-* It allows to share a test result quickly either as a secret public link or within your project setup.
+XTC automates the operational overhead of load testing:
 
-XTC is getting better while you are reading this. Checkout the release notes [to see what's new](/xtc/xtc-release-notes/)!
+* **Automatic agent provisioning**: provisions and terminates agent machines automatically across cloud providers (including Google Cloud and Hetzner).
+* **Instant reporting**: collects measurements across all distributed agents and generates comprehensive performance reports.
+* **Fast iteration**: duplicates test configurations, compares historical runs, and annotates setups.
+* **Flexible sharing**: shares test reports securely through private links or within project workspaces.
+
+Stay informed about recent platform updates and features in the [Release Notes](/xtc/xtc-release-notes/).

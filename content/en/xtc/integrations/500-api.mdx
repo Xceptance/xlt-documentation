@@ -13,38 +13,39 @@ XTC provides an API to access to XTC resources and trigger operations from autom
 * downloading result and report archives, and
 * uploading and deleting code archives.
 
-Administrators can [manage API client credentials](#managing-api-client-credentials) in both organization and projects. These credentials are used to [obtain a temporary access token](#obtaining-an-access-token) needed to make the actual [API requests](#making-api-calls).
+Administrators can [manage API client credentials](#managing-api-client-credentials) in both organizations and projects. These credentials are used to [request a temporary access token](#requesting-an-access-token) needed for [API requests](#making-api-calls).
 
 :::note
-The API does not cover all functionality. Especially user, role, and project management, and settings management are excluded intentionally at the moment.:::
+The API focuses on test execution, artifact management, and reporting. User, role, and organization configuration remain restricted to the web interface.
+:::
 
-## Managing API Client Credentials
+## Managing API client credentials
 
 To allow remote access to your load tests, you must first create client credentials. You can do this in your organization or in your projects.
 
-To create client credentials in your organization, go to *Configuration* > *Integrations* > *API Client Credentials* and click the *Add* button. You will need to specify a name and an optional expiration date. You will also need to select an API version and the scopes (purposes) for which these credentials will be used. API credentials with an expiration date will expire _at the end_ of the specified day (UTC).
+To create client credentials in your organization, go to *Configuration* > *Integrations* > *API Client Credentials* and click *Add*. Specify a name, an optional expiration date, the target API version, and required scopes. Credentials with an expiration date expire at 23:59:59 UTC on the specified day.
 
 ![Dialog to add new client credentials to an organization.](/images/xtc/api_credentials_create.png)
 *Dialog to add new client credentials to an organization.*
 
-Submit the dialog and XTC will show you the generated client secret, which you can now copy to a safe place. You will not be able to access it again, so if you lose or forget the secret, fresh credentials have to be created.
+Submitting the dialog displays the generated client secret once. Copy and store it securely; XTC does not display it again. If you lose the secret, you must generate a new credential pair.
 
 :::note
-Note that client credentials cannot be modified. If you want to change them, delete them and recreate them as needed.
+Client credentials cannot be modified. If you need different scopes or lifetimes, delete and recreate them.
 :::
 
-The client credentials defined in your organization are valid for accessing resources in your organization and, by default, in all of your projects. However, org credentials can be disabled in your project(s). Go to *Configuration* > *Integrations* > *API Client Credentials* in a project and disable the org client credentials for that project if necessary.
+Client credentials defined at the organization level apply across all projects within that organization. You can turn off organization credentials for individual projects under *Configuration* > *Integrations* > *API Client Credentials*.
 
-![Enabling/disabling org credentials in a project.](/images/xtc/api_credentials_disableInProject.png)
-*Enabling/disabling org credentials in a project.*
+![Enabling or disabling organization credentials in a project.](/images/xtc/api_credentials_disableInProject.png)
+*Enabling or disabling organization credentials in a project.*
 
-In the same location, you can also create project-level API client credentials, similar to the org-level credentials as described above. These credentials will only allow access to the resources of that project.
+In the same location, you can also create project-scoped credentials that restrict access exclusively to resources within that project.
 
-Whether you use org-level or project-level credentials, or a mix of both, depends on your security requirements.
+Whether you use organization-level or project-level credentials depends on your security requirements.
 
-## Obtaining an Access Token
+## Requesting an access token
 
-To actually use the API, you need an access token. To get one in an automated way, use the tool of your choice, but we will demonstrate this using `curl`:
+To authenticate API calls, request a temporary bearer token. The following example demonstrates this using `curl`:
 
 ```
 curl -X POST \
@@ -57,25 +58,25 @@ curl -X POST \
 
 As you can see, you need to pass both the client ID and secret, but also the grant type `client_credentials` and the scopes for which this token will be used. The scope list may contain fewer scopes than defined in the credentials, but no more (such as `CODEARCHIVE_UPLOAD` and `CODEARCHIVE_DELETE` for managing code archives).
 
-Now run the curl command. XTC will return a JSON response. Look for the `access_token` field. Note that this access token expires automatically after one hour, but you can create new tokens at any time. For detailed instructions on API-driven code archive uploads, see [Code Archives](/xtc/loadtesting/code-archives/).
+Now run the curl command. XTC returns a JSON response containing an `access_token` field. This access token expires automatically after one hour, but you can request new tokens at any time. For detailed instructions on API-driven code archive uploads, see [Code Archives](/xtc/loadtesting/code-archives/).
 
-## Making API Calls
+## Making API calls
 
-Now we are ready to make our first API call: listing all the load tests in a project. Don't forget to provide the access token and the short names of your organization and project (you can find these in the org's or project's configuration):
+To make an initial API call, list all load tests in a project. Provide your access token and the short names of your organization and project (available in the organization or project configuration):
 
-```
+```sh
 curl -X GET \
      -H "Authorization: Bearer <your-jwt-access-token>" \
      https://xtc.xceptance.com/public/api/v2/orgs/<org-short-name>/projects/<project-short-name>/loadTests
 ```
 
-If all went well, you should see a JSON response with all your load tests printed to the console.
+The response returns a JSON array of all configured load tests.
 
-### Generating Reports & Downloading Artifacts via API
+### Generating reports and downloading artifacts via API
 
 The XTC API allows triggering custom report generation and downloading resulting artifacts programmatically:
 
-#### Triggering Report Creation
+#### Triggering report creation
 
 Send a `POST` request to the project's reports endpoint:
 
@@ -92,37 +93,36 @@ curl -X POST \
      https://xtc.xceptance.com/public/api/v2/orgs/<org-short-name>/projects/<project-short-name>/reports
 ```
 
-- **`noRampUp` (boolean)**: When `true`, automatically excludes the test ramp-up phase to evaluate steady-state metrics.
-- **`createPdf` (boolean)**: When `true`, compiles an executive A4 PDF report (`load-report.pdf`).
+- **`noRampUp`**: when `true`, excludes the test ramp-up phase to measure steady-state metrics.
+- **`createPdf`**: when `true`, compiles an executive A4 PDF report (`load-report.pdf`).
 
-#### Downloading Report Artifacts
+#### Downloading report artifacts
 
-In addition to downloading full `.tar.gz` report archives, individual artifacts can be retrieved directly:
-- **Executive PDF**: `GET .../reports/<reportId>/artifacts/load-report.pdf`
-- **AI Data Report**: `GET .../reports/<reportId>/artifacts/ai-data.md`
+Beyond downloading full `.tar.gz` report archives, you can retrieve individual artifacts directly:
+- **Executive PDF**: `GET /public/api/v2/orgs/{org}/projects/{project}/reports/{reportId}/artifacts/load-report.pdf`
+- **AI Data Report**: `GET /public/api/v2/orgs/{org}/projects/{project}/reports/{reportId}/artifacts/ai-data.md`
 
-For a complete list of current API endpoints, their purpose and how they are used, please use the API Explorer:
+For a complete list of endpoints, schemas, and parameters, explore the interactive API Explorer:
 
+## API documentation and explorer
 
-## API Documentation and Explorer
+For formal API specifications, visit https://xtc.xceptance.com/public/api/json or https://xtc.xceptance.com/public/api/yaml. Both endpoints provide [OpenAPI](https://www.openapis.org/)-compliant definitions of all endpoints, request bodies, and response payloads.
 
-For a complete formal documentation, visit https://xtc.xceptance.com/public/api/json or https://xtc.xceptance.com/public/api/yaml. There you will find the [OpenAPI](https://www.openapis.org/)-compliant specification of all existing API endpoints, including their respective request and response types, in either JSON or YAML format.
-
-In addition to the OpenApi specification in JSON or YAML format, XTC also presents the definition of its public APIs as a browsable documentation, the [XTC API Explorer](https://xtc.xceptance.com/exploreApi): this includes the help texts as well as the input and output data types for each API endpoint.
+XTC also presents public APIs as interactive documentation in the [XTC API Explorer](https://xtc.xceptance.com/exploreApi), including descriptive help text and schema models.
 
 ![API Explorer displaying information about the load test details request.](/images/xtc/api_explorer.png)
 *API Explorer displaying information about the load test details request.*
 
-You can also try API calls directly from the API Explorer. For this to work, you will need to configure authorization information. To do this, go to **Authentication** in the menu. You can then provide either a valid bearer access token ***or*** specify client ID and secret as well as the required scopes for XTC to create a new bearer access token on your behalf using the OAuth procedure.
+You can also execute API calls directly from the API Explorer. To authenticate, navigate to **Authentication** in the top navigation. Provide a bearer access token, or enter your client credentials and scopes to let the explorer create a token through OAuth.
 
 ![Handling authentication in the API explorer: an access token has been created for the entered client ID and secret.](/images/xtc/api_explorer_authentication.png)
 *Handling authentication in the API explorer: an access token has been created for the entered client ID and secret.*
 
-## API Versions
+## API versions
 
-The XTC API is versioned. The latest stable API version will be marked accordingly in the API Explorer. In addition to this, an API version can be marked as _Preview_ to indicate that the version is not yet stable. This means that endpoints may be added or deleted, and the format of URLs, as well as the amount and type of incoming and outgoing data, may change without notice. 
+The XTC API uses semantic versioning. The stable API version is marked in the API Explorer. An API version can also carry a _Preview_ tag to indicate that endpoints, URL formats, and schemas remain subject to change.
 
-To switch between API versions in the API Explorer, select the desired version from the drop-down list in the upper right corner.
+To switch between API versions in the API Explorer, choose the desired version from the selector in the upper-right corner.
 
 ![The API version switch.](/images/xtc/api_explorer_versions.png)
 *The API version switch.*

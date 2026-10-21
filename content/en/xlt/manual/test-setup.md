@@ -7,49 +7,61 @@ sidebar:
   order: 300
 ---
 
-When you have finished developing your test suite and the tests themselves are well tested and consolidated, it is time to move on to the next step: configuring your test suite for the first load test. XLT is highly configurable, so there are a lot of things you can setup or customize. Here we'll give you a short overview of what is possible. We've also included some links so you can dig deeper into your specific areas of interest.
+Configuring an XLT load test involves setting up load profiles, test suite parameters, cluster topology, and report generation options. This guide outlines the configuration files and their roles in the testing lifecycle.
 
-## Load Configuration
+## Configuration Architecture
 
-First of all, you will want to define what load will be applied. You can define this either in terms of [user count](/xlt/about/glossary/#concurrent-users) or [arrival rate](/xlt/about/glossary/#constant-arrival-rate), per test case if needed or globally for the whole test suite. If the load is defined per user count (value for arrival rate is omitted), the system generates a constant load based on the number of concurrent users. If an arrival rate was specified, the system generates load with a cluster-wide constant arrival rate. In the latter case, the maximum load is limited by the number of concurrent users.
+XLT separates configuration into distinct tiers:
 
-In case you want to switch the load between test runs for a quick check, the easiest way to do this is by changing the [load factor](/xlt/manual/load-configuration/#load-factor). For [more elaborate load scenarios](/xlt/manual/load-configuration/#load-profiles), not only can you define a static load, but also a ramp-up load profile or variable load profile.
+| Configuration Scope | Primary File | Purpose |
+|---|---|---|
+| **Load Profile** | `<suite>/config/test.properties` | Defines active test scenarios, concurrency, arrival rates, ramp-up, and test duration. |
+| **Project & Target System** | `<suite>/config/project.properties` | Defines target hostnames, environment URLs, and custom test data mappings. |
+| **Local Development** | `<suite>/config/dev.properties` | Overrides settings during local test execution in your IDE (ignored during cluster load tests). |
+| **Default Fallbacks** | `<suite>/config/default.properties` | Baseline framework defaults. Do not edit directly; override in `project.properties`. |
+| **Cluster Orchestration** | `<xlt>/config/mastercontroller.properties` | Configures target agent controllers, suite upload paths, and execution timeouts. |
+| **Agent Daemon** | `<xlt>/config/agentcontroller.properties` | Configures network ports, machine sizing, and agent execution parameters. |
+| **Reporting** | `<xlt>/config/reportgenerator.properties` | Configures chart generation, sampling intervals, error limits, and percentiles. |
 
-The load configuration usually lives in your `test.properties`. This file also contains the information about which test cases are to be included in the load test run. Several of these test profile configuration files may be prepared in advance for different load test runs. Then simply reference the appropriate properties for the current test run.
+---
 
-Read more about [Load Configuration](/xlt/manual/load-configuration/) and the load test profile configuration file [here](/xlt/manual/test-suite-configuration/#load-test-profile-configuration).
+## 1. Load Profile Configuration
 
-### Agent Configuration
+Configure target load in `test.properties` (or an alternative profile referenced by `com.xceptance.xlt.testPropertiesFile`):
 
-The agent configuration is located in `config/agent.properties`. This file contains all settings that are relevant for the agent usage.
+* **Concurrency vs. Arrival Rate**: Apply load via fixed [concurrent user counts](/xlt/about/glossary/#concurrent-users) or dynamic [arrival rates](/xlt/about/glossary/#constant-arrival-rate).
+* **Load Scaling**: Adjust global or scenario-specific load dynamically using the [load factor](/xlt/manual/load-configuration/#load-factor).
+* **Profiles**: Choose between static load, phased ramp-ups, or stepped load profiles.
 
-The agent configuration can be overwritten by the command line options. Please see [Glossary](/xlt/about/glossary/) for details.
+For details and syntax, see [Load Configuration](/xlt/manual/load-configuration/) and [Load Test Profile Configuration](/xlt/manual/test-suite-configuration/#load-test-profile-configuration).
 
-### Common Configuration
+---
 
-The common configuration is located in `config/common.properties`. This file contains all settings that are shared between the master controller and the agents.
+## 2. Test Suite & Environment Properties
 
-The common configuration can be overwritten by the command line options. Please see [Glossary](/xlt/about/glossary/) for details.
+* **Project Properties (`project.properties`)**: Contains application-wide settings, such as the base URL of the System Under Test (`store-url`), shared credential paths, and default timeout thresholds.
+* **Development Properties (`dev.properties`)**: Takes highest priority when running test cases locally from an IDE. Use this to enable verbose logging or point to local mock services without altering production load configurations.
+* **Default Properties (`default.properties`)**: Shipped with XLT templates. Defines fallback timeouts, parser behaviors, and network socket limits.
 
-## Environment Configuration
+For property resolution rules and precedence, see [Test Suite Configuration](/xlt/manual/test-suite-configuration/).
 
-Your load test environment consists of one master controller and one or more agent controllers (typically one per hardware box) that control the agents. These are configured in the files `mastercontroller.properties` and `agentcontroller.properties`, which you find in the `<XLT>/config` directory. While the default agent controller configuration might work just fine, there are a few things that you need to setup for the master controller:
+---
 
-* (most importantly) the location of the test suite to be executed
-* the agent controllers to be used
+## 3. Distributed Cluster Configuration
 
-There are several more settings, e.g. for update intervals for the status printed in the console, for parallel communication with the ACs and error behavior in case of unreachable ACs.
+Distributed test runs require coordination between the Master Controller and Agent Controllers:
 
-Read more about [Load Test Environment Configuration](/xlt/manual/environment-configuration/), especially the [mastercontroller.properties](/xlt/manual/environment-configuration/#mastercontroller-configuration).
+* **Master Controller**: Set `com.xceptance.xlt.mastercontroller.testSuitePath` to the path of your test suite, and specify the list of agent controller hostnames and ports in `com.xceptance.xlt.mastercontroller.agentcontrollers.default.agents`.
+* **Agent Controller**: Ensure the agent controller daemon is running on port 8500 on all load generator hosts, or configure [Private Machine Mode](/xlt/manual/private-machines/) for corporate networks.
 
-## Test Suite Configuration
+For network settings and cluster communication, see [Environment Configuration](/xlt/manual/environment-configuration/).
 
-There are lots of additional configuration possibilities for your test suite, not necessarily just in a load test context, but also more generally. The `project.properties` hold information that applies to your test suite in every test run, e.g. which sites are used, which data is entered in the forms (both probably outsourced to external data files, specific for language or region), and also possibly default values for the settings from your load configuration. Read more about [Test Project Configuration](/xlt/manual/test-suite-configuration/#test-project-configuration).
+---
 
-The most basic version of those settings and a good overview of what can be done is contained in the `default.properties`, which should not be changed. Any of these settings you need to customize should be copied to your project or test properties and adjusted there as needed (the value from default.properties will be overwritten then). Read more about these [Default Project Settings](/xlt/manual/test-suite-configuration/#default-configuration).
+## 4. Report Generation
 
-To adjust any of these settings just for the development mode (that is when you create and debug test cases from within your IDE), you may use `dev.properties`. It’s read in development mode only, but not during load testing. For development mode, the values in this file have highest priority. Read more about [Development Settings](/xlt/manual/test-suite-configuration/#development-environment-configuration).
+Upon test completion, the Master Controller downloads measurement logs from all agents and invokes the report generator:
 
-## Report Configuration
+* Configure sampling intervals, percentile calculations (e.g. 50th, 95th, 99th), and request filtering in `reportgenerator.properties`.
+* Customize visual themes, error thresholds, and scorecard rules in [Report Configuration](/xlt/manual/report-configuration/) and [Report Options](/xlt/manual/report-options/).
 
-After your load test has finished you will probably want to generate a report, which can also be customized in a number of ways. Read more about [Report Options](/xlt/manual/report-options/) and [Report Configuration](/xlt/manual/report-configuration/).
