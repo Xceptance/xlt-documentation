@@ -9,7 +9,7 @@ export default defineMeta({
     "monitoring",
     "integrations",
     "privacy",
-    "xtc-release-notes",
+    "release-notes",
   ],
 });
 
