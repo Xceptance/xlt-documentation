@@ -25,6 +25,11 @@ RewriteRule ^(.*)$ https://docs.xceptance.com/ [L,R=301]
 RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+###
+# Legacy redirects
+# Standardize XTC release notes path
+RewriteRule ^xtc/xtc-release-notes(?:/(.*))?$ /xtc/release-notes/$1 [R=301,L]
+
 ####
 #
 # Tuning of the static delivery

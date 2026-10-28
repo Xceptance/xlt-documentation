@@ -27,4 +27,4 @@ XTC automates the operational overhead of load testing:
 * **Fast iteration**: duplicates test configurations, compares historical runs, and annotates setups.
 * **Flexible sharing**: shares test reports securely through private links or within project workspaces.
 
-Stay informed about recent platform updates and features in the [Release Notes](/xtc/xtc-release-notes/).
+Stay informed about recent platform updates and features in the [Release Notes](/xtc/release-notes/).

@@ -165,7 +165,8 @@ A dedicated staging deployment workflow is available to test documentation build
 ### Automated Triggers
 
 The test deployment workflow triggers automatically on push to:
-- `poc-migrate-to-blume` (active migration branch)
+- Any branch matching `feature/**` or `feat/**` (e.g. `feature/xtc-api-docs`)
+- Any branch matching `fix/**` or `fixes/**` (e.g. `fix/broken-links`)
 - Any branch matching `test/**` (e.g. `test/new-navigation`)
 - Any branch matching `preview/**` (e.g. `preview/xlt-8-manual`)
 

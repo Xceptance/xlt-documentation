@@ -3,7 +3,10 @@ name: Deploy documentation (Test / Staging)
 on:
   push:
     branches:
-      - poc-migrate-to-blume
+      - 'feature/**'
+      - 'feat/**'
+      - 'fix/**'
+      - 'fixes/**'
       - 'test/**'
       - 'preview/**'
   workflow_dispatch:
