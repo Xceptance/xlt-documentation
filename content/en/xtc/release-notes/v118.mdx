@@ -1,0 +1,77 @@
+---
+title: XTC v118
+description: "2026-11-03"
+date: 2026-10-28
+sidebar:
+  label: XTC v118
+  order: 98
+---
+
+## Load Testing
+
+### New Feature: MCP Server (Beta)
+
+XTC now includes beta support for the Model Context Protocol (MCP), exposing most of its REST API endpoints as standardized MCP tools.
+
+- **AI Agent Integration**: Connect your preferred AI coding assistant or autonomous agent (such as Antigravity, Cursor, or Claude Desktop) directly to XTC.
+- **Interactive Workflows**: Query project status, retrieve load test results and performance metrics, inspect configurations, and interact with test reports through conversational prompts.
+- **Automated Operations**: Trigger test executions and evaluate monitoring states programmatically through agent workflows.
+
+For setup instructions, client configuration examples, and the complete catalog of tools and OAuth scopes, see the [MCP Server](/xtc/loadtesting/mcp/) manual page. You can also explore the underlying REST endpoints in the [API Explorer](https://xtc.xceptance.com/exploreApi).
+
+### Markdown Support for Descriptions and Comments
+
+Load test descriptions and report comments now support standard Markdown formatting:
+
+- **Rich Text Styling**: Enhance test documentation with headings, bold and italic text, structured lists, code blocks, tables, and hyperlinks.
+- **Preserved Formatting**: When descriptions or comments are copied into generated load test reports (HTML and companion PDF reports), all Markdown formatting is preserved and rendered cleanly.
+
+### AI Analysis: On-the-Fly Prompt Customization
+
+When creating an AI-assisted analysis report, you can now inspect and adjust the analysis prompt directly in the report creation dialog before running the analysis:
+
+- **Instant Adjustments**: Tailor instructions or add specific evaluation questions on the fly without navigating to the project's **Prompt Library** first.
+- **Save to Library**: If you want to reuse your customized prompt, enable the option to save it as a new entry in your project's Prompt Library with a single click.
+
+### Prominent Access to Steady-State Reports
+
+Steady-state reports allow you to evaluate load test results without ramp-up and ramp-down phases:
+
+- Previously, the option to generate a steady-state report was located inside the contextual three-dot action menu (`...`) on the load test **Results** page.
+- The primary **New** button now opens a dropdown menu, letting you choose immediately between creating a standard **Custom Report** or a **Steady-State Report**.
+
+### Configurable Baseline Report for Trend Reports
+
+When creating a trend report from multiple test runs, XTC sorts the selected reports chronologically:
+
+- Previously, XTC automatically designated the oldest report in the selection as the baseline report.
+- You can now explicitly select which source report serves as the baseline report. This enables you to evaluate performance trends against a specific release milestone or benchmark run rather than defaulting to the earliest test.
+
+### Updated XLT 10 Execution Environment
+
+The XLT 10 execution environment has been updated to version **10.0.0-beta-7**.
+
+:::warning[Breaking Change: Logging Framework Migration]
+To resolve an issue with Log4j 2 causing thread contention and deadlocks when running on Java 21 virtual threads, XLT 10 has switched its default logging framework to Logback.
+
+If your test suite uses custom `log4j2.xml` configurations or direct Log4j 2 dependencies, migrate your logging configuration to Logback (`logback.xml`). For detailed instructions, see the [XLT 10.0.x Release Notes](/xlt/release-notes/v10_0_x/).
+:::
+
+### Available XLT Execution Environments
+
+* XLT 9.x → [9.2.2](/xlt/release-notes/v9_2_x/) (recommended)
+* XLT 10.x → [10.0.0-beta-7](/xlt/release-notes/v10_0_x/)
+
+
+## Monitoring
+
+### High-Priority Push Notifications for Monitoring Alerts
+
+Push notifications for monitoring alerts sent to mobile devices are now dispatched with highest priority:
+
+- **Persistent Alerting**: On mobile devices using the ntfy app, highest-priority alerts trigger longer vibration sequences and higher alert visibility.
+- **Reduced Alert Fatigue**: Critical notifications are far less likely to be overlooked, especially overnight.
+
+:::tip[Continuous Vibration in ntfy]
+The ntfy app includes an optional setting to vibrate continuously until an alert is opened or dismissed. You can enable this feature in the app settings if standard vibration patterns are not sufficient to wake on-call team members.
+:::

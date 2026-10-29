@@ -300,3 +300,10 @@ diffable
 (?i)unconfigured
 Esc
 
+(?i)MCP
+(?i)Logback
+(?i)Log4j
+(?i)Anthropic
+(?i)stdio
+(?i)OAuth2
+(?i)Antigravity

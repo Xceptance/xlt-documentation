@@ -1,0 +1,204 @@
+---
+title: MCP Server
+icon: bot
+description: Connect AI assistants and automated agent workflows to XTC using the Model Context Protocol (MCP) server.
+sidebar:
+  label: MCP Server
+  order: 200
+---
+
+## Overview
+
+The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server wraps the **XTC REST API**. It allows AI assistants, coding agents, and automated LLM workflows to manage, execute, monitor, and evaluate load tests on the XTC platform.
+
+:::warning[Beta Feature]
+The XTC MCP server is in beta. Tool definitions, schemas, and endpoint capabilities may evolve as we expand agent features.
+:::
+
+MCP is an open standard that connects AI applications to external data sources and developer tools. By exposing XTC capabilities through an MCP server, you can interact with XTC directly from tools such as Antigravity, Cursor, Claude Desktop, or custom agent frameworks using natural language.
+
+Key capabilities include:
+- **Test Management**: List, inspect, duplicate, update, and launch load test runs.
+- **Real-Time Monitoring**: Query active test run status and inspect execution progress.
+- **Reporting & AI Data**: Trigger report generation and retrieve structured `ai-data.md` files or Scorecard XML for automated analysis.
+- **Automated Evaluations**: Record ratings, summaries, and Markdown evaluation notes on completed tests.
+- **Resource Tracking**: Inspect project and organization storage and machine-hour usage.
+
+## Architecture and Authentication
+
+```text
++------------------------+          HTTP Transport / JSON-RPC         +--------------------+
+|                        | -----------------------------------------> |                    |
+|   AI Agent / Client    |     Headers: X-XTC-Client-ID & Secret      |   XTC MCP Server   |
+| (Antigravity, etc.)    | <----------------------------------------- |                    |
++------------------------+                                            +---------+----------+
+                                                                                |
+                                                            OAuth 2.0 Scopes    |  REST API
+                                                                                v
+                                                                      +--------------------+
+                                                                      |    XTC Platform    |
+                                                                      |   (XTC REST API)   |
+                                                                      +--------------------+
+```
+
+### OAuth 2.0 Client Credentials
+
+The XTC MCP server acts as an intelligent gateway to the XTC REST API:
+
+1. **Header Inspection**: Your client passes your API client credentials in request headers.
+2. **Scope Resolution**: When an MCP tool runs, the server determines the required OAuth 2.0 scope (such as `LOADTEST_COPY_RUN` or `PROJECT_LIST`).
+3. **Token Acquisition & Caching**: The server requests an access token from the XTC OAuth endpoint (`/oauth/token`) and caches it until near expiration.
+4. **Execution**: The server executes the corresponding REST API call and returns the structured result to your agent.
+
+### Authentication Headers
+
+When configuring your MCP client, supply credentials through request headers:
+
+| Header | Description |
+| :--- | :--- |
+| `X-XTC-Client-ID` | Your XTC OAuth 2.0 Client ID. |
+| `X-XTC-Client-Secret` | Your XTC OAuth 2.0 Client Secret. |
+
+:::tip[Direct Bearer Token Fallback]
+If you already possess a short-lived bearer token, you can pass it directly using the standard `Authorization: Bearer <token>` header instead of client credentials.
+:::
+
+## Setup Steps
+
+### Step 1. Generate API Client Credentials
+
+To connect an AI agent, you need OAuth 2.0 client credentials with the required scopes:
+
+1. In XTC, open your load testing project.
+2. Navigate to **Configuration > Integrations > API Client Credentials**.
+3. Click **New Client Credential**.
+4. Enter a descriptive name (for example, `Antigravity MCP Agent`).
+5. Select the scopes required for your intended workflows. For full load testing operations, grant all `LOADTEST_*` scopes.
+6. Save the generated **Client ID** and **Client Secret**.
+
+:::note[Organization-Level Credentials]
+To use organization tools such as `listProjects` or `getOrganizationResourceUsage`, create credentials under your organization administration settings with the required `ORGANIZATION_*` and `PROJECT_*` scopes.
+:::
+
+### Step 2. Configure Your MCP Client
+
+Connect your MCP client to the XTC MCP server over HTTP:
+
+- **Server URL**: `https://xtc.xceptance.com/mcp`
+- **Transport**: HTTP (Streamable JSON-RPC / SSE)
+
+#### Antigravity Configuration
+
+In Antigravity, add the XTC server definition to the global MCP configuration file `.gemini/config/mcp_config.json` located in your user home directory:
+
+```json
+{
+  "mcpServers": {
+    "xtc": {
+      "url": "https://xtc.xceptance.com/mcp",
+      "headers": {
+        "X-XTC-Client-ID": "your-client-id",
+        "X-XTC-Client-Secret": "your-client-secret"
+      }
+    }
+  }
+}
+```
+
+Replace `your-client-id` and `your-client-secret` with the client credentials you generated in Step 1.
+
+Once configured, Antigravity discovers the available XTC tools automatically, allowing you to invoke them directly in your prompts or autonomous agent workflows.
+
+#### Other AI Agents and IDEs
+
+Other MCP-compatible clients — such as Cursor, Claude Desktop, or custom agent frameworks — follow a similar configuration pattern. Register a remote HTTP MCP server pointing to `https://xtc.xceptance.com/mcp` and supply the `X-XTC-Client-ID` and `X-XTC-Client-Secret` authentication headers in the client's respective configuration format.
+
+## Available MCP Tools
+
+### Load Test Tools
+
+These tools manage load test configurations, executions, evaluations, and reports:
+
+| Tool Name | Required Scope | Description |
+| :--- | :--- | :--- |
+| `listLoadTests` | `LOADTEST_LIST` | List load tests in a project with optional sorting, filtering, and pagination. |
+| `getLoadTestDetails` | `LOADTEST_DETAILS` | Retrieve full configuration and metadata for a specific load test run. |
+| `getLoadTestStatus` | `LOADTEST_STATUS` | Query the real-time execution status of an active or finished test run. |
+| `duplicateLoadTest` | `LOADTEST_COPY_RUN` | Clone an existing load test configuration to prepare a new test run. |
+| `startLoadTest` | `LOADTEST_COPY_RUN` | Start execution of a load test in `NEW` or `SCHEDULED` status. |
+| `abortLoadTest` | `LOADTEST_COPY_RUN` | Abort a running test with options to save results, generate reports, and download logs. |
+| `updateLoadTest` | `LOADTEST_COPY_RUN` | Modify test settings (name, description, Git branch, property files, custom machines, agent settings). |
+| `updateLoadTestEvaluation` | `LOADTEST_DETAILS` | Add or update a test evaluation score (`APlus`, `A`, `B`, `C`, `D`, `F`, `None`), summary, and Markdown notes. |
+| `deleteLoadTestEvaluation` | `LOADTEST_DETAILS` | Remove the evaluation record from a load test. |
+| `createLoadTestReport` | `LOADTEST_REPORT_CREATE` | Create a new load test report (standard HTML or steady-state report). |
+| `getLoadTestReportDetails` | `LOADTEST_STATUS` | Retrieve status and metadata for a load test report. |
+| `getLoadTestReportAiData` | `LOADTEST_REPORT_DOWNLOAD` | Retrieve structured `ai-data.md` content from a report for LLM evaluation. |
+| `getLoadTestReportScorecardXml` | `LOADTEST_REPORT_DOWNLOAD` | Retrieve the Scorecard XML evaluation data for a report. |
+| `getLoadTestReportXml` | `LOADTEST_REPORT_DOWNLOAD` | Retrieve the raw test report XML document (`test-report`). |
+
+### Project Tools
+
+These tools inspect project configuration, resource usage, and connectivity:
+
+| Tool Name | Required Scope | Description |
+| :--- | :--- | :--- |
+| `listProjects` | `PROJECT_LIST` | List all projects belonging to an organization with sorting, filtering, and pagination. |
+| `getProjectDetails` | `PROJECT_DETAILS` | Retrieve detailed configuration and status for a specific project. |
+| `getProjectResourceUsage` | `PROJECT_RESOURCE_USAGE` | Retrieve project storage and machine-hour usage over a specified number of days. |
+| `testProjectConnection` | `PROJECT_TEST_GET` | Test project-level API connectivity (GET). |
+| `testProjectPost` | `PROJECT_TEST_POST` | Test project-level API connectivity with a test parameter (POST). |
+
+### Organization Tools
+
+These tools query organization-level details and usage metrics:
+
+| Tool Name | Required Scope | Description |
+| :--- | :--- | :--- |
+| `getOrganizationDetails` | `ORGANIZATION_DETAILS` | Retrieve information and settings for an organization. |
+| `getOrganizationResourceUsage` | `ORGANIZATION_RESOURCE_USAGE` | Retrieve monthly storage and machine-hour statistics for an organization. |
+| `testOrganizationConnection` | `ORGANIZATION_TEST_GET` | Test organization-level API connectivity (GET). |
+| `testOrganizationPost` | `ORGANIZATION_TEST_POST` | Test organization-level API connectivity with a test parameter (POST). |
+
+### Private Machine Tools
+
+These tools manage registered on-premises private load generator machines:
+
+| Tool Name | Required Scope | Description |
+| :--- | :--- | :--- |
+| `listPrivateMachines` | `PRIVATEMACHINE_LIST` | List private load test agent machines registered for a project. |
+| `registerPrivateMachine` | `PRIVATEMACHINE_REGISTER` | Register or re-register a private machine host (IP, type, cores, memory, disk). |
+
+### Code Archive Tools
+
+These tools manage uploaded test suite code archives:
+
+| Tool Name | Required Scope | Description |
+| :--- | :--- | :--- |
+| `deleteCodeArchive` | `CODEARCHIVE_DELETE` | Delete an uploaded test suite code archive by its index. |
+
+## Common Agent Workflows
+
+### Automated Test Execution
+
+An AI agent can trigger and monitor recurring load tests autonomously:
+
+1. **Find Reference Run**: The agent calls `listLoadTests` to locate the latest baseline test.
+2. **Duplicate Run**: The agent calls `duplicateLoadTest` to clone the test configuration.
+3. **Customize Settings**: The agent calls `updateLoadTest` to adjust the Git branch, description, or test properties.
+4. **Launch Run**: The agent calls `startLoadTest` to begin test execution.
+5. **Monitor Progress**: The agent periodically calls `getLoadTestStatus` until the test completes.
+
+### Automated Report Evaluation
+
+After a test run completes, an agent can analyze metrics and post an evaluation:
+
+1. **Generate Report**: The agent calls `createLoadTestReport` to build the test report.
+2. **Fetch AI Data**: The agent calls `getLoadTestReportAiData` to read `ai-data.md`.
+3. **Analyze Results**: The LLM reviews error rates, response times, and throughput against target thresholds.
+4. **Submit Rating**: The agent calls `updateLoadTestEvaluation` with a letter grade, executive summary, and detailed Markdown findings.
+
+## Security Best Practices
+
+- **Least Privilege**: Issue credentials with only the minimum scopes required for the agent's responsibilities. For example, grant only `LOADTEST_LIST` and `LOADTEST_DETAILS` for read-only reporting assistants.
+- **Protect Secrets**: Store Client Secrets securely. Avoid committing secrets into source control or sharing them in public channels.
+- **Separate Credentials**: Create distinct API client credentials for each AI assistant or automated tool to simplify access revocation and auditing.
