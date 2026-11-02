@@ -1,7 +1,7 @@
 ---
 title: 10.0.x
 date: 2026-04-28
-description: "Virtual Threads, Private Machine Mode, AI Data Report, Executive PDF, Groovy Scorecards, Reporting Improvements, HtmlUnit 5.x\n"
+description: "Virtual Threads, Private Machine Mode, AI Data Report, Executive PDF, Groovy Scorecards, Reporting Improvements, HtmlUnit 5.x, Logback\n"
 sidebar:
   label: 10.0.x
   order: 58
@@ -63,7 +63,7 @@ For full architectural details, relay configuration, and security options, see t
 
 #### Direct Access to Session Output Directory
 
-In addition to `getResultsDirectory()`, the XLT `Session` class now provides `getResultsOutputDirectory()`. This method returns the session's specific output directory within the main results directory, typically structured like `./results/\<TestCase\>/\<UserNumber\>/output/\<Timestamp\>`.
+In addition to `getResultsDirectory()`, the XLT `Session` class now provides `getResultsOutputDirectory()`. This method returns the session's specific output directory within the main results directory, typically structured like `./results/<TestCase>/<UserNumber>/output/<Timestamp>`.
 
 You can use this directory to store custom diagnostic artifacts, screenshots, or dumps for the current session.
 
