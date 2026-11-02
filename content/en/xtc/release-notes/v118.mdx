@@ -1,7 +1,7 @@
 ---
 title: XTC v118
 description: "2026-11-03"
-date: 2026-10-28
+date: 2026-11-02
 sidebar:
   label: XTC v118
   order: 98
@@ -37,7 +37,7 @@ When creating an AI-assisted analysis report, you can now inspect and adjust the
 
 Steady-state reports allow you to evaluate load test results without ramp-up and ramp-down phases:
 
-- Previously, the option to generate a steady-state report was located inside the contextual three-dot action menu (`...`) on the load test **Results** page.
+- Previously, the option to generate a steady-state report was located inside the contextual three-dot action menu on the load test **Results** page.
 - The primary **New** button now opens a dropdown menu, letting you choose immediately between creating a standard **Custom Report** or a **Steady-State Report**.
 
 ### Configurable Baseline Report for Trend Reports
@@ -52,9 +52,7 @@ When creating a trend report from multiple test runs, XTC sorts the selected rep
 The XLT 10 execution environment has been updated to version **10.0.0-beta-7**.
 
 :::warning[Breaking Change: Logging Framework Migration]
-To resolve an issue with Log4j 2 causing thread contention and deadlocks when running on Java 21 virtual threads, XLT 10 has switched its default logging framework to Logback.
-
-If your test suite uses custom `log4j2.xml` configurations or direct Log4j 2 dependencies, migrate your logging configuration to Logback (`logback.xml`). For detailed instructions, see the [XLT 10.0.x Release Notes](/xlt/release-notes/v10_0_x/).
+To resolve an issue with Log4j 2 causing thread contention and deadlocks when running on virtual threads, XLT 10 has switched its default logging framework to Logback. You will need to migrate your logging configuration to Logback (`logback.xml`). For detailed instructions, see the [XLT 10.0.x Release Notes](/xlt/release-notes/v10_0_x/).
 :::
 
 ### Available XLT Execution Environments
@@ -67,10 +65,7 @@ If your test suite uses custom `log4j2.xml` configurations or direct Log4j 2 dep
 
 ### High-Priority Push Notifications for Monitoring Alerts
 
-Push notifications for monitoring alerts sent to mobile devices are now dispatched with highest priority:
-
-- **Persistent Alerting**: On mobile devices using the ntfy app, highest-priority alerts trigger longer vibration sequences and higher alert visibility.
-- **Reduced Alert Fatigue**: Critical notifications are far less likely to be overlooked, especially overnight.
+Push notifications for monitoring alerts sent to mobile devices are now dispatched with highest priority. On mobile devices using the ntfy app, highest-priority alerts trigger longer vibration sequences and are therefore less likely to be overlooked, especially overnight.
 
 :::tip[Continuous Vibration in ntfy]
 The ntfy app includes an optional setting to vibrate continuously until an alert is opened or dismissed. You can enable this feature in the app settings if standard vibration patterns are not sufficient to wake on-call team members.
