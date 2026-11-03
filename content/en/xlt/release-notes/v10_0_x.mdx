@@ -1,7 +1,7 @@
 ---
 title: 10.0.x
 date: 2026-04-28
-description: "Virtual Threads, Private Machine Mode, AI Data Report, Executive PDF, Groovy Scorecards, Reporting Improvements, HtmlUnit 5.x\n"
+description: "Virtual Threads, Private Machine Mode, AI Data Report, Executive PDF, Groovy Scorecards, Reporting Improvements, HtmlUnit 5.x, Logback\n"
 sidebar:
   label: 10.0.x
   order: 58
@@ -12,10 +12,10 @@ sidebar:
 Version 10 is a major milestone release of XLT, currently in active beta. It leverages **[Java 21 LTS Virtual Threads](/xlt/manual/test-suite-configuration/#virtual-threads)** as the default load execution model, upgrades reporting with **[AI Data Report](/xlt/manual/ai-data-report/)** (`ai-data.md`), **[Executive PDF Reports](/xlt/manual/reports/#executive-pdf-reports)**, the **[Groovy Scorecard DSL](/xlt/manual/scorecard/)**, **Interactive Dynamic Overview Charts**, and introduces **[Private Machine Mode](/xlt/manual/private-machines/)** for network-isolated testing behind corporate firewalls.
 
 :::warning[Beta Release]
-XLT 10.0.0 is currently in beta (beta-5). Features, configuration properties, and APIs may change before general availability.
+XLT 10.0.0 is currently in beta (beta-7). Features, configuration properties, and APIs may change before general availability.
 :::
 
-### Framework Changes
+### Framework
 
 #### Virtual Threads Execution
 
@@ -43,21 +43,33 @@ Virtual threads run on underlying JVM carrier platform threads. If the JVM deter
 -Djdk.virtualThreadScheduler.maxPoolSize=256
 ```
 
+#### Java Flight Recorder (JFR) Profiling
+
+With the high concurrency made possible by virtual threads, understanding agent performance is critical. XLT agents can now be configured with low-overhead Java Flight Recorder (JFR) event tracing directly via `jvmargs.cfg`. For step-by-step instructions and recommended profiling presets, see the dedicated how-to on [Profiling Load Tests with Java Flight Recorder (JFR)](/xlt/how-tos/java-flight-recorder/).
+
+#### Switch to the Logback Logging Framework
+
+When virtual threads drive test users (default in XLT 10.x), load agents could deadlock during startup due to internal synchronization locks in Log4j 2. To ensure reliable execution under high virtual thread concurrency, XLT 10 has switched its default logging framework to Logback.
+
+For migration instructions and sample configuration files, see [Migrate Logging Configuration](#7-migrate-logging-configuration).
+
 #### Private Machine Mode
 
-Private Machine Mode enables running XLT agent controllers inside corporate firewalls, VPNs, or private VPCs without exposing any inbound public ports. 
+Private Machine Mode enables running XLT agent controllers inside corporate firewalls, VPNs, or private VPCs without exposing any inbound public ports.
 
 Upon startup, the agent controller establishes an outbound HTTPS reverse-tunnel to the XLT Relay (`xtc-xlt-relay.xceptance.com:443`). Commands and scenario dispatches flow securely over this tunnel, allowing private machines to be seamlessly mixed with public cloud agents.
 
 For full architectural details, relay configuration, and security options, see the dedicated [Private Machine Mode Guide](/xlt/manual/private-machines/).
 
-#### Java Flight Recorder (JFR) Profiling
+#### Direct Access to Session Output Directory
 
-With the high concurrency made possible by virtual threads, understanding agent performance is critical. XLT agents can now be configured with low-overhead Java Flight Recorder (JFR) event tracing directly via `jvmargs.cfg`. For step-by-step instructions and recommended profiling presets, see the dedicated how-to on [Profiling Load Tests with Java Flight Recorder (JFR)](/xlt/how-tos/java-flight-recorder/).
+In addition to `getResultsDirectory()`, the XLT `Session` class now provides `getResultsOutputDirectory()`. This method returns the session's specific output directory within the main results directory, typically structured like `./results/<TestCase>/<UserNumber>/output/<Timestamp>`.
 
-#### Advanced DNS Resolution & Query Logging
+You can use this directory to store custom diagnostic artifacts, screenshots, or dumps for the current session.
 
-XLT 10 integrates advanced DNS resolution and query logging via `dnsjava`. This allows test suites to override DNS lookups per agent or scenario and monitor DNS resolution timing during load tests.
+:::note[Avoid Name Collisions]
+Ensure custom file names do not clash with standard XLT Result Browser files and directories located in the same output directory.
+:::
 
 ### Reporting
 
@@ -155,10 +167,6 @@ The legacy JSON scorecard format (`scorecard-config.json`) remains supported for
 
 For complete DSL syntax, fluent assertions, and the `xpathBuilder` cheat sheet, see the dedicated [Scorecard Guide](/xlt/manual/scorecard/).
 
-#### Steady-State Reports
-
-The report generator can now automatically create steady-state reports that exclude ramp-up and warmup periods, ensuring performance metrics reflect purely stable production-like load. For command-line flags and usage, see [Report Options](/xlt/manual/report-options/).
-
 #### Semantic Labeling Rules
 
 XLT 10 introduces non-destructive Labeling Rules. Unlike Merge Rules (which collapse or rename requests), Labeling Rules attach space-separated metadata tags to transactions, actions, and requests based on regex or plaintext matching, enabling multidimensional filtering, colorization, and AI report slicing.
@@ -214,13 +222,76 @@ HtmlUnit has been upgraded to 5.x. The deprecated `HttpClientConverter.nameValue
 #### 6. Review Report Generator Configuration
 Update your `<xlt>/config/reportgenerator.properties` to adopt the new `commonAverage` and `averages.<n>` property format.
 
+#### 7. Migrate Logging Configuration
+Adjust the logging configuration in your test suites for Logback. While core concepts are similar to Log4j 2, file names and XML configuration syntax differ. See below for example configurations:
+
+**Configuration for load test mode (`<testsuite>/config/logback.xml`):**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Rolling File Appender -->
+    <appender name="File" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${com.xceptance.xlt.agent.home}/results/agent.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${com.xceptance.xlt.agent.home}/results/agent-%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>9</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>[%d{yyyy/MM/dd-HH:mm:ss.SSS}] %-5p [%t] %c - %m%n</pattern>
+        </encoder>
+    </appender>
+    <!-- Custom Loggers -->
+    <logger name="runtime" level="WARN" />
+    <logger name="com.xceptance" level="WARN" />
+    <logger name="org.htmlunit" level="WARN" />
+    <!-- Suppressed Loggers -->
+    <logger name="org.htmlunit.IncorrectnessListenerImpl" level="OFF" />
+    <logger name="org.htmlunit.DefaultCssErrorHandler" level="OFF" />
+    <logger name="org.htmlunit.javascript.StrictErrorReporter" level="OFF" />
+    <logger name="org.htmlunit.javascript.host.css.CSSRule" level="OFF" />
+    <!-- Root Logger -->
+    <root level="WARN">
+        <appender-ref ref="File" />
+    </root>
+</configuration>
+```
+
+**Configuration for dev mode (`<testsuite>/src/test/resources/logback-test.xml`):**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Console Appender -->
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{HH:mm:ss.SSS}] %-5p [%t] - %m%n</pattern>
+        </encoder>
+    </appender>
+    <!-- Custom Loggers -->
+    <logger name="runtime" level="DEBUG" />
+    <logger name="com.xceptance" level="DEBUG" />
+    <logger name="org.htmlunit" level="DEBUG" />
+    <!-- Root Logger -->
+    <root level="INFO">
+        <appender-ref ref="Console" />
+    </root>
+</configuration>
+```
+
+
 ## Beta History
 
 | Beta Release | Highlights |
 |---|---|
-| **10.0.0-beta-1** | Initial Java 21 Virtual Threads execution engine, carrier thread tuning, and HtmlUnit 5.x upgrade. |
-| **10.0.0-beta-2** | Private Machine Mode with reverse-tunnel relay connectivity; DNS override enhancements. |
-| **10.0.0-beta-3** | Dynamic Overview Charts improvements (localized timezone, count/s tooltips) and Multi-Moving Averages. |
-| **10.0.0-beta-4** | Pure Java Executive PDF report export (`--pdf`), external rating & executive evaluation injection (`--rating-score`, `--rating-summary`), and steady-state report generation. |
-| **10.0.0-beta-5** | AI Data Report (`ai-data.md`) export for LLMs, Groovy Scorecard DSL (`scorecard.groovy`), dynamic Groovy property evaluation (`#{...}`), rich Markdown test comments (`::markdown::`), and semantic Labeling Rules. |
-
+| **10.0.0-beta-1** | Java 21 Virtual Threads execution engine, multiple moving averages, Dynamic Overview chart improvements. |
+| **10.0.0-beta-2** | Private Machine mode, labeling for transactions/actions/requests, Markdown support for test comments. |
+| **10.0.0-beta-3** | Dynamic Groovy property evaluation. |
+| **10.0.0-beta-4** | AI Data export for LLMs, Groovy Scorecard DSL. |
+| **10.0.0-beta-5** | Executive PDF load test report, removal of the support for XML script test cases, HtmlUnit 5.x. |
+| **10.0.0-beta-6** | Fix for a regression in the trend report generator. |
+| **10.0.0-beta-7** | Logback as the new logging framework, direct access to the XLT session's output directory. |
