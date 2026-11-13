@@ -1,0 +1,206 @@
+---
+title: Test Execution & JUnit Integration
+description: Run Neodymium AI playbooks via JUnit 5 annotations or drive tests programmatically with the fluent AiSession Java API.
+icon: code
+sidebar:
+  label: JUnit Integration
+  order: 7
+---
+
+Neodymium AI seamlessly integrates with **JUnit 5**, providing both clean declarative annotations and a powerful programmatic Java API for advanced execution flows, parameterizations, and IDE debugging.
+
+---
+
+## 1. Annotation-Driven Execution
+
+### `@NeodymiumAiTest`
+Applied at the class level to wire the JUnit 5 extension and manage the session lifecycle:
+
+```java
+package com.example.tests;
+
+import org.junit.jupiter.api.Test;
+import org.neodymium.ai.junit.AiPlaybook;
+import org.neodymium.ai.junit.NeodymiumAiTest;
+import org.neodymium.ai.session.AiSession;
+
+@NeodymiumAiTest
+public class CheckoutScenarioTest
+{
+    // By convention, automatically loads CheckoutScenarioTest.yaml
+    @Test
+    public void testDefaultFlow(final AiSession session)
+    {
+    }
+
+    // Overrides the playbook resource path explicitly
+    @Test
+    @AiPlaybook("/playbooks/custom-checkout.yaml")
+    public void testCustomFlow(final AiSession session)
+    {
+    }
+}
+```
+
+### Path Resolution Rules (`@AiPlaybook`)
+| Syntax | Resolution Strategy | Example Resolved Resource |
+| :--- | :--- | :--- |
+| `@AiPlaybook` (empty) | Convention default | `com/example/tests/TestClass_methodName.yaml` |
+| `@AiPlaybook("custom.yaml")` | Package-relative | `com/example/tests/custom.yaml` |
+| `@AiPlaybook("/playbooks/flow.yaml")` | Absolute Classpath Root | `playbooks/flow.yaml` |
+
+### `@AiInlinePlaybook` (Java Text Blocks)
+Define multi-line YAML playbooks directly inside Java annotations without creating separate files:
+
+```java
+@Test
+@AiInlinePlaybook("""
+    steps: |
+      Open ${app.url}/login in the browser
+      Type "${username}" into the user field
+      Type "${password}" into the password field
+      Click the Login button
+      Verify dashboard header contains "Welcome"
+    data:
+      - testId: standardUser
+        username: "tester"
+        password: "secretPassword"
+    """)
+public void testInlineWorkflow(final AiSession session)
+{
+}
+```
+
+### `@AiDataFile` & `@AiDataSet`
+Bind external data files and filter parameterized iterations:
+
+```java
+@Test
+@AiPlaybook("/playbooks/search.yaml")
+@AiDataFile("/data/search-queries.yaml")
+@AiDataSet({"query_electronics", "query_books"}) // Executes only specified dataset IDs
+public void testFilteredQueries(final AiSession session)
+{
+}
+```
+
+### `@AiMode` (Mode Matrix Variations)
+Execute a test method across multiple execution modes to verify both live recording and deterministic replay in a single parameterized test:
+
+```java
+@Test
+@AiMode({ExecutionMode.FORCE_RECORDING, ExecutionMode.REPLAY_STRICT})
+@AiPlaybook("/playbooks/cart.yaml")
+public void testRecordingAndReplayFidelity(final AiSession session)
+{
+    // Runs twice: once to compile/record live, once to verify offline replay
+}
+```
+
+:::tip[Filtering Modes in CI/CD]
+While `@AiMode({ExecutionMode.FORCE_RECORDING, ExecutionMode.REPLAY_STRICT})` is ideal during local development to record and immediately verify offline replay in one pass, you can isolate recording in CI/CD using JUnit 5 tags:
+
+```java
+@Tag("LiveAPI") // or @Tag("recording")
+@Test
+@AiMode({ExecutionMode.FORCE_RECORDING, ExecutionMode.REPLAY_STRICT})
+@AiPlaybook("/playbooks/cart.yaml")
+public void testRecordingAndReplay(final AiSession session) { ... }
+```
+
+In your CI/CD regression pipeline, exclude the tag to skip live recording runs:
+```bash
+mvn test -DexcludedGroups="LiveAPI,recording"
+```
+
+For standard regression tests committed to version control, **omit `@AiMode` entirely** and enforce strict deterministic replay globally across all tests:
+```bash
+mvn test -Dneodymium.ai.executionMode=REPLAY_STRICT
+```
+:::
+
+---
+
+## 2. Programmatic Java APIs
+
+For complex test scenarios, conditional branching in Java, or step-by-step IDE breakpoint debugging, drive the engine programmatically using `AiSession`.
+
+### A. Step-by-Step Statement Debugging
+Execute single natural-language statements one by one. You can place standard IDE breakpoints on any Java line:
+
+```java
+import com.codeborne.selenide.Selenide;
+import org.junit.jupiter.api.Test;
+import org.neodymium.ai.config.ExecutionMode;
+import org.neodymium.ai.session.AiSession;
+
+public class ProgrammaticDebuggingTest
+{
+    @Test
+    public void testInteractiveDebugging() throws Exception
+    {
+        try (final AiSession session = AiSession.selenide(ExecutionMode.AUTO))
+        {
+            session.execute("Open https://example.com in the browser");
+            session.execute("Type 'automation' into the search input");
+            
+            // Set breakpoint here to inspect browser state
+            session.execute("Click the submit search button");
+            session.execute("Verify search results count is greater than 0");
+        }
+    }
+}
+```
+
+:::tip[Interactive Console Debugging Without Code Changes]
+In addition to IDE breakpoints, you can step through any test interactively with live browser controls, viewport streaming, and on-failure AI healing prompts without modifying your Java test code:
+```bash
+mvn test -Dtest=CartTest -Dneodymium.ai.interactive=true
+```
+This automatically launches the embedded standalone interactive console at `http://localhost:18090` without requiring the AI Manager. See [Interactive Console](/neodymium-ai/manager#1-standalone-interactive-console-no-manager-required) for details.
+:::
+
+### B. Programmatic Playbook Builder (`Playbook.builder()`)
+Construct dynamic step workflows using Java builder syntax:
+
+```java
+final Playbook playbook = Playbook.builder()
+    .step("Open ${app.url}/dashboard in the browser")
+    .step("Click the profile menu")
+    .step("Verify email address matches '${user.email}'")
+    .build();
+
+try (final AiSession session = AiSession.selenide(ExecutionMode.REPLAY_WITH_HEALING))
+{
+    session.execute(playbook);
+}
+```
+
+---
+
+## 3. Execution Telemetry & Metrics Verification
+
+Neodymium AI provides a fluent asserter (`verifyMetrics()`) to validate execution invariants, token bounds, and replay fidelity:
+
+```java
+session.execute(playbook)
+    .verifyMetrics()
+    .hasStepCount(5)
+    .hasNoSoftFailures()
+    .onStrictReplay(metrics -> metrics
+        .hasNoLlmCalls()       // Asserts zero LLM calls occurred
+        .wasNotHealed()        // Asserts zero self-healing was required
+        .hasAllStepsReplayed() // Asserts 100% of steps were replayed from cache
+    )
+    .onLive(metrics -> metrics
+        .hasActionCalls(5)
+        .hasTotalTokens(500, 3000)
+    );
+```
+
+### Supported Metric Assertions
+* **`hasStepCount(int expected)` / `hasStepCount(int min, int max)`**: Asserts total executed step count.
+* **`hasLlmCalls(int count)` / `hasNoLlmCalls()`**: Asserts total remote LLM network requests.
+* **`hasTotalTokens(int min, int max)`**: Asserts prompt + completion token consumption bounds.
+* **`hasNoEscalations()`**: Asserts that all steps resolved at initial context without escalation.
+* **`matchesModeExpectations()`**: Automatically validates expected mode invariants (`0` calls in `REPLAY_STRICT`, `> 0` in `FORCE_RECORDING`).

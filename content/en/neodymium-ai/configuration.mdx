@@ -1,0 +1,85 @@
+---
+title: Configuration
+description: Complete reference guide for all Neodymium AI configuration properties, execution modes, timeouts, and options.
+icon: sliders
+sidebar:
+  label: Configuration
+  order: 10
+---
+
+Neodymium AI settings can be defined in `config/ai.properties`, overridden locally in `config/dev-neodymium.properties` or `config/credentials.properties` (gitignored), injected via environment variables (such as `GEMINI_API_KEY`), or passed dynamically via runtime JVM arguments (e.g. `-Dneodymium.ai.executionMode=...`).
+
+---
+
+## 1. Core Execution & Pipeline
+
+| Property Key | Default | Description |
+| :--- | :--- | :--- |
+| `neodymium.ai.executionMode` | `REPLAY_WITH_HEALING` | Fallback execution mode (`REPLAY_WITH_HEALING`, `REPLAY_STRICT`, `FORCE_RECORDING`, `AUTO`, `LINTER_ONLY`). |
+| `neodymium.ai.interactive` | `false` | Enables the standalone interactive console server (`port 18090+`) and browser auto-launch for step pausing and on-failure AI healing. |
+| `neodymium.ai.contextLevel` | `LEAN` | Default DOM extraction fidelity level for Turn 1 (`HINT`, `MINIMAL`, `LEAN`, `STANDARD`, `RICH`). |
+| `neodymium.ai.multilingual` | `false` | Injects language universality guidance into prompts for non-English test suites. |
+| `neodymium.ai.replay.delayScale` | `0.0` | Pacing scale for recorded human typing and pause durations (`0.0` = instant replay for maximum CI speed, `1.0` = real-time pacing). |
+| `neodymium.ai.playbook.recordingDirectory` | `null` | Custom directory for `.recording.json` companion files (defaults to the playbook's source directory). |
+| `neodymium.ai.frames.autoDiscovery.enabled` | `false` | Automatically traverses child `<iframe>` elements to resolve locators when missing in the root document. |
+| `neodymium.ai.frames.autoDiscovery.maxDepth` | `3` | Maximum nesting depth searched by iframe auto-discovery. |
+
+---
+
+## 2. LLM Provider & Credentials
+
+| Property Key | Default | Description |
+| :--- | :--- | :--- |
+| `neodymium.ai.provider` | `gemini` | Active LLM provider (`gemini`, `openai`, `vertex`, `mistral`, `mock`). |
+| `neodymium.ai.model` | `gemini-3.5-flash-lite` | Global active model identifier. |
+| `neodymium.ai.<role>.model` | `null` | Role-specific model override (e.g. `neodymium.ai.judge.model`, `neodymium.ai.linter.model`). |
+| `neodymium.ai.apiKey` | `null` | Global LLM API key. Supports `${VAR_NAME}` environment placeholder substitution. |
+| `neodymium.ai.<provider>.apiKey` | `null` | Provider-specific API key (e.g. `neodymium.ai.gemini.apiKey`, `neodymium.ai.openai.apiKey`). |
+| `neodymium.ai.<role>.apiKey` | `null` | Role-specific API key (e.g. `neodymium.ai.execution.apiKey`, `neodymium.ai.judge.apiKey`). |
+| `neodymium.ai.temperature` | `0.0` | Sampling temperature (`0.0` recommended for deterministic test execution). |
+| `neodymium.ai.reasoningEffort` | `null` | Model reasoning effort tier (`OFF`, `LOW`, `MEDIUM`, `HIGH`). |
+| `neodymium.ai.llm.maxRetries` | `3` | Maximum retry attempts on transient network or rate-limit HTTP errors. |
+| `neodymium.ai.llm.watchdogBufferSeconds` | `5` | Grace period in seconds added to HTTP socket watchdogs before aborting stalled connections. |
+
+---
+
+## 3. Quality, Linters & Verification
+
+| Property Key | Default | Description |
+| :--- | :--- | :--- |
+| `neodymium.ai.linter.enabled` | `true` | Enables the Upfront Pre-Flight Playbook Linter prior to browser launch. |
+| `neodymium.ai.linter.failOnFindings` | `false` | Halts the test run before browser launch if static linting errors are detected. |
+| `neodymium.ai.linter.postFlight.enabled` | `false` | Enables the Empirical Post-Flight Playbook Linter upon test completion. |
+| `neodymium.ai.judge.enabled` | `false` | Enables pre-action Quality Judge second-opinion locator validation. |
+| `neodymium.ai.judge.mode` | `ON_AMBIGUITY` | Quality Judge trigger policy (`ON_AMBIGUITY`, `ALWAYS`, `ON_FAIL`). |
+| `neodymium.ai.semanticVerification.enabled` | `true` | Verifies step outcome assertions against the live page state. |
+| `neodymium.ai.semanticVerification.failOnError` | `false` | Throws a hard test failure if semantic verification fails (default `false` logs a warning). |
+| `neodymium.ai.visualRca.enabled` | `true` | Generates automatic Visual Root Cause Analysis with annotated screenshots on step failure. |
+| `neodymium.ai.network.monitorEnabled` | `true` | Intercepts browser HTTP 4xx/5xx network errors and unhandled JS exceptions. |
+| `neodymium.ai.network.ignorePattern` | `.*(analytics\|favicon).*` | Regular expression for filtering out non-critical network background failures. |
+
+---
+
+## 4. Timeouts & Budget Ceilings
+
+| Property Key | Default | Description |
+| :--- | :--- | :--- |
+| `neodymium.ai.timeoutSeconds` | `180` | Per-request HTTP network timeout in seconds for batch operations (linters, verification). |
+| `neodymium.ai.execution.timeoutSeconds` | `30` | Per-turn HTTP network timeout in seconds for interactive agent execution turns. |
+| `neodymium.ai.step.timeoutSeconds` | `120` | Maximum wall-clock timeout in seconds for an entire step execution loop. |
+| `neodymium.ai.step.maxTurns` | `15` | Maximum tool-calling turns permitted per step loop. |
+| `neodymium.ai.step.maxTokens` | `100000` | Cumulative token budget ceiling for a single step loop. |
+| `neodymium.ai.tokenBudget.input` | `500000` | Cumulative prompt input token ceiling per test method. |
+| `neodymium.ai.tokenBudget.output` | `50000` | Cumulative completion output token ceiling per test method. |
+
+---
+
+## 5. Reports & Logging
+
+| Property Key | Default | Description |
+| :--- | :--- | :--- |
+| `neodymium.ai.report.disk.enabled` | `true` | Enables writing structured execution reports to disk. |
+| `neodymium.ai.report.disk.directory` | `target/ai-reports` | Target directory for generated execution reports. |
+| `neodymium.ai.report.disk.formats` | `ALL` | Report output formats (`ALL`, `HTML`, `MARKDOWN`, `JSON`). |
+| `neodymium.ai.consoleExecutionLogs` | `true` | Generates formatted plain-text console execution logs for each test. |
+| `neodymium.ai.consoleExecutionLogs.directory` | `target/ai-console-logs` | Target directory for console execution logs. |

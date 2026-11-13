@@ -1,0 +1,162 @@
+---
+title: Getting Started with Neodymium AI
+description: Set up your environment, write your first natural language playbook, and run automated AI tests in 5 minutes.
+icon: rocket
+sidebar:
+  label: Quick Start
+  order: 2
+---
+
+This guide walks you through setting up Neodymium AI, configuring your LLM provider credentials, writing your first natural language playbook, and executing it with JUnit 5.
+
+---
+
+## 1. Prerequisites
+
+Before getting started, ensure you have the following installed:
+
+* **Java Development Kit (JDK) 21** or later.
+* **Apache Maven 3.9** or later.
+* A modern web browser (Google Chrome, Mozilla Firefox, Microsoft Edge, or Apple Safari).
+* An API key for your chosen LLM provider (e.g., Google Gemini, OpenAI, or Mistral).
+
+---
+
+## 2. Add Maven Dependency
+
+Add `neodymium-core` to your project's `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.xceptance</groupId>
+    <artifactId>neodymium-core</artifactId>
+    <version>5.6.0</version>
+    <scope>test</scope>
+</dependency>
+```
+
+---
+
+## 3. Configure Your LLM API Key
+
+Neodymium AI adheres to a strict zero-secret security policy: **never commit API keys or credentials to version control**.
+
+You can supply your API key using any of the following approaches:
+
+### A. Local Developer Properties (Recommended for Local Development)
+Add your key to `config/dev-neodymium.properties` or `config/credentials.properties`. Both files are automatically ignored by Git in Neodymium projects:
+
+```properties
+# config/dev-neodymium.properties (or config/credentials.properties)
+neodymium.ai.apiKey=your-gemini-api-key-here
+```
+
+### B. Environment Variable (Recommended for CI/CD)
+Set the environment variable in your terminal session or CI/CD runner:
+
+```bash
+export GEMINI_API_KEY="your-gemini-api-key-here"
+```
+
+### C. Project AI Properties (`config/ai.properties`)
+You can define the key in `config/ai.properties` directly or via an environment variable placeholder:
+
+```properties
+# Direct key:
+neodymium.ai.apiKey=your-gemini-api-key-here
+
+# Or placeholder substitution:
+neodymium.ai.apiKey=${GEMINI_API_KEY}
+```
+
+:::warning[Keep ai.properties Clean]
+If your `config/ai.properties` is tracked in version control, use the placeholder `${GEMINI_API_KEY}` or keep local keys in `config/dev-neodymium.properties` to avoid accidental secret leaks.
+:::
+
+### D. Runtime JVM Argument
+Pass the API key dynamically during Maven test execution:
+
+```bash
+mvn test -Dneodymium.ai.apiKey="your-gemini-api-key-here"
+```
+
+:::note[Default Provider and Model]
+By default, Neodymium AI uses Google Gemini with the `gemini-3.5-flash-lite` model for fast, cost-effective execution. You can configure other models and providers (OpenAI, Mistral, Vertex AI) in `config/ai.properties` or override them locally in `config/dev-neodymium.properties`.
+:::
+
+---
+
+## 4. Write Your First Playbook
+
+Create a new YAML playbook file at `src/test/resources/playbooks/sample-search.yaml`:
+
+```yaml
+name: Search and Validation Sample Flow
+description: Opens the application, enters a search query, and verifies results.
+
+steps: |
+  Open https://example.com in the browser
+  Locate the search input field and type "test automation"
+  Click the search submit button
+  Verify that the page heading contains "Results"
+```
+
+---
+
+## 5. Create the JUnit 5 Test Class
+
+Create a corresponding test class in `src/test/java/com/example/tests/SampleSearchTest.java`:
+
+```java
+package com.example.tests;
+
+import org.junit.jupiter.api.Test;
+import org.neodymium.ai.junit.AiPlaybook;
+import org.neodymium.ai.junit.NeodymiumAiTest;
+import org.neodymium.ai.session.AiSession;
+
+@NeodymiumAiTest
+public class SampleSearchTest
+{
+    @Test
+    @AiPlaybook("/playbooks/sample-search.yaml")
+    public void testSearchFlow(final AiSession session)
+    {
+        // NeodymiumAiTest handles playbook loading, browser lifecycle,
+        // live recording, and offline replay automatically.
+    }
+}
+```
+
+---
+
+## 6. Run the Test
+
+Execute the test using Maven:
+
+```bash
+mvn test -Dtest=SampleSearchTest
+```
+
+### The Two-Run Lifecycle
+
+When you run this test, observe the two distinct execution phases:
+
+#### Run 1: Discovery & Recording (Creation Mode)
+* Neodymium AI launches the browser and reads the YAML instructions.
+* The LLM analyzes the live page Document Object Model (DOM), identifies resilient CSS and XPath selectors, and performs the clicks and text inputs.
+* Upon test completion, Neodymium AI automatically generates a companion file: `sample-search.recording.json` alongside your playbook.
+* The recording contains the concrete executed actions, selectors, and visual baseline hashes.
+
+#### Run 2: Deterministic Machine Replay (Replay Mode)
+* Run the command again:
+  ```bash
+  mvn test -Dtest=SampleSearchTest
+  ```
+* Neodymium AI detects the existing `.recording.json` file.
+* It executes all recorded actions directly in the browser via Selenide in milliseconds.
+* **0 LLM calls are made, 0 API tokens are spent, and execution runs at native WebDriver speed.**
+
+:::tip[Automatic Self-Healing]
+If the target application UI updates (e.g. an ID or class name changes), Neodymium AI does not fail immediately. In `REPLAY_WITH_HEALING` mode (the default), it detects the broken selector, escalates to the live DOM, locates the new element, updates the recording file on disk, and continues the test run smoothly.
+:::

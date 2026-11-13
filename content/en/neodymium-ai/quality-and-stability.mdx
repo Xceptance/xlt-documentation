@@ -1,0 +1,117 @@
+---
+title: Quality Linting & Stability Gates
+description: Catch ambiguous instructions upfront with pre-flight linters, prevent agent thrashing with protocol introspection, and guard locators with quality judges.
+icon: shield-check
+sidebar:
+  label: Quality & Stability
+  order: 8
+---
+
+To maintain test suite reliability, prevent non-deterministic runs, and eliminate expensive trial-and-error loops, Neodymium AI includes a multi-layered quality governance and diagnostic pipeline.
+
+---
+
+## 1. Upfront Pre-Flight Linter (`@AiLinter`)
+
+Instead of discovering ambiguous instructions during browser execution, the **Playbook Pre-Flight Linter** audits instructions upfront before any browser instance launches.
+
+```java
+// Advisory mode (logs warnings with concrete remediation hints)
+@AiLinter
+@AiPlaybook("/playbooks/checkout.yaml")
+public void testWithPrelinting(final AiSession session) { ... }
+
+// Strict gating mode (fails immediately if quality issues are detected)
+@AiLinter(failOnFindings = true)
+@AiPlaybook("/playbooks/checkout.yaml")
+public void testStrictQualityGate(final AiSession session) { ... }
+```
+
+### The 9 Universal Quality Check Categories
+
+| Category | Severity | Detection Criteria | Suggested Remediation |
+| :--- | :--- | :--- | :--- |
+| **`STEP_SPLITTING_CANDIDATE`** | `WARNING` | Compound actions or mixed action + assertion in one step. | Split into atomic steps (`1. Click dropdown\n2. Select "Standard"`). |
+| **`MISSING_VISUAL_TAG`** | `INFO` | Visual/layout assertion lacking `(visual)` tag. | Append `(visual)` or `(layout)` tag. |
+| **`AMBIGUOUS_AFFORDANCE`** | `WARNING` | Passive capability phrasing ("allows user to...") instead of actionable verbs. | Convert to imperative command (`"Click Settings"`). |
+| **`VAGUE_TARGET`** | `WARNING` | Underspecified targets lacking container or label scope. | Scope with container context (`"Click the Save button in the dialog"`). |
+| **`VAGUE_VERIFICATION`** | `WARNING` | Subjective or untestable test oracles ("page looks nice"). | Use concrete DOM assertion (`"Verify user profile is visible"`). |
+| **`DANGLING_ANAPHORA`** | `ERROR` | Ambiguous relative pronouns ("it", "that one") without clear referents. | Replace with explicit element name or use Turn Groups. |
+| **`TEMPORAL_FLOW_ANOMALY`** | `WARNING` | Operating on an entity/modal before opening or creating it. | Reorder steps to follow natural user flow. |
+| **`HARDCODED_VOLATILE_DATA`** | `WARNING` | Hardcoded dynamic timestamps or generated IDs. | Parameterize with variable (`"Verify order ID matches #${orderId}"`). |
+| **`INCOMPLETE_BRANCH_CLAUSE`** | `WARNING` | Dangling conditional clause ("If...", "When...") lacking consequence. | Complete branch with action (`"If modal appears, click Close"`). |
+
+:::tip[Offline Replay Bypass]
+During offline replay (`REPLAY_STRICT`, `REPLAY_WITH_HEALING`), the linter is automatically bypassed to guarantee zero LLM network overhead.
+:::
+
+---
+
+## 2. Empirical Post-Flight Linter (`@AiLinter(postFlight = true)`)
+
+While the Pre-Flight Linter evaluates grammar synthetically, the **Empirical Post-Flight Linter** audits **ground-truth telemetry** recorded during actual browser execution:
+
+```java
+@AiLinter(postFlight = true)
+@AiPlaybook("/playbooks/complex-journey.yaml")
+public void testPostFlightAnalysis(final AiSession session) { ... }
+```
+
+### The 5 Empirical Detection Categories
+1. **`EMPIRICAL_MULTI_ACTION`**: An instruction written as a single line required $\ge 3$ discrete browser actions to complete in the live browser.
+2. **`LABEL_DIVERGENCE`**: The author's phrasing diverges from actual live UI labels, forcing fuzzy semantic matching.
+3. **`HIGH_AGENT_FRICTION`**: The agent struggled to interact with the target element, requiring multiple retries or context escalations.
+4. **`UNTAGGED_VISUAL_DEPENDENCY`**: An assertion verified colors or visual alignments without an explicit `(visual)` tag.
+5. **`REDUNDANT_VISUAL_TAG`**: A step tagged `(visual)` was resolvable via fast, deterministic DOM inspection.
+
+When empirical friction is detected, the post-flight linter leverages the LLM to **synthesize concrete, copy-pasteable step rewrites** directly in your test report.
+
+---
+
+## 3. Pre-Action Quality Judge (`@AiJudge`)
+
+When second-opinion locator validation is desired, the **Quality Judge** guards browser tool calls before execution:
+
+```java
+@AiJudge
+@AiPlaybook("/playbooks/payment.yaml")
+public void testWithJudge(final AiSession session) { ... }
+```
+
+* **0ms Fast Path**: If the proposed CSS selector matches **exactly 1 element** in the live DOM and scores high resilience ($\ge 8/10$), it executes immediately with zero latency.
+* **Deliberation on Ambiguity**: If a selector matches multiple elements or has a volatile score ($< 6/10$), the Judge prompts a second model to inspect alternate candidate locators and refine the selector before browser dispatch.
+
+---
+
+## 4. Post-Action Semantic Outcome Verification (`@AiOutcomeVerification`)
+
+After executing SUT actions, this gate evaluates pre- and post-action DOM states and screenshots across three independent rubrics:
+1. **`intentMatch`**: Did the action fulfill the user's semantic instruction?
+2. **`visualDelta`**: Did the screen change appropriately (e.g. dropdown opened, modal appeared)?
+3. **`absenceOfErrors`**: Did unexpected error banners or toast alerts appear?
+
+```java
+@AiOutcomeVerification
+@AiPlaybook("/playbooks/checkout.yaml")
+public void testVerifiedOutcome(final AiSession session) { ... }
+```
+
+---
+
+## 5. Protocol Introspection (Network & Console Error Detection)
+
+When web application interactions fail due to asynchronous backend API errors (e.g. HTTP 500) or unhandled client-side JavaScript crashes (e.g. `TypeError`), standard UI test runners often enter wasteful 10–15 turn locator thrashing loops assuming the element locator was flawed.
+
+Neodymium AI introduces **Protocol-Level Introspection** via Chromium DevTools Protocol (CDP) listeners and W3C Performance API synchronization.
+
+### Passive Diagnostic Alert Injection
+When any interactive browser action fails repeatedly, Neodymium AI inspects real-time network and console buffers. If recent backend errors or JavaScript exceptions occurred, the engine injects a concise notice into the agent conversation:
+
+```text
+[Diagnostic Alert]: Detected 1 HTTP 500 error(s) during this turn:
+  - 500 POST /api/cart/checkout (Internal Server Error)
+If the application UI did not update due to a backend or script failure, report the defect rather than retrying alternate element locators.
+```
+
+* **Thrashing Prevention**: Autonomous agents immediately halt selector exploration and output an accurate defect diagnosis.
+* **Clean Suppression**: If no protocol errors occurred, the notice is completely suppressed, preserving minimal token context.

@@ -1,0 +1,109 @@
+---
+title: Troubleshooting & FAQ
+description: Diagnose execution failures with Visual RCA reports, resolve token budget ceilings, and follow best practices when migrating from classic Page Objects.
+icon: life-buoy
+sidebar:
+  label: Troubleshooting & FAQ
+  order: 12
+---
+
+This guide helps you diagnose failed test steps, interpret execution reports, and resolve common automation challenges.
+
+---
+
+## 1. Interpreting Test Execution Reports
+
+When a Neodymium AI test completes, the runner generates detailed HTML and Markdown reports in your target build directory (e.g. `target/neodymium-reports/`):
+
+### A. Visual Root Cause Analysis (Visual RCA) Card
+When a test fails, the report features a prominent **Visual RCA** diagnostic block containing:
+* **Root Cause Summary**: Natural-language explanation of why the action or assertion failed based on visual evidence.
+* **4-Rubric Scorecard**:
+  - `Target Presence`: `FOUND` (element visible $\rightarrow$ locator/timeout issue) vs. `MISSING` (real functional bug).
+  - `Form Validation`: Browser HTML5 bubbles (`! Please fill out this field`) or red input borders.
+  - `Flow State`: `STUCK` vs. `PROGRESSING`.
+  - `Obstruction`: Modal overlays, cookie banners, or loading spinners blocking the click.
+
+### B. Per-Call-Type Telemetry Breakdown
+Reports include an exact accounting table of all LLM invocations and token usage:
+```text
+LLM Calls & Tokens: 8 calls | 24,110 tokens (In: 22,500, Out: 1,610, Cached: 0)
+  ├─ Action:            5 calls | 18,200 tokens
+  ├─ Judge:             2 calls |  4,100 tokens
+  ├─ Verification:      1 calls |  1,810 tokens
+  └─ Visual RCA:        0 calls |      0 tokens
+```
+
+---
+
+## 2. Common Pitfalls & Solutions
+
+### Issue 1: `TokenBudgetExceededException`
+* **Symptom**: Step execution halts with `TokenBudgetExceededException: Step exceeded token budget (100000)`.
+* **Root Cause**: When `neodymium.ai.contextLevel` is set to `STANDARD` or `RICH`, large DOM trees consume more tokens per turn. A multi-turn step can exhaust the default 100,000 token limit.
+* **Solution**: Increase the step token budget in `config/ai.properties`:
+  ```properties
+  neodymium.ai.step.maxTokens=250000
+  ```
+  Or simplify the step by splitting compound actions into discrete lines.
+
+### Issue 2: Brittle Pixel Diffs on Dynamic Content
+* **Symptom**: Steps tagged with `(visual)` fail intermittently due to date changes, promotional banner rotation, or user avatar variations.
+* **Root Cause**: `(visual)` performs pixel-exact comparison (`minScore=0.99`), which is intentionally intolerant to visual text or asset changes.
+* **Solution**: Switch from pixel-exact testing to structural color wireframe testing by replacing `(visual)` with `(layout)`:
+  ```yaml
+  # Before: fails when promotion text changes
+  Verify landing page header (visual)
+  
+  # After: wireframes text into solid brand-colored bars and verifies layout structure
+  Verify landing page header (layout)
+  ```
+
+### Issue 3: Replay Fails Immediately on UI Change
+* **Symptom**: An updated button selector throws an error during execution.
+* **Root Cause**: The test is executing in `ExecutionMode.REPLAY_STRICT` or the step is marked with `(no-healing)`. In strict replay mode, all LLM self-healing is intentionally disabled to guarantee zero API spend in CI.
+* **Solution**:
+  - Run the test locally in `REPLAY_WITH_HEALING` or `AUTO` mode once so the engine can discover the updated element and save the healed locator to `.recording.json`.
+  - Check if the step instruction was tagged with `(no-healing)`.
+
+### Issue 4: Locator Thrashing on Backend 500 Failures
+* **Symptom**: An action like clicking "Submit Order" fails, and the agent spends 10 turns trying alternative locators.
+* **Root Cause**: The button click actually succeeded in the browser, but the backend returned an HTTP 500 or threw a JavaScript error, preventing the UI from updating.
+* **Solution**: Ensure protocol monitoring is active in `config/ai.properties`:
+  ```properties
+  neodymium.ai.network.monitorEnabled=true
+  ```
+  When enabled, Neodymium AI detects the backend HTTP 500 or console crash and immediately injects a diagnostic notice, stopping locator thrashing.
+
+---
+
+## 3. Migrating from Classic Page Objects to Playbooks
+
+Migrating classic Neodymium or Selenide test suites to Neodymium AI playbooks significantly reduces code maintenance:
+
+### Step 1: Identify Common Flows
+Group repetitive UI setup sequences (such as login, search, or cookie dismissal) into reusable `.yaml` fragments under `src/test/resources/playbooks/fragments/`.
+
+### Step 2: Replace Page Object Methods with Natural Language Steps
+Instead of maintaining separate Java Page Object classes with brittle `@FindBy` locators:
+```java
+// Classic Selenide / Page Object approach:
+LoginPage loginPage = new LoginPage();
+loginPage.enterEmail("user@example.com");
+loginPage.enterPassword("secret");
+loginPage.clickSubmit();
+```
+Express the flow as a simple, human-readable playbook:
+```yaml
+steps: |
+  Open ${app.url}/login
+  Type "user@example.com" into the email field
+  Type "secret" into the password field
+  Click the "Sign In" button
+```
+
+### Step 3: Run Once to Compile Companion Recordings
+Run the test suite once in `AUTO` or `FORCE_RECORDING` mode. Neodymium AI will compile the execution into companion `.recording.json` files.
+
+### Step 4: Commit Playbooks and Recordings
+Commit both `.yaml` and `.recording.json` files to Git. Subsequent CI runs will execute offline in milliseconds at zero token cost.

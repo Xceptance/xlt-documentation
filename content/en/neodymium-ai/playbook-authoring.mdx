@@ -1,0 +1,223 @@
+---
+title: Playbook Authoring Guide
+description: Learn how to write robust, natural-language playbooks with step formats, control tags, modular includes, and data parameterization.
+icon: file-text
+sidebar:
+  label: Playbook Authoring
+  order: 4
+---
+
+Playbooks are the core authoring medium of Neodymium AI. Stored as standard `.yaml` files, they express testing intent in clear, human language while supporting modular includes, variables, and runtime control tags.
+
+---
+
+## 1. Natural Language Step Formats
+
+Neodymium AI supports four step formatting styles in YAML to accommodate different testing workflows:
+
+### A. Multiline Text Block (`steps: |`)
+The cleanest, most readable format. Steps are written line-by-line as a text block without list bullets:
+
+```yaml
+name: User Registration Flow
+steps: |
+  Open ${app.url}/register in the browser
+  Type "${user.email}" into the email input field
+  Type "${user.password}" into the password field
+  Click the "Create Account" button
+  Verify the welcome message contains "${user.name}"
+```
+
+### B. YAML Sequence List (`steps:`)
+Standard YAML list with quoted string elements:
+
+```yaml
+steps:
+  - "Open ${app.url}/register in the browser"
+  - "Type \"${user.email}\" into the email input field"
+  - "Click the \"Create Account\" button"
+```
+
+### C. Folded Block Scalar (`- >-`) for Single-Turn Batch Assertions
+When verifying multiple related elements on the same page, use YAML's folded block scalar (`>-`). It folds consecutive lines into a single sentence, instructing the LLM to verify all conditions within a **single turn** instead of paying multiple round-trip API delays:
+
+```yaml
+steps:
+  - "Open ${app.url}/dashboard in the browser"
+  - >-
+    Verify the brand logo is displayed in the header.
+    Verify the search bar is visible.
+    Verify the navigation bar contains "Projects".
+    Verify the user profile avatar is present.
+  - "Click the Settings link"
+```
+
+### D. Compound Milestones (Turn Groups)
+When complex interactions involve multiple dependent micro-actions (e.g. hovering over an item before clicking a nested button, or referencing earlier elements using pronouns like "it" or "the button"), group them under an executable parent goal:
+
+```yaml
+steps: |
+  Add featured item to cart:
+    Locate the first item card and hover over it
+    Click its 'Add to Cart' button
+    Select size 'Medium' from the overlay
+  Verify cart counter badge shows "1"
+```
+
+* **Parent Line**: Represents the high-level executable objective.
+* **Indented Lines**: Evaluated as ordered child milestones within a single compound agent loop, preserving conversation memory and pronoun resolution across turns.
+
+---
+
+## 2. Explicit Control Tags Reference
+
+Control tags are appended in parentheses to step instructions to customize runtime behavior. They are case-insensitive and stripped before the prompt reaches the LLM.
+
+| Tag | Syntax Example | Behavior |
+| :--- | :--- | :--- |
+| **`hint`** | `(hint: #submit-btn)` | Bypasses DOM extraction and immediately attempts the specified selector. Saves 100% of DOM tokens. |
+| **`no-replay`** | `(no-replay)` | Bypasses recorded actions in `.recording.json` and forces live LLM execution for this specific step. |
+| **`optional`** / **`soft`** | `(optional)`, `(soft)` | If the step fails (interaction or assertion), logs a warning and continues the test instead of failing immediately. |
+| **`bug`** | `(bug)`, `(bug: APP-102)` | **Expected Failure tag.** If the step fails, the test passes. If the step unexpectedly succeeds, the runner fails to signal that the bug is absent. |
+| **`continue-on-error`** | `(continue-on-error)` | If the step encounters an unrecoverable failure, records a warning and proceeds to subsequent steps rather than aborting. |
+| **`no-healing`** | `(no-healing)` | Disables self-healing mechanisms for this step. Fails immediately upon selector divergence. |
+| **`timeout`** | `(timeout: 10s)` | Overrides the default element search timeout for slow-loading asynchronous widgets. |
+| **`context`** | `(context: minimal)` | Overrides the default initial context level for Turn 1 (`none`, `minimal`, `lean`, `standard`, `rich`). |
+
+```yaml
+steps: |
+  Click the checkout submit button (timeout: 15s)
+  Verify the promotional banner is displayed (optional)
+  Click the legacy export button (bug: BUG-4521)
+  Enter credit card number (hint: #card-number-input)
+```
+
+---
+
+## 3. Modularization & Reusable Steps
+
+### Static Fragment Includes (`include:`)
+Split common workflows (e.g., login, cookie dismissal) into reusable YAML fragment files:
+
+```yaml
+# Main Playbook (playbooks/checkout.yaml)
+steps: |
+  include: fragments/login.yaml
+  Open ${app.url}/cart
+  Click "Proceed to Payment"
+```
+
+```yaml
+# Included Fragment (playbooks/fragments/login.yaml)
+steps: |
+  Open ${app.url}/login
+  Type "tester@example.com" into the email field
+  Type "secret123" into the password field
+  Click the "Sign In" button
+```
+
+### Dynamic Conditional Branching
+Use natural language branching to handle dynamic SUT states:
+
+```yaml
+steps: |
+  Open ${app.url}/home
+  If cookie consent banner appears then include: fragments/dismiss-cookies.yaml, else continue
+  Click the "Start Trial" button
+```
+
+### Intra-File YAML Anchors & Aliases (`&` / `*`)
+Reuse repeated routines within the same playbook without creating separate files:
+
+```yaml
+search_routine: &search
+  - "Type \"${query}\" into search input"
+  - "Click search button"
+  - "Verify search results page is displayed"
+
+steps:
+  - "Open ${app.url}/shop"
+  - *search
+  - "Open ${app.url}/catalog"
+  - *search
+```
+
+### Lifecycle Blocks (`before:` and `after:`)
+Define scenario-level setup and teardown instructions directly in the playbook:
+
+```yaml
+before: |
+  Open ${app.url}/admin
+  Click "Reset Test Database"
+
+steps: |
+  Execute core test scenario
+
+after: |
+  Click "Logout"
+```
+
+---
+
+## 4. Test Data & Dynamic Parameterization
+
+Playbooks support dynamic parameterization using `${placeholder}` syntax.
+
+### Defining Data in YAML (`data:`)
+
+#### A. Multiple Parameterized Datasets (Data-Driven Matrix)
+Defining `data:` as a list executes the playbook once per dataset entry:
+
+```yaml
+data:
+  - testId: guestCheckout
+    user:
+      email: "guest@example.com"
+      country: "US"
+    query: "Wireless Headphones"
+  - testId: memberCheckout
+    user:
+      email: "member@example.com"
+      country: "DE"
+    query: "Mechanical Keyboard"
+
+steps: |
+  Open ${app.url}/search
+  Type "${query}" into search field
+  Click search button
+  Verify results match "${query}"
+```
+
+#### B. Single Dataset Map
+When driving a single test iteration:
+
+```yaml
+data:
+  username: "demo_user"
+  role: "admin"
+
+steps: |
+  Open ${app.url}/login
+  Type "${username}" into the user field
+```
+
+### Nested Dot-Notation & Intra-Dataset Interpolation
+Placeholders can reference other variables and navigate nested structures:
+
+```yaml
+data:
+  baseUrl: "https://example.com"
+  path: "/dashboard"
+  fullUrl: "${baseUrl}${path}"
+  user:
+    name: "Alex"
+    profile:
+      email: "alex@example.com"
+
+steps: |
+  Open ${fullUrl} in the browser
+  Verify header displays "${user.name}"
+```
+
+### Automatic Outbound Secret Masking
+To protect sensitive credentials, Neodymium AI inspects parameters flagged as sensitive. Before any prompt payload is transmitted over the network to external LLM providers, passwords and keys are replaced with format-preserving tokens (e.g. `[MASKED_VAR_password]`). Returned actions are automatically reverse-mapped before browser execution, ensuring raw secrets never leave your local environment.

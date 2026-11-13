@@ -1,0 +1,122 @@
+---
+title: Extensibility & Custom Tools
+description: Extend Neodymium AI by exposing custom Java methods as tools, tuning model behaviors with prompt add-ons, and integrating domain plugins.
+icon: puzzle
+sidebar:
+  label: Extensibility
+  order: 11
+---
+
+Neodymium AI features an in-process, typed tool-calling architecture (`org.neodymium.ai.tool.*`). Rather than restricting automation to built-in browser interactions, you can easily expose your own domain-specific Java services, tune prompts, and attach specialized audit plugins.
+
+---
+
+## 1. Exposing Custom Java Tools (`@Tool` & `JavaToolFactory`)
+
+You can expose internal Java services (such as direct database seeders, REST clients, authentication helpers, or OTP generators) directly to the AI agent as callable in-process tools using `@Tool`:
+
+### Step A: Define Your Tool Class
+Annotate Java methods with `@Tool` and parameterize them using `@ToolParam`:
+
+```java
+package com.example.tools;
+
+import org.neodymium.ai.tool.Tool;
+import org.neodymium.ai.tool.ToolParam;
+
+public class DatabaseHelperTools
+{
+    @Tool(name = "reset_user_cart", description = "Clears all cart items for a test user directly in the database")
+    public static boolean resetCart(
+        @ToolParam(name = "email", description = "Target test user email address") final String email)
+    {
+        // Execute direct database query or microservice API call
+        return DatabaseClient.deleteCartForUser(email);
+    }
+}
+```
+
+### Step B: Register Tools on the AI Session
+Register the generated tools on the session's tool registry before executing steps:
+
+```java
+import org.neodymium.ai.tool.JavaToolFactory;
+
+try (final AiSession session = AiSession.selenide(ExecutionMode.AUTO))
+{
+    // Reflectively generates OpenAPI JSON schema and binds to the agent
+    session.getToolRegistry().registerAll(
+        JavaToolFactory.createToolsFromClass(DatabaseHelperTools.class)
+    );
+
+    session.execute("""
+        steps: |
+          Reset the cart for user "tester@example.com"
+          Open https://example.com/cart
+          Verify the cart is empty
+        """);
+}
+```
+
+* **Zero Subprocess Overhead**: Custom tools execute synchronously in-process on the active test thread with typed parameter conversion.
+* **OpenAPI Schema Generation**: Descriptions and parameter types are formatted dynamically into Gemini, OpenAI, and Mistral function declaration schemas.
+
+---
+
+## 2. Custom System Prompt Add-ons (`promptAddon`)
+
+To guide LLM behavior for specific applications or complex UI widgets, you can inject custom prompt rules at the playbook level or on disk.
+
+### Playbook-Level Add-ons (YAML)
+Add a `promptAddon` property directly in your YAML playbook:
+
+```yaml
+# Simple scalar string (applied to all steps)
+promptAddon: "Always prioritize aria-label selectors over generic classes, and wait for loading spinners."
+
+steps: |
+  Open ${app.url}/dashboard
+  Click "Export Data"
+```
+
+You can also target specific pipeline capabilities:
+
+```yaml
+promptAddon:
+  general: "Always look for button text first"
+  verification: "Be strict about numeric price discrepancies"
+  rca: "Check if modal overlays blocked the click target"
+```
+
+### Disk-Based Model-Specific Add-ons
+For organization-wide model adjustments (e.g. reminding smaller flash/lite models to copy strings verbatim), place Markdown add-on files on the classpath:
+
+* Path: `src/main/resources/ai-prompts/models/<cleanModel>/addon-general.md`
+* Example for `gemini-3-5-flash-lite`:
+  ```markdown
+  - **Locators**: Only use real HTML tags from the DOM. Never invent non-existent tags.
+  - **Values**: Copy exact literal text from the instruction into 'value'. Do not substitute sample passwords.
+  ```
+
+---
+
+## 3. Built-in Domain Plugin Tools
+
+Neodymium AI bundles modular domain tools that can be enabled dynamically:
+
+### WCAG Accessibility Audit (`wcag_accessibility_audit`)
+Evaluates live DOM compliance against W3C WCAG accessibility standards:
+
+* **Tool Name**: `wcag_accessibility_audit`
+* **Parameters**:
+  - `standard`: `"WCAG2AA"` | `"WCAG2AAA"` (default: `"WCAG2AA"`)
+  - `impact`: `"critical"` | `"serious"` | `"moderate"` | `"minor"`
+  - `run_only`: Array of specific rule tags to evaluate.
+* **Output**: Structured JSON violation report including affected element selectors, impact rating, and remediation guidance.
+
+```yaml
+steps: |
+  Open ${app.url}/registration in the browser
+  Perform an accessibility audit on the form using WCAG 2.1 AA
+  Verify no critical accessibility violations exist
+```
