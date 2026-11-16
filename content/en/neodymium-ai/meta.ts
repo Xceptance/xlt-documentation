@@ -8,7 +8,6 @@ export default defineMeta({
     "quick-start",
     "core-concepts",
     "playbook-authoring",
-    "direct-commands",
     "visual-testing",
     "junit-integration",
     "quality-and-stability",

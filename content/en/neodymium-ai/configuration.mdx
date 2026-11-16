@@ -51,7 +51,7 @@ Neodymium AI settings can be defined in `config/ai.properties`, overridden local
 | `neodymium.ai.linter.failOnFindings` | `false` | Halts the test run before browser launch if static linting errors are detected. |
 | `neodymium.ai.linter.postFlight.enabled` | `false` | Enables the Empirical Post-Flight Playbook Linter upon test completion. |
 | `neodymium.ai.judge.enabled` | `false` | Enables pre-action Quality Judge second-opinion locator validation. |
-| `neodymium.ai.judge.mode` | `ON_AMBIGUITY` | Quality Judge trigger policy (`ON_AMBIGUITY`, `ALWAYS`, `ON_FAIL`). |
+| `neodymium.ai.judge.mode` | `DISCUSSION` | Quality Judge trigger policy (`DISCUSSION`, `ON_AMBIGUITY`, `ALWAYS`, `ON_FAIL`). |
 | `neodymium.ai.semanticVerification.enabled` | `true` | Verifies step outcome assertions against the live page state. |
 | `neodymium.ai.semanticVerification.failOnError` | `false` | Throws a hard test failure if semantic verification fails (default `false` logs a warning). |
 | `neodymium.ai.visualRca.enabled` | `true` | Generates automatic Visual Root Cause Analysis with annotated screenshots on step failure. |

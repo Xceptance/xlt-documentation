@@ -19,7 +19,6 @@ Applied at the class level to wire the JUnit 5 extension and manage the session 
 ```java
 package com.example.tests;
 
-import org.junit.jupiter.api.Test;
 import org.neodymium.ai.junit.AiPlaybook;
 import org.neodymium.ai.junit.NeodymiumAiTest;
 import org.neodymium.ai.session.AiSession;
@@ -27,20 +26,23 @@ import org.neodymium.ai.session.AiSession;
 @NeodymiumAiTest
 public class CheckoutScenarioTest
 {
-    // By convention, automatically loads CheckoutScenarioTest.yaml
-    @Test
+    // By convention, automatically loads CheckoutScenarioTest_testDefaultFlow.yaml
+    @AiPlaybook
     public void testDefaultFlow(final AiSession session)
     {
     }
 
     // Overrides the playbook resource path explicitly
-    @Test
     @AiPlaybook("/playbooks/custom-checkout.yaml")
     public void testCustomFlow(final AiSession session)
     {
     }
 }
 ```
+
+:::note[@AiPlaybook is a JUnit 5 TestTemplate]
+`@AiPlaybook` and `@AiInlinePlaybook` are meta-annotated with JUnit 5's `@TestTemplate`. You do **not** need to add `@Test` to playbook methods. Adding `@Test` alongside `@TestTemplate` can lead to duplicate test descriptors.
+:::
 
 ### Path Resolution Rules (`@AiPlaybook`)
 | Syntax | Resolution Strategy | Example Resolved Resource |
@@ -53,7 +55,6 @@ public class CheckoutScenarioTest
 Define multi-line YAML playbooks directly inside Java annotations without creating separate files:
 
 ```java
-@Test
 @AiInlinePlaybook("""
     steps: |
       Open ${app.url}/login in the browser
@@ -75,7 +76,6 @@ public void testInlineWorkflow(final AiSession session)
 Bind external data files and filter parameterized iterations:
 
 ```java
-@Test
 @AiPlaybook("/playbooks/search.yaml")
 @AiDataFile("/data/search-queries.yaml")
 @AiDataSet({"query_electronics", "query_books"}) // Executes only specified dataset IDs
@@ -88,7 +88,6 @@ public void testFilteredQueries(final AiSession session)
 Execute a test method across multiple execution modes to verify both live recording and deterministic replay in a single parameterized test:
 
 ```java
-@Test
 @AiMode({ExecutionMode.FORCE_RECORDING, ExecutionMode.REPLAY_STRICT})
 @AiPlaybook("/playbooks/cart.yaml")
 public void testRecordingAndReplayFidelity(final AiSession session)
@@ -102,7 +101,6 @@ While `@AiMode({ExecutionMode.FORCE_RECORDING, ExecutionMode.REPLAY_STRICT})` is
 
 ```java
 @Tag("LiveAPI") // or @Tag("recording")
-@Test
 @AiMode({ExecutionMode.FORCE_RECORDING, ExecutionMode.REPLAY_STRICT})
 @AiPlaybook("/playbooks/cart.yaml")
 public void testRecordingAndReplay(final AiSession session) { ... }

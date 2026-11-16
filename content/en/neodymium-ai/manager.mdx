@@ -59,8 +59,20 @@ When `neodymium.ai.interactive=true` is enabled and the AI Manager is not runnin
 
 For team-wide visual editing, AI chat authoring, and cross-suite telemetry dashboards, launch the full AI Manager application:
 
+### In Bootstrapped Projects (Scaffolded via Archetype)
+Run the launcher script in your project root:
+
+* **Linux / macOS:**
+  ```bash
+  ./run-aura.sh
+  ```
+* **Windows:**
+  ```cmd
+  run-aura.bat
+  ```
+
+### Inside the Neodymium Repository (Developers)
 ```bash
-# Launch via Maven
 mvn spring-boot:run -pl aura-manager
 ```
 
@@ -316,7 +328,7 @@ The Visual Playbook Editor allows developers and QA teams to inspect, author, an
 ### Key Editor Capabilities
 * **Interactive Step Sequencing**:
   * View, reorder, add, or delete test steps with drag-and-drop handles.
-  * Edit step instructions in plain natural language or specify direct deterministic commands (such as `click`, `type`, `navigate`, `scroll`).
+  * Edit step instructions in plain natural language or adjust recorded step parameters.
 * **Control Tag & Parameter Inspector**:
   * Configure step parameters and control tags through intuitive UI toggles:
     * `(visual)`: Enforces computer-vision-based layout or pixel comparison checks.
@@ -377,7 +389,7 @@ Neodymium AI Manager supports flexible report persistence:
 | Capability | Standalone Interactive Console | Full AI Manager Hub |
 | :--- | :--- | :--- |
 | **Prerequisites** | None (`neodymium-core` only) | Spring Boot web application |
-| **Start Command** | `mvn test -Dneodymium.ai.interactive=true` | `mvn spring-boot:run -pl aura-manager` |
+| **Start Command** | `mvn test -Dneodymium.ai.interactive=true` | `./run-aura.sh` (or `mvn spring-boot:run -pl aura-manager`) |
 | **Port** | Auto-scans `18090+` | Default `8080` |
 | **Browser Window** | Auto-opens when test launches | Opened manually at `http://localhost:8080` |
 | **Target Scope** | Current active test execution | Multi-package test suites & batches |
