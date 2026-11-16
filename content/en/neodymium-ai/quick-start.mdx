@@ -31,12 +31,25 @@ Run the following command in your terminal:
 ```bash
 mvn archetype:generate \
   -DarchetypeGroupId=com.xceptance \
-  -DarchetypeArtifactId=neodymium-archetype \
-  -DarchetypeVersion=5.6.0 \
-  -DgroupId=com.example \
-  -DartifactId=my-neodymium-ai-tests \
-  -DinteractiveMode=false
+  -DarchetypeArtifactId=neodymium-archetype
 ```
+
+Maven will download the archetype and prompt you for two standard coordinates:
+* **`groupId`**: your organization package (e.g. `com.example`)
+* **`artifactId`**: your project directory name (e.g. `my-neodymium-ai-tests`)
+
+All other settings (archetype version, dependencies, launcher scripts, and Posters demo playbooks) are configured automatically.
+
+:::tip[Non-Interactive One-Liner]
+For CI/CD runners or headless scripts, generate non-interactively using standard Maven batch mode (`-B`):
+```bash
+mvn -B archetype:generate \
+  -DarchetypeGroupId=com.xceptance \
+  -DarchetypeArtifactId=neodymium-archetype \
+  -DgroupId=com.example \
+  -DartifactId=my-neodymium-ai-tests
+```
+:::
 
 Once generated, navigate into your new project directory:
 
@@ -178,7 +191,7 @@ Add `neodymium-core` to your `pom.xml`:
 <dependency>
     <groupId>com.xceptance</groupId>
     <artifactId>neodymium-core</artifactId>
-    <version>5.6.0</version>
+    <version>6.0.0-BETA</version>
     <scope>test</scope>
 </dependency>
 ```
