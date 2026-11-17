@@ -82,7 +82,7 @@ LLM Calls & Tokens: 8 calls | 24,110 tokens (In: 22,500, Out: 1,610, Cached: 0)
 Migrating classic Neodymium or Selenide test suites to Neodymium AI playbooks significantly reduces code maintenance:
 
 ### Step 1: Identify Common Flows
-Group repetitive UI setup sequences (such as login, search, or cookie dismissal) into reusable `.yaml` fragments under `src/test/resources/playbooks/fragments/`.
+Group repetitive UI setup sequences (such as login, search, or cookie dismissal) into reusable `.steps` fragment files under `src/test/resources/playbooks/fragments/`.
 
 ### Step 2: Replace Page Object Methods with Natural Language Steps
 Instead of maintaining separate Java Page Object classes with brittle `@FindBy` locators:

@@ -15,5 +15,6 @@ export default defineMeta({
     "configuration",
     "extensibility",
     "troubleshooting",
+    "cheat-sheet",
   ],
 });

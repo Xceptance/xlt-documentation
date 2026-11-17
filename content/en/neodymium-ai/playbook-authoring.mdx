@@ -13,7 +13,7 @@ Playbooks are the core authoring medium of Neodymium AI. Stored as standard `.ya
 
 ## 1. Natural Language Step Formats
 
-Neodymium AI supports four step formatting styles in YAML to accommodate different testing workflows:
+Neodymium AI supports five step formatting styles in YAML to accommodate different testing workflows:
 
 ### A. Multiline Text Block (`steps: |`)
 The cleanest, most readable format. Steps are written line-by-line as a text block without list bullets:
@@ -67,6 +67,18 @@ steps: |
 * **Parent Line**: Represents the high-level executable objective.
 * **Indented Lines**: Evaluated as ordered child milestones within a single compound agent loop, preserving conversation memory and pronoun resolution across turns.
 
+### E. Arrow Sub-steps (`->-` or `->`)
+Alternatively, declare sequential micro-actions using arrow markers. Comments immediately preceding the arrow marker serve as the parent goal title in execution reports:
+
+```yaml
+steps: |
+  # Enter payment details
+  ->- Type "4111222233334444" into #card-number
+  ->- Type "12/28" into #card-expiry
+  ->- Type "123" into #card-cvv
+  ->- Click "Submit Payment"
+```
+
 ---
 
 ## 2. Explicit Control Tags Reference
@@ -81,8 +93,15 @@ Control tags are appended in parentheses to step instructions to customize runti
 | **`bug`** | `(bug)`, `(bug: APP-102)` | **Expected Failure tag.** If the step fails, the test passes. If the step unexpectedly succeeds, the runner fails to signal that the bug is absent. |
 | **`continue-on-error`** | `(continue-on-error)` | If the step encounters an unrecoverable failure, records a warning and proceeds to subsequent steps rather than aborting. |
 | **`no-healing`** | `(no-healing)` | Disables self-healing mechanisms for this step. Fails immediately upon selector divergence. |
-| **`timeout`** | `(timeout: 10s)` | Overrides the default element search timeout for slow-loading asynchronous widgets. |
-| **`context`** | `(context: minimal)` | Overrides the default initial context level for Turn 1 (`none`, `minimal`, `lean`, `standard`, `rich`). |
+| **`threshold`** / **`ssim`** | `(threshold: 0.95)`, `(ssim: 95%)` | Overrides the minimum required SSIM perceptual match score for visual checks. |
+| **`visual`** / **`layout`** | `(visual)`, `(visual: full)`, `(layout)` | Triggers visual or fuzzy layout regression verification against the recorded baseline. |
+| **`marker`** | `(marker)` | Proactively overlays numbered Set-of-Marks badges for visual grounding of textless icons. |
+| **`timeout`** | `(timeout: 10s)` | Overrides the default execution timeout for slow-loading asynchronous widgets. |
+| **`context`** | `(context: minimal)` | Overrides the default initial context level for Turn 1 (`minimal`, `lean`, `standard`, `full`, `hint`). |
+
+:::tip[Selector & Method Hints]
+The `(hint: ...)` tag accepts either CSS/XPath locators (`(hint: #promo-banner button.close)`) or processing hints (`(hint: use java method)`). Supplying a direct locator enables `ContextLevel.HINT` (0 DOM elements sent), saving time and tokens.
+:::
 
 ```yaml
 steps: |
@@ -90,6 +109,7 @@ steps: |
   Verify the promotional banner is displayed (optional)
   Click the legacy export button (bug: BUG-4521)
   Enter credit card number (hint: #card-number-input)
+  Observe confirmation receipt layout (visual: full, threshold: 0.95)
 ```
 
 ---
@@ -97,23 +117,22 @@ steps: |
 ## 3. Modularization & Reusable Steps
 
 ### Static Fragment Includes (`include:`)
-Split common workflows (e.g., login, cookie dismissal) into reusable YAML fragment files:
+Split common workflows (e.g., login, cookie dismissal) into reusable step fragment files (`.steps`):
 
 ```yaml
 # Main Playbook (playbooks/checkout.yaml)
 steps: |
-  include: fragments/login.yaml
+  include: fragments/login.steps
   Open ${app.url}/cart
   Click "Proceed to Payment"
 ```
 
-```yaml
-# Included Fragment (playbooks/fragments/login.yaml)
-steps: |
-  Open ${app.url}/login
-  Type "tester@example.com" into the email field
-  Type "secret123" into the password field
-  Click the "Sign In" button
+```text
+# Included Fragment (playbooks/fragments/login.steps)
+Open ${app.url}/login
+Type "tester@example.com" into the email field
+Type "secret123" into the password field
+Click the "Sign In" button
 ```
 
 ### Dynamic Conditional Branching
@@ -122,7 +141,7 @@ Use natural language branching to handle dynamic SUT states:
 ```yaml
 steps: |
   Open ${app.url}/home
-  If cookie consent banner appears then include: fragments/dismiss-cookies.yaml, else continue
+  If cookie consent banner appears then include: fragments/dismiss-cookies.steps, else continue
   Click the "Start Trial" button
 ```
 
@@ -221,3 +240,153 @@ steps: |
 
 ### Automatic Outbound Secret Masking
 To protect sensitive credentials, Neodymium AI inspects parameters flagged as sensitive. Before any prompt payload is transmitted over the network to external LLM providers, passwords and keys are replaced with format-preserving tokens (e.g. `[MASKED_VAR_password]`). Returned actions are automatically reverse-mapped before browser execution, ensuring raw secrets never leave your local environment.
+
+---
+
+## 5. Dynamic Variable Extraction & Storing
+
+Playbooks can capture values dynamically from the browser Document Object Model (DOM) or save literal values during execution.
+
+### Capturing Element Text (`Store text from`)
+To extract text from a live element and save it into the active execution session, write an instruction targeting the element:
+
+```yaml
+steps: |
+  Open ${app.url}/checkout
+  Click "Submit Order"
+  Store text from #order-confirmation-number as orderId
+  Store text from span.cart-subtotal as totalAmount
+  Verify confirmation message displays "Order ${orderId} confirmed"
+```
+
+The captured string becomes available immediately to all subsequent steps and nested included fragments via `${variableName}`.
+
+### Storing Literal Values
+You can also assign fixed values to dynamic variables within a scenario:
+
+```yaml
+steps: |
+  Store "CONFIRMED" as targetStatus
+  Store "standard-tier" as userTier
+```
+
+### Precedence Hierarchy for Variable Resolution
+When Neodymium resolves `${variable}`, it searches in the following prioritized order:
+1. **Dynamic runtime variables**: Stored via `Store text from` during the current run.
+2. **Dataset parameters**: Defined in the playbook's `data:` block.
+3. **Neodymium runtime data**: Set programmatically via `Neodymium.getData().put(...)`.
+4. **System properties**: Passed via command-line flags (`-Dvariable=value`).
+5. **Configuration properties**: Loaded from `neodymium.properties`.
+
+---
+
+## 6. Playbook Configuration, Metadata & Tags
+
+Beyond steps and datasets, YAML playbooks support root-level declarations for framework properties, metadata, and test tags.
+
+### Overriding Properties in YAML (`properties:`)
+Set framework properties directly inside the YAML file. Keys can use standard dot notation or nested maps:
+
+```yaml
+properties:
+  neodymium.ai.skipReplay: false
+  neodymium.ai.timeout: 45
+  neodymium:
+    ai:
+      model: "gemini-2.5-pro"
+
+steps: |
+  Open ${app.url}
+  Click "Sign in"
+```
+
+You can also apply property overrides to individual dataset rows in `data:`:
+
+```yaml
+data:
+  - testId: freshExecution
+    properties:
+      skipReplay: true
+    user: "test_admin"
+  - testId: cachedExecution
+    properties:
+      skipReplay: false
+    user: "test_member"
+```
+
+### Scenario Metadata (`_meta:`)
+Declare descriptive metadata at the root of the playbook:
+
+```yaml
+_meta:
+  author: "Automation Core Team"
+  ticket: "XLT-5120"
+  feature: "User Onboarding"
+```
+
+Metadata properties are exposed to variable resolution via `${_meta.<key>}`:
+* `${_meta.author}` returns the declared author.
+* Built-in system variables `${_meta.sourceFile}` and `${_meta.classpathResourcePath}` resolve to the playbook's origin filename and path.
+
+### Categorizing Playbooks with Tags (`tags:`)
+Tag scenarios at the root level or inside individual dataset items:
+
+```yaml
+tags:
+  - smoke
+  - payments
+  - area: checkout
+
+steps: |
+  Execute payment verification
+```
+
+Tags enable selective test filtering from the Command Line Interface (CLI) and display in HTML execution reports.
+
+---
+
+## 7. Calling Java Methods from Playbooks
+
+Neodymium AI allows playbooks to delegate complex computations, database lookups, or cryptographic token generation directly to Java methods.
+
+### Defining In-Process Tools
+Annotate methods in your test class or helper classes with `@Tool` or `@AiToolMethod`:
+
+```java
+package com.example.tests;
+
+import org.neodymium.ai.tool.Tool;
+import org.neodymium.ai.tool.ToolParam;
+
+public class OrderHelpers
+{
+    @Tool(description = "Calculates total order tax based on subtotal and state")
+    public static String calculateTax(
+        @ToolParam(name = "subtotal", description = "Order subtotal amount") final String subtotal,
+        @ToolParam(name = "state", description = "Two-letter US state code") final String state)
+    {
+        // Custom calculation logic
+        return TaxCalculator.compute(subtotal, state);
+    }
+}
+```
+
+### Automatic Class and Package Scanning
+Configure Neodymium to discover your tool classes automatically in `neodymium.properties`:
+
+```properties
+neodymium.ai.agent.methods.classes=com.example.tests.OrderHelpers,com.example.util.TokenGenerator
+neodymium.ai.agent.methods.packages=com.example.tests.tools
+```
+
+### Invoking Methods from YAML Steps
+Direct the agent to call the Java method using natural language or explicit action syntax:
+
+```yaml
+steps: |
+  Open ${app.url}/checkout
+  Store text from #subtotal-val as subtotal
+  Calculate tax for subtotal "${subtotal}" and state "CA" (hint: use java method)
+  Store text from #tax-val as displayedTax
+  Verify that displayedTax matches calculated tax
+```
