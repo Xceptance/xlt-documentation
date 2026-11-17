@@ -12,7 +12,7 @@ sidebar:
 Version 10 is a major milestone release of XLT, currently in active beta. It leverages **[Java 21 LTS Virtual Threads](/xlt/manual/test-suite-configuration/#virtual-threads)** as the default load execution model, upgrades reporting with **[AI Data Report](/xlt/manual/ai-data-report/)** (`ai-data.md`), **[Executive PDF Reports](/xlt/manual/reports/#executive-pdf-reports)**, the **[Groovy Scorecard DSL](/xlt/manual/scorecard/)**, **Interactive Dynamic Overview Charts**, and introduces **[Private Machine Mode](/xlt/manual/private-machines/)** for network-isolated testing behind corporate firewalls.
 
 :::warning[Beta Release]
-XLT 10.0.0 is currently in beta (beta-7). Features, configuration properties, and APIs may change before general availability.
+XLT 10.0.0 is currently in beta (beta-8). Features, configuration properties, and APIs may change before general availability.
 :::
 
 ### Framework
@@ -295,3 +295,4 @@ Adjust the logging configuration in your test suites for Logback. While core con
 | **10.0.0-beta-5** | Executive PDF load test report, removal of the support for XML script test cases, HtmlUnit 5.x. |
 | **10.0.0-beta-6** | Fix for a regression in the trend report generator. |
 | **10.0.0-beta-7** | Logback as the new logging framework, direct access to the XLT session's output directory. |
+| **10.0.0-beta-8** | By default, no longer report events via OTLP. |
