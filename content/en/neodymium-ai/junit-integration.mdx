@@ -7,7 +7,7 @@ sidebar:
   order: 7
 ---
 
-Neodymium AI seamlessly integrates with **JUnit 5**, providing both clean declarative annotations and a powerful programmatic Java API for advanced execution flows, parameterizations, and IDE debugging.
+Neodymium AI seamlessly integrates with **JUnit 5**, providing both clean declarative annotations and a powerful programmatic Java API for advanced execution flows, and parameterizations.
 
 ---
 
@@ -41,15 +41,50 @@ public class CheckoutScenarioTest
 ```
 
 :::note[@AiPlaybook is a JUnit 5 TestTemplate]
-`@AiPlaybook` and `@AiInlinePlaybook` are meta-annotated with JUnit 5's `@TestTemplate`. You do **not** need to add `@Test` to playbook methods. Adding `@Test` alongside `@TestTemplate` can lead to duplicate test descriptors.
+`@AiPlaybook` and `@AiInlinePlaybook` are meta-annotated with JUnit 5's `@TestTemplate`. You do **not** need to add `@Test` to playbook methods. Adding `@Test` alongside `@AiPlaybook` or `@AiInlinePlaybook` causes JUnit to register duplicate test descriptors and leads to execution errors.
 :::
 
 ### Path Resolution Rules (`@AiPlaybook`)
-| Syntax | Resolution Strategy | Example Resolved Resource |
-| :--- | :--- | :--- |
-| `@AiPlaybook` (empty) | Convention default | `com/example/tests/TestClass_methodName.yaml` |
-| `@AiPlaybook("custom.yaml")` | Package-relative | `com/example/tests/custom.yaml` |
-| `@AiPlaybook("/playbooks/flow.yaml")` | Absolute Classpath Root | `playbooks/flow.yaml` |
+
+By default, Neodymium AI resolves playbook files against the test classpath root, which maps to **`src/test/resources/`** in standard Maven and Gradle projects.
+
+| Syntax | Resolution Strategy | Resolved Classpath Path | Filesystem Location (`src/test/resources/`) |
+| :--- | :--- | :--- | :--- |
+| `@AiPlaybook` (empty) | Convention default | `com/example/tests/CheckoutTest_testFlow.yaml` | `src/test/resources/com/example/tests/CheckoutTest_testFlow.yaml` |
+| `@AiPlaybook("custom.yaml")` | Package-relative | `com/example/tests/custom.yaml` | `src/test/resources/com/example/tests/custom.yaml` |
+| `@AiPlaybook("/playbooks/flow.yaml")` | Absolute classpath root | `playbooks/flow.yaml` | `src/test/resources/playbooks/flow.yaml` |
+
+:::tip[Classpath Fallback Search]
+If a playbook is not found at the exact classpath location, Neodymium AI automatically checks for an `ai-playbooks/` subfolder (for example, `src/test/resources/ai-playbooks/flow.yaml`).
+:::
+
+#### Custom Playbook Root Directory
+
+To store playbooks outside `src/test/resources` (such as in a shared repository or external folder), set `playbook.directory.global` in `config/ai.properties` or via a JVM system property:
+
+```properties
+# config/ai.properties
+playbook.directory.global=/path/to/shared/playbooks
+```
+
+```bash
+mvn test -Dplaybook.directory.global=/path/to/shared/playbooks
+```
+
+When configured, Neodymium AI checks the external directory before falling back to `src/test/resources`.
+
+#### Companion Recording Directory
+
+Neodymium AI saves companion `.recording.json` baseline files alongside the source YAML playbook by default. To route recordings to a separate folder, set `neodymium.ai.playbook.recordingDirectory`:
+
+```properties
+# config/ai.properties
+neodymium.ai.playbook.recordingDirectory=src/test/resources/recordings
+```
+
+:::info[Playbook File Organization]
+For recommended folder conventions and modular fragment layouts, see the [Playbook Authoring Guide](/neodymium-ai/playbook-authoring/).
+:::
 
 ### `@AiInlinePlaybook` (Java Text Blocks)
 Define multi-line YAML playbooks directly inside Java annotations without creating separate files:
@@ -57,7 +92,7 @@ Define multi-line YAML playbooks directly inside Java annotations without creati
 ```java
 @AiInlinePlaybook("""
     steps: |
-      Open ${app.url}/login in the browser
+      Open ${neodymium.url}/login in the browser
       Type "${username}" into the user field
       Type "${password}" into the password field
       Click the Login button
@@ -73,7 +108,7 @@ public void testInlineWorkflow(final AiSession session)
 ```
 
 ### `@AiDataFile` & `@AiDataSet`
-Bind external data files and filter parameterized iterations:
+Bind external test data files and filter parameterized iterations:
 
 ```java
 @AiPlaybook("/playbooks/search.yaml")
@@ -83,6 +118,38 @@ public void testFilteredQueries(final AiSession session)
 {
 }
 ```
+
+#### External Dataset File (`/data/search-queries.yaml`)
+Define dataset entries under the `data:` block. Assign a unique `testId` to each dataset entry for identification and filtering:
+
+```yaml
+# src/test/resources/data/search-queries.yaml
+data:
+  - testId: query_electronics
+    searchTerm: "laptop"
+    expectedCategory: "Computers & Tablets"
+
+  - testId: query_books
+    searchTerm: "software architecture"
+    expectedCategory: "Technical Books"
+
+  - testId: query_clothing
+    searchTerm: "jacket"
+    expectedCategory: "Outerwear"
+```
+
+In this setup:
+- `@AiDataSet({"query_electronics", "query_books"})` selects only the matching datasets, skipping `query_clothing`.
+- Neodymium executes the test method twice as independent parameterized runs.
+- Playbook steps access dataset parameters using `${searchTerm}`, while programmatic Java tests access them via `session.data().get("searchTerm")`.
+
+:::tip[`@AiDataSet` Filtering Options]
+The `@AiDataSet` annotation supports literal identifiers and regular expressions:
+
+- **Include specific datasets**: `@AiDataSet({"query_electronics", "query_books"})` or `@AiDataSet(include = "query_.*")`
+- **Exclude specific datasets**: `@AiDataSet(exclude = ".*_clothing")`
+- **Convention auto-discovery**: When `@AiDataFile` is omitted, the runner looks for `<TestClassName>_<methodName>.yaml` or `<TestClassName>.yaml` in the test class resource package.
+:::
 
 ### `@AiMode` (Mode Matrix Variations)
 Execute a test method across multiple execution modes to verify both live recording and deterministic replay in a single parameterized test:
@@ -163,7 +230,7 @@ Construct dynamic step workflows using Java builder syntax:
 
 ```java
 final Playbook playbook = Playbook.builder()
-    .step("Open ${app.url}/dashboard in the browser")
+    .step("Open ${neodymium.url}/dashboard in the browser")
     .step("Click the profile menu")
     .step("Verify email address matches '${user.email}'")
     .build();

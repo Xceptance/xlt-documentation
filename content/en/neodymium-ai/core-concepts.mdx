@@ -36,7 +36,7 @@ The companion recording stores:
 * **Normalized Actions**: Low-level browser operations (`NAVIGATE`, `CLICK`, `TYPE`, `SELECT`, `ASSERT`).
 * **Resilient Locators**: Ranked candidate selectors chosen for stability (IDs, test attributes, semantic roles).
 * **DOM Feature Vectors**: Snapshots of tag names, parent hierarchies, and sibling positions for similarity recovery.
-* **Visual Baseline Hashes**: $128 \times 128$ perceptual luminance and color SSIM matrices for visual verification steps.
+* **Visual Baselines**: Compact image fingerprints used to compare page appearance and layout during replay without storing large screenshots.
 * **Execution Timing**: Millisecond action durations and delays for paced replay.
 
 ---
@@ -103,8 +103,8 @@ flowchart TD
    * Attribute Jaccard similarity (30%)
    * Text Levenshtein string distance (25%)
    * CSS class overlap (10%)
-   Matches scoring $\ge 0.80$ resolve automatically in $< 1\text{ ms}$ without calling external LLMs.
-5. **Tier 5: Visual Anchor & Coordinates**: Resolves elements via container-relative coordinates with local $64 \times 64$ luminance SSIM gating.
+   Matches scoring 0.80 or higher resolve automatically in under 1 ms without calling external LLMs.
+5. **Tier 5: Visual Anchor & Coordinates**: Resolves elements via container-relative coordinates with local 64×64 luminance SSIM gating.
 6. **LLM Self-Healing Escalation**: Only if all 5 tiers fail does the engine escalate to live LLM self-healing.
 
 ---
@@ -113,8 +113,8 @@ flowchart TD
 
 When Neodymium AI needs to query the LLM (during creation or self-healing), sending the entire raw HTML page would exhaust token budgets and slow down execution. Instead, the engine employs an **8-tier context escalation ladder** across two strictly monotonic tracks:
 
-$$\textbf{Track A (DOM Track): } \text{HINT} \longrightarrow \mathbf{MINIMAL} \longrightarrow \mathbf{LEAN} \longrightarrow \mathbf{STANDARD} \longrightarrow \mathbf{RICH} \longrightarrow \mathbf{VISUAL\_RICH}$$
-$$\textbf{Track B (Visual Track): } \mathbf{VISUAL} \longrightarrow \mathbf{VISUAL\_LEAN} \longrightarrow \mathbf{VISUAL\_RICH}$$
+* **Track A (DOM Track)**: `HINT` → `MINIMAL` → `LEAN` → `STANDARD` → `RICH` → `VISUAL_RICH`
+* **Track B (Visual Track)**: `VISUAL` → `VISUAL_LEAN` → `VISUAL_RICH`
 
 | Context Level | Mode | What the LLM Sees | Typical Use Case |
 | :--- | :--- | :--- | :--- |

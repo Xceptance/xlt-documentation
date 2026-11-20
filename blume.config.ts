@@ -52,7 +52,7 @@ export default defineConfig({
     tabs: [
       { label: "XLT", path: "/xlt" },
       { label: "XTC", path: "/xtc" },
-      { label: "Neodymium", path: "/neodymium" },
+      { label: "Neodymium Classic", path: "/neodymium" },
       { label: "Neodymium AI", path: "/neodymium-ai" },
     ],
   },

@@ -11,28 +11,20 @@ This guide helps you diagnose failed test steps, interpret execution reports, an
 
 ---
 
-## 1. Interpreting Test Execution Reports
+## 1. Diagnosing Failures with Visual RCA
 
-When a Neodymium AI test completes, the runner generates detailed HTML and Markdown reports in your target build directory (e.g. `target/ai-reports/`):
+When an AI test encounters an assertion failure or step roadblock, Neodymium AI captures diagnostic evidence surfaced directly on the Run Report in the AI Manager:
 
 ### A. Visual Root Cause Analysis (Visual RCA) Card
-When a test fails, the report features a prominent **Visual RCA** diagnostic block containing:
+When a test fails, the Run Report features a prominent **Visual RCA** diagnostic block containing:
 * **Root Cause Summary**: Natural-language explanation of why the action or assertion failed based on visual evidence.
 * **4-Rubric Scorecard**:
-  - `Target Presence`: `FOUND` (element visible $\rightarrow$ locator/timeout issue) vs. `MISSING` (real functional bug).
+  - `Target Presence`: `FOUND` (element visible → locator/timeout issue) vs. `MISSING` (real functional bug).
   - `Form Validation`: Browser HTML5 bubbles (`! Please fill out this field`) or red input borders.
   - `Flow State`: `STUCK` vs. `PROGRESSING`.
   - `Obstruction`: Modal overlays, cookie banners, or loading spinners blocking the click.
 
-### B. Per-Call-Type Telemetry Breakdown
-Reports include an exact accounting table of all LLM invocations and token usage:
-```text
-LLM Calls & Tokens: 8 calls | 24,110 tokens (In: 22,500, Out: 1,610, Cached: 0)
-  ├─ Action:            5 calls | 18,200 tokens
-  ├─ Judge:             2 calls |  4,100 tokens
-  ├─ Verification:      1 calls |  1,810 tokens
-  └─ Visual RCA:        0 calls |      0 tokens
-```
+For complete details on Run Reports, telemetry tables, and failure analytics, see [Reporting & Dashboards](/neodymium-ai/reporting).
 
 ---
 
@@ -96,7 +88,7 @@ loginPage.clickSubmit();
 Express the flow as a simple, human-readable playbook:
 ```yaml
 steps: |
-  Open ${app.url}/login
+  Open ${neodymium.url}/login
   Type "user@example.com" into the email field
   Type "secret" into the password field
   Click the "Sign In" button

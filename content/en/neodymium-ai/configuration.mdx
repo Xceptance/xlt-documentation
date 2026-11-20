@@ -20,6 +20,9 @@ Neodymium AI settings can be defined in `config/ai.properties`, overridden local
 | `neodymium.ai.contextLevel` | `LEAN` | Default DOM extraction fidelity level for Turn 1 (`HINT`, `MINIMAL`, `LEAN`, `STANDARD`, `RICH`). |
 | `neodymium.ai.multilingual` | `false` | Injects language universality guidance into prompts for non-English test suites. |
 | `neodymium.ai.replay.delayScale` | `0.0` | Pacing scale for recorded human typing and pause durations (`0.0` = instant replay for maximum CI speed, `1.0` = real-time pacing). |
+| `playbook.directory.global` | `src/test/resources/` | Custom filesystem root directory for resolving playbooks across test suites. |
+| `neodymium.ai.tests.directory` | `src/test/resources/` | Custom root directory scanned by the AI Manager for playbooks and test cases. |
+| `neodymium.ai.reportHistoryDir` | `target/ai-history` | Custom directory for historical test run aggregations and dashboard telemetry. |
 | `neodymium.ai.playbook.recordingDirectory` | `null` | Custom directory for `.recording.json` companion files (defaults to the playbook's source directory). |
 | `neodymium.ai.frames.autoDiscovery.enabled` | `false` | Automatically traverses child `<iframe>` elements to resolve locators when missing in the root document. |
 | `neodymium.ai.frames.autoDiscovery.maxDepth` | `3` | Maximum nesting depth searched by iframe auto-discovery. |
@@ -74,12 +77,12 @@ Neodymium AI settings can be defined in `config/ai.properties`, overridden local
 
 ---
 
-## 5. Reports & Logging
+## 5. Reports & Manager Streaming
 
 | Property Key | Default | Description |
 | :--- | :--- | :--- |
-| `neodymium.ai.report.disk.enabled` | `true` | Enables writing structured execution reports to disk. |
-| `neodymium.ai.report.disk.directory` | `target/ai-reports` | Target directory for generated execution reports. |
-| `neodymium.ai.report.disk.formats` | `ALL` | Report output formats (`ALL`, `HTML`, `MARKDOWN`, `JSON`). |
+| `neodymium.managerActive` | `false` | Enables streaming real-time execution steps, screenshots, and state updates to the AI Manager. |
+| `neodymium.managerUrl` | `http://localhost:8080` | Endpoint URL of the running AI Manager instance. |
+| `neodymium.managerRunId` | *(generated)* | Custom execution identifier for grouping and correlating run batches in the AI Manager. |
 | `neodymium.ai.consoleExecutionLogs` | `true` | Generates formatted plain-text console execution logs for each test. |
 | `neodymium.ai.consoleExecutionLogs.directory` | `target/ai-console-logs` | Target directory for console execution logs. |

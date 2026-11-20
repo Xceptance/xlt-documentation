@@ -14,27 +14,22 @@ Quick reference for all Neodymium AI features, playbook syntax, modifier tags, a
 ## Complete YAML Playbook Skeleton
 
 ```yaml
-# 1. Scenario Metadata
-_meta:
-  author: "Automation Team"
-  ticket: "XLT-5200"
-
-# 2. Test Filtering Tags
+# 1. Test Filtering Tags
 tags:
   - smoke
   - area: checkout
 
-# 3. Framework Properties Overrides
+# 2. Framework Properties Overrides
 properties:
   neodymium.ai.skipReplay: false
   neodymium.ai.timeout: 45
 
-# 4. Scenario Setup Block
+# 3. Scenario Setup Block
 before: |
-  Open ${app.url}/login
+  Open ${neodymium.url}/login
   Click "Accept Cookies" (optional)
 
-# 5. Core Test Steps
+# 4. Core Test Steps
 steps: |
   # Direct locator hint
   Click the sign-in button (hint: #btn-login)
@@ -60,12 +55,12 @@ steps: |
   Verify confirmation displays "Order ${orderId}" (timeout: 10s)
   Observe confirmation receipt layout (visual: full, threshold: 0.95)
 
-# 6. Scenario Teardown Block
+# 5. Scenario Teardown Block
 after: |
   Click #logout-btn (optional)
   Clear cookies and session
 
-# 7. Data-Driven Iterations
+# 6. Data-Driven Iterations
 data:
   - testId: standardUser
     user:
@@ -137,11 +132,6 @@ When resolving `${variable}`, Neodymium searches in this order:
 3. **Neodymium runtime test data** (`Neodymium.getData().put(...)`)
 4. **System properties** (`-Dvariable=value`)
 5. **Configuration properties** (`neodymium.properties`)
-
-### System Metadata Variables
-* `${_meta.sourceFile}`: Origin playbook filename (e.g. `checkout.yaml`).
-* `${_meta.classpathResourcePath}`: Full classpath resource location.
-* `${_meta.<custom>}`: Custom keys defined under `_meta:` (e.g. `${_meta.author}`).
 
 ---
 
@@ -223,7 +213,6 @@ mvn clean test -Dneodymium.ai.offline=true
 # Inject API key dynamically at runtime
 mvn clean test -Dneodymium.ai.apiKey="AIzaSy..."
 
-# Generate and inspect the preliminary execution reports
-mvn clean test allure:report
-open target/aura-reports/index.html
+# Stream live test execution directly into the AI Manager
+mvn clean test -Dneodymium.managerActive=true
 ```

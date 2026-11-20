@@ -58,7 +58,7 @@ public void testPostFlightAnalysis(final AiSession session) { ... }
 ```
 
 ### The 5 Empirical Detection Categories
-1. **`EMPIRICAL_MULTI_ACTION`**: An instruction written as a single line required $\ge 3$ discrete browser actions to complete in the live browser.
+1. **`EMPIRICAL_MULTI_ACTION`**: An instruction written as a single line required 3 or more discrete browser actions to complete in the live browser.
 2. **`LABEL_DIVERGENCE`**: The author's phrasing diverges from actual live UI labels, forcing fuzzy semantic matching.
 3. **`HIGH_AGENT_FRICTION`**: The agent struggled to interact with the target element, requiring multiple retries or context escalations.
 4. **`UNTAGGED_VISUAL_DEPENDENCY`**: An assertion verified colors or visual alignments without an explicit `(visual)` tag.
@@ -78,8 +78,8 @@ When second-opinion locator validation is desired, the **Quality Judge** guards 
 public void testWithJudge(final AiSession session) { ... }
 ```
 
-* **0ms Fast Path**: If the proposed CSS selector matches **exactly 1 element** in the live DOM and scores high resilience ($\ge 8/10$), it executes immediately with zero latency.
-* **Deliberation on Ambiguity**: If a selector matches multiple elements or has a volatile score ($< 6/10$), the Judge prompts a second model to inspect alternate candidate locators and refine the selector before browser dispatch.
+* **0ms Fast Path**: If the proposed CSS selector matches **exactly 1 element** in the live DOM and scores high resilience (score ≥ 8/10), it executes immediately with zero latency.
+* **Deliberation on Ambiguity**: If a selector matches multiple elements or has a volatile score (score < 6/10), the Judge prompts a second model to inspect alternate candidate locators and refine the selector before browser dispatch.
 
 ---
 

@@ -22,21 +22,33 @@ For design systems, brand guidelines, and static components where pixel-level fi
 
 ```yaml
 steps: |
-  Open ${app.url}/styleguide in the browser
+  Open ${neodymium.url}/styleguide in the browser
   Verify the brand logo and header alignment (visual)
   Verify the full landing page from header to footer (visual: full)
 ```
 
 ### How It Works
-1. **Viewport vs. Full Page**:
-   - `(visual)`: Captures the visible browser viewport at the active screen resolution.
-   - `(visual: full)`: Scrolls the full page height and captures a stitched composite screenshot.
-2. **$128 \times 128$ Luminance SSIM Matrix**: Neodymium AI downsamples the captured screenshot to a $128 \times 128$ luminance matrix, serialized as a compact baseline hash in the companion `.recording.json` file.
-3. **Deterministic Replay ($< 10\text{ ms}$)**: On subsequent replay runs, the browser compares the live screenshot's SSIM matrix against the baseline across local $8 \times 8$ blocks with **0 LLM calls**.
-4. **Threshold Overrides**: Override default tolerance (`0.99`) per step:
-   ```yaml
-   Verify status card styling (visual: min-score=0.98)
-   ```
+
+Visual verification operates across two distinct phases:
+
+#### 1. LLM Mode (Live Recording & Verification)
+* **Capture Screenshot**: Neodymium AI captures the screen based on the directive:
+  - `(visual)`: Captures the visible browser viewport at the active screen resolution.
+  - `(visual: full)`: Scrolls and stitches a composite full-page screenshot.
+* **Multimodal LLM Evaluation**: The framework sends the screenshot to the multimodal LLM with your verification prompt. The LLM inspects the rendered page like a human tester, evaluating typography, layout alignment, and visual consistency.
+* **Compact Baseline Generation**: Once the LLM confirms the assertion, the framework progressively downsamples the image into a compact **128×128 luminance SSIM matrix**. This matrix is serialized as a lightweight baseline in the recorded test playbook.
+
+#### 2. Non-LLM Mode (Fast Offline Replay)
+* **Zero-Token Execution**: On subsequent test replays (e.g. in CI pipelines), the framework bypasses the external LLM entirely.
+* **Live Downscaling**: Neodymium AI captures the live browser screen and scales it down to the identical 128×128 matrix format.
+* **Similarity Index Check (SSIM)**: The framework calculates the **Structural Similarity Index (SSIM)** between the recorded baseline and the live matrix across local 8×8 blocks on CPU in under 10 ms.
+* **Regression Gating**:
+  - If the SSIM match score meets or exceeds the required threshold (default `0.99`), the step passes.
+  - If visual changes cause the score to drop below the threshold, the step fails with a visual regression error.
+* **Threshold Overrides**: Override default tolerance per step when subtle dynamic variance is expected:
+  ```yaml
+  Verify status card styling (visual: min-score=0.98)
+  ```
 
 ---
 
@@ -62,14 +74,15 @@ flowchart LR
 
 1. **Text Redaction via `currentColor`**: All typography (`p`, `span`, `h1`-`h6`, `a`, `button`) is converted into solid skeleton bars matching their exact rendered width and height while **preserving the computed CSS brand color** of the element (e.g., navy headers, dark neutral body copy). Changing text content preserves the structural block width and color without triggering a false visual defect.
 2. **Media Neutralization**: All images (`img`, `picture`, `canvas`, `video`) are replaced with uniform neutral placeholder boxes while preserving their dimensions and grid footprints.
-3. **3-Channel Color SSIM Matrix ($128 \times 128 \times 3$)**: Evaluates both spatial structure (margins, card dimensions, flexbox wrapping) and brand color palette (card fills, hero tints).
+3. **3-Channel Color SSIM Matrix (128×128×3)**: Evaluates both spatial structure (margins, card dimensions, flexbox wrapping) and brand color palette (card fills, hero tints).
 4. **Tolerance Threshold**: Uses a default structural acceptance threshold of `0.92` (compared to `0.99` for pixel-exact checks):
    ```yaml
    steps: |
-     Open ${app.url}/catalog in the browser
+     Open ${neodymium.url}/catalog in the browser
      Verify product catalog grid layout (layout)
      Verify entire checkout flow structure (layout: full, min-score=0.90)
    ```
+5. **Zero-Token Replay**: Initial recording employs the multimodal LLM to evaluate layout semantics. Subsequent replays inject the color wireframe and perform offline color SSIM comparisons without LLM calls.
 
 ---
 
@@ -81,7 +94,7 @@ Append `(marker)` to any interaction step to activate the Set-of-Marks visual gr
 
 ```yaml
 steps: |
-  Open ${app.url}/dashboard in the browser
+  Open ${neodymium.url}/dashboard in the browser
   Click the shopping cart icon (marker)
   Click the user avatar profile button (marker)
 ```
@@ -101,7 +114,7 @@ For interactive HTML5 `<canvas>`, WebGL graphs (Chart.js, D3), mapping engines, 
 
 ```yaml
 steps: |
-  Open ${app.url}/charts in the browser
+  Open ${neodymium.url}/charts in the browser
   Click the blue confirm button in the canvas chart
 ```
 
@@ -124,4 +137,4 @@ Instead, the engine captures the final browser screenshot and triggers **Visual 
 | **`flowState`** | Correlates active URL and visible screen with previous actions to determine if the page transitioned or remained stuck. | `STUCK` \| `PROGRESSING` |
 | **`obstruction`** | Detects modal dialog overlays, cookie consent banners, loading spinners, or disabled buttons blocking interaction. | `OBSTRUCTED` \| `CLEAR` |
 
-The synthesized diagnostic root cause and scorecard are rendered prominently in both HTML and Markdown execution reports, providing instant answers for failed test runs.
+The synthesized diagnostic root cause and scorecard are rendered prominently on the Run Report in the AI Manager, providing instant answers for failed test runs. See [Reporting & Dashboards](/neodymium-ai/reporting) for details.

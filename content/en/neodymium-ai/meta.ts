@@ -5,6 +5,7 @@ export default defineMeta({
   icon: "sparkles",
   directory: "card",
   pages: [
+    "index",
     "quick-start",
     "core-concepts",
     "playbook-authoring",
@@ -12,6 +13,7 @@ export default defineMeta({
     "junit-integration",
     "quality-and-stability",
     "manager",
+    "reporting",
     "configuration",
     "extensibility",
     "troubleshooting",

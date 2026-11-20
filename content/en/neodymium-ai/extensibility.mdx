@@ -11,12 +11,13 @@ Neodymium AI features an in-process, typed tool-calling architecture (`org.neody
 
 ---
 
-## 1. Exposing Custom Java Tools (`@Tool` & `JavaToolFactory`)
+## 1. Exposing Custom Java Tools (`@Tool`)
 
-You can expose internal Java services (such as direct database seeders, REST clients, authentication helpers, or OTP generators) directly to the AI agent as callable in-process tools using `@Tool`:
+You can expose internal Java services (such as database seeders, REST clients, authentication helpers, or OTP generators) directly to the AI agent as callable in-process tools using `@Tool`.
 
-### Step A: Define Your Tool Class
-Annotate Java methods with `@Tool` and parameterize them using `@ToolParam`:
+### Step 1: Define Your Tool Class
+
+Annotate static Java methods with `@Tool` and annotate parameters with `@ToolParam`:
 
 ```java
 package com.example.tools;
@@ -36,15 +37,38 @@ public class DatabaseHelperTools
 }
 ```
 
-### Step B: Register Tools on the AI Session
-Register the generated tools on the session's tool registry before executing steps:
+### Step 2: Register Tools
+
+#### Option A: Global Configuration (Default for Playbooks & Aura Manager)
+
+For YAML playbooks and test executions in Aura Manager, register tools globally via configuration. Add the fully qualified class names to `config/ai.properties` (or `config/neodymium.properties`):
+
+```properties
+# config/ai.properties
+neodymium.ai.agent.methods.classes = com.example.tools.DatabaseHelperTools
+```
+
+:::tip[Automatic Tool Discovery]
+When running playbooks in Aura Manager or via the CLI, Neodymium automatically discovers the configured classes. The framework generates OpenAPI schemas from `@Tool` annotations and registers them into the active agent session. Playbooks can then invoke the tool directly:
+
+```yaml
+steps: |
+  Reset the cart for user "tester@example.com"
+  Open https://example.com/cart
+  Verify the cart is empty
+```
+:::
+
+#### Option B: Programmatic Registration (Test-Specific Scoping)
+
+When writing Java-based tests (such as JUnit 5 tests), you can register tools programmatically on the active `AiSession`. This scopes tools exclusively to an individual test run:
 
 ```java
 import org.neodymium.ai.tool.JavaToolFactory;
 
 try (final AiSession session = AiSession.selenide(ExecutionMode.AUTO))
 {
-    // Reflectively generates OpenAPI JSON schema and binds to the agent
+    // Register mock or fixture tools scoped strictly to this session
     session.getToolRegistry().registerAll(
         JavaToolFactory.createToolsFromClass(DatabaseHelperTools.class)
     );
@@ -59,7 +83,7 @@ try (final AiSession session = AiSession.selenide(ExecutionMode.AUTO))
 ```
 
 * **Zero Subprocess Overhead**: Custom tools execute synchronously in-process on the active test thread with typed parameter conversion.
-* **OpenAPI Schema Generation**: Descriptions and parameter types are formatted dynamically into Gemini, OpenAI, and Mistral function declaration schemas.
+* **OpenAPI Schema Generation**: Descriptions and parameter types convert dynamically into Gemini, OpenAI, and Mistral function declaration schemas.
 
 ---
 

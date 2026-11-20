@@ -7,7 +7,7 @@ sidebar:
   order: 2
 ---
 
-This guide walks you through bootstrapping a new project using the Neodymium Maven Archetype, configuring your LLM provider credentials, running your first natural language playbook, and launching the interactive Aura Manager.
+This guide walks you through bootstrapping a new project using the Neodymium Maven Archetype, configuring your LLM provider credentials, running your first natural language playbook, and launching the interactive Neodymium AI Manager.
 
 ---
 
@@ -18,13 +18,18 @@ Before getting started, ensure you have the following installed:
 * **Java Development Kit (JDK) 21** or later.
 * **Apache Maven 3.9** or later.
 * A modern web browser (Google Chrome, Mozilla Firefox, Microsoft Edge, or Apple Safari).
-* An API key for your chosen LLM provider (e.g., Google Gemini, OpenAI, or Mistral).
+* An API key for Google Gemini (recommended; currently the only fully supported provider).
 
 ---
 
-## 2. Option A: Bootstrap via Maven Archetype (Recommended)
+## 2. Project Setup
 
-The fastest way to get started with Neodymium AI is using the official Maven Archetype. It scaffolds a complete, pre-configured test automation project with showcase natural language playbooks, JUnit 5 runners, configuration files, and Aura Manager launcher scripts.
+Choose the setup path that matches your project:
+
+<Tabs>
+  <Tab title="Option A: Maven Archetype (Recommended)">
+
+The fastest way to get started with Neodymium AI is using the official Maven Archetype. It scaffolds a complete, pre-configured test automation project with showcase natural language playbooks, JUnit 5 runners, configuration files, and Neodymium AI Manager launcher scripts.
 
 Run the following command in your terminal:
 
@@ -57,11 +62,11 @@ Once generated, navigate into your new project directory:
 cd my-neodymium-ai-tests
 ```
 
-### Scaffolded Project Structure
+#### Project Structure
 
 ```text
 my-neodymium-ai-tests/
-├── run-aura.sh / run-aura.bat      # Interactive Aura Manager launcher
+├── run-neodymium.sh / run-neodymium.bat # Interactive AI Manager launcher
 ├── pom.xml                         # Neodymium dependencies & build plugins
 ├── config/
 │   ├── ai.properties               # LLM provider, models, and timeouts
@@ -82,6 +87,64 @@ my-neodymium-ai-tests/
         └── fragments/
             └── cookie_consent.steps
 ```
+
+  </Tab>
+  <Tab title="Option B: Add to an Existing Project">
+
+If you are adding Neodymium AI to an existing Maven project:
+
+#### Step 1: Add Maven Dependency
+Add `neodymium-core` to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.xceptance</groupId>
+    <artifactId>neodymium-core</artifactId>
+    <version>6.0.0-BETA</version>
+    <scope>test</scope>
+</dependency>
+```
+
+#### Step 2: Write Your Playbook
+Create `src/test/resources/tests/posters_search.yaml`:
+
+```yaml
+name: Posters Demo Store Search
+description: Opens the Posters demo shop, performs a product search, and verifies results.
+
+steps: |
+  Open https://posters.xceptance.io:8443/
+  If a cookie consent banner is visible, click 'Accept All'
+  Type "Modern" into the search input field
+  Click the search button
+  Verify the search result header contains "Modern"
+  Verify at least one product tile is displayed
+```
+
+#### Step 3: Create the JUnit 5 Test Class
+Create `src/test/java/tests/PostersSearchAiTest.java`:
+
+```java
+package tests;
+
+import org.neodymium.ai.junit.AiPlaybook;
+import org.neodymium.ai.junit.NeodymiumAiTest;
+
+@NeodymiumAiTest
+public class PostersSearchAiTest
+{
+    @AiPlaybook("tests/posters_search.yaml")
+    public void testPostersSearch()
+    {
+        // @AiPlaybook acts as a JUnit 5 @TestTemplate.
+        // NeodymiumAiTest handles playbook loading, browser lifecycle,
+        // live recording, and offline replay automatically.
+    }
+}
+```
+
+  </Tab>
+</Tabs>
 
 ---
 
@@ -119,36 +182,38 @@ mvn test -Dneodymium.ai.apiKey="your-gemini-api-key-here"
 ```
 
 :::note[Default Provider and Model]
-By default, Neodymium AI uses Google Gemini with the `gemini-3.5-flash-lite` model for fast, cost-effective execution. You can configure other models and providers (OpenAI, Mistral, Vertex AI) in `config/ai.properties` or override them locally in `config/credentials.properties`.
+By default, Neodymium AI uses Google Gemini with the `gemini-3.5-flash-lite` model for fast, cost-effective execution.
+
+While you can configure other providers and models (such as OpenAI, Mistral, or Vertex AI) in `config/ai.properties` or `config/credentials.properties`, **Google Gemini is currently the only fully supported provider**. Full support for additional providers is under active development.
 :::
 
 ---
 
 ## 4. Run Your First AI Test
 
-Execute the pre-packaged Posters Demo Store homepage test using Maven:
+Execute the test using Maven:
 
 ```bash
-mvn test -Dtest=PostersHomepageAiTest
+mvn test -Dtest=PostersSearchAiTest
 ```
 
 Or run headlessly:
 
 ```bash
-mvn test -Dtest=PostersHomepageAiTest -Dbrowserprofile.global.headless=true
+mvn test -Dtest=PostersSearchAiTest -Dbrowserprofile.global.headless=true
 ```
 
-### Launch the Neodymium Aura Manager (Web UI)
+### Launch the Neodymium AI Manager (Web UI)
 
-Your bootstrapped project includes executable scripts to launch the interactive Aura Manager dashboard:
+Your bootstrapped project includes executable scripts to launch the interactive AI Manager dashboard:
 
 * **Linux / macOS:**
   ```bash
-  ./run-aura.sh
+  ./run-neodymium.sh
   ```
 * **Windows:**
   ```cmd
-  run-aura.bat
+  run-neodymium.bat
   ```
 
 Open your browser at `http://localhost:8080` to inspect playbooks, run test batches, stream live viewport screenshots, and explore execution history.
@@ -162,13 +227,13 @@ When executing Neodymium AI tests, observe the two distinct execution phases:
 ### Run 1: Discovery & Recording (Creation Mode)
 * Neodymium AI launches the browser and reads the YAML instructions.
 * The LLM analyzes the live page Document Object Model (DOM), identifies resilient CSS and XPath selectors, and performs the clicks and text inputs.
-* Upon test completion, Neodymium AI automatically generates a companion file: `posters_homepage.recording.json` alongside your playbook.
+* Upon test completion, Neodymium AI automatically generates a companion file: `posters_search.recording.json` alongside your playbook.
 * The recording contains the concrete executed actions, selectors, and visual baseline hashes.
 
 ### Run 2: Deterministic Machine Replay (Replay Mode)
 * Run the command again:
   ```bash
-  mvn test -Dtest=PostersHomepageAiTest
+  mvn test -Dtest=PostersSearchAiTest
   ```
 * Neodymium AI detects the existing `.recording.json` file.
 * It executes all recorded actions directly in the browser via Selenide in milliseconds.
@@ -177,63 +242,3 @@ When executing Neodymium AI tests, observe the two distinct execution phases:
 :::tip[Automatic Self-Healing]
 If the target application UI updates (e.g. an ID or class name changes), Neodymium AI does not fail immediately. In `REPLAY_WITH_HEALING` mode (the default), it detects the broken selector, escalates to the live DOM, locates the new element, updates the recording file on disk, and continues the test run smoothly.
 :::
-
----
-
-## 6. Option B: Adding to an Existing Project
-
-If you are adding Neodymium AI to an existing Maven project:
-
-### Step 1: Add Maven Dependency
-Add `neodymium-core` to your `pom.xml`:
-
-```xml
-<dependency>
-    <groupId>com.xceptance</groupId>
-    <artifactId>neodymium-core</artifactId>
-    <version>6.0.0-BETA</version>
-    <scope>test</scope>
-</dependency>
-```
-
-### Step 2: Write Your Playbook
-Create `src/test/resources/playbooks/sample-search.yaml`:
-
-```yaml
-name: Search and Validation Sample Flow
-description: Opens the application, enters a search query, and verifies results.
-
-steps: |
-  Open https://example.com in the browser
-  Locate the search input field and type "test automation"
-  Click the search submit button
-  Verify that the page heading contains "Results"
-```
-
-### Step 3: Create the JUnit 5 Test Class
-Create `src/test/java/com/example/tests/SampleSearchTest.java`:
-
-```java
-package com.example.tests;
-
-import org.neodymium.ai.junit.AiPlaybook;
-import org.neodymium.ai.junit.NeodymiumAiTest;
-import org.neodymium.ai.session.AiSession;
-
-@NeodymiumAiTest
-public class SampleSearchTest
-{
-    @AiPlaybook("/playbooks/sample-search.yaml")
-    public void testSearchFlow(final AiSession session)
-    {
-        // @AiPlaybook acts as a JUnit 5 @TestTemplate.
-        // NeodymiumAiTest handles playbook loading, browser lifecycle,
-        // live recording, and offline replay automatically.
-    }
-}
-```
-
-Execute the test:
-```bash
-mvn test -Dtest=SampleSearchTest
-```
