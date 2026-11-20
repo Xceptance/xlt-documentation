@@ -1,0 +1,420 @@
+---
+title: Playbook Authoring Guide
+description: Learn how to write robust, natural-language playbooks with step formats, data parameterization, control tags, report grouping, and modular includes.
+icon: file-text
+sidebar:
+  label: Playbook Authoring
+  order: 4
+---
+
+Playbooks are the core authoring medium of Neodymium AI. Stored as standard `.yaml` files, they express testing intent in clear human language while supporting data-driven execution, runtime control tags, report grouping, and modular includes.
+
+---
+
+:::tip[Where to Save Playbooks]
+Save `.yaml` playbook files in **`src/test/resources/`** (for example, `src/test/resources/playbooks/login.yaml`).
+
+* **AI Manager**: Automatically discovers any playbook saved under `src/test/resources/`.
+* **Java / JUnit**: Loads playbooks by package convention or via `@AiPlaybook("/playbooks/login.yaml")` (see [JUnit Path Resolution](/neodymium-ai/junit-integration/#path-resolution-rules-aiplaybook)).
+* **Custom Root Folder**: To use a different root directory, configure `playbook.directory.global` in `config/ai.properties` or set `-Dneodymium.ai.tests.directory=...` for the AI Manager.
+
+:::
+
+---
+
+## 1. The Playbook Step Format
+
+### The Standard: Multiline Steps (`steps: |`)
+
+The multiline text block (`steps: |`) is the recommended format for writing playbooks. Steps are written line by line in plain English without quotation marks, bullet dashes, or YAML syntax overhead:
+
+```yaml
+steps: |
+  Open https://posters.xceptance.io:8443/en-US/login in the browser
+  Type "jane.doe@varmail.net" into the email field
+  Type "TopSecretPassword123!" into the password field
+  Click the "Sign In" button
+  Verify the headline contains "My Account"
+```
+
+### Grouping Related Actions (Indented Milestones)
+
+When complex interactions involve multiple dependent micro-actions, indent them under a descriptive goal title. Common examples include hovering over an element before clicking a sub-menu, filling out credit card inputs, or resolving pronouns like "it":
+
+```yaml
+steps: |
+  Add featured poster to cart:
+    Locate the first poster card and hover over it
+    Click its 'Add to Cart' button
+  Verify cart counter badge shows "1"
+```
+
+* **Parent Goal**: Defines the high-level objective in test execution reports.
+* **Indented Steps**: Execute sequentially within a single compound loop, preserving conversational memory and pronoun resolution across turns.
+
+:::tip[YAML Sequence Support]
+Neodymium also supports standard YAML sequence lists (`steps:` with `- "step"`).
+:::
+
+---
+
+## 2. Test Data & Data-Driven Testing
+
+Neodymium executes playbooks using a data-driven model. Instead of hardcoding values or duplicating scenarios for each permutation, separate test logic from test data with the `data:` block.
+
+### The Data-Driven Execution Model
+
+When `data:` contains a list of datasets, **each dataset represents an independent test run**. If you define three datasets, Neodymium executes the entire scenario three times from start to finish. Each run features:
+- A fresh browser session and clean cookies.
+- Dedicated execution of `before:` and `after:` lifecycle blocks.
+- An individual result entry in execution logs and test reports.
+
+A single failing dataset does not abort the remaining dataset runs.
+
+### Defining Data in YAML (`data:`)
+
+#### Multiple Parameterized Datasets (Data Matrix)
+Define `data:` as a list to run parameterized tests across multiple variations. Access properties in steps using `${placeholder}` syntax:
+
+```yaml
+steps: |
+  Open https://posters.xceptance.io:8443/
+  Type "${searchTerm}" into the search input field
+  Click the search button
+  Verify the search result header contains "${searchTerm}"
+  Verify at least one product tile is displayed
+
+data:
+  - testId: search_modern_posters
+    searchTerm: "Modern"
+
+  - testId: search_nature_posters
+    searchTerm: "Nature"
+
+  - testId: search_bear_posters
+    searchTerm: "Bear"
+```
+
+#### Single Dataset Map
+Supply fixed variables for a single execution:
+
+```yaml
+data:
+  searchTerm: "Modern"
+
+steps: |
+  Open https://posters.xceptance.io:8443/
+  Type "${searchTerm}" into the search input field
+  Click the search button
+```
+
+### Nested Dot-Notation & Interpolation
+Placeholders can reference other variables and navigate nested maps:
+
+```yaml
+data:
+  baseUrl: "https://posters.xceptance.io:8443"
+  path: "/en-US/login"
+  fullUrl: "${baseUrl}${path}"
+  user:
+    email: "jane.doe@varmail.net"
+
+steps: |
+  Open ${fullUrl} in the browser
+  Type "${user.email}" into the email input field
+```
+
+### Dynamic Variable Capture (`Store text from`)
+Capture live values from the page and reuse them in subsequent steps:
+
+```yaml
+steps: |
+  Open https://posters.xceptance.io:8443/
+  Store text from #header-brand-logo as brandTitle
+  Click the first poster product title
+  Verify page title contains "${brandTitle}"
+```
+
+You can also assign fixed runtime values:
+
+```yaml
+steps: |
+  Store "CONFIRMED" as targetStatus
+  Store "standard-tier" as userTier
+```
+
+### Automatic Outbound Secret Masking
+Neodymium AI scans parameters flagged as sensitive (such as passwords, tokens, and keys). Before transmitting prompt payloads to external LLM providers, values are replaced with format-preserving tokens (e.g. `[MASKED_VAR_password]`). Returned actions are reverse-mapped before browser execution, ensuring raw secrets never leave your environment.
+
+---
+
+## 3. Core Control Tags
+
+Control tags are optional parenthetical instructions appended to step lines. They customize runtime engine behavior without reaching the language model prompt.
+
+| Tag | Syntax Example | Engine Behavior |
+| :--- | :--- | :--- |
+| **`hint`** | `(hint: #submit-btn)` | Bypasses DOM extraction and targets the specified selector directly. Saves time and tokens. |
+| **`optional`** / **`soft`** | `(optional)`, `(soft)` | Continues test execution if the step fails instead of aborting the scenario immediately. |
+| **`timeout`** | `(timeout: 15s)` | Overrides the default execution timeout for slow-loading asynchronous widgets. |
+| **`visual`** | `(visual)`, `(visual: full)` | Triggers visual or layout regression verification against the recorded baseline screenshot. |
+
+```yaml
+steps: |
+  Click the "Sign In" button (timeout: 15s)
+  Verify the promotional banner is displayed (optional)
+  Enter email address (hint: #email)
+  Observe shop header layout (visual: full)
+```
+
+:::tip[Selector Hints]
+The `(hint: ...)` tag accepts either CSS/XPath locators (`(hint: #promo-banner button.close)`) or processing hints (`(hint: use java method)`). Supplying a direct locator enables `ContextLevel.HINT` (0 DOM elements sent), saving time and tokens.
+:::
+
+---
+
+## 4. Modular Steps & Dynamic Dialogs
+
+### Static Fragment Includes (`include:`)
+
+Split common routines (such as authentication or navigation) into reusable `.steps` fragment files:
+
+```yaml
+# Main Playbook (playbooks/checkout.yaml)
+steps: |
+  include: fragments/login.steps
+  Open https://posters.xceptance.io:8443/en-US/cart
+  Click "Proceed to Checkout"
+```
+
+```text
+# Included Fragment (playbooks/fragments/login.steps)
+Open https://posters.xceptance.io:8443/en-US/login
+Type "jane.doe@varmail.net" into the email field
+Type "TopSecretPassword123!" into the password field
+Click the "Sign In" button
+Verify the headline contains "My Account"
+```
+
+#### Include Path Resolution Rules
+
+- **Relative to Parent File**: Paths without a leading slash resolve relative to the folder of the current playbook file (for example, `include: fragments/login.steps` from `playbooks/checkout.yaml` resolves to `src/test/resources/playbooks/fragments/login.steps`).
+- **Relative to Resources Root**: Paths can reference the root of `src/test/resources/` directly (for example, `include: playbooks/fragments/login.steps`).
+- **Nested Includes**: Included `.steps` files can include additional fragments recursively. All relative paths resolve against the enclosing fragment file.
+
+### Conditional Steps
+
+Transient overlays such as cookie consent banners, geo-locators, and survey popups often appear unpredictably. Use natural-language conditionals to resolve them without breaking linear test runs.
+
+#### Direct Inline Action
+
+For single-step dismissals, specify the action directly on the same line:
+
+```yaml
+steps: |
+  Open https://posters.xceptance.io:8443/
+  If cookie consent banner appears, click "Accept All"
+  Click "Sign In"
+```
+
+#### Multi-Step Fragment Delegation (`include:`)
+
+When handling an overlay requires multiple steps, delegate the resolution to an included fragment:
+
+```yaml
+steps: |
+  Open https://posters.xceptance.io:8443/
+  If cookie consent banner appears, include: fragments/cookie_consent.steps
+  Click "Sign In"
+```
+
+:::note[When to Use Conditionals]
+Use conditionals for unpredictable environmental overlays like cookie prompts. If the referenced dialog is not displayed, the agent treats the step as satisfied and continues to subsequent actions. For different business journeys (such as guest vs. registered checkout), write separate explicit scenarios or use parameterized datasets.
+:::
+
+### Lifecycle Blocks (`before:` and `after:`)
+
+Define scenario-level setup and teardown instructions directly in the playbook:
+
+```yaml
+before: |
+  Open https://posters.xceptance.io:8443/en-US/login
+  Type "admin@varmail.net" into the email field
+  Type "AdminPass123!" into the password field
+  Click the "Sign In" button
+
+steps: |
+  Execute core checkout test scenario
+
+after: |
+  Click "Sign Out"
+```
+
+---
+
+## 5. Invoking Custom Java Tools
+
+Playbooks can delegate complex computations, cryptographic operations, or database queries to custom in-process Java tools.
+
+### Step Syntax in Playbooks
+
+Instruct the agent to execute a registered Java tool using natural language combined with a `(hint: use java method)` tag:
+
+```yaml
+steps: |
+  Open https://posters.xceptance.io:8443/en-US/cart
+  Store text from #order-subtotal-value as subtotal
+  Calculate tax for subtotal "${subtotal}" and state "CA" (hint: use java method)
+  Store text from #order-tax-value as displayedTax
+  Verify that displayedTax matches calculated tax
+```
+
+:::info[Implementing Java Tools]
+To create, annotate, and register custom Java methods with `@Tool` on your test classpath, see the [Extensibility & Custom Tools](/neodymium-ai/extensibility/) guide.
+:::
+
+---
+
+## 6. Scenario Tags & Report Grouping
+
+Neodymium uses structured tags (`tags:`) to organize test suites, filter command-line executions, and structure test results in Neodymium AI reports and dashboards.
+
+### Structured Key-Value Tags
+
+Tags in Neodymium are declared as key-value pairs (or lists of values per key), not plain string lists. Declare them at the playbook root to apply them across all executions:
+
+```yaml
+tags:
+  type: smoke
+  area: catalog
+  environment: staging
+  suite: CatalogRegression
+
+steps: |
+  Open https://posters.xceptance.io:8443/
+  Click "World of Nature"
+```
+
+Tag keys can also hold multiple values:
+
+```yaml
+tags:
+  type:
+    - smoke
+    - regression
+  area: catalog
+```
+
+### Report Grouping and Analytics
+
+In Neodymium AI reports, execution metrics, and dashboards, tags power automatic categorization and aggregation:
+
+| Tag Key | Example Value | Reporting & Dashboard Role |
+| :--- | :--- | :--- |
+| **`suite`** / **`batch`** | `CatalogRegression`, `NightlyRun` | Groups related runs into consolidated test batches in the AI Manager report dashboard. |
+| **`area`** | `catalog`, `checkout`, `account` | Segregates results into functional domains to highlight subsystem stability and coverage. |
+| **`type`** | `smoke`, `regression`, `critical` | Classifies runs by testing tier for targeted release-gate decisions. |
+| **`environment`** | `staging`, `production` | Separates test metrics across target deployment tiers. |
+
+### Hierarchical Tag Scoping (Root vs. Dataset)
+
+Root-level tags define defaults for the entire playbook file. Individual dataset rows under `data:` can override or append tags for specific scenario variations:
+
+```yaml
+tags:
+  type: regression
+  area: catalog
+
+data:
+  - testId: searchStaging
+    tags:
+      environment: staging
+    searchTerm: "Modern"
+
+  - testId: searchProduction
+    tags:
+      environment: production
+    searchTerm: "Nature"
+```
+
+### Selective Test Execution via CLI
+
+Filter test execution dynamically using system properties without modifying playbook files:
+
+* Execute only tests matching an area tag:
+  ```bash
+  mvn test -Dneodymium.tag.area=catalog
+  ```
+* Execute only smoke tests:
+  ```bash
+  mvn test -Dneodymium.tag.type=smoke
+  ```
+* Combine multiple criteria:
+  ```bash
+  mvn test -Dneodymium.tag.area=catalog -Dneodymium.tag.environment=staging
+  ```
+
+---
+
+## 7. Advanced Playbook Techniques
+
+Use these advanced techniques for high-performance test suites, strict regression locks, or specialized troubleshooting.
+
+### Batch Assertions (Single-Turn Verification)
+
+Running multiple individual verification steps on the same page can generate excessive round-trip LLM calls. You can batch related checks into a single turn:
+
+* **Compound Sentence**: Combine assertions into a single step:
+  ```yaml
+  steps: |
+    Verify brand logo is visible, search bar is present, and user avatar is displayed
+  ```
+* **Folded Block Scalar (`- >-`)**: In YAML sequence lists, the folded block scalar folds multiple lines into one prompt:
+  ```yaml
+  steps:
+    - "Open https://posters.xceptance.io:8443/"
+    - >-
+      Verify the shop logo is visible.
+      Verify the search input field is present.
+      Verify the navigation bar contains "World of Nature".
+      Verify the cart icon is displayed.
+    - "Click Sign In"
+  ```
+
+### Advanced Engine & Resilience Tags
+
+| Tag | Syntax Example | Purpose |
+| :--- | :--- | :--- |
+| **`no-replay`** | `(no-replay)` | Bypasses recorded actions in `.recording.json` and forces live agent reasoning on non-deterministic steps. |
+| **`no-healing`** | `(no-healing)` | Disables self-healing. Fails immediately if the original locator no longer matches. |
+| **`bug`** | `(bug: APP-102)` | Expected failure tag. Passes if the step fails; fails if the step unexpectedly succeeds. |
+| **`marker`** | `(marker)` | Overlays numbered Set-of-Marks badges for visual grounding on textless icon buttons. |
+| **`threshold`** | `(threshold: 0.95)` | Sets the minimum SSIM perceptual match score for visual layout checks. |
+| **`context`** | `(context: minimal)` | Forces minimal DOM context level, stripping extra attributes to save tokens. |
+
+### Per-Dataset Property Overrides
+
+Override framework configuration values for specific dataset iterations:
+
+```yaml
+data:
+  - testId: fastSmokeTest
+    properties:
+      neodymium.ai.skipReplay: false
+      neodymium.ai.timeout: 10
+    user: "smoke_user"
+  - testId: freshExecution
+    properties:
+      neodymium.ai.skipReplay: true
+    user: "admin_user"
+```
+
+### Variable Resolution Precedence Hierarchy
+
+When Neodymium resolves a variable placeholder `${variable}`, it searches in the following order:
+
+1. **Dynamic runtime variables**: Captured via `Store text from` during the active execution.
+2. **Dataset parameters**: Defined in the playbook `data:` block.
+3. **Programmatic test data**: Injected via `Neodymium.getData().put(...)`.
+4. **System properties**: Passed via command-line flags (`-Dvariable=value`).
+5. **Configuration properties**: Loaded from `neodymium.properties`.

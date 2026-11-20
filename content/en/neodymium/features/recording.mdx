@@ -56,8 +56,8 @@ All properties start with the `video.` or `gif.` prefix, depending on the format
 | `appendAllRecordingsToAllureReport`         | GIF & Video | boolean | Defines whether all recordings are added to the report. If `false`, only recordings for **failed** tests are included. |
 | `oneImagePerMilliseconds`                   | GIF & Video | Integer | Defines the time interval in milliseconds between captured frames (must be greater than 0).                            |
 | `tempFolderToStoreRecording`                | GIF & Video | String  | Defines the directory path where the temporary and final recordings are saved.                                         |
-| `imageQuality`                              | GIF & Video | double  | Defines the desired image quality percentage (value range: $0 \le \text{imageQuality} \le 1.0$).                       |
-| `imageScaleFactor`                          | GIF & Video | double  | Defines the scale factor of the image (value range: $0 < \text{imageScaleFactor} \le 1.0$).                            |
+| `imageQuality`                              | GIF & Video | double  | Defines the desired image quality percentage (value range: 0.0 to 1.0).                                                |
+| `imageScaleFactor`                          | GIF & Video | double  | Defines the scale factor of the image (value range: > 0.0 to 1.0).                                                     |
 | `format`                                    | GIF & Video | String  | Defines the recording format: `mp4` or `gif`.                                                                          |
 | `logInformationAboutRecording`              | GIF & Video | boolean | Adds additional debug data about the video processing to the Allure report.                                            |
 | `video.ffmpegBinaryPath`                    | Video       | String  | Defines the path to the `ffmpeg` program executable.                                                                   |

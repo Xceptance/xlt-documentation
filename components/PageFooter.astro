@@ -1,0 +1,23 @@
+---
+interface Props {
+  route?: string;
+  page?: {
+    route?: string;
+  };
+}
+
+const { route, page } = Astro.props;
+const currentRoute = route || page?.route || Astro.url.pathname;
+const isNeodymiumAi = currentRoute?.startsWith("/neodymium-ai");
+---
+
+{isNeodymiumAi && (
+  <aside
+    class="mx-auto my-8 max-w-content rounded-lg border border-border/60 bg-muted/30 px-4 py-3 text-xs text-muted-foreground"
+    aria-label="AI Transparency Notice"
+  >
+    <p class="leading-relaxed">
+      This document was generated with the assistance of AI and reviewed by Xceptance experts.
+    </p>
+  </aside>
+)}

@@ -1,0 +1,172 @@
+---
+title: Neodymium AI Manager
+description: Web hub for visual playbook editing, interactive chat assistant, test execution queues, and AI-driven self-healing.
+icon: layout-dashboard
+sidebar:
+  label: AI Manager
+  order: 9
+---
+
+Neodymium AI offers two interactive operational experiences:
+1. **Standalone Interactive Console**: Built directly into `neodymium-core` with zero external dependencies. It automatically launches a lightweight embedded browser console whenever a JUnit test is executed with `-Dneodymium.ai.interactive=true`.
+2. **Neodymium AI Manager (Web Hub)**: A dedicated web application for authoring playbooks visually, collaborating with an AI chat assistant, queueing test batches, monitoring test runs live, and curating multi-dimensional telemetry dashboards.
+
+---
+
+## 1. Standalone Interactive Console (No Manager Required)
+
+You do not need to install or run the full AI Manager to monitor and interact with test executions. Neodymium AI includes a built-in, lightweight interactive console engine.
+
+### Launching Standalone Interactive Mode
+
+Enable interactive mode using any standard configuration mechanism:
+
+#### Via Maven Command Line
+```bash
+mvn test -Dtest=PostersSearchAiTest -Dneodymium.ai.interactive=true
+```
+
+#### Via Property File
+Add to `config/dev-neodymium.properties` (or `config/ai.properties`):
+
+```properties
+neodymium.ai.interactive=true
+```
+
+#### Via Environment Variable
+```bash
+export NEODYMIUM_AI_INTERACTIVE=true
+```
+
+### How the Standalone Console Operates
+
+When `neodymium.ai.interactive=true` is enabled and the AI Manager is not running:
+
+1. **Embedded Java Server**: `NeodymiumAiRunner` spins up a minimal, internal Java HTTP server binding to port `18090` (or the next available port). No Spring Boot, Node.js, or external daemon is required.
+2. **Automatic Browser Launch**: The test runner automatically launches your default browser or opens a dedicated app window to `http://localhost:18090`.
+3. **Live SSE Streaming**: State snapshots, step descriptions, and live viewport screenshots are streamed in real time via Server-Sent Events (`/api/console/events`).
+4. **Interactive Failure Interception**: When a step encounters a locator failure or timeout, the execution pauses immediately with a unique `pauseId`, offering interactive controls directly in the browser:
+   * **AI Heal**: Triggers an on-demand multimodal LLM healing cycle to resolve the broken selector against the live DOM and update the recording.
+   * **Retry / Run**: Re-attempts the current step immediately.
+   * **Auto-Run**: Resumes continuous test execution without pausing on subsequent steps.
+   * **Skip**: Bypasses the failing step and moves to the next playbook instruction.
+   * **Abort**: Terminates the test run immediately.
+5. **Automatic Teardown**: As soon as the JUnit test lifecycle completes, the embedded HTTP server shuts down automatically.
+
+---
+
+## 2. Launching the Full AI Manager Hub
+
+For team-wide visual editing, AI chat authoring, and cross-suite telemetry dashboards, launch the full AI Manager application:
+
+### In Bootstrapped Projects (Scaffolded via Archetype)
+Run the launcher script in your project root:
+
+* **Linux / macOS:**
+  ```bash
+  ./run-neodymium.sh
+  ```
+* **Windows:**
+  ```cmd
+  run-neodymium.bat
+  ```
+
+### Inside the Neodymium Repository (Developers)
+```bash
+./run-neodymium.sh
+# or directly via Maven:
+mvn spring-boot:run -pl :neodymium-manager
+```
+
+Once initialized, navigate to `http://localhost:8080` in your web browser.
+
+---
+
+## 3. Interactive Web Controls & AI Self-Healing
+
+When running tests with `-Dneodymium.ai.interactive=true` alongside the AI Manager (`-Dneodymium.managerActive=true`), the test runner routes interactive failure pauses directly into the AI Manager web UI:
+
+* **Interactive Failure Interception**: When a step encounters an assertion failure or locator timeout, execution pauses and displays failure details in the web interface.
+* **AI Self-Healing**: Triggers an on-demand multimodal LLM healing cycle to resolve broken selectors against the live DOM and update the recording automatically.
+* **Step Controls**: **Retry** the current step immediately, **Skip** non-critical steps, or **Abort** execution.
+* **Live DOM & Screenshot Inspection**: View captured element states, viewport screenshots, and candidate locators directly in the browser during execution.
+
+:::info[Reporting & Telemetry Dashboards]
+Looking for live run monitoring, Visual RCA cards, Execution Identity, or historical telemetry widgets? See the dedicated [Reporting & Dashboards](/neodymium-ai/reporting) documentation for complete details on Run Reports, collapsible Area accordions, and custom dashboard composition.
+:::
+
+---
+
+## 4. Visual Playbook Editor
+
+The Visual Playbook Editor allows developers and QA teams to inspect, author, and refine YAML playbooks directly in the web browser without manual text editing:
+
+![Visual Playbook Test Editor](/images/neodymium-ai/test-editor.png)
+
+### Key Editor Capabilities
+* **Interactive Step Sequencing**:
+  * View, reorder, add, or delete test steps with drag-and-drop handles.
+  * Edit step instructions in plain natural language or adjust recorded step parameters.
+* **Control Tag & Parameter Inspector**:
+  * Configure step parameters and control tags through intuitive UI toggles:
+    * `(visual)`: Enforces computer-vision-based layout or pixel comparison checks.
+    * `(hint: ...)`: Supplies targeted selector hints to guide AI locator discovery.
+    * `(optional)`: Allows non-critical steps to proceed gracefully on failure.
+    * `(timeout: ...)`: Sets custom step execution deadlines.
+  * Define and manage dataset parameters and variable interpolations (`${variable}`).
+* **Recording Synchronization**:
+  * Side-by-side inspection of the companion `.recording.json` file.
+  * View concrete captured DOM locators, action histories, and visual baselines directly alongside the high-level playbook steps.
+* **Direct Filesystem Persistence**:
+  * Save updates immediately back to the local repository, ensuring version control (`git diff`) cleanly tracks all changes.
+
+---
+
+## 5. Interactive AI Chat Assistant
+
+Collaborate with the built-in AI assistant to author and refine test scenarios:
+
+* **Page Exploration**: Command the assistant to navigate to target pages, inspect elements, and suggest optimal test step sequences.
+* **Natural Language Refinement**: Transform high-level requirements (*"Test user sign-up with invalid email"*) into concise, lint-free playbook steps.
+* **Selector Recommendations**: Inspect live candidate locators and evaluate stability scores before committing to playbooks.
+
+---
+
+## 6. Test Selection & Execution Queue
+
+The AI Manager provides an interactive execution hub for staging, configuring, and executing test suites without leaving the browser:
+
+![Execution Queue Composition and Batch Management](/images/neodymium-ai/queue-composition.png)
+
+### Building the Execution Queue
+* **Test Tree Exploration**:
+  * Browse discovered test classes, YAML playbooks, and reusable step fragments (`.steps`) in a structured hierarchy rooted at `src/test/resources/` (configurable via `-Dneodymium.ai.tests.directory`).
+  * Inspect associated tags (`Suite`, `Area`, `Environment`) and dataset variations directly from the sidebar.
+* **Granular Queue Composition**:
+  * Add entire folders, single playbooks, or individual dataset rows to the staged queue with a single click.
+  * Mix and match tests across different feature areas for custom ad-hoc or sanity runs.
+* **Queue Configuration & Batch Controls**:
+  * **Execution Mode**: Set the execution strategy across the queue (`AUTO`, `REPLAY_STRICT`, or `FORCE_RECORDING`).
+  * **Browser Profile**: Assign target browser profiles (e.g. `Chrome_1500x1000`, `Firefox_Headless`).
+  * **Queue Management**: Reorder pending tests, remove individual items, or clear the queue.
+* **Real-Time Execution Monitoring**:
+  * Launch the batch and observe real-time progress bars, live action timelines, step status indicators, and streaming viewport screenshots.
+
+---
+
+## 7. Comparison: Standalone Console vs. AI Manager
+
+| Capability | Standalone Interactive Console | Full AI Manager Hub |
+| :--- | :--- | :--- |
+| **Prerequisites** | None (`neodymium-core` only) | Spring Boot web application |
+| **Start Command** | `mvn test -Dneodymium.ai.interactive=true` | `./run-neodymium.sh` (or `mvn spring-boot:run -pl :neodymium-manager`) |
+| **Port** | Auto-scans `18090+` | Default `8080` |
+| **Browser Window** | Auto-opens when test launches | Opened manually at `http://localhost:8080` |
+| **Target Scope** | Current active test execution | Multi-package test suites & batches |
+| **Live Reports During Run** | Local browser window | Live in web dashboard (`-Dneodymium.managerActive=true`) |
+| **Live DOM & Screenshots** | Yes (SSE stream `/api/console/events`) | Yes (WebSocket & HTTP push state) |
+| **On-Failure Controls** | Yes (AI Heal, Retry, Skip, Abort) | Yes (via interactive runner tab) |
+| **Visual Playbook Editor** | No | Yes (drag-and-drop step reordering) |
+| **AI Chat Assistant** | No | Yes (natural language generation) |
+| **Historical Dashboards** | No | Yes (String of Pearls, token trends, SQLite/H2) |
+| **Lifecycle** | Automatically terminates with JUnit test | Long-running persistent server |
