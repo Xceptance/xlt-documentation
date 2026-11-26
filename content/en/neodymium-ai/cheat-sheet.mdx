@@ -1,0 +1,218 @@
+---
+title: Cheat Sheet
+description: Quick reference for Neodymium AI YAML playbook syntax, control tags, properties, annotations, and CLI commands on a single page.
+icon: file-code
+sidebar:
+  label: Cheat Sheet
+  order: 20
+---
+
+Quick reference for all Neodymium AI features, playbook syntax, modifier tags, and test annotations.
+
+---
+
+## Complete YAML Playbook Skeleton
+
+```yaml
+# 1. Test Filtering Tags
+tags:
+  - smoke
+  - area: checkout
+
+# 2. Framework Properties Overrides
+properties:
+  neodymium.ai.skipReplay: false
+  neodymium.ai.timeout: 45
+
+# 3. Scenario Setup Block
+before: |
+  Open ${neodymium.url}/login
+  Click "Accept Cookies" (optional)
+
+# 4. Core Test Steps
+steps: |
+  # Direct locator hint
+  Click the sign-in button (hint: #btn-login)
+  Type "${user.name}" into #user-input
+  Type "${user.password}" into #pass-input
+  Click #submit-btn
+
+  # Hierarchical turn group (batches related inputs)
+  Enter shipping address:
+    - Type 'Main Street 1' into #street
+    - Type '10001' into #zip
+    - Type 'New York' into #city
+
+  # Arrow substeps alternative
+  # Select shipping speed
+  ->- Click radio button 'Express Delivery'
+  ->- Click 'Continue to Payment'
+
+  # Dynamic variable extraction from DOM
+  Store text from #order-number as orderId
+
+  # Step-level overrides: timeout and visual baseline gate
+  Verify confirmation displays "Order ${orderId}" (timeout: 10s)
+  Observe confirmation receipt layout (visual: full, threshold: 0.95)
+
+# 5. Scenario Teardown Block
+after: |
+  Click #logout-btn (optional)
+  Clear cookies and session
+
+# 6. Data-Driven Iterations
+data:
+  - testId: standardUser
+    user:
+      name: "alice"
+      password: "secretPassword"   # Automatically masked outbound to LLM
+  - testId: powerUser
+    user:
+      name: "bob"
+      password: "anotherPassword"
+    properties:
+      skipReplay: true             # Per-dataset property override
+```
+
+---
+
+## Step Formatting Styles
+
+| Style | Syntax | Best Used For |
+| :--- | :--- | :--- |
+| **Multiline Block** | `steps: \|` | Cleanest and most readable natural language flow without bullet clutter. |
+| **Sequence List** | `steps:` with `- "..."` | Standard YAML list format for dynamic step composition. |
+| **Folded Scalar** | `- >-` | Single-turn batch assertions; verifies multiple conditions in one round trip. |
+| **Turn Groups** | `Goal:\n  - Substep` | Batches form fields or multi-action operations into a single cohesive turn. |
+| **Arrow Sub-steps** | `->- Action` | Sequential actions where a preceding comment becomes the parent goal title. |
+
+---
+
+## Step Modifier Tags Reference
+
+Append modifier tags in parentheses to step instructions:
+
+| Modifier Tag | Purpose | Effect |
+| :--- | :--- | :--- |
+| `(hint: <selector>)` | **Locator Hint** | Attempts target CSS/XPath directly, activating `ContextLevel.HINT` (0 DOM elements sent). |
+| `(hint: use java method)` | **Method Hint** | Delegates execution to an annotated `@Tool` method on the test class or utility classes. |
+| `(no-replay)` | **Bypass Replay** | Skips recorded actions from `.recording.json` and evaluates the step live with the LLM. |
+| `(optional)` / `(soft)` | **Soft Assertion** | Step failure logs a warning without aborting or failing the overall test run. |
+| `(bug)` / `(bug: <id>)` | **Expected Defect** | Passes if the step fails; fails the test run if the step unexpectedly succeeds. |
+| `(continue-on-error)` | **Error Recovery** | Records the failure and continues executing subsequent steps rather than aborting. |
+| `(no-healing)` | **Disable Healing** | Fails immediately on selector divergence without triggering AI locator recovery. |
+| `(marker)` | **Visual Grounding** | Overlays numbered Set-of-Marks badges for targeting textless icons. |
+| `(timeout: 10s)` | **Step Timeout** | Overrides execution timeout for slow asynchronous elements (e.g. `10s`, `5000ms`). |
+| `(threshold: 0.95)` | **SSIM Tolerance** | Overrides the minimum required SSIM perceptual match score (e.g. `0.95`, `ssim: 95%`). |
+| `(context: <level>)` | **DOM Fidelity** | Sets initial DOM context sent to the model (`minimal`, `lean`, `standard`, `full`, `hint`). |
+| `(visual)` / `(visual: full)` | **Pixel-Exact Check** | Captures viewport or full-page scrolling screenshot for SSIM baseline comparison. |
+| `(layout)` / `(layout: full)` | **Fuzzy Layout** | Redacts text and media to verify layout structure and color palettes without pixel fragility. |
+
+---
+
+## Variables: Storing, Reading & Precedence
+
+### Dynamic Variable Extraction
+```yaml
+steps: |
+  # Capture text from an element
+  Store text from #invoice-number as invoiceId
+
+  # Store literal values
+  Store "CONFIRMED" as statusFlag
+
+  # Reuse in subsequent steps
+  Verify invoice message contains "${invoiceId}"
+```
+
+### Precedence Hierarchy
+When resolving `${variable}`, Neodymium searches in this order:
+1. **Dynamic runtime variables** (captured via `Store text from`)
+2. **Dataset parameters** (`data:` block)
+3. **Neodymium runtime test data** (`Neodymium.getData().put(...)`)
+4. **System properties** (`-Dvariable=value`)
+5. **Configuration properties** (`neodymium.properties`)
+
+---
+
+## JUnit 5 Test Annotations
+
+```java
+import org.junit.jupiter.api.Test;
+import org.neodymium.ai.junit.NeodymiumAiTest;
+import org.neodymium.ai.junit.AiPlaybook;
+import org.neodymium.ai.junit.AiInlinePlaybook;
+import org.neodymium.ai.junit.AiMode;
+import org.neodymium.ai.junit.AiDataSet;
+import org.neodymium.ai.session.ExecutionMode;
+
+@NeodymiumAiTest
+public class CheckoutTest
+{
+    // Convention-based: loads CheckoutTest_myTestMethod.yaml
+    @AiPlaybook
+    public void standardCheckout() {}
+
+    // Explicit path override
+    @AiPlaybook("/playbooks/guest-flow.yaml")
+    public void guestCheckout() {}
+
+    // Inlined playbook text block
+    @AiInlinePlaybook("""
+        steps: |
+          Open https://example.com
+          Click "Sign In"
+        """)
+    public void quickSmoke() {}
+
+    // Execution mode override
+    @AiPlaybook
+    @AiMode(ExecutionMode.REPLAY_STRICT)
+    public void strictPlayback() {}
+
+    // Filter to specific dataset ID
+    @AiPlaybook
+    @AiDataSet("powerUser")
+    public void targetedDataset() {}
+}
+```
+
+---
+
+## Execution Modes Reference
+
+| Mode | LLM Calls | Cache Usage | Self-Healing | Best Used For |
+| :--- | :--- | :--- | :--- | :--- |
+| **`REPLAY_WITH_HEALING`** *(Default)* | Only if broken | Replays `.recording.json` | Active (fallback to LLM) | Daily CI regression runs. Fast and resilient. |
+| **`REPLAY_STRICT`** | Zero calls | Replays `.recording.json` | Disabled (fails immediately) | Deterministic CI testing with guaranteed $0 cost. |
+| **`LIVE` / `LLM_RECORDING`** | Every step | Updates `.recording.json` | Active | Initial scenario authoring and recording. |
+| **`FORCE_RECORDING`** | Every step | Overwrites recording cache | Active | Full scenario baseline re-recording. |
+| **`LLM_ONLY`** | Every step | Neither reads nor writes cache | Active | Exploratory AI testing and dynamic exploratory runs. |
+| **`LINTER_ONLY`** | Pre-flight only | Bypasses browser execution | N/A | Static playbook quality and token budget auditing. |
+
+---
+
+## Essential Maven CLI Commands
+
+```bash
+# Run all tests in standard replay-with-healing mode
+mvn clean test
+
+# Run a specific playbook test class
+mvn clean test -Dtest=CheckoutTest
+
+# Force re-recording of companion recordings
+mvn clean test -Dneodymium.ai.mode=FORCE_RECORDING
+
+# Run in strict deterministic mode (0 LLM network calls)
+mvn clean test -Dneodymium.ai.mode=REPLAY_STRICT
+
+# Run offline with no external API connections permitted
+mvn clean test -Dneodymium.ai.offline=true
+
+# Inject API key dynamically at runtime
+mvn clean test -Dneodymium.ai.apiKey="AIzaSy..."
+
+# Stream live test execution directly into the AI Manager
+mvn clean test -Dneodymium.managerActive=true
+```

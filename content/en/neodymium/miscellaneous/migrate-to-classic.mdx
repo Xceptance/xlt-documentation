@@ -1,0 +1,49 @@
+---
+title: Migrate to Neodymium Classic
+description: How to update your Maven POM to use Neodymium Classic.
+icon: circle-arrow-up
+sidebar:
+  label: Migrate to Neodymium Classic
+  order: 610
+---
+
+Neodymium 6 introduces a modular architecture. The classic, non-AI test automation framework now lives in a dedicated artifact: `neodymium-classic`.
+
+## 1. Update Maven Dependency
+
+Replace `neodymium-library` with `neodymium-classic` and update the version:
+
+```xml
+<dependency>
+    <groupId>com.xceptance</groupId>
+    <artifactId>neodymium-classic</artifactId>
+    <version>6.0.0-BETA</version>
+</dependency>
+```
+
+## 2. Update Compiler Target
+
+Configure your compiler release target to Java 17:
+
+```xml
+<properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.release>17</maven.compiler.release>
+</properties>
+```
+
+## 3. Update Maven Plugins
+
+Update the Surefire plugin and Allure dependency versions:
+
+```xml
+<properties>
+    <surefire.version>3.6.1</surefire.version>
+    <allure.version>2.35.6</allure.version>
+</properties>
+```
+
+:::warning[Allure CLI Requirement]
+Allure 2.35.x requires Allure Commandline CLI **2.27.0** or higher in your environment or CI/CD pipelines.
+:::

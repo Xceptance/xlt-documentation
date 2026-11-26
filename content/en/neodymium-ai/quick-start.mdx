@@ -1,0 +1,244 @@
+---
+title: Getting Started with Neodymium AI
+description: Set up your environment, generate a project via Maven Archetype, and run automated AI tests in 5 minutes.
+icon: rocket
+sidebar:
+  label: Quick Start
+  order: 2
+---
+
+This guide walks you through bootstrapping a new project using the Neodymium Maven Archetype, configuring your LLM provider credentials, running your first natural language playbook, and launching the interactive Neodymium AI Manager.
+
+---
+
+## 1. Prerequisites
+
+Before getting started, ensure you have the following installed:
+
+* **Java Development Kit (JDK) 21** or later.
+* **Apache Maven 3.9** or later.
+* A modern web browser (Google Chrome, Mozilla Firefox, Microsoft Edge, or Apple Safari).
+* An API key for Google Gemini (recommended; currently the only fully supported provider).
+
+---
+
+## 2. Project Setup
+
+Choose the setup path that matches your project:
+
+<Tabs>
+  <Tab title="Option A: Maven Archetype (Recommended)">
+
+The fastest way to get started with Neodymium AI is using the official Maven Archetype. It scaffolds a complete, pre-configured test automation project with showcase natural language playbooks, JUnit 5 runners, configuration files, and Neodymium AI Manager launcher scripts.
+
+Run the following command in your terminal:
+
+```bash
+mvn archetype:generate \
+  -DarchetypeGroupId=com.xceptance \
+  -DarchetypeArtifactId=neodymium-archetype
+```
+
+Maven will download the archetype and prompt you for two standard coordinates:
+* **`groupId`**: your organization package (e.g. `com.example`)
+* **`artifactId`**: your project directory name (e.g. `my-neodymium-ai-tests`)
+
+All other settings (archetype version, dependencies, launcher scripts, and Posters demo playbooks) are configured automatically.
+
+:::tip[Non-Interactive One-Liner]
+For CI/CD runners or headless scripts, generate non-interactively using standard Maven batch mode (`-B`):
+```bash
+mvn -B archetype:generate \
+  -DarchetypeGroupId=com.xceptance \
+  -DarchetypeArtifactId=neodymium-archetype \
+  -DgroupId=com.example \
+  -DartifactId=my-neodymium-ai-tests
+```
+:::
+
+Once generated, navigate into your new project directory:
+
+```bash
+cd my-neodymium-ai-tests
+```
+
+#### Project Structure
+
+```text
+my-neodymium-ai-tests/
+├── run-neodymium.sh / run-neodymium.bat # Interactive AI Manager launcher
+├── pom.xml                         # Neodymium dependencies & build plugins
+├── config/
+│   ├── ai.properties               # LLM provider, models, and timeouts
+│   ├── browser.properties          # Browser profiles & window geometries
+│   ├── credentials.properties.template # Safe template for local API keys
+│   └── neodymium.properties        # Base URLs and framework settings
+└── src/test/
+    ├── java/tests/
+    │   ├── PostersHomepageAiTest.java
+    │   ├── PostersSearchAiTest.java
+    │   ├── PostersRegistrationAiTest.java
+    │   └── PostersNegativeLoginAiTest.java
+    └── resources/tests/
+        ├── posters_homepage.yaml
+        ├── posters_search.yaml
+        ├── posters_registration.yaml
+        ├── posters_negative_login.yaml
+        └── fragments/
+            └── cookie_consent.steps
+```
+
+  </Tab>
+  <Tab title="Option B: Add to an Existing Project">
+
+If you are adding Neodymium AI to an existing Maven project:
+
+#### Step 1: Add Maven Dependency
+Add `neodymium-core` to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.xceptance</groupId>
+    <artifactId>neodymium-core</artifactId>
+    <version>6.0.0-BETA</version>
+    <scope>test</scope>
+</dependency>
+```
+
+#### Step 2: Write Your Playbook
+Create `src/test/resources/tests/posters_search.yaml`:
+
+```yaml
+name: Posters Demo Store Search
+description: Opens the Posters demo shop, performs a product search, and verifies results.
+
+steps: |
+  Open https://posters.xceptance.io:8443/
+  If a cookie consent banner is visible, click 'Accept All'
+  Type "Modern" into the search input field
+  Click the search button
+  Verify the search result header contains "Modern"
+  Verify at least one product tile is displayed
+```
+
+#### Step 3: Create the JUnit 5 Test Class
+Create `src/test/java/tests/PostersSearchAiTest.java`:
+
+```java
+package tests;
+
+import org.neodymium.ai.junit.AiPlaybook;
+import org.neodymium.ai.junit.NeodymiumAiTest;
+
+@NeodymiumAiTest
+public class PostersSearchAiTest
+{
+    @AiPlaybook("tests/posters_search.yaml")
+    public void testPostersSearch()
+    {
+        // @AiPlaybook acts as a JUnit 5 @TestTemplate.
+        // NeodymiumAiTest handles playbook loading, browser lifecycle,
+        // live recording, and offline replay automatically.
+    }
+}
+```
+
+  </Tab>
+</Tabs>
+
+---
+
+## 3. Configure Your LLM API Key
+
+Neodymium AI adheres to a strict zero-secret security policy: **never commit API keys or credentials to version control**.
+
+Supply your API key using any of the following approaches:
+
+### A. Local Credentials File (Recommended for Local Development)
+Copy the provided template to `config/credentials.properties` (which is gitignored by default):
+
+```bash
+cp config/credentials.properties.template config/credentials.properties
+```
+
+Add your API key:
+```properties
+# config/credentials.properties (or config/dev-neodymium.properties)
+neodymium.ai.apiKey=your-gemini-api-key-here
+```
+
+### B. Environment Variable (Recommended for CI/CD)
+Set the environment variable in your terminal session or CI/CD runner:
+
+```bash
+export GEMINI_API_KEY="your-gemini-api-key-here"
+```
+
+### C. Runtime JVM Argument
+Pass the API key dynamically during Maven execution:
+
+```bash
+mvn test -Dneodymium.ai.apiKey="your-gemini-api-key-here"
+```
+
+:::note[Default Provider and Model]
+By default, Neodymium AI uses Google Gemini with the `gemini-3.5-flash-lite` model for fast, cost-effective execution.
+
+While you can configure other providers and models (such as OpenAI, Mistral, or Vertex AI) in `config/ai.properties` or `config/credentials.properties`, **Google Gemini is currently the only fully supported provider**. Full support for additional providers is under active development.
+:::
+
+---
+
+## 4. Run Your First AI Test
+
+Execute the test using Maven:
+
+```bash
+mvn test -Dtest=PostersSearchAiTest
+```
+
+Or run headlessly:
+
+```bash
+mvn test -Dtest=PostersSearchAiTest -Dbrowserprofile.global.headless=true
+```
+
+### Launch the Neodymium AI Manager (Web UI)
+
+Your bootstrapped project includes executable scripts to launch the interactive AI Manager dashboard:
+
+* **Linux / macOS:**
+  ```bash
+  ./run-neodymium.sh
+  ```
+* **Windows:**
+  ```cmd
+  run-neodymium.bat
+  ```
+
+Open your browser at `http://localhost:8080` to inspect playbooks, run test batches, stream live viewport screenshots, and explore execution history.
+
+---
+
+## 5. The Two-Run Lifecycle
+
+When executing Neodymium AI tests, observe the two distinct execution phases:
+
+### Run 1: Discovery & Recording (Creation Mode)
+* Neodymium AI launches the browser and reads the YAML instructions.
+* The LLM analyzes the live page Document Object Model (DOM), identifies resilient CSS and XPath selectors, and performs the clicks and text inputs.
+* Upon test completion, Neodymium AI automatically generates a companion file: `posters_search.recording.json` alongside your playbook.
+* The recording contains the concrete executed actions, selectors, and visual baseline hashes.
+
+### Run 2: Deterministic Machine Replay (Replay Mode)
+* Run the command again:
+  ```bash
+  mvn test -Dtest=PostersSearchAiTest
+  ```
+* Neodymium AI detects the existing `.recording.json` file.
+* It executes all recorded actions directly in the browser via Selenide in milliseconds.
+* **0 LLM calls are made, 0 API tokens are spent, and execution runs at native WebDriver speed.**
+
+:::tip[Automatic Self-Healing]
+If the target application UI updates (e.g. an ID or class name changes), Neodymium AI does not fail immediately. In `REPLAY_WITH_HEALING` mode (the default), it detects the broken selector, escalates to the live DOM, locates the new element, updates the recording file on disk, and continues the test run smoothly.
+:::
